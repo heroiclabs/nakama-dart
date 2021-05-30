@@ -83,7 +83,7 @@ class NakamaWebsocketClient {
     return _futures.length - 1;
   }
 
-  Future updateStatus(String status) => _send(
+  Future updateStatus(String status) => _send<void>(
       Envelope(statusUpdate: StatusUpdate(status: StringValue(value: status))));
 
   Future<Match> createMatch() =>

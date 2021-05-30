@@ -63,4 +63,8 @@ void main() {
 
     await websocketClient.leaveMatch(res.matchId);
   });
+
+  test('update status', () async {
+    await websocketClient.updateStatus('I am just testing!');
+  });
 }
