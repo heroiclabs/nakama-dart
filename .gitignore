@@ -1,5 +1,6 @@
 # Make sure never commit naka build files by mistake
 lib/api/nakama
+doc
 
 # Miscellaneous
 *.class
@@ -76,3 +77,4 @@ build/
 !**/ios/**/default.mode2v3
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
+.env*

@@ -1,7 +1,3 @@
 library flutter_nakama;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export './src/nakama_grpc_client.dart';
