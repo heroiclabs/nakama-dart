@@ -1,5 +1,5 @@
 import 'package:faker/faker.dart';
-import 'package:flutter_nakama/api/rtapi/realtime.pb.dart' as Realtime;
+import 'package:flutter_nakama/api/rtapi/realtime.pb.dart' as realtime;
 import 'package:flutter_nakama/src/nakama_websocket_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -50,7 +50,7 @@ void main() {
   test('create new match', () async {
     print('Sending create match request');
     final res = await websocketClient.createMatch();
-    assert(res is Realtime.Match);
+    assert(res is realtime.Match);
 
     print('Created match: ${res.matchId}');
   });

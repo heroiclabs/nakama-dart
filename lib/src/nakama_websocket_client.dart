@@ -68,36 +68,21 @@ class NakamaWebsocketClient {
     }
   }
 
+  Future<T> _send<T>(Envelope envelope) {
+    final ticket = _createTicket<T>();
+    _channel.sink.add((envelope..cid = ticket.toString()).writeToBuffer());
+    return _futures[ticket].future as Future<T>;
+  }
+
   int _createTicket<T>() {
     final completer = Completer<T>();
     _futures.add(completer);
-
-    return _futures.indexOf(completer);
+    return _futures.length - 1;
   }
 
-  Future updateStatus(String status) {
-    final ticket = _createTicket<StatusUpdate>();
+  Future updateStatus(String status) => _send(
+      Envelope(statusUpdate: StatusUpdate(status: StringValue(value: status))));
 
-    final envelope = Envelope(
-      statusUpdate: StatusUpdate(status: StringValue(value: status)),
-      cid: ticket.toString(),
-    );
-
-    _channel.sink.add(envelope);
-
-    return _futures[ticket].future;
-  }
-
-  Future<Match> createMatch() {
-    final ticket = _createTicket<Match>();
-
-    final envelope = Envelope(
-      matchCreate: MatchCreate(),
-      cid: ticket.toString(),
-    );
-
-    _channel.sink.add(envelope.writeToBuffer());
-
-    return _futures[ticket].future as Future<Match>;
-  }
+  Future<Match> createMatch() =>
+      _send<Match>(Envelope(matchCreate: MatchCreate()));
 }
