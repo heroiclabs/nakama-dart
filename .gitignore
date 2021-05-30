@@ -1,3 +1,6 @@
+# Make sure never commit naka build files by mistake
+lib/api/nakama
+
 # Miscellaneous
 *.class
 *.log
