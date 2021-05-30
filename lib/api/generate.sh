@@ -13,7 +13,8 @@ cp protobuf/src/google/protobuf/*.proto google/protobuf/
 
 echo "[*] Compiling apirpc..."
 protoc --dart_out compiled google/protobuf/*.proto
-protoc --proto_path=github.com/heroiclabs/nakama-common --proto_path=. --proto_path=grpc-gateway --proto_path=./api-common-protos --dart_out=grpc:compiled apigrpc.proto
+protoc -I github.com/heroiclabs/nakama-common -I . -I grpc-gateway -I ./api-common-protos --dart_out=grpc:compiled apigrpc.proto
+protoc -I github.com/heroiclabs/nakama-common -I . -I grpc-gateway -I ./api-common-protos --dart_out=grpc:compiled rtapi/realtime.proto
 
 echo "[*] Compiling nakama-common..."
 cd ./github.com/heroiclabs/nakama-common/api
