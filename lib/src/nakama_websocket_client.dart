@@ -56,12 +56,15 @@ class NakamaWebsocketClient {
 
       if (receivedEnvelope.cid.isNotEmpty) {
         // get corresponding future to complete
-        final waitingFuture = _futures[int.tryParse(receivedEnvelope.cid)!];
+        final waitingFuture = _futures[int.parse(receivedEnvelope.cid)];
 
         if (waitingFuture is Completer<Match>) {
           return waitingFuture.complete(receivedEnvelope.match);
+        } else {
+          return waitingFuture.complete();
         }
       }
+      print('Discarding unhandled message');
     } catch (e, s) {
       print(e);
       print(s);
@@ -85,4 +88,14 @@ class NakamaWebsocketClient {
 
   Future<Match> createMatch() =>
       _send<Match>(Envelope(matchCreate: MatchCreate()));
+
+  Future<Match> joinMatch(
+    String matchId, {
+    String? token,
+  }) =>
+      _send<Match>(
+          Envelope(matchJoin: MatchJoin(matchId: matchId, token: token)));
+
+  Future<void> leaveMatch(String matchId) =>
+      _send<void>(Envelope(matchLeave: MatchLeave(matchId: matchId)));
 }

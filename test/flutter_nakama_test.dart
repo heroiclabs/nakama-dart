@@ -46,12 +46,21 @@ void main() {
   });
 
   // -- Tests --
-
   test('create new match', () async {
     print('Sending create match request');
     final res = await websocketClient.createMatch();
     assert(res is realtime.Match);
 
     print('Created match: ${res.matchId}');
+  });
+
+  test('leave a match', () async {
+    print('Sending create match request');
+    final res = await websocketClient.createMatch();
+    assert(res is realtime.Match);
+
+    print('Created match: ${res.matchId}, leaving now');
+
+    await websocketClient.leaveMatch(res.matchId);
   });
 }
