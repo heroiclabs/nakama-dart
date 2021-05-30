@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flutter_nakama/api/google/protobuf/wrappers.pbserver.dart';
+import 'package:flutter_nakama/api/google/protobuf/wrappers.pb.dart';
 import 'package:flutter_nakama/api/rtapi/realtime.pb.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -16,9 +16,15 @@ class NakamaWebsocketClient {
 
   late final WebSocketChannel _channel;
 
-  /// The key used to authenticate with the server without a session.
-  /// Defaults to "defaultkey".
-  late final String serverKey;
+  // ? final Function(ChannelMessage)? onChannelMessage;
+  final Function(ChannelPresenceEvent)? onChannelPresence;
+  final Function(MatchmakerMatched)? onMatchmakerMatched;
+  final Function(MatchData)? onMatchData;
+  final Function(MatchPresenceEvent)? onMatchPresence;
+  final Function(Notifications)? onNotifications;
+  final Function(StatusPresenceEvent)? onStatusPresence;
+  final Function(StreamPresenceEvent)? onStreamPresence;
+  final Function(StreamData)? onStreamData;
 
   final List<Completer> _futures = [];
 
@@ -27,6 +33,15 @@ class NakamaWebsocketClient {
     this.port = 7350,
     required this.ssl,
     required this.token,
+    // this.onChannelMessage,
+    this.onChannelPresence,
+    this.onMatchmakerMatched,
+    this.onMatchData,
+    this.onMatchPresence,
+    this.onNotifications,
+    this.onStatusPresence,
+    this.onStreamPresence,
+    this.onStreamData,
   }) {
     print('Connecting ${ssl ? 'WSS' : 'WS'} to $host:$port');
     print('Using token $token');
@@ -63,8 +78,33 @@ class NakamaWebsocketClient {
         } else {
           return waitingFuture.complete();
         }
+      } else {
+        // map server messages
+        switch (receivedEnvelope.whichMessage()) {
+          case Envelope_Message.channelPresenceEvent:
+            return onChannelPresence?.call(
+              receivedEnvelope.channelPresenceEvent,
+            );
+          case Envelope_Message.matchmakerMatched:
+            return onMatchmakerMatched?.call(
+              receivedEnvelope.matchmakerMatched,
+            );
+          case Envelope_Message.matchData:
+            return onMatchData?.call(receivedEnvelope.matchData);
+          case Envelope_Message.matchPresenceEvent:
+            return onMatchPresence?.call(receivedEnvelope.matchPresenceEvent);
+          case Envelope_Message.notifications:
+            return onNotifications?.call(receivedEnvelope.notifications);
+          case Envelope_Message.statusPresenceEvent:
+            return onStatusPresence?.call(receivedEnvelope.statusPresenceEvent);
+          case Envelope_Message.streamPresenceEvent:
+            return onStreamPresence?.call(receivedEnvelope.streamPresenceEvent);
+          case Envelope_Message.streamData:
+            return onStreamData?.call(receivedEnvelope.streamData);
+          default:
+            return print('Not implemented');
+        }
       }
-      print('Discarding unhandled message');
     } catch (e, s) {
       print(e);
       print(s);
