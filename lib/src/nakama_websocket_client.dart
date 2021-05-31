@@ -4,6 +4,8 @@ import 'package:nakama/api/rtapi/realtime.pb.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class NakamaWebsocketClient {
+  static final Map<String, NakamaWebsocketClient> _clients = {};
+
   /// The host address of the server.
   final String host;
 
@@ -28,7 +30,59 @@ class NakamaWebsocketClient {
 
   final List<Completer> _futures = [];
 
-  NakamaWebsocketClient({
+  /// Returns the default instance.
+  static NakamaWebsocketClient get instance {
+    return NakamaWebsocketClient.instanceFor(key: 'default');
+  }
+
+  /// Returns the instance with given key.
+  static NakamaWebsocketClient instanceFor({required String key}) {
+    if (!_clients.containsKey(key)) {
+      throw Exception('$key has not yet been initialized');
+    }
+
+    return _clients[key]!;
+  }
+
+  factory NakamaWebsocketClient.init({
+    String key = 'default',
+    required String host,
+    int port = 7350,
+    required bool ssl,
+    required String token,
+    // this.onChannelMessage,
+    Function(ChannelPresenceEvent)? onChannelPresence,
+    Function(MatchmakerMatched)? onMatchmakerMatched,
+    Function(MatchData)? onMatchData,
+    Function(MatchPresenceEvent)? onMatchPresence,
+    Function(Notifications)? onNotifications,
+    Function(StatusPresenceEvent)? onStatusPresence,
+    Function(StreamPresenceEvent)? onStreamPresence,
+    Function(StreamData)? onStreamData,
+  }) {
+    // Has the client already been initialized? Then return it.
+    if (_clients.containsKey(key)) {
+      return instanceFor(key: key);
+    }
+
+    // Create new and return instance of this.
+    return _clients[key] = NakamaWebsocketClient._(
+      host: host,
+      port: port,
+      ssl: ssl,
+      token: token,
+      onChannelPresence: onChannelPresence,
+      onMatchmakerMatched: onMatchmakerMatched,
+      onMatchData: onMatchData,
+      onMatchPresence: onMatchPresence,
+      onNotifications: onNotifications,
+      onStatusPresence: onStatusPresence,
+      onStreamPresence: onStreamPresence,
+      onStreamData: onStreamData,
+    );
+  }
+
+  NakamaWebsocketClient._({
     required this.host,
     this.port = 7350,
     required this.ssl,

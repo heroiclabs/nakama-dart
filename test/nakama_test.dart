@@ -5,26 +5,24 @@ import 'package:nakama/src/nakama_websocket_client.dart';
 import 'package:nakama/nakama.dart';
 import 'package:test/test.dart';
 
-const host = '127.0.0.1';
-const serverKey = 'defaultkey';
+import 'config.dart';
 
 void main() {
-  // fake our user
-  final email = faker.internet.freeEmail();
-  final password = faker.internet.password();
-  print('User data: $email:$password');
+  late final String email;
+  late final String password;
 
-  // persist some references here
-  late String token;
-  late String userId;
-  late NakamaWebsocketClient websocketClient;
+  // Create a new websocket connection for the hole test run (singleton).
+  setUpAll(() async {
+    // Generate test user's credentials.
+    email = faker.internet.freeEmail();
+    password = faker.internet.password();
+    print('User data: $email:$password');
 
-  // Create API and Websocket client
-  setUp(() async {
+    // Create nakama clients.
     final client = NakamaGrpcClient(
-      host: host,
+      host: kTestHost,
       ssl: false,
-      serverKey: serverKey,
+      serverKey: kTestServerKey,
     );
 
     final session = await client.authenticateEmail(
@@ -33,22 +31,21 @@ void main() {
     );
 
     // create websocket connetion for lcl test
-    websocketClient = NakamaWebsocketClient(
-      host: '127.0.0.1',
+    NakamaWebsocketClient.init(
+      host: kTestHost,
       ssl: false,
       token: session.token,
     );
   });
 
-  // Close connections and free ressources
-  tearDown(() async {
-    await websocketClient.close();
+  tearDownAll(() async {
+    await NakamaWebsocketClient.instance.close();
   });
 
   // -- Tests --
   test('create new match', () async {
     print('Sending create match request');
-    final res = await websocketClient.createMatch();
+    final res = await NakamaWebsocketClient.instance.createMatch();
     assert(res is realtime.Match);
 
     print('Created match: ${res.matchId}');
@@ -56,15 +53,15 @@ void main() {
 
   test('leave a match', () async {
     print('Sending create match request');
-    final res = await websocketClient.createMatch();
+    final res = await NakamaWebsocketClient.instance.createMatch();
     assert(res is realtime.Match);
 
     print('Created match: ${res.matchId}, leaving now');
 
-    await websocketClient.leaveMatch(res.matchId);
+    await NakamaWebsocketClient.instance.leaveMatch(res.matchId);
   });
 
   test('update status', () async {
-    await websocketClient.updateStatus('I am just testing!');
+    await NakamaWebsocketClient.instance.updateStatus('I am just testing!');
   });
 }
