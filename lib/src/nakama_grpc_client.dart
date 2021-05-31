@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter_nakama/api/api.pb.dart';
-import 'package:flutter_nakama/api/apigrpc.pbgrpc.dart';
+import 'package:nakama/api/api.pb.dart';
+import 'package:nakama/api/apigrpc.pbgrpc.dart';
 import 'package:grpc/grpc.dart';
 
 /// Base class for communicating with Nakama via gRPC.

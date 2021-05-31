@@ -1,9 +1,9 @@
 import 'package:faker/faker.dart';
-import 'package:flutter_nakama/api/rtapi/realtime.pb.dart' as realtime;
-import 'package:flutter_nakama/src/nakama_websocket_client.dart';
+import 'package:nakama/api/rtapi/realtime.pb.dart' as realtime;
+import 'package:nakama/src/nakama_websocket_client.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_nakama/flutter_nakama.dart';
+import 'package:nakama/nakama.dart';
 
 const host = '127.0.0.1';
 const serverKey = 'defaultkey';

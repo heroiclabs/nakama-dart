@@ -1,6 +1,7 @@
-name: flutter_nakama
-description: A new Flutter package project.
+name: nakama
+description: Nakama is an open-source scalable game server that lets you focus on building games.
 version: 0.0.1
+repository: https://github.com/obrunsmann/flutter_nakama
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

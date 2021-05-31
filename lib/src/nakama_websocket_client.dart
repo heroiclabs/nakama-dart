@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:flutter_nakama/api/google/protobuf/wrappers.pb.dart';
-import 'package:flutter_nakama/api/rtapi/realtime.pb.dart';
+import 'package:nakama/api/google/protobuf/wrappers.pb.dart';
+import 'package:nakama/api/rtapi/realtime.pb.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class NakamaWebsocketClient {
