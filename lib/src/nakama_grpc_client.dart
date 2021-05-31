@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:nakama/api/api.pb.dart';
 import 'package:nakama/api/apigrpc.pbgrpc.dart';
 import 'package:grpc/grpc.dart';
+import 'package:nakama/src/session.dart' as model;
 
 /// Base class for communicating with Nakama via gRPC.
 /// [NakamaGrpcClient] abstracts the gRPC calls and handles authentication
@@ -52,7 +53,7 @@ class NakamaGrpcClient {
   /// Use with cation, API can change every time.
   NakamaClient get rawGrpcClient => _client;
 
-  Future<Session> authenticateEmail({
+  Future<model.Session> authenticateEmail({
     required String email,
     required String password,
     bool create = false,
@@ -65,7 +66,7 @@ class NakamaGrpcClient {
           ..password = password),
     );
 
-    return Session(
+    return model.Session(
       created: res.created,
       token: res.token,
       refreshToken: res.refreshToken,

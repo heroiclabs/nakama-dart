@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   grpc: ^3.0.0
+  jwt_decoder: ^2.0.1
   protobuf: ^2.0.0
   web_socket_channel: ^2.1.0
 

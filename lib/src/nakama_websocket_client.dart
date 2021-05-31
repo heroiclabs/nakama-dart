@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:nakama/api/api.pb.dart';
 import 'package:nakama/api/google/protobuf/wrappers.pb.dart';
 import 'package:nakama/api/rtapi/realtime.pb.dart' as rtpb;
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -143,8 +144,13 @@ class NakamaWebsocketClient {
         // get corresponding future to complete
         final waitingFuture = _futures[int.parse(receivedEnvelope.cid)];
 
+        // ? Is there any chance to do this better with <T>?
         if (waitingFuture is Completer<rtpb.Match>) {
           return waitingFuture.complete(receivedEnvelope.match);
+        } else if (waitingFuture is Completer<rtpb.MatchmakerTicket>) {
+          return waitingFuture.complete(receivedEnvelope.matchmakerTicket);
+        } else if (waitingFuture is Completer<rtpb.Status>) {
+          return waitingFuture.complete(receivedEnvelope.status);
         } else {
           return waitingFuture.complete();
         }
@@ -215,4 +221,48 @@ class NakamaWebsocketClient {
 
   Future<void> leaveMatch(String matchId) =>
       _send<void>(rtpb.Envelope(matchLeave: rtpb.MatchLeave(matchId: matchId)));
+
+  Future<rtpb.MatchmakerTicket> addMatchmaker({
+    required int minCount,
+    int? maxCount,
+    String? query,
+    Map<String, double>? numericProperties,
+    Map<String, String>? stringProperties,
+  }) {
+    assert(minCount >= 2);
+    assert(maxCount == null || maxCount >= minCount);
+
+    return _send(rtpb.Envelope(
+        matchmakerAdd: rtpb.MatchmakerAdd(
+      maxCount: maxCount,
+      minCount: minCount,
+      numericProperties: numericProperties,
+      stringProperties: stringProperties,
+      query: query,
+    )));
+  }
+
+  Future<void> removeMatchmaker(String ticket) => _send(
+      rtpb.Envelope(matchmakerRemove: rtpb.MatchmakerRemove(ticket: ticket)));
+
+  Future<Rpc> rpc({required String id, String? payload}) =>
+      _send(rtpb.Envelope(rpc: Rpc(id: id, payload: payload)));
+
+  Future<rtpb.Status> followUsers({
+    List<String>? userIds,
+    List<String>? usernames,
+  }) =>
+      _send(rtpb.Envelope(
+          statusFollow: rtpb.StatusFollow(
+        userIds: userIds,
+        usernames: usernames,
+      )));
+
+  Future<rtpb.Status> unfollowUsers({
+    List<String>? userIds,
+  }) =>
+      _send(rtpb.Envelope(
+          statusUnfollow: rtpb.StatusUnfollow(
+        userIds: userIds,
+      )));
 }

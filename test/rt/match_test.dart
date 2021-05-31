@@ -1,6 +1,5 @@
 import 'package:faker/faker.dart';
 import 'package:nakama/api/rtapi/realtime.pb.dart';
-import 'package:nakama/api/rtapi/realtime.pbjson.dart';
 import 'package:nakama/nakama.dart';
 import 'package:nakama/src/nakama_websocket_client.dart';
 import 'package:test/test.dart';
@@ -8,9 +7,6 @@ import 'package:test/test.dart';
 import '../config.dart';
 
 void main() {
-  late final String email;
-  late final String password;
-
   // Create a new websocket connection for the hole test run (singleton).
   setUpAll(() async {
     // Create nakama clients.
@@ -51,17 +47,13 @@ void main() {
     await NakamaWebsocketClient.instance.close();
   });
 
-  group('[RT] Multiplayer Test', () {
-    test('emits MatchPresenceEvent after creating a match', () async {
+  group('[RT] Match Test', () {
+    test('can join a match', () async {
       final s = NakamaWebsocketClient.instance;
 
       final match = await s.createMatch();
+      expect(match, isA<Match>());
       expect(match.matchId, isNotEmpty);
-
-      await expectLater(
-        s.onMatchPresence,
-        emits(isA<MatchPresenceEvent>()),
-      );
     });
 
     test('two clients can join a match', () async {
@@ -76,6 +68,27 @@ void main() {
 
       // A creates a match, B joins
       await a.createMatch().then((match) => b.joinMatch(match.matchId));
+    });
+
+    test('receives a ticket from matchmaker', () async {
+      final ticket = await NakamaWebsocketClient.instance.addMatchmaker(
+        maxCount: 4,
+        minCount: 2,
+      );
+
+      expect(ticket, isA<MatchmakerTicket>());
+    });
+
+    test('removing from matchmaker', () async {
+      // Create a new ticket which we later remove again.
+      final ticket = await NakamaWebsocketClient.instance.addMatchmaker(
+        maxCount: 4,
+        minCount: 2,
+      );
+
+      expect(ticket, isA<MatchmakerTicket>());
+
+      await NakamaWebsocketClient.instance.removeMatchmaker(ticket.ticket);
     });
   });
 }
