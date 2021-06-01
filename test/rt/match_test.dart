@@ -1,4 +1,5 @@
 import 'package:faker/faker.dart';
+import 'package:fixnum/fixnum.dart';
 import 'package:nakama/api/rtapi/realtime.pb.dart';
 import 'package:nakama/nakama.dart';
 import 'package:nakama/src/nakama_websocket_client.dart';
@@ -7,6 +8,9 @@ import 'package:test/test.dart';
 import '../config.dart';
 
 void main() {
+  late final Session sessionA;
+  late final Session sessionB;
+
   // Create a new websocket connection for the hole test run (singleton).
   setUpAll(() async {
     // Create nakama clients.
@@ -16,7 +20,7 @@ void main() {
       serverKey: kTestServerKey,
     );
 
-    final session = await client.authenticateEmail(
+    sessionA = await client.authenticateEmail(
       email: faker.internet.freeEmail(),
       password: faker.internet.password(),
     );
@@ -25,11 +29,11 @@ void main() {
     NakamaWebsocketClient.init(
       host: kTestHost,
       ssl: false,
-      token: session.token,
+      token: sessionA.token,
     );
 
     // Create another websocket connection for another user.
-    final anotherSession = await client.authenticateEmail(
+    sessionB = await client.authenticateEmail(
       email: faker.internet.freeEmail(),
       password: faker.internet.password(),
     );
@@ -39,7 +43,7 @@ void main() {
       key: 'clientb',
       host: kTestHost,
       ssl: false,
-      token: anotherSession.token,
+      token: sessionB.token,
     );
   });
 
@@ -89,6 +93,32 @@ void main() {
       expect(ticket, isA<MatchmakerTicket>());
 
       await NakamaWebsocketClient.instance.removeMatchmaker(ticket.ticket);
+    });
+
+    test('receives sent match data', () async {
+      final a = NakamaWebsocketClient.instance;
+      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
+
+      final realtimeData = 'test'.codeUnits;
+
+      // B starts listening for match data, A sends some data after B joined
+      b.onMatchData.listen(expectAsync1((matchData) {
+        expect(matchData, isNotNull);
+        expect(matchData.presence.userId, equals(sessionA.userId));
+        expect(matchData.data, equals(realtimeData));
+      }, count: 1));
+
+      // A creates match, B joins
+      await a
+          .createMatch()
+          .then((value) => b.joinMatch(value.matchId))
+          .then((value) {
+        a.sendMatchData(
+          matchId: value.matchId,
+          opCode: Int64(0),
+          data: realtimeData,
+        );
+      });
     });
   });
 }

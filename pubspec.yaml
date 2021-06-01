@@ -8,6 +8,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  fixnum: ^1.0.0
   grpc: ^3.0.0
   jwt_decoder: ^2.0.1
   protobuf: ^2.0.0

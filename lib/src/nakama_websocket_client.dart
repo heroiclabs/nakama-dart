@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:fixnum/fixnum.dart';
 import 'package:nakama/api/api.pb.dart';
 import 'package:nakama/api/google/protobuf/wrappers.pb.dart';
 import 'package:nakama/api/rtapi/realtime.pb.dart' as rtpb;
@@ -264,5 +265,17 @@ class NakamaWebsocketClient {
       _send(rtpb.Envelope(
           statusUnfollow: rtpb.StatusUnfollow(
         userIds: userIds,
+      )));
+
+  Future<List<rtpb.UserPresence>> sendMatchData({
+    required String matchId,
+    required Int64 opCode,
+    required List<int> data,
+  }) =>
+      _send(rtpb.Envelope(
+          matchDataSend: rtpb.MatchDataSend(
+        matchId: matchId,
+        opCode: opCode,
+        data: data,
       )));
 }
