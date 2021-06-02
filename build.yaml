@@ -1,0 +1,19 @@
+targets:
+  $default:
+    sources:
+      - lib/**
+      - swaggers/**
+      - swaggers2/**
+      - swagger_examples/**
+      - $package$
+    builders:
+      chopper_generator:
+        options:
+          header: "// Generated code"
+      swagger_dart_code_generator:
+        options:
+          with_converter: true
+          model_postfix: "RestDto"
+          input_folder: "lib/rest/"
+          output_folder: "lib/rest/"
+          enums_case_sensitive: true
