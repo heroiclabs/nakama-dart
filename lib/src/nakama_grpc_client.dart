@@ -5,6 +5,7 @@ import 'package:grpc/grpc_connection_interface.dart';
 import 'package:nakama/api/api.pb.dart';
 import 'package:nakama/api/apigrpc.pbgrpc.dart';
 import 'package:grpc/grpc.dart';
+import 'package:nakama/api/google/protobuf/empty.pb.dart';
 import 'package:nakama/src/nakama_client.dart';
 import 'package:nakama/src/session.dart' as model;
 
@@ -63,6 +64,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
     bool create = false,
     String? username,
   }) async {
+    final req = AuthenticateEmailRequest()
+      ..account = (AccountEmail()
+        ..email = email
+        ..password = password);
+    print(req.toProto3Json());
+
     final res = await _client.authenticateEmail(
       AuthenticateEmailRequest()
         ..account = (AccountEmail()
@@ -75,5 +82,10 @@ class NakamaGrpcClient extends NakamaBaseClient {
       token: res.token,
       refreshToken: res.refreshToken,
     );
+  }
+
+  @override
+  Future<Account> getAccount(model.Session session) {
+    return _client.getAccount(Empty());
   }
 }

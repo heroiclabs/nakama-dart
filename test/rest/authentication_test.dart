@@ -23,5 +23,16 @@ void main() {
 
       expect(session, isNotNull);
     });
+
+    test('get personal account details', () async {
+      final session = await client.authenticateEmail(
+        email: faker.internet.email(),
+        password: faker.internet.password(),
+      );
+
+      final account = await client.getAccount(session);
+
+      print('got account!');
+    });
   });
 }

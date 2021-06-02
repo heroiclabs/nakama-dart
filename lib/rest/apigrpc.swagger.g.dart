@@ -6,44 +6,44 @@ part of 'apigrpc.swagger.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GroupUserListGroupUserRestDto _$GroupUserListGroupUserRestDtoFromJson(
+GroupUserListGroupUser _$GroupUserListGroupUserFromJson(
     Map<String, dynamic> json) {
-  return GroupUserListGroupUserRestDto(
+  return GroupUserListGroupUser(
     user: json['user'] == null
         ? null
-        : ApiUserRestDto.fromJson(json['user'] as Map<String, dynamic>),
+        : ApiUser.fromJson(json['user'] as Map<String, dynamic>),
     state: json['state'] as int?,
   );
 }
 
-Map<String, dynamic> _$GroupUserListGroupUserRestDtoToJson(
-        GroupUserListGroupUserRestDto instance) =>
+Map<String, dynamic> _$GroupUserListGroupUserToJson(
+        GroupUserListGroupUser instance) =>
     <String, dynamic>{
       'user': instance.user?.toJson(),
       'state': instance.state,
     };
 
-UserGroupListUserGroupRestDto _$UserGroupListUserGroupRestDtoFromJson(
+UserGroupListUserGroup _$UserGroupListUserGroupFromJson(
     Map<String, dynamic> json) {
-  return UserGroupListUserGroupRestDto(
+  return UserGroupListUserGroup(
     group: json['group'] == null
         ? null
-        : ApiGroupRestDto.fromJson(json['group'] as Map<String, dynamic>),
+        : ApiGroup.fromJson(json['group'] as Map<String, dynamic>),
     state: json['state'] as int?,
   );
 }
 
-Map<String, dynamic> _$UserGroupListUserGroupRestDtoToJson(
-        UserGroupListUserGroupRestDto instance) =>
+Map<String, dynamic> _$UserGroupListUserGroupToJson(
+        UserGroupListUserGroup instance) =>
     <String, dynamic>{
       'group': instance.group?.toJson(),
       'state': instance.state,
     };
 
-WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto
-    _$WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDtoFromJson(
+WriteLeaderboardRecordRequestLeaderboardRecordWrite
+    _$WriteLeaderboardRecordRequestLeaderboardRecordWriteFromJson(
         Map<String, dynamic> json) {
-  return WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto(
+  return WriteLeaderboardRecordRequestLeaderboardRecordWrite(
     score: json['score'] as String?,
     subscore: json['subscore'] as String?,
     metadata: json['metadata'] as String?,
@@ -51,20 +51,20 @@ WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto
   );
 }
 
-Map<String,
-    dynamic> _$WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDtoToJson(
-        WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto instance) =>
-    <String, dynamic>{
-      'score': instance.score,
-      'subscore': instance.subscore,
-      'metadata': instance.metadata,
-      'operator': apiOverrideOperatorToJson(instance.$operator),
-    };
+Map<String, dynamic>
+    _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson(
+            WriteLeaderboardRecordRequestLeaderboardRecordWrite instance) =>
+        <String, dynamic>{
+          'score': instance.score,
+          'subscore': instance.subscore,
+          'metadata': instance.metadata,
+          'operator': apiOverrideOperatorToJson(instance.$operator),
+        };
 
-WriteTournamentRecordRequestTournamentRecordWriteRestDto
-    _$WriteTournamentRecordRequestTournamentRecordWriteRestDtoFromJson(
+WriteTournamentRecordRequestTournamentRecordWrite
+    _$WriteTournamentRecordRequestTournamentRecordWriteFromJson(
         Map<String, dynamic> json) {
-  return WriteTournamentRecordRequestTournamentRecordWriteRestDto(
+  return WriteTournamentRecordRequestTournamentRecordWrite(
     score: json['score'] as String?,
     subscore: json['subscore'] as String?,
     metadata: json['metadata'] as String?,
@@ -72,9 +72,8 @@ WriteTournamentRecordRequestTournamentRecordWriteRestDto
   );
 }
 
-Map<String,
-    dynamic> _$WriteTournamentRecordRequestTournamentRecordWriteRestDtoToJson(
-        WriteTournamentRecordRequestTournamentRecordWriteRestDto instance) =>
+Map<String, dynamic> _$WriteTournamentRecordRequestTournamentRecordWriteToJson(
+        WriteTournamentRecordRequestTournamentRecordWrite instance) =>
     <String, dynamic>{
       'score': instance.score,
       'subscore': instance.subscore,
@@ -82,16 +81,15 @@ Map<String,
       'operator': apiOverrideOperatorToJson(instance.$operator),
     };
 
-ApiAccountRestDto _$ApiAccountRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiAccountRestDto(
+ApiAccount _$ApiAccountFromJson(Map<String, dynamic> json) {
+  return ApiAccount(
     user: json['user'] == null
         ? null
-        : ApiUserRestDto.fromJson(json['user'] as Map<String, dynamic>),
+        : ApiUser.fromJson(json['user'] as Map<String, dynamic>),
     wallet: json['wallet'] as String?,
     email: json['email'] as String?,
     devices: (json['devices'] as List<dynamic>?)
-            ?.map((e) =>
-                ApiAccountDeviceRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => ApiAccountDevice.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
     customId: json['customId'] as String?,
@@ -104,7 +102,7 @@ ApiAccountRestDto _$ApiAccountRestDtoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ApiAccountRestDtoToJson(ApiAccountRestDto instance) =>
+Map<String, dynamic> _$ApiAccountToJson(ApiAccount instance) =>
     <String, dynamic>{
       'user': instance.user?.toJson(),
       'wallet': instance.wallet,
@@ -115,101 +113,90 @@ Map<String, dynamic> _$ApiAccountRestDtoToJson(ApiAccountRestDto instance) =>
       'disableTime': instance.disableTime?.toIso8601String(),
     };
 
-ApiAccountAppleRestDto _$ApiAccountAppleRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiAccountAppleRestDto(
+ApiAccountApple _$ApiAccountAppleFromJson(Map<String, dynamic> json) {
+  return ApiAccountApple(
     token: json['token'] as String?,
     vars: json['vars'],
   );
 }
 
-Map<String, dynamic> _$ApiAccountAppleRestDtoToJson(
-        ApiAccountAppleRestDto instance) =>
+Map<String, dynamic> _$ApiAccountAppleToJson(ApiAccountApple instance) =>
     <String, dynamic>{
       'token': instance.token,
       'vars': instance.vars,
     };
 
-ApiAccountCustomRestDto _$ApiAccountCustomRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiAccountCustomRestDto(
+ApiAccountCustom _$ApiAccountCustomFromJson(Map<String, dynamic> json) {
+  return ApiAccountCustom(
     id: json['id'] as String?,
     vars: json['vars'],
   );
 }
 
-Map<String, dynamic> _$ApiAccountCustomRestDtoToJson(
-        ApiAccountCustomRestDto instance) =>
+Map<String, dynamic> _$ApiAccountCustomToJson(ApiAccountCustom instance) =>
     <String, dynamic>{
       'id': instance.id,
       'vars': instance.vars,
     };
 
-ApiAccountDeviceRestDto _$ApiAccountDeviceRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiAccountDeviceRestDto(
+ApiAccountDevice _$ApiAccountDeviceFromJson(Map<String, dynamic> json) {
+  return ApiAccountDevice(
     id: json['id'] as String?,
     vars: json['vars'],
   );
 }
 
-Map<String, dynamic> _$ApiAccountDeviceRestDtoToJson(
-        ApiAccountDeviceRestDto instance) =>
+Map<String, dynamic> _$ApiAccountDeviceToJson(ApiAccountDevice instance) =>
     <String, dynamic>{
       'id': instance.id,
       'vars': instance.vars,
     };
 
-ApiAccountEmailRestDto _$ApiAccountEmailRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiAccountEmailRestDto(
+ApiAccountEmail _$ApiAccountEmailFromJson(Map<String, dynamic> json) {
+  return ApiAccountEmail(
     email: json['email'] as String?,
     password: json['password'] as String?,
     vars: json['vars'],
   );
 }
 
-Map<String, dynamic> _$ApiAccountEmailRestDtoToJson(
-        ApiAccountEmailRestDto instance) =>
+Map<String, dynamic> _$ApiAccountEmailToJson(ApiAccountEmail instance) =>
     <String, dynamic>{
       'email': instance.email,
       'password': instance.password,
       'vars': instance.vars,
     };
 
-ApiAccountFacebookRestDto _$ApiAccountFacebookRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiAccountFacebookRestDto(
+ApiAccountFacebook _$ApiAccountFacebookFromJson(Map<String, dynamic> json) {
+  return ApiAccountFacebook(
     token: json['token'] as String?,
     vars: json['vars'],
   );
 }
 
-Map<String, dynamic> _$ApiAccountFacebookRestDtoToJson(
-        ApiAccountFacebookRestDto instance) =>
+Map<String, dynamic> _$ApiAccountFacebookToJson(ApiAccountFacebook instance) =>
     <String, dynamic>{
       'token': instance.token,
       'vars': instance.vars,
     };
 
-ApiAccountFacebookInstantGameRestDto
-    _$ApiAccountFacebookInstantGameRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiAccountFacebookInstantGameRestDto(
+ApiAccountFacebookInstantGame _$ApiAccountFacebookInstantGameFromJson(
+    Map<String, dynamic> json) {
+  return ApiAccountFacebookInstantGame(
     signedPlayerInfo: json['signedPlayerInfo'] as String?,
     vars: json['vars'],
   );
 }
 
-Map<String, dynamic> _$ApiAccountFacebookInstantGameRestDtoToJson(
-        ApiAccountFacebookInstantGameRestDto instance) =>
+Map<String, dynamic> _$ApiAccountFacebookInstantGameToJson(
+        ApiAccountFacebookInstantGame instance) =>
     <String, dynamic>{
       'signedPlayerInfo': instance.signedPlayerInfo,
       'vars': instance.vars,
     };
 
-ApiAccountGameCenterRestDto _$ApiAccountGameCenterRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiAccountGameCenterRestDto(
+ApiAccountGameCenter _$ApiAccountGameCenterFromJson(Map<String, dynamic> json) {
+  return ApiAccountGameCenter(
     playerId: json['playerId'] as String?,
     bundleId: json['bundleId'] as String?,
     timestampSeconds: json['timestampSeconds'] as String?,
@@ -220,8 +207,8 @@ ApiAccountGameCenterRestDto _$ApiAccountGameCenterRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiAccountGameCenterRestDtoToJson(
-        ApiAccountGameCenterRestDto instance) =>
+Map<String, dynamic> _$ApiAccountGameCenterToJson(
+        ApiAccountGameCenter instance) =>
     <String, dynamic>{
       'playerId': instance.playerId,
       'bundleId': instance.bundleId,
@@ -232,39 +219,34 @@ Map<String, dynamic> _$ApiAccountGameCenterRestDtoToJson(
       'vars': instance.vars,
     };
 
-ApiAccountGoogleRestDto _$ApiAccountGoogleRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiAccountGoogleRestDto(
+ApiAccountGoogle _$ApiAccountGoogleFromJson(Map<String, dynamic> json) {
+  return ApiAccountGoogle(
     token: json['token'] as String?,
     vars: json['vars'],
   );
 }
 
-Map<String, dynamic> _$ApiAccountGoogleRestDtoToJson(
-        ApiAccountGoogleRestDto instance) =>
+Map<String, dynamic> _$ApiAccountGoogleToJson(ApiAccountGoogle instance) =>
     <String, dynamic>{
       'token': instance.token,
       'vars': instance.vars,
     };
 
-ApiAccountSteamRestDto _$ApiAccountSteamRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiAccountSteamRestDto(
+ApiAccountSteam _$ApiAccountSteamFromJson(Map<String, dynamic> json) {
+  return ApiAccountSteam(
     token: json['token'] as String?,
     vars: json['vars'],
   );
 }
 
-Map<String, dynamic> _$ApiAccountSteamRestDtoToJson(
-        ApiAccountSteamRestDto instance) =>
+Map<String, dynamic> _$ApiAccountSteamToJson(ApiAccountSteam instance) =>
     <String, dynamic>{
       'token': instance.token,
       'vars': instance.vars,
     };
 
-ApiChannelMessageRestDto _$ApiChannelMessageRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiChannelMessageRestDto(
+ApiChannelMessage _$ApiChannelMessageFromJson(Map<String, dynamic> json) {
+  return ApiChannelMessage(
     channelId: json['channelId'] as String?,
     messageId: json['messageId'] as String?,
     code: json['code'] as int?,
@@ -285,8 +267,7 @@ ApiChannelMessageRestDto _$ApiChannelMessageRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiChannelMessageRestDtoToJson(
-        ApiChannelMessageRestDto instance) =>
+Map<String, dynamic> _$ApiChannelMessageToJson(ApiChannelMessage instance) =>
     <String, dynamic>{
       'channelId': instance.channelId,
       'messageId': instance.messageId,
@@ -303,12 +284,11 @@ Map<String, dynamic> _$ApiChannelMessageRestDtoToJson(
       'userIdTwo': instance.userIdTwo,
     };
 
-ApiChannelMessageListRestDto _$ApiChannelMessageListRestDtoFromJson(
+ApiChannelMessageList _$ApiChannelMessageListFromJson(
     Map<String, dynamic> json) {
-  return ApiChannelMessageListRestDto(
+  return ApiChannelMessageList(
     messages: (json['messages'] as List<dynamic>?)
-            ?.map((e) =>
-                ApiChannelMessageRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => ApiChannelMessage.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
     nextCursor: json['nextCursor'] as String?,
@@ -317,8 +297,8 @@ ApiChannelMessageListRestDto _$ApiChannelMessageListRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiChannelMessageListRestDtoToJson(
-        ApiChannelMessageListRestDto instance) =>
+Map<String, dynamic> _$ApiChannelMessageListToJson(
+        ApiChannelMessageList instance) =>
     <String, dynamic>{
       'messages': instance.messages?.map((e) => e.toJson()).toList(),
       'nextCursor': instance.nextCursor,
@@ -326,9 +306,9 @@ Map<String, dynamic> _$ApiChannelMessageListRestDtoToJson(
       'cacheableCursor': instance.cacheableCursor,
     };
 
-ApiCreateGroupRequestRestDto _$ApiCreateGroupRequestRestDtoFromJson(
+ApiCreateGroupRequest _$ApiCreateGroupRequestFromJson(
     Map<String, dynamic> json) {
-  return ApiCreateGroupRequestRestDto(
+  return ApiCreateGroupRequest(
     name: json['name'] as String?,
     description: json['description'] as String?,
     langTag: json['langTag'] as String?,
@@ -338,8 +318,8 @@ ApiCreateGroupRequestRestDto _$ApiCreateGroupRequestRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiCreateGroupRequestRestDtoToJson(
-        ApiCreateGroupRequestRestDto instance) =>
+Map<String, dynamic> _$ApiCreateGroupRequestToJson(
+        ApiCreateGroupRequest instance) =>
     <String, dynamic>{
       'name': instance.name,
       'description': instance.description,
@@ -349,42 +329,42 @@ Map<String, dynamic> _$ApiCreateGroupRequestRestDtoToJson(
       'maxCount': instance.maxCount,
     };
 
-ApiDeleteStorageObjectIdRestDto _$ApiDeleteStorageObjectIdRestDtoFromJson(
+ApiDeleteStorageObjectId _$ApiDeleteStorageObjectIdFromJson(
     Map<String, dynamic> json) {
-  return ApiDeleteStorageObjectIdRestDto(
+  return ApiDeleteStorageObjectId(
     collection: json['collection'] as String?,
     key: json['key'] as String?,
     version: json['version'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiDeleteStorageObjectIdRestDtoToJson(
-        ApiDeleteStorageObjectIdRestDto instance) =>
+Map<String, dynamic> _$ApiDeleteStorageObjectIdToJson(
+        ApiDeleteStorageObjectId instance) =>
     <String, dynamic>{
       'collection': instance.collection,
       'key': instance.key,
       'version': instance.version,
     };
 
-ApiDeleteStorageObjectsRequestRestDto
-    _$ApiDeleteStorageObjectsRequestRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiDeleteStorageObjectsRequestRestDto(
+ApiDeleteStorageObjectsRequest _$ApiDeleteStorageObjectsRequestFromJson(
+    Map<String, dynamic> json) {
+  return ApiDeleteStorageObjectsRequest(
     objectIds: (json['objectIds'] as List<dynamic>?)
-            ?.map((e) => ApiDeleteStorageObjectIdRestDto.fromJson(
-                e as Map<String, dynamic>))
+            ?.map((e) =>
+                ApiDeleteStorageObjectId.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
   );
 }
 
-Map<String, dynamic> _$ApiDeleteStorageObjectsRequestRestDtoToJson(
-        ApiDeleteStorageObjectsRequestRestDto instance) =>
+Map<String, dynamic> _$ApiDeleteStorageObjectsRequestToJson(
+        ApiDeleteStorageObjectsRequest instance) =>
     <String, dynamic>{
       'objectIds': instance.objectIds?.map((e) => e.toJson()).toList(),
     };
 
-ApiEventRestDto _$ApiEventRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiEventRestDto(
+ApiEvent _$ApiEventFromJson(Map<String, dynamic> json) {
+  return ApiEvent(
     name: json['name'] as String?,
     properties: json['properties'],
     timestamp: json['timestamp'] == null
@@ -394,19 +374,18 @@ ApiEventRestDto _$ApiEventRestDtoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ApiEventRestDtoToJson(ApiEventRestDto instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ApiEventToJson(ApiEvent instance) => <String, dynamic>{
       'name': instance.name,
       'properties': instance.properties,
       'timestamp': instance.timestamp?.toIso8601String(),
       'external': instance.$external,
     };
 
-ApiFriendRestDto _$ApiFriendRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiFriendRestDto(
+ApiFriend _$ApiFriendFromJson(Map<String, dynamic> json) {
+  return ApiFriend(
     user: json['user'] == null
         ? null
-        : ApiUserRestDto.fromJson(json['user'] as Map<String, dynamic>),
+        : ApiUser.fromJson(json['user'] as Map<String, dynamic>),
     state: json['state'] as int?,
     updateTime: json['updateTime'] == null
         ? null
@@ -414,32 +393,30 @@ ApiFriendRestDto _$ApiFriendRestDtoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ApiFriendRestDtoToJson(ApiFriendRestDto instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ApiFriendToJson(ApiFriend instance) => <String, dynamic>{
       'user': instance.user?.toJson(),
       'state': instance.state,
       'updateTime': instance.updateTime?.toIso8601String(),
     };
 
-ApiFriendListRestDto _$ApiFriendListRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiFriendListRestDto(
+ApiFriendList _$ApiFriendListFromJson(Map<String, dynamic> json) {
+  return ApiFriendList(
     friends: (json['friends'] as List<dynamic>?)
-            ?.map((e) => ApiFriendRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => ApiFriend.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
     cursor: json['cursor'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiFriendListRestDtoToJson(
-        ApiFriendListRestDto instance) =>
+Map<String, dynamic> _$ApiFriendListToJson(ApiFriendList instance) =>
     <String, dynamic>{
       'friends': instance.friends?.map((e) => e.toJson()).toList(),
       'cursor': instance.cursor,
     };
 
-ApiGroupRestDto _$ApiGroupRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiGroupRestDto(
+ApiGroup _$ApiGroupFromJson(Map<String, dynamic> json) {
+  return ApiGroup(
     id: json['id'] as String?,
     creatorId: json['creatorId'] as String?,
     name: json['name'] as String?,
@@ -459,8 +436,7 @@ ApiGroupRestDto _$ApiGroupRestDtoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ApiGroupRestDtoToJson(ApiGroupRestDto instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ApiGroupToJson(ApiGroup instance) => <String, dynamic>{
       'id': instance.id,
       'creatorId': instance.creatorId,
       'name': instance.name,
@@ -475,45 +451,41 @@ Map<String, dynamic> _$ApiGroupRestDtoToJson(ApiGroupRestDto instance) =>
       'updateTime': instance.updateTime?.toIso8601String(),
     };
 
-ApiGroupListRestDto _$ApiGroupListRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiGroupListRestDto(
+ApiGroupList _$ApiGroupListFromJson(Map<String, dynamic> json) {
+  return ApiGroupList(
     groups: (json['groups'] as List<dynamic>?)
-            ?.map((e) => ApiGroupRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => ApiGroup.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
     cursor: json['cursor'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiGroupListRestDtoToJson(
-        ApiGroupListRestDto instance) =>
+Map<String, dynamic> _$ApiGroupListToJson(ApiGroupList instance) =>
     <String, dynamic>{
       'groups': instance.groups?.map((e) => e.toJson()).toList(),
       'cursor': instance.cursor,
     };
 
-ApiGroupUserListRestDto _$ApiGroupUserListRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiGroupUserListRestDto(
+ApiGroupUserList _$ApiGroupUserListFromJson(Map<String, dynamic> json) {
+  return ApiGroupUserList(
     groupUsers: (json['groupUsers'] as List<dynamic>?)
-            ?.map((e) => GroupUserListGroupUserRestDto.fromJson(
-                e as Map<String, dynamic>))
+            ?.map((e) =>
+                GroupUserListGroupUser.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
     cursor: json['cursor'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiGroupUserListRestDtoToJson(
-        ApiGroupUserListRestDto instance) =>
+Map<String, dynamic> _$ApiGroupUserListToJson(ApiGroupUserList instance) =>
     <String, dynamic>{
       'groupUsers': instance.groupUsers?.map((e) => e.toJson()).toList(),
       'cursor': instance.cursor,
     };
 
-ApiLeaderboardRecordRestDto _$ApiLeaderboardRecordRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiLeaderboardRecordRestDto(
+ApiLeaderboardRecord _$ApiLeaderboardRecordFromJson(Map<String, dynamic> json) {
+  return ApiLeaderboardRecord(
     leaderboardId: json['leaderboardId'] as String?,
     ownerId: json['ownerId'] as String?,
     username: json['username'] as String?,
@@ -535,8 +507,8 @@ ApiLeaderboardRecordRestDto _$ApiLeaderboardRecordRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiLeaderboardRecordRestDtoToJson(
-        ApiLeaderboardRecordRestDto instance) =>
+Map<String, dynamic> _$ApiLeaderboardRecordToJson(
+        ApiLeaderboardRecord instance) =>
     <String, dynamic>{
       'leaderboardId': instance.leaderboardId,
       'ownerId': instance.ownerId,
@@ -552,17 +524,17 @@ Map<String, dynamic> _$ApiLeaderboardRecordRestDtoToJson(
       'maxNumScore': instance.maxNumScore,
     };
 
-ApiLeaderboardRecordListRestDto _$ApiLeaderboardRecordListRestDtoFromJson(
+ApiLeaderboardRecordList _$ApiLeaderboardRecordListFromJson(
     Map<String, dynamic> json) {
-  return ApiLeaderboardRecordListRestDto(
+  return ApiLeaderboardRecordList(
     records: (json['records'] as List<dynamic>?)
-            ?.map((e) =>
-                ApiLeaderboardRecordRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map(
+                (e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
     ownerRecords: (json['ownerRecords'] as List<dynamic>?)
-            ?.map((e) =>
-                ApiLeaderboardRecordRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map(
+                (e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
     nextCursor: json['nextCursor'] as String?,
@@ -570,8 +542,8 @@ ApiLeaderboardRecordListRestDto _$ApiLeaderboardRecordListRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiLeaderboardRecordListRestDtoToJson(
-        ApiLeaderboardRecordListRestDto instance) =>
+Map<String, dynamic> _$ApiLeaderboardRecordListToJson(
+        ApiLeaderboardRecordList instance) =>
     <String, dynamic>{
       'records': instance.records?.map((e) => e.toJson()).toList(),
       'ownerRecords': instance.ownerRecords?.map((e) => e.toJson()).toList(),
@@ -579,26 +551,24 @@ Map<String, dynamic> _$ApiLeaderboardRecordListRestDtoToJson(
       'prevCursor': instance.prevCursor,
     };
 
-ApiLinkSteamRequestRestDto _$ApiLinkSteamRequestRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiLinkSteamRequestRestDto(
+ApiLinkSteamRequest _$ApiLinkSteamRequestFromJson(Map<String, dynamic> json) {
+  return ApiLinkSteamRequest(
     account: json['account'] == null
         ? null
-        : ApiAccountSteamRestDto.fromJson(
-            json['account'] as Map<String, dynamic>),
+        : ApiAccountSteam.fromJson(json['account'] as Map<String, dynamic>),
     $sync: json['sync'] as bool?,
   );
 }
 
-Map<String, dynamic> _$ApiLinkSteamRequestRestDtoToJson(
-        ApiLinkSteamRequestRestDto instance) =>
+Map<String, dynamic> _$ApiLinkSteamRequestToJson(
+        ApiLinkSteamRequest instance) =>
     <String, dynamic>{
       'account': instance.account?.toJson(),
       'sync': instance.$sync,
     };
 
-ApiMatchRestDto _$ApiMatchRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiMatchRestDto(
+ApiMatch _$ApiMatchFromJson(Map<String, dynamic> json) {
+  return ApiMatch(
     matchId: json['matchId'] as String?,
     authoritative: json['authoritative'] as bool?,
     label: json['label'] as String?,
@@ -608,8 +578,7 @@ ApiMatchRestDto _$ApiMatchRestDtoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ApiMatchRestDtoToJson(ApiMatchRestDto instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ApiMatchToJson(ApiMatch instance) => <String, dynamic>{
       'matchId': instance.matchId,
       'authoritative': instance.authoritative,
       'label': instance.label,
@@ -618,24 +587,22 @@ Map<String, dynamic> _$ApiMatchRestDtoToJson(ApiMatchRestDto instance) =>
       'handlerName': instance.handlerName,
     };
 
-ApiMatchListRestDto _$ApiMatchListRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiMatchListRestDto(
+ApiMatchList _$ApiMatchListFromJson(Map<String, dynamic> json) {
+  return ApiMatchList(
     matches: (json['matches'] as List<dynamic>?)
-            ?.map((e) => ApiMatchRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => ApiMatch.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
   );
 }
 
-Map<String, dynamic> _$ApiMatchListRestDtoToJson(
-        ApiMatchListRestDto instance) =>
+Map<String, dynamic> _$ApiMatchListToJson(ApiMatchList instance) =>
     <String, dynamic>{
       'matches': instance.matches?.map((e) => e.toJson()).toList(),
     };
 
-ApiNotificationRestDto _$ApiNotificationRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiNotificationRestDto(
+ApiNotification _$ApiNotificationFromJson(Map<String, dynamic> json) {
+  return ApiNotification(
     id: json['id'] as String?,
     subject: json['subject'] as String?,
     content: json['content'] as String?,
@@ -648,8 +615,7 @@ ApiNotificationRestDto _$ApiNotificationRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiNotificationRestDtoToJson(
-        ApiNotificationRestDto instance) =>
+Map<String, dynamic> _$ApiNotificationToJson(ApiNotification instance) =>
     <String, dynamic>{
       'id': instance.id,
       'subject': instance.subject,
@@ -660,122 +626,118 @@ Map<String, dynamic> _$ApiNotificationRestDtoToJson(
       'persistent': instance.persistent,
     };
 
-ApiNotificationListRestDto _$ApiNotificationListRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiNotificationListRestDto(
+ApiNotificationList _$ApiNotificationListFromJson(Map<String, dynamic> json) {
+  return ApiNotificationList(
     notifications: (json['notifications'] as List<dynamic>?)
-            ?.map((e) =>
-                ApiNotificationRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => ApiNotification.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
     cacheableCursor: json['cacheableCursor'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiNotificationListRestDtoToJson(
-        ApiNotificationListRestDto instance) =>
+Map<String, dynamic> _$ApiNotificationListToJson(
+        ApiNotificationList instance) =>
     <String, dynamic>{
       'notifications': instance.notifications?.map((e) => e.toJson()).toList(),
       'cacheableCursor': instance.cacheableCursor,
     };
 
-ApiReadStorageObjectIdRestDto _$ApiReadStorageObjectIdRestDtoFromJson(
+ApiReadStorageObjectId _$ApiReadStorageObjectIdFromJson(
     Map<String, dynamic> json) {
-  return ApiReadStorageObjectIdRestDto(
+  return ApiReadStorageObjectId(
     collection: json['collection'] as String?,
     key: json['key'] as String?,
     userId: json['userId'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiReadStorageObjectIdRestDtoToJson(
-        ApiReadStorageObjectIdRestDto instance) =>
+Map<String, dynamic> _$ApiReadStorageObjectIdToJson(
+        ApiReadStorageObjectId instance) =>
     <String, dynamic>{
       'collection': instance.collection,
       'key': instance.key,
       'userId': instance.userId,
     };
 
-ApiReadStorageObjectsRequestRestDto
-    _$ApiReadStorageObjectsRequestRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiReadStorageObjectsRequestRestDto(
+ApiReadStorageObjectsRequest _$ApiReadStorageObjectsRequestFromJson(
+    Map<String, dynamic> json) {
+  return ApiReadStorageObjectsRequest(
     objectIds: (json['objectIds'] as List<dynamic>?)
-            ?.map((e) => ApiReadStorageObjectIdRestDto.fromJson(
-                e as Map<String, dynamic>))
+            ?.map((e) =>
+                ApiReadStorageObjectId.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
   );
 }
 
-Map<String, dynamic> _$ApiReadStorageObjectsRequestRestDtoToJson(
-        ApiReadStorageObjectsRequestRestDto instance) =>
+Map<String, dynamic> _$ApiReadStorageObjectsRequestToJson(
+        ApiReadStorageObjectsRequest instance) =>
     <String, dynamic>{
       'objectIds': instance.objectIds?.map((e) => e.toJson()).toList(),
     };
 
-ApiRpcRestDto _$ApiRpcRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiRpcRestDto(
+ApiRpc _$ApiRpcFromJson(Map<String, dynamic> json) {
+  return ApiRpc(
     id: json['id'] as String?,
     payload: json['payload'] as String?,
     httpKey: json['httpKey'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiRpcRestDtoToJson(ApiRpcRestDto instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ApiRpcToJson(ApiRpc instance) => <String, dynamic>{
       'id': instance.id,
       'payload': instance.payload,
       'httpKey': instance.httpKey,
     };
 
-ApiSessionRestDto _$ApiSessionRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiSessionRestDto(
+ApiSession _$ApiSessionFromJson(Map<String, dynamic> json) {
+  return ApiSession(
     created: json['created'] as bool?,
     token: json['token'] as String?,
     refreshToken: json['refreshToken'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiSessionRestDtoToJson(ApiSessionRestDto instance) =>
+Map<String, dynamic> _$ApiSessionToJson(ApiSession instance) =>
     <String, dynamic>{
       'created': instance.created,
       'token': instance.token,
       'refreshToken': instance.refreshToken,
     };
 
-ApiSessionLogoutRequestRestDto _$ApiSessionLogoutRequestRestDtoFromJson(
+ApiSessionLogoutRequest _$ApiSessionLogoutRequestFromJson(
     Map<String, dynamic> json) {
-  return ApiSessionLogoutRequestRestDto(
+  return ApiSessionLogoutRequest(
     token: json['token'] as String?,
     refreshToken: json['refreshToken'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiSessionLogoutRequestRestDtoToJson(
-        ApiSessionLogoutRequestRestDto instance) =>
+Map<String, dynamic> _$ApiSessionLogoutRequestToJson(
+        ApiSessionLogoutRequest instance) =>
     <String, dynamic>{
       'token': instance.token,
       'refreshToken': instance.refreshToken,
     };
 
-ApiSessionRefreshRequestRestDto _$ApiSessionRefreshRequestRestDtoFromJson(
+ApiSessionRefreshRequest _$ApiSessionRefreshRequestFromJson(
     Map<String, dynamic> json) {
-  return ApiSessionRefreshRequestRestDto(
+  return ApiSessionRefreshRequest(
     token: json['token'] as String?,
     vars: json['vars'],
   );
 }
 
-Map<String, dynamic> _$ApiSessionRefreshRequestRestDtoToJson(
-        ApiSessionRefreshRequestRestDto instance) =>
+Map<String, dynamic> _$ApiSessionRefreshRequestToJson(
+        ApiSessionRefreshRequest instance) =>
     <String, dynamic>{
       'token': instance.token,
       'vars': instance.vars,
     };
 
-ApiStorageObjectRestDto _$ApiStorageObjectRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiStorageObjectRestDto(
+ApiStorageObject _$ApiStorageObjectFromJson(Map<String, dynamic> json) {
+  return ApiStorageObject(
     collection: json['collection'] as String?,
     key: json['key'] as String?,
     userId: json['userId'] as String?,
@@ -792,8 +754,7 @@ ApiStorageObjectRestDto _$ApiStorageObjectRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiStorageObjectRestDtoToJson(
-        ApiStorageObjectRestDto instance) =>
+Map<String, dynamic> _$ApiStorageObjectToJson(ApiStorageObject instance) =>
     <String, dynamic>{
       'collection': instance.collection,
       'key': instance.key,
@@ -806,9 +767,8 @@ Map<String, dynamic> _$ApiStorageObjectRestDtoToJson(
       'updateTime': instance.updateTime?.toIso8601String(),
     };
 
-ApiStorageObjectAckRestDto _$ApiStorageObjectAckRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiStorageObjectAckRestDto(
+ApiStorageObjectAck _$ApiStorageObjectAckFromJson(Map<String, dynamic> json) {
+  return ApiStorageObjectAck(
     collection: json['collection'] as String?,
     key: json['key'] as String?,
     version: json['version'] as String?,
@@ -816,8 +776,8 @@ ApiStorageObjectAckRestDto _$ApiStorageObjectAckRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiStorageObjectAckRestDtoToJson(
-        ApiStorageObjectAckRestDto instance) =>
+Map<String, dynamic> _$ApiStorageObjectAckToJson(
+        ApiStorageObjectAck instance) =>
     <String, dynamic>{
       'collection': instance.collection,
       'key': instance.key,
@@ -825,61 +785,55 @@ Map<String, dynamic> _$ApiStorageObjectAckRestDtoToJson(
       'userId': instance.userId,
     };
 
-ApiStorageObjectAcksRestDto _$ApiStorageObjectAcksRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiStorageObjectAcksRestDto(
+ApiStorageObjectAcks _$ApiStorageObjectAcksFromJson(Map<String, dynamic> json) {
+  return ApiStorageObjectAcks(
     acks: (json['acks'] as List<dynamic>?)
-            ?.map((e) =>
-                ApiStorageObjectAckRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map(
+                (e) => ApiStorageObjectAck.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
   );
 }
 
-Map<String, dynamic> _$ApiStorageObjectAcksRestDtoToJson(
-        ApiStorageObjectAcksRestDto instance) =>
+Map<String, dynamic> _$ApiStorageObjectAcksToJson(
+        ApiStorageObjectAcks instance) =>
     <String, dynamic>{
       'acks': instance.acks?.map((e) => e.toJson()).toList(),
     };
 
-ApiStorageObjectListRestDto _$ApiStorageObjectListRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiStorageObjectListRestDto(
+ApiStorageObjectList _$ApiStorageObjectListFromJson(Map<String, dynamic> json) {
+  return ApiStorageObjectList(
     objects: (json['objects'] as List<dynamic>?)
-            ?.map((e) =>
-                ApiStorageObjectRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => ApiStorageObject.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
     cursor: json['cursor'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiStorageObjectListRestDtoToJson(
-        ApiStorageObjectListRestDto instance) =>
+Map<String, dynamic> _$ApiStorageObjectListToJson(
+        ApiStorageObjectList instance) =>
     <String, dynamic>{
       'objects': instance.objects?.map((e) => e.toJson()).toList(),
       'cursor': instance.cursor,
     };
 
-ApiStorageObjectsRestDto _$ApiStorageObjectsRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiStorageObjectsRestDto(
+ApiStorageObjects _$ApiStorageObjectsFromJson(Map<String, dynamic> json) {
+  return ApiStorageObjects(
     objects: (json['objects'] as List<dynamic>?)
-            ?.map((e) =>
-                ApiStorageObjectRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => ApiStorageObject.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
   );
 }
 
-Map<String, dynamic> _$ApiStorageObjectsRestDtoToJson(
-        ApiStorageObjectsRestDto instance) =>
+Map<String, dynamic> _$ApiStorageObjectsToJson(ApiStorageObjects instance) =>
     <String, dynamic>{
       'objects': instance.objects?.map((e) => e.toJson()).toList(),
     };
 
-ApiTournamentRestDto _$ApiTournamentRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiTournamentRestDto(
+ApiTournament _$ApiTournamentFromJson(Map<String, dynamic> json) {
+  return ApiTournament(
     id: json['id'] as String?,
     title: json['title'] as String?,
     description: json['description'] as String?,
@@ -906,8 +860,7 @@ ApiTournamentRestDto _$ApiTournamentRestDtoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ApiTournamentRestDtoToJson(
-        ApiTournamentRestDto instance) =>
+Map<String, dynamic> _$ApiTournamentToJson(ApiTournament instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
@@ -928,36 +881,33 @@ Map<String, dynamic> _$ApiTournamentRestDtoToJson(
       'startActive': instance.startActive,
     };
 
-ApiTournamentListRestDto _$ApiTournamentListRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiTournamentListRestDto(
+ApiTournamentList _$ApiTournamentListFromJson(Map<String, dynamic> json) {
+  return ApiTournamentList(
     tournaments: (json['tournaments'] as List<dynamic>?)
-            ?.map(
-                (e) => ApiTournamentRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => ApiTournament.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
     cursor: json['cursor'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiTournamentListRestDtoToJson(
-        ApiTournamentListRestDto instance) =>
+Map<String, dynamic> _$ApiTournamentListToJson(ApiTournamentList instance) =>
     <String, dynamic>{
       'tournaments': instance.tournaments?.map((e) => e.toJson()).toList(),
       'cursor': instance.cursor,
     };
 
-ApiTournamentRecordListRestDto _$ApiTournamentRecordListRestDtoFromJson(
+ApiTournamentRecordList _$ApiTournamentRecordListFromJson(
     Map<String, dynamic> json) {
-  return ApiTournamentRecordListRestDto(
+  return ApiTournamentRecordList(
     records: (json['records'] as List<dynamic>?)
-            ?.map((e) =>
-                ApiLeaderboardRecordRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map(
+                (e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
     ownerRecords: (json['ownerRecords'] as List<dynamic>?)
-            ?.map((e) =>
-                ApiLeaderboardRecordRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map(
+                (e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
     nextCursor: json['nextCursor'] as String?,
@@ -965,8 +915,8 @@ ApiTournamentRecordListRestDto _$ApiTournamentRecordListRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiTournamentRecordListRestDtoToJson(
-        ApiTournamentRecordListRestDto instance) =>
+Map<String, dynamic> _$ApiTournamentRecordListToJson(
+        ApiTournamentRecordList instance) =>
     <String, dynamic>{
       'records': instance.records?.map((e) => e.toJson()).toList(),
       'ownerRecords': instance.ownerRecords?.map((e) => e.toJson()).toList(),
@@ -974,9 +924,9 @@ Map<String, dynamic> _$ApiTournamentRecordListRestDtoToJson(
       'prevCursor': instance.prevCursor,
     };
 
-ApiUpdateAccountRequestRestDto _$ApiUpdateAccountRequestRestDtoFromJson(
+ApiUpdateAccountRequest _$ApiUpdateAccountRequestFromJson(
     Map<String, dynamic> json) {
-  return ApiUpdateAccountRequestRestDto(
+  return ApiUpdateAccountRequest(
     username: json['username'] as String?,
     displayName: json['displayName'] as String?,
     avatarUrl: json['avatarUrl'] as String?,
@@ -986,8 +936,8 @@ ApiUpdateAccountRequestRestDto _$ApiUpdateAccountRequestRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiUpdateAccountRequestRestDtoToJson(
-        ApiUpdateAccountRequestRestDto instance) =>
+Map<String, dynamic> _$ApiUpdateAccountRequestToJson(
+        ApiUpdateAccountRequest instance) =>
     <String, dynamic>{
       'username': instance.username,
       'displayName': instance.displayName,
@@ -997,9 +947,9 @@ Map<String, dynamic> _$ApiUpdateAccountRequestRestDtoToJson(
       'timezone': instance.timezone,
     };
 
-ApiUpdateGroupRequestRestDto _$ApiUpdateGroupRequestRestDtoFromJson(
+ApiUpdateGroupRequest _$ApiUpdateGroupRequestFromJson(
     Map<String, dynamic> json) {
-  return ApiUpdateGroupRequestRestDto(
+  return ApiUpdateGroupRequest(
     groupId: json['groupId'] as String?,
     name: json['name'] as String?,
     description: json['description'] as String?,
@@ -1009,8 +959,8 @@ ApiUpdateGroupRequestRestDto _$ApiUpdateGroupRequestRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiUpdateGroupRequestRestDtoToJson(
-        ApiUpdateGroupRequestRestDto instance) =>
+Map<String, dynamic> _$ApiUpdateGroupRequestToJson(
+        ApiUpdateGroupRequest instance) =>
     <String, dynamic>{
       'groupId': instance.groupId,
       'name': instance.name,
@@ -1020,8 +970,8 @@ Map<String, dynamic> _$ApiUpdateGroupRequestRestDtoToJson(
       'open': instance.open,
     };
 
-ApiUserRestDto _$ApiUserRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiUserRestDto(
+ApiUser _$ApiUserFromJson(Map<String, dynamic> json) {
+  return ApiUser(
     id: json['id'] as String?,
     username: json['username'] as String?,
     displayName: json['displayName'] as String?,
@@ -1047,8 +997,7 @@ ApiUserRestDto _$ApiUserRestDtoFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$ApiUserRestDtoToJson(ApiUserRestDto instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ApiUserToJson(ApiUser instance) => <String, dynamic>{
       'id': instance.id,
       'username': instance.username,
       'displayName': instance.displayName,
@@ -1069,104 +1018,97 @@ Map<String, dynamic> _$ApiUserRestDtoToJson(ApiUserRestDto instance) =>
       'appleId': instance.appleId,
     };
 
-ApiUserGroupListRestDto _$ApiUserGroupListRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiUserGroupListRestDto(
+ApiUserGroupList _$ApiUserGroupListFromJson(Map<String, dynamic> json) {
+  return ApiUserGroupList(
     userGroups: (json['userGroups'] as List<dynamic>?)
-            ?.map((e) => UserGroupListUserGroupRestDto.fromJson(
-                e as Map<String, dynamic>))
+            ?.map((e) =>
+                UserGroupListUserGroup.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
     cursor: json['cursor'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiUserGroupListRestDtoToJson(
-        ApiUserGroupListRestDto instance) =>
+Map<String, dynamic> _$ApiUserGroupListToJson(ApiUserGroupList instance) =>
     <String, dynamic>{
       'userGroups': instance.userGroups?.map((e) => e.toJson()).toList(),
       'cursor': instance.cursor,
     };
 
-ApiUsersRestDto _$ApiUsersRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiUsersRestDto(
+ApiUsers _$ApiUsersFromJson(Map<String, dynamic> json) {
+  return ApiUsers(
     users: (json['users'] as List<dynamic>?)
-            ?.map((e) => ApiUserRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => ApiUser.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
   );
 }
 
-Map<String, dynamic> _$ApiUsersRestDtoToJson(ApiUsersRestDto instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ApiUsersToJson(ApiUsers instance) => <String, dynamic>{
       'users': instance.users?.map((e) => e.toJson()).toList(),
     };
 
-ApiValidatePurchaseAppleRequestRestDto
-    _$ApiValidatePurchaseAppleRequestRestDtoFromJson(
-        Map<String, dynamic> json) {
-  return ApiValidatePurchaseAppleRequestRestDto(
+ApiValidatePurchaseAppleRequest _$ApiValidatePurchaseAppleRequestFromJson(
+    Map<String, dynamic> json) {
+  return ApiValidatePurchaseAppleRequest(
     receipt: json['receipt'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiValidatePurchaseAppleRequestRestDtoToJson(
-        ApiValidatePurchaseAppleRequestRestDto instance) =>
+Map<String, dynamic> _$ApiValidatePurchaseAppleRequestToJson(
+        ApiValidatePurchaseAppleRequest instance) =>
     <String, dynamic>{
       'receipt': instance.receipt,
     };
 
-ApiValidatePurchaseGoogleRequestRestDto
-    _$ApiValidatePurchaseGoogleRequestRestDtoFromJson(
-        Map<String, dynamic> json) {
-  return ApiValidatePurchaseGoogleRequestRestDto(
+ApiValidatePurchaseGoogleRequest _$ApiValidatePurchaseGoogleRequestFromJson(
+    Map<String, dynamic> json) {
+  return ApiValidatePurchaseGoogleRequest(
     purchase: json['purchase'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiValidatePurchaseGoogleRequestRestDtoToJson(
-        ApiValidatePurchaseGoogleRequestRestDto instance) =>
+Map<String, dynamic> _$ApiValidatePurchaseGoogleRequestToJson(
+        ApiValidatePurchaseGoogleRequest instance) =>
     <String, dynamic>{
       'purchase': instance.purchase,
     };
 
-ApiValidatePurchaseHuaweiRequestRestDto
-    _$ApiValidatePurchaseHuaweiRequestRestDtoFromJson(
-        Map<String, dynamic> json) {
-  return ApiValidatePurchaseHuaweiRequestRestDto(
+ApiValidatePurchaseHuaweiRequest _$ApiValidatePurchaseHuaweiRequestFromJson(
+    Map<String, dynamic> json) {
+  return ApiValidatePurchaseHuaweiRequest(
     purchase: json['purchase'] as String?,
     signature: json['signature'] as String?,
   );
 }
 
-Map<String, dynamic> _$ApiValidatePurchaseHuaweiRequestRestDtoToJson(
-        ApiValidatePurchaseHuaweiRequestRestDto instance) =>
+Map<String, dynamic> _$ApiValidatePurchaseHuaweiRequestToJson(
+        ApiValidatePurchaseHuaweiRequest instance) =>
     <String, dynamic>{
       'purchase': instance.purchase,
       'signature': instance.signature,
     };
 
-ApiValidatePurchaseResponseRestDto _$ApiValidatePurchaseResponseRestDtoFromJson(
+ApiValidatePurchaseResponse _$ApiValidatePurchaseResponseFromJson(
     Map<String, dynamic> json) {
-  return ApiValidatePurchaseResponseRestDto(
+  return ApiValidatePurchaseResponse(
     validatedPurchases: (json['validatedPurchases'] as List<dynamic>?)
-            ?.map((e) =>
-                ApiValidatedPurchaseRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map(
+                (e) => ApiValidatedPurchase.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
   );
 }
 
-Map<String, dynamic> _$ApiValidatePurchaseResponseRestDtoToJson(
-        ApiValidatePurchaseResponseRestDto instance) =>
+Map<String, dynamic> _$ApiValidatePurchaseResponseToJson(
+        ApiValidatePurchaseResponse instance) =>
     <String, dynamic>{
       'validatedPurchases':
           instance.validatedPurchases?.map((e) => e.toJson()).toList(),
     };
 
-ApiValidatedPurchaseRestDto _$ApiValidatedPurchaseRestDtoFromJson(
-    Map<String, dynamic> json) {
-  return ApiValidatedPurchaseRestDto(
+ApiValidatedPurchase _$ApiValidatedPurchaseFromJson(Map<String, dynamic> json) {
+  return ApiValidatedPurchase(
     productId: json['productId'] as String?,
     transactionId: json['transactionId'] as String?,
     store: validatedPurchaseStoreFromJson(json['store'] as String?),
@@ -1185,8 +1127,8 @@ ApiValidatedPurchaseRestDto _$ApiValidatedPurchaseRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiValidatedPurchaseRestDtoToJson(
-        ApiValidatedPurchaseRestDto instance) =>
+Map<String, dynamic> _$ApiValidatedPurchaseToJson(
+        ApiValidatedPurchase instance) =>
     <String, dynamic>{
       'productId': instance.productId,
       'transactionId': instance.transactionId,
@@ -1198,9 +1140,9 @@ Map<String, dynamic> _$ApiValidatedPurchaseRestDtoToJson(
       'environment': validatedPurchaseEnvironmentToJson(instance.environment),
     };
 
-ApiWriteStorageObjectRestDto _$ApiWriteStorageObjectRestDtoFromJson(
+ApiWriteStorageObject _$ApiWriteStorageObjectFromJson(
     Map<String, dynamic> json) {
-  return ApiWriteStorageObjectRestDto(
+  return ApiWriteStorageObject(
     collection: json['collection'] as String?,
     key: json['key'] as String?,
     value: json['value'] as String?,
@@ -1210,8 +1152,8 @@ ApiWriteStorageObjectRestDto _$ApiWriteStorageObjectRestDtoFromJson(
   );
 }
 
-Map<String, dynamic> _$ApiWriteStorageObjectRestDtoToJson(
-        ApiWriteStorageObjectRestDto instance) =>
+Map<String, dynamic> _$ApiWriteStorageObjectToJson(
+        ApiWriteStorageObject instance) =>
     <String, dynamic>{
       'collection': instance.collection,
       'key': instance.key,
@@ -1221,49 +1163,48 @@ Map<String, dynamic> _$ApiWriteStorageObjectRestDtoToJson(
       'permissionWrite': instance.permissionWrite,
     };
 
-ApiWriteStorageObjectsRequestRestDto
-    _$ApiWriteStorageObjectsRequestRestDtoFromJson(Map<String, dynamic> json) {
-  return ApiWriteStorageObjectsRequestRestDto(
+ApiWriteStorageObjectsRequest _$ApiWriteStorageObjectsRequestFromJson(
+    Map<String, dynamic> json) {
+  return ApiWriteStorageObjectsRequest(
     objects: (json['objects'] as List<dynamic>?)
-            ?.map((e) => ApiWriteStorageObjectRestDto.fromJson(
-                e as Map<String, dynamic>))
+            ?.map((e) =>
+                ApiWriteStorageObject.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
   );
 }
 
-Map<String, dynamic> _$ApiWriteStorageObjectsRequestRestDtoToJson(
-        ApiWriteStorageObjectsRequestRestDto instance) =>
+Map<String, dynamic> _$ApiWriteStorageObjectsRequestToJson(
+        ApiWriteStorageObjectsRequest instance) =>
     <String, dynamic>{
       'objects': instance.objects?.map((e) => e.toJson()).toList(),
     };
 
-ProtobufAnyRestDto _$ProtobufAnyRestDtoFromJson(Map<String, dynamic> json) {
-  return ProtobufAnyRestDto(
+ProtobufAny _$ProtobufAnyFromJson(Map<String, dynamic> json) {
+  return ProtobufAny(
     typeUrl: json['typeUrl'] as String?,
     value: json['value'] as String?,
   );
 }
 
-Map<String, dynamic> _$ProtobufAnyRestDtoToJson(ProtobufAnyRestDto instance) =>
+Map<String, dynamic> _$ProtobufAnyToJson(ProtobufAny instance) =>
     <String, dynamic>{
       'typeUrl': instance.typeUrl,
       'value': instance.value,
     };
 
-RpcStatusRestDto _$RpcStatusRestDtoFromJson(Map<String, dynamic> json) {
-  return RpcStatusRestDto(
+RpcStatus _$RpcStatusFromJson(Map<String, dynamic> json) {
+  return RpcStatus(
     code: json['code'] as int?,
     message: json['message'] as String?,
     details: (json['details'] as List<dynamic>?)
-            ?.map((e) => ProtobufAnyRestDto.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => ProtobufAny.fromJson(e as Map<String, dynamic>))
             .toList() ??
         [],
   );
 }
 
-Map<String, dynamic> _$RpcStatusRestDtoToJson(RpcStatusRestDto instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$RpcStatusToJson(RpcStatus instance) => <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
       'details': instance.details?.map((e) => e.toJson()).toList(),

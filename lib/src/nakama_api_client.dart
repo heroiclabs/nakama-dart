@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
+import 'package:nakama/api/api.pb.dart';
+import 'package:nakama/api/rtapi/realtime.pb.dart';
 import 'package:nakama/rest/apigrpc.swagger.dart';
 import 'package:nakama/src/nakama_client.dart';
 import 'package:nakama/src/session.dart' as model;
@@ -17,6 +19,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
   /// Defaults to "defaultkey".
   late final String serverKey;
 
+  model.Session? _session;
+
   NakamaRestApiClient({
     required this.uri,
     required this.serverKey,
@@ -28,11 +32,23 @@ class NakamaRestApiClient extends NakamaBaseClient {
       services: [Apigrpc.create()],
       interceptors: [
         // Auth Interceptor
-        (Request request) async => applyHeader(
+        (Request request) async {
+          // Server Key Auth
+          if (_session == null) {
+            return applyHeader(
               request,
               'Authorization',
               'Basic ' + base64Encode('$serverKey:'.codeUnits),
-            ),
+            );
+          }
+
+          // User's JWT auth
+          return applyHeader(
+            request,
+            'Authorization',
+            'Bearer ${_session!.token}',
+          );
+        },
       ],
     );
   }
@@ -47,7 +63,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
   }) async {
     final res = await _api.nakamaAuthenticateEmail(
-      body: ApiAccountEmailRestDto(
+      body: ApiAccountEmail(
         email: email,
         password: password,
       ),
@@ -64,5 +80,16 @@ class NakamaRestApiClient extends NakamaBaseClient {
       token: data.token!,
       refreshToken: data.refreshToken,
     );
+  }
+
+  @override
+  Future<Account> getAccount(model.Session session) async {
+    _session = session;
+    final res = await _api.nakamaGetAccount();
+
+    final acc = Account();
+    acc.mergeFromProto3Json(res.body!.toJson());
+
+    return acc;
   }
 }

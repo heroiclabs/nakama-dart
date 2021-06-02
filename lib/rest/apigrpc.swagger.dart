@@ -34,14 +34,14 @@ abstract class Apigrpc extends ChopperService {
   ///Fetch the current user's account.
 
   @Get(path: '/v2/account')
-  Future<chopper.Response<ApiAccountRestDto>> nakamaGetAccount();
+  Future<chopper.Response<ApiAccount>> nakamaGetAccount();
 
   ///Update fields in the current user's account.
   ///@param body
 
   @Put(path: '/v2/account')
   Future<chopper.Response> nakamaUpdateAccount(
-      {@Body() @required ApiUpdateAccountRequestRestDto? body});
+      {@Body() @required ApiUpdateAccountRequest? body});
 
   ///Authenticate a user with an Apple ID against the server.
   ///@param body The Apple account details.
@@ -49,8 +49,8 @@ abstract class Apigrpc extends ChopperService {
   ///@param username Set the username on the account at register. Must be unique.
 
   @Post(path: '/v2/account/authenticate/apple')
-  Future<chopper.Response<ApiSessionRestDto>> nakamaAuthenticateApple(
-      {@Body() @required ApiAccountAppleRestDto? body,
+  Future<chopper.Response<ApiSession>> nakamaAuthenticateApple(
+      {@Body() @required ApiAccountApple? body,
       @Query('create') bool? create,
       @Query('username') String? username});
 
@@ -60,8 +60,8 @@ abstract class Apigrpc extends ChopperService {
   ///@param username Set the username on the account at register. Must be unique.
 
   @Post(path: '/v2/account/authenticate/custom')
-  Future<chopper.Response<ApiSessionRestDto>> nakamaAuthenticateCustom(
-      {@Body() @required ApiAccountCustomRestDto? body,
+  Future<chopper.Response<ApiSession>> nakamaAuthenticateCustom(
+      {@Body() @required ApiAccountCustom? body,
       @Query('create') bool? create,
       @Query('username') String? username});
 
@@ -71,8 +71,8 @@ abstract class Apigrpc extends ChopperService {
   ///@param username Set the username on the account at register. Must be unique.
 
   @Post(path: '/v2/account/authenticate/device')
-  Future<chopper.Response<ApiSessionRestDto>> nakamaAuthenticateDevice(
-      {@Body() @required ApiAccountDeviceRestDto? body,
+  Future<chopper.Response<ApiSession>> nakamaAuthenticateDevice(
+      {@Body() @required ApiAccountDevice? body,
       @Query('create') bool? create,
       @Query('username') String? username});
 
@@ -82,8 +82,8 @@ abstract class Apigrpc extends ChopperService {
   ///@param username Set the username on the account at register. Must be unique.
 
   @Post(path: '/v2/account/authenticate/email')
-  Future<chopper.Response<ApiSessionRestDto>> nakamaAuthenticateEmail(
-      {@Body() @required ApiAccountEmailRestDto? body,
+  Future<chopper.Response<ApiSession>> nakamaAuthenticateEmail(
+      {@Body() @required ApiAccountEmail? body,
       @Query('create') bool? create,
       @Query('username') String? username});
 
@@ -94,8 +94,8 @@ abstract class Apigrpc extends ChopperService {
   ///@param sync Import Facebook friends for the user.
 
   @Post(path: '/v2/account/authenticate/facebook')
-  Future<chopper.Response<ApiSessionRestDto>> nakamaAuthenticateFacebook(
-      {@Body() @required ApiAccountFacebookRestDto? body,
+  Future<chopper.Response<ApiSession>> nakamaAuthenticateFacebook(
+      {@Body() @required ApiAccountFacebook? body,
       @Query('create') bool? create,
       @Query('username') String? username,
       @Query('sync') bool? $sync});
@@ -106,11 +106,10 @@ abstract class Apigrpc extends ChopperService {
   ///@param username Set the username on the account at register. Must be unique.
 
   @Post(path: '/v2/account/authenticate/facebookinstantgame')
-  Future<chopper.Response<ApiSessionRestDto>>
-      nakamaAuthenticateFacebookInstantGame(
-          {@Body() @required ApiAccountFacebookInstantGameRestDto? body,
-          @Query('create') bool? create,
-          @Query('username') String? username});
+  Future<chopper.Response<ApiSession>> nakamaAuthenticateFacebookInstantGame(
+      {@Body() @required ApiAccountFacebookInstantGame? body,
+      @Query('create') bool? create,
+      @Query('username') String? username});
 
   ///Authenticate a user with Apple's GameCenter against the server.
   ///@param body The Game Center account details.
@@ -118,8 +117,8 @@ abstract class Apigrpc extends ChopperService {
   ///@param username Set the username on the account at register. Must be unique.
 
   @Post(path: '/v2/account/authenticate/gamecenter')
-  Future<chopper.Response<ApiSessionRestDto>> nakamaAuthenticateGameCenter(
-      {@Body() @required ApiAccountGameCenterRestDto? body,
+  Future<chopper.Response<ApiSession>> nakamaAuthenticateGameCenter(
+      {@Body() @required ApiAccountGameCenter? body,
       @Query('create') bool? create,
       @Query('username') String? username});
 
@@ -129,8 +128,8 @@ abstract class Apigrpc extends ChopperService {
   ///@param username Set the username on the account at register. Must be unique.
 
   @Post(path: '/v2/account/authenticate/google')
-  Future<chopper.Response<ApiSessionRestDto>> nakamaAuthenticateGoogle(
-      {@Body() @required ApiAccountGoogleRestDto? body,
+  Future<chopper.Response<ApiSession>> nakamaAuthenticateGoogle(
+      {@Body() @required ApiAccountGoogle? body,
       @Query('create') bool? create,
       @Query('username') String? username});
 
@@ -141,8 +140,8 @@ abstract class Apigrpc extends ChopperService {
   ///@param sync Import Steam friends for the user.
 
   @Post(path: '/v2/account/authenticate/steam')
-  Future<chopper.Response<ApiSessionRestDto>> nakamaAuthenticateSteam(
-      {@Body() @required ApiAccountSteamRestDto? body,
+  Future<chopper.Response<ApiSession>> nakamaAuthenticateSteam(
+      {@Body() @required ApiAccountSteam? body,
       @Query('create') bool? create,
       @Query('username') String? username,
       @Query('sync') bool? $sync});
@@ -152,28 +151,28 @@ abstract class Apigrpc extends ChopperService {
 
   @Post(path: '/v2/account/link/apple')
   Future<chopper.Response> nakamaLinkApple(
-      {@Body() @required ApiAccountAppleRestDto? body});
+      {@Body() @required ApiAccountApple? body});
 
   ///Add a custom ID to the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/link/custom')
   Future<chopper.Response> nakamaLinkCustom(
-      {@Body() @required ApiAccountCustomRestDto? body});
+      {@Body() @required ApiAccountCustom? body});
 
   ///Add a device ID to the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/link/device')
   Future<chopper.Response> nakamaLinkDevice(
-      {@Body() @required ApiAccountDeviceRestDto? body});
+      {@Body() @required ApiAccountDevice? body});
 
   ///Add an email+password to the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/link/email')
   Future<chopper.Response> nakamaLinkEmail(
-      {@Body() @required ApiAccountEmailRestDto? body});
+      {@Body() @required ApiAccountEmail? body});
 
   ///Add Facebook to the social profiles on the current user's account.
   ///@param body The Facebook account details.
@@ -181,106 +180,105 @@ abstract class Apigrpc extends ChopperService {
 
   @Post(path: '/v2/account/link/facebook')
   Future<chopper.Response> nakamaLinkFacebook(
-      {@Body() @required ApiAccountFacebookRestDto? body,
-      @Query('sync') bool? $sync});
+      {@Body() @required ApiAccountFacebook? body, @Query('sync') bool? $sync});
 
   ///Add Facebook Instant Game to the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/link/facebookinstantgame')
   Future<chopper.Response> nakamaLinkFacebookInstantGame(
-      {@Body() @required ApiAccountFacebookInstantGameRestDto? body});
+      {@Body() @required ApiAccountFacebookInstantGame? body});
 
   ///Add Apple's GameCenter to the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/link/gamecenter')
   Future<chopper.Response> nakamaLinkGameCenter(
-      {@Body() @required ApiAccountGameCenterRestDto? body});
+      {@Body() @required ApiAccountGameCenter? body});
 
   ///Add Google to the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/link/google')
   Future<chopper.Response> nakamaLinkGoogle(
-      {@Body() @required ApiAccountGoogleRestDto? body});
+      {@Body() @required ApiAccountGoogle? body});
 
   ///Add Steam to the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/link/steam')
   Future<chopper.Response> nakamaLinkSteam(
-      {@Body() @required ApiLinkSteamRequestRestDto? body});
+      {@Body() @required ApiLinkSteamRequest? body});
 
   ///Refresh a user's session using a refresh token retrieved from a previous authentication request.
   ///@param body
 
   @Post(path: '/v2/account/session/refresh')
-  Future<chopper.Response<ApiSessionRestDto>> nakamaSessionRefresh(
-      {@Body() @required ApiSessionRefreshRequestRestDto? body});
+  Future<chopper.Response<ApiSession>> nakamaSessionRefresh(
+      {@Body() @required ApiSessionRefreshRequest? body});
 
   ///Remove the Apple ID from the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/unlink/apple')
   Future<chopper.Response> nakamaUnlinkApple(
-      {@Body() @required ApiAccountAppleRestDto? body});
+      {@Body() @required ApiAccountApple? body});
 
   ///Remove the custom ID from the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/unlink/custom')
   Future<chopper.Response> nakamaUnlinkCustom(
-      {@Body() @required ApiAccountCustomRestDto? body});
+      {@Body() @required ApiAccountCustom? body});
 
   ///Remove the device ID from the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/unlink/device')
   Future<chopper.Response> nakamaUnlinkDevice(
-      {@Body() @required ApiAccountDeviceRestDto? body});
+      {@Body() @required ApiAccountDevice? body});
 
   ///Remove the email+password from the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/unlink/email')
   Future<chopper.Response> nakamaUnlinkEmail(
-      {@Body() @required ApiAccountEmailRestDto? body});
+      {@Body() @required ApiAccountEmail? body});
 
   ///Remove Facebook from the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/unlink/facebook')
   Future<chopper.Response> nakamaUnlinkFacebook(
-      {@Body() @required ApiAccountFacebookRestDto? body});
+      {@Body() @required ApiAccountFacebook? body});
 
   ///Remove Facebook Instant Game profile from the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/unlink/facebookinstantgame')
   Future<chopper.Response> nakamaUnlinkFacebookInstantGame(
-      {@Body() @required ApiAccountFacebookInstantGameRestDto? body});
+      {@Body() @required ApiAccountFacebookInstantGame? body});
 
   ///Remove Apple's GameCenter from the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/unlink/gamecenter')
   Future<chopper.Response> nakamaUnlinkGameCenter(
-      {@Body() @required ApiAccountGameCenterRestDto? body});
+      {@Body() @required ApiAccountGameCenter? body});
 
   ///Remove Google from the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/unlink/google')
   Future<chopper.Response> nakamaUnlinkGoogle(
-      {@Body() @required ApiAccountGoogleRestDto? body});
+      {@Body() @required ApiAccountGoogle? body});
 
   ///Remove Steam from the social profiles on the current user's account.
   ///@param body
 
   @Post(path: '/v2/account/unlink/steam')
   Future<chopper.Response> nakamaUnlinkSteam(
-      {@Body() @required ApiAccountSteamRestDto? body});
+      {@Body() @required ApiAccountSteam? body});
 
   ///List a channel's message history.
   ///@param channelId The channel ID to list from.
@@ -289,19 +287,17 @@ abstract class Apigrpc extends ChopperService {
   ///@param cursor A pagination cursor, if any.
 
   @Get(path: '/v2/channel/{channelId}')
-  Future<chopper.Response<ApiChannelMessageListRestDto>>
-      nakamaListChannelMessages(
-          {@Path('channelId') @required String? channelId,
-          @Query('limit') int? limit,
-          @Query('forward') bool? forward,
-          @Query('cursor') String? cursor});
+  Future<chopper.Response<ApiChannelMessageList>> nakamaListChannelMessages(
+      {@Path('channelId') @required String? channelId,
+      @Query('limit') int? limit,
+      @Query('forward') bool? forward,
+      @Query('cursor') String? cursor});
 
   ///Submit an event for processing in the server's registered runtime custom events handler.
   ///@param body
 
   @Post(path: '/v2/event')
-  Future<chopper.Response> nakamaEvent(
-      {@Body() @required ApiEventRestDto? body});
+  Future<chopper.Response> nakamaEvent({@Body() @required ApiEvent? body});
 
   ///List all friends for the current user.
   ///@param limit Max number of records to return. Between 1 and 100.
@@ -309,7 +305,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param cursor An optional next page cursor.
 
   @Get(path: '/v2/friend')
-  Future<chopper.Response<ApiFriendListRestDto>> nakamaListFriends(
+  Future<chopper.Response<ApiFriendList>> nakamaListFriends(
       {@Query('limit') int? limit,
       @Query('state') int? state,
       @Query('cursor') String? cursor});
@@ -351,7 +347,7 @@ abstract class Apigrpc extends ChopperService {
 
   @Post(path: '/v2/friend/facebook')
   Future<chopper.Response> nakamaImportFacebookFriends(
-      {@Body() @required ApiAccountFacebookRestDto? body,
+      {@Body() @required ApiAccountFacebook? body,
       @Query('reset') bool? reset});
 
   ///Import Steam friends and add them to a user's account.
@@ -360,8 +356,7 @@ abstract class Apigrpc extends ChopperService {
 
   @Post(path: '/v2/friend/steam')
   Future<chopper.Response> nakamaImportSteamFriends(
-      {@Body() @required ApiAccountSteamRestDto? body,
-      @Query('reset') bool? reset});
+      {@Body() @required ApiAccountSteam? body, @Query('reset') bool? reset});
 
   ///List groups based on given filters.
   ///@param name List groups that contain this value in their names.
@@ -369,7 +364,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param limit Max number of groups to return. Between 1 and 100.
 
   @Get(path: '/v2/group')
-  Future<chopper.Response<ApiGroupListRestDto>> nakamaListGroups(
+  Future<chopper.Response<ApiGroupList>> nakamaListGroups(
       {@Query('name') String? name,
       @Query('cursor') String? cursor,
       @Query('limit') int? limit});
@@ -378,8 +373,8 @@ abstract class Apigrpc extends ChopperService {
   ///@param body
 
   @Post(path: '/v2/group')
-  Future<chopper.Response<ApiGroupRestDto>> nakamaCreateGroup(
-      {@Body() @required ApiCreateGroupRequestRestDto? body});
+  Future<chopper.Response<ApiGroup>> nakamaCreateGroup(
+      {@Body() @required ApiCreateGroupRequest? body});
 
   ///Delete a group by ID.
   ///@param groupId The id of a group.
@@ -395,7 +390,7 @@ abstract class Apigrpc extends ChopperService {
   @Put(path: '/v2/group/{groupId}')
   Future<chopper.Response> nakamaUpdateGroup(
       {@Path('groupId') @required String? groupId,
-      @Body() @required ApiUpdateGroupRequestRestDto? body});
+      @Body() @required ApiUpdateGroupRequest? body});
 
   ///Add users to a group.
   ///@param groupId The group to add users to.
@@ -477,7 +472,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param cursor An optional next page cursor.
 
   @Get(path: '/v2/group/{groupId}/user')
-  Future<chopper.Response<ApiGroupUserListRestDto>> nakamaListGroupUsers(
+  Future<chopper.Response<ApiGroupUserList>> nakamaListGroupUsers(
       {@Path('groupId') @required String? groupId,
       @Query('limit') int? limit,
       @Query('state') int? state,
@@ -487,25 +482,25 @@ abstract class Apigrpc extends ChopperService {
   ///@param body
 
   @Post(path: '/v2/iap/purchase/apple')
-  Future<chopper.Response<ApiValidatePurchaseResponseRestDto>>
+  Future<chopper.Response<ApiValidatePurchaseResponse>>
       nakamaValidatePurchaseApple(
-          {@Body() @required ApiValidatePurchaseAppleRequestRestDto? body});
+          {@Body() @required ApiValidatePurchaseAppleRequest? body});
 
   ///Validate Google IAP Receipt
   ///@param body
 
   @Post(path: '/v2/iap/purchase/google')
-  Future<chopper.Response<ApiValidatePurchaseResponseRestDto>>
+  Future<chopper.Response<ApiValidatePurchaseResponse>>
       nakamaValidatePurchaseGoogle(
-          {@Body() @required ApiValidatePurchaseGoogleRequestRestDto? body});
+          {@Body() @required ApiValidatePurchaseGoogleRequest? body});
 
   ///Validate Huawei IAP Receipt
   ///@param body
 
   @Post(path: '/v2/iap/purchase/huawei')
-  Future<chopper.Response<ApiValidatePurchaseResponseRestDto>>
+  Future<chopper.Response<ApiValidatePurchaseResponse>>
       nakamaValidatePurchaseHuawei(
-          {@Body() @required ApiValidatePurchaseHuaweiRequestRestDto? body});
+          {@Body() @required ApiValidatePurchaseHuaweiRequest? body});
 
   ///List leaderboard records.
   ///@param leaderboardId The ID of the leaderboard to list for.
@@ -515,7 +510,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param expiry Expiry in seconds (since epoch) to begin fetching records from. Optional. 0 means from current time.
 
   @Get(path: '/v2/leaderboard/{leaderboardId}')
-  Future<chopper.Response<ApiLeaderboardRecordListRestDto>>
+  Future<chopper.Response<ApiLeaderboardRecordList>>
       nakamaListLeaderboardRecords(
           {@Path('leaderboardId') @required String? leaderboardId,
           @Query('ownerIds') List<String>? ownerIds,
@@ -535,15 +530,13 @@ abstract class Apigrpc extends ChopperService {
   ///@param body Record input.
 
   @Post(path: '/v2/leaderboard/{leaderboardId}')
-  Future<chopper.Response<ApiLeaderboardRecordRestDto>>
-      nakamaWriteLeaderboardRecord(
-          {@Path('leaderboardId')
-          @required
-              String? leaderboardId,
-          @Body()
-          @required
-              WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto?
-                  body});
+  Future<chopper.Response<ApiLeaderboardRecord>> nakamaWriteLeaderboardRecord(
+      {@Path('leaderboardId')
+      @required
+          String? leaderboardId,
+      @Body()
+      @required
+          WriteLeaderboardRecordRequestLeaderboardRecordWrite? body});
 
   ///List leaderboard records that belong to a user.
   ///@param leaderboardId The ID of the tournament to list for.
@@ -552,7 +545,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param expiry Expiry in seconds (since epoch) to begin fetching records from.
 
   @Get(path: '/v2/leaderboard/{leaderboardId}/owner/{ownerId}')
-  Future<chopper.Response<ApiLeaderboardRecordListRestDto>>
+  Future<chopper.Response<ApiLeaderboardRecordList>>
       nakamaListLeaderboardRecordsAroundOwner(
           {@Path('leaderboardId') @required String? leaderboardId,
           @Path('ownerId') @required String? ownerId,
@@ -568,7 +561,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param query Arbitrary label query.
 
   @Get(path: '/v2/match')
-  Future<chopper.Response<ApiMatchListRestDto>> nakamaListMatches(
+  Future<chopper.Response<ApiMatchList>> nakamaListMatches(
       {@Query('limit') int? limit,
       @Query('authoritative') bool? authoritative,
       @Query('label') String? label,
@@ -581,7 +574,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param cacheableCursor A cursor to page through notifications. May be cached by clients to get from point in time forwards.
 
   @Get(path: '/v2/notification')
-  Future<chopper.Response<ApiNotificationListRestDto>> nakamaListNotifications(
+  Future<chopper.Response<ApiNotificationList>> nakamaListNotifications(
       {@Query('limit') int? limit,
       @Query('cacheableCursor') String? cacheableCursor});
 
@@ -598,7 +591,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param httpKey The authentication key used when executed as a non-client HTTP request.
 
   @Get(path: '/v2/rpc/{id}')
-  Future<chopper.Response<ApiRpcRestDto>> nakamaRpcFunc2(
+  Future<chopper.Response<ApiRpc>> nakamaRpcFunc2(
       {@Path('id') @required String? id,
       @Query('payload') String? payload,
       @Query('httpKey') String? httpKey});
@@ -609,7 +602,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param httpKey The authentication key used when executed as a non-client HTTP request.
 
   @Post(path: '/v2/rpc/{id}')
-  Future<chopper.Response<ApiRpcRestDto>> nakamaRpcFunc(
+  Future<chopper.Response<ApiRpc>> nakamaRpcFunc(
       {@Path('id') @required String? id,
       @Body() @required Object? body,
       @Query('httpKey') String? httpKey});
@@ -619,29 +612,28 @@ abstract class Apigrpc extends ChopperService {
 
   @Post(path: '/v2/session/logout')
   Future<chopper.Response> nakamaSessionLogout(
-      {@Body() @required ApiSessionLogoutRequestRestDto? body});
+      {@Body() @required ApiSessionLogoutRequest? body});
 
   ///Get storage objects.
   ///@param body
 
   @Post(path: '/v2/storage')
-  Future<chopper.Response<ApiStorageObjectsRestDto>> nakamaReadStorageObjects(
-      {@Body() @required ApiReadStorageObjectsRequestRestDto? body});
+  Future<chopper.Response<ApiStorageObjects>> nakamaReadStorageObjects(
+      {@Body() @required ApiReadStorageObjectsRequest? body});
 
   ///Write objects into the storage engine.
   ///@param body
 
   @Put(path: '/v2/storage')
-  Future<chopper.Response<ApiStorageObjectAcksRestDto>>
-      nakamaWriteStorageObjects(
-          {@Body() @required ApiWriteStorageObjectsRequestRestDto? body});
+  Future<chopper.Response<ApiStorageObjectAcks>> nakamaWriteStorageObjects(
+      {@Body() @required ApiWriteStorageObjectsRequest? body});
 
   ///Delete one or more objects by ID or username.
   ///@param body
 
   @Put(path: '/v2/storage/delete')
   Future<chopper.Response> nakamaDeleteStorageObjects(
-      {@Body() @required ApiDeleteStorageObjectsRequestRestDto? body});
+      {@Body() @required ApiDeleteStorageObjectsRequest? body});
 
   ///List publicly readable storage objects in a given collection.
   ///@param collection The collection which stores the object.
@@ -650,12 +642,11 @@ abstract class Apigrpc extends ChopperService {
   ///@param cursor The cursor to page through results from.
 
   @Get(path: '/v2/storage/{collection}')
-  Future<chopper.Response<ApiStorageObjectListRestDto>>
-      nakamaListStorageObjects(
-          {@Path('collection') @required String? collection,
-          @Query('userId') String? userId,
-          @Query('limit') int? limit,
-          @Query('cursor') String? cursor});
+  Future<chopper.Response<ApiStorageObjectList>> nakamaListStorageObjects(
+      {@Path('collection') @required String? collection,
+      @Query('userId') String? userId,
+      @Query('limit') int? limit,
+      @Query('cursor') String? cursor});
 
   ///List publicly readable storage objects in a given collection.
   ///@param collection The collection which stores the object.
@@ -664,12 +655,11 @@ abstract class Apigrpc extends ChopperService {
   ///@param cursor The cursor to page through results from.
 
   @Get(path: '/v2/storage/{collection}/{userId}')
-  Future<chopper.Response<ApiStorageObjectListRestDto>>
-      nakamaListStorageObjects2(
-          {@Path('collection') @required String? collection,
-          @Path('userId') @required String? userId,
-          @Query('limit') int? limit,
-          @Query('cursor') String? cursor});
+  Future<chopper.Response<ApiStorageObjectList>> nakamaListStorageObjects2(
+      {@Path('collection') @required String? collection,
+      @Path('userId') @required String? userId,
+      @Query('limit') int? limit,
+      @Query('cursor') String? cursor});
 
   ///List current or upcoming tournaments.
   ///@param categoryStart The start of the categories to include. Defaults to 0.
@@ -680,7 +670,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param cursor A next page cursor for listings (optional).
 
   @Get(path: '/v2/tournament')
-  Future<chopper.Response<ApiTournamentListRestDto>> nakamaListTournaments(
+  Future<chopper.Response<ApiTournamentList>> nakamaListTournaments(
       {@Query('categoryStart') int? categoryStart,
       @Query('categoryEnd') int? categoryEnd,
       @Query('startTime') int? startTime,
@@ -696,41 +686,38 @@ abstract class Apigrpc extends ChopperService {
   ///@param expiry Expiry in seconds (since epoch) to begin fetching records from.
 
   @Get(path: '/v2/tournament/{tournamentId}')
-  Future<chopper.Response<ApiTournamentRecordListRestDto>>
-      nakamaListTournamentRecords(
-          {@Path('tournamentId') @required String? tournamentId,
-          @Query('ownerIds') List<String>? ownerIds,
-          @Query('limit') int? limit,
-          @Query('cursor') String? cursor,
-          @Query('expiry') String? expiry});
+  Future<chopper.Response<ApiTournamentRecordList>> nakamaListTournamentRecords(
+      {@Path('tournamentId') @required String? tournamentId,
+      @Query('ownerIds') List<String>? ownerIds,
+      @Query('limit') int? limit,
+      @Query('cursor') String? cursor,
+      @Query('expiry') String? expiry});
 
   ///Write a record to a tournament.
   ///@param tournamentId The tournament ID to write the record for.
   ///@param body Record input.
 
   @Post(path: '/v2/tournament/{tournamentId}')
-  Future<chopper.Response<ApiLeaderboardRecordRestDto>>
-      nakamaWriteTournamentRecord2(
-          {@Path('tournamentId')
-          @required
-              String? tournamentId,
-          @Body()
-          @required
-              WriteTournamentRecordRequestTournamentRecordWriteRestDto? body});
+  Future<chopper.Response<ApiLeaderboardRecord>> nakamaWriteTournamentRecord2(
+      {@Path('tournamentId')
+      @required
+          String? tournamentId,
+      @Body()
+      @required
+          WriteTournamentRecordRequestTournamentRecordWrite? body});
 
   ///Write a record to a tournament.
   ///@param tournamentId The tournament ID to write the record for.
   ///@param body Record input.
 
   @Put(path: '/v2/tournament/{tournamentId}')
-  Future<chopper.Response<ApiLeaderboardRecordRestDto>>
-      nakamaWriteTournamentRecord(
-          {@Path('tournamentId')
-          @required
-              String? tournamentId,
-          @Body()
-          @required
-              WriteTournamentRecordRequestTournamentRecordWriteRestDto? body});
+  Future<chopper.Response<ApiLeaderboardRecord>> nakamaWriteTournamentRecord(
+      {@Path('tournamentId')
+      @required
+          String? tournamentId,
+      @Body()
+      @required
+          WriteTournamentRecordRequestTournamentRecordWrite? body});
 
   ///Attempt to join an open and running tournament.
   ///@param tournamentId The ID of the tournament to join. The tournament must already exist.
@@ -748,7 +735,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param expiry Expiry in seconds (since epoch) to begin fetching records from.
 
   @Get(path: '/v2/tournament/{tournamentId}/owner/{ownerId}')
-  Future<chopper.Response<ApiTournamentRecordListRestDto>>
+  Future<chopper.Response<ApiTournamentRecordList>>
       nakamaListTournamentRecordsAroundOwner(
           {@Path('tournamentId') @required String? tournamentId,
           @Path('ownerId') @required String? ownerId,
@@ -761,7 +748,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param facebookIds The Facebook ID of a user.
 
   @Get(path: '/v2/user')
-  Future<chopper.Response<ApiUsersRestDto>> nakamaGetUsers(
+  Future<chopper.Response<ApiUsers>> nakamaGetUsers(
       {@Query('ids') List<String>? ids,
       @Query('usernames') List<String>? usernames,
       @Query('facebookIds') List<String>? facebookIds});
@@ -773,7 +760,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param cursor An optional next page cursor.
 
   @Get(path: '/v2/user/{userId}/group')
-  Future<chopper.Response<ApiUserGroupListRestDto>> nakamaListUserGroups(
+  Future<chopper.Response<ApiUserGroupList>> nakamaListUserGroups(
       {@Path('userId') @required String? userId,
       @Query('limit') int? limit,
       @Query('state') int? state,
@@ -782,152 +769,138 @@ abstract class Apigrpc extends ChopperService {
 
 final Map<Type, Object Function(Map<String, dynamic>)>
     ApigrpcJsonDecoderMappings = {
-  GroupUserListGroupUserRestDto: GroupUserListGroupUserRestDto.fromJsonFactory,
-  UserGroupListUserGroupRestDto: UserGroupListUserGroupRestDto.fromJsonFactory,
-  WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto:
-      WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto
-          .fromJsonFactory,
-  WriteTournamentRecordRequestTournamentRecordWriteRestDto:
-      WriteTournamentRecordRequestTournamentRecordWriteRestDto.fromJsonFactory,
-  ApiAccountRestDto: ApiAccountRestDto.fromJsonFactory,
-  ApiAccountAppleRestDto: ApiAccountAppleRestDto.fromJsonFactory,
-  ApiAccountCustomRestDto: ApiAccountCustomRestDto.fromJsonFactory,
-  ApiAccountDeviceRestDto: ApiAccountDeviceRestDto.fromJsonFactory,
-  ApiAccountEmailRestDto: ApiAccountEmailRestDto.fromJsonFactory,
-  ApiAccountFacebookRestDto: ApiAccountFacebookRestDto.fromJsonFactory,
-  ApiAccountFacebookInstantGameRestDto:
-      ApiAccountFacebookInstantGameRestDto.fromJsonFactory,
-  ApiAccountGameCenterRestDto: ApiAccountGameCenterRestDto.fromJsonFactory,
-  ApiAccountGoogleRestDto: ApiAccountGoogleRestDto.fromJsonFactory,
-  ApiAccountSteamRestDto: ApiAccountSteamRestDto.fromJsonFactory,
-  ApiChannelMessageRestDto: ApiChannelMessageRestDto.fromJsonFactory,
-  ApiChannelMessageListRestDto: ApiChannelMessageListRestDto.fromJsonFactory,
-  ApiCreateGroupRequestRestDto: ApiCreateGroupRequestRestDto.fromJsonFactory,
-  ApiDeleteStorageObjectIdRestDto:
-      ApiDeleteStorageObjectIdRestDto.fromJsonFactory,
-  ApiDeleteStorageObjectsRequestRestDto:
-      ApiDeleteStorageObjectsRequestRestDto.fromJsonFactory,
-  ApiEventRestDto: ApiEventRestDto.fromJsonFactory,
-  ApiFriendRestDto: ApiFriendRestDto.fromJsonFactory,
-  ApiFriendListRestDto: ApiFriendListRestDto.fromJsonFactory,
-  ApiGroupRestDto: ApiGroupRestDto.fromJsonFactory,
-  ApiGroupListRestDto: ApiGroupListRestDto.fromJsonFactory,
-  ApiGroupUserListRestDto: ApiGroupUserListRestDto.fromJsonFactory,
-  ApiLeaderboardRecordRestDto: ApiLeaderboardRecordRestDto.fromJsonFactory,
-  ApiLeaderboardRecordListRestDto:
-      ApiLeaderboardRecordListRestDto.fromJsonFactory,
-  ApiLinkSteamRequestRestDto: ApiLinkSteamRequestRestDto.fromJsonFactory,
-  ApiMatchRestDto: ApiMatchRestDto.fromJsonFactory,
-  ApiMatchListRestDto: ApiMatchListRestDto.fromJsonFactory,
-  ApiNotificationRestDto: ApiNotificationRestDto.fromJsonFactory,
-  ApiNotificationListRestDto: ApiNotificationListRestDto.fromJsonFactory,
-  ApiReadStorageObjectIdRestDto: ApiReadStorageObjectIdRestDto.fromJsonFactory,
-  ApiReadStorageObjectsRequestRestDto:
-      ApiReadStorageObjectsRequestRestDto.fromJsonFactory,
-  ApiRpcRestDto: ApiRpcRestDto.fromJsonFactory,
-  ApiSessionRestDto: ApiSessionRestDto.fromJsonFactory,
-  ApiSessionLogoutRequestRestDto:
-      ApiSessionLogoutRequestRestDto.fromJsonFactory,
-  ApiSessionRefreshRequestRestDto:
-      ApiSessionRefreshRequestRestDto.fromJsonFactory,
-  ApiStorageObjectRestDto: ApiStorageObjectRestDto.fromJsonFactory,
-  ApiStorageObjectAckRestDto: ApiStorageObjectAckRestDto.fromJsonFactory,
-  ApiStorageObjectAcksRestDto: ApiStorageObjectAcksRestDto.fromJsonFactory,
-  ApiStorageObjectListRestDto: ApiStorageObjectListRestDto.fromJsonFactory,
-  ApiStorageObjectsRestDto: ApiStorageObjectsRestDto.fromJsonFactory,
-  ApiTournamentRestDto: ApiTournamentRestDto.fromJsonFactory,
-  ApiTournamentListRestDto: ApiTournamentListRestDto.fromJsonFactory,
-  ApiTournamentRecordListRestDto:
-      ApiTournamentRecordListRestDto.fromJsonFactory,
-  ApiUpdateAccountRequestRestDto:
-      ApiUpdateAccountRequestRestDto.fromJsonFactory,
-  ApiUpdateGroupRequestRestDto: ApiUpdateGroupRequestRestDto.fromJsonFactory,
-  ApiUserRestDto: ApiUserRestDto.fromJsonFactory,
-  ApiUserGroupListRestDto: ApiUserGroupListRestDto.fromJsonFactory,
-  ApiUsersRestDto: ApiUsersRestDto.fromJsonFactory,
-  ApiValidatePurchaseAppleRequestRestDto:
-      ApiValidatePurchaseAppleRequestRestDto.fromJsonFactory,
-  ApiValidatePurchaseGoogleRequestRestDto:
-      ApiValidatePurchaseGoogleRequestRestDto.fromJsonFactory,
-  ApiValidatePurchaseHuaweiRequestRestDto:
-      ApiValidatePurchaseHuaweiRequestRestDto.fromJsonFactory,
-  ApiValidatePurchaseResponseRestDto:
-      ApiValidatePurchaseResponseRestDto.fromJsonFactory,
-  ApiValidatedPurchaseRestDto: ApiValidatedPurchaseRestDto.fromJsonFactory,
-  ApiWriteStorageObjectRestDto: ApiWriteStorageObjectRestDto.fromJsonFactory,
-  ApiWriteStorageObjectsRequestRestDto:
-      ApiWriteStorageObjectsRequestRestDto.fromJsonFactory,
-  ProtobufAnyRestDto: ProtobufAnyRestDto.fromJsonFactory,
-  RpcStatusRestDto: RpcStatusRestDto.fromJsonFactory,
+  GroupUserListGroupUser: GroupUserListGroupUser.fromJsonFactory,
+  UserGroupListUserGroup: UserGroupListUserGroup.fromJsonFactory,
+  WriteLeaderboardRecordRequestLeaderboardRecordWrite:
+      WriteLeaderboardRecordRequestLeaderboardRecordWrite.fromJsonFactory,
+  WriteTournamentRecordRequestTournamentRecordWrite:
+      WriteTournamentRecordRequestTournamentRecordWrite.fromJsonFactory,
+  ApiAccount: ApiAccount.fromJsonFactory,
+  ApiAccountApple: ApiAccountApple.fromJsonFactory,
+  ApiAccountCustom: ApiAccountCustom.fromJsonFactory,
+  ApiAccountDevice: ApiAccountDevice.fromJsonFactory,
+  ApiAccountEmail: ApiAccountEmail.fromJsonFactory,
+  ApiAccountFacebook: ApiAccountFacebook.fromJsonFactory,
+  ApiAccountFacebookInstantGame: ApiAccountFacebookInstantGame.fromJsonFactory,
+  ApiAccountGameCenter: ApiAccountGameCenter.fromJsonFactory,
+  ApiAccountGoogle: ApiAccountGoogle.fromJsonFactory,
+  ApiAccountSteam: ApiAccountSteam.fromJsonFactory,
+  ApiChannelMessage: ApiChannelMessage.fromJsonFactory,
+  ApiChannelMessageList: ApiChannelMessageList.fromJsonFactory,
+  ApiCreateGroupRequest: ApiCreateGroupRequest.fromJsonFactory,
+  ApiDeleteStorageObjectId: ApiDeleteStorageObjectId.fromJsonFactory,
+  ApiDeleteStorageObjectsRequest:
+      ApiDeleteStorageObjectsRequest.fromJsonFactory,
+  ApiEvent: ApiEvent.fromJsonFactory,
+  ApiFriend: ApiFriend.fromJsonFactory,
+  ApiFriendList: ApiFriendList.fromJsonFactory,
+  ApiGroup: ApiGroup.fromJsonFactory,
+  ApiGroupList: ApiGroupList.fromJsonFactory,
+  ApiGroupUserList: ApiGroupUserList.fromJsonFactory,
+  ApiLeaderboardRecord: ApiLeaderboardRecord.fromJsonFactory,
+  ApiLeaderboardRecordList: ApiLeaderboardRecordList.fromJsonFactory,
+  ApiLinkSteamRequest: ApiLinkSteamRequest.fromJsonFactory,
+  ApiMatch: ApiMatch.fromJsonFactory,
+  ApiMatchList: ApiMatchList.fromJsonFactory,
+  ApiNotification: ApiNotification.fromJsonFactory,
+  ApiNotificationList: ApiNotificationList.fromJsonFactory,
+  ApiReadStorageObjectId: ApiReadStorageObjectId.fromJsonFactory,
+  ApiReadStorageObjectsRequest: ApiReadStorageObjectsRequest.fromJsonFactory,
+  ApiRpc: ApiRpc.fromJsonFactory,
+  ApiSession: ApiSession.fromJsonFactory,
+  ApiSessionLogoutRequest: ApiSessionLogoutRequest.fromJsonFactory,
+  ApiSessionRefreshRequest: ApiSessionRefreshRequest.fromJsonFactory,
+  ApiStorageObject: ApiStorageObject.fromJsonFactory,
+  ApiStorageObjectAck: ApiStorageObjectAck.fromJsonFactory,
+  ApiStorageObjectAcks: ApiStorageObjectAcks.fromJsonFactory,
+  ApiStorageObjectList: ApiStorageObjectList.fromJsonFactory,
+  ApiStorageObjects: ApiStorageObjects.fromJsonFactory,
+  ApiTournament: ApiTournament.fromJsonFactory,
+  ApiTournamentList: ApiTournamentList.fromJsonFactory,
+  ApiTournamentRecordList: ApiTournamentRecordList.fromJsonFactory,
+  ApiUpdateAccountRequest: ApiUpdateAccountRequest.fromJsonFactory,
+  ApiUpdateGroupRequest: ApiUpdateGroupRequest.fromJsonFactory,
+  ApiUser: ApiUser.fromJsonFactory,
+  ApiUserGroupList: ApiUserGroupList.fromJsonFactory,
+  ApiUsers: ApiUsers.fromJsonFactory,
+  ApiValidatePurchaseAppleRequest:
+      ApiValidatePurchaseAppleRequest.fromJsonFactory,
+  ApiValidatePurchaseGoogleRequest:
+      ApiValidatePurchaseGoogleRequest.fromJsonFactory,
+  ApiValidatePurchaseHuaweiRequest:
+      ApiValidatePurchaseHuaweiRequest.fromJsonFactory,
+  ApiValidatePurchaseResponse: ApiValidatePurchaseResponse.fromJsonFactory,
+  ApiValidatedPurchase: ApiValidatedPurchase.fromJsonFactory,
+  ApiWriteStorageObject: ApiWriteStorageObject.fromJsonFactory,
+  ApiWriteStorageObjectsRequest: ApiWriteStorageObjectsRequest.fromJsonFactory,
+  ProtobufAny: ProtobufAny.fromJsonFactory,
+  RpcStatus: RpcStatus.fromJsonFactory,
 };
 
 @JsonSerializable(explicitToJson: true)
-class GroupUserListGroupUserRestDto {
-  GroupUserListGroupUserRestDto({
+class GroupUserListGroupUser {
+  GroupUserListGroupUser({
     this.user,
     this.state,
   });
 
-  factory GroupUserListGroupUserRestDto.fromJson(Map<String, dynamic> json) =>
-      _$GroupUserListGroupUserRestDtoFromJson(json);
+  factory GroupUserListGroupUser.fromJson(Map<String, dynamic> json) =>
+      _$GroupUserListGroupUserFromJson(json);
 
   @JsonKey(name: 'user', includeIfNull: true)
-  final ApiUserRestDto? user;
+  final ApiUser? user;
   @JsonKey(name: 'state', includeIfNull: true)
   final int? state;
-  static const fromJsonFactory = _$GroupUserListGroupUserRestDtoFromJson;
-  static const toJsonFactory = _$GroupUserListGroupUserRestDtoToJson;
-  Map<String, dynamic> toJson() => _$GroupUserListGroupUserRestDtoToJson(this);
+  static const fromJsonFactory = _$GroupUserListGroupUserFromJson;
+  static const toJsonFactory = _$GroupUserListGroupUserToJson;
+  Map<String, dynamic> toJson() => _$GroupUserListGroupUserToJson(this);
 }
 
-extension $GroupUserListGroupUserRestDtoExtension
-    on GroupUserListGroupUserRestDto {
-  GroupUserListGroupUserRestDto copyWith({ApiUserRestDto? user, int? state}) {
-    return GroupUserListGroupUserRestDto(
+extension $GroupUserListGroupUserExtension on GroupUserListGroupUser {
+  GroupUserListGroupUser copyWith({ApiUser? user, int? state}) {
+    return GroupUserListGroupUser(
         user: user ?? this.user, state: state ?? this.state);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class UserGroupListUserGroupRestDto {
-  UserGroupListUserGroupRestDto({
+class UserGroupListUserGroup {
+  UserGroupListUserGroup({
     this.group,
     this.state,
   });
 
-  factory UserGroupListUserGroupRestDto.fromJson(Map<String, dynamic> json) =>
-      _$UserGroupListUserGroupRestDtoFromJson(json);
+  factory UserGroupListUserGroup.fromJson(Map<String, dynamic> json) =>
+      _$UserGroupListUserGroupFromJson(json);
 
   @JsonKey(name: 'group', includeIfNull: true)
-  final ApiGroupRestDto? group;
+  final ApiGroup? group;
   @JsonKey(name: 'state', includeIfNull: true)
   final int? state;
-  static const fromJsonFactory = _$UserGroupListUserGroupRestDtoFromJson;
-  static const toJsonFactory = _$UserGroupListUserGroupRestDtoToJson;
-  Map<String, dynamic> toJson() => _$UserGroupListUserGroupRestDtoToJson(this);
+  static const fromJsonFactory = _$UserGroupListUserGroupFromJson;
+  static const toJsonFactory = _$UserGroupListUserGroupToJson;
+  Map<String, dynamic> toJson() => _$UserGroupListUserGroupToJson(this);
 }
 
-extension $UserGroupListUserGroupRestDtoExtension
-    on UserGroupListUserGroupRestDto {
-  UserGroupListUserGroupRestDto copyWith({ApiGroupRestDto? group, int? state}) {
-    return UserGroupListUserGroupRestDto(
+extension $UserGroupListUserGroupExtension on UserGroupListUserGroup {
+  UserGroupListUserGroup copyWith({ApiGroup? group, int? state}) {
+    return UserGroupListUserGroup(
         group: group ?? this.group, state: state ?? this.state);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto {
-  WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto({
+class WriteLeaderboardRecordRequestLeaderboardRecordWrite {
+  WriteLeaderboardRecordRequestLeaderboardRecordWrite({
     this.score,
     this.subscore,
     this.metadata,
     this.$operator,
   });
 
-  factory WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto.fromJson(
+  factory WriteLeaderboardRecordRequestLeaderboardRecordWrite.fromJson(
           Map<String, dynamic> json) =>
-      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDtoFromJson(
-          json);
+      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteFromJson(json);
 
   @JsonKey(name: 'score', includeIfNull: true)
   final String? score;
@@ -942,21 +915,21 @@ class WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto {
       fromJson: apiOverrideOperatorFromJson)
   final enums.ApiOverrideOperator? $operator;
   static const fromJsonFactory =
-      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDtoFromJson;
+      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteFromJson;
   static const toJsonFactory =
-      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDtoToJson;
+      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson;
   Map<String, dynamic> toJson() =>
-      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDtoToJson(this);
+      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson(this);
 }
 
-extension $WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDtoExtension
-    on WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto {
-  WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto copyWith(
+extension $WriteLeaderboardRecordRequestLeaderboardRecordWriteExtension
+    on WriteLeaderboardRecordRequestLeaderboardRecordWrite {
+  WriteLeaderboardRecordRequestLeaderboardRecordWrite copyWith(
       {String? score,
       String? subscore,
       String? metadata,
       enums.ApiOverrideOperator? $operator}) {
-    return WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto(
+    return WriteLeaderboardRecordRequestLeaderboardRecordWrite(
         score: score ?? this.score,
         subscore: subscore ?? this.subscore,
         metadata: metadata ?? this.metadata,
@@ -965,17 +938,17 @@ extension $WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class WriteTournamentRecordRequestTournamentRecordWriteRestDto {
-  WriteTournamentRecordRequestTournamentRecordWriteRestDto({
+class WriteTournamentRecordRequestTournamentRecordWrite {
+  WriteTournamentRecordRequestTournamentRecordWrite({
     this.score,
     this.subscore,
     this.metadata,
     this.$operator,
   });
 
-  factory WriteTournamentRecordRequestTournamentRecordWriteRestDto.fromJson(
+  factory WriteTournamentRecordRequestTournamentRecordWrite.fromJson(
           Map<String, dynamic> json) =>
-      _$WriteTournamentRecordRequestTournamentRecordWriteRestDtoFromJson(json);
+      _$WriteTournamentRecordRequestTournamentRecordWriteFromJson(json);
 
   @JsonKey(name: 'score', includeIfNull: true)
   final String? score;
@@ -990,21 +963,21 @@ class WriteTournamentRecordRequestTournamentRecordWriteRestDto {
       fromJson: apiOverrideOperatorFromJson)
   final enums.ApiOverrideOperator? $operator;
   static const fromJsonFactory =
-      _$WriteTournamentRecordRequestTournamentRecordWriteRestDtoFromJson;
+      _$WriteTournamentRecordRequestTournamentRecordWriteFromJson;
   static const toJsonFactory =
-      _$WriteTournamentRecordRequestTournamentRecordWriteRestDtoToJson;
+      _$WriteTournamentRecordRequestTournamentRecordWriteToJson;
   Map<String, dynamic> toJson() =>
-      _$WriteTournamentRecordRequestTournamentRecordWriteRestDtoToJson(this);
+      _$WriteTournamentRecordRequestTournamentRecordWriteToJson(this);
 }
 
-extension $WriteTournamentRecordRequestTournamentRecordWriteRestDtoExtension
-    on WriteTournamentRecordRequestTournamentRecordWriteRestDto {
-  WriteTournamentRecordRequestTournamentRecordWriteRestDto copyWith(
+extension $WriteTournamentRecordRequestTournamentRecordWriteExtension
+    on WriteTournamentRecordRequestTournamentRecordWrite {
+  WriteTournamentRecordRequestTournamentRecordWrite copyWith(
       {String? score,
       String? subscore,
       String? metadata,
       enums.ApiOverrideOperator? $operator}) {
-    return WriteTournamentRecordRequestTournamentRecordWriteRestDto(
+    return WriteTournamentRecordRequestTournamentRecordWrite(
         score: score ?? this.score,
         subscore: subscore ?? this.subscore,
         metadata: metadata ?? this.metadata,
@@ -1013,8 +986,8 @@ extension $WriteTournamentRecordRequestTournamentRecordWriteRestDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiAccountRestDto {
-  ApiAccountRestDto({
+class ApiAccount {
+  ApiAccount({
     this.user,
     this.wallet,
     this.email,
@@ -1024,41 +997,39 @@ class ApiAccountRestDto {
     this.disableTime,
   });
 
-  factory ApiAccountRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiAccountRestDtoFromJson(json);
+  factory ApiAccount.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountFromJson(json);
 
   @JsonKey(name: 'user', includeIfNull: true)
-  final ApiUserRestDto? user;
+  final ApiUser? user;
   @JsonKey(name: 'wallet', includeIfNull: true)
   final String? wallet;
   @JsonKey(name: 'email', includeIfNull: true)
   final String? email;
   @JsonKey(
-      name: 'devices',
-      includeIfNull: true,
-      defaultValue: <ApiAccountDeviceRestDto>[])
-  final List<ApiAccountDeviceRestDto>? devices;
+      name: 'devices', includeIfNull: true, defaultValue: <ApiAccountDevice>[])
+  final List<ApiAccountDevice>? devices;
   @JsonKey(name: 'customId', includeIfNull: true)
   final String? customId;
   @JsonKey(name: 'verifyTime', includeIfNull: true)
   final DateTime? verifyTime;
   @JsonKey(name: 'disableTime', includeIfNull: true)
   final DateTime? disableTime;
-  static const fromJsonFactory = _$ApiAccountRestDtoFromJson;
-  static const toJsonFactory = _$ApiAccountRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiAccountFromJson;
+  static const toJsonFactory = _$ApiAccountToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountToJson(this);
 }
 
-extension $ApiAccountRestDtoExtension on ApiAccountRestDto {
-  ApiAccountRestDto copyWith(
-      {ApiUserRestDto? user,
+extension $ApiAccountExtension on ApiAccount {
+  ApiAccount copyWith(
+      {ApiUser? user,
       String? wallet,
       String? email,
-      List<ApiAccountDeviceRestDto>? devices,
+      List<ApiAccountDevice>? devices,
       String? customId,
       DateTime? verifyTime,
       DateTime? disableTime}) {
-    return ApiAccountRestDto(
+    return ApiAccount(
         user: user ?? this.user,
         wallet: wallet ?? this.wallet,
         email: email ?? this.email,
@@ -1070,91 +1041,90 @@ extension $ApiAccountRestDtoExtension on ApiAccountRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiAccountAppleRestDto {
-  ApiAccountAppleRestDto({
+class ApiAccountApple {
+  ApiAccountApple({
     this.token,
     this.vars,
   });
 
-  factory ApiAccountAppleRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiAccountAppleRestDtoFromJson(json);
+  factory ApiAccountApple.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountAppleFromJson(json);
 
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
-  static const fromJsonFactory = _$ApiAccountAppleRestDtoFromJson;
-  static const toJsonFactory = _$ApiAccountAppleRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountAppleRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiAccountAppleFromJson;
+  static const toJsonFactory = _$ApiAccountAppleToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountAppleToJson(this);
 }
 
-extension $ApiAccountAppleRestDtoExtension on ApiAccountAppleRestDto {
-  ApiAccountAppleRestDto copyWith({String? token, Object? vars}) {
-    return ApiAccountAppleRestDto(
-        token: token ?? this.token, vars: vars ?? this.vars);
+extension $ApiAccountAppleExtension on ApiAccountApple {
+  ApiAccountApple copyWith({String? token, Object? vars}) {
+    return ApiAccountApple(token: token ?? this.token, vars: vars ?? this.vars);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiAccountCustomRestDto {
-  ApiAccountCustomRestDto({
+class ApiAccountCustom {
+  ApiAccountCustom({
     this.id,
     this.vars,
   });
 
-  factory ApiAccountCustomRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiAccountCustomRestDtoFromJson(json);
+  factory ApiAccountCustom.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountCustomFromJson(json);
 
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
-  static const fromJsonFactory = _$ApiAccountCustomRestDtoFromJson;
-  static const toJsonFactory = _$ApiAccountCustomRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountCustomRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiAccountCustomFromJson;
+  static const toJsonFactory = _$ApiAccountCustomToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountCustomToJson(this);
 }
 
-extension $ApiAccountCustomRestDtoExtension on ApiAccountCustomRestDto {
-  ApiAccountCustomRestDto copyWith({String? id, Object? vars}) {
-    return ApiAccountCustomRestDto(id: id ?? this.id, vars: vars ?? this.vars);
+extension $ApiAccountCustomExtension on ApiAccountCustom {
+  ApiAccountCustom copyWith({String? id, Object? vars}) {
+    return ApiAccountCustom(id: id ?? this.id, vars: vars ?? this.vars);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiAccountDeviceRestDto {
-  ApiAccountDeviceRestDto({
+class ApiAccountDevice {
+  ApiAccountDevice({
     this.id,
     this.vars,
   });
 
-  factory ApiAccountDeviceRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiAccountDeviceRestDtoFromJson(json);
+  factory ApiAccountDevice.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountDeviceFromJson(json);
 
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
-  static const fromJsonFactory = _$ApiAccountDeviceRestDtoFromJson;
-  static const toJsonFactory = _$ApiAccountDeviceRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountDeviceRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiAccountDeviceFromJson;
+  static const toJsonFactory = _$ApiAccountDeviceToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountDeviceToJson(this);
 }
 
-extension $ApiAccountDeviceRestDtoExtension on ApiAccountDeviceRestDto {
-  ApiAccountDeviceRestDto copyWith({String? id, Object? vars}) {
-    return ApiAccountDeviceRestDto(id: id ?? this.id, vars: vars ?? this.vars);
+extension $ApiAccountDeviceExtension on ApiAccountDevice {
+  ApiAccountDevice copyWith({String? id, Object? vars}) {
+    return ApiAccountDevice(id: id ?? this.id, vars: vars ?? this.vars);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiAccountEmailRestDto {
-  ApiAccountEmailRestDto({
+class ApiAccountEmail {
+  ApiAccountEmail({
     this.email,
     this.password,
     this.vars,
   });
 
-  factory ApiAccountEmailRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiAccountEmailRestDtoFromJson(json);
+  factory ApiAccountEmail.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountEmailFromJson(json);
 
   @JsonKey(name: 'email', includeIfNull: true)
   final String? email;
@@ -1162,15 +1132,14 @@ class ApiAccountEmailRestDto {
   final String? password;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
-  static const fromJsonFactory = _$ApiAccountEmailRestDtoFromJson;
-  static const toJsonFactory = _$ApiAccountEmailRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountEmailRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiAccountEmailFromJson;
+  static const toJsonFactory = _$ApiAccountEmailToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountEmailToJson(this);
 }
 
-extension $ApiAccountEmailRestDtoExtension on ApiAccountEmailRestDto {
-  ApiAccountEmailRestDto copyWith(
-      {String? email, String? password, Object? vars}) {
-    return ApiAccountEmailRestDto(
+extension $ApiAccountEmailExtension on ApiAccountEmail {
+  ApiAccountEmail copyWith({String? email, String? password, Object? vars}) {
+    return ApiAccountEmail(
         email: email ?? this.email,
         password: password ?? this.password,
         vars: vars ?? this.vars);
@@ -1178,65 +1147,63 @@ extension $ApiAccountEmailRestDtoExtension on ApiAccountEmailRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiAccountFacebookRestDto {
-  ApiAccountFacebookRestDto({
+class ApiAccountFacebook {
+  ApiAccountFacebook({
     this.token,
     this.vars,
   });
 
-  factory ApiAccountFacebookRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiAccountFacebookRestDtoFromJson(json);
+  factory ApiAccountFacebook.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountFacebookFromJson(json);
 
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
-  static const fromJsonFactory = _$ApiAccountFacebookRestDtoFromJson;
-  static const toJsonFactory = _$ApiAccountFacebookRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountFacebookRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiAccountFacebookFromJson;
+  static const toJsonFactory = _$ApiAccountFacebookToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountFacebookToJson(this);
 }
 
-extension $ApiAccountFacebookRestDtoExtension on ApiAccountFacebookRestDto {
-  ApiAccountFacebookRestDto copyWith({String? token, Object? vars}) {
-    return ApiAccountFacebookRestDto(
+extension $ApiAccountFacebookExtension on ApiAccountFacebook {
+  ApiAccountFacebook copyWith({String? token, Object? vars}) {
+    return ApiAccountFacebook(
         token: token ?? this.token, vars: vars ?? this.vars);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiAccountFacebookInstantGameRestDto {
-  ApiAccountFacebookInstantGameRestDto({
+class ApiAccountFacebookInstantGame {
+  ApiAccountFacebookInstantGame({
     this.signedPlayerInfo,
     this.vars,
   });
 
-  factory ApiAccountFacebookInstantGameRestDto.fromJson(
-          Map<String, dynamic> json) =>
-      _$ApiAccountFacebookInstantGameRestDtoFromJson(json);
+  factory ApiAccountFacebookInstantGame.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountFacebookInstantGameFromJson(json);
 
   @JsonKey(name: 'signedPlayerInfo', includeIfNull: true)
   final String? signedPlayerInfo;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
-  static const fromJsonFactory = _$ApiAccountFacebookInstantGameRestDtoFromJson;
-  static const toJsonFactory = _$ApiAccountFacebookInstantGameRestDtoToJson;
-  Map<String, dynamic> toJson() =>
-      _$ApiAccountFacebookInstantGameRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiAccountFacebookInstantGameFromJson;
+  static const toJsonFactory = _$ApiAccountFacebookInstantGameToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountFacebookInstantGameToJson(this);
 }
 
-extension $ApiAccountFacebookInstantGameRestDtoExtension
-    on ApiAccountFacebookInstantGameRestDto {
-  ApiAccountFacebookInstantGameRestDto copyWith(
+extension $ApiAccountFacebookInstantGameExtension
+    on ApiAccountFacebookInstantGame {
+  ApiAccountFacebookInstantGame copyWith(
       {String? signedPlayerInfo, Object? vars}) {
-    return ApiAccountFacebookInstantGameRestDto(
+    return ApiAccountFacebookInstantGame(
         signedPlayerInfo: signedPlayerInfo ?? this.signedPlayerInfo,
         vars: vars ?? this.vars);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiAccountGameCenterRestDto {
-  ApiAccountGameCenterRestDto({
+class ApiAccountGameCenter {
+  ApiAccountGameCenter({
     this.playerId,
     this.bundleId,
     this.timestampSeconds,
@@ -1246,8 +1213,8 @@ class ApiAccountGameCenterRestDto {
     this.vars,
   });
 
-  factory ApiAccountGameCenterRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiAccountGameCenterRestDtoFromJson(json);
+  factory ApiAccountGameCenter.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountGameCenterFromJson(json);
 
   @JsonKey(name: 'playerId', includeIfNull: true)
   final String? playerId;
@@ -1263,13 +1230,13 @@ class ApiAccountGameCenterRestDto {
   final String? publicKeyUrl;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
-  static const fromJsonFactory = _$ApiAccountGameCenterRestDtoFromJson;
-  static const toJsonFactory = _$ApiAccountGameCenterRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountGameCenterRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiAccountGameCenterFromJson;
+  static const toJsonFactory = _$ApiAccountGameCenterToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountGameCenterToJson(this);
 }
 
-extension $ApiAccountGameCenterRestDtoExtension on ApiAccountGameCenterRestDto {
-  ApiAccountGameCenterRestDto copyWith(
+extension $ApiAccountGameCenterExtension on ApiAccountGameCenter {
+  ApiAccountGameCenter copyWith(
       {String? playerId,
       String? bundleId,
       String? timestampSeconds,
@@ -1277,7 +1244,7 @@ extension $ApiAccountGameCenterRestDtoExtension on ApiAccountGameCenterRestDto {
       String? signature,
       String? publicKeyUrl,
       Object? vars}) {
-    return ApiAccountGameCenterRestDto(
+    return ApiAccountGameCenter(
         playerId: playerId ?? this.playerId,
         bundleId: bundleId ?? this.bundleId,
         timestampSeconds: timestampSeconds ?? this.timestampSeconds,
@@ -1289,60 +1256,59 @@ extension $ApiAccountGameCenterRestDtoExtension on ApiAccountGameCenterRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiAccountGoogleRestDto {
-  ApiAccountGoogleRestDto({
+class ApiAccountGoogle {
+  ApiAccountGoogle({
     this.token,
     this.vars,
   });
 
-  factory ApiAccountGoogleRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiAccountGoogleRestDtoFromJson(json);
+  factory ApiAccountGoogle.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountGoogleFromJson(json);
 
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
-  static const fromJsonFactory = _$ApiAccountGoogleRestDtoFromJson;
-  static const toJsonFactory = _$ApiAccountGoogleRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountGoogleRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiAccountGoogleFromJson;
+  static const toJsonFactory = _$ApiAccountGoogleToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountGoogleToJson(this);
 }
 
-extension $ApiAccountGoogleRestDtoExtension on ApiAccountGoogleRestDto {
-  ApiAccountGoogleRestDto copyWith({String? token, Object? vars}) {
-    return ApiAccountGoogleRestDto(
+extension $ApiAccountGoogleExtension on ApiAccountGoogle {
+  ApiAccountGoogle copyWith({String? token, Object? vars}) {
+    return ApiAccountGoogle(
         token: token ?? this.token, vars: vars ?? this.vars);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiAccountSteamRestDto {
-  ApiAccountSteamRestDto({
+class ApiAccountSteam {
+  ApiAccountSteam({
     this.token,
     this.vars,
   });
 
-  factory ApiAccountSteamRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiAccountSteamRestDtoFromJson(json);
+  factory ApiAccountSteam.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountSteamFromJson(json);
 
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
-  static const fromJsonFactory = _$ApiAccountSteamRestDtoFromJson;
-  static const toJsonFactory = _$ApiAccountSteamRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountSteamRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiAccountSteamFromJson;
+  static const toJsonFactory = _$ApiAccountSteamToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountSteamToJson(this);
 }
 
-extension $ApiAccountSteamRestDtoExtension on ApiAccountSteamRestDto {
-  ApiAccountSteamRestDto copyWith({String? token, Object? vars}) {
-    return ApiAccountSteamRestDto(
-        token: token ?? this.token, vars: vars ?? this.vars);
+extension $ApiAccountSteamExtension on ApiAccountSteam {
+  ApiAccountSteam copyWith({String? token, Object? vars}) {
+    return ApiAccountSteam(token: token ?? this.token, vars: vars ?? this.vars);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiChannelMessageRestDto {
-  ApiChannelMessageRestDto({
+class ApiChannelMessage {
+  ApiChannelMessage({
     this.channelId,
     this.messageId,
     this.code,
@@ -1358,8 +1324,8 @@ class ApiChannelMessageRestDto {
     this.userIdTwo,
   });
 
-  factory ApiChannelMessageRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiChannelMessageRestDtoFromJson(json);
+  factory ApiChannelMessage.fromJson(Map<String, dynamic> json) =>
+      _$ApiChannelMessageFromJson(json);
 
   @JsonKey(name: 'channelId', includeIfNull: true)
   final String? channelId;
@@ -1387,13 +1353,13 @@ class ApiChannelMessageRestDto {
   final String? userIdOne;
   @JsonKey(name: 'userIdTwo', includeIfNull: true)
   final String? userIdTwo;
-  static const fromJsonFactory = _$ApiChannelMessageRestDtoFromJson;
-  static const toJsonFactory = _$ApiChannelMessageRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiChannelMessageRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiChannelMessageFromJson;
+  static const toJsonFactory = _$ApiChannelMessageToJson;
+  Map<String, dynamic> toJson() => _$ApiChannelMessageToJson(this);
 }
 
-extension $ApiChannelMessageRestDtoExtension on ApiChannelMessageRestDto {
-  ApiChannelMessageRestDto copyWith(
+extension $ApiChannelMessageExtension on ApiChannelMessage {
+  ApiChannelMessage copyWith(
       {String? channelId,
       String? messageId,
       int? code,
@@ -1407,7 +1373,7 @@ extension $ApiChannelMessageRestDtoExtension on ApiChannelMessageRestDto {
       String? groupId,
       String? userIdOne,
       String? userIdTwo}) {
-    return ApiChannelMessageRestDto(
+    return ApiChannelMessage(
         channelId: channelId ?? this.channelId,
         messageId: messageId ?? this.messageId,
         code: code ?? this.code,
@@ -1425,41 +1391,40 @@ extension $ApiChannelMessageRestDtoExtension on ApiChannelMessageRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiChannelMessageListRestDto {
-  ApiChannelMessageListRestDto({
+class ApiChannelMessageList {
+  ApiChannelMessageList({
     this.messages,
     this.nextCursor,
     this.prevCursor,
     this.cacheableCursor,
   });
 
-  factory ApiChannelMessageListRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiChannelMessageListRestDtoFromJson(json);
+  factory ApiChannelMessageList.fromJson(Map<String, dynamic> json) =>
+      _$ApiChannelMessageListFromJson(json);
 
   @JsonKey(
       name: 'messages',
       includeIfNull: true,
-      defaultValue: <ApiChannelMessageRestDto>[])
-  final List<ApiChannelMessageRestDto>? messages;
+      defaultValue: <ApiChannelMessage>[])
+  final List<ApiChannelMessage>? messages;
   @JsonKey(name: 'nextCursor', includeIfNull: true)
   final String? nextCursor;
   @JsonKey(name: 'prevCursor', includeIfNull: true)
   final String? prevCursor;
   @JsonKey(name: 'cacheableCursor', includeIfNull: true)
   final String? cacheableCursor;
-  static const fromJsonFactory = _$ApiChannelMessageListRestDtoFromJson;
-  static const toJsonFactory = _$ApiChannelMessageListRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiChannelMessageListRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiChannelMessageListFromJson;
+  static const toJsonFactory = _$ApiChannelMessageListToJson;
+  Map<String, dynamic> toJson() => _$ApiChannelMessageListToJson(this);
 }
 
-extension $ApiChannelMessageListRestDtoExtension
-    on ApiChannelMessageListRestDto {
-  ApiChannelMessageListRestDto copyWith(
-      {List<ApiChannelMessageRestDto>? messages,
+extension $ApiChannelMessageListExtension on ApiChannelMessageList {
+  ApiChannelMessageList copyWith(
+      {List<ApiChannelMessage>? messages,
       String? nextCursor,
       String? prevCursor,
       String? cacheableCursor}) {
-    return ApiChannelMessageListRestDto(
+    return ApiChannelMessageList(
         messages: messages ?? this.messages,
         nextCursor: nextCursor ?? this.nextCursor,
         prevCursor: prevCursor ?? this.prevCursor,
@@ -1468,8 +1433,8 @@ extension $ApiChannelMessageListRestDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiCreateGroupRequestRestDto {
-  ApiCreateGroupRequestRestDto({
+class ApiCreateGroupRequest {
+  ApiCreateGroupRequest({
     this.name,
     this.description,
     this.langTag,
@@ -1478,8 +1443,8 @@ class ApiCreateGroupRequestRestDto {
     this.maxCount,
   });
 
-  factory ApiCreateGroupRequestRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiCreateGroupRequestRestDtoFromJson(json);
+  factory ApiCreateGroupRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiCreateGroupRequestFromJson(json);
 
   @JsonKey(name: 'name', includeIfNull: true)
   final String? name;
@@ -1493,21 +1458,20 @@ class ApiCreateGroupRequestRestDto {
   final bool? open;
   @JsonKey(name: 'maxCount', includeIfNull: true)
   final int? maxCount;
-  static const fromJsonFactory = _$ApiCreateGroupRequestRestDtoFromJson;
-  static const toJsonFactory = _$ApiCreateGroupRequestRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiCreateGroupRequestRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiCreateGroupRequestFromJson;
+  static const toJsonFactory = _$ApiCreateGroupRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiCreateGroupRequestToJson(this);
 }
 
-extension $ApiCreateGroupRequestRestDtoExtension
-    on ApiCreateGroupRequestRestDto {
-  ApiCreateGroupRequestRestDto copyWith(
+extension $ApiCreateGroupRequestExtension on ApiCreateGroupRequest {
+  ApiCreateGroupRequest copyWith(
       {String? name,
       String? description,
       String? langTag,
       String? avatarUrl,
       bool? open,
       int? maxCount}) {
-    return ApiCreateGroupRequestRestDto(
+    return ApiCreateGroupRequest(
         name: name ?? this.name,
         description: description ?? this.description,
         langTag: langTag ?? this.langTag,
@@ -1518,15 +1482,15 @@ extension $ApiCreateGroupRequestRestDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiDeleteStorageObjectIdRestDto {
-  ApiDeleteStorageObjectIdRestDto({
+class ApiDeleteStorageObjectId {
+  ApiDeleteStorageObjectId({
     this.collection,
     this.key,
     this.version,
   });
 
-  factory ApiDeleteStorageObjectIdRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiDeleteStorageObjectIdRestDtoFromJson(json);
+  factory ApiDeleteStorageObjectId.fromJson(Map<String, dynamic> json) =>
+      _$ApiDeleteStorageObjectIdFromJson(json);
 
   @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
@@ -1534,17 +1498,15 @@ class ApiDeleteStorageObjectIdRestDto {
   final String? key;
   @JsonKey(name: 'version', includeIfNull: true)
   final String? version;
-  static const fromJsonFactory = _$ApiDeleteStorageObjectIdRestDtoFromJson;
-  static const toJsonFactory = _$ApiDeleteStorageObjectIdRestDtoToJson;
-  Map<String, dynamic> toJson() =>
-      _$ApiDeleteStorageObjectIdRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiDeleteStorageObjectIdFromJson;
+  static const toJsonFactory = _$ApiDeleteStorageObjectIdToJson;
+  Map<String, dynamic> toJson() => _$ApiDeleteStorageObjectIdToJson(this);
 }
 
-extension $ApiDeleteStorageObjectIdRestDtoExtension
-    on ApiDeleteStorageObjectIdRestDto {
-  ApiDeleteStorageObjectIdRestDto copyWith(
+extension $ApiDeleteStorageObjectIdExtension on ApiDeleteStorageObjectId {
+  ApiDeleteStorageObjectId copyWith(
       {String? collection, String? key, String? version}) {
-    return ApiDeleteStorageObjectIdRestDto(
+    return ApiDeleteStorageObjectId(
         collection: collection ?? this.collection,
         key: key ?? this.key,
         version: version ?? this.version);
@@ -1552,47 +1514,44 @@ extension $ApiDeleteStorageObjectIdRestDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiDeleteStorageObjectsRequestRestDto {
-  ApiDeleteStorageObjectsRequestRestDto({
+class ApiDeleteStorageObjectsRequest {
+  ApiDeleteStorageObjectsRequest({
     this.objectIds,
   });
 
-  factory ApiDeleteStorageObjectsRequestRestDto.fromJson(
-          Map<String, dynamic> json) =>
-      _$ApiDeleteStorageObjectsRequestRestDtoFromJson(json);
+  factory ApiDeleteStorageObjectsRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiDeleteStorageObjectsRequestFromJson(json);
 
   @JsonKey(
       name: 'objectIds',
       includeIfNull: true,
-      defaultValue: <ApiDeleteStorageObjectIdRestDto>[])
-  final List<ApiDeleteStorageObjectIdRestDto>? objectIds;
-  static const fromJsonFactory =
-      _$ApiDeleteStorageObjectsRequestRestDtoFromJson;
-  static const toJsonFactory = _$ApiDeleteStorageObjectsRequestRestDtoToJson;
-  Map<String, dynamic> toJson() =>
-      _$ApiDeleteStorageObjectsRequestRestDtoToJson(this);
+      defaultValue: <ApiDeleteStorageObjectId>[])
+  final List<ApiDeleteStorageObjectId>? objectIds;
+  static const fromJsonFactory = _$ApiDeleteStorageObjectsRequestFromJson;
+  static const toJsonFactory = _$ApiDeleteStorageObjectsRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiDeleteStorageObjectsRequestToJson(this);
 }
 
-extension $ApiDeleteStorageObjectsRequestRestDtoExtension
-    on ApiDeleteStorageObjectsRequestRestDto {
-  ApiDeleteStorageObjectsRequestRestDto copyWith(
-      {List<ApiDeleteStorageObjectIdRestDto>? objectIds}) {
-    return ApiDeleteStorageObjectsRequestRestDto(
+extension $ApiDeleteStorageObjectsRequestExtension
+    on ApiDeleteStorageObjectsRequest {
+  ApiDeleteStorageObjectsRequest copyWith(
+      {List<ApiDeleteStorageObjectId>? objectIds}) {
+    return ApiDeleteStorageObjectsRequest(
         objectIds: objectIds ?? this.objectIds);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiEventRestDto {
-  ApiEventRestDto({
+class ApiEvent {
+  ApiEvent({
     this.name,
     this.properties,
     this.timestamp,
     this.$external,
   });
 
-  factory ApiEventRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiEventRestDtoFromJson(json);
+  factory ApiEvent.fromJson(Map<String, dynamic> json) =>
+      _$ApiEventFromJson(json);
 
   @JsonKey(name: 'name', includeIfNull: true)
   final String? name;
@@ -1602,18 +1561,18 @@ class ApiEventRestDto {
   final DateTime? timestamp;
   @JsonKey(name: 'external', includeIfNull: true)
   final bool? $external;
-  static const fromJsonFactory = _$ApiEventRestDtoFromJson;
-  static const toJsonFactory = _$ApiEventRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiEventRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiEventFromJson;
+  static const toJsonFactory = _$ApiEventToJson;
+  Map<String, dynamic> toJson() => _$ApiEventToJson(this);
 }
 
-extension $ApiEventRestDtoExtension on ApiEventRestDto {
-  ApiEventRestDto copyWith(
+extension $ApiEventExtension on ApiEvent {
+  ApiEvent copyWith(
       {String? name,
       Object? properties,
       DateTime? timestamp,
       bool? $external}) {
-    return ApiEventRestDto(
+    return ApiEvent(
         name: name ?? this.name,
         properties: properties ?? this.properties,
         timestamp: timestamp ?? this.timestamp,
@@ -1622,31 +1581,30 @@ extension $ApiEventRestDtoExtension on ApiEventRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiFriendRestDto {
-  ApiFriendRestDto({
+class ApiFriend {
+  ApiFriend({
     this.user,
     this.state,
     this.updateTime,
   });
 
-  factory ApiFriendRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiFriendRestDtoFromJson(json);
+  factory ApiFriend.fromJson(Map<String, dynamic> json) =>
+      _$ApiFriendFromJson(json);
 
   @JsonKey(name: 'user', includeIfNull: true)
-  final ApiUserRestDto? user;
+  final ApiUser? user;
   @JsonKey(name: 'state', includeIfNull: true)
   final int? state;
   @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
-  static const fromJsonFactory = _$ApiFriendRestDtoFromJson;
-  static const toJsonFactory = _$ApiFriendRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiFriendRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiFriendFromJson;
+  static const toJsonFactory = _$ApiFriendToJson;
+  Map<String, dynamic> toJson() => _$ApiFriendToJson(this);
 }
 
-extension $ApiFriendRestDtoExtension on ApiFriendRestDto {
-  ApiFriendRestDto copyWith(
-      {ApiUserRestDto? user, int? state, DateTime? updateTime}) {
-    return ApiFriendRestDto(
+extension $ApiFriendExtension on ApiFriend {
+  ApiFriend copyWith({ApiUser? user, int? state, DateTime? updateTime}) {
+    return ApiFriend(
         user: user ?? this.user,
         state: state ?? this.state,
         updateTime: updateTime ?? this.updateTime);
@@ -1654,36 +1612,34 @@ extension $ApiFriendRestDtoExtension on ApiFriendRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiFriendListRestDto {
-  ApiFriendListRestDto({
+class ApiFriendList {
+  ApiFriendList({
     this.friends,
     this.cursor,
   });
 
-  factory ApiFriendListRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiFriendListRestDtoFromJson(json);
+  factory ApiFriendList.fromJson(Map<String, dynamic> json) =>
+      _$ApiFriendListFromJson(json);
 
-  @JsonKey(
-      name: 'friends', includeIfNull: true, defaultValue: <ApiFriendRestDto>[])
-  final List<ApiFriendRestDto>? friends;
+  @JsonKey(name: 'friends', includeIfNull: true, defaultValue: <ApiFriend>[])
+  final List<ApiFriend>? friends;
   @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
-  static const fromJsonFactory = _$ApiFriendListRestDtoFromJson;
-  static const toJsonFactory = _$ApiFriendListRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiFriendListRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiFriendListFromJson;
+  static const toJsonFactory = _$ApiFriendListToJson;
+  Map<String, dynamic> toJson() => _$ApiFriendListToJson(this);
 }
 
-extension $ApiFriendListRestDtoExtension on ApiFriendListRestDto {
-  ApiFriendListRestDto copyWith(
-      {List<ApiFriendRestDto>? friends, String? cursor}) {
-    return ApiFriendListRestDto(
+extension $ApiFriendListExtension on ApiFriendList {
+  ApiFriendList copyWith({List<ApiFriend>? friends, String? cursor}) {
+    return ApiFriendList(
         friends: friends ?? this.friends, cursor: cursor ?? this.cursor);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiGroupRestDto {
-  ApiGroupRestDto({
+class ApiGroup {
+  ApiGroup({
     this.id,
     this.creatorId,
     this.name,
@@ -1698,8 +1654,8 @@ class ApiGroupRestDto {
     this.updateTime,
   });
 
-  factory ApiGroupRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiGroupRestDtoFromJson(json);
+  factory ApiGroup.fromJson(Map<String, dynamic> json) =>
+      _$ApiGroupFromJson(json);
 
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
@@ -1725,13 +1681,13 @@ class ApiGroupRestDto {
   final DateTime? createTime;
   @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
-  static const fromJsonFactory = _$ApiGroupRestDtoFromJson;
-  static const toJsonFactory = _$ApiGroupRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiGroupRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiGroupFromJson;
+  static const toJsonFactory = _$ApiGroupToJson;
+  Map<String, dynamic> toJson() => _$ApiGroupToJson(this);
 }
 
-extension $ApiGroupRestDtoExtension on ApiGroupRestDto {
-  ApiGroupRestDto copyWith(
+extension $ApiGroupExtension on ApiGroup {
+  ApiGroup copyWith(
       {String? id,
       String? creatorId,
       String? name,
@@ -1744,7 +1700,7 @@ extension $ApiGroupRestDtoExtension on ApiGroupRestDto {
       int? maxCount,
       DateTime? createTime,
       DateTime? updateTime}) {
-    return ApiGroupRestDto(
+    return ApiGroup(
         id: id ?? this.id,
         creatorId: creatorId ?? this.creatorId,
         name: name ?? this.name,
@@ -1761,67 +1717,65 @@ extension $ApiGroupRestDtoExtension on ApiGroupRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiGroupListRestDto {
-  ApiGroupListRestDto({
+class ApiGroupList {
+  ApiGroupList({
     this.groups,
     this.cursor,
   });
 
-  factory ApiGroupListRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiGroupListRestDtoFromJson(json);
+  factory ApiGroupList.fromJson(Map<String, dynamic> json) =>
+      _$ApiGroupListFromJson(json);
 
-  @JsonKey(
-      name: 'groups', includeIfNull: true, defaultValue: <ApiGroupRestDto>[])
-  final List<ApiGroupRestDto>? groups;
+  @JsonKey(name: 'groups', includeIfNull: true, defaultValue: <ApiGroup>[])
+  final List<ApiGroup>? groups;
   @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
-  static const fromJsonFactory = _$ApiGroupListRestDtoFromJson;
-  static const toJsonFactory = _$ApiGroupListRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiGroupListRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiGroupListFromJson;
+  static const toJsonFactory = _$ApiGroupListToJson;
+  Map<String, dynamic> toJson() => _$ApiGroupListToJson(this);
 }
 
-extension $ApiGroupListRestDtoExtension on ApiGroupListRestDto {
-  ApiGroupListRestDto copyWith(
-      {List<ApiGroupRestDto>? groups, String? cursor}) {
-    return ApiGroupListRestDto(
+extension $ApiGroupListExtension on ApiGroupList {
+  ApiGroupList copyWith({List<ApiGroup>? groups, String? cursor}) {
+    return ApiGroupList(
         groups: groups ?? this.groups, cursor: cursor ?? this.cursor);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiGroupUserListRestDto {
-  ApiGroupUserListRestDto({
+class ApiGroupUserList {
+  ApiGroupUserList({
     this.groupUsers,
     this.cursor,
   });
 
-  factory ApiGroupUserListRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiGroupUserListRestDtoFromJson(json);
+  factory ApiGroupUserList.fromJson(Map<String, dynamic> json) =>
+      _$ApiGroupUserListFromJson(json);
 
   @JsonKey(
       name: 'groupUsers',
       includeIfNull: true,
-      defaultValue: <GroupUserListGroupUserRestDto>[])
-  final List<GroupUserListGroupUserRestDto>? groupUsers;
+      defaultValue: <GroupUserListGroupUser>[])
+  final List<GroupUserListGroupUser>? groupUsers;
   @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
-  static const fromJsonFactory = _$ApiGroupUserListRestDtoFromJson;
-  static const toJsonFactory = _$ApiGroupUserListRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiGroupUserListRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiGroupUserListFromJson;
+  static const toJsonFactory = _$ApiGroupUserListToJson;
+  Map<String, dynamic> toJson() => _$ApiGroupUserListToJson(this);
 }
 
-extension $ApiGroupUserListRestDtoExtension on ApiGroupUserListRestDto {
-  ApiGroupUserListRestDto copyWith(
-      {List<GroupUserListGroupUserRestDto>? groupUsers, String? cursor}) {
-    return ApiGroupUserListRestDto(
+extension $ApiGroupUserListExtension on ApiGroupUserList {
+  ApiGroupUserList copyWith(
+      {List<GroupUserListGroupUser>? groupUsers, String? cursor}) {
+    return ApiGroupUserList(
         groupUsers: groupUsers ?? this.groupUsers,
         cursor: cursor ?? this.cursor);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiLeaderboardRecordRestDto {
-  ApiLeaderboardRecordRestDto({
+class ApiLeaderboardRecord {
+  ApiLeaderboardRecord({
     this.leaderboardId,
     this.ownerId,
     this.username,
@@ -1836,8 +1790,8 @@ class ApiLeaderboardRecordRestDto {
     this.maxNumScore,
   });
 
-  factory ApiLeaderboardRecordRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiLeaderboardRecordRestDtoFromJson(json);
+  factory ApiLeaderboardRecord.fromJson(Map<String, dynamic> json) =>
+      _$ApiLeaderboardRecordFromJson(json);
 
   @JsonKey(name: 'leaderboardId', includeIfNull: true)
   final String? leaderboardId;
@@ -1863,13 +1817,13 @@ class ApiLeaderboardRecordRestDto {
   final String? rank;
   @JsonKey(name: 'maxNumScore', includeIfNull: true)
   final int? maxNumScore;
-  static const fromJsonFactory = _$ApiLeaderboardRecordRestDtoFromJson;
-  static const toJsonFactory = _$ApiLeaderboardRecordRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiLeaderboardRecordRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiLeaderboardRecordFromJson;
+  static const toJsonFactory = _$ApiLeaderboardRecordToJson;
+  Map<String, dynamic> toJson() => _$ApiLeaderboardRecordToJson(this);
 }
 
-extension $ApiLeaderboardRecordRestDtoExtension on ApiLeaderboardRecordRestDto {
-  ApiLeaderboardRecordRestDto copyWith(
+extension $ApiLeaderboardRecordExtension on ApiLeaderboardRecord {
+  ApiLeaderboardRecord copyWith(
       {String? leaderboardId,
       String? ownerId,
       String? username,
@@ -1882,7 +1836,7 @@ extension $ApiLeaderboardRecordRestDtoExtension on ApiLeaderboardRecordRestDto {
       DateTime? expiryTime,
       String? rank,
       int? maxNumScore}) {
-    return ApiLeaderboardRecordRestDto(
+    return ApiLeaderboardRecord(
         leaderboardId: leaderboardId ?? this.leaderboardId,
         ownerId: ownerId ?? this.ownerId,
         username: username ?? this.username,
@@ -1899,45 +1853,43 @@ extension $ApiLeaderboardRecordRestDtoExtension on ApiLeaderboardRecordRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiLeaderboardRecordListRestDto {
-  ApiLeaderboardRecordListRestDto({
+class ApiLeaderboardRecordList {
+  ApiLeaderboardRecordList({
     this.records,
     this.ownerRecords,
     this.nextCursor,
     this.prevCursor,
   });
 
-  factory ApiLeaderboardRecordListRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiLeaderboardRecordListRestDtoFromJson(json);
+  factory ApiLeaderboardRecordList.fromJson(Map<String, dynamic> json) =>
+      _$ApiLeaderboardRecordListFromJson(json);
 
   @JsonKey(
       name: 'records',
       includeIfNull: true,
-      defaultValue: <ApiLeaderboardRecordRestDto>[])
-  final List<ApiLeaderboardRecordRestDto>? records;
+      defaultValue: <ApiLeaderboardRecord>[])
+  final List<ApiLeaderboardRecord>? records;
   @JsonKey(
       name: 'ownerRecords',
       includeIfNull: true,
-      defaultValue: <ApiLeaderboardRecordRestDto>[])
-  final List<ApiLeaderboardRecordRestDto>? ownerRecords;
+      defaultValue: <ApiLeaderboardRecord>[])
+  final List<ApiLeaderboardRecord>? ownerRecords;
   @JsonKey(name: 'nextCursor', includeIfNull: true)
   final String? nextCursor;
   @JsonKey(name: 'prevCursor', includeIfNull: true)
   final String? prevCursor;
-  static const fromJsonFactory = _$ApiLeaderboardRecordListRestDtoFromJson;
-  static const toJsonFactory = _$ApiLeaderboardRecordListRestDtoToJson;
-  Map<String, dynamic> toJson() =>
-      _$ApiLeaderboardRecordListRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiLeaderboardRecordListFromJson;
+  static const toJsonFactory = _$ApiLeaderboardRecordListToJson;
+  Map<String, dynamic> toJson() => _$ApiLeaderboardRecordListToJson(this);
 }
 
-extension $ApiLeaderboardRecordListRestDtoExtension
-    on ApiLeaderboardRecordListRestDto {
-  ApiLeaderboardRecordListRestDto copyWith(
-      {List<ApiLeaderboardRecordRestDto>? records,
-      List<ApiLeaderboardRecordRestDto>? ownerRecords,
+extension $ApiLeaderboardRecordListExtension on ApiLeaderboardRecordList {
+  ApiLeaderboardRecordList copyWith(
+      {List<ApiLeaderboardRecord>? records,
+      List<ApiLeaderboardRecord>? ownerRecords,
       String? nextCursor,
       String? prevCursor}) {
-    return ApiLeaderboardRecordListRestDto(
+    return ApiLeaderboardRecordList(
         records: records ?? this.records,
         ownerRecords: ownerRecords ?? this.ownerRecords,
         nextCursor: nextCursor ?? this.nextCursor,
@@ -1946,35 +1898,34 @@ extension $ApiLeaderboardRecordListRestDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiLinkSteamRequestRestDto {
-  ApiLinkSteamRequestRestDto({
+class ApiLinkSteamRequest {
+  ApiLinkSteamRequest({
     this.account,
     this.$sync,
   });
 
-  factory ApiLinkSteamRequestRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiLinkSteamRequestRestDtoFromJson(json);
+  factory ApiLinkSteamRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiLinkSteamRequestFromJson(json);
 
   @JsonKey(name: 'account', includeIfNull: true)
-  final ApiAccountSteamRestDto? account;
+  final ApiAccountSteam? account;
   @JsonKey(name: 'sync', includeIfNull: true)
   final bool? $sync;
-  static const fromJsonFactory = _$ApiLinkSteamRequestRestDtoFromJson;
-  static const toJsonFactory = _$ApiLinkSteamRequestRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiLinkSteamRequestRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiLinkSteamRequestFromJson;
+  static const toJsonFactory = _$ApiLinkSteamRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiLinkSteamRequestToJson(this);
 }
 
-extension $ApiLinkSteamRequestRestDtoExtension on ApiLinkSteamRequestRestDto {
-  ApiLinkSteamRequestRestDto copyWith(
-      {ApiAccountSteamRestDto? account, bool? $sync}) {
-    return ApiLinkSteamRequestRestDto(
+extension $ApiLinkSteamRequestExtension on ApiLinkSteamRequest {
+  ApiLinkSteamRequest copyWith({ApiAccountSteam? account, bool? $sync}) {
+    return ApiLinkSteamRequest(
         account: account ?? this.account, $sync: $sync ?? this.$sync);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiMatchRestDto {
-  ApiMatchRestDto({
+class ApiMatch {
+  ApiMatch({
     this.matchId,
     this.authoritative,
     this.label,
@@ -1983,8 +1934,8 @@ class ApiMatchRestDto {
     this.handlerName,
   });
 
-  factory ApiMatchRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiMatchRestDtoFromJson(json);
+  factory ApiMatch.fromJson(Map<String, dynamic> json) =>
+      _$ApiMatchFromJson(json);
 
   @JsonKey(name: 'matchId', includeIfNull: true)
   final String? matchId;
@@ -1998,20 +1949,20 @@ class ApiMatchRestDto {
   final int? tickRate;
   @JsonKey(name: 'handlerName', includeIfNull: true)
   final String? handlerName;
-  static const fromJsonFactory = _$ApiMatchRestDtoFromJson;
-  static const toJsonFactory = _$ApiMatchRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiMatchRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiMatchFromJson;
+  static const toJsonFactory = _$ApiMatchToJson;
+  Map<String, dynamic> toJson() => _$ApiMatchToJson(this);
 }
 
-extension $ApiMatchRestDtoExtension on ApiMatchRestDto {
-  ApiMatchRestDto copyWith(
+extension $ApiMatchExtension on ApiMatch {
+  ApiMatch copyWith(
       {String? matchId,
       bool? authoritative,
       String? label,
       int? size,
       int? tickRate,
       String? handlerName}) {
-    return ApiMatchRestDto(
+    return ApiMatch(
         matchId: matchId ?? this.matchId,
         authoritative: authoritative ?? this.authoritative,
         label: label ?? this.label,
@@ -2022,31 +1973,30 @@ extension $ApiMatchRestDtoExtension on ApiMatchRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiMatchListRestDto {
-  ApiMatchListRestDto({
+class ApiMatchList {
+  ApiMatchList({
     this.matches,
   });
 
-  factory ApiMatchListRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiMatchListRestDtoFromJson(json);
+  factory ApiMatchList.fromJson(Map<String, dynamic> json) =>
+      _$ApiMatchListFromJson(json);
 
-  @JsonKey(
-      name: 'matches', includeIfNull: true, defaultValue: <ApiMatchRestDto>[])
-  final List<ApiMatchRestDto>? matches;
-  static const fromJsonFactory = _$ApiMatchListRestDtoFromJson;
-  static const toJsonFactory = _$ApiMatchListRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiMatchListRestDtoToJson(this);
+  @JsonKey(name: 'matches', includeIfNull: true, defaultValue: <ApiMatch>[])
+  final List<ApiMatch>? matches;
+  static const fromJsonFactory = _$ApiMatchListFromJson;
+  static const toJsonFactory = _$ApiMatchListToJson;
+  Map<String, dynamic> toJson() => _$ApiMatchListToJson(this);
 }
 
-extension $ApiMatchListRestDtoExtension on ApiMatchListRestDto {
-  ApiMatchListRestDto copyWith({List<ApiMatchRestDto>? matches}) {
-    return ApiMatchListRestDto(matches: matches ?? this.matches);
+extension $ApiMatchListExtension on ApiMatchList {
+  ApiMatchList copyWith({List<ApiMatch>? matches}) {
+    return ApiMatchList(matches: matches ?? this.matches);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiNotificationRestDto {
-  ApiNotificationRestDto({
+class ApiNotification {
+  ApiNotification({
     this.id,
     this.subject,
     this.content,
@@ -2056,8 +2006,8 @@ class ApiNotificationRestDto {
     this.persistent,
   });
 
-  factory ApiNotificationRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiNotificationRestDtoFromJson(json);
+  factory ApiNotification.fromJson(Map<String, dynamic> json) =>
+      _$ApiNotificationFromJson(json);
 
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
@@ -2073,13 +2023,13 @@ class ApiNotificationRestDto {
   final DateTime? createTime;
   @JsonKey(name: 'persistent', includeIfNull: true)
   final bool? persistent;
-  static const fromJsonFactory = _$ApiNotificationRestDtoFromJson;
-  static const toJsonFactory = _$ApiNotificationRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiNotificationRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiNotificationFromJson;
+  static const toJsonFactory = _$ApiNotificationToJson;
+  Map<String, dynamic> toJson() => _$ApiNotificationToJson(this);
 }
 
-extension $ApiNotificationRestDtoExtension on ApiNotificationRestDto {
-  ApiNotificationRestDto copyWith(
+extension $ApiNotificationExtension on ApiNotification {
+  ApiNotification copyWith(
       {String? id,
       String? subject,
       String? content,
@@ -2087,7 +2037,7 @@ extension $ApiNotificationRestDtoExtension on ApiNotificationRestDto {
       String? senderId,
       DateTime? createTime,
       bool? persistent}) {
-    return ApiNotificationRestDto(
+    return ApiNotification(
         id: id ?? this.id,
         subject: subject ?? this.subject,
         content: content ?? this.content,
@@ -2099,46 +2049,46 @@ extension $ApiNotificationRestDtoExtension on ApiNotificationRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiNotificationListRestDto {
-  ApiNotificationListRestDto({
+class ApiNotificationList {
+  ApiNotificationList({
     this.notifications,
     this.cacheableCursor,
   });
 
-  factory ApiNotificationListRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiNotificationListRestDtoFromJson(json);
+  factory ApiNotificationList.fromJson(Map<String, dynamic> json) =>
+      _$ApiNotificationListFromJson(json);
 
   @JsonKey(
       name: 'notifications',
       includeIfNull: true,
-      defaultValue: <ApiNotificationRestDto>[])
-  final List<ApiNotificationRestDto>? notifications;
+      defaultValue: <ApiNotification>[])
+  final List<ApiNotification>? notifications;
   @JsonKey(name: 'cacheableCursor', includeIfNull: true)
   final String? cacheableCursor;
-  static const fromJsonFactory = _$ApiNotificationListRestDtoFromJson;
-  static const toJsonFactory = _$ApiNotificationListRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiNotificationListRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiNotificationListFromJson;
+  static const toJsonFactory = _$ApiNotificationListToJson;
+  Map<String, dynamic> toJson() => _$ApiNotificationListToJson(this);
 }
 
-extension $ApiNotificationListRestDtoExtension on ApiNotificationListRestDto {
-  ApiNotificationListRestDto copyWith(
-      {List<ApiNotificationRestDto>? notifications, String? cacheableCursor}) {
-    return ApiNotificationListRestDto(
+extension $ApiNotificationListExtension on ApiNotificationList {
+  ApiNotificationList copyWith(
+      {List<ApiNotification>? notifications, String? cacheableCursor}) {
+    return ApiNotificationList(
         notifications: notifications ?? this.notifications,
         cacheableCursor: cacheableCursor ?? this.cacheableCursor);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiReadStorageObjectIdRestDto {
-  ApiReadStorageObjectIdRestDto({
+class ApiReadStorageObjectId {
+  ApiReadStorageObjectId({
     this.collection,
     this.key,
     this.userId,
   });
 
-  factory ApiReadStorageObjectIdRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiReadStorageObjectIdRestDtoFromJson(json);
+  factory ApiReadStorageObjectId.fromJson(Map<String, dynamic> json) =>
+      _$ApiReadStorageObjectIdFromJson(json);
 
   @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
@@ -2146,16 +2096,15 @@ class ApiReadStorageObjectIdRestDto {
   final String? key;
   @JsonKey(name: 'userId', includeIfNull: true)
   final String? userId;
-  static const fromJsonFactory = _$ApiReadStorageObjectIdRestDtoFromJson;
-  static const toJsonFactory = _$ApiReadStorageObjectIdRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiReadStorageObjectIdRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiReadStorageObjectIdFromJson;
+  static const toJsonFactory = _$ApiReadStorageObjectIdToJson;
+  Map<String, dynamic> toJson() => _$ApiReadStorageObjectIdToJson(this);
 }
 
-extension $ApiReadStorageObjectIdRestDtoExtension
-    on ApiReadStorageObjectIdRestDto {
-  ApiReadStorageObjectIdRestDto copyWith(
+extension $ApiReadStorageObjectIdExtension on ApiReadStorageObjectId {
+  ApiReadStorageObjectId copyWith(
       {String? collection, String? key, String? userId}) {
-    return ApiReadStorageObjectIdRestDto(
+    return ApiReadStorageObjectId(
         collection: collection ?? this.collection,
         key: key ?? this.key,
         userId: userId ?? this.userId);
@@ -2163,45 +2112,41 @@ extension $ApiReadStorageObjectIdRestDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiReadStorageObjectsRequestRestDto {
-  ApiReadStorageObjectsRequestRestDto({
+class ApiReadStorageObjectsRequest {
+  ApiReadStorageObjectsRequest({
     this.objectIds,
   });
 
-  factory ApiReadStorageObjectsRequestRestDto.fromJson(
-          Map<String, dynamic> json) =>
-      _$ApiReadStorageObjectsRequestRestDtoFromJson(json);
+  factory ApiReadStorageObjectsRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiReadStorageObjectsRequestFromJson(json);
 
   @JsonKey(
       name: 'objectIds',
       includeIfNull: true,
-      defaultValue: <ApiReadStorageObjectIdRestDto>[])
-  final List<ApiReadStorageObjectIdRestDto>? objectIds;
-  static const fromJsonFactory = _$ApiReadStorageObjectsRequestRestDtoFromJson;
-  static const toJsonFactory = _$ApiReadStorageObjectsRequestRestDtoToJson;
-  Map<String, dynamic> toJson() =>
-      _$ApiReadStorageObjectsRequestRestDtoToJson(this);
+      defaultValue: <ApiReadStorageObjectId>[])
+  final List<ApiReadStorageObjectId>? objectIds;
+  static const fromJsonFactory = _$ApiReadStorageObjectsRequestFromJson;
+  static const toJsonFactory = _$ApiReadStorageObjectsRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiReadStorageObjectsRequestToJson(this);
 }
 
-extension $ApiReadStorageObjectsRequestRestDtoExtension
-    on ApiReadStorageObjectsRequestRestDto {
-  ApiReadStorageObjectsRequestRestDto copyWith(
-      {List<ApiReadStorageObjectIdRestDto>? objectIds}) {
-    return ApiReadStorageObjectsRequestRestDto(
-        objectIds: objectIds ?? this.objectIds);
+extension $ApiReadStorageObjectsRequestExtension
+    on ApiReadStorageObjectsRequest {
+  ApiReadStorageObjectsRequest copyWith(
+      {List<ApiReadStorageObjectId>? objectIds}) {
+    return ApiReadStorageObjectsRequest(objectIds: objectIds ?? this.objectIds);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiRpcRestDto {
-  ApiRpcRestDto({
+class ApiRpc {
+  ApiRpc({
     this.id,
     this.payload,
     this.httpKey,
   });
 
-  factory ApiRpcRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiRpcRestDtoFromJson(json);
+  factory ApiRpc.fromJson(Map<String, dynamic> json) => _$ApiRpcFromJson(json);
 
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
@@ -2209,14 +2154,14 @@ class ApiRpcRestDto {
   final String? payload;
   @JsonKey(name: 'httpKey', includeIfNull: true)
   final String? httpKey;
-  static const fromJsonFactory = _$ApiRpcRestDtoFromJson;
-  static const toJsonFactory = _$ApiRpcRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiRpcRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiRpcFromJson;
+  static const toJsonFactory = _$ApiRpcToJson;
+  Map<String, dynamic> toJson() => _$ApiRpcToJson(this);
 }
 
-extension $ApiRpcRestDtoExtension on ApiRpcRestDto {
-  ApiRpcRestDto copyWith({String? id, String? payload, String? httpKey}) {
-    return ApiRpcRestDto(
+extension $ApiRpcExtension on ApiRpc {
+  ApiRpc copyWith({String? id, String? payload, String? httpKey}) {
+    return ApiRpc(
         id: id ?? this.id,
         payload: payload ?? this.payload,
         httpKey: httpKey ?? this.httpKey);
@@ -2224,15 +2169,15 @@ extension $ApiRpcRestDtoExtension on ApiRpcRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiSessionRestDto {
-  ApiSessionRestDto({
+class ApiSession {
+  ApiSession({
     this.created,
     this.token,
     this.refreshToken,
   });
 
-  factory ApiSessionRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiSessionRestDtoFromJson(json);
+  factory ApiSession.fromJson(Map<String, dynamic> json) =>
+      _$ApiSessionFromJson(json);
 
   @JsonKey(name: 'created', includeIfNull: true)
   final bool? created;
@@ -2240,15 +2185,14 @@ class ApiSessionRestDto {
   final String? token;
   @JsonKey(name: 'refreshToken', includeIfNull: true)
   final String? refreshToken;
-  static const fromJsonFactory = _$ApiSessionRestDtoFromJson;
-  static const toJsonFactory = _$ApiSessionRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiSessionRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiSessionFromJson;
+  static const toJsonFactory = _$ApiSessionToJson;
+  Map<String, dynamic> toJson() => _$ApiSessionToJson(this);
 }
 
-extension $ApiSessionRestDtoExtension on ApiSessionRestDto {
-  ApiSessionRestDto copyWith(
-      {bool? created, String? token, String? refreshToken}) {
-    return ApiSessionRestDto(
+extension $ApiSessionExtension on ApiSession {
+  ApiSession copyWith({bool? created, String? token, String? refreshToken}) {
+    return ApiSession(
         created: created ?? this.created,
         token: token ?? this.token,
         refreshToken: refreshToken ?? this.refreshToken);
@@ -2256,65 +2200,61 @@ extension $ApiSessionRestDtoExtension on ApiSessionRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiSessionLogoutRequestRestDto {
-  ApiSessionLogoutRequestRestDto({
+class ApiSessionLogoutRequest {
+  ApiSessionLogoutRequest({
     this.token,
     this.refreshToken,
   });
 
-  factory ApiSessionLogoutRequestRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiSessionLogoutRequestRestDtoFromJson(json);
+  factory ApiSessionLogoutRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiSessionLogoutRequestFromJson(json);
 
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
   @JsonKey(name: 'refreshToken', includeIfNull: true)
   final String? refreshToken;
-  static const fromJsonFactory = _$ApiSessionLogoutRequestRestDtoFromJson;
-  static const toJsonFactory = _$ApiSessionLogoutRequestRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiSessionLogoutRequestRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiSessionLogoutRequestFromJson;
+  static const toJsonFactory = _$ApiSessionLogoutRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiSessionLogoutRequestToJson(this);
 }
 
-extension $ApiSessionLogoutRequestRestDtoExtension
-    on ApiSessionLogoutRequestRestDto {
-  ApiSessionLogoutRequestRestDto copyWith(
-      {String? token, String? refreshToken}) {
-    return ApiSessionLogoutRequestRestDto(
+extension $ApiSessionLogoutRequestExtension on ApiSessionLogoutRequest {
+  ApiSessionLogoutRequest copyWith({String? token, String? refreshToken}) {
+    return ApiSessionLogoutRequest(
         token: token ?? this.token,
         refreshToken: refreshToken ?? this.refreshToken);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiSessionRefreshRequestRestDto {
-  ApiSessionRefreshRequestRestDto({
+class ApiSessionRefreshRequest {
+  ApiSessionRefreshRequest({
     this.token,
     this.vars,
   });
 
-  factory ApiSessionRefreshRequestRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiSessionRefreshRequestRestDtoFromJson(json);
+  factory ApiSessionRefreshRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiSessionRefreshRequestFromJson(json);
 
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
-  static const fromJsonFactory = _$ApiSessionRefreshRequestRestDtoFromJson;
-  static const toJsonFactory = _$ApiSessionRefreshRequestRestDtoToJson;
-  Map<String, dynamic> toJson() =>
-      _$ApiSessionRefreshRequestRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiSessionRefreshRequestFromJson;
+  static const toJsonFactory = _$ApiSessionRefreshRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiSessionRefreshRequestToJson(this);
 }
 
-extension $ApiSessionRefreshRequestRestDtoExtension
-    on ApiSessionRefreshRequestRestDto {
-  ApiSessionRefreshRequestRestDto copyWith({String? token, Object? vars}) {
-    return ApiSessionRefreshRequestRestDto(
+extension $ApiSessionRefreshRequestExtension on ApiSessionRefreshRequest {
+  ApiSessionRefreshRequest copyWith({String? token, Object? vars}) {
+    return ApiSessionRefreshRequest(
         token: token ?? this.token, vars: vars ?? this.vars);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiStorageObjectRestDto {
-  ApiStorageObjectRestDto({
+class ApiStorageObject {
+  ApiStorageObject({
     this.collection,
     this.key,
     this.userId,
@@ -2326,8 +2266,8 @@ class ApiStorageObjectRestDto {
     this.updateTime,
   });
 
-  factory ApiStorageObjectRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiStorageObjectRestDtoFromJson(json);
+  factory ApiStorageObject.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectFromJson(json);
 
   @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
@@ -2347,13 +2287,13 @@ class ApiStorageObjectRestDto {
   final DateTime? createTime;
   @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
-  static const fromJsonFactory = _$ApiStorageObjectRestDtoFromJson;
-  static const toJsonFactory = _$ApiStorageObjectRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiStorageObjectRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiStorageObjectFromJson;
+  static const toJsonFactory = _$ApiStorageObjectToJson;
+  Map<String, dynamic> toJson() => _$ApiStorageObjectToJson(this);
 }
 
-extension $ApiStorageObjectRestDtoExtension on ApiStorageObjectRestDto {
-  ApiStorageObjectRestDto copyWith(
+extension $ApiStorageObjectExtension on ApiStorageObject {
+  ApiStorageObject copyWith(
       {String? collection,
       String? key,
       String? userId,
@@ -2363,7 +2303,7 @@ extension $ApiStorageObjectRestDtoExtension on ApiStorageObjectRestDto {
       int? permissionWrite,
       DateTime? createTime,
       DateTime? updateTime}) {
-    return ApiStorageObjectRestDto(
+    return ApiStorageObject(
         collection: collection ?? this.collection,
         key: key ?? this.key,
         userId: userId ?? this.userId,
@@ -2377,16 +2317,16 @@ extension $ApiStorageObjectRestDtoExtension on ApiStorageObjectRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiStorageObjectAckRestDto {
-  ApiStorageObjectAckRestDto({
+class ApiStorageObjectAck {
+  ApiStorageObjectAck({
     this.collection,
     this.key,
     this.version,
     this.userId,
   });
 
-  factory ApiStorageObjectAckRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiStorageObjectAckRestDtoFromJson(json);
+  factory ApiStorageObjectAck.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectAckFromJson(json);
 
   @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
@@ -2396,15 +2336,15 @@ class ApiStorageObjectAckRestDto {
   final String? version;
   @JsonKey(name: 'userId', includeIfNull: true)
   final String? userId;
-  static const fromJsonFactory = _$ApiStorageObjectAckRestDtoFromJson;
-  static const toJsonFactory = _$ApiStorageObjectAckRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiStorageObjectAckRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiStorageObjectAckFromJson;
+  static const toJsonFactory = _$ApiStorageObjectAckToJson;
+  Map<String, dynamic> toJson() => _$ApiStorageObjectAckToJson(this);
 }
 
-extension $ApiStorageObjectAckRestDtoExtension on ApiStorageObjectAckRestDto {
-  ApiStorageObjectAckRestDto copyWith(
+extension $ApiStorageObjectAckExtension on ApiStorageObjectAck {
+  ApiStorageObjectAck copyWith(
       {String? collection, String? key, String? version, String? userId}) {
-    return ApiStorageObjectAckRestDto(
+    return ApiStorageObjectAck(
         collection: collection ?? this.collection,
         key: key ?? this.key,
         version: version ?? this.version,
@@ -2413,89 +2353,82 @@ extension $ApiStorageObjectAckRestDtoExtension on ApiStorageObjectAckRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiStorageObjectAcksRestDto {
-  ApiStorageObjectAcksRestDto({
+class ApiStorageObjectAcks {
+  ApiStorageObjectAcks({
     this.acks,
   });
 
-  factory ApiStorageObjectAcksRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiStorageObjectAcksRestDtoFromJson(json);
+  factory ApiStorageObjectAcks.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectAcksFromJson(json);
 
   @JsonKey(
-      name: 'acks',
-      includeIfNull: true,
-      defaultValue: <ApiStorageObjectAckRestDto>[])
-  final List<ApiStorageObjectAckRestDto>? acks;
-  static const fromJsonFactory = _$ApiStorageObjectAcksRestDtoFromJson;
-  static const toJsonFactory = _$ApiStorageObjectAcksRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiStorageObjectAcksRestDtoToJson(this);
+      name: 'acks', includeIfNull: true, defaultValue: <ApiStorageObjectAck>[])
+  final List<ApiStorageObjectAck>? acks;
+  static const fromJsonFactory = _$ApiStorageObjectAcksFromJson;
+  static const toJsonFactory = _$ApiStorageObjectAcksToJson;
+  Map<String, dynamic> toJson() => _$ApiStorageObjectAcksToJson(this);
 }
 
-extension $ApiStorageObjectAcksRestDtoExtension on ApiStorageObjectAcksRestDto {
-  ApiStorageObjectAcksRestDto copyWith(
-      {List<ApiStorageObjectAckRestDto>? acks}) {
-    return ApiStorageObjectAcksRestDto(acks: acks ?? this.acks);
+extension $ApiStorageObjectAcksExtension on ApiStorageObjectAcks {
+  ApiStorageObjectAcks copyWith({List<ApiStorageObjectAck>? acks}) {
+    return ApiStorageObjectAcks(acks: acks ?? this.acks);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiStorageObjectListRestDto {
-  ApiStorageObjectListRestDto({
+class ApiStorageObjectList {
+  ApiStorageObjectList({
     this.objects,
     this.cursor,
   });
 
-  factory ApiStorageObjectListRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiStorageObjectListRestDtoFromJson(json);
+  factory ApiStorageObjectList.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectListFromJson(json);
 
   @JsonKey(
-      name: 'objects',
-      includeIfNull: true,
-      defaultValue: <ApiStorageObjectRestDto>[])
-  final List<ApiStorageObjectRestDto>? objects;
+      name: 'objects', includeIfNull: true, defaultValue: <ApiStorageObject>[])
+  final List<ApiStorageObject>? objects;
   @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
-  static const fromJsonFactory = _$ApiStorageObjectListRestDtoFromJson;
-  static const toJsonFactory = _$ApiStorageObjectListRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiStorageObjectListRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiStorageObjectListFromJson;
+  static const toJsonFactory = _$ApiStorageObjectListToJson;
+  Map<String, dynamic> toJson() => _$ApiStorageObjectListToJson(this);
 }
 
-extension $ApiStorageObjectListRestDtoExtension on ApiStorageObjectListRestDto {
-  ApiStorageObjectListRestDto copyWith(
-      {List<ApiStorageObjectRestDto>? objects, String? cursor}) {
-    return ApiStorageObjectListRestDto(
+extension $ApiStorageObjectListExtension on ApiStorageObjectList {
+  ApiStorageObjectList copyWith(
+      {List<ApiStorageObject>? objects, String? cursor}) {
+    return ApiStorageObjectList(
         objects: objects ?? this.objects, cursor: cursor ?? this.cursor);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiStorageObjectsRestDto {
-  ApiStorageObjectsRestDto({
+class ApiStorageObjects {
+  ApiStorageObjects({
     this.objects,
   });
 
-  factory ApiStorageObjectsRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiStorageObjectsRestDtoFromJson(json);
+  factory ApiStorageObjects.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectsFromJson(json);
 
   @JsonKey(
-      name: 'objects',
-      includeIfNull: true,
-      defaultValue: <ApiStorageObjectRestDto>[])
-  final List<ApiStorageObjectRestDto>? objects;
-  static const fromJsonFactory = _$ApiStorageObjectsRestDtoFromJson;
-  static const toJsonFactory = _$ApiStorageObjectsRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiStorageObjectsRestDtoToJson(this);
+      name: 'objects', includeIfNull: true, defaultValue: <ApiStorageObject>[])
+  final List<ApiStorageObject>? objects;
+  static const fromJsonFactory = _$ApiStorageObjectsFromJson;
+  static const toJsonFactory = _$ApiStorageObjectsToJson;
+  Map<String, dynamic> toJson() => _$ApiStorageObjectsToJson(this);
 }
 
-extension $ApiStorageObjectsRestDtoExtension on ApiStorageObjectsRestDto {
-  ApiStorageObjectsRestDto copyWith({List<ApiStorageObjectRestDto>? objects}) {
-    return ApiStorageObjectsRestDto(objects: objects ?? this.objects);
+extension $ApiStorageObjectsExtension on ApiStorageObjects {
+  ApiStorageObjects copyWith({List<ApiStorageObject>? objects}) {
+    return ApiStorageObjects(objects: objects ?? this.objects);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiTournamentRestDto {
-  ApiTournamentRestDto({
+class ApiTournament {
+  ApiTournament({
     this.id,
     this.title,
     this.description,
@@ -2515,8 +2448,8 @@ class ApiTournamentRestDto {
     this.startActive,
   });
 
-  factory ApiTournamentRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiTournamentRestDtoFromJson(json);
+  factory ApiTournament.fromJson(Map<String, dynamic> json) =>
+      _$ApiTournamentFromJson(json);
 
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
@@ -2552,13 +2485,13 @@ class ApiTournamentRestDto {
   final int? duration;
   @JsonKey(name: 'startActive', includeIfNull: true)
   final int? startActive;
-  static const fromJsonFactory = _$ApiTournamentRestDtoFromJson;
-  static const toJsonFactory = _$ApiTournamentRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiTournamentRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiTournamentFromJson;
+  static const toJsonFactory = _$ApiTournamentToJson;
+  Map<String, dynamic> toJson() => _$ApiTournamentToJson(this);
 }
 
-extension $ApiTournamentRestDtoExtension on ApiTournamentRestDto {
-  ApiTournamentRestDto copyWith(
+extension $ApiTournamentExtension on ApiTournament {
+  ApiTournament copyWith(
       {String? id,
       String? title,
       String? description,
@@ -2576,7 +2509,7 @@ extension $ApiTournamentRestDtoExtension on ApiTournamentRestDto {
       DateTime? endTime,
       int? duration,
       int? startActive}) {
-    return ApiTournamentRestDto(
+    return ApiTournament(
         id: id ?? this.id,
         title: title ?? this.title,
         description: description ?? this.description,
@@ -2598,75 +2531,72 @@ extension $ApiTournamentRestDtoExtension on ApiTournamentRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiTournamentListRestDto {
-  ApiTournamentListRestDto({
+class ApiTournamentList {
+  ApiTournamentList({
     this.tournaments,
     this.cursor,
   });
 
-  factory ApiTournamentListRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiTournamentListRestDtoFromJson(json);
+  factory ApiTournamentList.fromJson(Map<String, dynamic> json) =>
+      _$ApiTournamentListFromJson(json);
 
   @JsonKey(
-      name: 'tournaments',
-      includeIfNull: true,
-      defaultValue: <ApiTournamentRestDto>[])
-  final List<ApiTournamentRestDto>? tournaments;
+      name: 'tournaments', includeIfNull: true, defaultValue: <ApiTournament>[])
+  final List<ApiTournament>? tournaments;
   @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
-  static const fromJsonFactory = _$ApiTournamentListRestDtoFromJson;
-  static const toJsonFactory = _$ApiTournamentListRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiTournamentListRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiTournamentListFromJson;
+  static const toJsonFactory = _$ApiTournamentListToJson;
+  Map<String, dynamic> toJson() => _$ApiTournamentListToJson(this);
 }
 
-extension $ApiTournamentListRestDtoExtension on ApiTournamentListRestDto {
-  ApiTournamentListRestDto copyWith(
-      {List<ApiTournamentRestDto>? tournaments, String? cursor}) {
-    return ApiTournamentListRestDto(
+extension $ApiTournamentListExtension on ApiTournamentList {
+  ApiTournamentList copyWith(
+      {List<ApiTournament>? tournaments, String? cursor}) {
+    return ApiTournamentList(
         tournaments: tournaments ?? this.tournaments,
         cursor: cursor ?? this.cursor);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiTournamentRecordListRestDto {
-  ApiTournamentRecordListRestDto({
+class ApiTournamentRecordList {
+  ApiTournamentRecordList({
     this.records,
     this.ownerRecords,
     this.nextCursor,
     this.prevCursor,
   });
 
-  factory ApiTournamentRecordListRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiTournamentRecordListRestDtoFromJson(json);
+  factory ApiTournamentRecordList.fromJson(Map<String, dynamic> json) =>
+      _$ApiTournamentRecordListFromJson(json);
 
   @JsonKey(
       name: 'records',
       includeIfNull: true,
-      defaultValue: <ApiLeaderboardRecordRestDto>[])
-  final List<ApiLeaderboardRecordRestDto>? records;
+      defaultValue: <ApiLeaderboardRecord>[])
+  final List<ApiLeaderboardRecord>? records;
   @JsonKey(
       name: 'ownerRecords',
       includeIfNull: true,
-      defaultValue: <ApiLeaderboardRecordRestDto>[])
-  final List<ApiLeaderboardRecordRestDto>? ownerRecords;
+      defaultValue: <ApiLeaderboardRecord>[])
+  final List<ApiLeaderboardRecord>? ownerRecords;
   @JsonKey(name: 'nextCursor', includeIfNull: true)
   final String? nextCursor;
   @JsonKey(name: 'prevCursor', includeIfNull: true)
   final String? prevCursor;
-  static const fromJsonFactory = _$ApiTournamentRecordListRestDtoFromJson;
-  static const toJsonFactory = _$ApiTournamentRecordListRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiTournamentRecordListRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiTournamentRecordListFromJson;
+  static const toJsonFactory = _$ApiTournamentRecordListToJson;
+  Map<String, dynamic> toJson() => _$ApiTournamentRecordListToJson(this);
 }
 
-extension $ApiTournamentRecordListRestDtoExtension
-    on ApiTournamentRecordListRestDto {
-  ApiTournamentRecordListRestDto copyWith(
-      {List<ApiLeaderboardRecordRestDto>? records,
-      List<ApiLeaderboardRecordRestDto>? ownerRecords,
+extension $ApiTournamentRecordListExtension on ApiTournamentRecordList {
+  ApiTournamentRecordList copyWith(
+      {List<ApiLeaderboardRecord>? records,
+      List<ApiLeaderboardRecord>? ownerRecords,
       String? nextCursor,
       String? prevCursor}) {
-    return ApiTournamentRecordListRestDto(
+    return ApiTournamentRecordList(
         records: records ?? this.records,
         ownerRecords: ownerRecords ?? this.ownerRecords,
         nextCursor: nextCursor ?? this.nextCursor,
@@ -2675,8 +2605,8 @@ extension $ApiTournamentRecordListRestDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiUpdateAccountRequestRestDto {
-  ApiUpdateAccountRequestRestDto({
+class ApiUpdateAccountRequest {
+  ApiUpdateAccountRequest({
     this.username,
     this.displayName,
     this.avatarUrl,
@@ -2685,8 +2615,8 @@ class ApiUpdateAccountRequestRestDto {
     this.timezone,
   });
 
-  factory ApiUpdateAccountRequestRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiUpdateAccountRequestRestDtoFromJson(json);
+  factory ApiUpdateAccountRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiUpdateAccountRequestFromJson(json);
 
   @JsonKey(name: 'username', includeIfNull: true)
   final String? username;
@@ -2700,21 +2630,20 @@ class ApiUpdateAccountRequestRestDto {
   final String? location;
   @JsonKey(name: 'timezone', includeIfNull: true)
   final String? timezone;
-  static const fromJsonFactory = _$ApiUpdateAccountRequestRestDtoFromJson;
-  static const toJsonFactory = _$ApiUpdateAccountRequestRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiUpdateAccountRequestRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiUpdateAccountRequestFromJson;
+  static const toJsonFactory = _$ApiUpdateAccountRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiUpdateAccountRequestToJson(this);
 }
 
-extension $ApiUpdateAccountRequestRestDtoExtension
-    on ApiUpdateAccountRequestRestDto {
-  ApiUpdateAccountRequestRestDto copyWith(
+extension $ApiUpdateAccountRequestExtension on ApiUpdateAccountRequest {
+  ApiUpdateAccountRequest copyWith(
       {String? username,
       String? displayName,
       String? avatarUrl,
       String? langTag,
       String? location,
       String? timezone}) {
-    return ApiUpdateAccountRequestRestDto(
+    return ApiUpdateAccountRequest(
         username: username ?? this.username,
         displayName: displayName ?? this.displayName,
         avatarUrl: avatarUrl ?? this.avatarUrl,
@@ -2725,8 +2654,8 @@ extension $ApiUpdateAccountRequestRestDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiUpdateGroupRequestRestDto {
-  ApiUpdateGroupRequestRestDto({
+class ApiUpdateGroupRequest {
+  ApiUpdateGroupRequest({
     this.groupId,
     this.name,
     this.description,
@@ -2735,8 +2664,8 @@ class ApiUpdateGroupRequestRestDto {
     this.open,
   });
 
-  factory ApiUpdateGroupRequestRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiUpdateGroupRequestRestDtoFromJson(json);
+  factory ApiUpdateGroupRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiUpdateGroupRequestFromJson(json);
 
   @JsonKey(name: 'groupId', includeIfNull: true)
   final String? groupId;
@@ -2750,21 +2679,20 @@ class ApiUpdateGroupRequestRestDto {
   final String? avatarUrl;
   @JsonKey(name: 'open', includeIfNull: true)
   final bool? open;
-  static const fromJsonFactory = _$ApiUpdateGroupRequestRestDtoFromJson;
-  static const toJsonFactory = _$ApiUpdateGroupRequestRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiUpdateGroupRequestRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiUpdateGroupRequestFromJson;
+  static const toJsonFactory = _$ApiUpdateGroupRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiUpdateGroupRequestToJson(this);
 }
 
-extension $ApiUpdateGroupRequestRestDtoExtension
-    on ApiUpdateGroupRequestRestDto {
-  ApiUpdateGroupRequestRestDto copyWith(
+extension $ApiUpdateGroupRequestExtension on ApiUpdateGroupRequest {
+  ApiUpdateGroupRequest copyWith(
       {String? groupId,
       String? name,
       String? description,
       String? langTag,
       String? avatarUrl,
       bool? open}) {
-    return ApiUpdateGroupRequestRestDto(
+    return ApiUpdateGroupRequest(
         groupId: groupId ?? this.groupId,
         name: name ?? this.name,
         description: description ?? this.description,
@@ -2775,8 +2703,8 @@ extension $ApiUpdateGroupRequestRestDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiUserRestDto {
-  ApiUserRestDto({
+class ApiUser {
+  ApiUser({
     this.id,
     this.username,
     this.displayName,
@@ -2797,8 +2725,8 @@ class ApiUserRestDto {
     this.appleId,
   });
 
-  factory ApiUserRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiUserRestDtoFromJson(json);
+  factory ApiUser.fromJson(Map<String, dynamic> json) =>
+      _$ApiUserFromJson(json);
 
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
@@ -2836,13 +2764,13 @@ class ApiUserRestDto {
   final String? facebookInstantGameId;
   @JsonKey(name: 'appleId', includeIfNull: true)
   final String? appleId;
-  static const fromJsonFactory = _$ApiUserRestDtoFromJson;
-  static const toJsonFactory = _$ApiUserRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiUserRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiUserFromJson;
+  static const toJsonFactory = _$ApiUserToJson;
+  Map<String, dynamic> toJson() => _$ApiUserToJson(this);
 }
 
-extension $ApiUserRestDtoExtension on ApiUserRestDto {
-  ApiUserRestDto copyWith(
+extension $ApiUserExtension on ApiUser {
+  ApiUser copyWith(
       {String? id,
       String? username,
       String? displayName,
@@ -2861,7 +2789,7 @@ extension $ApiUserRestDtoExtension on ApiUserRestDto {
       DateTime? updateTime,
       String? facebookInstantGameId,
       String? appleId}) {
-    return ApiUserRestDto(
+    return ApiUser(
         id: id ?? this.id,
         username: username ?? this.username,
         displayName: displayName ?? this.displayName,
@@ -2885,177 +2813,169 @@ extension $ApiUserRestDtoExtension on ApiUserRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiUserGroupListRestDto {
-  ApiUserGroupListRestDto({
+class ApiUserGroupList {
+  ApiUserGroupList({
     this.userGroups,
     this.cursor,
   });
 
-  factory ApiUserGroupListRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiUserGroupListRestDtoFromJson(json);
+  factory ApiUserGroupList.fromJson(Map<String, dynamic> json) =>
+      _$ApiUserGroupListFromJson(json);
 
   @JsonKey(
       name: 'userGroups',
       includeIfNull: true,
-      defaultValue: <UserGroupListUserGroupRestDto>[])
-  final List<UserGroupListUserGroupRestDto>? userGroups;
+      defaultValue: <UserGroupListUserGroup>[])
+  final List<UserGroupListUserGroup>? userGroups;
   @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
-  static const fromJsonFactory = _$ApiUserGroupListRestDtoFromJson;
-  static const toJsonFactory = _$ApiUserGroupListRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiUserGroupListRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiUserGroupListFromJson;
+  static const toJsonFactory = _$ApiUserGroupListToJson;
+  Map<String, dynamic> toJson() => _$ApiUserGroupListToJson(this);
 }
 
-extension $ApiUserGroupListRestDtoExtension on ApiUserGroupListRestDto {
-  ApiUserGroupListRestDto copyWith(
-      {List<UserGroupListUserGroupRestDto>? userGroups, String? cursor}) {
-    return ApiUserGroupListRestDto(
+extension $ApiUserGroupListExtension on ApiUserGroupList {
+  ApiUserGroupList copyWith(
+      {List<UserGroupListUserGroup>? userGroups, String? cursor}) {
+    return ApiUserGroupList(
         userGroups: userGroups ?? this.userGroups,
         cursor: cursor ?? this.cursor);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiUsersRestDto {
-  ApiUsersRestDto({
+class ApiUsers {
+  ApiUsers({
     this.users,
   });
 
-  factory ApiUsersRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiUsersRestDtoFromJson(json);
+  factory ApiUsers.fromJson(Map<String, dynamic> json) =>
+      _$ApiUsersFromJson(json);
 
-  @JsonKey(name: 'users', includeIfNull: true, defaultValue: <ApiUserRestDto>[])
-  final List<ApiUserRestDto>? users;
-  static const fromJsonFactory = _$ApiUsersRestDtoFromJson;
-  static const toJsonFactory = _$ApiUsersRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiUsersRestDtoToJson(this);
+  @JsonKey(name: 'users', includeIfNull: true, defaultValue: <ApiUser>[])
+  final List<ApiUser>? users;
+  static const fromJsonFactory = _$ApiUsersFromJson;
+  static const toJsonFactory = _$ApiUsersToJson;
+  Map<String, dynamic> toJson() => _$ApiUsersToJson(this);
 }
 
-extension $ApiUsersRestDtoExtension on ApiUsersRestDto {
-  ApiUsersRestDto copyWith({List<ApiUserRestDto>? users}) {
-    return ApiUsersRestDto(users: users ?? this.users);
+extension $ApiUsersExtension on ApiUsers {
+  ApiUsers copyWith({List<ApiUser>? users}) {
+    return ApiUsers(users: users ?? this.users);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiValidatePurchaseAppleRequestRestDto {
-  ApiValidatePurchaseAppleRequestRestDto({
+class ApiValidatePurchaseAppleRequest {
+  ApiValidatePurchaseAppleRequest({
     this.receipt,
   });
 
-  factory ApiValidatePurchaseAppleRequestRestDto.fromJson(
-          Map<String, dynamic> json) =>
-      _$ApiValidatePurchaseAppleRequestRestDtoFromJson(json);
+  factory ApiValidatePurchaseAppleRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiValidatePurchaseAppleRequestFromJson(json);
 
   @JsonKey(name: 'receipt', includeIfNull: true)
   final String? receipt;
-  static const fromJsonFactory =
-      _$ApiValidatePurchaseAppleRequestRestDtoFromJson;
-  static const toJsonFactory = _$ApiValidatePurchaseAppleRequestRestDtoToJson;
+  static const fromJsonFactory = _$ApiValidatePurchaseAppleRequestFromJson;
+  static const toJsonFactory = _$ApiValidatePurchaseAppleRequestToJson;
   Map<String, dynamic> toJson() =>
-      _$ApiValidatePurchaseAppleRequestRestDtoToJson(this);
+      _$ApiValidatePurchaseAppleRequestToJson(this);
 }
 
-extension $ApiValidatePurchaseAppleRequestRestDtoExtension
-    on ApiValidatePurchaseAppleRequestRestDto {
-  ApiValidatePurchaseAppleRequestRestDto copyWith({String? receipt}) {
-    return ApiValidatePurchaseAppleRequestRestDto(
-        receipt: receipt ?? this.receipt);
+extension $ApiValidatePurchaseAppleRequestExtension
+    on ApiValidatePurchaseAppleRequest {
+  ApiValidatePurchaseAppleRequest copyWith({String? receipt}) {
+    return ApiValidatePurchaseAppleRequest(receipt: receipt ?? this.receipt);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiValidatePurchaseGoogleRequestRestDto {
-  ApiValidatePurchaseGoogleRequestRestDto({
+class ApiValidatePurchaseGoogleRequest {
+  ApiValidatePurchaseGoogleRequest({
     this.purchase,
   });
 
-  factory ApiValidatePurchaseGoogleRequestRestDto.fromJson(
+  factory ApiValidatePurchaseGoogleRequest.fromJson(
           Map<String, dynamic> json) =>
-      _$ApiValidatePurchaseGoogleRequestRestDtoFromJson(json);
+      _$ApiValidatePurchaseGoogleRequestFromJson(json);
 
   @JsonKey(name: 'purchase', includeIfNull: true)
   final String? purchase;
-  static const fromJsonFactory =
-      _$ApiValidatePurchaseGoogleRequestRestDtoFromJson;
-  static const toJsonFactory = _$ApiValidatePurchaseGoogleRequestRestDtoToJson;
+  static const fromJsonFactory = _$ApiValidatePurchaseGoogleRequestFromJson;
+  static const toJsonFactory = _$ApiValidatePurchaseGoogleRequestToJson;
   Map<String, dynamic> toJson() =>
-      _$ApiValidatePurchaseGoogleRequestRestDtoToJson(this);
+      _$ApiValidatePurchaseGoogleRequestToJson(this);
 }
 
-extension $ApiValidatePurchaseGoogleRequestRestDtoExtension
-    on ApiValidatePurchaseGoogleRequestRestDto {
-  ApiValidatePurchaseGoogleRequestRestDto copyWith({String? purchase}) {
-    return ApiValidatePurchaseGoogleRequestRestDto(
+extension $ApiValidatePurchaseGoogleRequestExtension
+    on ApiValidatePurchaseGoogleRequest {
+  ApiValidatePurchaseGoogleRequest copyWith({String? purchase}) {
+    return ApiValidatePurchaseGoogleRequest(
         purchase: purchase ?? this.purchase);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiValidatePurchaseHuaweiRequestRestDto {
-  ApiValidatePurchaseHuaweiRequestRestDto({
+class ApiValidatePurchaseHuaweiRequest {
+  ApiValidatePurchaseHuaweiRequest({
     this.purchase,
     this.signature,
   });
 
-  factory ApiValidatePurchaseHuaweiRequestRestDto.fromJson(
+  factory ApiValidatePurchaseHuaweiRequest.fromJson(
           Map<String, dynamic> json) =>
-      _$ApiValidatePurchaseHuaweiRequestRestDtoFromJson(json);
+      _$ApiValidatePurchaseHuaweiRequestFromJson(json);
 
   @JsonKey(name: 'purchase', includeIfNull: true)
   final String? purchase;
   @JsonKey(name: 'signature', includeIfNull: true)
   final String? signature;
-  static const fromJsonFactory =
-      _$ApiValidatePurchaseHuaweiRequestRestDtoFromJson;
-  static const toJsonFactory = _$ApiValidatePurchaseHuaweiRequestRestDtoToJson;
+  static const fromJsonFactory = _$ApiValidatePurchaseHuaweiRequestFromJson;
+  static const toJsonFactory = _$ApiValidatePurchaseHuaweiRequestToJson;
   Map<String, dynamic> toJson() =>
-      _$ApiValidatePurchaseHuaweiRequestRestDtoToJson(this);
+      _$ApiValidatePurchaseHuaweiRequestToJson(this);
 }
 
-extension $ApiValidatePurchaseHuaweiRequestRestDtoExtension
-    on ApiValidatePurchaseHuaweiRequestRestDto {
-  ApiValidatePurchaseHuaweiRequestRestDto copyWith(
+extension $ApiValidatePurchaseHuaweiRequestExtension
+    on ApiValidatePurchaseHuaweiRequest {
+  ApiValidatePurchaseHuaweiRequest copyWith(
       {String? purchase, String? signature}) {
-    return ApiValidatePurchaseHuaweiRequestRestDto(
+    return ApiValidatePurchaseHuaweiRequest(
         purchase: purchase ?? this.purchase,
         signature: signature ?? this.signature);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiValidatePurchaseResponseRestDto {
-  ApiValidatePurchaseResponseRestDto({
+class ApiValidatePurchaseResponse {
+  ApiValidatePurchaseResponse({
     this.validatedPurchases,
   });
 
-  factory ApiValidatePurchaseResponseRestDto.fromJson(
-          Map<String, dynamic> json) =>
-      _$ApiValidatePurchaseResponseRestDtoFromJson(json);
+  factory ApiValidatePurchaseResponse.fromJson(Map<String, dynamic> json) =>
+      _$ApiValidatePurchaseResponseFromJson(json);
 
   @JsonKey(
       name: 'validatedPurchases',
       includeIfNull: true,
-      defaultValue: <ApiValidatedPurchaseRestDto>[])
-  final List<ApiValidatedPurchaseRestDto>? validatedPurchases;
-  static const fromJsonFactory = _$ApiValidatePurchaseResponseRestDtoFromJson;
-  static const toJsonFactory = _$ApiValidatePurchaseResponseRestDtoToJson;
-  Map<String, dynamic> toJson() =>
-      _$ApiValidatePurchaseResponseRestDtoToJson(this);
+      defaultValue: <ApiValidatedPurchase>[])
+  final List<ApiValidatedPurchase>? validatedPurchases;
+  static const fromJsonFactory = _$ApiValidatePurchaseResponseFromJson;
+  static const toJsonFactory = _$ApiValidatePurchaseResponseToJson;
+  Map<String, dynamic> toJson() => _$ApiValidatePurchaseResponseToJson(this);
 }
 
-extension $ApiValidatePurchaseResponseRestDtoExtension
-    on ApiValidatePurchaseResponseRestDto {
-  ApiValidatePurchaseResponseRestDto copyWith(
-      {List<ApiValidatedPurchaseRestDto>? validatedPurchases}) {
-    return ApiValidatePurchaseResponseRestDto(
+extension $ApiValidatePurchaseResponseExtension on ApiValidatePurchaseResponse {
+  ApiValidatePurchaseResponse copyWith(
+      {List<ApiValidatedPurchase>? validatedPurchases}) {
+    return ApiValidatePurchaseResponse(
         validatedPurchases: validatedPurchases ?? this.validatedPurchases);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiValidatedPurchaseRestDto {
-  ApiValidatedPurchaseRestDto({
+class ApiValidatedPurchase {
+  ApiValidatedPurchase({
     this.productId,
     this.transactionId,
     this.store,
@@ -3066,8 +2986,8 @@ class ApiValidatedPurchaseRestDto {
     this.environment,
   });
 
-  factory ApiValidatedPurchaseRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiValidatedPurchaseRestDtoFromJson(json);
+  factory ApiValidatedPurchase.fromJson(Map<String, dynamic> json) =>
+      _$ApiValidatedPurchaseFromJson(json);
 
   @JsonKey(name: 'productId', includeIfNull: true)
   final String? productId;
@@ -3093,13 +3013,13 @@ class ApiValidatedPurchaseRestDto {
       toJson: validatedPurchaseEnvironmentToJson,
       fromJson: validatedPurchaseEnvironmentFromJson)
   final enums.ValidatedPurchaseEnvironment? environment;
-  static const fromJsonFactory = _$ApiValidatedPurchaseRestDtoFromJson;
-  static const toJsonFactory = _$ApiValidatedPurchaseRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiValidatedPurchaseRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiValidatedPurchaseFromJson;
+  static const toJsonFactory = _$ApiValidatedPurchaseToJson;
+  Map<String, dynamic> toJson() => _$ApiValidatedPurchaseToJson(this);
 }
 
-extension $ApiValidatedPurchaseRestDtoExtension on ApiValidatedPurchaseRestDto {
-  ApiValidatedPurchaseRestDto copyWith(
+extension $ApiValidatedPurchaseExtension on ApiValidatedPurchase {
+  ApiValidatedPurchase copyWith(
       {String? productId,
       String? transactionId,
       enums.ValidatedPurchaseStore? store,
@@ -3108,7 +3028,7 @@ extension $ApiValidatedPurchaseRestDtoExtension on ApiValidatedPurchaseRestDto {
       DateTime? updateTime,
       String? providerResponse,
       enums.ValidatedPurchaseEnvironment? environment}) {
-    return ApiValidatedPurchaseRestDto(
+    return ApiValidatedPurchase(
         productId: productId ?? this.productId,
         transactionId: transactionId ?? this.transactionId,
         store: store ?? this.store,
@@ -3121,8 +3041,8 @@ extension $ApiValidatedPurchaseRestDtoExtension on ApiValidatedPurchaseRestDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiWriteStorageObjectRestDto {
-  ApiWriteStorageObjectRestDto({
+class ApiWriteStorageObject {
+  ApiWriteStorageObject({
     this.collection,
     this.key,
     this.value,
@@ -3131,8 +3051,8 @@ class ApiWriteStorageObjectRestDto {
     this.permissionWrite,
   });
 
-  factory ApiWriteStorageObjectRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ApiWriteStorageObjectRestDtoFromJson(json);
+  factory ApiWriteStorageObject.fromJson(Map<String, dynamic> json) =>
+      _$ApiWriteStorageObjectFromJson(json);
 
   @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
@@ -3146,21 +3066,20 @@ class ApiWriteStorageObjectRestDto {
   final int? permissionRead;
   @JsonKey(name: 'permissionWrite', includeIfNull: true)
   final int? permissionWrite;
-  static const fromJsonFactory = _$ApiWriteStorageObjectRestDtoFromJson;
-  static const toJsonFactory = _$ApiWriteStorageObjectRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ApiWriteStorageObjectRestDtoToJson(this);
+  static const fromJsonFactory = _$ApiWriteStorageObjectFromJson;
+  static const toJsonFactory = _$ApiWriteStorageObjectToJson;
+  Map<String, dynamic> toJson() => _$ApiWriteStorageObjectToJson(this);
 }
 
-extension $ApiWriteStorageObjectRestDtoExtension
-    on ApiWriteStorageObjectRestDto {
-  ApiWriteStorageObjectRestDto copyWith(
+extension $ApiWriteStorageObjectExtension on ApiWriteStorageObject {
+  ApiWriteStorageObject copyWith(
       {String? collection,
       String? key,
       String? value,
       String? version,
       int? permissionRead,
       int? permissionWrite}) {
-    return ApiWriteStorageObjectRestDto(
+    return ApiWriteStorageObject(
         collection: collection ?? this.collection,
         key: key ?? this.key,
         value: value ?? this.value,
@@ -3171,90 +3090,83 @@ extension $ApiWriteStorageObjectRestDtoExtension
 }
 
 @JsonSerializable(explicitToJson: true)
-class ApiWriteStorageObjectsRequestRestDto {
-  ApiWriteStorageObjectsRequestRestDto({
+class ApiWriteStorageObjectsRequest {
+  ApiWriteStorageObjectsRequest({
     this.objects,
   });
 
-  factory ApiWriteStorageObjectsRequestRestDto.fromJson(
-          Map<String, dynamic> json) =>
-      _$ApiWriteStorageObjectsRequestRestDtoFromJson(json);
+  factory ApiWriteStorageObjectsRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiWriteStorageObjectsRequestFromJson(json);
 
   @JsonKey(
       name: 'objects',
       includeIfNull: true,
-      defaultValue: <ApiWriteStorageObjectRestDto>[])
-  final List<ApiWriteStorageObjectRestDto>? objects;
-  static const fromJsonFactory = _$ApiWriteStorageObjectsRequestRestDtoFromJson;
-  static const toJsonFactory = _$ApiWriteStorageObjectsRequestRestDtoToJson;
-  Map<String, dynamic> toJson() =>
-      _$ApiWriteStorageObjectsRequestRestDtoToJson(this);
+      defaultValue: <ApiWriteStorageObject>[])
+  final List<ApiWriteStorageObject>? objects;
+  static const fromJsonFactory = _$ApiWriteStorageObjectsRequestFromJson;
+  static const toJsonFactory = _$ApiWriteStorageObjectsRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiWriteStorageObjectsRequestToJson(this);
 }
 
-extension $ApiWriteStorageObjectsRequestRestDtoExtension
-    on ApiWriteStorageObjectsRequestRestDto {
-  ApiWriteStorageObjectsRequestRestDto copyWith(
-      {List<ApiWriteStorageObjectRestDto>? objects}) {
-    return ApiWriteStorageObjectsRequestRestDto(
-        objects: objects ?? this.objects);
+extension $ApiWriteStorageObjectsRequestExtension
+    on ApiWriteStorageObjectsRequest {
+  ApiWriteStorageObjectsRequest copyWith(
+      {List<ApiWriteStorageObject>? objects}) {
+    return ApiWriteStorageObjectsRequest(objects: objects ?? this.objects);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class ProtobufAnyRestDto {
-  ProtobufAnyRestDto({
+class ProtobufAny {
+  ProtobufAny({
     this.typeUrl,
     this.value,
   });
 
-  factory ProtobufAnyRestDto.fromJson(Map<String, dynamic> json) =>
-      _$ProtobufAnyRestDtoFromJson(json);
+  factory ProtobufAny.fromJson(Map<String, dynamic> json) =>
+      _$ProtobufAnyFromJson(json);
 
   @JsonKey(name: 'typeUrl', includeIfNull: true)
   final String? typeUrl;
   @JsonKey(name: 'value', includeIfNull: true)
   final String? value;
-  static const fromJsonFactory = _$ProtobufAnyRestDtoFromJson;
-  static const toJsonFactory = _$ProtobufAnyRestDtoToJson;
-  Map<String, dynamic> toJson() => _$ProtobufAnyRestDtoToJson(this);
+  static const fromJsonFactory = _$ProtobufAnyFromJson;
+  static const toJsonFactory = _$ProtobufAnyToJson;
+  Map<String, dynamic> toJson() => _$ProtobufAnyToJson(this);
 }
 
-extension $ProtobufAnyRestDtoExtension on ProtobufAnyRestDto {
-  ProtobufAnyRestDto copyWith({String? typeUrl, String? value}) {
-    return ProtobufAnyRestDto(
+extension $ProtobufAnyExtension on ProtobufAny {
+  ProtobufAny copyWith({String? typeUrl, String? value}) {
+    return ProtobufAny(
         typeUrl: typeUrl ?? this.typeUrl, value: value ?? this.value);
   }
 }
 
 @JsonSerializable(explicitToJson: true)
-class RpcStatusRestDto {
-  RpcStatusRestDto({
+class RpcStatus {
+  RpcStatus({
     this.code,
     this.message,
     this.details,
   });
 
-  factory RpcStatusRestDto.fromJson(Map<String, dynamic> json) =>
-      _$RpcStatusRestDtoFromJson(json);
+  factory RpcStatus.fromJson(Map<String, dynamic> json) =>
+      _$RpcStatusFromJson(json);
 
   @JsonKey(name: 'code', includeIfNull: true)
   final int? code;
   @JsonKey(name: 'message', includeIfNull: true)
   final String? message;
-  @JsonKey(
-      name: 'details',
-      includeIfNull: true,
-      defaultValue: <ProtobufAnyRestDto>[])
-  final List<ProtobufAnyRestDto>? details;
-  static const fromJsonFactory = _$RpcStatusRestDtoFromJson;
-  static const toJsonFactory = _$RpcStatusRestDtoToJson;
-  Map<String, dynamic> toJson() => _$RpcStatusRestDtoToJson(this);
+  @JsonKey(name: 'details', includeIfNull: true, defaultValue: <ProtobufAny>[])
+  final List<ProtobufAny>? details;
+  static const fromJsonFactory = _$RpcStatusFromJson;
+  static const toJsonFactory = _$RpcStatusToJson;
+  Map<String, dynamic> toJson() => _$RpcStatusToJson(this);
 }
 
-extension $RpcStatusRestDtoExtension on RpcStatusRestDto {
-  RpcStatusRestDto copyWith(
-      {int? code, String? message, List<ProtobufAnyRestDto>? details}) {
-    return RpcStatusRestDto(
+extension $RpcStatusExtension on RpcStatus {
+  RpcStatus copyWith({int? code, String? message, List<ProtobufAny>? details}) {
+    return RpcStatus(
         code: code ?? this.code,
         message: message ?? this.message,
         details: details ?? this.details);

@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:nakama/api/api.pb.dart';
 import 'package:nakama/src/session.dart' as model;
 
 import 'nakama_api_client.dart';
@@ -76,4 +77,6 @@ abstract class NakamaBaseClient {
     bool create = false,
     String? username,
   });
+
+  Future<Account> getAccount(model.Session session);
 }
