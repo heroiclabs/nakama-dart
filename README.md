@@ -4,7 +4,7 @@
 
 ![GitHub issues](https://img.shields.io/github/issues-raw/obrunsmann/flutter_nakama?style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/obrunsmann/flutter_nakama?style=flat-square)
-![Pub Version](https://img.shields.io/pub/v/flutter_nakama?style=flat-square)
+![Pub Version](https://img.shields.io/pub/v/nakama?style=flat-square)
 
 ---
 ## 🚦 Current Status
