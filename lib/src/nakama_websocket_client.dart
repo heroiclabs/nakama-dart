@@ -101,18 +101,17 @@ class NakamaWebsocketClient {
   }) {
     print('Connecting ${ssl ? 'WSS' : 'WS'} to $host:$port');
     print('Using token $token');
-    _channel = WebSocketChannel.connect(
-      Uri(
-        host: host,
-        port: port,
-        scheme: ssl ? 'wss' : 'ws',
-        path: '/ws',
-        queryParameters: {
-          'token': token,
-          'format': 'protobuf',
-        },
-      ),
+    final uri = Uri(
+      host: host,
+      port: port,
+      scheme: ssl ? 'wss' : 'ws',
+      path: '/ws',
+      queryParameters: {
+        'token': token,
+        'format': 'protobuf',
+      },
     );
+    _channel = WebSocketChannel.connect(uri);
     print('connected');
 
     _channel.stream.listen(

@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
-import 'package:nakama/nakama.dart';
-import 'package:nakama/src/nakama_api_client.dart';
 import 'package:nakama/src/session.dart' as model;
+
+import 'nakama_api_client.dart';
+import 'nakama_grpc_client.dart';
 
 const _kDefaultAppKey = 'default';
 

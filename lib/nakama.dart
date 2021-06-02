@@ -1,4 +1,4 @@
 library flutter_nakama;
 
-export './src/nakama_grpc_client.dart';
+export './src/nakama_client.dart';
 export './src/session.dart';

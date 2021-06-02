@@ -60,7 +60,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     final data = res.body!;
 
     return model.Session(
-      created: data.created!,
+      created: data.created ?? false,
       token: data.token!,
       refreshToken: data.refreshToken,
     );

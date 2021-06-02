@@ -19,7 +19,7 @@ void main() {
     print('User data: $email:$password');
 
     // Create nakama clients.
-    final client = NakamaGrpcClient(
+    final client = NakamaBaseClient.adaptive(
       host: kTestHost,
       ssl: false,
       serverKey: kTestServerKey,

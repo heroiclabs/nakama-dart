@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+import 'package:grpc/grpc_connection_interface.dart';
 import 'package:nakama/api/api.pb.dart';
 import 'package:nakama/api/apigrpc.pbgrpc.dart';
 import 'package:grpc/grpc.dart';
@@ -17,7 +19,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   final int port;
   final bool ssl;
 
-  late final ClientChannel _channel;
+  late final ClientChannelBase _channel;
   late final NakamaClient _client;
 
   /// The key used to authenticate with the server without a session.

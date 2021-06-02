@@ -10,8 +10,6 @@ void main() {
     setUpAll(() {
       client = NakamaBaseClient.http(
         host: '127.0.0.1',
-        // host: 'brunsi.requestcatcher.com',
-        // httpPort: 80,
         ssl: false,
         serverKey: 'defaultkey',
       );

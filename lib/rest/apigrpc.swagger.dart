@@ -871,9 +871,9 @@ class GroupUserListGroupUserRestDto {
   factory GroupUserListGroupUserRestDto.fromJson(Map<String, dynamic> json) =>
       _$GroupUserListGroupUserRestDtoFromJson(json);
 
-  @JsonKey(name: 'user')
+  @JsonKey(name: 'user', includeIfNull: true)
   final ApiUserRestDto? user;
-  @JsonKey(name: 'state')
+  @JsonKey(name: 'state', includeIfNull: true)
   final int? state;
   static const fromJsonFactory = _$GroupUserListGroupUserRestDtoFromJson;
   static const toJsonFactory = _$GroupUserListGroupUserRestDtoToJson;
@@ -898,9 +898,9 @@ class UserGroupListUserGroupRestDto {
   factory UserGroupListUserGroupRestDto.fromJson(Map<String, dynamic> json) =>
       _$UserGroupListUserGroupRestDtoFromJson(json);
 
-  @JsonKey(name: 'group')
+  @JsonKey(name: 'group', includeIfNull: true)
   final ApiGroupRestDto? group;
-  @JsonKey(name: 'state')
+  @JsonKey(name: 'state', includeIfNull: true)
   final int? state;
   static const fromJsonFactory = _$UserGroupListUserGroupRestDtoFromJson;
   static const toJsonFactory = _$UserGroupListUserGroupRestDtoToJson;
@@ -929,14 +929,15 @@ class WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDto {
       _$WriteLeaderboardRecordRequestLeaderboardRecordWriteRestDtoFromJson(
           json);
 
-  @JsonKey(name: 'score')
+  @JsonKey(name: 'score', includeIfNull: true)
   final String? score;
-  @JsonKey(name: 'subscore')
+  @JsonKey(name: 'subscore', includeIfNull: true)
   final String? subscore;
-  @JsonKey(name: 'metadata')
+  @JsonKey(name: 'metadata', includeIfNull: true)
   final String? metadata;
   @JsonKey(
       name: 'operator',
+      includeIfNull: true,
       toJson: apiOverrideOperatorToJson,
       fromJson: apiOverrideOperatorFromJson)
   final enums.ApiOverrideOperator? $operator;
@@ -976,14 +977,15 @@ class WriteTournamentRecordRequestTournamentRecordWriteRestDto {
           Map<String, dynamic> json) =>
       _$WriteTournamentRecordRequestTournamentRecordWriteRestDtoFromJson(json);
 
-  @JsonKey(name: 'score')
+  @JsonKey(name: 'score', includeIfNull: true)
   final String? score;
-  @JsonKey(name: 'subscore')
+  @JsonKey(name: 'subscore', includeIfNull: true)
   final String? subscore;
-  @JsonKey(name: 'metadata')
+  @JsonKey(name: 'metadata', includeIfNull: true)
   final String? metadata;
   @JsonKey(
       name: 'operator',
+      includeIfNull: true,
       toJson: apiOverrideOperatorToJson,
       fromJson: apiOverrideOperatorFromJson)
   final enums.ApiOverrideOperator? $operator;
@@ -1025,19 +1027,22 @@ class ApiAccountRestDto {
   factory ApiAccountRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountRestDtoFromJson(json);
 
-  @JsonKey(name: 'user')
+  @JsonKey(name: 'user', includeIfNull: true)
   final ApiUserRestDto? user;
-  @JsonKey(name: 'wallet')
+  @JsonKey(name: 'wallet', includeIfNull: true)
   final String? wallet;
-  @JsonKey(name: 'email')
+  @JsonKey(name: 'email', includeIfNull: true)
   final String? email;
-  @JsonKey(name: 'devices', defaultValue: <ApiAccountDeviceRestDto>[])
+  @JsonKey(
+      name: 'devices',
+      includeIfNull: true,
+      defaultValue: <ApiAccountDeviceRestDto>[])
   final List<ApiAccountDeviceRestDto>? devices;
-  @JsonKey(name: 'customId')
+  @JsonKey(name: 'customId', includeIfNull: true)
   final String? customId;
-  @JsonKey(name: 'verifyTime')
+  @JsonKey(name: 'verifyTime', includeIfNull: true)
   final DateTime? verifyTime;
-  @JsonKey(name: 'disableTime')
+  @JsonKey(name: 'disableTime', includeIfNull: true)
   final DateTime? disableTime;
   static const fromJsonFactory = _$ApiAccountRestDtoFromJson;
   static const toJsonFactory = _$ApiAccountRestDtoToJson;
@@ -1074,9 +1079,9 @@ class ApiAccountAppleRestDto {
   factory ApiAccountAppleRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountAppleRestDtoFromJson(json);
 
-  @JsonKey(name: 'token')
+  @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
-  @JsonKey(name: 'vars')
+  @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
   static const fromJsonFactory = _$ApiAccountAppleRestDtoFromJson;
   static const toJsonFactory = _$ApiAccountAppleRestDtoToJson;
@@ -1100,9 +1105,9 @@ class ApiAccountCustomRestDto {
   factory ApiAccountCustomRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountCustomRestDtoFromJson(json);
 
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
-  @JsonKey(name: 'vars')
+  @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
   static const fromJsonFactory = _$ApiAccountCustomRestDtoFromJson;
   static const toJsonFactory = _$ApiAccountCustomRestDtoToJson;
@@ -1125,9 +1130,9 @@ class ApiAccountDeviceRestDto {
   factory ApiAccountDeviceRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountDeviceRestDtoFromJson(json);
 
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
-  @JsonKey(name: 'vars')
+  @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
   static const fromJsonFactory = _$ApiAccountDeviceRestDtoFromJson;
   static const toJsonFactory = _$ApiAccountDeviceRestDtoToJson;
@@ -1151,11 +1156,11 @@ class ApiAccountEmailRestDto {
   factory ApiAccountEmailRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountEmailRestDtoFromJson(json);
 
-  @JsonKey(name: 'email')
+  @JsonKey(name: 'email', includeIfNull: true)
   final String? email;
-  @JsonKey(name: 'password')
+  @JsonKey(name: 'password', includeIfNull: true)
   final String? password;
-  @JsonKey(name: 'vars')
+  @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
   static const fromJsonFactory = _$ApiAccountEmailRestDtoFromJson;
   static const toJsonFactory = _$ApiAccountEmailRestDtoToJson;
@@ -1182,9 +1187,9 @@ class ApiAccountFacebookRestDto {
   factory ApiAccountFacebookRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountFacebookRestDtoFromJson(json);
 
-  @JsonKey(name: 'token')
+  @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
-  @JsonKey(name: 'vars')
+  @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
   static const fromJsonFactory = _$ApiAccountFacebookRestDtoFromJson;
   static const toJsonFactory = _$ApiAccountFacebookRestDtoToJson;
@@ -1209,9 +1214,9 @@ class ApiAccountFacebookInstantGameRestDto {
           Map<String, dynamic> json) =>
       _$ApiAccountFacebookInstantGameRestDtoFromJson(json);
 
-  @JsonKey(name: 'signedPlayerInfo')
+  @JsonKey(name: 'signedPlayerInfo', includeIfNull: true)
   final String? signedPlayerInfo;
-  @JsonKey(name: 'vars')
+  @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
   static const fromJsonFactory = _$ApiAccountFacebookInstantGameRestDtoFromJson;
   static const toJsonFactory = _$ApiAccountFacebookInstantGameRestDtoToJson;
@@ -1244,19 +1249,19 @@ class ApiAccountGameCenterRestDto {
   factory ApiAccountGameCenterRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountGameCenterRestDtoFromJson(json);
 
-  @JsonKey(name: 'playerId')
+  @JsonKey(name: 'playerId', includeIfNull: true)
   final String? playerId;
-  @JsonKey(name: 'bundleId')
+  @JsonKey(name: 'bundleId', includeIfNull: true)
   final String? bundleId;
-  @JsonKey(name: 'timestampSeconds')
+  @JsonKey(name: 'timestampSeconds', includeIfNull: true)
   final String? timestampSeconds;
-  @JsonKey(name: 'salt')
+  @JsonKey(name: 'salt', includeIfNull: true)
   final String? salt;
-  @JsonKey(name: 'signature')
+  @JsonKey(name: 'signature', includeIfNull: true)
   final String? signature;
-  @JsonKey(name: 'publicKeyUrl')
+  @JsonKey(name: 'publicKeyUrl', includeIfNull: true)
   final String? publicKeyUrl;
-  @JsonKey(name: 'vars')
+  @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
   static const fromJsonFactory = _$ApiAccountGameCenterRestDtoFromJson;
   static const toJsonFactory = _$ApiAccountGameCenterRestDtoToJson;
@@ -1293,9 +1298,9 @@ class ApiAccountGoogleRestDto {
   factory ApiAccountGoogleRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountGoogleRestDtoFromJson(json);
 
-  @JsonKey(name: 'token')
+  @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
-  @JsonKey(name: 'vars')
+  @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
   static const fromJsonFactory = _$ApiAccountGoogleRestDtoFromJson;
   static const toJsonFactory = _$ApiAccountGoogleRestDtoToJson;
@@ -1319,9 +1324,9 @@ class ApiAccountSteamRestDto {
   factory ApiAccountSteamRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountSteamRestDtoFromJson(json);
 
-  @JsonKey(name: 'token')
+  @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
-  @JsonKey(name: 'vars')
+  @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
   static const fromJsonFactory = _$ApiAccountSteamRestDtoFromJson;
   static const toJsonFactory = _$ApiAccountSteamRestDtoToJson;
@@ -1356,31 +1361,31 @@ class ApiChannelMessageRestDto {
   factory ApiChannelMessageRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiChannelMessageRestDtoFromJson(json);
 
-  @JsonKey(name: 'channelId')
+  @JsonKey(name: 'channelId', includeIfNull: true)
   final String? channelId;
-  @JsonKey(name: 'messageId')
+  @JsonKey(name: 'messageId', includeIfNull: true)
   final String? messageId;
-  @JsonKey(name: 'code')
+  @JsonKey(name: 'code', includeIfNull: true)
   final int? code;
-  @JsonKey(name: 'senderId')
+  @JsonKey(name: 'senderId', includeIfNull: true)
   final String? senderId;
-  @JsonKey(name: 'username')
+  @JsonKey(name: 'username', includeIfNull: true)
   final String? username;
-  @JsonKey(name: 'content')
+  @JsonKey(name: 'content', includeIfNull: true)
   final String? content;
-  @JsonKey(name: 'createTime')
+  @JsonKey(name: 'createTime', includeIfNull: true)
   final DateTime? createTime;
-  @JsonKey(name: 'updateTime')
+  @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
-  @JsonKey(name: 'persistent')
+  @JsonKey(name: 'persistent', includeIfNull: true)
   final bool? persistent;
-  @JsonKey(name: 'roomName')
+  @JsonKey(name: 'roomName', includeIfNull: true)
   final String? roomName;
-  @JsonKey(name: 'groupId')
+  @JsonKey(name: 'groupId', includeIfNull: true)
   final String? groupId;
-  @JsonKey(name: 'userIdOne')
+  @JsonKey(name: 'userIdOne', includeIfNull: true)
   final String? userIdOne;
-  @JsonKey(name: 'userIdTwo')
+  @JsonKey(name: 'userIdTwo', includeIfNull: true)
   final String? userIdTwo;
   static const fromJsonFactory = _$ApiChannelMessageRestDtoFromJson;
   static const toJsonFactory = _$ApiChannelMessageRestDtoToJson;
@@ -1431,13 +1436,16 @@ class ApiChannelMessageListRestDto {
   factory ApiChannelMessageListRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiChannelMessageListRestDtoFromJson(json);
 
-  @JsonKey(name: 'messages', defaultValue: <ApiChannelMessageRestDto>[])
+  @JsonKey(
+      name: 'messages',
+      includeIfNull: true,
+      defaultValue: <ApiChannelMessageRestDto>[])
   final List<ApiChannelMessageRestDto>? messages;
-  @JsonKey(name: 'nextCursor')
+  @JsonKey(name: 'nextCursor', includeIfNull: true)
   final String? nextCursor;
-  @JsonKey(name: 'prevCursor')
+  @JsonKey(name: 'prevCursor', includeIfNull: true)
   final String? prevCursor;
-  @JsonKey(name: 'cacheableCursor')
+  @JsonKey(name: 'cacheableCursor', includeIfNull: true)
   final String? cacheableCursor;
   static const fromJsonFactory = _$ApiChannelMessageListRestDtoFromJson;
   static const toJsonFactory = _$ApiChannelMessageListRestDtoToJson;
@@ -1473,17 +1481,17 @@ class ApiCreateGroupRequestRestDto {
   factory ApiCreateGroupRequestRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiCreateGroupRequestRestDtoFromJson(json);
 
-  @JsonKey(name: 'name')
+  @JsonKey(name: 'name', includeIfNull: true)
   final String? name;
-  @JsonKey(name: 'description')
+  @JsonKey(name: 'description', includeIfNull: true)
   final String? description;
-  @JsonKey(name: 'langTag')
+  @JsonKey(name: 'langTag', includeIfNull: true)
   final String? langTag;
-  @JsonKey(name: 'avatarUrl')
+  @JsonKey(name: 'avatarUrl', includeIfNull: true)
   final String? avatarUrl;
-  @JsonKey(name: 'open')
+  @JsonKey(name: 'open', includeIfNull: true)
   final bool? open;
-  @JsonKey(name: 'maxCount')
+  @JsonKey(name: 'maxCount', includeIfNull: true)
   final int? maxCount;
   static const fromJsonFactory = _$ApiCreateGroupRequestRestDtoFromJson;
   static const toJsonFactory = _$ApiCreateGroupRequestRestDtoToJson;
@@ -1520,11 +1528,11 @@ class ApiDeleteStorageObjectIdRestDto {
   factory ApiDeleteStorageObjectIdRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiDeleteStorageObjectIdRestDtoFromJson(json);
 
-  @JsonKey(name: 'collection')
+  @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
-  @JsonKey(name: 'key')
+  @JsonKey(name: 'key', includeIfNull: true)
   final String? key;
-  @JsonKey(name: 'version')
+  @JsonKey(name: 'version', includeIfNull: true)
   final String? version;
   static const fromJsonFactory = _$ApiDeleteStorageObjectIdRestDtoFromJson;
   static const toJsonFactory = _$ApiDeleteStorageObjectIdRestDtoToJson;
@@ -1553,7 +1561,10 @@ class ApiDeleteStorageObjectsRequestRestDto {
           Map<String, dynamic> json) =>
       _$ApiDeleteStorageObjectsRequestRestDtoFromJson(json);
 
-  @JsonKey(name: 'objectIds', defaultValue: <ApiDeleteStorageObjectIdRestDto>[])
+  @JsonKey(
+      name: 'objectIds',
+      includeIfNull: true,
+      defaultValue: <ApiDeleteStorageObjectIdRestDto>[])
   final List<ApiDeleteStorageObjectIdRestDto>? objectIds;
   static const fromJsonFactory =
       _$ApiDeleteStorageObjectsRequestRestDtoFromJson;
@@ -1583,13 +1594,13 @@ class ApiEventRestDto {
   factory ApiEventRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiEventRestDtoFromJson(json);
 
-  @JsonKey(name: 'name')
+  @JsonKey(name: 'name', includeIfNull: true)
   final String? name;
-  @JsonKey(name: 'properties')
+  @JsonKey(name: 'properties', includeIfNull: true)
   final Object? properties;
-  @JsonKey(name: 'timestamp')
+  @JsonKey(name: 'timestamp', includeIfNull: true)
   final DateTime? timestamp;
-  @JsonKey(name: 'external')
+  @JsonKey(name: 'external', includeIfNull: true)
   final bool? $external;
   static const fromJsonFactory = _$ApiEventRestDtoFromJson;
   static const toJsonFactory = _$ApiEventRestDtoToJson;
@@ -1621,11 +1632,11 @@ class ApiFriendRestDto {
   factory ApiFriendRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiFriendRestDtoFromJson(json);
 
-  @JsonKey(name: 'user')
+  @JsonKey(name: 'user', includeIfNull: true)
   final ApiUserRestDto? user;
-  @JsonKey(name: 'state')
+  @JsonKey(name: 'state', includeIfNull: true)
   final int? state;
-  @JsonKey(name: 'updateTime')
+  @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
   static const fromJsonFactory = _$ApiFriendRestDtoFromJson;
   static const toJsonFactory = _$ApiFriendRestDtoToJson;
@@ -1652,9 +1663,10 @@ class ApiFriendListRestDto {
   factory ApiFriendListRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiFriendListRestDtoFromJson(json);
 
-  @JsonKey(name: 'friends', defaultValue: <ApiFriendRestDto>[])
+  @JsonKey(
+      name: 'friends', includeIfNull: true, defaultValue: <ApiFriendRestDto>[])
   final List<ApiFriendRestDto>? friends;
-  @JsonKey(name: 'cursor')
+  @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
   static const fromJsonFactory = _$ApiFriendListRestDtoFromJson;
   static const toJsonFactory = _$ApiFriendListRestDtoToJson;
@@ -1689,29 +1701,29 @@ class ApiGroupRestDto {
   factory ApiGroupRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiGroupRestDtoFromJson(json);
 
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
-  @JsonKey(name: 'creatorId')
+  @JsonKey(name: 'creatorId', includeIfNull: true)
   final String? creatorId;
-  @JsonKey(name: 'name')
+  @JsonKey(name: 'name', includeIfNull: true)
   final String? name;
-  @JsonKey(name: 'description')
+  @JsonKey(name: 'description', includeIfNull: true)
   final String? description;
-  @JsonKey(name: 'langTag')
+  @JsonKey(name: 'langTag', includeIfNull: true)
   final String? langTag;
-  @JsonKey(name: 'metadata')
+  @JsonKey(name: 'metadata', includeIfNull: true)
   final String? metadata;
-  @JsonKey(name: 'avatarUrl')
+  @JsonKey(name: 'avatarUrl', includeIfNull: true)
   final String? avatarUrl;
-  @JsonKey(name: 'open')
+  @JsonKey(name: 'open', includeIfNull: true)
   final bool? open;
-  @JsonKey(name: 'edgeCount')
+  @JsonKey(name: 'edgeCount', includeIfNull: true)
   final int? edgeCount;
-  @JsonKey(name: 'maxCount')
+  @JsonKey(name: 'maxCount', includeIfNull: true)
   final int? maxCount;
-  @JsonKey(name: 'createTime')
+  @JsonKey(name: 'createTime', includeIfNull: true)
   final DateTime? createTime;
-  @JsonKey(name: 'updateTime')
+  @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
   static const fromJsonFactory = _$ApiGroupRestDtoFromJson;
   static const toJsonFactory = _$ApiGroupRestDtoToJson;
@@ -1758,9 +1770,10 @@ class ApiGroupListRestDto {
   factory ApiGroupListRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiGroupListRestDtoFromJson(json);
 
-  @JsonKey(name: 'groups', defaultValue: <ApiGroupRestDto>[])
+  @JsonKey(
+      name: 'groups', includeIfNull: true, defaultValue: <ApiGroupRestDto>[])
   final List<ApiGroupRestDto>? groups;
-  @JsonKey(name: 'cursor')
+  @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
   static const fromJsonFactory = _$ApiGroupListRestDtoFromJson;
   static const toJsonFactory = _$ApiGroupListRestDtoToJson;
@@ -1785,9 +1798,12 @@ class ApiGroupUserListRestDto {
   factory ApiGroupUserListRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiGroupUserListRestDtoFromJson(json);
 
-  @JsonKey(name: 'groupUsers', defaultValue: <GroupUserListGroupUserRestDto>[])
+  @JsonKey(
+      name: 'groupUsers',
+      includeIfNull: true,
+      defaultValue: <GroupUserListGroupUserRestDto>[])
   final List<GroupUserListGroupUserRestDto>? groupUsers;
-  @JsonKey(name: 'cursor')
+  @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
   static const fromJsonFactory = _$ApiGroupUserListRestDtoFromJson;
   static const toJsonFactory = _$ApiGroupUserListRestDtoToJson;
@@ -1823,29 +1839,29 @@ class ApiLeaderboardRecordRestDto {
   factory ApiLeaderboardRecordRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiLeaderboardRecordRestDtoFromJson(json);
 
-  @JsonKey(name: 'leaderboardId')
+  @JsonKey(name: 'leaderboardId', includeIfNull: true)
   final String? leaderboardId;
-  @JsonKey(name: 'ownerId')
+  @JsonKey(name: 'ownerId', includeIfNull: true)
   final String? ownerId;
-  @JsonKey(name: 'username')
+  @JsonKey(name: 'username', includeIfNull: true)
   final String? username;
-  @JsonKey(name: 'score')
+  @JsonKey(name: 'score', includeIfNull: true)
   final String? score;
-  @JsonKey(name: 'subscore')
+  @JsonKey(name: 'subscore', includeIfNull: true)
   final String? subscore;
-  @JsonKey(name: 'numScore')
+  @JsonKey(name: 'numScore', includeIfNull: true)
   final int? numScore;
-  @JsonKey(name: 'metadata')
+  @JsonKey(name: 'metadata', includeIfNull: true)
   final String? metadata;
-  @JsonKey(name: 'createTime')
+  @JsonKey(name: 'createTime', includeIfNull: true)
   final DateTime? createTime;
-  @JsonKey(name: 'updateTime')
+  @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
-  @JsonKey(name: 'expiryTime')
+  @JsonKey(name: 'expiryTime', includeIfNull: true)
   final DateTime? expiryTime;
-  @JsonKey(name: 'rank')
+  @JsonKey(name: 'rank', includeIfNull: true)
   final String? rank;
-  @JsonKey(name: 'maxNumScore')
+  @JsonKey(name: 'maxNumScore', includeIfNull: true)
   final int? maxNumScore;
   static const fromJsonFactory = _$ApiLeaderboardRecordRestDtoFromJson;
   static const toJsonFactory = _$ApiLeaderboardRecordRestDtoToJson;
@@ -1894,13 +1910,19 @@ class ApiLeaderboardRecordListRestDto {
   factory ApiLeaderboardRecordListRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiLeaderboardRecordListRestDtoFromJson(json);
 
-  @JsonKey(name: 'records', defaultValue: <ApiLeaderboardRecordRestDto>[])
+  @JsonKey(
+      name: 'records',
+      includeIfNull: true,
+      defaultValue: <ApiLeaderboardRecordRestDto>[])
   final List<ApiLeaderboardRecordRestDto>? records;
-  @JsonKey(name: 'ownerRecords', defaultValue: <ApiLeaderboardRecordRestDto>[])
+  @JsonKey(
+      name: 'ownerRecords',
+      includeIfNull: true,
+      defaultValue: <ApiLeaderboardRecordRestDto>[])
   final List<ApiLeaderboardRecordRestDto>? ownerRecords;
-  @JsonKey(name: 'nextCursor')
+  @JsonKey(name: 'nextCursor', includeIfNull: true)
   final String? nextCursor;
-  @JsonKey(name: 'prevCursor')
+  @JsonKey(name: 'prevCursor', includeIfNull: true)
   final String? prevCursor;
   static const fromJsonFactory = _$ApiLeaderboardRecordListRestDtoFromJson;
   static const toJsonFactory = _$ApiLeaderboardRecordListRestDtoToJson;
@@ -1933,9 +1955,9 @@ class ApiLinkSteamRequestRestDto {
   factory ApiLinkSteamRequestRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiLinkSteamRequestRestDtoFromJson(json);
 
-  @JsonKey(name: 'account')
+  @JsonKey(name: 'account', includeIfNull: true)
   final ApiAccountSteamRestDto? account;
-  @JsonKey(name: 'sync')
+  @JsonKey(name: 'sync', includeIfNull: true)
   final bool? $sync;
   static const fromJsonFactory = _$ApiLinkSteamRequestRestDtoFromJson;
   static const toJsonFactory = _$ApiLinkSteamRequestRestDtoToJson;
@@ -1964,17 +1986,17 @@ class ApiMatchRestDto {
   factory ApiMatchRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiMatchRestDtoFromJson(json);
 
-  @JsonKey(name: 'matchId')
+  @JsonKey(name: 'matchId', includeIfNull: true)
   final String? matchId;
-  @JsonKey(name: 'authoritative')
+  @JsonKey(name: 'authoritative', includeIfNull: true)
   final bool? authoritative;
-  @JsonKey(name: 'label')
+  @JsonKey(name: 'label', includeIfNull: true)
   final String? label;
-  @JsonKey(name: 'size')
+  @JsonKey(name: 'size', includeIfNull: true)
   final int? size;
-  @JsonKey(name: 'tickRate')
+  @JsonKey(name: 'tickRate', includeIfNull: true)
   final int? tickRate;
-  @JsonKey(name: 'handlerName')
+  @JsonKey(name: 'handlerName', includeIfNull: true)
   final String? handlerName;
   static const fromJsonFactory = _$ApiMatchRestDtoFromJson;
   static const toJsonFactory = _$ApiMatchRestDtoToJson;
@@ -2008,7 +2030,8 @@ class ApiMatchListRestDto {
   factory ApiMatchListRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiMatchListRestDtoFromJson(json);
 
-  @JsonKey(name: 'matches', defaultValue: <ApiMatchRestDto>[])
+  @JsonKey(
+      name: 'matches', includeIfNull: true, defaultValue: <ApiMatchRestDto>[])
   final List<ApiMatchRestDto>? matches;
   static const fromJsonFactory = _$ApiMatchListRestDtoFromJson;
   static const toJsonFactory = _$ApiMatchListRestDtoToJson;
@@ -2036,19 +2059,19 @@ class ApiNotificationRestDto {
   factory ApiNotificationRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiNotificationRestDtoFromJson(json);
 
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
-  @JsonKey(name: 'subject')
+  @JsonKey(name: 'subject', includeIfNull: true)
   final String? subject;
-  @JsonKey(name: 'content')
+  @JsonKey(name: 'content', includeIfNull: true)
   final String? content;
-  @JsonKey(name: 'code')
+  @JsonKey(name: 'code', includeIfNull: true)
   final int? code;
-  @JsonKey(name: 'senderId')
+  @JsonKey(name: 'senderId', includeIfNull: true)
   final String? senderId;
-  @JsonKey(name: 'createTime')
+  @JsonKey(name: 'createTime', includeIfNull: true)
   final DateTime? createTime;
-  @JsonKey(name: 'persistent')
+  @JsonKey(name: 'persistent', includeIfNull: true)
   final bool? persistent;
   static const fromJsonFactory = _$ApiNotificationRestDtoFromJson;
   static const toJsonFactory = _$ApiNotificationRestDtoToJson;
@@ -2085,9 +2108,12 @@ class ApiNotificationListRestDto {
   factory ApiNotificationListRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiNotificationListRestDtoFromJson(json);
 
-  @JsonKey(name: 'notifications', defaultValue: <ApiNotificationRestDto>[])
+  @JsonKey(
+      name: 'notifications',
+      includeIfNull: true,
+      defaultValue: <ApiNotificationRestDto>[])
   final List<ApiNotificationRestDto>? notifications;
-  @JsonKey(name: 'cacheableCursor')
+  @JsonKey(name: 'cacheableCursor', includeIfNull: true)
   final String? cacheableCursor;
   static const fromJsonFactory = _$ApiNotificationListRestDtoFromJson;
   static const toJsonFactory = _$ApiNotificationListRestDtoToJson;
@@ -2114,11 +2140,11 @@ class ApiReadStorageObjectIdRestDto {
   factory ApiReadStorageObjectIdRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiReadStorageObjectIdRestDtoFromJson(json);
 
-  @JsonKey(name: 'collection')
+  @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
-  @JsonKey(name: 'key')
+  @JsonKey(name: 'key', includeIfNull: true)
   final String? key;
-  @JsonKey(name: 'userId')
+  @JsonKey(name: 'userId', includeIfNull: true)
   final String? userId;
   static const fromJsonFactory = _$ApiReadStorageObjectIdRestDtoFromJson;
   static const toJsonFactory = _$ApiReadStorageObjectIdRestDtoToJson;
@@ -2146,7 +2172,10 @@ class ApiReadStorageObjectsRequestRestDto {
           Map<String, dynamic> json) =>
       _$ApiReadStorageObjectsRequestRestDtoFromJson(json);
 
-  @JsonKey(name: 'objectIds', defaultValue: <ApiReadStorageObjectIdRestDto>[])
+  @JsonKey(
+      name: 'objectIds',
+      includeIfNull: true,
+      defaultValue: <ApiReadStorageObjectIdRestDto>[])
   final List<ApiReadStorageObjectIdRestDto>? objectIds;
   static const fromJsonFactory = _$ApiReadStorageObjectsRequestRestDtoFromJson;
   static const toJsonFactory = _$ApiReadStorageObjectsRequestRestDtoToJson;
@@ -2174,11 +2203,11 @@ class ApiRpcRestDto {
   factory ApiRpcRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiRpcRestDtoFromJson(json);
 
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
-  @JsonKey(name: 'payload')
+  @JsonKey(name: 'payload', includeIfNull: true)
   final String? payload;
-  @JsonKey(name: 'httpKey')
+  @JsonKey(name: 'httpKey', includeIfNull: true)
   final String? httpKey;
   static const fromJsonFactory = _$ApiRpcRestDtoFromJson;
   static const toJsonFactory = _$ApiRpcRestDtoToJson;
@@ -2205,11 +2234,11 @@ class ApiSessionRestDto {
   factory ApiSessionRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiSessionRestDtoFromJson(json);
 
-  @JsonKey(name: 'created')
+  @JsonKey(name: 'created', includeIfNull: true)
   final bool? created;
-  @JsonKey(name: 'token')
+  @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
-  @JsonKey(name: 'refreshToken')
+  @JsonKey(name: 'refreshToken', includeIfNull: true)
   final String? refreshToken;
   static const fromJsonFactory = _$ApiSessionRestDtoFromJson;
   static const toJsonFactory = _$ApiSessionRestDtoToJson;
@@ -2236,9 +2265,9 @@ class ApiSessionLogoutRequestRestDto {
   factory ApiSessionLogoutRequestRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiSessionLogoutRequestRestDtoFromJson(json);
 
-  @JsonKey(name: 'token')
+  @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
-  @JsonKey(name: 'refreshToken')
+  @JsonKey(name: 'refreshToken', includeIfNull: true)
   final String? refreshToken;
   static const fromJsonFactory = _$ApiSessionLogoutRequestRestDtoFromJson;
   static const toJsonFactory = _$ApiSessionLogoutRequestRestDtoToJson;
@@ -2265,9 +2294,9 @@ class ApiSessionRefreshRequestRestDto {
   factory ApiSessionRefreshRequestRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiSessionRefreshRequestRestDtoFromJson(json);
 
-  @JsonKey(name: 'token')
+  @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
-  @JsonKey(name: 'vars')
+  @JsonKey(name: 'vars', includeIfNull: true)
   final Object? vars;
   static const fromJsonFactory = _$ApiSessionRefreshRequestRestDtoFromJson;
   static const toJsonFactory = _$ApiSessionRefreshRequestRestDtoToJson;
@@ -2300,23 +2329,23 @@ class ApiStorageObjectRestDto {
   factory ApiStorageObjectRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiStorageObjectRestDtoFromJson(json);
 
-  @JsonKey(name: 'collection')
+  @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
-  @JsonKey(name: 'key')
+  @JsonKey(name: 'key', includeIfNull: true)
   final String? key;
-  @JsonKey(name: 'userId')
+  @JsonKey(name: 'userId', includeIfNull: true)
   final String? userId;
-  @JsonKey(name: 'value')
+  @JsonKey(name: 'value', includeIfNull: true)
   final String? value;
-  @JsonKey(name: 'version')
+  @JsonKey(name: 'version', includeIfNull: true)
   final String? version;
-  @JsonKey(name: 'permissionRead')
+  @JsonKey(name: 'permissionRead', includeIfNull: true)
   final int? permissionRead;
-  @JsonKey(name: 'permissionWrite')
+  @JsonKey(name: 'permissionWrite', includeIfNull: true)
   final int? permissionWrite;
-  @JsonKey(name: 'createTime')
+  @JsonKey(name: 'createTime', includeIfNull: true)
   final DateTime? createTime;
-  @JsonKey(name: 'updateTime')
+  @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
   static const fromJsonFactory = _$ApiStorageObjectRestDtoFromJson;
   static const toJsonFactory = _$ApiStorageObjectRestDtoToJson;
@@ -2359,13 +2388,13 @@ class ApiStorageObjectAckRestDto {
   factory ApiStorageObjectAckRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiStorageObjectAckRestDtoFromJson(json);
 
-  @JsonKey(name: 'collection')
+  @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
-  @JsonKey(name: 'key')
+  @JsonKey(name: 'key', includeIfNull: true)
   final String? key;
-  @JsonKey(name: 'version')
+  @JsonKey(name: 'version', includeIfNull: true)
   final String? version;
-  @JsonKey(name: 'userId')
+  @JsonKey(name: 'userId', includeIfNull: true)
   final String? userId;
   static const fromJsonFactory = _$ApiStorageObjectAckRestDtoFromJson;
   static const toJsonFactory = _$ApiStorageObjectAckRestDtoToJson;
@@ -2392,7 +2421,10 @@ class ApiStorageObjectAcksRestDto {
   factory ApiStorageObjectAcksRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiStorageObjectAcksRestDtoFromJson(json);
 
-  @JsonKey(name: 'acks', defaultValue: <ApiStorageObjectAckRestDto>[])
+  @JsonKey(
+      name: 'acks',
+      includeIfNull: true,
+      defaultValue: <ApiStorageObjectAckRestDto>[])
   final List<ApiStorageObjectAckRestDto>? acks;
   static const fromJsonFactory = _$ApiStorageObjectAcksRestDtoFromJson;
   static const toJsonFactory = _$ApiStorageObjectAcksRestDtoToJson;
@@ -2416,9 +2448,12 @@ class ApiStorageObjectListRestDto {
   factory ApiStorageObjectListRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiStorageObjectListRestDtoFromJson(json);
 
-  @JsonKey(name: 'objects', defaultValue: <ApiStorageObjectRestDto>[])
+  @JsonKey(
+      name: 'objects',
+      includeIfNull: true,
+      defaultValue: <ApiStorageObjectRestDto>[])
   final List<ApiStorageObjectRestDto>? objects;
-  @JsonKey(name: 'cursor')
+  @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
   static const fromJsonFactory = _$ApiStorageObjectListRestDtoFromJson;
   static const toJsonFactory = _$ApiStorageObjectListRestDtoToJson;
@@ -2442,7 +2477,10 @@ class ApiStorageObjectsRestDto {
   factory ApiStorageObjectsRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiStorageObjectsRestDtoFromJson(json);
 
-  @JsonKey(name: 'objects', defaultValue: <ApiStorageObjectRestDto>[])
+  @JsonKey(
+      name: 'objects',
+      includeIfNull: true,
+      defaultValue: <ApiStorageObjectRestDto>[])
   final List<ApiStorageObjectRestDto>? objects;
   static const fromJsonFactory = _$ApiStorageObjectsRestDtoFromJson;
   static const toJsonFactory = _$ApiStorageObjectsRestDtoToJson;
@@ -2480,39 +2518,39 @@ class ApiTournamentRestDto {
   factory ApiTournamentRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiTournamentRestDtoFromJson(json);
 
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
-  @JsonKey(name: 'title')
+  @JsonKey(name: 'title', includeIfNull: true)
   final String? title;
-  @JsonKey(name: 'description')
+  @JsonKey(name: 'description', includeIfNull: true)
   final String? description;
-  @JsonKey(name: 'category')
+  @JsonKey(name: 'category', includeIfNull: true)
   final int? category;
-  @JsonKey(name: 'sortOrder')
+  @JsonKey(name: 'sortOrder', includeIfNull: true)
   final int? sortOrder;
-  @JsonKey(name: 'size')
+  @JsonKey(name: 'size', includeIfNull: true)
   final int? size;
-  @JsonKey(name: 'maxSize')
+  @JsonKey(name: 'maxSize', includeIfNull: true)
   final int? maxSize;
-  @JsonKey(name: 'maxNumScore')
+  @JsonKey(name: 'maxNumScore', includeIfNull: true)
   final int? maxNumScore;
-  @JsonKey(name: 'canEnter')
+  @JsonKey(name: 'canEnter', includeIfNull: true)
   final bool? canEnter;
-  @JsonKey(name: 'endActive')
+  @JsonKey(name: 'endActive', includeIfNull: true)
   final int? endActive;
-  @JsonKey(name: 'nextReset')
+  @JsonKey(name: 'nextReset', includeIfNull: true)
   final int? nextReset;
-  @JsonKey(name: 'metadata')
+  @JsonKey(name: 'metadata', includeIfNull: true)
   final String? metadata;
-  @JsonKey(name: 'createTime')
+  @JsonKey(name: 'createTime', includeIfNull: true)
   final DateTime? createTime;
-  @JsonKey(name: 'startTime')
+  @JsonKey(name: 'startTime', includeIfNull: true)
   final DateTime? startTime;
-  @JsonKey(name: 'endTime')
+  @JsonKey(name: 'endTime', includeIfNull: true)
   final DateTime? endTime;
-  @JsonKey(name: 'duration')
+  @JsonKey(name: 'duration', includeIfNull: true)
   final int? duration;
-  @JsonKey(name: 'startActive')
+  @JsonKey(name: 'startActive', includeIfNull: true)
   final int? startActive;
   static const fromJsonFactory = _$ApiTournamentRestDtoFromJson;
   static const toJsonFactory = _$ApiTournamentRestDtoToJson;
@@ -2569,9 +2607,12 @@ class ApiTournamentListRestDto {
   factory ApiTournamentListRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiTournamentListRestDtoFromJson(json);
 
-  @JsonKey(name: 'tournaments', defaultValue: <ApiTournamentRestDto>[])
+  @JsonKey(
+      name: 'tournaments',
+      includeIfNull: true,
+      defaultValue: <ApiTournamentRestDto>[])
   final List<ApiTournamentRestDto>? tournaments;
-  @JsonKey(name: 'cursor')
+  @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
   static const fromJsonFactory = _$ApiTournamentListRestDtoFromJson;
   static const toJsonFactory = _$ApiTournamentListRestDtoToJson;
@@ -2599,13 +2640,19 @@ class ApiTournamentRecordListRestDto {
   factory ApiTournamentRecordListRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiTournamentRecordListRestDtoFromJson(json);
 
-  @JsonKey(name: 'records', defaultValue: <ApiLeaderboardRecordRestDto>[])
+  @JsonKey(
+      name: 'records',
+      includeIfNull: true,
+      defaultValue: <ApiLeaderboardRecordRestDto>[])
   final List<ApiLeaderboardRecordRestDto>? records;
-  @JsonKey(name: 'ownerRecords', defaultValue: <ApiLeaderboardRecordRestDto>[])
+  @JsonKey(
+      name: 'ownerRecords',
+      includeIfNull: true,
+      defaultValue: <ApiLeaderboardRecordRestDto>[])
   final List<ApiLeaderboardRecordRestDto>? ownerRecords;
-  @JsonKey(name: 'nextCursor')
+  @JsonKey(name: 'nextCursor', includeIfNull: true)
   final String? nextCursor;
-  @JsonKey(name: 'prevCursor')
+  @JsonKey(name: 'prevCursor', includeIfNull: true)
   final String? prevCursor;
   static const fromJsonFactory = _$ApiTournamentRecordListRestDtoFromJson;
   static const toJsonFactory = _$ApiTournamentRecordListRestDtoToJson;
@@ -2641,17 +2688,17 @@ class ApiUpdateAccountRequestRestDto {
   factory ApiUpdateAccountRequestRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiUpdateAccountRequestRestDtoFromJson(json);
 
-  @JsonKey(name: 'username')
+  @JsonKey(name: 'username', includeIfNull: true)
   final String? username;
-  @JsonKey(name: 'displayName')
+  @JsonKey(name: 'displayName', includeIfNull: true)
   final String? displayName;
-  @JsonKey(name: 'avatarUrl')
+  @JsonKey(name: 'avatarUrl', includeIfNull: true)
   final String? avatarUrl;
-  @JsonKey(name: 'langTag')
+  @JsonKey(name: 'langTag', includeIfNull: true)
   final String? langTag;
-  @JsonKey(name: 'location')
+  @JsonKey(name: 'location', includeIfNull: true)
   final String? location;
-  @JsonKey(name: 'timezone')
+  @JsonKey(name: 'timezone', includeIfNull: true)
   final String? timezone;
   static const fromJsonFactory = _$ApiUpdateAccountRequestRestDtoFromJson;
   static const toJsonFactory = _$ApiUpdateAccountRequestRestDtoToJson;
@@ -2691,17 +2738,17 @@ class ApiUpdateGroupRequestRestDto {
   factory ApiUpdateGroupRequestRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiUpdateGroupRequestRestDtoFromJson(json);
 
-  @JsonKey(name: 'groupId')
+  @JsonKey(name: 'groupId', includeIfNull: true)
   final String? groupId;
-  @JsonKey(name: 'name')
+  @JsonKey(name: 'name', includeIfNull: true)
   final String? name;
-  @JsonKey(name: 'description')
+  @JsonKey(name: 'description', includeIfNull: true)
   final String? description;
-  @JsonKey(name: 'langTag')
+  @JsonKey(name: 'langTag', includeIfNull: true)
   final String? langTag;
-  @JsonKey(name: 'avatarUrl')
+  @JsonKey(name: 'avatarUrl', includeIfNull: true)
   final String? avatarUrl;
-  @JsonKey(name: 'open')
+  @JsonKey(name: 'open', includeIfNull: true)
   final bool? open;
   static const fromJsonFactory = _$ApiUpdateGroupRequestRestDtoFromJson;
   static const toJsonFactory = _$ApiUpdateGroupRequestRestDtoToJson;
@@ -2753,41 +2800,41 @@ class ApiUserRestDto {
   factory ApiUserRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiUserRestDtoFromJson(json);
 
-  @JsonKey(name: 'id')
+  @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
-  @JsonKey(name: 'username')
+  @JsonKey(name: 'username', includeIfNull: true)
   final String? username;
-  @JsonKey(name: 'displayName')
+  @JsonKey(name: 'displayName', includeIfNull: true)
   final String? displayName;
-  @JsonKey(name: 'avatarUrl')
+  @JsonKey(name: 'avatarUrl', includeIfNull: true)
   final String? avatarUrl;
-  @JsonKey(name: 'langTag')
+  @JsonKey(name: 'langTag', includeIfNull: true)
   final String? langTag;
-  @JsonKey(name: 'location')
+  @JsonKey(name: 'location', includeIfNull: true)
   final String? location;
-  @JsonKey(name: 'timezone')
+  @JsonKey(name: 'timezone', includeIfNull: true)
   final String? timezone;
-  @JsonKey(name: 'metadata')
+  @JsonKey(name: 'metadata', includeIfNull: true)
   final String? metadata;
-  @JsonKey(name: 'facebookId')
+  @JsonKey(name: 'facebookId', includeIfNull: true)
   final String? facebookId;
-  @JsonKey(name: 'googleId')
+  @JsonKey(name: 'googleId', includeIfNull: true)
   final String? googleId;
-  @JsonKey(name: 'gamecenterId')
+  @JsonKey(name: 'gamecenterId', includeIfNull: true)
   final String? gamecenterId;
-  @JsonKey(name: 'steamId')
+  @JsonKey(name: 'steamId', includeIfNull: true)
   final String? steamId;
-  @JsonKey(name: 'online')
+  @JsonKey(name: 'online', includeIfNull: true)
   final bool? online;
-  @JsonKey(name: 'edgeCount')
+  @JsonKey(name: 'edgeCount', includeIfNull: true)
   final int? edgeCount;
-  @JsonKey(name: 'createTime')
+  @JsonKey(name: 'createTime', includeIfNull: true)
   final DateTime? createTime;
-  @JsonKey(name: 'updateTime')
+  @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
-  @JsonKey(name: 'facebookInstantGameId')
+  @JsonKey(name: 'facebookInstantGameId', includeIfNull: true)
   final String? facebookInstantGameId;
-  @JsonKey(name: 'appleId')
+  @JsonKey(name: 'appleId', includeIfNull: true)
   final String? appleId;
   static const fromJsonFactory = _$ApiUserRestDtoFromJson;
   static const toJsonFactory = _$ApiUserRestDtoToJson;
@@ -2847,9 +2894,12 @@ class ApiUserGroupListRestDto {
   factory ApiUserGroupListRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiUserGroupListRestDtoFromJson(json);
 
-  @JsonKey(name: 'userGroups', defaultValue: <UserGroupListUserGroupRestDto>[])
+  @JsonKey(
+      name: 'userGroups',
+      includeIfNull: true,
+      defaultValue: <UserGroupListUserGroupRestDto>[])
   final List<UserGroupListUserGroupRestDto>? userGroups;
-  @JsonKey(name: 'cursor')
+  @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
   static const fromJsonFactory = _$ApiUserGroupListRestDtoFromJson;
   static const toJsonFactory = _$ApiUserGroupListRestDtoToJson;
@@ -2874,7 +2924,7 @@ class ApiUsersRestDto {
   factory ApiUsersRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiUsersRestDtoFromJson(json);
 
-  @JsonKey(name: 'users', defaultValue: <ApiUserRestDto>[])
+  @JsonKey(name: 'users', includeIfNull: true, defaultValue: <ApiUserRestDto>[])
   final List<ApiUserRestDto>? users;
   static const fromJsonFactory = _$ApiUsersRestDtoFromJson;
   static const toJsonFactory = _$ApiUsersRestDtoToJson;
@@ -2897,7 +2947,7 @@ class ApiValidatePurchaseAppleRequestRestDto {
           Map<String, dynamic> json) =>
       _$ApiValidatePurchaseAppleRequestRestDtoFromJson(json);
 
-  @JsonKey(name: 'receipt')
+  @JsonKey(name: 'receipt', includeIfNull: true)
   final String? receipt;
   static const fromJsonFactory =
       _$ApiValidatePurchaseAppleRequestRestDtoFromJson;
@@ -2924,7 +2974,7 @@ class ApiValidatePurchaseGoogleRequestRestDto {
           Map<String, dynamic> json) =>
       _$ApiValidatePurchaseGoogleRequestRestDtoFromJson(json);
 
-  @JsonKey(name: 'purchase')
+  @JsonKey(name: 'purchase', includeIfNull: true)
   final String? purchase;
   static const fromJsonFactory =
       _$ApiValidatePurchaseGoogleRequestRestDtoFromJson;
@@ -2952,9 +3002,9 @@ class ApiValidatePurchaseHuaweiRequestRestDto {
           Map<String, dynamic> json) =>
       _$ApiValidatePurchaseHuaweiRequestRestDtoFromJson(json);
 
-  @JsonKey(name: 'purchase')
+  @JsonKey(name: 'purchase', includeIfNull: true)
   final String? purchase;
-  @JsonKey(name: 'signature')
+  @JsonKey(name: 'signature', includeIfNull: true)
   final String? signature;
   static const fromJsonFactory =
       _$ApiValidatePurchaseHuaweiRequestRestDtoFromJson;
@@ -2984,7 +3034,9 @@ class ApiValidatePurchaseResponseRestDto {
       _$ApiValidatePurchaseResponseRestDtoFromJson(json);
 
   @JsonKey(
-      name: 'validatedPurchases', defaultValue: <ApiValidatedPurchaseRestDto>[])
+      name: 'validatedPurchases',
+      includeIfNull: true,
+      defaultValue: <ApiValidatedPurchaseRestDto>[])
   final List<ApiValidatedPurchaseRestDto>? validatedPurchases;
   static const fromJsonFactory = _$ApiValidatePurchaseResponseRestDtoFromJson;
   static const toJsonFactory = _$ApiValidatePurchaseResponseRestDtoToJson;
@@ -3017,25 +3069,27 @@ class ApiValidatedPurchaseRestDto {
   factory ApiValidatedPurchaseRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiValidatedPurchaseRestDtoFromJson(json);
 
-  @JsonKey(name: 'productId')
+  @JsonKey(name: 'productId', includeIfNull: true)
   final String? productId;
-  @JsonKey(name: 'transactionId')
+  @JsonKey(name: 'transactionId', includeIfNull: true)
   final String? transactionId;
   @JsonKey(
       name: 'store',
+      includeIfNull: true,
       toJson: validatedPurchaseStoreToJson,
       fromJson: validatedPurchaseStoreFromJson)
   final enums.ValidatedPurchaseStore? store;
-  @JsonKey(name: 'purchaseTime')
+  @JsonKey(name: 'purchaseTime', includeIfNull: true)
   final DateTime? purchaseTime;
-  @JsonKey(name: 'createTime')
+  @JsonKey(name: 'createTime', includeIfNull: true)
   final DateTime? createTime;
-  @JsonKey(name: 'updateTime')
+  @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
-  @JsonKey(name: 'providerResponse')
+  @JsonKey(name: 'providerResponse', includeIfNull: true)
   final String? providerResponse;
   @JsonKey(
       name: 'environment',
+      includeIfNull: true,
       toJson: validatedPurchaseEnvironmentToJson,
       fromJson: validatedPurchaseEnvironmentFromJson)
   final enums.ValidatedPurchaseEnvironment? environment;
@@ -3080,17 +3134,17 @@ class ApiWriteStorageObjectRestDto {
   factory ApiWriteStorageObjectRestDto.fromJson(Map<String, dynamic> json) =>
       _$ApiWriteStorageObjectRestDtoFromJson(json);
 
-  @JsonKey(name: 'collection')
+  @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
-  @JsonKey(name: 'key')
+  @JsonKey(name: 'key', includeIfNull: true)
   final String? key;
-  @JsonKey(name: 'value')
+  @JsonKey(name: 'value', includeIfNull: true)
   final String? value;
-  @JsonKey(name: 'version')
+  @JsonKey(name: 'version', includeIfNull: true)
   final String? version;
-  @JsonKey(name: 'permissionRead')
+  @JsonKey(name: 'permissionRead', includeIfNull: true)
   final int? permissionRead;
-  @JsonKey(name: 'permissionWrite')
+  @JsonKey(name: 'permissionWrite', includeIfNull: true)
   final int? permissionWrite;
   static const fromJsonFactory = _$ApiWriteStorageObjectRestDtoFromJson;
   static const toJsonFactory = _$ApiWriteStorageObjectRestDtoToJson;
@@ -3126,7 +3180,10 @@ class ApiWriteStorageObjectsRequestRestDto {
           Map<String, dynamic> json) =>
       _$ApiWriteStorageObjectsRequestRestDtoFromJson(json);
 
-  @JsonKey(name: 'objects', defaultValue: <ApiWriteStorageObjectRestDto>[])
+  @JsonKey(
+      name: 'objects',
+      includeIfNull: true,
+      defaultValue: <ApiWriteStorageObjectRestDto>[])
   final List<ApiWriteStorageObjectRestDto>? objects;
   static const fromJsonFactory = _$ApiWriteStorageObjectsRequestRestDtoFromJson;
   static const toJsonFactory = _$ApiWriteStorageObjectsRequestRestDtoToJson;
@@ -3153,9 +3210,9 @@ class ProtobufAnyRestDto {
   factory ProtobufAnyRestDto.fromJson(Map<String, dynamic> json) =>
       _$ProtobufAnyRestDtoFromJson(json);
 
-  @JsonKey(name: 'typeUrl')
+  @JsonKey(name: 'typeUrl', includeIfNull: true)
   final String? typeUrl;
-  @JsonKey(name: 'value')
+  @JsonKey(name: 'value', includeIfNull: true)
   final String? value;
   static const fromJsonFactory = _$ProtobufAnyRestDtoFromJson;
   static const toJsonFactory = _$ProtobufAnyRestDtoToJson;
@@ -3180,11 +3237,14 @@ class RpcStatusRestDto {
   factory RpcStatusRestDto.fromJson(Map<String, dynamic> json) =>
       _$RpcStatusRestDtoFromJson(json);
 
-  @JsonKey(name: 'code')
+  @JsonKey(name: 'code', includeIfNull: true)
   final int? code;
-  @JsonKey(name: 'message')
+  @JsonKey(name: 'message', includeIfNull: true)
   final String? message;
-  @JsonKey(name: 'details', defaultValue: <ProtobufAnyRestDto>[])
+  @JsonKey(
+      name: 'details',
+      includeIfNull: true,
+      defaultValue: <ProtobufAnyRestDto>[])
   final List<ProtobufAnyRestDto>? details;
   static const fromJsonFactory = _$RpcStatusRestDtoFromJson;
   static const toJsonFactory = _$RpcStatusRestDtoToJson;

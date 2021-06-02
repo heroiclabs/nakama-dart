@@ -14,7 +14,7 @@ void main() {
   // Create a new websocket connection for the hole test run (singleton).
   setUpAll(() async {
     // Create nakama clients.
-    final client = NakamaGrpcClient(
+    final client = NakamaBaseClient.adaptive(
       host: kTestHost,
       ssl: false,
       serverKey: kTestServerKey,
