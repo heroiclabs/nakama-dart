@@ -23,7 +23,8 @@ class _MatchAreaState extends State<MatchArea> {
     super.initState();
 
     NakamaWebsocketClient.instance.onMatchData.listen((event) {
-      print('received match data: ${event.data}');
+      print(
+          'received match data: ${event.data} from ${event.presence.username}');
       // Sent the match content field to received data.
       matchDataController.text = String.fromCharCodes(event.data);
     });
