@@ -226,6 +226,29 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.Session> authenticateSteam({
+    required String token,
+    bool create = true,
+    String? username,
+  }) async {
+    final request = AuthenticateSteamRequest()
+      ..create_2 = BoolValue(value: create)
+      ..account = (AccountSteam()..token = token);
+
+    if (username != null) {
+      request.username = username;
+    }
+
+    final res = await _client.authenticateSteam(request);
+
+    return model.Session(
+      created: res.created,
+      token: res.token,
+      refreshToken: res.refreshToken,
+    );
+  }
+
+  @override
   Future<Account> getAccount(model.Session session) {
     return _client.getAccount(
       Empty(),
