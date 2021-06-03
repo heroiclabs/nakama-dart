@@ -97,7 +97,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   Future<model.Session> authenticateEmail({
     required String email,
     required String password,
-    bool create = false,
+    bool create = true,
     String? username,
   }) async {
     final res = await _api.nakamaAuthenticateEmail(
@@ -105,6 +105,35 @@ class NakamaRestApiClient extends NakamaBaseClient {
         email: email,
         password: password,
       ),
+      create: create,
+      username: username,
+    );
+
+    if (res.body == null) {
+      throw Exception('Authentication failed.');
+    }
+
+    final data = res.body!;
+
+    return model.Session(
+      created: data.created ?? false,
+      token: data.token!,
+      refreshToken: data.refreshToken,
+    );
+  }
+
+  @override
+  Future<model.Session> authenticateDevice({
+    required String deviceId,
+    bool create = true,
+    String? username,
+  }) async {
+    final res = await _api.nakamaAuthenticateDevice(
+      body: ApiAccountDevice(
+        id: deviceId,
+      ),
+      create: create,
+      username: username,
     );
 
     if (res.body == null) {

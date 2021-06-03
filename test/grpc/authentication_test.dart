@@ -1,15 +1,14 @@
 import 'package:faker/faker.dart';
 import 'package:nakama/nakama.dart';
-import 'package:nakama/src/nakama_client/nakama_api_client.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
 void main() {
-  group('[REST] Test Authentication', () {
+  group('[gRPC] Test Authentication', () {
     late final NakamaBaseClient client;
 
     setUpAll(() {
-      client = NakamaRestApiClient.init(
+      client = getNakamaClient(
         host: '127.0.0.1',
         ssl: false,
         serverKey: 'defaultkey',

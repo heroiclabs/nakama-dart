@@ -90,19 +90,49 @@ class NakamaGrpcClient extends NakamaBaseClient {
   /// Use with cation, API can change every time.
   NakamaClient get rawGrpcClient => _client;
 
+  CallOptions _getSessionCallOptions(model.Session session) => CallOptions(
+        metadata: {'authorization': 'Bearer ${session.token}'},
+      );
+
   @override
   Future<model.Session> authenticateEmail({
     required String email,
     required String password,
-    bool create = false,
+    bool create = true,
     String? username,
   }) async {
-    final res = await _client.authenticateEmail(
-      AuthenticateEmailRequest()
-        ..account = (AccountEmail()
-          ..email = email
-          ..password = password),
+    final request = AuthenticateEmailRequest()
+      ..account = (AccountEmail()
+        ..email = email
+        ..password = password);
+
+    if (username != null) {
+      request.username = username;
+    }
+
+    final res = await _client.authenticateEmail(request);
+
+    return model.Session(
+      created: res.created,
+      token: res.token,
+      refreshToken: res.refreshToken,
     );
+  }
+
+  @override
+  Future<model.Session> authenticateDevice({
+    required String deviceId,
+    bool create = true,
+    String? username,
+  }) async {
+    final request = AuthenticateDeviceRequest()
+      ..account = (AccountDevice()..id = deviceId);
+
+    if (username != null) {
+      request.username = username;
+    }
+
+    final res = await _client.authenticateDevice(request);
 
     return model.Session(
       created: res.created,
@@ -113,7 +143,10 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<Account> getAccount(model.Session session) {
-    return _client.getAccount(Empty());
+    return _client.getAccount(
+      Empty(),
+      options: _getSessionCallOptions(session),
+    );
   }
 }
 

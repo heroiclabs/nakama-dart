@@ -26,5 +26,11 @@ abstract class NakamaBaseClient {
     String? username,
   });
 
+  Future<model.Session> authenticateDevice({
+    required String deviceId,
+    bool create = false,
+    String? username,
+  });
+
   Future<Account> getAccount(model.Session session);
 }
