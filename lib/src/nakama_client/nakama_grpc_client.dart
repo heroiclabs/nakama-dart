@@ -249,6 +249,29 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.Session> authenticateCustom({
+    required String id,
+    bool create = true,
+    String? username,
+  }) async {
+    final request = AuthenticateCustomRequest()
+      ..create_2 = BoolValue(value: create)
+      ..account = (AccountCustom()..id = id);
+
+    if (username != null) {
+      request.username = username;
+    }
+
+    final res = await _client.authenticateCustom(request);
+
+    return model.Session(
+      created: res.created,
+      token: res.token,
+      refreshToken: res.refreshToken,
+    );
+  }
+
+  @override
   Future<Account> getAccount(model.Session session) {
     return _client.getAccount(
       Empty(),

@@ -61,5 +61,11 @@ abstract class NakamaBaseClient {
     String? username,
   });
 
+  Future<model.Session> authenticateCustom({
+    required String id,
+    bool create = true,
+    String? username,
+  });
+
   Future<Account> getAccount(model.Session session);
 }
