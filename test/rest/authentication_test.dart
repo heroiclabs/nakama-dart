@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
-import 'package:nakama/src/nakama_client.dart';
+import 'package:nakama/nakama.dart';
+import 'package:nakama/src/nakama_client/nakama_api_client.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
@@ -8,7 +9,7 @@ void main() {
     late final NakamaBaseClient client;
 
     setUpAll(() {
-      client = NakamaBaseClient.http(
+      client = NakamaRestApiClient.init(
         host: '127.0.0.1',
         ssl: false,
         serverKey: 'defaultkey',
@@ -32,7 +33,7 @@ void main() {
 
       final account = await client.getAccount(session);
 
-      print('got account!');
+      expect(account, isNotNull);
     });
   });
 }

@@ -2,16 +2,18 @@ import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
 import 'package:nakama/api/api.pb.dart';
-import 'package:nakama/api/rtapi/realtime.pb.dart';
 import 'package:nakama/rest/apigrpc.swagger.dart';
-import 'package:nakama/src/nakama_client.dart';
 import 'package:nakama/src/session.dart' as model;
+
+import 'nakama_client.dart';
+
+const _kDefaultAppKey = 'default';
 
 /// Base class for communicating with Nakama via gRPC.
 /// [NakamaGrpcClient] abstracts the gRPC calls and handles authentication
 /// for you.
 class NakamaRestApiClient extends NakamaBaseClient {
-  final Uri uri;
+  static final Map<String, NakamaRestApiClient> _clients = {};
 
   late final ChopperClient _chopperClient;
 
@@ -19,16 +21,52 @@ class NakamaRestApiClient extends NakamaBaseClient {
   /// Defaults to "defaultkey".
   late final String serverKey;
 
+  /// Temporarily holds the current valid session to use in the Chopper
+  /// interceptor for JWT auth.
   model.Session? _session;
 
-  NakamaRestApiClient({
-    required this.uri,
-    required this.serverKey,
+  /// Either inits and returns a new instance of [NakamaRestApiClient] or
+  /// returns a already initialized one.
+  factory NakamaRestApiClient.init({
+    String? host,
+    String? serverKey,
+    String key = _kDefaultAppKey,
+    int port = 7350,
+    bool ssl = false,
   }) {
-    // Create Chopper (REST API) Client
+    if (_clients.containsKey(key)) {
+      return _clients[key]!;
+    }
+
+    // Not yet initialized -> check if we've got all parameters to do so
+    if (host == null || serverKey == null) {
+      throw Exception(
+        'Not yet initialized, need parameters [host] and [serverKey] to initialize.',
+      );
+    }
+
+    // Create a new instance of this with given parameters.
+    return _clients[key] = NakamaRestApiClient._(
+      host: host,
+      port: port,
+      serverKey: serverKey,
+      ssl: ssl,
+    );
+  }
+
+  NakamaRestApiClient._({
+    required String host,
+    required String serverKey,
+    required int port,
+    required bool ssl,
+  }) {
     _chopperClient = ChopperClient(
       converter: JsonSerializableConverter(),
-      baseUrl: uri.toString(),
+      baseUrl: Uri(
+        host: host,
+        scheme: ssl ? 'https' : 'http',
+        port: port,
+      ).toString(),
       services: [Apigrpc.create()],
       interceptors: [
         // Auth Interceptor
@@ -93,3 +131,19 @@ class NakamaRestApiClient extends NakamaBaseClient {
     return acc;
   }
 }
+
+NakamaBaseClient getNakamaClient({
+  String? host,
+  String? serverKey,
+  String key = _kDefaultAppKey,
+  int httpPort = 7350,
+  int grpcPort = 7349,
+  bool ssl = false,
+}) =>
+    NakamaRestApiClient.init(
+      host: host,
+      key: key,
+      port: httpPort,
+      serverKey: serverKey,
+      ssl: ssl,
+    );

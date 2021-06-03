@@ -5,13 +5,18 @@ import 'package:nakama/api/api.pb.dart';
 import 'package:nakama/api/apigrpc.pbgrpc.dart';
 import 'package:grpc/grpc.dart';
 import 'package:nakama/api/google/protobuf/empty.pb.dart';
-import 'package:nakama/src/nakama_client.dart';
 import 'package:nakama/src/session.dart' as model;
+
+import 'nakama_client.dart';
+
+const _kDefaultAppKey = 'default';
 
 /// Base class for communicating with Nakama via gRPC.
 /// [NakamaGrpcClient] abstracts the gRPC calls and handles authentication
 /// for you.
 class NakamaGrpcClient extends NakamaBaseClient {
+  static final Map<String, NakamaGrpcClient> _clients = {};
+
   /// The host address of the server.
   final String host;
 
@@ -25,6 +30,35 @@ class NakamaGrpcClient extends NakamaBaseClient {
   /// The key used to authenticate with the server without a session.
   /// Defaults to "defaultkey".
   late final String serverKey;
+
+  /// Either inits and returns a new instance of [NakamaGrpcClient] or
+  /// returns a already initialized one.
+  factory NakamaGrpcClient.init({
+    String? host,
+    String? serverKey,
+    String key = _kDefaultAppKey,
+    int port = 7349,
+    bool ssl = false,
+  }) {
+    if (_clients.containsKey(key)) {
+      return _clients[key]!;
+    }
+
+    // Not yet initialized -> check if we've got all parameters to do so
+    if (host == null || serverKey == null) {
+      throw Exception(
+        'Not yet initialized, need parameters [host] and [serverKey] to initialize.',
+      );
+    }
+
+    // Create a new instance of this with given parameters.
+    return _clients[key] = NakamaGrpcClient(
+      host: host,
+      port: port,
+      serverKey: serverKey,
+      ssl: ssl,
+    );
+  }
 
   NakamaGrpcClient({
     required this.host,
@@ -63,12 +97,6 @@ class NakamaGrpcClient extends NakamaBaseClient {
     bool create = false,
     String? username,
   }) async {
-    final req = AuthenticateEmailRequest()
-      ..account = (AccountEmail()
-        ..email = email
-        ..password = password);
-    print(req.toProto3Json());
-
     final res = await _client.authenticateEmail(
       AuthenticateEmailRequest()
         ..account = (AccountEmail()
@@ -88,3 +116,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
     return _client.getAccount(Empty());
   }
 }
+
+NakamaBaseClient getNakamaClient({
+  String? host,
+  String? serverKey,
+  String key = _kDefaultAppKey,
+  int httpPort = 7350,
+  int grpcPort = 7349,
+  bool ssl = false,
+}) =>
+    NakamaGrpcClient.init(
+      host: host,
+      key: key,
+      port: grpcPort,
+      serverKey: serverKey,
+      ssl: ssl,
+    );

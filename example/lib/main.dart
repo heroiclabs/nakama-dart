@@ -32,7 +32,7 @@ class __HomeScreenState extends State<_HomeScreen> {
   void initState() {
     super.initState();
 
-    _nakamaClient = NakamaBaseClient.adaptive(
+    _nakamaClient = getNakamaClient(
       host: '127.0.0.1',
       ssl: false,
       serverKey: 'defaultkey',
