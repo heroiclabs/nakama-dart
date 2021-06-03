@@ -8,6 +8,7 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use durationDescriptor instead')
 const Duration$json = const {
   '1': 'Duration',
@@ -18,4 +19,5 @@ const Duration$json = const {
 };
 
 /// Descriptor for `Duration`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List durationDescriptor = $convert.base64Decode('CghEdXJhdGlvbhIYCgdzZWNvbmRzGAEgASgDUgdzZWNvbmRzEhQKBW5hbm9zGAIgASgFUgVuYW5vcw==');
+final $typed_data.Uint8List durationDescriptor = $convert.base64Decode(
+    'CghEdXJhdGlvbhIYCgdzZWNvbmRzGAEgASgDUgdzZWNvbmRzEhQKBW5hbm9zGAIgASgFUgVuYW5vcw==');

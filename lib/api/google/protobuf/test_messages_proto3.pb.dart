@@ -23,11 +23,28 @@ import 'struct.pbenum.dart' as $13;
 export 'test_messages_proto3.pbenum.dart';
 
 class TestAllTypesProto3_NestedMessage extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestAllTypesProto3.NestedMessage', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_test_messages.proto3'), createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'a', $pb.PbFieldType.O3)
-    ..aOM<TestAllTypesProto3>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'corecursive', subBuilder: TestAllTypesProto3.create)
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestAllTypesProto3.NestedMessage',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_test_messages.proto3'),
+      createEmptyInstance: create)
+    ..a<$core.int>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'a',
+        $pb.PbFieldType.O3)
+    ..aOM<TestAllTypesProto3>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'corecursive',
+        subBuilder: TestAllTypesProto3.create)
+    ..hasRequiredFields = false;
 
   TestAllTypesProto3_NestedMessage._() : super();
   factory TestAllTypesProto3_NestedMessage({
@@ -43,31 +60,45 @@ class TestAllTypesProto3_NestedMessage extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestAllTypesProto3_NestedMessage.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestAllTypesProto3_NestedMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  TestAllTypesProto3_NestedMessage clone() => TestAllTypesProto3_NestedMessage()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestAllTypesProto3_NestedMessage copyWith(void Function(TestAllTypesProto3_NestedMessage) updates) => super.copyWith((message) => updates(message as TestAllTypesProto3_NestedMessage)) as TestAllTypesProto3_NestedMessage; // ignore: deprecated_member_use
+  factory TestAllTypesProto3_NestedMessage.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestAllTypesProto3_NestedMessage.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  TestAllTypesProto3_NestedMessage clone() =>
+      TestAllTypesProto3_NestedMessage()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestAllTypesProto3_NestedMessage copyWith(
+          void Function(TestAllTypesProto3_NestedMessage) updates) =>
+      super.copyWith(
+              (message) => updates(message as TestAllTypesProto3_NestedMessage))
+          as TestAllTypesProto3_NestedMessage; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static TestAllTypesProto3_NestedMessage create() => TestAllTypesProto3_NestedMessage._();
+  static TestAllTypesProto3_NestedMessage create() =>
+      TestAllTypesProto3_NestedMessage._();
   TestAllTypesProto3_NestedMessage createEmptyInstance() => create();
-  static $pb.PbList<TestAllTypesProto3_NestedMessage> createRepeated() => $pb.PbList<TestAllTypesProto3_NestedMessage>();
+  static $pb.PbList<TestAllTypesProto3_NestedMessage> createRepeated() =>
+      $pb.PbList<TestAllTypesProto3_NestedMessage>();
   @$core.pragma('dart2js:noInline')
-  static TestAllTypesProto3_NestedMessage getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestAllTypesProto3_NestedMessage>(create);
+  static TestAllTypesProto3_NestedMessage getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestAllTypesProto3_NestedMessage>(
+          create);
   static TestAllTypesProto3_NestedMessage? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get a => $_getIZ(0);
   @$pb.TagNumber(1)
-  set a($core.int v) { $_setSignedInt32(0, v); }
+  set a($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasA() => $_has(0);
   @$pb.TagNumber(1)
@@ -76,7 +107,10 @@ class TestAllTypesProto3_NestedMessage extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   TestAllTypesProto3 get corecursive => $_getN(1);
   @$pb.TagNumber(2)
-  set corecursive(TestAllTypesProto3 v) { setField(2, v); }
+  set corecursive(TestAllTypesProto3 v) {
+    setField(2, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasCorecursive() => $_has(1);
   @$pb.TagNumber(2)
@@ -86,38 +120,59 @@ class TestAllTypesProto3_NestedMessage extends $pb.GeneratedMessage {
 }
 
 enum TestAllTypesProto3_OneofField {
-  oneofUint32, 
-  oneofNestedMessage, 
-  oneofString, 
-  oneofBytes, 
-  oneofBool, 
-  oneofUint64, 
-  oneofFloat, 
-  oneofDouble, 
-  oneofEnum, 
-  oneofNullValue, 
+  oneofUint32,
+  oneofNestedMessage,
+  oneofString,
+  oneofBytes,
+  oneofBool,
+  oneofUint64,
+  oneofFloat,
+  oneofDouble,
+  oneofEnum,
+  oneofNullValue,
   notSet
 }
 
 class TestAllTypesProto3 extends $pb.GeneratedMessage {
-  static const $core.Map<$core.int, TestAllTypesProto3_OneofField> _TestAllTypesProto3_OneofFieldByTag = {
-    111 : TestAllTypesProto3_OneofField.oneofUint32,
-    112 : TestAllTypesProto3_OneofField.oneofNestedMessage,
-    113 : TestAllTypesProto3_OneofField.oneofString,
-    114 : TestAllTypesProto3_OneofField.oneofBytes,
-    115 : TestAllTypesProto3_OneofField.oneofBool,
-    116 : TestAllTypesProto3_OneofField.oneofUint64,
-    117 : TestAllTypesProto3_OneofField.oneofFloat,
-    118 : TestAllTypesProto3_OneofField.oneofDouble,
-    119 : TestAllTypesProto3_OneofField.oneofEnum,
-    120 : TestAllTypesProto3_OneofField.oneofNullValue,
-    0 : TestAllTypesProto3_OneofField.notSet
+  static const $core.Map<$core.int, TestAllTypesProto3_OneofField>
+      _TestAllTypesProto3_OneofFieldByTag = {
+    111: TestAllTypesProto3_OneofField.oneofUint32,
+    112: TestAllTypesProto3_OneofField.oneofNestedMessage,
+    113: TestAllTypesProto3_OneofField.oneofString,
+    114: TestAllTypesProto3_OneofField.oneofBytes,
+    115: TestAllTypesProto3_OneofField.oneofBool,
+    116: TestAllTypesProto3_OneofField.oneofUint64,
+    117: TestAllTypesProto3_OneofField.oneofFloat,
+    118: TestAllTypesProto3_OneofField.oneofDouble,
+    119: TestAllTypesProto3_OneofField.oneofEnum,
+    120: TestAllTypesProto3_OneofField.oneofNullValue,
+    0: TestAllTypesProto3_OneofField.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestAllTypesProto3', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_test_messages.proto3'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestAllTypesProto3',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_test_messages.proto3'),
+      createEmptyInstance: create)
     ..oo(0, [111, 112, 113, 114, 115, 116, 117, 118, 119, 120])
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'optionalInt32', $pb.PbFieldType.O3)
-    ..aInt64(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'optionalInt64')
-    ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'optionalUint32', $pb.PbFieldType.OU3)
+    ..a<$core.int>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'optionalInt32',
+        $pb.PbFieldType.O3)
+    ..aInt64(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'optionalInt64')
+    ..a<$core.int>(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'optionalUint32',
+        $pb.PbFieldType.OU3)
     ..a<$fixnum.Int64>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'optionalUint64', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..a<$core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'optionalSint32', $pb.PbFieldType.OS3)
     ..a<$fixnum.Int64>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'optionalSint64', $pb.PbFieldType.OS6, defaultOrMaker: $fixnum.Int64.ZERO)
@@ -266,8 +321,7 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
     ..a<$core.int>(416, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fieldName16', $pb.PbFieldType.O3, protoName: 'field__Name16')
     ..a<$core.int>(417, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'fieldName17', $pb.PbFieldType.O3, protoName: 'field_name17__')
     ..a<$core.int>(418, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'FieldName18', $pb.PbFieldType.O3, protoName: 'Field_name18__')
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
   TestAllTypesProto3._() : super();
   factory TestAllTypesProto3({
@@ -330,7 +384,8 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
     $core.Map<$core.bool, $core.bool>? mapBoolBool,
     $core.Map<$core.String, $core.String>? mapStringString,
     $core.Map<$core.String, $core.List<$core.int>>? mapStringBytes,
-    $core.Map<$core.String, TestAllTypesProto3_NestedMessage>? mapStringNestedMessage,
+    $core.Map<$core.String, TestAllTypesProto3_NestedMessage>?
+        mapStringNestedMessage,
     $core.Map<$core.String, ForeignMessage>? mapStringForeignMessage,
     $core.Map<$core.String, TestAllTypesProto3_NestedEnum>? mapStringNestedEnum,
     $core.Map<$core.String, ForeignEnum>? mapStringForeignEnum,
@@ -879,34 +934,44 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestAllTypesProto3.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestAllTypesProto3.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory TestAllTypesProto3.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestAllTypesProto3.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   TestAllTypesProto3 clone() => TestAllTypesProto3()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestAllTypesProto3 copyWith(void Function(TestAllTypesProto3) updates) => super.copyWith((message) => updates(message as TestAllTypesProto3)) as TestAllTypesProto3; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestAllTypesProto3 copyWith(void Function(TestAllTypesProto3) updates) =>
+      super.copyWith((message) => updates(message as TestAllTypesProto3))
+          as TestAllTypesProto3; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestAllTypesProto3 create() => TestAllTypesProto3._();
   TestAllTypesProto3 createEmptyInstance() => create();
-  static $pb.PbList<TestAllTypesProto3> createRepeated() => $pb.PbList<TestAllTypesProto3>();
+  static $pb.PbList<TestAllTypesProto3> createRepeated() =>
+      $pb.PbList<TestAllTypesProto3>();
   @$core.pragma('dart2js:noInline')
-  static TestAllTypesProto3 getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestAllTypesProto3>(create);
+  static TestAllTypesProto3 getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestAllTypesProto3>(create);
   static TestAllTypesProto3? _defaultInstance;
 
-  TestAllTypesProto3_OneofField whichOneofField() => _TestAllTypesProto3_OneofFieldByTag[$_whichOneof(0)]!;
+  TestAllTypesProto3_OneofField whichOneofField() =>
+      _TestAllTypesProto3_OneofFieldByTag[$_whichOneof(0)]!;
   void clearOneofField() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
   $core.int get optionalInt32 => $_getIZ(0);
   @$pb.TagNumber(1)
-  set optionalInt32($core.int v) { $_setSignedInt32(0, v); }
+  set optionalInt32($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasOptionalInt32() => $_has(0);
   @$pb.TagNumber(1)
@@ -915,7 +980,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $fixnum.Int64 get optionalInt64 => $_getI64(1);
   @$pb.TagNumber(2)
-  set optionalInt64($fixnum.Int64 v) { $_setInt64(1, v); }
+  set optionalInt64($fixnum.Int64 v) {
+    $_setInt64(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasOptionalInt64() => $_has(1);
   @$pb.TagNumber(2)
@@ -924,7 +992,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.int get optionalUint32 => $_getIZ(2);
   @$pb.TagNumber(3)
-  set optionalUint32($core.int v) { $_setUnsignedInt32(2, v); }
+  set optionalUint32($core.int v) {
+    $_setUnsignedInt32(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasOptionalUint32() => $_has(2);
   @$pb.TagNumber(3)
@@ -933,7 +1004,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(4)
   $fixnum.Int64 get optionalUint64 => $_getI64(3);
   @$pb.TagNumber(4)
-  set optionalUint64($fixnum.Int64 v) { $_setInt64(3, v); }
+  set optionalUint64($fixnum.Int64 v) {
+    $_setInt64(3, v);
+  }
+
   @$pb.TagNumber(4)
   $core.bool hasOptionalUint64() => $_has(3);
   @$pb.TagNumber(4)
@@ -942,7 +1016,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   $core.int get optionalSint32 => $_getIZ(4);
   @$pb.TagNumber(5)
-  set optionalSint32($core.int v) { $_setSignedInt32(4, v); }
+  set optionalSint32($core.int v) {
+    $_setSignedInt32(4, v);
+  }
+
   @$pb.TagNumber(5)
   $core.bool hasOptionalSint32() => $_has(4);
   @$pb.TagNumber(5)
@@ -951,7 +1028,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   $fixnum.Int64 get optionalSint64 => $_getI64(5);
   @$pb.TagNumber(6)
-  set optionalSint64($fixnum.Int64 v) { $_setInt64(5, v); }
+  set optionalSint64($fixnum.Int64 v) {
+    $_setInt64(5, v);
+  }
+
   @$pb.TagNumber(6)
   $core.bool hasOptionalSint64() => $_has(5);
   @$pb.TagNumber(6)
@@ -960,7 +1040,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(7)
   $core.int get optionalFixed32 => $_getIZ(6);
   @$pb.TagNumber(7)
-  set optionalFixed32($core.int v) { $_setUnsignedInt32(6, v); }
+  set optionalFixed32($core.int v) {
+    $_setUnsignedInt32(6, v);
+  }
+
   @$pb.TagNumber(7)
   $core.bool hasOptionalFixed32() => $_has(6);
   @$pb.TagNumber(7)
@@ -969,7 +1052,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(8)
   $fixnum.Int64 get optionalFixed64 => $_getI64(7);
   @$pb.TagNumber(8)
-  set optionalFixed64($fixnum.Int64 v) { $_setInt64(7, v); }
+  set optionalFixed64($fixnum.Int64 v) {
+    $_setInt64(7, v);
+  }
+
   @$pb.TagNumber(8)
   $core.bool hasOptionalFixed64() => $_has(7);
   @$pb.TagNumber(8)
@@ -978,7 +1064,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(9)
   $core.int get optionalSfixed32 => $_getIZ(8);
   @$pb.TagNumber(9)
-  set optionalSfixed32($core.int v) { $_setSignedInt32(8, v); }
+  set optionalSfixed32($core.int v) {
+    $_setSignedInt32(8, v);
+  }
+
   @$pb.TagNumber(9)
   $core.bool hasOptionalSfixed32() => $_has(8);
   @$pb.TagNumber(9)
@@ -987,7 +1076,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(10)
   $fixnum.Int64 get optionalSfixed64 => $_getI64(9);
   @$pb.TagNumber(10)
-  set optionalSfixed64($fixnum.Int64 v) { $_setInt64(9, v); }
+  set optionalSfixed64($fixnum.Int64 v) {
+    $_setInt64(9, v);
+  }
+
   @$pb.TagNumber(10)
   $core.bool hasOptionalSfixed64() => $_has(9);
   @$pb.TagNumber(10)
@@ -996,7 +1088,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(11)
   $core.double get optionalFloat => $_getN(10);
   @$pb.TagNumber(11)
-  set optionalFloat($core.double v) { $_setFloat(10, v); }
+  set optionalFloat($core.double v) {
+    $_setFloat(10, v);
+  }
+
   @$pb.TagNumber(11)
   $core.bool hasOptionalFloat() => $_has(10);
   @$pb.TagNumber(11)
@@ -1005,7 +1100,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(12)
   $core.double get optionalDouble => $_getN(11);
   @$pb.TagNumber(12)
-  set optionalDouble($core.double v) { $_setDouble(11, v); }
+  set optionalDouble($core.double v) {
+    $_setDouble(11, v);
+  }
+
   @$pb.TagNumber(12)
   $core.bool hasOptionalDouble() => $_has(11);
   @$pb.TagNumber(12)
@@ -1014,7 +1112,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(13)
   $core.bool get optionalBool => $_getBF(12);
   @$pb.TagNumber(13)
-  set optionalBool($core.bool v) { $_setBool(12, v); }
+  set optionalBool($core.bool v) {
+    $_setBool(12, v);
+  }
+
   @$pb.TagNumber(13)
   $core.bool hasOptionalBool() => $_has(12);
   @$pb.TagNumber(13)
@@ -1023,7 +1124,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(14)
   $core.String get optionalString => $_getSZ(13);
   @$pb.TagNumber(14)
-  set optionalString($core.String v) { $_setString(13, v); }
+  set optionalString($core.String v) {
+    $_setString(13, v);
+  }
+
   @$pb.TagNumber(14)
   $core.bool hasOptionalString() => $_has(13);
   @$pb.TagNumber(14)
@@ -1032,7 +1136,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(15)
   $core.List<$core.int> get optionalBytes => $_getN(14);
   @$pb.TagNumber(15)
-  set optionalBytes($core.List<$core.int> v) { $_setBytes(14, v); }
+  set optionalBytes($core.List<$core.int> v) {
+    $_setBytes(14, v);
+  }
+
   @$pb.TagNumber(15)
   $core.bool hasOptionalBytes() => $_has(14);
   @$pb.TagNumber(15)
@@ -1041,18 +1148,25 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(18)
   TestAllTypesProto3_NestedMessage get optionalNestedMessage => $_getN(15);
   @$pb.TagNumber(18)
-  set optionalNestedMessage(TestAllTypesProto3_NestedMessage v) { setField(18, v); }
+  set optionalNestedMessage(TestAllTypesProto3_NestedMessage v) {
+    setField(18, v);
+  }
+
   @$pb.TagNumber(18)
   $core.bool hasOptionalNestedMessage() => $_has(15);
   @$pb.TagNumber(18)
   void clearOptionalNestedMessage() => clearField(18);
   @$pb.TagNumber(18)
-  TestAllTypesProto3_NestedMessage ensureOptionalNestedMessage() => $_ensure(15);
+  TestAllTypesProto3_NestedMessage ensureOptionalNestedMessage() =>
+      $_ensure(15);
 
   @$pb.TagNumber(19)
   ForeignMessage get optionalForeignMessage => $_getN(16);
   @$pb.TagNumber(19)
-  set optionalForeignMessage(ForeignMessage v) { setField(19, v); }
+  set optionalForeignMessage(ForeignMessage v) {
+    setField(19, v);
+  }
+
   @$pb.TagNumber(19)
   $core.bool hasOptionalForeignMessage() => $_has(16);
   @$pb.TagNumber(19)
@@ -1063,7 +1177,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(21)
   TestAllTypesProto3_NestedEnum get optionalNestedEnum => $_getN(17);
   @$pb.TagNumber(21)
-  set optionalNestedEnum(TestAllTypesProto3_NestedEnum v) { setField(21, v); }
+  set optionalNestedEnum(TestAllTypesProto3_NestedEnum v) {
+    setField(21, v);
+  }
+
   @$pb.TagNumber(21)
   $core.bool hasOptionalNestedEnum() => $_has(17);
   @$pb.TagNumber(21)
@@ -1072,7 +1189,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(22)
   ForeignEnum get optionalForeignEnum => $_getN(18);
   @$pb.TagNumber(22)
-  set optionalForeignEnum(ForeignEnum v) { setField(22, v); }
+  set optionalForeignEnum(ForeignEnum v) {
+    setField(22, v);
+  }
+
   @$pb.TagNumber(22)
   $core.bool hasOptionalForeignEnum() => $_has(18);
   @$pb.TagNumber(22)
@@ -1081,7 +1201,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(23)
   TestAllTypesProto3_AliasedEnum get optionalAliasedEnum => $_getN(19);
   @$pb.TagNumber(23)
-  set optionalAliasedEnum(TestAllTypesProto3_AliasedEnum v) { setField(23, v); }
+  set optionalAliasedEnum(TestAllTypesProto3_AliasedEnum v) {
+    setField(23, v);
+  }
+
   @$pb.TagNumber(23)
   $core.bool hasOptionalAliasedEnum() => $_has(19);
   @$pb.TagNumber(23)
@@ -1090,7 +1213,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(24)
   $core.String get optionalStringPiece => $_getSZ(20);
   @$pb.TagNumber(24)
-  set optionalStringPiece($core.String v) { $_setString(20, v); }
+  set optionalStringPiece($core.String v) {
+    $_setString(20, v);
+  }
+
   @$pb.TagNumber(24)
   $core.bool hasOptionalStringPiece() => $_has(20);
   @$pb.TagNumber(24)
@@ -1099,7 +1225,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(25)
   $core.String get optionalCord => $_getSZ(21);
   @$pb.TagNumber(25)
-  set optionalCord($core.String v) { $_setString(21, v); }
+  set optionalCord($core.String v) {
+    $_setString(21, v);
+  }
+
   @$pb.TagNumber(25)
   $core.bool hasOptionalCord() => $_has(21);
   @$pb.TagNumber(25)
@@ -1108,7 +1237,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(27)
   TestAllTypesProto3 get recursiveMessage => $_getN(22);
   @$pb.TagNumber(27)
-  set recursiveMessage(TestAllTypesProto3 v) { setField(27, v); }
+  set recursiveMessage(TestAllTypesProto3 v) {
+    setField(27, v);
+  }
+
   @$pb.TagNumber(27)
   $core.bool hasRecursiveMessage() => $_has(22);
   @$pb.TagNumber(27)
@@ -1162,13 +1294,15 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   $core.List<$core.List<$core.int>> get repeatedBytes => $_getList(37);
 
   @$pb.TagNumber(48)
-  $core.List<TestAllTypesProto3_NestedMessage> get repeatedNestedMessage => $_getList(38);
+  $core.List<TestAllTypesProto3_NestedMessage> get repeatedNestedMessage =>
+      $_getList(38);
 
   @$pb.TagNumber(49)
   $core.List<ForeignMessage> get repeatedForeignMessage => $_getList(39);
 
   @$pb.TagNumber(51)
-  $core.List<TestAllTypesProto3_NestedEnum> get repeatedNestedEnum => $_getList(40);
+  $core.List<TestAllTypesProto3_NestedEnum> get repeatedNestedEnum =>
+      $_getList(40);
 
   @$pb.TagNumber(52)
   $core.List<ForeignEnum> get repeatedForeignEnum => $_getList(41);
@@ -1207,7 +1341,8 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   $core.Map<$core.int, $core.int> get mapSfixed32Sfixed32 => $_getMap(52);
 
   @$pb.TagNumber(65)
-  $core.Map<$fixnum.Int64, $fixnum.Int64> get mapSfixed64Sfixed64 => $_getMap(53);
+  $core.Map<$fixnum.Int64, $fixnum.Int64> get mapSfixed64Sfixed64 =>
+      $_getMap(53);
 
   @$pb.TagNumber(66)
   $core.Map<$core.int, $core.double> get mapInt32Float => $_getMap(54);
@@ -1222,16 +1357,20 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   $core.Map<$core.String, $core.String> get mapStringString => $_getMap(57);
 
   @$pb.TagNumber(70)
-  $core.Map<$core.String, $core.List<$core.int>> get mapStringBytes => $_getMap(58);
+  $core.Map<$core.String, $core.List<$core.int>> get mapStringBytes =>
+      $_getMap(58);
 
   @$pb.TagNumber(71)
-  $core.Map<$core.String, TestAllTypesProto3_NestedMessage> get mapStringNestedMessage => $_getMap(59);
+  $core.Map<$core.String, TestAllTypesProto3_NestedMessage>
+      get mapStringNestedMessage => $_getMap(59);
 
   @$pb.TagNumber(72)
-  $core.Map<$core.String, ForeignMessage> get mapStringForeignMessage => $_getMap(60);
+  $core.Map<$core.String, ForeignMessage> get mapStringForeignMessage =>
+      $_getMap(60);
 
   @$pb.TagNumber(73)
-  $core.Map<$core.String, TestAllTypesProto3_NestedEnum> get mapStringNestedEnum => $_getMap(61);
+  $core.Map<$core.String, TestAllTypesProto3_NestedEnum>
+      get mapStringNestedEnum => $_getMap(61);
 
   @$pb.TagNumber(74)
   $core.Map<$core.String, ForeignEnum> get mapStringForeignEnum => $_getMap(62);
@@ -1276,7 +1415,8 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   $core.List<$core.bool> get packedBool => $_getList(75);
 
   @$pb.TagNumber(88)
-  $core.List<TestAllTypesProto3_NestedEnum> get packedNestedEnum => $_getList(76);
+  $core.List<TestAllTypesProto3_NestedEnum> get packedNestedEnum =>
+      $_getList(76);
 
   @$pb.TagNumber(89)
   $core.List<$core.int> get unpackedInt32 => $_getList(77);
@@ -1318,12 +1458,16 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   $core.List<$core.bool> get unpackedBool => $_getList(89);
 
   @$pb.TagNumber(102)
-  $core.List<TestAllTypesProto3_NestedEnum> get unpackedNestedEnum => $_getList(90);
+  $core.List<TestAllTypesProto3_NestedEnum> get unpackedNestedEnum =>
+      $_getList(90);
 
   @$pb.TagNumber(111)
   $core.int get oneofUint32 => $_getIZ(91);
   @$pb.TagNumber(111)
-  set oneofUint32($core.int v) { $_setUnsignedInt32(91, v); }
+  set oneofUint32($core.int v) {
+    $_setUnsignedInt32(91, v);
+  }
+
   @$pb.TagNumber(111)
   $core.bool hasOneofUint32() => $_has(91);
   @$pb.TagNumber(111)
@@ -1332,7 +1476,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(112)
   TestAllTypesProto3_NestedMessage get oneofNestedMessage => $_getN(92);
   @$pb.TagNumber(112)
-  set oneofNestedMessage(TestAllTypesProto3_NestedMessage v) { setField(112, v); }
+  set oneofNestedMessage(TestAllTypesProto3_NestedMessage v) {
+    setField(112, v);
+  }
+
   @$pb.TagNumber(112)
   $core.bool hasOneofNestedMessage() => $_has(92);
   @$pb.TagNumber(112)
@@ -1343,7 +1490,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(113)
   $core.String get oneofString => $_getSZ(93);
   @$pb.TagNumber(113)
-  set oneofString($core.String v) { $_setString(93, v); }
+  set oneofString($core.String v) {
+    $_setString(93, v);
+  }
+
   @$pb.TagNumber(113)
   $core.bool hasOneofString() => $_has(93);
   @$pb.TagNumber(113)
@@ -1352,7 +1502,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(114)
   $core.List<$core.int> get oneofBytes => $_getN(94);
   @$pb.TagNumber(114)
-  set oneofBytes($core.List<$core.int> v) { $_setBytes(94, v); }
+  set oneofBytes($core.List<$core.int> v) {
+    $_setBytes(94, v);
+  }
+
   @$pb.TagNumber(114)
   $core.bool hasOneofBytes() => $_has(94);
   @$pb.TagNumber(114)
@@ -1361,7 +1514,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(115)
   $core.bool get oneofBool => $_getBF(95);
   @$pb.TagNumber(115)
-  set oneofBool($core.bool v) { $_setBool(95, v); }
+  set oneofBool($core.bool v) {
+    $_setBool(95, v);
+  }
+
   @$pb.TagNumber(115)
   $core.bool hasOneofBool() => $_has(95);
   @$pb.TagNumber(115)
@@ -1370,7 +1526,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(116)
   $fixnum.Int64 get oneofUint64 => $_getI64(96);
   @$pb.TagNumber(116)
-  set oneofUint64($fixnum.Int64 v) { $_setInt64(96, v); }
+  set oneofUint64($fixnum.Int64 v) {
+    $_setInt64(96, v);
+  }
+
   @$pb.TagNumber(116)
   $core.bool hasOneofUint64() => $_has(96);
   @$pb.TagNumber(116)
@@ -1379,7 +1538,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(117)
   $core.double get oneofFloat => $_getN(97);
   @$pb.TagNumber(117)
-  set oneofFloat($core.double v) { $_setFloat(97, v); }
+  set oneofFloat($core.double v) {
+    $_setFloat(97, v);
+  }
+
   @$pb.TagNumber(117)
   $core.bool hasOneofFloat() => $_has(97);
   @$pb.TagNumber(117)
@@ -1388,7 +1550,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(118)
   $core.double get oneofDouble => $_getN(98);
   @$pb.TagNumber(118)
-  set oneofDouble($core.double v) { $_setDouble(98, v); }
+  set oneofDouble($core.double v) {
+    $_setDouble(98, v);
+  }
+
   @$pb.TagNumber(118)
   $core.bool hasOneofDouble() => $_has(98);
   @$pb.TagNumber(118)
@@ -1397,7 +1562,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(119)
   TestAllTypesProto3_NestedEnum get oneofEnum => $_getN(99);
   @$pb.TagNumber(119)
-  set oneofEnum(TestAllTypesProto3_NestedEnum v) { setField(119, v); }
+  set oneofEnum(TestAllTypesProto3_NestedEnum v) {
+    setField(119, v);
+  }
+
   @$pb.TagNumber(119)
   $core.bool hasOneofEnum() => $_has(99);
   @$pb.TagNumber(119)
@@ -1406,7 +1574,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(120)
   $13.NullValue get oneofNullValue => $_getN(100);
   @$pb.TagNumber(120)
-  set oneofNullValue($13.NullValue v) { setField(120, v); }
+  set oneofNullValue($13.NullValue v) {
+    setField(120, v);
+  }
+
   @$pb.TagNumber(120)
   $core.bool hasOneofNullValue() => $_has(100);
   @$pb.TagNumber(120)
@@ -1415,7 +1586,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(201)
   $9.BoolValue get optionalBoolWrapper => $_getN(101);
   @$pb.TagNumber(201)
-  set optionalBoolWrapper($9.BoolValue v) { setField(201, v); }
+  set optionalBoolWrapper($9.BoolValue v) {
+    setField(201, v);
+  }
+
   @$pb.TagNumber(201)
   $core.bool hasOptionalBoolWrapper() => $_has(101);
   @$pb.TagNumber(201)
@@ -1426,7 +1600,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(202)
   $9.Int32Value get optionalInt32Wrapper => $_getN(102);
   @$pb.TagNumber(202)
-  set optionalInt32Wrapper($9.Int32Value v) { setField(202, v); }
+  set optionalInt32Wrapper($9.Int32Value v) {
+    setField(202, v);
+  }
+
   @$pb.TagNumber(202)
   $core.bool hasOptionalInt32Wrapper() => $_has(102);
   @$pb.TagNumber(202)
@@ -1437,7 +1614,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(203)
   $9.Int64Value get optionalInt64Wrapper => $_getN(103);
   @$pb.TagNumber(203)
-  set optionalInt64Wrapper($9.Int64Value v) { setField(203, v); }
+  set optionalInt64Wrapper($9.Int64Value v) {
+    setField(203, v);
+  }
+
   @$pb.TagNumber(203)
   $core.bool hasOptionalInt64Wrapper() => $_has(103);
   @$pb.TagNumber(203)
@@ -1448,7 +1628,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(204)
   $9.UInt32Value get optionalUint32Wrapper => $_getN(104);
   @$pb.TagNumber(204)
-  set optionalUint32Wrapper($9.UInt32Value v) { setField(204, v); }
+  set optionalUint32Wrapper($9.UInt32Value v) {
+    setField(204, v);
+  }
+
   @$pb.TagNumber(204)
   $core.bool hasOptionalUint32Wrapper() => $_has(104);
   @$pb.TagNumber(204)
@@ -1459,7 +1642,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(205)
   $9.UInt64Value get optionalUint64Wrapper => $_getN(105);
   @$pb.TagNumber(205)
-  set optionalUint64Wrapper($9.UInt64Value v) { setField(205, v); }
+  set optionalUint64Wrapper($9.UInt64Value v) {
+    setField(205, v);
+  }
+
   @$pb.TagNumber(205)
   $core.bool hasOptionalUint64Wrapper() => $_has(105);
   @$pb.TagNumber(205)
@@ -1470,7 +1656,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(206)
   $9.FloatValue get optionalFloatWrapper => $_getN(106);
   @$pb.TagNumber(206)
-  set optionalFloatWrapper($9.FloatValue v) { setField(206, v); }
+  set optionalFloatWrapper($9.FloatValue v) {
+    setField(206, v);
+  }
+
   @$pb.TagNumber(206)
   $core.bool hasOptionalFloatWrapper() => $_has(106);
   @$pb.TagNumber(206)
@@ -1481,7 +1670,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(207)
   $9.DoubleValue get optionalDoubleWrapper => $_getN(107);
   @$pb.TagNumber(207)
-  set optionalDoubleWrapper($9.DoubleValue v) { setField(207, v); }
+  set optionalDoubleWrapper($9.DoubleValue v) {
+    setField(207, v);
+  }
+
   @$pb.TagNumber(207)
   $core.bool hasOptionalDoubleWrapper() => $_has(107);
   @$pb.TagNumber(207)
@@ -1492,7 +1684,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(208)
   $9.StringValue get optionalStringWrapper => $_getN(108);
   @$pb.TagNumber(208)
-  set optionalStringWrapper($9.StringValue v) { setField(208, v); }
+  set optionalStringWrapper($9.StringValue v) {
+    setField(208, v);
+  }
+
   @$pb.TagNumber(208)
   $core.bool hasOptionalStringWrapper() => $_has(108);
   @$pb.TagNumber(208)
@@ -1503,7 +1698,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(209)
   $9.BytesValue get optionalBytesWrapper => $_getN(109);
   @$pb.TagNumber(209)
-  set optionalBytesWrapper($9.BytesValue v) { setField(209, v); }
+  set optionalBytesWrapper($9.BytesValue v) {
+    setField(209, v);
+  }
+
   @$pb.TagNumber(209)
   $core.bool hasOptionalBytesWrapper() => $_has(109);
   @$pb.TagNumber(209)
@@ -1541,7 +1739,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(301)
   $10.Duration get optionalDuration => $_getN(119);
   @$pb.TagNumber(301)
-  set optionalDuration($10.Duration v) { setField(301, v); }
+  set optionalDuration($10.Duration v) {
+    setField(301, v);
+  }
+
   @$pb.TagNumber(301)
   $core.bool hasOptionalDuration() => $_has(119);
   @$pb.TagNumber(301)
@@ -1552,7 +1753,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(302)
   $11.Timestamp get optionalTimestamp => $_getN(120);
   @$pb.TagNumber(302)
-  set optionalTimestamp($11.Timestamp v) { setField(302, v); }
+  set optionalTimestamp($11.Timestamp v) {
+    setField(302, v);
+  }
+
   @$pb.TagNumber(302)
   $core.bool hasOptionalTimestamp() => $_has(120);
   @$pb.TagNumber(302)
@@ -1563,7 +1767,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(303)
   $12.FieldMask get optionalFieldMask => $_getN(121);
   @$pb.TagNumber(303)
-  set optionalFieldMask($12.FieldMask v) { setField(303, v); }
+  set optionalFieldMask($12.FieldMask v) {
+    setField(303, v);
+  }
+
   @$pb.TagNumber(303)
   $core.bool hasOptionalFieldMask() => $_has(121);
   @$pb.TagNumber(303)
@@ -1574,7 +1781,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(304)
   $13.Struct get optionalStruct => $_getN(122);
   @$pb.TagNumber(304)
-  set optionalStruct($13.Struct v) { setField(304, v); }
+  set optionalStruct($13.Struct v) {
+    setField(304, v);
+  }
+
   @$pb.TagNumber(304)
   $core.bool hasOptionalStruct() => $_has(122);
   @$pb.TagNumber(304)
@@ -1585,7 +1795,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(305)
   $0.Any get optionalAny => $_getN(123);
   @$pb.TagNumber(305)
-  set optionalAny($0.Any v) { setField(305, v); }
+  set optionalAny($0.Any v) {
+    setField(305, v);
+  }
+
   @$pb.TagNumber(305)
   $core.bool hasOptionalAny() => $_has(123);
   @$pb.TagNumber(305)
@@ -1596,7 +1809,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(306)
   $13.Value get optionalValue => $_getN(124);
   @$pb.TagNumber(306)
-  set optionalValue($13.Value v) { setField(306, v); }
+  set optionalValue($13.Value v) {
+    setField(306, v);
+  }
+
   @$pb.TagNumber(306)
   $core.bool hasOptionalValue() => $_has(124);
   @$pb.TagNumber(306)
@@ -1607,7 +1823,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(307)
   $13.NullValue get optionalNullValue => $_getN(125);
   @$pb.TagNumber(307)
-  set optionalNullValue($13.NullValue v) { setField(307, v); }
+  set optionalNullValue($13.NullValue v) {
+    setField(307, v);
+  }
+
   @$pb.TagNumber(307)
   $core.bool hasOptionalNullValue() => $_has(125);
   @$pb.TagNumber(307)
@@ -1637,7 +1856,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(401)
   $core.int get fieldname1 => $_getIZ(133);
   @$pb.TagNumber(401)
-  set fieldname1($core.int v) { $_setSignedInt32(133, v); }
+  set fieldname1($core.int v) {
+    $_setSignedInt32(133, v);
+  }
+
   @$pb.TagNumber(401)
   $core.bool hasFieldname1() => $_has(133);
   @$pb.TagNumber(401)
@@ -1646,7 +1868,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(402)
   $core.int get fieldName2 => $_getIZ(134);
   @$pb.TagNumber(402)
-  set fieldName2($core.int v) { $_setSignedInt32(134, v); }
+  set fieldName2($core.int v) {
+    $_setSignedInt32(134, v);
+  }
+
   @$pb.TagNumber(402)
   $core.bool hasFieldName2() => $_has(134);
   @$pb.TagNumber(402)
@@ -1655,7 +1880,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(403)
   $core.int get fieldName3 => $_getIZ(135);
   @$pb.TagNumber(403)
-  set fieldName3($core.int v) { $_setSignedInt32(135, v); }
+  set fieldName3($core.int v) {
+    $_setSignedInt32(135, v);
+  }
+
   @$pb.TagNumber(403)
   $core.bool hasFieldName3() => $_has(135);
   @$pb.TagNumber(403)
@@ -1664,7 +1892,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(404)
   $core.int get fieldName4 => $_getIZ(136);
   @$pb.TagNumber(404)
-  set fieldName4($core.int v) { $_setSignedInt32(136, v); }
+  set fieldName4($core.int v) {
+    $_setSignedInt32(136, v);
+  }
+
   @$pb.TagNumber(404)
   $core.bool hasFieldName4() => $_has(136);
   @$pb.TagNumber(404)
@@ -1673,7 +1904,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(405)
   $core.int get field0name5 => $_getIZ(137);
   @$pb.TagNumber(405)
-  set field0name5($core.int v) { $_setSignedInt32(137, v); }
+  set field0name5($core.int v) {
+    $_setSignedInt32(137, v);
+  }
+
   @$pb.TagNumber(405)
   $core.bool hasField0name5() => $_has(137);
   @$pb.TagNumber(405)
@@ -1682,7 +1916,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(406)
   $core.int get field0Name6 => $_getIZ(138);
   @$pb.TagNumber(406)
-  set field0Name6($core.int v) { $_setSignedInt32(138, v); }
+  set field0Name6($core.int v) {
+    $_setSignedInt32(138, v);
+  }
+
   @$pb.TagNumber(406)
   $core.bool hasField0Name6() => $_has(138);
   @$pb.TagNumber(406)
@@ -1691,7 +1928,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(407)
   $core.int get fieldName7 => $_getIZ(139);
   @$pb.TagNumber(407)
-  set fieldName7($core.int v) { $_setSignedInt32(139, v); }
+  set fieldName7($core.int v) {
+    $_setSignedInt32(139, v);
+  }
+
   @$pb.TagNumber(407)
   $core.bool hasFieldName7() => $_has(139);
   @$pb.TagNumber(407)
@@ -1700,7 +1940,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(408)
   $core.int get fieldName8 => $_getIZ(140);
   @$pb.TagNumber(408)
-  set fieldName8($core.int v) { $_setSignedInt32(140, v); }
+  set fieldName8($core.int v) {
+    $_setSignedInt32(140, v);
+  }
+
   @$pb.TagNumber(408)
   $core.bool hasFieldName8() => $_has(140);
   @$pb.TagNumber(408)
@@ -1709,7 +1952,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(409)
   $core.int get fieldName9 => $_getIZ(141);
   @$pb.TagNumber(409)
-  set fieldName9($core.int v) { $_setSignedInt32(141, v); }
+  set fieldName9($core.int v) {
+    $_setSignedInt32(141, v);
+  }
+
   @$pb.TagNumber(409)
   $core.bool hasFieldName9() => $_has(141);
   @$pb.TagNumber(409)
@@ -1718,7 +1964,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(410)
   $core.int get fieldName10 => $_getIZ(142);
   @$pb.TagNumber(410)
-  set fieldName10($core.int v) { $_setSignedInt32(142, v); }
+  set fieldName10($core.int v) {
+    $_setSignedInt32(142, v);
+  }
+
   @$pb.TagNumber(410)
   $core.bool hasFieldName10() => $_has(142);
   @$pb.TagNumber(410)
@@ -1727,7 +1976,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(411)
   $core.int get fIELDNAME11 => $_getIZ(143);
   @$pb.TagNumber(411)
-  set fIELDNAME11($core.int v) { $_setSignedInt32(143, v); }
+  set fIELDNAME11($core.int v) {
+    $_setSignedInt32(143, v);
+  }
+
   @$pb.TagNumber(411)
   $core.bool hasFIELDNAME11() => $_has(143);
   @$pb.TagNumber(411)
@@ -1736,7 +1988,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(412)
   $core.int get fIELDName12 => $_getIZ(144);
   @$pb.TagNumber(412)
-  set fIELDName12($core.int v) { $_setSignedInt32(144, v); }
+  set fIELDName12($core.int v) {
+    $_setSignedInt32(144, v);
+  }
+
   @$pb.TagNumber(412)
   $core.bool hasFIELDName12() => $_has(144);
   @$pb.TagNumber(412)
@@ -1745,7 +2000,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(413)
   $core.int get fieldName13 => $_getIZ(145);
   @$pb.TagNumber(413)
-  set fieldName13($core.int v) { $_setSignedInt32(145, v); }
+  set fieldName13($core.int v) {
+    $_setSignedInt32(145, v);
+  }
+
   @$pb.TagNumber(413)
   $core.bool hasFieldName13() => $_has(145);
   @$pb.TagNumber(413)
@@ -1754,7 +2012,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(414)
   $core.int get fieldName14 => $_getIZ(146);
   @$pb.TagNumber(414)
-  set fieldName14($core.int v) { $_setSignedInt32(146, v); }
+  set fieldName14($core.int v) {
+    $_setSignedInt32(146, v);
+  }
+
   @$pb.TagNumber(414)
   $core.bool hasFieldName14() => $_has(146);
   @$pb.TagNumber(414)
@@ -1763,7 +2024,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(415)
   $core.int get fieldName15 => $_getIZ(147);
   @$pb.TagNumber(415)
-  set fieldName15($core.int v) { $_setSignedInt32(147, v); }
+  set fieldName15($core.int v) {
+    $_setSignedInt32(147, v);
+  }
+
   @$pb.TagNumber(415)
   $core.bool hasFieldName15() => $_has(147);
   @$pb.TagNumber(415)
@@ -1772,7 +2036,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(416)
   $core.int get fieldName16 => $_getIZ(148);
   @$pb.TagNumber(416)
-  set fieldName16($core.int v) { $_setSignedInt32(148, v); }
+  set fieldName16($core.int v) {
+    $_setSignedInt32(148, v);
+  }
+
   @$pb.TagNumber(416)
   $core.bool hasFieldName16() => $_has(148);
   @$pb.TagNumber(416)
@@ -1781,7 +2048,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(417)
   $core.int get fieldName17 => $_getIZ(149);
   @$pb.TagNumber(417)
-  set fieldName17($core.int v) { $_setSignedInt32(149, v); }
+  set fieldName17($core.int v) {
+    $_setSignedInt32(149, v);
+  }
+
   @$pb.TagNumber(417)
   $core.bool hasFieldName17() => $_has(149);
   @$pb.TagNumber(417)
@@ -1790,7 +2060,10 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
   @$pb.TagNumber(418)
   $core.int get fieldName18 => $_getIZ(150);
   @$pb.TagNumber(418)
-  set fieldName18($core.int v) { $_setSignedInt32(150, v); }
+  set fieldName18($core.int v) {
+    $_setSignedInt32(150, v);
+  }
+
   @$pb.TagNumber(418)
   $core.bool hasFieldName18() => $_has(150);
   @$pb.TagNumber(418)
@@ -1798,10 +2071,22 @@ class TestAllTypesProto3 extends $pb.GeneratedMessage {
 }
 
 class ForeignMessage extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ForeignMessage', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_test_messages.proto3'), createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'c', $pb.PbFieldType.O3)
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'ForeignMessage',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_test_messages.proto3'),
+      createEmptyInstance: create)
+    ..a<$core.int>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'c',
+        $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
 
   ForeignMessage._() : super();
   factory ForeignMessage({
@@ -1813,34 +2098,42 @@ class ForeignMessage extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory ForeignMessage.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ForeignMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory ForeignMessage.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ForeignMessage.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   ForeignMessage clone() => ForeignMessage()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  ForeignMessage copyWith(void Function(ForeignMessage) updates) => super.copyWith((message) => updates(message as ForeignMessage)) as ForeignMessage; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ForeignMessage copyWith(void Function(ForeignMessage) updates) =>
+      super.copyWith((message) => updates(message as ForeignMessage))
+          as ForeignMessage; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ForeignMessage create() => ForeignMessage._();
   ForeignMessage createEmptyInstance() => create();
-  static $pb.PbList<ForeignMessage> createRepeated() => $pb.PbList<ForeignMessage>();
+  static $pb.PbList<ForeignMessage> createRepeated() =>
+      $pb.PbList<ForeignMessage>();
   @$core.pragma('dart2js:noInline')
-  static ForeignMessage getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ForeignMessage>(create);
+  static ForeignMessage getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ForeignMessage>(create);
   static ForeignMessage? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get c => $_getIZ(0);
   @$pb.TagNumber(1)
-  set c($core.int v) { $_setSignedInt32(0, v); }
+  set c($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasC() => $_has(0);
   @$pb.TagNumber(1)
   void clearC() => clearField(1);
 }
-

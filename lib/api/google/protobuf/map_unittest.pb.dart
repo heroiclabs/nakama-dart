@@ -17,12 +17,37 @@ import 'map_unittest.pbenum.dart';
 export 'map_unittest.pbenum.dart';
 
 class TestMap extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestMap', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.int, $core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Int32', entryClassName: 'TestMap.MapInt32Int32Entry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.O3, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$fixnum.Int64, $fixnum.Int64>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt64Int64', entryClassName: 'TestMap.MapInt64Int64Entry', keyFieldType: $pb.PbFieldType.O6, valueFieldType: $pb.PbFieldType.O6, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$core.int, $core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint32Uint32', entryClassName: 'TestMap.MapUint32Uint32Entry', keyFieldType: $pb.PbFieldType.OU3, valueFieldType: $pb.PbFieldType.OU3, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$fixnum.Int64, $fixnum.Int64>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint64Uint64', entryClassName: 'TestMap.MapUint64Uint64Entry', keyFieldType: $pb.PbFieldType.OU6, valueFieldType: $pb.PbFieldType.OU6, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$core.int, $core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapSint32Sint32', entryClassName: 'TestMap.MapSint32Sint32Entry', keyFieldType: $pb.PbFieldType.OS3, valueFieldType: $pb.PbFieldType.OS3, packageName: const $pb.PackageName('protobuf_unittest'))
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestMap',
+      package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.int, $core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Int32',
+        entryClassName: 'TestMap.MapInt32Int32Entry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.O3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$fixnum.Int64, $fixnum.Int64>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt64Int64',
+        entryClassName: 'TestMap.MapInt64Int64Entry',
+        keyFieldType: $pb.PbFieldType.O6,
+        valueFieldType: $pb.PbFieldType.O6,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$core.int, $core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint32Uint32',
+        entryClassName: 'TestMap.MapUint32Uint32Entry',
+        keyFieldType: $pb.PbFieldType.OU3,
+        valueFieldType: $pb.PbFieldType.OU3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$fixnum.Int64, $fixnum.Int64>(
+        4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint64Uint64',
+        entryClassName: 'TestMap.MapUint64Uint64Entry',
+        keyFieldType: $pb.PbFieldType.OU6,
+        valueFieldType: $pb.PbFieldType.OU6,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$core.int, $core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapSint32Sint32',
+        entryClassName: 'TestMap.MapSint32Sint32Entry',
+        keyFieldType: $pb.PbFieldType.OS3,
+        valueFieldType: $pb.PbFieldType.OS3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$fixnum.Int64, $fixnum.Int64>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapSint64Sint64', entryClassName: 'TestMap.MapSint64Sint64Entry', keyFieldType: $pb.PbFieldType.OS6, valueFieldType: $pb.PbFieldType.OS6, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$core.int, $core.int>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapFixed32Fixed32', entryClassName: 'TestMap.MapFixed32Fixed32Entry', keyFieldType: $pb.PbFieldType.OF3, valueFieldType: $pb.PbFieldType.OF3, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$fixnum.Int64, $fixnum.Int64>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapFixed64Fixed64', entryClassName: 'TestMap.MapFixed64Fixed64Entry', keyFieldType: $pb.PbFieldType.OF6, valueFieldType: $pb.PbFieldType.OF6, packageName: const $pb.PackageName('protobuf_unittest'))
@@ -37,8 +62,7 @@ class TestMap extends $pb.GeneratedMessage {
     ..m<$core.int, $8.ForeignMessage>(17, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32ForeignMessage', entryClassName: 'TestMap.MapInt32ForeignMessageEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OM, valueCreator: $8.ForeignMessage.create, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$core.String, $8.ForeignMessage>(18, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapStringForeignMessage', entryClassName: 'TestMap.MapStringForeignMessageEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OM, valueCreator: $8.ForeignMessage.create, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$core.int, $8.TestAllTypes>(19, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32AllTypes', entryClassName: 'TestMap.MapInt32AllTypesEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OM, valueCreator: $8.TestAllTypes.create, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
   TestMap._() : super();
   factory TestMap({
@@ -122,25 +146,30 @@ class TestMap extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestMap.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestMap.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory TestMap.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestMap.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   TestMap clone() => TestMap()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestMap copyWith(void Function(TestMap) updates) => super.copyWith((message) => updates(message as TestMap)) as TestMap; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestMap copyWith(void Function(TestMap) updates) =>
+      super.copyWith((message) => updates(message as TestMap))
+          as TestMap; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestMap create() => TestMap._();
   TestMap createEmptyInstance() => create();
   static $pb.PbList<TestMap> createRepeated() => $pb.PbList<TestMap>();
   @$core.pragma('dart2js:noInline')
-  static TestMap getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestMap>(create);
+  static TestMap getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestMap>(create);
   static TestMap? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -171,7 +200,8 @@ class TestMap extends $pb.GeneratedMessage {
   $core.Map<$core.int, $core.int> get mapSfixed32Sfixed32 => $_getMap(8);
 
   @$pb.TagNumber(10)
-  $core.Map<$fixnum.Int64, $fixnum.Int64> get mapSfixed64Sfixed64 => $_getMap(9);
+  $core.Map<$fixnum.Int64, $fixnum.Int64> get mapSfixed64Sfixed64 =>
+      $_getMap(9);
 
   @$pb.TagNumber(11)
   $core.Map<$core.int, $core.double> get mapInt32Float => $_getMap(10);
@@ -192,20 +222,34 @@ class TestMap extends $pb.GeneratedMessage {
   $core.Map<$core.int, MapEnum> get mapInt32Enum => $_getMap(15);
 
   @$pb.TagNumber(17)
-  $core.Map<$core.int, $8.ForeignMessage> get mapInt32ForeignMessage => $_getMap(16);
+  $core.Map<$core.int, $8.ForeignMessage> get mapInt32ForeignMessage =>
+      $_getMap(16);
 
   @$pb.TagNumber(18)
-  $core.Map<$core.String, $8.ForeignMessage> get mapStringForeignMessage => $_getMap(17);
+  $core.Map<$core.String, $8.ForeignMessage> get mapStringForeignMessage =>
+      $_getMap(17);
 
   @$pb.TagNumber(19)
   $core.Map<$core.int, $8.TestAllTypes> get mapInt32AllTypes => $_getMap(18);
 }
 
 class TestMapSubmessage extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestMapSubmessage', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..aOM<TestMap>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'testMap', subBuilder: TestMap.create)
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestMapSubmessage',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..aOM<TestMap>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'testMap',
+        subBuilder: TestMap.create)
+    ..hasRequiredFields = false;
 
   TestMapSubmessage._() : super();
   factory TestMapSubmessage({
@@ -217,31 +261,40 @@ class TestMapSubmessage extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestMapSubmessage.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestMapSubmessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory TestMapSubmessage.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestMapSubmessage.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   TestMapSubmessage clone() => TestMapSubmessage()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestMapSubmessage copyWith(void Function(TestMapSubmessage) updates) => super.copyWith((message) => updates(message as TestMapSubmessage)) as TestMapSubmessage; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestMapSubmessage copyWith(void Function(TestMapSubmessage) updates) =>
+      super.copyWith((message) => updates(message as TestMapSubmessage))
+          as TestMapSubmessage; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestMapSubmessage create() => TestMapSubmessage._();
   TestMapSubmessage createEmptyInstance() => create();
-  static $pb.PbList<TestMapSubmessage> createRepeated() => $pb.PbList<TestMapSubmessage>();
+  static $pb.PbList<TestMapSubmessage> createRepeated() =>
+      $pb.PbList<TestMapSubmessage>();
   @$core.pragma('dart2js:noInline')
-  static TestMapSubmessage getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestMapSubmessage>(create);
+  static TestMapSubmessage getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestMapSubmessage>(create);
   static TestMapSubmessage? _defaultInstance;
 
   @$pb.TagNumber(1)
   TestMap get testMap => $_getN(0);
   @$pb.TagNumber(1)
-  set testMap(TestMap v) { setField(1, v); }
+  set testMap(TestMap v) {
+    setField(1, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasTestMap() => $_has(0);
   @$pb.TagNumber(1)
@@ -251,10 +304,26 @@ class TestMapSubmessage extends $pb.GeneratedMessage {
 }
 
 class TestMessageMap extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestMessageMap', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.int, $8.TestAllTypes>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Message', entryClassName: 'TestMessageMap.MapInt32MessageEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OM, valueCreator: $8.TestAllTypes.create, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestMessageMap',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.int, $8.TestAllTypes>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'mapInt32Message',
+        entryClassName: 'TestMessageMap.MapInt32MessageEntry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.OM,
+        valueCreator: $8.TestAllTypes.create,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..hasRequiredFields = false;
 
   TestMessageMap._() : super();
   factory TestMessageMap({
@@ -266,25 +335,31 @@ class TestMessageMap extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestMessageMap.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestMessageMap.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory TestMessageMap.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestMessageMap.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   TestMessageMap clone() => TestMessageMap()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestMessageMap copyWith(void Function(TestMessageMap) updates) => super.copyWith((message) => updates(message as TestMessageMap)) as TestMessageMap; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestMessageMap copyWith(void Function(TestMessageMap) updates) =>
+      super.copyWith((message) => updates(message as TestMessageMap))
+          as TestMessageMap; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestMessageMap create() => TestMessageMap._();
   TestMessageMap createEmptyInstance() => create();
-  static $pb.PbList<TestMessageMap> createRepeated() => $pb.PbList<TestMessageMap>();
+  static $pb.PbList<TestMessageMap> createRepeated() =>
+      $pb.PbList<TestMessageMap>();
   @$core.pragma('dart2js:noInline')
-  static TestMessageMap getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestMessageMap>(create);
+  static TestMessageMap getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestMessageMap>(create);
   static TestMessageMap? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -292,11 +367,28 @@ class TestMessageMap extends $pb.GeneratedMessage {
 }
 
 class TestSameTypeMap extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestSameTypeMap', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.int, $core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'map1', entryClassName: 'TestSameTypeMap.Map1Entry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.O3, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$core.int, $core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'map2', entryClassName: 'TestSameTypeMap.Map2Entry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.O3, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestSameTypeMap',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.int, $core.int>(
+        1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'map1',
+        entryClassName: 'TestSameTypeMap.Map1Entry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.O3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$core.int, $core.int>(2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'map2',
+        entryClassName: 'TestSameTypeMap.Map2Entry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.O3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..hasRequiredFields = false;
 
   TestSameTypeMap._() : super();
   factory TestSameTypeMap({
@@ -312,25 +404,31 @@ class TestSameTypeMap extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestSameTypeMap.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestSameTypeMap.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory TestSameTypeMap.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestSameTypeMap.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   TestSameTypeMap clone() => TestSameTypeMap()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestSameTypeMap copyWith(void Function(TestSameTypeMap) updates) => super.copyWith((message) => updates(message as TestSameTypeMap)) as TestSameTypeMap; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestSameTypeMap copyWith(void Function(TestSameTypeMap) updates) =>
+      super.copyWith((message) => updates(message as TestSameTypeMap))
+          as TestSameTypeMap; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestSameTypeMap create() => TestSameTypeMap._();
   TestSameTypeMap createEmptyInstance() => create();
-  static $pb.PbList<TestSameTypeMap> createRepeated() => $pb.PbList<TestSameTypeMap>();
+  static $pb.PbList<TestSameTypeMap> createRepeated() =>
+      $pb.PbList<TestSameTypeMap>();
   @$core.pragma('dart2js:noInline')
-  static TestSameTypeMap getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestSameTypeMap>(create);
+  static TestSameTypeMap getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestSameTypeMap>(create);
   static TestSameTypeMap? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -341,9 +439,25 @@ class TestSameTypeMap extends $pb.GeneratedMessage {
 }
 
 class TestRequiredMessageMap extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestRequiredMessageMap', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.int, $8.TestRequired>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapField', entryClassName: 'TestRequiredMessageMap.MapFieldEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OM, valueCreator: $8.TestRequired.create, packageName: const $pb.PackageName('protobuf_unittest'))
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestRequiredMessageMap',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.int, $8.TestRequired>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'mapField',
+        entryClassName: 'TestRequiredMessageMap.MapFieldEntry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.OM,
+        valueCreator: $8.TestRequired.create,
+        packageName: const $pb.PackageName('protobuf_unittest'));
 
   TestRequiredMessageMap._() : super();
   factory TestRequiredMessageMap({
@@ -355,25 +469,33 @@ class TestRequiredMessageMap extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestRequiredMessageMap.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestRequiredMessageMap.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  TestRequiredMessageMap clone() => TestRequiredMessageMap()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestRequiredMessageMap copyWith(void Function(TestRequiredMessageMap) updates) => super.copyWith((message) => updates(message as TestRequiredMessageMap)) as TestRequiredMessageMap; // ignore: deprecated_member_use
+  factory TestRequiredMessageMap.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestRequiredMessageMap.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  TestRequiredMessageMap clone() =>
+      TestRequiredMessageMap()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestRequiredMessageMap copyWith(
+          void Function(TestRequiredMessageMap) updates) =>
+      super.copyWith((message) => updates(message as TestRequiredMessageMap))
+          as TestRequiredMessageMap; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestRequiredMessageMap create() => TestRequiredMessageMap._();
   TestRequiredMessageMap createEmptyInstance() => create();
-  static $pb.PbList<TestRequiredMessageMap> createRepeated() => $pb.PbList<TestRequiredMessageMap>();
+  static $pb.PbList<TestRequiredMessageMap> createRepeated() =>
+      $pb.PbList<TestRequiredMessageMap>();
   @$core.pragma('dart2js:noInline')
-  static TestRequiredMessageMap getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestRequiredMessageMap>(create);
+  static TestRequiredMessageMap getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestRequiredMessageMap>(create);
   static TestRequiredMessageMap? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -381,12 +503,37 @@ class TestRequiredMessageMap extends $pb.GeneratedMessage {
 }
 
 class TestArenaMap extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestArenaMap', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.int, $core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Int32', entryClassName: 'TestArenaMap.MapInt32Int32Entry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.O3, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$fixnum.Int64, $fixnum.Int64>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt64Int64', entryClassName: 'TestArenaMap.MapInt64Int64Entry', keyFieldType: $pb.PbFieldType.O6, valueFieldType: $pb.PbFieldType.O6, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$core.int, $core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint32Uint32', entryClassName: 'TestArenaMap.MapUint32Uint32Entry', keyFieldType: $pb.PbFieldType.OU3, valueFieldType: $pb.PbFieldType.OU3, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$fixnum.Int64, $fixnum.Int64>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint64Uint64', entryClassName: 'TestArenaMap.MapUint64Uint64Entry', keyFieldType: $pb.PbFieldType.OU6, valueFieldType: $pb.PbFieldType.OU6, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$core.int, $core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapSint32Sint32', entryClassName: 'TestArenaMap.MapSint32Sint32Entry', keyFieldType: $pb.PbFieldType.OS3, valueFieldType: $pb.PbFieldType.OS3, packageName: const $pb.PackageName('protobuf_unittest'))
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestArenaMap',
+      package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.int, $core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Int32',
+        entryClassName: 'TestArenaMap.MapInt32Int32Entry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.O3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$fixnum.Int64, $fixnum.Int64>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt64Int64',
+        entryClassName: 'TestArenaMap.MapInt64Int64Entry',
+        keyFieldType: $pb.PbFieldType.O6,
+        valueFieldType: $pb.PbFieldType.O6,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$core.int, $core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint32Uint32',
+        entryClassName: 'TestArenaMap.MapUint32Uint32Entry',
+        keyFieldType: $pb.PbFieldType.OU3,
+        valueFieldType: $pb.PbFieldType.OU3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$fixnum.Int64, $fixnum.Int64>(
+        4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint64Uint64',
+        entryClassName: 'TestArenaMap.MapUint64Uint64Entry',
+        keyFieldType: $pb.PbFieldType.OU6,
+        valueFieldType: $pb.PbFieldType.OU6,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$core.int, $core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapSint32Sint32',
+        entryClassName: 'TestArenaMap.MapSint32Sint32Entry',
+        keyFieldType: $pb.PbFieldType.OS3,
+        valueFieldType: $pb.PbFieldType.OS3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$fixnum.Int64, $fixnum.Int64>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapSint64Sint64', entryClassName: 'TestArenaMap.MapSint64Sint64Entry', keyFieldType: $pb.PbFieldType.OS6, valueFieldType: $pb.PbFieldType.OS6, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$core.int, $core.int>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapFixed32Fixed32', entryClassName: 'TestArenaMap.MapFixed32Fixed32Entry', keyFieldType: $pb.PbFieldType.OF3, valueFieldType: $pb.PbFieldType.OF3, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$fixnum.Int64, $fixnum.Int64>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapFixed64Fixed64', entryClassName: 'TestArenaMap.MapFixed64Fixed64Entry', keyFieldType: $pb.PbFieldType.OF6, valueFieldType: $pb.PbFieldType.OF6, packageName: const $pb.PackageName('protobuf_unittest'))
@@ -399,8 +546,7 @@ class TestArenaMap extends $pb.GeneratedMessage {
     ..m<$core.int, $core.List<$core.int>>(15, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Bytes', entryClassName: 'TestArenaMap.MapInt32BytesEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OY, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$core.int, MapEnum>(16, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Enum', entryClassName: 'TestArenaMap.MapInt32EnumEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OE, valueOf: MapEnum.valueOf, enumValues: MapEnum.values, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$core.int, $8.ForeignMessage>(17, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32ForeignMessage', entryClassName: 'TestArenaMap.MapInt32ForeignMessageEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OM, valueCreator: $8.ForeignMessage.create, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
   TestArenaMap._() : super();
   factory TestArenaMap({
@@ -476,25 +622,31 @@ class TestArenaMap extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestArenaMap.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestArenaMap.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory TestArenaMap.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestArenaMap.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   TestArenaMap clone() => TestArenaMap()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestArenaMap copyWith(void Function(TestArenaMap) updates) => super.copyWith((message) => updates(message as TestArenaMap)) as TestArenaMap; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestArenaMap copyWith(void Function(TestArenaMap) updates) =>
+      super.copyWith((message) => updates(message as TestArenaMap))
+          as TestArenaMap; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestArenaMap create() => TestArenaMap._();
   TestArenaMap createEmptyInstance() => create();
-  static $pb.PbList<TestArenaMap> createRepeated() => $pb.PbList<TestArenaMap>();
+  static $pb.PbList<TestArenaMap> createRepeated() =>
+      $pb.PbList<TestArenaMap>();
   @$core.pragma('dart2js:noInline')
-  static TestArenaMap getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestArenaMap>(create);
+  static TestArenaMap getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestArenaMap>(create);
   static TestArenaMap? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -525,7 +677,8 @@ class TestArenaMap extends $pb.GeneratedMessage {
   $core.Map<$core.int, $core.int> get mapSfixed32Sfixed32 => $_getMap(8);
 
   @$pb.TagNumber(10)
-  $core.Map<$fixnum.Int64, $fixnum.Int64> get mapSfixed64Sfixed64 => $_getMap(9);
+  $core.Map<$fixnum.Int64, $fixnum.Int64> get mapSfixed64Sfixed64 =>
+      $_getMap(9);
 
   @$pb.TagNumber(11)
   $core.Map<$core.int, $core.double> get mapInt32Float => $_getMap(10);
@@ -546,14 +699,31 @@ class TestArenaMap extends $pb.GeneratedMessage {
   $core.Map<$core.int, MapEnum> get mapInt32Enum => $_getMap(15);
 
   @$pb.TagNumber(17)
-  $core.Map<$core.int, $8.ForeignMessage> get mapInt32ForeignMessage => $_getMap(16);
+  $core.Map<$core.int, $8.ForeignMessage> get mapInt32ForeignMessage =>
+      $_getMap(16);
 }
 
 class MessageContainingEnumCalledType extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'MessageContainingEnumCalledType', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.String, MessageContainingEnumCalledType>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'type', entryClassName: 'MessageContainingEnumCalledType.TypeEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OM, valueCreator: MessageContainingEnumCalledType.create, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'MessageContainingEnumCalledType',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.String, MessageContainingEnumCalledType>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'type',
+        entryClassName: 'MessageContainingEnumCalledType.TypeEntry',
+        keyFieldType: $pb.PbFieldType.OS,
+        valueFieldType: $pb.PbFieldType.OM,
+        valueCreator: MessageContainingEnumCalledType.create,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..hasRequiredFields = false;
 
   MessageContainingEnumCalledType._() : super();
   factory MessageContainingEnumCalledType({
@@ -565,36 +735,63 @@ class MessageContainingEnumCalledType extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory MessageContainingEnumCalledType.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory MessageContainingEnumCalledType.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  MessageContainingEnumCalledType clone() => MessageContainingEnumCalledType()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  MessageContainingEnumCalledType copyWith(void Function(MessageContainingEnumCalledType) updates) => super.copyWith((message) => updates(message as MessageContainingEnumCalledType)) as MessageContainingEnumCalledType; // ignore: deprecated_member_use
+  factory MessageContainingEnumCalledType.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory MessageContainingEnumCalledType.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  MessageContainingEnumCalledType clone() =>
+      MessageContainingEnumCalledType()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  MessageContainingEnumCalledType copyWith(
+          void Function(MessageContainingEnumCalledType) updates) =>
+      super.copyWith(
+              (message) => updates(message as MessageContainingEnumCalledType))
+          as MessageContainingEnumCalledType; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static MessageContainingEnumCalledType create() => MessageContainingEnumCalledType._();
+  static MessageContainingEnumCalledType create() =>
+      MessageContainingEnumCalledType._();
   MessageContainingEnumCalledType createEmptyInstance() => create();
-  static $pb.PbList<MessageContainingEnumCalledType> createRepeated() => $pb.PbList<MessageContainingEnumCalledType>();
+  static $pb.PbList<MessageContainingEnumCalledType> createRepeated() =>
+      $pb.PbList<MessageContainingEnumCalledType>();
   @$core.pragma('dart2js:noInline')
-  static MessageContainingEnumCalledType getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MessageContainingEnumCalledType>(create);
+  static MessageContainingEnumCalledType getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<MessageContainingEnumCalledType>(
+          create);
   static MessageContainingEnumCalledType? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.Map<$core.String, MessageContainingEnumCalledType> get type => $_getMap(0);
+  $core.Map<$core.String, MessageContainingEnumCalledType> get type =>
+      $_getMap(0);
 }
 
 class MessageContainingMapCalledEntry extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'MessageContainingMapCalledEntry', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.int, $core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'entry', entryClassName: 'MessageContainingMapCalledEntry.EntryEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.O3, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'MessageContainingMapCalledEntry',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.int, $core.int>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'entry',
+        entryClassName: 'MessageContainingMapCalledEntry.EntryEntry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.O3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..hasRequiredFields = false;
 
   MessageContainingMapCalledEntry._() : super();
   factory MessageContainingMapCalledEntry({
@@ -606,25 +803,36 @@ class MessageContainingMapCalledEntry extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory MessageContainingMapCalledEntry.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory MessageContainingMapCalledEntry.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  MessageContainingMapCalledEntry clone() => MessageContainingMapCalledEntry()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  MessageContainingMapCalledEntry copyWith(void Function(MessageContainingMapCalledEntry) updates) => super.copyWith((message) => updates(message as MessageContainingMapCalledEntry)) as MessageContainingMapCalledEntry; // ignore: deprecated_member_use
+  factory MessageContainingMapCalledEntry.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory MessageContainingMapCalledEntry.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  MessageContainingMapCalledEntry clone() =>
+      MessageContainingMapCalledEntry()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  MessageContainingMapCalledEntry copyWith(
+          void Function(MessageContainingMapCalledEntry) updates) =>
+      super.copyWith(
+              (message) => updates(message as MessageContainingMapCalledEntry))
+          as MessageContainingMapCalledEntry; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static MessageContainingMapCalledEntry create() => MessageContainingMapCalledEntry._();
+  static MessageContainingMapCalledEntry create() =>
+      MessageContainingMapCalledEntry._();
   MessageContainingMapCalledEntry createEmptyInstance() => create();
-  static $pb.PbList<MessageContainingMapCalledEntry> createRepeated() => $pb.PbList<MessageContainingMapCalledEntry>();
+  static $pb.PbList<MessageContainingMapCalledEntry> createRepeated() =>
+      $pb.PbList<MessageContainingMapCalledEntry>();
   @$core.pragma('dart2js:noInline')
-  static MessageContainingMapCalledEntry getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MessageContainingMapCalledEntry>(create);
+  static MessageContainingMapCalledEntry getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<MessageContainingMapCalledEntry>(
+          create);
   static MessageContainingMapCalledEntry? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -632,10 +840,26 @@ class MessageContainingMapCalledEntry extends $pb.GeneratedMessage {
 }
 
 class TestRecursiveMapMessage extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestRecursiveMapMessage', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.String, TestRecursiveMapMessage>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'a', entryClassName: 'TestRecursiveMapMessage.AEntry', keyFieldType: $pb.PbFieldType.OS, valueFieldType: $pb.PbFieldType.OM, valueCreator: TestRecursiveMapMessage.create, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestRecursiveMapMessage',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.String, TestRecursiveMapMessage>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'a',
+        entryClassName: 'TestRecursiveMapMessage.AEntry',
+        keyFieldType: $pb.PbFieldType.OS,
+        valueFieldType: $pb.PbFieldType.OM,
+        valueCreator: TestRecursiveMapMessage.create,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..hasRequiredFields = false;
 
   TestRecursiveMapMessage._() : super();
   factory TestRecursiveMapMessage({
@@ -647,28 +871,35 @@ class TestRecursiveMapMessage extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestRecursiveMapMessage.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestRecursiveMapMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  TestRecursiveMapMessage clone() => TestRecursiveMapMessage()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestRecursiveMapMessage copyWith(void Function(TestRecursiveMapMessage) updates) => super.copyWith((message) => updates(message as TestRecursiveMapMessage)) as TestRecursiveMapMessage; // ignore: deprecated_member_use
+  factory TestRecursiveMapMessage.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestRecursiveMapMessage.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  TestRecursiveMapMessage clone() =>
+      TestRecursiveMapMessage()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestRecursiveMapMessage copyWith(
+          void Function(TestRecursiveMapMessage) updates) =>
+      super.copyWith((message) => updates(message as TestRecursiveMapMessage))
+          as TestRecursiveMapMessage; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestRecursiveMapMessage create() => TestRecursiveMapMessage._();
   TestRecursiveMapMessage createEmptyInstance() => create();
-  static $pb.PbList<TestRecursiveMapMessage> createRepeated() => $pb.PbList<TestRecursiveMapMessage>();
+  static $pb.PbList<TestRecursiveMapMessage> createRepeated() =>
+      $pb.PbList<TestRecursiveMapMessage>();
   @$core.pragma('dart2js:noInline')
-  static TestRecursiveMapMessage getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestRecursiveMapMessage>(create);
+  static TestRecursiveMapMessage getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestRecursiveMapMessage>(create);
   static TestRecursiveMapMessage? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.Map<$core.String, TestRecursiveMapMessage> get a => $_getMap(0);
 }
-

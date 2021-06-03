@@ -8,4 +8,3 @@
 import 'dart:core' as $core;
 
 export 'unittest_lazy_dependencies_enum.pbenum.dart';
-

@@ -8,14 +8,31 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use testEmbedOptimizedForSizeDescriptor instead')
 const TestEmbedOptimizedForSize$json = const {
   '1': 'TestEmbedOptimizedForSize',
   '2': const [
-    const {'1': 'optional_message', '3': 1, '4': 1, '5': 11, '6': '.protobuf_unittest.TestOptimizedForSize', '10': 'optionalMessage'},
-    const {'1': 'repeated_message', '3': 2, '4': 3, '5': 11, '6': '.protobuf_unittest.TestOptimizedForSize', '10': 'repeatedMessage'},
+    const {
+      '1': 'optional_message',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.protobuf_unittest.TestOptimizedForSize',
+      '10': 'optionalMessage'
+    },
+    const {
+      '1': 'repeated_message',
+      '3': 2,
+      '4': 3,
+      '5': 11,
+      '6': '.protobuf_unittest.TestOptimizedForSize',
+      '10': 'repeatedMessage'
+    },
   ],
 };
 
 /// Descriptor for `TestEmbedOptimizedForSize`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List testEmbedOptimizedForSizeDescriptor = $convert.base64Decode('ChlUZXN0RW1iZWRPcHRpbWl6ZWRGb3JTaXplElIKEG9wdGlvbmFsX21lc3NhZ2UYASABKAsyJy5wcm90b2J1Zl91bml0dGVzdC5UZXN0T3B0aW1pemVkRm9yU2l6ZVIPb3B0aW9uYWxNZXNzYWdlElIKEHJlcGVhdGVkX21lc3NhZ2UYAiADKAsyJy5wcm90b2J1Zl91bml0dGVzdC5UZXN0T3B0aW1pemVkRm9yU2l6ZVIPcmVwZWF0ZWRNZXNzYWdl');
+final $typed_data.Uint8List testEmbedOptimizedForSizeDescriptor =
+    $convert.base64Decode(
+        'ChlUZXN0RW1iZWRPcHRpbWl6ZWRGb3JTaXplElIKEG9wdGlvbmFsX21lc3NhZ2UYASABKAsyJy5wcm90b2J1Zl91bml0dGVzdC5UZXN0T3B0aW1pemVkRm9yU2l6ZVIPb3B0aW9uYWxNZXNzYWdlElIKEHJlcGVhdGVkX21lc3NhZ2UYAiADKAsyJy5wcm90b2J1Zl91bml0dGVzdC5UZXN0T3B0aW1pemVkRm9yU2l6ZVIPcmVwZWF0ZWRNZXNzYWdl');

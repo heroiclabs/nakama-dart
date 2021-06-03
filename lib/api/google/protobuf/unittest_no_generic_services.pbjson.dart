@@ -8,6 +8,7 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use testEnumDescriptor instead')
 const TestEnum$json = const {
   '1': 'TestEnum',
@@ -17,7 +18,8 @@ const TestEnum$json = const {
 };
 
 /// Descriptor for `TestEnum`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List testEnumDescriptor = $convert.base64Decode('CghUZXN0RW51bRIHCgNGT08QAQ==');
+final $typed_data.Uint8List testEnumDescriptor =
+    $convert.base64Decode('CghUZXN0RW51bRIHCgNGT08QAQ==');
 @$core.Deprecated('Use testMessageDescriptor instead')
 const TestMessage$json = const {
   '1': 'TestMessage',
@@ -30,18 +32,25 @@ const TestMessage$json = const {
 };
 
 /// Descriptor for `TestMessage`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List testMessageDescriptor = $convert.base64Decode('CgtUZXN0TWVzc2FnZRIMCgFhGAEgASgFUgFhKgkI6AcQgICAgAI=');
+final $typed_data.Uint8List testMessageDescriptor = $convert
+    .base64Decode('CgtUZXN0TWVzc2FnZRIMCgFhGAEgASgFUgFhKgkI6AcQgICAgAI=');
 const $core.Map<$core.String, $core.dynamic> TestServiceBase$json = const {
   '1': 'TestService',
   '2': const [
-    const {'1': 'Foo', '2': '.protobuf_unittest.no_generic_services_test.TestMessage', '3': '.protobuf_unittest.no_generic_services_test.TestMessage'},
+    const {
+      '1': 'Foo',
+      '2': '.protobuf_unittest.no_generic_services_test.TestMessage',
+      '3': '.protobuf_unittest.no_generic_services_test.TestMessage'
+    },
   ],
 };
 
 @$core.Deprecated('Use testServiceDescriptor instead')
-const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> TestServiceBase$messageJson = const {
+const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>>
+    TestServiceBase$messageJson = const {
   '.protobuf_unittest.no_generic_services_test.TestMessage': TestMessage$json,
 };
 
 /// Descriptor for `TestService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
-final $typed_data.Uint8List testServiceDescriptor = $convert.base64Decode('CgtUZXN0U2VydmljZRJ3CgNGb28SNy5wcm90b2J1Zl91bml0dGVzdC5ub19nZW5lcmljX3NlcnZpY2VzX3Rlc3QuVGVzdE1lc3NhZ2UaNy5wcm90b2J1Zl91bml0dGVzdC5ub19nZW5lcmljX3NlcnZpY2VzX3Rlc3QuVGVzdE1lc3NhZ2U=');
+final $typed_data.Uint8List testServiceDescriptor = $convert.base64Decode(
+    'CgtUZXN0U2VydmljZRJ3CgNGb28SNy5wcm90b2J1Zl91bml0dGVzdC5ub19nZW5lcmljX3NlcnZpY2VzX3Rlc3QuVGVzdE1lc3NhZ2UaNy5wcm90b2J1Zl91bml0dGVzdC5ub19nZW5lcmljX3NlcnZpY2VzX3Rlc3QuVGVzdE1lc3NhZ2U=');

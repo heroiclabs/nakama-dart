@@ -10,19 +10,31 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class MyEnum extends $pb.ProtobufEnum {
-  static const MyEnum FOO = MyEnum._(0, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'FOO');
-  static const MyEnum BAR = MyEnum._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'BAR');
-  static const MyEnum BAZ = MyEnum._(2, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'BAZ');
+  static const MyEnum FOO = MyEnum._(
+      0,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'FOO');
+  static const MyEnum BAR = MyEnum._(
+      1,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'BAR');
+  static const MyEnum BAZ = MyEnum._(
+      2,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'BAZ');
 
-  static const $core.List<MyEnum> values = <MyEnum> [
+  static const $core.List<MyEnum> values = <MyEnum>[
     FOO,
     BAR,
     BAZ,
   ];
 
-  static final $core.Map<$core.int, MyEnum> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, MyEnum> _byValue =
+      $pb.ProtobufEnum.initByValue(values);
   static MyEnum? valueOf($core.int value) => _byValue[value];
 
   const MyEnum._($core.int v, $core.String n) : super(v, n);
 }
-

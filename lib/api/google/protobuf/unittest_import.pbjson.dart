@@ -8,6 +8,7 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use importEnumDescriptor instead')
 const ImportEnum$json = const {
   '1': 'ImportEnum',
@@ -19,7 +20,8 @@ const ImportEnum$json = const {
 };
 
 /// Descriptor for `ImportEnum`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List importEnumDescriptor = $convert.base64Decode('CgpJbXBvcnRFbnVtEg4KCklNUE9SVF9GT08QBxIOCgpJTVBPUlRfQkFSEAgSDgoKSU1QT1JUX0JBWhAJ');
+final $typed_data.Uint8List importEnumDescriptor = $convert.base64Decode(
+    'CgpJbXBvcnRFbnVtEg4KCklNUE9SVF9GT08QBxIOCgpJTVBPUlRfQkFSEAgSDgoKSU1QT1JUX0JBWhAJ');
 @$core.Deprecated('Use importEnumForMapDescriptor instead')
 const ImportEnumForMap$json = const {
   '1': 'ImportEnumForMap',
@@ -31,7 +33,8 @@ const ImportEnumForMap$json = const {
 };
 
 /// Descriptor for `ImportEnumForMap`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List importEnumForMapDescriptor = $convert.base64Decode('ChBJbXBvcnRFbnVtRm9yTWFwEgsKB1VOS05PV04QABIHCgNGT08QARIHCgNCQVIQAg==');
+final $typed_data.Uint8List importEnumForMapDescriptor = $convert.base64Decode(
+    'ChBJbXBvcnRFbnVtRm9yTWFwEgsKB1VOS05PV04QABIHCgNGT08QARIHCgNCQVIQAg==');
 @$core.Deprecated('Use importMessageDescriptor instead')
 const ImportMessage$json = const {
   '1': 'ImportMessage',
@@ -41,4 +44,5 @@ const ImportMessage$json = const {
 };
 
 /// Descriptor for `ImportMessage`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List importMessageDescriptor = $convert.base64Decode('Cg1JbXBvcnRNZXNzYWdlEgwKAWQYASABKAVSAWQ=');
+final $typed_data.Uint8List importMessageDescriptor =
+    $convert.base64Decode('Cg1JbXBvcnRNZXNzYWdlEgwKAWQYASABKAVSAWQ=');

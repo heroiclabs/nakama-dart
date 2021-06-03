@@ -16,26 +16,35 @@ import 'unittest.pbjson.dart';
 export 'unittest.pb.dart';
 
 abstract class TestServiceBase extends $pb.GeneratedService {
-  $async.Future<$8.FooResponse> foo($pb.ServerContext ctx, $8.FooRequest request);
-  $async.Future<$8.BarResponse> bar($pb.ServerContext ctx, $8.BarRequest request);
+  $async.Future<$8.FooResponse> foo(
+      $pb.ServerContext ctx, $8.FooRequest request);
+  $async.Future<$8.BarResponse> bar(
+      $pb.ServerContext ctx, $8.BarRequest request);
 
   $pb.GeneratedMessage createRequest($core.String method) {
     switch (method) {
-      case 'Foo': return $8.FooRequest();
-      case 'Bar': return $8.BarRequest();
-      default: throw $core.ArgumentError('Unknown method: $method');
+      case 'Foo':
+        return $8.FooRequest();
+      case 'Bar':
+        return $8.BarRequest();
+      default:
+        throw $core.ArgumentError('Unknown method: $method');
     }
   }
 
-  $async.Future<$pb.GeneratedMessage> handleCall($pb.ServerContext ctx, $core.String method, $pb.GeneratedMessage request) {
+  $async.Future<$pb.GeneratedMessage> handleCall($pb.ServerContext ctx,
+      $core.String method, $pb.GeneratedMessage request) {
     switch (method) {
-      case 'Foo': return this.foo(ctx, request as $8.FooRequest);
-      case 'Bar': return this.bar(ctx, request as $8.BarRequest);
-      default: throw $core.ArgumentError('Unknown method: $method');
+      case 'Foo':
+        return this.foo(ctx, request as $8.FooRequest);
+      case 'Bar':
+        return this.bar(ctx, request as $8.BarRequest);
+      default:
+        throw $core.ArgumentError('Unknown method: $method');
     }
   }
 
   $core.Map<$core.String, $core.dynamic> get $json => TestServiceBase$json;
-  $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> get $messageJson => TestServiceBase$messageJson;
+  $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>>
+      get $messageJson => TestServiceBase$messageJson;
 }
-

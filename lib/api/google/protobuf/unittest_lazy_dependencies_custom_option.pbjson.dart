@@ -8,6 +8,7 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use lazyMessageDescriptor instead')
 const LazyMessage$json = const {
   '1': 'LazyMessage',
@@ -17,4 +18,5 @@ const LazyMessage$json = const {
 };
 
 /// Descriptor for `LazyMessage`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List lazyMessageDescriptor = $convert.base64Decode('CgtMYXp5TWVzc2FnZRIMCgFhGAEgASgFUgFh');
+final $typed_data.Uint8List lazyMessageDescriptor =
+    $convert.base64Decode('CgtMYXp5TWVzc2FnZRIMCgFhGAEgASgFUgFh');

@@ -8,6 +8,7 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use importEnumLiteDescriptor instead')
 const ImportEnumLite$json = const {
   '1': 'ImportEnumLite',
@@ -19,7 +20,8 @@ const ImportEnumLite$json = const {
 };
 
 /// Descriptor for `ImportEnumLite`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List importEnumLiteDescriptor = $convert.base64Decode('Cg5JbXBvcnRFbnVtTGl0ZRITCg9JTVBPUlRfTElURV9GT08QBxITCg9JTVBPUlRfTElURV9CQVIQCBITCg9JTVBPUlRfTElURV9CQVoQCQ==');
+final $typed_data.Uint8List importEnumLiteDescriptor = $convert.base64Decode(
+    'Cg5JbXBvcnRFbnVtTGl0ZRITCg9JTVBPUlRfTElURV9GT08QBxITCg9JTVBPUlRfTElURV9CQVIQCBITCg9JTVBPUlRfTElURV9CQVoQCQ==');
 @$core.Deprecated('Use importMessageLiteDescriptor instead')
 const ImportMessageLite$json = const {
   '1': 'ImportMessageLite',
@@ -29,4 +31,5 @@ const ImportMessageLite$json = const {
 };
 
 /// Descriptor for `ImportMessageLite`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List importMessageLiteDescriptor = $convert.base64Decode('ChFJbXBvcnRNZXNzYWdlTGl0ZRIMCgFkGAEgASgFUgFk');
+final $typed_data.Uint8List importMessageLiteDescriptor =
+    $convert.base64Decode('ChFJbXBvcnRNZXNzYWdlTGl0ZRIMCgFkGAEgASgFUgFk');

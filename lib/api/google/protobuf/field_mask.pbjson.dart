@@ -8,6 +8,7 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use fieldMaskDescriptor instead')
 const FieldMask$json = const {
   '1': 'FieldMask',
@@ -17,4 +18,5 @@ const FieldMask$json = const {
 };
 
 /// Descriptor for `FieldMask`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List fieldMaskDescriptor = $convert.base64Decode('CglGaWVsZE1hc2sSFAoFcGF0aHMYASADKAlSBXBhdGhz');
+final $typed_data.Uint8List fieldMaskDescriptor =
+    $convert.base64Decode('CglGaWVsZE1hc2sSFAoFcGF0aHMYASADKAlSBXBhdGhz');

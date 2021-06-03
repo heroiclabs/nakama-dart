@@ -10,15 +10,19 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class TestEnum extends $pb.ProtobufEnum {
-  static const TestEnum FOO = TestEnum._(1, const $core.bool.fromEnvironment('protobuf.omit_enum_names') ? '' : 'FOO');
+  static const TestEnum FOO = TestEnum._(
+      1,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'FOO');
 
-  static const $core.List<TestEnum> values = <TestEnum> [
+  static const $core.List<TestEnum> values = <TestEnum>[
     FOO,
   ];
 
-  static final $core.Map<$core.int, TestEnum> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static final $core.Map<$core.int, TestEnum> _byValue =
+      $pb.ProtobufEnum.initByValue(values);
   static TestEnum? valueOf($core.int value) => _byValue[value];
 
   const TestEnum._($core.int v, $core.String n) : super(v, n);
 }
-

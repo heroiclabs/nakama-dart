@@ -17,12 +17,37 @@ import 'map_lite_unittest.pbenum.dart';
 export 'map_lite_unittest.pbenum.dart';
 
 class TestMapLite extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestMapLite', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.int, $core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Int32', entryClassName: 'TestMapLite.MapInt32Int32Entry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.O3, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$fixnum.Int64, $fixnum.Int64>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt64Int64', entryClassName: 'TestMapLite.MapInt64Int64Entry', keyFieldType: $pb.PbFieldType.O6, valueFieldType: $pb.PbFieldType.O6, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$core.int, $core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint32Uint32', entryClassName: 'TestMapLite.MapUint32Uint32Entry', keyFieldType: $pb.PbFieldType.OU3, valueFieldType: $pb.PbFieldType.OU3, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$fixnum.Int64, $fixnum.Int64>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint64Uint64', entryClassName: 'TestMapLite.MapUint64Uint64Entry', keyFieldType: $pb.PbFieldType.OU6, valueFieldType: $pb.PbFieldType.OU6, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$core.int, $core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapSint32Sint32', entryClassName: 'TestMapLite.MapSint32Sint32Entry', keyFieldType: $pb.PbFieldType.OS3, valueFieldType: $pb.PbFieldType.OS3, packageName: const $pb.PackageName('protobuf_unittest'))
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestMapLite',
+      package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.int, $core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Int32',
+        entryClassName: 'TestMapLite.MapInt32Int32Entry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.O3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$fixnum.Int64, $fixnum.Int64>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt64Int64',
+        entryClassName: 'TestMapLite.MapInt64Int64Entry',
+        keyFieldType: $pb.PbFieldType.O6,
+        valueFieldType: $pb.PbFieldType.O6,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$core.int, $core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint32Uint32',
+        entryClassName: 'TestMapLite.MapUint32Uint32Entry',
+        keyFieldType: $pb.PbFieldType.OU3,
+        valueFieldType: $pb.PbFieldType.OU3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$fixnum.Int64, $fixnum.Int64>(
+        4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint64Uint64',
+        entryClassName: 'TestMapLite.MapUint64Uint64Entry',
+        keyFieldType: $pb.PbFieldType.OU6,
+        valueFieldType: $pb.PbFieldType.OU6,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$core.int, $core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapSint32Sint32',
+        entryClassName: 'TestMapLite.MapSint32Sint32Entry',
+        keyFieldType: $pb.PbFieldType.OS3,
+        valueFieldType: $pb.PbFieldType.OS3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$fixnum.Int64, $fixnum.Int64>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapSint64Sint64', entryClassName: 'TestMapLite.MapSint64Sint64Entry', keyFieldType: $pb.PbFieldType.OS6, valueFieldType: $pb.PbFieldType.OS6, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$core.int, $core.int>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapFixed32Fixed32', entryClassName: 'TestMapLite.MapFixed32Fixed32Entry', keyFieldType: $pb.PbFieldType.OF3, valueFieldType: $pb.PbFieldType.OF3, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$fixnum.Int64, $fixnum.Int64>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapFixed64Fixed64', entryClassName: 'TestMapLite.MapFixed64Fixed64Entry', keyFieldType: $pb.PbFieldType.OF6, valueFieldType: $pb.PbFieldType.OF6, packageName: const $pb.PackageName('protobuf_unittest'))
@@ -36,8 +61,7 @@ class TestMapLite extends $pb.GeneratedMessage {
     ..m<$core.int, MapEnumLite>(16, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Enum', entryClassName: 'TestMapLite.MapInt32EnumEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OE, valueOf: MapEnumLite.valueOf, enumValues: MapEnumLite.values, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$core.int, $5.ForeignMessageLite>(17, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32ForeignMessage', entryClassName: 'TestMapLite.MapInt32ForeignMessageEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OM, valueCreator: $5.ForeignMessageLite.create, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$core.int, $core.int>(18, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'teboring', entryClassName: 'TestMapLite.TeboringEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.O3, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
   TestMapLite._() : super();
   factory TestMapLite({
@@ -117,25 +141,30 @@ class TestMapLite extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestMapLite.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestMapLite.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory TestMapLite.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestMapLite.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   TestMapLite clone() => TestMapLite()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestMapLite copyWith(void Function(TestMapLite) updates) => super.copyWith((message) => updates(message as TestMapLite)) as TestMapLite; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestMapLite copyWith(void Function(TestMapLite) updates) =>
+      super.copyWith((message) => updates(message as TestMapLite))
+          as TestMapLite; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestMapLite create() => TestMapLite._();
   TestMapLite createEmptyInstance() => create();
   static $pb.PbList<TestMapLite> createRepeated() => $pb.PbList<TestMapLite>();
   @$core.pragma('dart2js:noInline')
-  static TestMapLite getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestMapLite>(create);
+  static TestMapLite getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestMapLite>(create);
   static TestMapLite? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -166,7 +195,8 @@ class TestMapLite extends $pb.GeneratedMessage {
   $core.Map<$core.int, $core.int> get mapSfixed32Sfixed32 => $_getMap(8);
 
   @$pb.TagNumber(10)
-  $core.Map<$fixnum.Int64, $fixnum.Int64> get mapSfixed64Sfixed64 => $_getMap(9);
+  $core.Map<$fixnum.Int64, $fixnum.Int64> get mapSfixed64Sfixed64 =>
+      $_getMap(9);
 
   @$pb.TagNumber(11)
   $core.Map<$core.int, $core.double> get mapInt32Float => $_getMap(10);
@@ -187,19 +217,45 @@ class TestMapLite extends $pb.GeneratedMessage {
   $core.Map<$core.int, MapEnumLite> get mapInt32Enum => $_getMap(15);
 
   @$pb.TagNumber(17)
-  $core.Map<$core.int, $5.ForeignMessageLite> get mapInt32ForeignMessage => $_getMap(16);
+  $core.Map<$core.int, $5.ForeignMessageLite> get mapInt32ForeignMessage =>
+      $_getMap(16);
 
   @$pb.TagNumber(18)
   $core.Map<$core.int, $core.int> get teboring => $_getMap(17);
 }
 
 class TestArenaMapLite extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestArenaMapLite', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.int, $core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Int32', entryClassName: 'TestArenaMapLite.MapInt32Int32Entry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.O3, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$fixnum.Int64, $fixnum.Int64>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt64Int64', entryClassName: 'TestArenaMapLite.MapInt64Int64Entry', keyFieldType: $pb.PbFieldType.O6, valueFieldType: $pb.PbFieldType.O6, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$core.int, $core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint32Uint32', entryClassName: 'TestArenaMapLite.MapUint32Uint32Entry', keyFieldType: $pb.PbFieldType.OU3, valueFieldType: $pb.PbFieldType.OU3, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$fixnum.Int64, $fixnum.Int64>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint64Uint64', entryClassName: 'TestArenaMapLite.MapUint64Uint64Entry', keyFieldType: $pb.PbFieldType.OU6, valueFieldType: $pb.PbFieldType.OU6, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$core.int, $core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapSint32Sint32', entryClassName: 'TestArenaMapLite.MapSint32Sint32Entry', keyFieldType: $pb.PbFieldType.OS3, valueFieldType: $pb.PbFieldType.OS3, packageName: const $pb.PackageName('protobuf_unittest'))
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestArenaMapLite',
+      package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.int, $core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Int32',
+        entryClassName: 'TestArenaMapLite.MapInt32Int32Entry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.O3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$fixnum.Int64, $fixnum.Int64>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt64Int64',
+        entryClassName: 'TestArenaMapLite.MapInt64Int64Entry',
+        keyFieldType: $pb.PbFieldType.O6,
+        valueFieldType: $pb.PbFieldType.O6,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$core.int, $core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint32Uint32',
+        entryClassName: 'TestArenaMapLite.MapUint32Uint32Entry',
+        keyFieldType: $pb.PbFieldType.OU3,
+        valueFieldType: $pb.PbFieldType.OU3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$fixnum.Int64, $fixnum.Int64>(
+        4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapUint64Uint64',
+        entryClassName: 'TestArenaMapLite.MapUint64Uint64Entry',
+        keyFieldType: $pb.PbFieldType.OU6,
+        valueFieldType: $pb.PbFieldType.OU6,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$core.int, $core.int>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapSint32Sint32',
+        entryClassName: 'TestArenaMapLite.MapSint32Sint32Entry',
+        keyFieldType: $pb.PbFieldType.OS3,
+        valueFieldType: $pb.PbFieldType.OS3,
+        packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$fixnum.Int64, $fixnum.Int64>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapSint64Sint64', entryClassName: 'TestArenaMapLite.MapSint64Sint64Entry', keyFieldType: $pb.PbFieldType.OS6, valueFieldType: $pb.PbFieldType.OS6, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$core.int, $core.int>(7, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapFixed32Fixed32', entryClassName: 'TestArenaMapLite.MapFixed32Fixed32Entry', keyFieldType: $pb.PbFieldType.OF3, valueFieldType: $pb.PbFieldType.OF3, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$fixnum.Int64, $fixnum.Int64>(8, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapFixed64Fixed64', entryClassName: 'TestArenaMapLite.MapFixed64Fixed64Entry', keyFieldType: $pb.PbFieldType.OF6, valueFieldType: $pb.PbFieldType.OF6, packageName: const $pb.PackageName('protobuf_unittest'))
@@ -212,8 +268,7 @@ class TestArenaMapLite extends $pb.GeneratedMessage {
     ..m<$core.int, $core.List<$core.int>>(15, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Bytes', entryClassName: 'TestArenaMapLite.MapInt32BytesEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OY, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$core.int, MapEnumLite>(16, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Enum', entryClassName: 'TestArenaMapLite.MapInt32EnumEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OE, valueOf: MapEnumLite.valueOf, enumValues: MapEnumLite.values, packageName: const $pb.PackageName('protobuf_unittest'))
     ..m<$core.int, ForeignMessageArenaLite>(17, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32ForeignMessage', entryClassName: 'TestArenaMapLite.MapInt32ForeignMessageEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OM, valueCreator: ForeignMessageArenaLite.create, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
   TestArenaMapLite._() : super();
   factory TestArenaMapLite({
@@ -289,25 +344,31 @@ class TestArenaMapLite extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestArenaMapLite.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestArenaMapLite.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory TestArenaMapLite.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestArenaMapLite.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   TestArenaMapLite clone() => TestArenaMapLite()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestArenaMapLite copyWith(void Function(TestArenaMapLite) updates) => super.copyWith((message) => updates(message as TestArenaMapLite)) as TestArenaMapLite; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestArenaMapLite copyWith(void Function(TestArenaMapLite) updates) =>
+      super.copyWith((message) => updates(message as TestArenaMapLite))
+          as TestArenaMapLite; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestArenaMapLite create() => TestArenaMapLite._();
   TestArenaMapLite createEmptyInstance() => create();
-  static $pb.PbList<TestArenaMapLite> createRepeated() => $pb.PbList<TestArenaMapLite>();
+  static $pb.PbList<TestArenaMapLite> createRepeated() =>
+      $pb.PbList<TestArenaMapLite>();
   @$core.pragma('dart2js:noInline')
-  static TestArenaMapLite getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestArenaMapLite>(create);
+  static TestArenaMapLite getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestArenaMapLite>(create);
   static TestArenaMapLite? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -338,7 +399,8 @@ class TestArenaMapLite extends $pb.GeneratedMessage {
   $core.Map<$core.int, $core.int> get mapSfixed32Sfixed32 => $_getMap(8);
 
   @$pb.TagNumber(10)
-  $core.Map<$fixnum.Int64, $fixnum.Int64> get mapSfixed64Sfixed64 => $_getMap(9);
+  $core.Map<$fixnum.Int64, $fixnum.Int64> get mapSfixed64Sfixed64 =>
+      $_getMap(9);
 
   @$pb.TagNumber(11)
   $core.Map<$core.int, $core.double> get mapInt32Float => $_getMap(10);
@@ -359,13 +421,30 @@ class TestArenaMapLite extends $pb.GeneratedMessage {
   $core.Map<$core.int, MapEnumLite> get mapInt32Enum => $_getMap(15);
 
   @$pb.TagNumber(17)
-  $core.Map<$core.int, ForeignMessageArenaLite> get mapInt32ForeignMessage => $_getMap(16);
+  $core.Map<$core.int, ForeignMessageArenaLite> get mapInt32ForeignMessage =>
+      $_getMap(16);
 }
 
 class TestRequiredMessageMapLite extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestRequiredMessageMapLite', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.int, TestRequiredLite>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapField', entryClassName: 'TestRequiredMessageMapLite.MapFieldEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OM, valueCreator: TestRequiredLite.create, packageName: const $pb.PackageName('protobuf_unittest'))
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestRequiredMessageMapLite',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.int, TestRequiredLite>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'mapField',
+        entryClassName: 'TestRequiredMessageMapLite.MapFieldEntry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.OM,
+        valueCreator: TestRequiredLite.create,
+        packageName: const $pb.PackageName('protobuf_unittest'));
 
   TestRequiredMessageMapLite._() : super();
   factory TestRequiredMessageMapLite({
@@ -377,25 +456,34 @@ class TestRequiredMessageMapLite extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestRequiredMessageMapLite.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestRequiredMessageMapLite.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  TestRequiredMessageMapLite clone() => TestRequiredMessageMapLite()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestRequiredMessageMapLite copyWith(void Function(TestRequiredMessageMapLite) updates) => super.copyWith((message) => updates(message as TestRequiredMessageMapLite)) as TestRequiredMessageMapLite; // ignore: deprecated_member_use
+  factory TestRequiredMessageMapLite.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestRequiredMessageMapLite.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  TestRequiredMessageMapLite clone() =>
+      TestRequiredMessageMapLite()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestRequiredMessageMapLite copyWith(
+          void Function(TestRequiredMessageMapLite) updates) =>
+      super.copyWith(
+              (message) => updates(message as TestRequiredMessageMapLite))
+          as TestRequiredMessageMapLite; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestRequiredMessageMapLite create() => TestRequiredMessageMapLite._();
   TestRequiredMessageMapLite createEmptyInstance() => create();
-  static $pb.PbList<TestRequiredMessageMapLite> createRepeated() => $pb.PbList<TestRequiredMessageMapLite>();
+  static $pb.PbList<TestRequiredMessageMapLite> createRepeated() =>
+      $pb.PbList<TestRequiredMessageMapLite>();
   @$core.pragma('dart2js:noInline')
-  static TestRequiredMessageMapLite getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestRequiredMessageMapLite>(create);
+  static TestRequiredMessageMapLite getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestRequiredMessageMapLite>(create);
   static TestRequiredMessageMapLite? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -403,11 +491,35 @@ class TestRequiredMessageMapLite extends $pb.GeneratedMessage {
 }
 
 class TestEnumMapLite extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestEnumMapLite', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.int, Proto2MapEnumLite>(101, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'knownMapField', entryClassName: 'TestEnumMapLite.KnownMapFieldEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OE, valueOf: Proto2MapEnumLite.valueOf, enumValues: Proto2MapEnumLite.values, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$core.int, Proto2MapEnumLite>(102, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'unknownMapField', entryClassName: 'TestEnumMapLite.UnknownMapFieldEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OE, valueOf: Proto2MapEnumLite.valueOf, enumValues: Proto2MapEnumLite.values, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestEnumMapLite',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.int, Proto2MapEnumLite>(
+        101, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'knownMapField',
+        entryClassName: 'TestEnumMapLite.KnownMapFieldEntry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.OE,
+        valueOf: Proto2MapEnumLite.valueOf,
+        enumValues: Proto2MapEnumLite.values,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$core.int, Proto2MapEnumLite>(
+        102,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'unknownMapField',
+        entryClassName: 'TestEnumMapLite.UnknownMapFieldEntry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.OE,
+        valueOf: Proto2MapEnumLite.valueOf,
+        enumValues: Proto2MapEnumLite.values,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..hasRequiredFields = false;
 
   TestEnumMapLite._() : super();
   factory TestEnumMapLite({
@@ -423,25 +535,31 @@ class TestEnumMapLite extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestEnumMapLite.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestEnumMapLite.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory TestEnumMapLite.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestEnumMapLite.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   TestEnumMapLite clone() => TestEnumMapLite()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestEnumMapLite copyWith(void Function(TestEnumMapLite) updates) => super.copyWith((message) => updates(message as TestEnumMapLite)) as TestEnumMapLite; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestEnumMapLite copyWith(void Function(TestEnumMapLite) updates) =>
+      super.copyWith((message) => updates(message as TestEnumMapLite))
+          as TestEnumMapLite; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestEnumMapLite create() => TestEnumMapLite._();
   TestEnumMapLite createEmptyInstance() => create();
-  static $pb.PbList<TestEnumMapLite> createRepeated() => $pb.PbList<TestEnumMapLite>();
+  static $pb.PbList<TestEnumMapLite> createRepeated() =>
+      $pb.PbList<TestEnumMapLite>();
   @$core.pragma('dart2js:noInline')
-  static TestEnumMapLite getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestEnumMapLite>(create);
+  static TestEnumMapLite getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestEnumMapLite>(create);
   static TestEnumMapLite? _defaultInstance;
 
   @$pb.TagNumber(101)
@@ -452,11 +570,32 @@ class TestEnumMapLite extends $pb.GeneratedMessage {
 }
 
 class TestEnumMapPlusExtraLite extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestEnumMapPlusExtraLite', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.int, Proto2MapEnumPlusExtraLite>(101, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'knownMapField', entryClassName: 'TestEnumMapPlusExtraLite.KnownMapFieldEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OE, valueOf: Proto2MapEnumPlusExtraLite.valueOf, enumValues: Proto2MapEnumPlusExtraLite.values, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..m<$core.int, Proto2MapEnumPlusExtraLite>(102, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'unknownMapField', entryClassName: 'TestEnumMapPlusExtraLite.UnknownMapFieldEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OE, valueOf: Proto2MapEnumPlusExtraLite.valueOf, enumValues: Proto2MapEnumPlusExtraLite.values, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestEnumMapPlusExtraLite',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.int, Proto2MapEnumPlusExtraLite>(
+        101, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'knownMapField',
+        entryClassName: 'TestEnumMapPlusExtraLite.KnownMapFieldEntry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.OE,
+        valueOf: Proto2MapEnumPlusExtraLite.valueOf,
+        enumValues: Proto2MapEnumPlusExtraLite.values,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..m<$core.int, Proto2MapEnumPlusExtraLite>(102,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'unknownMapField',
+        entryClassName: 'TestEnumMapPlusExtraLite.UnknownMapFieldEntry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.OE,
+        valueOf: Proto2MapEnumPlusExtraLite.valueOf,
+        enumValues: Proto2MapEnumPlusExtraLite.values,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..hasRequiredFields = false;
 
   TestEnumMapPlusExtraLite._() : super();
   factory TestEnumMapPlusExtraLite({
@@ -472,39 +611,65 @@ class TestEnumMapPlusExtraLite extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestEnumMapPlusExtraLite.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestEnumMapPlusExtraLite.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  TestEnumMapPlusExtraLite clone() => TestEnumMapPlusExtraLite()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestEnumMapPlusExtraLite copyWith(void Function(TestEnumMapPlusExtraLite) updates) => super.copyWith((message) => updates(message as TestEnumMapPlusExtraLite)) as TestEnumMapPlusExtraLite; // ignore: deprecated_member_use
+  factory TestEnumMapPlusExtraLite.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestEnumMapPlusExtraLite.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  TestEnumMapPlusExtraLite clone() =>
+      TestEnumMapPlusExtraLite()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestEnumMapPlusExtraLite copyWith(
+          void Function(TestEnumMapPlusExtraLite) updates) =>
+      super.copyWith((message) => updates(message as TestEnumMapPlusExtraLite))
+          as TestEnumMapPlusExtraLite; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestEnumMapPlusExtraLite create() => TestEnumMapPlusExtraLite._();
   TestEnumMapPlusExtraLite createEmptyInstance() => create();
-  static $pb.PbList<TestEnumMapPlusExtraLite> createRepeated() => $pb.PbList<TestEnumMapPlusExtraLite>();
+  static $pb.PbList<TestEnumMapPlusExtraLite> createRepeated() =>
+      $pb.PbList<TestEnumMapPlusExtraLite>();
   @$core.pragma('dart2js:noInline')
-  static TestEnumMapPlusExtraLite getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestEnumMapPlusExtraLite>(create);
+  static TestEnumMapPlusExtraLite getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestEnumMapPlusExtraLite>(create);
   static TestEnumMapPlusExtraLite? _defaultInstance;
 
   @$pb.TagNumber(101)
-  $core.Map<$core.int, Proto2MapEnumPlusExtraLite> get knownMapField => $_getMap(0);
+  $core.Map<$core.int, Proto2MapEnumPlusExtraLite> get knownMapField =>
+      $_getMap(0);
 
   @$pb.TagNumber(102)
-  $core.Map<$core.int, Proto2MapEnumPlusExtraLite> get unknownMapField => $_getMap(1);
+  $core.Map<$core.int, Proto2MapEnumPlusExtraLite> get unknownMapField =>
+      $_getMap(1);
 }
 
 class TestMessageMapLite extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestMessageMapLite', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..m<$core.int, $5.TestAllTypesLite>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'mapInt32Message', entryClassName: 'TestMessageMapLite.MapInt32MessageEntry', keyFieldType: $pb.PbFieldType.O3, valueFieldType: $pb.PbFieldType.OM, valueCreator: $5.TestAllTypesLite.create, packageName: const $pb.PackageName('protobuf_unittest'))
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestMessageMapLite',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..m<$core.int, $5.TestAllTypesLite>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'mapInt32Message',
+        entryClassName: 'TestMessageMapLite.MapInt32MessageEntry',
+        keyFieldType: $pb.PbFieldType.O3,
+        valueFieldType: $pb.PbFieldType.OM,
+        valueCreator: $5.TestAllTypesLite.create,
+        packageName: const $pb.PackageName('protobuf_unittest'))
+    ..hasRequiredFields = false;
 
   TestMessageMapLite._() : super();
   factory TestMessageMapLite({
@@ -516,25 +681,31 @@ class TestMessageMapLite extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestMessageMapLite.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestMessageMapLite.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory TestMessageMapLite.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestMessageMapLite.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   TestMessageMapLite clone() => TestMessageMapLite()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestMessageMapLite copyWith(void Function(TestMessageMapLite) updates) => super.copyWith((message) => updates(message as TestMessageMapLite)) as TestMessageMapLite; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestMessageMapLite copyWith(void Function(TestMessageMapLite) updates) =>
+      super.copyWith((message) => updates(message as TestMessageMapLite))
+          as TestMessageMapLite; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestMessageMapLite create() => TestMessageMapLite._();
   TestMessageMapLite createEmptyInstance() => create();
-  static $pb.PbList<TestMessageMapLite> createRepeated() => $pb.PbList<TestMessageMapLite>();
+  static $pb.PbList<TestMessageMapLite> createRepeated() =>
+      $pb.PbList<TestMessageMapLite>();
   @$core.pragma('dart2js:noInline')
-  static TestMessageMapLite getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestMessageMapLite>(create);
+  static TestMessageMapLite getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestMessageMapLite>(create);
   static TestMessageMapLite? _defaultInstance;
 
   @$pb.TagNumber(1)
@@ -542,11 +713,29 @@ class TestMessageMapLite extends $pb.GeneratedMessage {
 }
 
 class TestRequiredLite extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestRequiredLite', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'a', $pb.PbFieldType.Q3)
-    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'b', $pb.PbFieldType.Q3)
-    ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'c', $pb.PbFieldType.Q3)
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestRequiredLite',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..a<$core.int>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'a',
+        $pb.PbFieldType.Q3)
+    ..a<$core.int>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'b',
+        $pb.PbFieldType.Q3)
+    ..a<$core.int>(
+        3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'c', $pb.PbFieldType.Q3);
 
   TestRequiredLite._() : super();
   factory TestRequiredLite({
@@ -566,31 +755,40 @@ class TestRequiredLite extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestRequiredLite.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestRequiredLite.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory TestRequiredLite.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestRequiredLite.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   TestRequiredLite clone() => TestRequiredLite()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestRequiredLite copyWith(void Function(TestRequiredLite) updates) => super.copyWith((message) => updates(message as TestRequiredLite)) as TestRequiredLite; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestRequiredLite copyWith(void Function(TestRequiredLite) updates) =>
+      super.copyWith((message) => updates(message as TestRequiredLite))
+          as TestRequiredLite; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestRequiredLite create() => TestRequiredLite._();
   TestRequiredLite createEmptyInstance() => create();
-  static $pb.PbList<TestRequiredLite> createRepeated() => $pb.PbList<TestRequiredLite>();
+  static $pb.PbList<TestRequiredLite> createRepeated() =>
+      $pb.PbList<TestRequiredLite>();
   @$core.pragma('dart2js:noInline')
-  static TestRequiredLite getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestRequiredLite>(create);
+  static TestRequiredLite getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestRequiredLite>(create);
   static TestRequiredLite? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get a => $_getIZ(0);
   @$pb.TagNumber(1)
-  set a($core.int v) { $_setSignedInt32(0, v); }
+  set a($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasA() => $_has(0);
   @$pb.TagNumber(1)
@@ -599,7 +797,10 @@ class TestRequiredLite extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.int get b => $_getIZ(1);
   @$pb.TagNumber(2)
-  set b($core.int v) { $_setSignedInt32(1, v); }
+  set b($core.int v) {
+    $_setSignedInt32(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasB() => $_has(1);
   @$pb.TagNumber(2)
@@ -608,7 +809,10 @@ class TestRequiredLite extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.int get c => $_getIZ(2);
   @$pb.TagNumber(3)
-  set c($core.int v) { $_setSignedInt32(2, v); }
+  set c($core.int v) {
+    $_setSignedInt32(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasC() => $_has(2);
   @$pb.TagNumber(3)
@@ -616,10 +820,22 @@ class TestRequiredLite extends $pb.GeneratedMessage {
 }
 
 class ForeignMessageArenaLite extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ForeignMessageArenaLite', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'c', $pb.PbFieldType.O3)
-    ..hasRequiredFields = false
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'ForeignMessageArenaLite',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..a<$core.int>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'c',
+        $pb.PbFieldType.O3)
+    ..hasRequiredFields = false;
 
   ForeignMessageArenaLite._() : super();
   factory ForeignMessageArenaLite({
@@ -631,34 +847,44 @@ class ForeignMessageArenaLite extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory ForeignMessageArenaLite.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory ForeignMessageArenaLite.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  ForeignMessageArenaLite clone() => ForeignMessageArenaLite()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  ForeignMessageArenaLite copyWith(void Function(ForeignMessageArenaLite) updates) => super.copyWith((message) => updates(message as ForeignMessageArenaLite)) as ForeignMessageArenaLite; // ignore: deprecated_member_use
+  factory ForeignMessageArenaLite.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ForeignMessageArenaLite.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ForeignMessageArenaLite clone() =>
+      ForeignMessageArenaLite()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ForeignMessageArenaLite copyWith(
+          void Function(ForeignMessageArenaLite) updates) =>
+      super.copyWith((message) => updates(message as ForeignMessageArenaLite))
+          as ForeignMessageArenaLite; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static ForeignMessageArenaLite create() => ForeignMessageArenaLite._();
   ForeignMessageArenaLite createEmptyInstance() => create();
-  static $pb.PbList<ForeignMessageArenaLite> createRepeated() => $pb.PbList<ForeignMessageArenaLite>();
+  static $pb.PbList<ForeignMessageArenaLite> createRepeated() =>
+      $pb.PbList<ForeignMessageArenaLite>();
   @$core.pragma('dart2js:noInline')
-  static ForeignMessageArenaLite getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ForeignMessageArenaLite>(create);
+  static ForeignMessageArenaLite getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ForeignMessageArenaLite>(create);
   static ForeignMessageArenaLite? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get c => $_getIZ(0);
   @$pb.TagNumber(1)
-  set c($core.int v) { $_setSignedInt32(0, v); }
+  set c($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasC() => $_has(0);
   @$pb.TagNumber(1)
   void clearC() => clearField(1);
 }
-

@@ -8,6 +8,7 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+
 @$core.Deprecated('Use lazyEnumDescriptor instead')
 const LazyEnum$json = const {
   '1': 'LazyEnum',
@@ -18,4 +19,5 @@ const LazyEnum$json = const {
 };
 
 /// Descriptor for `LazyEnum`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List lazyEnumDescriptor = $convert.base64Decode('CghMYXp5RW51bRIPCgtMQVpZX0VOVU1fMBAAEg8KC0xBWllfRU5VTV8xEAE=');
+final $typed_data.Uint8List lazyEnumDescriptor = $convert.base64Decode(
+    'CghMYXp5RW51bRIPCgtMQVpZX0VOVU1fMBAAEg8KC0xBWllfRU5VTV8xEAE=');

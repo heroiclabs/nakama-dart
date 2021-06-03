@@ -11,28 +11,61 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'unittest.pb.dart' as $8;
 
-enum TestOptimizedForSize_Foo {
-  integerField, 
-  stringField, 
-  notSet
-}
+enum TestOptimizedForSize_Foo { integerField, stringField, notSet }
 
 class TestOptimizedForSize extends $pb.GeneratedMessage {
-  static const $core.Map<$core.int, TestOptimizedForSize_Foo> _TestOptimizedForSize_FooByTag = {
-    2 : TestOptimizedForSize_Foo.integerField,
-    3 : TestOptimizedForSize_Foo.stringField,
-    0 : TestOptimizedForSize_Foo.notSet
+  static const $core.Map<$core.int, TestOptimizedForSize_Foo>
+      _TestOptimizedForSize_FooByTag = {
+    2: TestOptimizedForSize_Foo.integerField,
+    3: TestOptimizedForSize_Foo.stringField,
+    0: TestOptimizedForSize_Foo.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestOptimizedForSize', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestOptimizedForSize',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
     ..oo(0, [2, 3])
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'i', $pb.PbFieldType.O3)
-    ..a<$core.int>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'integerField', $pb.PbFieldType.O3)
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'stringField')
+    ..a<$core.int>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'i',
+        $pb.PbFieldType.O3)
+    ..a<$core.int>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'integerField',
+        $pb.PbFieldType.O3)
+    ..aOS(3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'stringField')
     ..aOM<$8.ForeignMessage>(19, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'msg', subBuilder: $8.ForeignMessage.create)
-    ..hasExtensions = true
-  ;
-  static final testExtension = $pb.Extension<$core.int>(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest.TestOptimizedForSize', const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'testExtension', 1234, $pb.PbFieldType.O3);
-  static final testExtension2 = $pb.Extension<TestRequiredOptimizedForSize>(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest.TestOptimizedForSize', const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'testExtension2', 1235, $pb.PbFieldType.OM, defaultOrMaker: TestRequiredOptimizedForSize.getDefault, subBuilder: TestRequiredOptimizedForSize.create);
+    ..hasExtensions = true;
+  static final testExtension = $pb.Extension<$core.int>(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'protobuf_unittest.TestOptimizedForSize',
+      const $core.bool.fromEnvironment('protobuf.omit_field_names')
+          ? ''
+          : 'testExtension',
+      1234,
+      $pb.PbFieldType.O3);
+  static final testExtension2 = $pb.Extension<TestRequiredOptimizedForSize>(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'protobuf_unittest.TestOptimizedForSize',
+      const $core.bool.fromEnvironment('protobuf.omit_field_names')
+          ? ''
+          : 'testExtension2',
+      1235,
+      $pb.PbFieldType.OM,
+      defaultOrMaker: TestRequiredOptimizedForSize.getDefault,
+      subBuilder: TestRequiredOptimizedForSize.create);
 
   TestOptimizedForSize._() : super();
   factory TestOptimizedForSize({
@@ -56,34 +89,45 @@ class TestOptimizedForSize extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestOptimizedForSize.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestOptimizedForSize.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  TestOptimizedForSize clone() => TestOptimizedForSize()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestOptimizedForSize copyWith(void Function(TestOptimizedForSize) updates) => super.copyWith((message) => updates(message as TestOptimizedForSize)) as TestOptimizedForSize; // ignore: deprecated_member_use
+  factory TestOptimizedForSize.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestOptimizedForSize.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  TestOptimizedForSize clone() =>
+      TestOptimizedForSize()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestOptimizedForSize copyWith(void Function(TestOptimizedForSize) updates) =>
+      super.copyWith((message) => updates(message as TestOptimizedForSize))
+          as TestOptimizedForSize; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static TestOptimizedForSize create() => TestOptimizedForSize._();
   TestOptimizedForSize createEmptyInstance() => create();
-  static $pb.PbList<TestOptimizedForSize> createRepeated() => $pb.PbList<TestOptimizedForSize>();
+  static $pb.PbList<TestOptimizedForSize> createRepeated() =>
+      $pb.PbList<TestOptimizedForSize>();
   @$core.pragma('dart2js:noInline')
-  static TestOptimizedForSize getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestOptimizedForSize>(create);
+  static TestOptimizedForSize getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestOptimizedForSize>(create);
   static TestOptimizedForSize? _defaultInstance;
 
-  TestOptimizedForSize_Foo whichFoo() => _TestOptimizedForSize_FooByTag[$_whichOneof(0)]!;
+  TestOptimizedForSize_Foo whichFoo() =>
+      _TestOptimizedForSize_FooByTag[$_whichOneof(0)]!;
   void clearFoo() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
   $core.int get i => $_getIZ(0);
   @$pb.TagNumber(1)
-  set i($core.int v) { $_setSignedInt32(0, v); }
+  set i($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasI() => $_has(0);
   @$pb.TagNumber(1)
@@ -92,7 +136,10 @@ class TestOptimizedForSize extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   $core.int get integerField => $_getIZ(1);
   @$pb.TagNumber(2)
-  set integerField($core.int v) { $_setSignedInt32(1, v); }
+  set integerField($core.int v) {
+    $_setSignedInt32(1, v);
+  }
+
   @$pb.TagNumber(2)
   $core.bool hasIntegerField() => $_has(1);
   @$pb.TagNumber(2)
@@ -101,7 +148,10 @@ class TestOptimizedForSize extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   $core.String get stringField => $_getSZ(2);
   @$pb.TagNumber(3)
-  set stringField($core.String v) { $_setString(2, v); }
+  set stringField($core.String v) {
+    $_setString(2, v);
+  }
+
   @$pb.TagNumber(3)
   $core.bool hasStringField() => $_has(2);
   @$pb.TagNumber(3)
@@ -110,7 +160,10 @@ class TestOptimizedForSize extends $pb.GeneratedMessage {
   @$pb.TagNumber(19)
   $8.ForeignMessage get msg => $_getN(3);
   @$pb.TagNumber(19)
-  set msg($8.ForeignMessage v) { setField(19, v); }
+  set msg($8.ForeignMessage v) {
+    setField(19, v);
+  }
+
   @$pb.TagNumber(19)
   $core.bool hasMsg() => $_has(3);
   @$pb.TagNumber(19)
@@ -120,9 +173,21 @@ class TestOptimizedForSize extends $pb.GeneratedMessage {
 }
 
 class TestRequiredOptimizedForSize extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestRequiredOptimizedForSize', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..a<$core.int>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'x', $pb.PbFieldType.Q3)
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestRequiredOptimizedForSize',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..a<$core.int>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'x',
+        $pb.PbFieldType.Q3);
 
   TestRequiredOptimizedForSize._() : super();
   factory TestRequiredOptimizedForSize({
@@ -134,31 +199,44 @@ class TestRequiredOptimizedForSize extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestRequiredOptimizedForSize.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestRequiredOptimizedForSize.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  TestRequiredOptimizedForSize clone() => TestRequiredOptimizedForSize()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestRequiredOptimizedForSize copyWith(void Function(TestRequiredOptimizedForSize) updates) => super.copyWith((message) => updates(message as TestRequiredOptimizedForSize)) as TestRequiredOptimizedForSize; // ignore: deprecated_member_use
+  factory TestRequiredOptimizedForSize.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestRequiredOptimizedForSize.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  TestRequiredOptimizedForSize clone() =>
+      TestRequiredOptimizedForSize()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestRequiredOptimizedForSize copyWith(
+          void Function(TestRequiredOptimizedForSize) updates) =>
+      super.copyWith(
+              (message) => updates(message as TestRequiredOptimizedForSize))
+          as TestRequiredOptimizedForSize; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static TestRequiredOptimizedForSize create() => TestRequiredOptimizedForSize._();
+  static TestRequiredOptimizedForSize create() =>
+      TestRequiredOptimizedForSize._();
   TestRequiredOptimizedForSize createEmptyInstance() => create();
-  static $pb.PbList<TestRequiredOptimizedForSize> createRepeated() => $pb.PbList<TestRequiredOptimizedForSize>();
+  static $pb.PbList<TestRequiredOptimizedForSize> createRepeated() =>
+      $pb.PbList<TestRequiredOptimizedForSize>();
   @$core.pragma('dart2js:noInline')
-  static TestRequiredOptimizedForSize getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestRequiredOptimizedForSize>(create);
+  static TestRequiredOptimizedForSize getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestRequiredOptimizedForSize>(create);
   static TestRequiredOptimizedForSize? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get x => $_getIZ(0);
   @$pb.TagNumber(1)
-  set x($core.int v) { $_setSignedInt32(0, v); }
+  set x($core.int v) {
+    $_setSignedInt32(0, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasX() => $_has(0);
   @$pb.TagNumber(1)
@@ -166,9 +244,21 @@ class TestRequiredOptimizedForSize extends $pb.GeneratedMessage {
 }
 
 class TestOptionalOptimizedForSize extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TestOptionalOptimizedForSize', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'protobuf_unittest'), createEmptyInstance: create)
-    ..aOM<TestRequiredOptimizedForSize>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'o', subBuilder: TestRequiredOptimizedForSize.create)
-  ;
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'TestOptionalOptimizedForSize',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'protobuf_unittest'),
+      createEmptyInstance: create)
+    ..aOM<TestRequiredOptimizedForSize>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'o',
+        subBuilder: TestRequiredOptimizedForSize.create);
 
   TestOptionalOptimizedForSize._() : super();
   factory TestOptionalOptimizedForSize({
@@ -180,31 +270,44 @@ class TestOptionalOptimizedForSize extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory TestOptionalOptimizedForSize.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TestOptionalOptimizedForSize.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  TestOptionalOptimizedForSize clone() => TestOptionalOptimizedForSize()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  TestOptionalOptimizedForSize copyWith(void Function(TestOptionalOptimizedForSize) updates) => super.copyWith((message) => updates(message as TestOptionalOptimizedForSize)) as TestOptionalOptimizedForSize; // ignore: deprecated_member_use
+  factory TestOptionalOptimizedForSize.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory TestOptionalOptimizedForSize.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  TestOptionalOptimizedForSize clone() =>
+      TestOptionalOptimizedForSize()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  TestOptionalOptimizedForSize copyWith(
+          void Function(TestOptionalOptimizedForSize) updates) =>
+      super.copyWith(
+              (message) => updates(message as TestOptionalOptimizedForSize))
+          as TestOptionalOptimizedForSize; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static TestOptionalOptimizedForSize create() => TestOptionalOptimizedForSize._();
+  static TestOptionalOptimizedForSize create() =>
+      TestOptionalOptimizedForSize._();
   TestOptionalOptimizedForSize createEmptyInstance() => create();
-  static $pb.PbList<TestOptionalOptimizedForSize> createRepeated() => $pb.PbList<TestOptionalOptimizedForSize>();
+  static $pb.PbList<TestOptionalOptimizedForSize> createRepeated() =>
+      $pb.PbList<TestOptionalOptimizedForSize>();
   @$core.pragma('dart2js:noInline')
-  static TestOptionalOptimizedForSize getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TestOptionalOptimizedForSize>(create);
+  static TestOptionalOptimizedForSize getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<TestOptionalOptimizedForSize>(create);
   static TestOptionalOptimizedForSize? _defaultInstance;
 
   @$pb.TagNumber(1)
   TestRequiredOptimizedForSize get o => $_getN(0);
   @$pb.TagNumber(1)
-  set o(TestRequiredOptimizedForSize v) { setField(1, v); }
+  set o(TestRequiredOptimizedForSize v) {
+    setField(1, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasO() => $_has(0);
   @$pb.TagNumber(1)
@@ -212,4 +315,3 @@ class TestOptionalOptimizedForSize extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   TestRequiredOptimizedForSize ensureO() => $_ensure(0);
 }
-

@@ -13,28 +13,38 @@ import 'unittest_preserve_unknown_enum.pbenum.dart';
 
 export 'unittest_preserve_unknown_enum.pbenum.dart';
 
-enum MyMessage_O {
-  oneofE1, 
-  oneofE2, 
-  notSet
-}
+enum MyMessage_O { oneofE1, oneofE2, notSet }
 
 class MyMessage extends $pb.GeneratedMessage {
   static const $core.Map<$core.int, MyMessage_O> _MyMessage_OByTag = {
-    5 : MyMessage_O.oneofE1,
-    6 : MyMessage_O.oneofE2,
-    0 : MyMessage_O.notSet
+    5: MyMessage_O.oneofE1,
+    6: MyMessage_O.oneofE2,
+    0: MyMessage_O.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'MyMessage', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto3_preserve_unknown_enum_unittest'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'MyMessage',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'proto3_preserve_unknown_enum_unittest'),
+      createEmptyInstance: create)
     ..oo(0, [5, 6])
-    ..e<MyEnum>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'e', $pb.PbFieldType.OE, defaultOrMaker: MyEnum.FOO, valueOf: MyEnum.valueOf, enumValues: MyEnum.values)
-    ..pc<MyEnum>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'repeatedE', $pb.PbFieldType.PE, valueOf: MyEnum.valueOf, enumValues: MyEnum.values)
-    ..pc<MyEnum>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'repeatedPackedE', $pb.PbFieldType.KE, valueOf: MyEnum.valueOf, enumValues: MyEnum.values)
-    ..pc<MyEnumPlusExtra>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'repeatedPackedUnexpectedE', $pb.PbFieldType.PE, valueOf: MyEnumPlusExtra.valueOf, enumValues: MyEnumPlusExtra.values)
-    ..e<MyEnum>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'oneofE1', $pb.PbFieldType.OE, protoName: 'oneof_e_1', defaultOrMaker: MyEnum.FOO, valueOf: MyEnum.valueOf, enumValues: MyEnum.values)
+    ..e<MyEnum>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'e', $pb.PbFieldType.OE,
+        defaultOrMaker: MyEnum.FOO,
+        valueOf: MyEnum.valueOf,
+        enumValues: MyEnum.values)
+    ..pc<MyEnum>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'repeatedE', $pb.PbFieldType.PE,
+        valueOf: MyEnum.valueOf, enumValues: MyEnum.values)
+    ..pc<MyEnum>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'repeatedPackedE', $pb.PbFieldType.KE,
+        valueOf: MyEnum.valueOf, enumValues: MyEnum.values)
+    ..pc<MyEnumPlusExtra>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'repeatedPackedUnexpectedE', $pb.PbFieldType.PE,
+        valueOf: MyEnumPlusExtra.valueOf, enumValues: MyEnumPlusExtra.values)
+    ..e<MyEnum>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'oneofE1', $pb.PbFieldType.OE,
+        protoName: 'oneof_e_1',
+        defaultOrMaker: MyEnum.FOO,
+        valueOf: MyEnum.valueOf,
+        enumValues: MyEnum.values)
     ..e<MyEnum>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'oneofE2', $pb.PbFieldType.OE, protoName: 'oneof_e_2', defaultOrMaker: MyEnum.FOO, valueOf: MyEnum.valueOf, enumValues: MyEnum.values)
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
   MyMessage._() : super();
   factory MyMessage({
@@ -66,25 +76,30 @@ class MyMessage extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory MyMessage.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory MyMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory MyMessage.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory MyMessage.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   MyMessage clone() => MyMessage()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  MyMessage copyWith(void Function(MyMessage) updates) => super.copyWith((message) => updates(message as MyMessage)) as MyMessage; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  MyMessage copyWith(void Function(MyMessage) updates) =>
+      super.copyWith((message) => updates(message as MyMessage))
+          as MyMessage; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static MyMessage create() => MyMessage._();
   MyMessage createEmptyInstance() => create();
   static $pb.PbList<MyMessage> createRepeated() => $pb.PbList<MyMessage>();
   @$core.pragma('dart2js:noInline')
-  static MyMessage getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MyMessage>(create);
+  static MyMessage getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MyMessage>(create);
   static MyMessage? _defaultInstance;
 
   MyMessage_O whichO() => _MyMessage_OByTag[$_whichOneof(0)]!;
@@ -93,7 +108,10 @@ class MyMessage extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   MyEnum get e => $_getN(0);
   @$pb.TagNumber(1)
-  set e(MyEnum v) { setField(1, v); }
+  set e(MyEnum v) {
+    setField(1, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasE() => $_has(0);
   @$pb.TagNumber(1)
@@ -111,7 +129,10 @@ class MyMessage extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   MyEnum get oneofE1 => $_getN(4);
   @$pb.TagNumber(5)
-  set oneofE1(MyEnum v) { setField(5, v); }
+  set oneofE1(MyEnum v) {
+    setField(5, v);
+  }
+
   @$pb.TagNumber(5)
   $core.bool hasOneofE1() => $_has(4);
   @$pb.TagNumber(5)
@@ -120,35 +141,49 @@ class MyMessage extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   MyEnum get oneofE2 => $_getN(5);
   @$pb.TagNumber(6)
-  set oneofE2(MyEnum v) { setField(6, v); }
+  set oneofE2(MyEnum v) {
+    setField(6, v);
+  }
+
   @$pb.TagNumber(6)
   $core.bool hasOneofE2() => $_has(5);
   @$pb.TagNumber(6)
   void clearOneofE2() => clearField(6);
 }
 
-enum MyMessagePlusExtra_O {
-  oneofE1, 
-  oneofE2, 
-  notSet
-}
+enum MyMessagePlusExtra_O { oneofE1, oneofE2, notSet }
 
 class MyMessagePlusExtra extends $pb.GeneratedMessage {
-  static const $core.Map<$core.int, MyMessagePlusExtra_O> _MyMessagePlusExtra_OByTag = {
-    5 : MyMessagePlusExtra_O.oneofE1,
-    6 : MyMessagePlusExtra_O.oneofE2,
-    0 : MyMessagePlusExtra_O.notSet
+  static const $core.Map<$core.int, MyMessagePlusExtra_O>
+      _MyMessagePlusExtra_OByTag = {
+    5: MyMessagePlusExtra_O.oneofE1,
+    6: MyMessagePlusExtra_O.oneofE2,
+    0: MyMessagePlusExtra_O.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'MyMessagePlusExtra', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'proto3_preserve_unknown_enum_unittest'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'MyMessagePlusExtra',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'proto3_preserve_unknown_enum_unittest'),
+      createEmptyInstance: create)
     ..oo(0, [5, 6])
-    ..e<MyEnumPlusExtra>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'e', $pb.PbFieldType.OE, defaultOrMaker: MyEnumPlusExtra.E_FOO, valueOf: MyEnumPlusExtra.valueOf, enumValues: MyEnumPlusExtra.values)
-    ..pc<MyEnumPlusExtra>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'repeatedE', $pb.PbFieldType.PE, valueOf: MyEnumPlusExtra.valueOf, enumValues: MyEnumPlusExtra.values)
-    ..pc<MyEnumPlusExtra>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'repeatedPackedE', $pb.PbFieldType.KE, valueOf: MyEnumPlusExtra.valueOf, enumValues: MyEnumPlusExtra.values)
-    ..pc<MyEnumPlusExtra>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'repeatedPackedUnexpectedE', $pb.PbFieldType.KE, valueOf: MyEnumPlusExtra.valueOf, enumValues: MyEnumPlusExtra.values)
-    ..e<MyEnumPlusExtra>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'oneofE1', $pb.PbFieldType.OE, protoName: 'oneof_e_1', defaultOrMaker: MyEnumPlusExtra.E_FOO, valueOf: MyEnumPlusExtra.valueOf, enumValues: MyEnumPlusExtra.values)
+    ..e<MyEnumPlusExtra>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'e', $pb.PbFieldType.OE,
+        defaultOrMaker: MyEnumPlusExtra.E_FOO,
+        valueOf: MyEnumPlusExtra.valueOf,
+        enumValues: MyEnumPlusExtra.values)
+    ..pc<MyEnumPlusExtra>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'repeatedE', $pb.PbFieldType.PE,
+        valueOf: MyEnumPlusExtra.valueOf, enumValues: MyEnumPlusExtra.values)
+    ..pc<MyEnumPlusExtra>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'repeatedPackedE', $pb.PbFieldType.KE,
+        valueOf: MyEnumPlusExtra.valueOf, enumValues: MyEnumPlusExtra.values)
+    ..pc<MyEnumPlusExtra>(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'repeatedPackedUnexpectedE', $pb.PbFieldType.KE,
+        valueOf: MyEnumPlusExtra.valueOf, enumValues: MyEnumPlusExtra.values)
+    ..e<MyEnumPlusExtra>(5, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'oneofE1', $pb.PbFieldType.OE,
+        protoName: 'oneof_e_1',
+        defaultOrMaker: MyEnumPlusExtra.E_FOO,
+        valueOf: MyEnumPlusExtra.valueOf,
+        enumValues: MyEnumPlusExtra.values)
     ..e<MyEnumPlusExtra>(6, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'oneofE2', $pb.PbFieldType.OE, protoName: 'oneof_e_2', defaultOrMaker: MyEnumPlusExtra.E_FOO, valueOf: MyEnumPlusExtra.valueOf, enumValues: MyEnumPlusExtra.values)
-    ..hasRequiredFields = false
-  ;
+    ..hasRequiredFields = false;
 
   MyMessagePlusExtra._() : super();
   factory MyMessagePlusExtra({
@@ -180,25 +215,31 @@ class MyMessagePlusExtra extends $pb.GeneratedMessage {
     }
     return _result;
   }
-  factory MyMessagePlusExtra.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory MyMessagePlusExtra.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  factory MyMessagePlusExtra.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory MyMessagePlusExtra.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
   MyMessagePlusExtra clone() => MyMessagePlusExtra()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  MyMessagePlusExtra copyWith(void Function(MyMessagePlusExtra) updates) => super.copyWith((message) => updates(message as MyMessagePlusExtra)) as MyMessagePlusExtra; // ignore: deprecated_member_use
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  MyMessagePlusExtra copyWith(void Function(MyMessagePlusExtra) updates) =>
+      super.copyWith((message) => updates(message as MyMessagePlusExtra))
+          as MyMessagePlusExtra; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
   static MyMessagePlusExtra create() => MyMessagePlusExtra._();
   MyMessagePlusExtra createEmptyInstance() => create();
-  static $pb.PbList<MyMessagePlusExtra> createRepeated() => $pb.PbList<MyMessagePlusExtra>();
+  static $pb.PbList<MyMessagePlusExtra> createRepeated() =>
+      $pb.PbList<MyMessagePlusExtra>();
   @$core.pragma('dart2js:noInline')
-  static MyMessagePlusExtra getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MyMessagePlusExtra>(create);
+  static MyMessagePlusExtra getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<MyMessagePlusExtra>(create);
   static MyMessagePlusExtra? _defaultInstance;
 
   MyMessagePlusExtra_O whichO() => _MyMessagePlusExtra_OByTag[$_whichOneof(0)]!;
@@ -207,7 +248,10 @@ class MyMessagePlusExtra extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   MyEnumPlusExtra get e => $_getN(0);
   @$pb.TagNumber(1)
-  set e(MyEnumPlusExtra v) { setField(1, v); }
+  set e(MyEnumPlusExtra v) {
+    setField(1, v);
+  }
+
   @$pb.TagNumber(1)
   $core.bool hasE() => $_has(0);
   @$pb.TagNumber(1)
@@ -225,7 +269,10 @@ class MyMessagePlusExtra extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   MyEnumPlusExtra get oneofE1 => $_getN(4);
   @$pb.TagNumber(5)
-  set oneofE1(MyEnumPlusExtra v) { setField(5, v); }
+  set oneofE1(MyEnumPlusExtra v) {
+    setField(5, v);
+  }
+
   @$pb.TagNumber(5)
   $core.bool hasOneofE1() => $_has(4);
   @$pb.TagNumber(5)
@@ -234,10 +281,12 @@ class MyMessagePlusExtra extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   MyEnumPlusExtra get oneofE2 => $_getN(5);
   @$pb.TagNumber(6)
-  set oneofE2(MyEnumPlusExtra v) { setField(6, v); }
+  set oneofE2(MyEnumPlusExtra v) {
+    setField(6, v);
+  }
+
   @$pb.TagNumber(6)
   $core.bool hasOneofE2() => $_has(5);
   @$pb.TagNumber(6)
   void clearOneofE2() => clearField(6);
 }
-
