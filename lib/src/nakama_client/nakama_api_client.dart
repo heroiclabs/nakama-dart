@@ -177,6 +177,33 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.Session> authenticateGoogle({
+    required String token,
+    bool create = true,
+    String? username,
+  }) async {
+    final res = await _api.nakamaAuthenticateGoogle(
+      body: ApiAccountGoogle(
+        token: token,
+      ),
+      create: create,
+      username: username,
+    );
+
+    if (res.body == null) {
+      throw Exception('Authentication failed.');
+    }
+
+    final data = res.body!;
+
+    return model.Session(
+      created: data.created ?? false,
+      token: data.token!,
+      refreshToken: data.refreshToken,
+    );
+  }
+
+  @override
   Future<Account> getAccount(model.Session session) async {
     _session = session;
     final res = await _api.nakamaGetAccount();

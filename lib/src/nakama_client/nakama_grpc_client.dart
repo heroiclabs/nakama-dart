@@ -168,6 +168,29 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.Session> authenticateGoogle({
+    required String token,
+    bool create = true,
+    String? username,
+  }) async {
+    final request = AuthenticateGoogleRequest()
+      ..create_2 = BoolValue(value: create)
+      ..account = (AccountGoogle()..token = token);
+
+    if (username != null) {
+      request.username = username;
+    }
+
+    final res = await _client.authenticateGoogle(request);
+
+    return model.Session(
+      created: res.created,
+      token: res.token,
+      refreshToken: res.refreshToken,
+    );
+  }
+
+  @override
   Future<Account> getAccount(model.Session session) {
     return _client.getAccount(
       Empty(),
