@@ -5,6 +5,7 @@ import 'package:nakama/api/api.pb.dart';
 import 'package:nakama/api/apigrpc.pbgrpc.dart';
 import 'package:grpc/grpc.dart';
 import 'package:nakama/api/google/protobuf/empty.pb.dart';
+import 'package:nakama/api/google/protobuf/wrappers.pbserver.dart';
 import 'package:nakama/src/session.dart' as model;
 
 import 'nakama_client.dart';
@@ -102,6 +103,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
     String? username,
   }) async {
     final request = AuthenticateEmailRequest()
+      ..create_2 = BoolValue(value: create)
       ..account = (AccountEmail()
         ..email = email
         ..password = password);
@@ -126,6 +128,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
     String? username,
   }) async {
     final request = AuthenticateDeviceRequest()
+      ..create_2 = BoolValue(value: create)
       ..account = (AccountDevice()..id = deviceId);
 
     if (username != null) {
@@ -133,6 +136,29 @@ class NakamaGrpcClient extends NakamaBaseClient {
     }
 
     final res = await _client.authenticateDevice(request);
+
+    return model.Session(
+      created: res.created,
+      token: res.token,
+      refreshToken: res.refreshToken,
+    );
+  }
+
+  @override
+  Future<model.Session> authenticateFacebook({
+    required String token,
+    bool create = true,
+    String? username,
+  }) async {
+    final request = AuthenticateFacebookRequest()
+      ..create_2 = BoolValue(value: create)
+      ..account = (AccountFacebook()..token = token);
+
+    if (username != null) {
+      request.username = username;
+    }
+
+    final res = await _client.authenticateFacebook(request);
 
     return model.Session(
       created: res.created,
