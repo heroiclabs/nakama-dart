@@ -2,8 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:nakama/api/api.pb.dart';
 import 'package:nakama/src/session.dart' as model;
 
-import 'nakama_api_client.dart';
-import 'nakama_grpc_client.dart';
+import 'nakama_api_client.dart' if (dart.library.io) 'nakama_grpc_client.dart';
 
 const _kDefaultAppKey = 'default';
 

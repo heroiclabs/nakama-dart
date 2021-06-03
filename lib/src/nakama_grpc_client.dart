@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:nakama/api/api.pb.dart';
 import 'package:nakama/api/apigrpc.pbgrpc.dart';
