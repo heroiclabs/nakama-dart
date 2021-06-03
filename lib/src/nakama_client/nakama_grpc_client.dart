@@ -6,6 +6,7 @@ import 'package:nakama/api/apigrpc.pbgrpc.dart';
 import 'package:grpc/grpc.dart';
 import 'package:nakama/api/google/protobuf/empty.pb.dart';
 import 'package:nakama/api/google/protobuf/wrappers.pbserver.dart';
+import 'package:nakama/nakama.dart';
 import 'package:nakama/src/session.dart' as model;
 
 import 'nakama_client.dart';
@@ -182,6 +183,40 @@ class NakamaGrpcClient extends NakamaBaseClient {
     }
 
     final res = await _client.authenticateGoogle(request);
+
+    return model.Session(
+      created: res.created,
+      token: res.token,
+      refreshToken: res.refreshToken,
+    );
+  }
+
+  @override
+  Future<model.Session> authenticateGameCenter({
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    bool create = true,
+    String? username,
+  }) async {
+    final request = AuthenticateGameCenterRequest()
+      ..create_2 = BoolValue(value: create)
+      ..account = (AccountGameCenter()
+        ..playerId = playerId
+        ..bundleId = bundleId
+        ..timestampSeconds = Int64(timestampSeconds)
+        ..salt = salt
+        ..signature = signature
+        ..publicKeyUrl = publicKeyUrl);
+
+    if (username != null) {
+      request.username = username;
+    }
+
+    final res = await _client.authenticateGameCenter(request);
 
     return model.Session(
       created: res.created,

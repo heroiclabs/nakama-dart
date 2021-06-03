@@ -44,5 +44,16 @@ abstract class NakamaBaseClient {
     String? username,
   });
 
+  Future<model.Session> authenticateGameCenter({
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    bool create = true,
+    String? username,
+  });
+
   Future<Account> getAccount(model.Session session);
 }

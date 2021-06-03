@@ -204,6 +204,43 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.Session> authenticateGameCenter({
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    bool create = true,
+    String? username,
+  }) async {
+    final res = await _api.nakamaAuthenticateGameCenter(
+      body: ApiAccountGameCenter(
+        playerId: playerId,
+        bundleId: bundleId,
+        timestampSeconds: timestampSeconds.toString(),
+        salt: salt,
+        signature: signature,
+        publicKeyUrl: publicKeyUrl,
+      ),
+      create: create,
+      username: username,
+    );
+
+    if (res.body == null) {
+      throw Exception('Authentication failed.');
+    }
+
+    final data = res.body!;
+
+    return model.Session(
+      created: data.created ?? false,
+      token: data.token!,
+      refreshToken: data.refreshToken,
+    );
+  }
+
+  @override
   Future<Account> getAccount(model.Session session) async {
     _session = session;
     final res = await _api.nakamaGetAccount();
