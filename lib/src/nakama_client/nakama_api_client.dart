@@ -131,6 +131,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     final res = await _api.nakamaAuthenticateDevice(
       body: ApiAccountDevice(
         id: deviceId,
+        vars: {'foo': 'bar'},
       ),
       create: create,
       username: username,
@@ -300,7 +301,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     final res = await _api.nakamaGetAccount();
 
     final acc = Account();
-    acc.mergeFromProto3Json(res.body!.toJson());
+    // Some workaround here while protobuf expects the vars map to not be null
+    acc.mergeFromProto3Json((res.body!.copyWith(
+      devices: res.body!.devices!
+          .map((e) => e.copyWith(
+                vars: e.vars ?? {},
+              ))
+          .toList(),
+    )).toJson());
 
     return acc;
   }
