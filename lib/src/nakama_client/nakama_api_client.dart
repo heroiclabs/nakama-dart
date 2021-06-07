@@ -304,6 +304,15 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
     return acc;
   }
+
+  @override
+  Future<Users> getUsers(model.Session session, List<String>? ids) {
+    // TODO: implement getUsers
+    throw UnimplementedError();
+  }
+
+  
+
 }
 
 NakamaBaseClient getNakamaClient({
