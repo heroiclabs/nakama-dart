@@ -278,6 +278,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
   }
+
+  @override
+  Future<Users> getUsers(model.Session session, List<String>? ids) {
+    // TODO: implement getUsers
+    throw UnimplementedError();
+  }
 }
 
 NakamaBaseClient getNakamaClient({

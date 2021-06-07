@@ -68,4 +68,13 @@ abstract class NakamaBaseClient {
   });
 
   Future<Account> getAccount(model.Session session);
+
+  /**
+   * Fetch one or more users by id, usernames, and Facebook ids.
+   *
+   * @param session The session of the user.
+   * @param ids List of user IDs.
+   * @return A future to resolve user objects.
+   */
+  Future<Users> getUsers( model.Session session,  List<String>? ids ); 
 }
