@@ -278,6 +278,23 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
   }
+
+  @override
+  Future<Users> getUsers({
+    required model.Session session,
+    List<String>? facebookIds,
+    List<String>? ids,
+    List<String>? usernames,
+  }) async {
+    return _client.getUsers(
+      GetUsersRequest(
+        facebookIds: facebookIds,
+        ids: ids,
+        usernames: usernames,
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
 }
 
 NakamaBaseClient getNakamaClient({

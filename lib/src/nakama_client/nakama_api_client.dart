@@ -312,6 +312,23 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
     return acc;
   }
+
+  @override
+  Future<Users> getUsers({
+    required model.Session session,
+    List<String>? facebookIds,
+    List<String>? ids,
+    List<String>? usernames,
+  }) async {
+    _session = session;
+    final res = await _api.nakamaGetUsers(
+      facebookIds: facebookIds,
+      ids: ids,
+      usernames: usernames,
+    );
+
+    return Users()..mergeFromProto3Json(res.body!.toJson());
+  }
 }
 
 NakamaBaseClient getNakamaClient({
