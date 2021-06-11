@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:nakama/api/rtapi/realtime.pb.dart' as rt;
+import 'package:nakama/src/api/rtapi/realtime.pb.dart' as rt;
 import 'package:nakama/nakama.dart';
 
 class Matchmaker extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:nakama/api/api.pb.dart';
+import 'package:nakama/src/api/api.pb.dart';
 import 'package:nakama/nakama.dart';
 import 'package:nakama/src/session.dart' as model;
 

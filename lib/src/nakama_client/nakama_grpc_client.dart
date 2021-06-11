@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:grpc/grpc_connection_interface.dart';
-import 'package:nakama/api/api.pb.dart';
-import 'package:nakama/api/apigrpc.pbgrpc.dart';
+import 'package:nakama/src/api/api.pb.dart';
+import 'package:nakama/src/api/apigrpc.pbgrpc.dart';
 import 'package:grpc/grpc.dart';
-import 'package:nakama/api/google/protobuf/empty.pb.dart';
-import 'package:nakama/api/google/protobuf/wrappers.pbserver.dart';
+import 'package:nakama/src/api/google/protobuf/empty.pb.dart';
+import 'package:nakama/src/api/google/protobuf/wrappers.pbserver.dart';
 import 'package:nakama/nakama.dart';
 import 'package:nakama/src/session.dart' as model;
 

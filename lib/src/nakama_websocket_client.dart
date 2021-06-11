@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:fixnum/fixnum.dart';
-import 'package:nakama/api/api.pb.dart';
-import 'package:nakama/api/google/protobuf/wrappers.pb.dart';
-import 'package:nakama/api/rtapi/realtime.pb.dart' as rtpb;
+import 'package:nakama/src/api/api.pb.dart';
+import 'package:nakama/src/api/google/protobuf/wrappers.pb.dart';
+import 'package:nakama/src/api/rtapi/realtime.pb.dart' as rtpb;
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class NakamaWebsocketClient {

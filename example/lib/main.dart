@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nakama/api/api.pb.dart' as api;
-import 'package:nakama/api/rtapi/realtime.pb.dart' as rt;
+import 'package:nakama/src/api/api.pb.dart' as api;
+import 'package:nakama/src/api/rtapi/realtime.pb.dart' as rt;
 import 'package:nakama/nakama.dart';
 import 'package:simple_multiplayer_web/widgets/match_area.dart';
 import 'package:simple_multiplayer_web/widgets/matchmaker.dart';
