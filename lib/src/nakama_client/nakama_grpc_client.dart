@@ -295,6 +295,37 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
   }
+
+  @override
+  Future<void> writeStorageObject({
+    String? collection,
+    String? key,
+    String? value,
+    String? version,
+    StorageWritePermission? writePermission,
+    StorageReadPermission? readPermission,
+  }) {
+    return _client.writeStorageObjects(WriteStorageObjectsRequest(
+      objects: [
+        WriteStorageObject(
+          collection: collection,
+          key: key,
+          value: value,
+          version: version,
+          permissionWrite: writePermission != null
+              ? Int32Value(
+                  value: StorageWritePermission.values.indexOf(writePermission),
+                )
+              : null,
+          permissionRead: readPermission != null
+              ? Int32Value(
+                  value: StorageReadPermission.values.indexOf(readPermission),
+                )
+              : null,
+        ),
+      ],
+    ));
+  }
 }
 
 NakamaBaseClient getNakamaClient({

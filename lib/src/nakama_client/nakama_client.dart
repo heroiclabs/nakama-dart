@@ -1,4 +1,5 @@
 import 'package:nakama/api/api.pb.dart';
+import 'package:nakama/nakama.dart';
 import 'package:nakama/src/session.dart' as model;
 
 const _kDefaultAppKey = 'default';
@@ -74,5 +75,14 @@ abstract class NakamaBaseClient {
     List<String>? facebookIds,
     List<String>? ids,
     List<String>? usernames,
+  });
+
+  Future<void> writeStorageObject({
+    String? collection,
+    String? key,
+    String? value,
+    String? version,
+    StorageWritePermission? writePermission,
+    StorageReadPermission? readPermission,
   });
 }

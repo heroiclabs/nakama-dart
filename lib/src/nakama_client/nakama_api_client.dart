@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
 import 'package:nakama/api/api.pb.dart';
+import 'package:nakama/nakama.dart';
 import 'package:nakama/rest/apigrpc.swagger.dart';
 import 'package:nakama/src/session.dart' as model;
 
@@ -328,6 +329,35 @@ class NakamaRestApiClient extends NakamaBaseClient {
     );
 
     return Users()..mergeFromProto3Json(res.body!.toJson());
+  }
+
+  @override
+  Future<void> writeStorageObject({
+    String? collection,
+    String? key,
+    String? value,
+    String? version,
+    StorageWritePermission? writePermission,
+    StorageReadPermission? readPermission,
+  }) {
+    return _api.nakamaWriteStorageObjects(
+      body: ApiWriteStorageObjectsRequest(
+        objects: [
+          ApiWriteStorageObject(
+            collection: collection,
+            key: key,
+            value: value,
+            version: version,
+            permissionWrite: writePermission != null
+                ? StorageWritePermission.values.indexOf(writePermission)
+                : null,
+            permissionRead: readPermission != null
+                ? StorageReadPermission.values.indexOf(readPermission)
+                : null,
+          ),
+        ],
+      ),
+    );
   }
 }
 
