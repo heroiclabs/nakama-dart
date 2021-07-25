@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
-import 'package:nakama/src/api/api.pb.dart';
+import 'package:nakama/api.dart';
 import 'package:nakama/nakama.dart';
 import 'package:nakama/src/rest/apigrpc.swagger.dart';
 import 'package:nakama/src/session.dart' as model;

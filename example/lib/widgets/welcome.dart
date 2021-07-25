@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nakama/src/api/api.pb.dart';
+import 'package:nakama/api.dart';
 
 class Welcome extends StatelessWidget {
   final Account account;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nakama/src/api/api.pb.dart' as api;
-import 'package:nakama/src/api/rtapi/realtime.pb.dart' as rt;
 import 'package:nakama/nakama.dart';
+import 'package:nakama/api.dart' as api;
+import 'package:nakama/rtapi.dart' as rt;
 import 'package:simple_multiplayer_web/widgets/match_area.dart';
 import 'package:simple_multiplayer_web/widgets/matchmaker.dart';
 import 'package:simple_multiplayer_web/widgets/sign_in_box.dart';

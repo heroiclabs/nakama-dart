@@ -78,4 +78,8 @@ build/
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 .env*
+
+# Project specific
 tools/nakama_server/.cookie
+tools/nakama_server/modules
+.proto-build

@@ -1,11 +1,9 @@
 import 'dart:convert';
 
 import 'package:grpc/grpc_connection_interface.dart';
-import 'package:nakama/src/api/api.pb.dart';
-import 'package:nakama/src/api/apigrpc.pbgrpc.dart';
+import 'package:nakama/api.dart';
+import 'package:nakama/src/api/proto/apigrpc/apigrpc.pbgrpc.dart';
 import 'package:grpc/grpc.dart';
-import 'package:nakama/src/api/google/protobuf/empty.pb.dart';
-import 'package:nakama/src/api/google/protobuf/wrappers.pbserver.dart';
 import 'package:nakama/nakama.dart';
 import 'package:nakama/src/session.dart' as model;
 
@@ -272,8 +270,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<Account> getAccount(model.Session session) {
-    return _client.getAccount(
+  Future<Account> getAccount(model.Session session) async {
+    return await _client.getAccount(
       Empty(),
       options: _getSessionCallOptions(session),
     );
@@ -286,7 +284,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
     List<String>? ids,
     List<String>? usernames,
   }) async {
-    return _client.getUsers(
+    return await _client.getUsers(
       GetUsersRequest(
         facebookIds: facebookIds,
         ids: ids,
