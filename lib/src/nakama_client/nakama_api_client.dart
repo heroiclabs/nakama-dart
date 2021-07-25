@@ -366,6 +366,26 @@ class NakamaRestApiClient extends NakamaBaseClient {
       ),
     );
   }
+
+  @override
+  Future<void> writeStorageObjects({
+    required List<WriteStorageObject> objects,
+  }) {
+    return _api.nakamaWriteStorageObjects(
+      body: ApiWriteStorageObjectsRequest(
+        objects: objects
+            .map((e) => ApiWriteStorageObject(
+                  collection: e.collection,
+                  key: e.key,
+                  value: e.value,
+                  version: e.version,
+                  permissionRead: e.permissionRead.value,
+                  permissionWrite: e.permissionWrite.value,
+                ))
+            .toList(),
+      ),
+    );
+  }
 }
 
 NakamaBaseClient getNakamaClient({

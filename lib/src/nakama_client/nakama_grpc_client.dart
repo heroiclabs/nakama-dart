@@ -343,6 +343,15 @@ class NakamaGrpcClient extends NakamaBaseClient {
       ],
     ));
   }
+
+  @override
+  Future<void> writeStorageObjects({
+    required List<WriteStorageObject> objects,
+  }) {
+    return _client.writeStorageObjects(WriteStorageObjectsRequest(
+      objects: objects,
+    ));
+  }
 }
 
 NakamaBaseClient getNakamaClient({

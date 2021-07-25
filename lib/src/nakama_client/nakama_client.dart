@@ -92,4 +92,6 @@ abstract class NakamaBaseClient {
     StorageWritePermission? writePermission,
     StorageReadPermission? readPermission,
   });
+
+  Future<void> writeStorageObjects({required List<WriteStorageObject> objects});
 }
