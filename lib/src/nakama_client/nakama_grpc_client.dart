@@ -68,14 +68,13 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }) {
     this.serverKey = 'Basic ${base64Encode('defaultkey:'.codeUnits)}';
 
-    print('Connecting to $host:$port');
     _channel = ClientChannel(
       host,
       port: port,
       options: ChannelOptions(
         credentials: ssl == true
-            ? ChannelCredentials.secure()
-            : ChannelCredentials.insecure(),
+            ? const ChannelCredentials.secure()
+            : const ChannelCredentials.insecure(),
       ),
     );
 

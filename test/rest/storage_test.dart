@@ -27,8 +27,8 @@ void main() {
         collection: 'test',
         key: 'test',
         value: jsonEncode({'foo': 'bar'}),
-        readPermission: StorageReadPermission.owner_read,
-        writePermission: StorageWritePermission.owner_write,
+        readPermission: StorageReadPermission.ownerRead,
+        writePermission: StorageWritePermission.ownerWrite,
       );
 
       expect(res.acks, hasLength(1));
@@ -43,18 +43,18 @@ void main() {
             key: 'test',
             value: jsonEncode({'foo': 'bar'}),
             permissionRead: api.Int32Value()
-              ..value = StorageReadPermission.owner_read.index,
+              ..value = StorageReadPermission.ownerRead.index,
             permissionWrite: api.Int32Value()
-              ..value = StorageWritePermission.owner_write.index,
+              ..value = StorageWritePermission.ownerWrite.index,
           ),
           api.WriteStorageObject(
             collection: 'test',
             key: 'test2',
             value: jsonEncode({'foo': 'bar'}),
             permissionRead: api.Int32Value()
-              ..value = StorageReadPermission.owner_read.index,
+              ..value = StorageReadPermission.ownerRead.index,
             permissionWrite: api.Int32Value()
-              ..value = StorageWritePermission.owner_write.index,
+              ..value = StorageWritePermission.ownerWrite.index,
           ),
         ],
       );
