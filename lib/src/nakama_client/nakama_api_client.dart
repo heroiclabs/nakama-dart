@@ -100,11 +100,13 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String password,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final res = await _api.nakamaAuthenticateEmail(
       body: ApiAccountEmail(
         email: email,
         password: password,
+        vars: vars,
       ),
       create: create,
       username: username,
@@ -128,11 +130,12 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String deviceId,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final res = await _api.nakamaAuthenticateDevice(
       body: ApiAccountDevice(
         id: deviceId,
-        vars: {'foo': 'bar'},
+        vars: vars,
       ),
       create: create,
       username: username,
@@ -156,10 +159,12 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String token,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final res = await _api.nakamaAuthenticateFacebook(
       body: ApiAccountFacebook(
         token: token,
+        vars: vars,
       ),
       create: create,
       username: username,
@@ -183,10 +188,12 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String token,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final res = await _api.nakamaAuthenticateGoogle(
       body: ApiAccountGoogle(
         token: token,
+        vars: vars,
       ),
       create: create,
       username: username,
@@ -215,6 +222,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String publicKeyUrl,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final res = await _api.nakamaAuthenticateGameCenter(
       body: ApiAccountGameCenter(
@@ -224,6 +232,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
         salt: salt,
         signature: signature,
         publicKeyUrl: publicKeyUrl,
+        vars: vars,
       ),
       create: create,
       username: username,
@@ -247,11 +256,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String token,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final res = await _api.nakamaAuthenticateSteam(
-      body: ApiAccountSteam(
-        token: token,
-      ),
+      body: ApiAccountSteam(token: token, vars: vars),
       create: create,
       username: username,
     );
@@ -274,11 +282,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String id,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final res = await _api.nakamaAuthenticateCustom(
-      body: ApiAccountCustom(
-        id: id,
-      ),
+      body: ApiAccountCustom(id: id, vars: vars),
       create: create,
       username: username,
     );

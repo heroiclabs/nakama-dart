@@ -100,12 +100,14 @@ class NakamaGrpcClient extends NakamaBaseClient {
     required String password,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final request = AuthenticateEmailRequest()
       ..create_2 = BoolValue(value: create)
       ..account = (AccountEmail()
         ..email = email
-        ..password = password);
+        ..password = password
+        ..vars.addAll(vars ?? {}));
 
     if (username != null) {
       request.username = username;
@@ -125,10 +127,13 @@ class NakamaGrpcClient extends NakamaBaseClient {
     required String deviceId,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final request = AuthenticateDeviceRequest()
       ..create_2 = BoolValue(value: create)
-      ..account = (AccountDevice()..id = deviceId);
+      ..account = (AccountDevice()
+        ..id = deviceId
+        ..vars.addAll(vars ?? {}));
 
     if (username != null) {
       request.username = username;
@@ -148,10 +153,13 @@ class NakamaGrpcClient extends NakamaBaseClient {
     required String token,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final request = AuthenticateFacebookRequest()
       ..create_2 = BoolValue(value: create)
-      ..account = (AccountFacebook()..token = token);
+      ..account = (AccountFacebook()
+        ..token = token
+        ..vars.addAll(vars ?? {}));
 
     if (username != null) {
       request.username = username;
@@ -171,10 +179,13 @@ class NakamaGrpcClient extends NakamaBaseClient {
     required String token,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final request = AuthenticateGoogleRequest()
       ..create_2 = BoolValue(value: create)
-      ..account = (AccountGoogle()..token = token);
+      ..account = (AccountGoogle()
+        ..token = token
+        ..vars.addAll(vars ?? {}));
 
     if (username != null) {
       request.username = username;
@@ -199,6 +210,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
     required String publicKeyUrl,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final request = AuthenticateGameCenterRequest()
       ..create_2 = BoolValue(value: create)
@@ -208,7 +220,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
         ..timestampSeconds = Int64(timestampSeconds)
         ..salt = salt
         ..signature = signature
-        ..publicKeyUrl = publicKeyUrl);
+        ..publicKeyUrl = publicKeyUrl
+        ..vars.addAll(vars ?? {}));
 
     if (username != null) {
       request.username = username;
@@ -228,10 +241,13 @@ class NakamaGrpcClient extends NakamaBaseClient {
     required String token,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final request = AuthenticateSteamRequest()
       ..create_2 = BoolValue(value: create)
-      ..account = (AccountSteam()..token = token);
+      ..account = (AccountSteam()
+        ..token = token
+        ..vars.addAll(vars ?? {}));
 
     if (username != null) {
       request.username = username;
@@ -251,10 +267,13 @@ class NakamaGrpcClient extends NakamaBaseClient {
     required String id,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   }) async {
     final request = AuthenticateCustomRequest()
       ..create_2 = BoolValue(value: create)
-      ..account = (AccountCustom()..id = id);
+      ..account = (AccountCustom()
+        ..id = id
+        ..vars.addAll(vars ?? {}));
 
     if (username != null) {
       request.username = username;

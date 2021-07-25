@@ -25,24 +25,28 @@ abstract class NakamaBaseClient {
     required String password,
     bool create = false,
     String? username,
+    Map<String, String>? vars,
   });
 
   Future<model.Session> authenticateDevice({
     required String deviceId,
     bool create = false,
     String? username,
+    Map<String, String>? vars,
   });
 
   Future<model.Session> authenticateFacebook({
     required String token,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   });
 
   Future<model.Session> authenticateGoogle({
     required String token,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   });
 
   Future<model.Session> authenticateGameCenter({
@@ -54,18 +58,21 @@ abstract class NakamaBaseClient {
     required String publicKeyUrl,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   });
 
   Future<model.Session> authenticateSteam({
     required String token,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   });
 
   Future<model.Session> authenticateCustom({
     required String id,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
   });
 
   Future<Account> getAccount(model.Session session);
