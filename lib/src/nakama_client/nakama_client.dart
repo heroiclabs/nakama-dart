@@ -84,7 +84,8 @@ abstract class NakamaBaseClient {
     List<String>? usernames,
   });
 
-  Future<void> writeStorageObject({
+  Future<StorageObjectAcks> writeStorageObject({
+    required model.Session session,
     String? collection,
     String? key,
     String? value,
@@ -93,5 +94,13 @@ abstract class NakamaBaseClient {
     StorageReadPermission? readPermission,
   });
 
-  Future<void> writeStorageObjects({required List<WriteStorageObject> objects});
+  Future<StorageObjectAcks> writeStorageObjects({
+    required model.Session session,
+    required List<WriteStorageObject> objects,
+  });
+
+  Future<StorageObjects> readStorageObjects({
+    required model.Session session,
+    required Iterable<ReadStorageObjectId> ids,
+  });
 }

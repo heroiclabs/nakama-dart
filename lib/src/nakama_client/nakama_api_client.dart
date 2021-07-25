@@ -339,15 +339,17 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
-  Future<void> writeStorageObject({
+  Future<StorageObjectAcks> writeStorageObject({
+    required model.Session session,
     String? collection,
     String? key,
     String? value,
     String? version,
     StorageWritePermission? writePermission,
     StorageReadPermission? readPermission,
-  }) {
-    return _api.nakamaWriteStorageObjects(
+  }) async {
+    _session = session;
+    final res = await _api.nakamaWriteStorageObjects(
       body: ApiWriteStorageObjectsRequest(
         objects: [
           ApiWriteStorageObject(
@@ -365,13 +367,27 @@ class NakamaRestApiClient extends NakamaBaseClient {
         ],
       ),
     );
+
+    return StorageObjectAcks()
+      ..acks.addAll(
+        res.body!.acks!.map(
+          (e) => StorageObjectAck(
+            collection: e.collection,
+            key: e.key,
+            userId: e.userId,
+            version: e.version,
+          ),
+        ),
+      );
   }
 
   @override
-  Future<void> writeStorageObjects({
+  Future<StorageObjectAcks> writeStorageObjects({
+    required model.Session session,
     required List<WriteStorageObject> objects,
-  }) {
-    return _api.nakamaWriteStorageObjects(
+  }) async {
+    _session = session;
+    final res = await _api.nakamaWriteStorageObjects(
       body: ApiWriteStorageObjectsRequest(
         objects: objects
             .map((e) => ApiWriteStorageObject(
@@ -385,6 +401,39 @@ class NakamaRestApiClient extends NakamaBaseClient {
             .toList(),
       ),
     );
+
+    return StorageObjectAcks()
+      ..acks.addAll(
+        res.body!.acks!.map(
+          (e) => StorageObjectAck(
+            collection: e.collection,
+            key: e.key,
+            userId: e.userId,
+            version: e.version,
+          ),
+        ),
+      );
+  }
+
+  @override
+  Future<StorageObjects> readStorageObjects({
+    required model.Session session,
+    required Iterable<ReadStorageObjectId> ids,
+  }) async {
+    _session = session;
+    final res = await _api.nakamaReadStorageObjects(
+        body: ApiReadStorageObjectsRequest(
+      objectIds: ids
+          .map((e) => ApiReadStorageObjectId(
+                collection: e.collection,
+                key: e.key,
+                userId: e.userId,
+              ))
+          .toList(),
+    ));
+
+    // TODO
+    return StorageObjects()..mergeFromProto3Json(res.body);
   }
 }
 

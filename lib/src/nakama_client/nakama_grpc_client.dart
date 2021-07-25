@@ -314,7 +314,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<void> writeStorageObject({
+  Future<StorageObjectAcks> writeStorageObject({
+    required model.Session session,
     String? collection,
     String? key,
     String? value,
@@ -322,35 +323,56 @@ class NakamaGrpcClient extends NakamaBaseClient {
     StorageWritePermission? writePermission,
     StorageReadPermission? readPermission,
   }) {
-    return _client.writeStorageObjects(WriteStorageObjectsRequest(
-      objects: [
-        WriteStorageObject(
-          collection: collection,
-          key: key,
-          value: value,
-          version: version,
-          permissionWrite: writePermission != null
-              ? Int32Value(
-                  value: StorageWritePermission.values.indexOf(writePermission),
-                )
-              : null,
-          permissionRead: readPermission != null
-              ? Int32Value(
-                  value: StorageReadPermission.values.indexOf(readPermission),
-                )
-              : null,
-        ),
-      ],
-    ));
+    return _client.writeStorageObjects(
+      WriteStorageObjectsRequest(
+        objects: [
+          WriteStorageObject(
+            collection: collection,
+            key: key,
+            value: value,
+            version: version,
+            permissionWrite: writePermission != null
+                ? Int32Value(
+                    value:
+                        StorageWritePermission.values.indexOf(writePermission),
+                  )
+                : null,
+            permissionRead: readPermission != null
+                ? Int32Value(
+                    value: StorageReadPermission.values.indexOf(readPermission),
+                  )
+                : null,
+          ),
+        ],
+      ),
+      options: _getSessionCallOptions(session),
+    );
   }
 
   @override
-  Future<void> writeStorageObjects({
+  Future<StorageObjectAcks> writeStorageObjects({
+    required model.Session session,
     required List<WriteStorageObject> objects,
   }) {
-    return _client.writeStorageObjects(WriteStorageObjectsRequest(
-      objects: objects,
-    ));
+    return _client.writeStorageObjects(
+      WriteStorageObjectsRequest(
+        objects: objects,
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
+
+  @override
+  Future<StorageObjects> readStorageObjects({
+    required model.Session session,
+    required Iterable<ReadStorageObjectId> ids,
+  }) {
+    return _client.readStorageObjects(
+      ReadStorageObjectsRequest(
+        objectIds: ids.toList(),
+      ),
+      options: _getSessionCallOptions(session),
+    );
   }
 }
 
