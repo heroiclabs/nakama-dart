@@ -422,18 +422,37 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     _session = session;
     final res = await _api.nakamaReadStorageObjects(
-        body: ApiReadStorageObjectsRequest(
-      objectIds: ids
-          .map((e) => ApiReadStorageObjectId(
-                collection: e.collection,
-                key: e.key,
-                userId: e.userId,
-              ))
-          .toList(),
-    ));
+      body: ApiReadStorageObjectsRequest(
+        objectIds: ids
+            .map((e) => ApiReadStorageObjectId(
+                  collection: e.collection,
+                  key: e.key,
+                  userId: e.userId,
+                ))
+            .toList(),
+      ),
+    );
 
-    // TODO
-    return StorageObjects()..mergeFromProto3Json(res.body);
+    return StorageObjects()
+      ..objects.addAll(
+        res.body!.objects!.map(
+          (e) => StorageObject(
+            collection: e.collection,
+            createTime: e.createTime != null
+                ? Timestamp(nanos: e.createTime!.millisecondsSinceEpoch)
+                : null,
+            key: e.key,
+            permissionRead: e.permissionRead,
+            permissionWrite: e.permissionWrite,
+            updateTime: e.updateTime != null
+                ? Timestamp(nanos: e.updateTime!.millisecondsSinceEpoch)
+                : null,
+            userId: e.userId,
+            value: e.value,
+            version: e.version,
+          ),
+        ),
+      );
   }
 }
 

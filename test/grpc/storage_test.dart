@@ -60,5 +60,35 @@ void main() {
 
       expect(res.acks, hasLength(2));
     });
+
+    test('reading single storage object', () async {
+      const kCollection = 'test';
+      const kKey = 'read_storage_object';
+      const kValue = {'value': 'test'};
+
+      // Ensure we have an object to test in storage
+      await client.writeStorageObject(
+        session: session,
+        collection: kCollection,
+        key: kKey,
+        readPermission: StorageReadPermission.ownerRead,
+        writePermission: StorageWritePermission.ownerWrite,
+        value: jsonEncode(kValue),
+      );
+
+      final res = await client.readStorageObjects(
+        session: session,
+        ids: [
+          api.ReadStorageObjectId(
+            collection: kCollection,
+            key: kKey,
+            userId: session.userId,
+          )
+        ],
+      );
+
+      expect(res.objects, hasLength(1));
+      expect(jsonDecode(res.objects.first.value), equals(kValue));
+    });
   });
 }
