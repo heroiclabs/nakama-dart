@@ -373,6 +373,25 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
   }
+
+  @override
+  Future<StorageObjectList> listStorageObjects({
+    required model.Session session,
+    String? collection,
+    String? cursor,
+    int? limit,
+    String? userId,
+  }) {
+    return _client.listStorageObjects(
+      ListStorageObjectsRequest(
+        collection: collection,
+        cursor: cursor,
+        limit: Int32Value(value: limit),
+        userId: userId,
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
 }
 
 NakamaBaseClient getNakamaClient({

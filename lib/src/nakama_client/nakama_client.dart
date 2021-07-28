@@ -103,4 +103,12 @@ abstract class NakamaBaseClient {
     required model.Session session,
     required Iterable<ReadStorageObjectId> ids,
   });
+
+  Future<StorageObjectList> listStorageObjects({
+    required model.Session session,
+    String? collection,
+    String? cursor,
+    int? limit,
+    String? userId,
+  });
 }

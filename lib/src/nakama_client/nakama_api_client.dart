@@ -454,6 +454,49 @@ class NakamaRestApiClient extends NakamaBaseClient {
         ),
       );
   }
+
+  @override
+  Future<StorageObjectList> listStorageObjects({
+    required model.Session session,
+    String? collection,
+    String? cursor,
+    int? limit,
+    String? userId,
+  }) async {
+    _session = session;
+
+    final res = await _api.nakamaListStorageObjects(
+      collection: collection,
+      cursor: cursor,
+      limit: limit,
+      userId: userId,
+    );
+
+    return StorageObjectList(
+      cursor: res.body!.cursor,
+      objects: res.body!.objects!
+          .map((e) => StorageObject(
+                collection: e.collection,
+                createTime: e.createTime != null
+                    ? Timestamp(
+                        nanos: e.createTime!.millisecondsSinceEpoch,
+                      )
+                    : null,
+                updateTime: e.updateTime != null
+                    ? Timestamp(
+                        nanos: e.updateTime!.millisecondsSinceEpoch,
+                      )
+                    : null,
+                key: e.key,
+                permissionRead: e.permissionRead,
+                permissionWrite: e.permissionWrite,
+                userId: e.userId,
+                value: e.value,
+                version: e.version,
+              ))
+          .toList(),
+    );
+  }
 }
 
 NakamaBaseClient getNakamaClient({

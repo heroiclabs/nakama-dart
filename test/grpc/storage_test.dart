@@ -90,5 +90,50 @@ void main() {
       expect(res.objects, hasLength(1));
       expect(jsonDecode(res.objects.first.value), equals(kValue));
     });
+
+    test('listing storage objects on empty key', () async {
+      final res = await client.listStorageObjects(
+        session: session,
+        collection: 'empty',
+        limit: 10,
+      );
+
+      expect(res.objects, isEmpty);
+    });
+
+    test('listing storage objects with existing keys', () async {
+      const kCollection = 'multi_test';
+      const kFirstKey = 'key1';
+      const kSecondKey = 'key2';
+
+      // Put two objects
+      await Future.wait([
+        client.writeStorageObject(
+          session: session,
+          collection: kCollection,
+          key: kFirstKey,
+          value: jsonEncode({}),
+          readPermission: StorageReadPermission.ownerRead,
+          writePermission: StorageWritePermission.ownerWrite,
+        ),
+        client.writeStorageObject(
+          session: session,
+          collection: kCollection,
+          key: kSecondKey,
+          value: jsonEncode({}),
+          readPermission: StorageReadPermission.ownerRead,
+          writePermission: StorageWritePermission.ownerWrite,
+        ),
+      ]);
+
+      final res = await client.listStorageObjects(
+        session: session,
+        collection: kCollection,
+        userId: session.userId,
+        limit: 10,
+      );
+
+      expect(res.objects, hasLength(2));
+    });
   });
 }
