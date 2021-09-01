@@ -154,9 +154,11 @@ class NakamaGrpcClient extends NakamaBaseClient {
     bool create = true,
     String? username,
     Map<String, String>? vars,
+    bool import = false,
   }) async {
     final request = AuthenticateFacebookRequest()
       ..create_2 = BoolValue(value: create)
+      ..sync = BoolValue(value: import)
       ..account = (AccountFacebook()
         ..token = token
         ..vars.addAll(vars ?? {}));

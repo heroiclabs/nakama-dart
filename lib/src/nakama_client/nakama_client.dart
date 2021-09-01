@@ -40,6 +40,7 @@ abstract class NakamaBaseClient {
     bool create = true,
     String? username,
     Map<String, String>? vars,
+    bool import = false,
   });
 
   Future<model.Session> authenticateGoogle({

@@ -160,12 +160,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool create = true,
     String? username,
     Map<String, String>? vars,
+    bool import = false,
   }) async {
     final res = await _api.nakamaAuthenticateFacebook(
       body: ApiAccountFacebook(
         token: token,
         vars: vars,
       ),
+      $sync: import,
       create: create,
       username: username,
     );
