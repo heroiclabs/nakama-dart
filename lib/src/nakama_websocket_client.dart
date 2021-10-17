@@ -151,6 +151,8 @@ class NakamaWebsocketClient {
           return waitingFuture.complete(receivedEnvelope.matchmakerTicket);
         } else if (waitingFuture is Completer<rtpb.Status>) {
           return waitingFuture.complete(receivedEnvelope.status);
+        } else if (waitingFuture is Completer<Rpc>) {
+          return waitingFuture.complete(receivedEnvelope.rpc);
         } else {
           return waitingFuture.complete();
         }
