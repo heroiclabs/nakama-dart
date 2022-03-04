@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:fixnum/fixnum.dart';
 import 'package:nakama/api.dart';
 import 'package:nakama/rtapi.dart' as rtpb;
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -16,6 +15,9 @@ class NakamaWebsocketClient {
 
   /// The user's access token.
   final String token;
+
+  final void Function()? onDone;
+  final void Function(dynamic error)? onError;
 
   late final WebSocketChannel _channel;
 
@@ -77,6 +79,8 @@ class NakamaWebsocketClient {
     int port = 7350,
     required bool ssl,
     required String token,
+    Function()? onDone,
+    Function(dynamic error)? onError,
   }) {
     // Has the client already been initialized? Then return it.
     if (_clients.containsKey(key)) {
@@ -89,6 +93,8 @@ class NakamaWebsocketClient {
       port: port,
       ssl: ssl,
       token: token,
+      onDone: onDone,
+      onError: onError,
     );
   }
 
@@ -97,6 +103,8 @@ class NakamaWebsocketClient {
     this.port = 7350,
     required this.ssl,
     required this.token,
+    this.onDone,
+    this.onError,
   }) {
     print('Connecting ${ssl ? 'WSS' : 'WS'} to $host:$port');
     print('Using token $token');
@@ -115,8 +123,18 @@ class NakamaWebsocketClient {
 
     _channel.stream.listen(
       _onData,
-      onDone: () => print('Websocket Channel Stream Done'),
-      onError: (err) => print('Websocket Channel Stream error: $err'),
+      onDone: () {
+        _clients.clear();
+
+        if (onDone != null) {
+          onDone!();
+        }
+      },
+      onError: (err) {
+        if (onError != null) {
+          onError!(err);
+        }
+      },
       cancelOnError: false,
     );
   }
