@@ -1,3 +1,6 @@
+## 0.1.3
+* Fixes that the given server key was ignored
+
 ## 0.1.2
 * Fully implements all authentication methods
 * Enhanced documentation and adds link to package
