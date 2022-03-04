@@ -83,3 +83,4 @@ build/
 tools/nakama_server/.cookie
 tools/nakama_server/modules
 .proto-build
+tool/nakama_server/.cookie
