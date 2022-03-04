@@ -1,3 +1,6 @@
+## 0.1.4
+* Adds `onError()` and `onDone()` callbacks to `NakamaWebsocketClient`
+
 ## 0.1.3
 * Fixes that the given server key was ignored
 
