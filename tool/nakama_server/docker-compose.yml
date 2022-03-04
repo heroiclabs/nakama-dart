@@ -13,13 +13,13 @@ services:
       - "26257:26257"
       - "8080:8080"
   nakama:
-    image: heroiclabs/nakama:3.2.1
+    image: heroiclabs/nakama:3.10.0
     entrypoint:
       - "/bin/sh"
       - "-ecx"
       - >
-        /nakama/nakama migrate up --database.address root@cockroachdb:26257 &&
-        exec /nakama/nakama --name nakama1 --database.address root@cockroachdb:26257 --logger.level DEBUG --session.token_expiry_sec 7200 --metrics.prometheus_port 9100
+          /nakama/nakama migrate up --database.address root@cockroachdb:26257 &&
+          exec /nakama/nakama --name nakama1 --database.address root@cockroachdb:26257 --logger.level DEBUG --session.token_expiry_sec 7200 --metrics.prometheus_port 9100
     restart: "no"
     links:
       - "cockroachdb:db"
@@ -58,7 +58,7 @@ services:
         - job_name: nakama
           metrics_path: /
           static_configs:
-        - targets: ['nakama:9100']
+          - targets: ['nakama:9100']
       EON
       prometheus --config.file=./prometheus.yml
       EOF'
