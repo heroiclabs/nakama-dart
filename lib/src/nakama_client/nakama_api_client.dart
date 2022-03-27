@@ -341,15 +341,17 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
-  Future<void> writeStorageObject({
+  Future<StorageObjectAcks> writeStorageObject({
+    required model.Session session,
     String? collection,
     String? key,
     String? value,
     String? version,
     StorageWritePermission? writePermission,
     StorageReadPermission? readPermission,
-  }) {
-    return _api.nakamaWriteStorageObjects(
+  }) async {
+    _session = session;
+    final res = await _api.nakamaWriteStorageObjects(
       body: ApiWriteStorageObjectsRequest(
         objects: [
           ApiWriteStorageObject(
@@ -366,6 +368,135 @@ class NakamaRestApiClient extends NakamaBaseClient {
           ),
         ],
       ),
+    );
+
+    return StorageObjectAcks()
+      ..acks.addAll(
+        res.body!.acks!.map(
+          (e) => StorageObjectAck(
+            collection: e.collection,
+            key: e.key,
+            userId: e.userId,
+            version: e.version,
+          ),
+        ),
+      );
+  }
+
+  @override
+  Future<StorageObjectAcks> writeStorageObjects({
+    required model.Session session,
+    required List<WriteStorageObject> objects,
+  }) async {
+    _session = session;
+    final res = await _api.nakamaWriteStorageObjects(
+      body: ApiWriteStorageObjectsRequest(
+        objects: objects
+            .map((e) => ApiWriteStorageObject(
+                  collection: e.collection,
+                  key: e.key,
+                  value: e.value,
+                  version: e.version,
+                  permissionRead: e.permissionRead.value,
+                  permissionWrite: e.permissionWrite.value,
+                ))
+            .toList(),
+      ),
+    );
+
+    return StorageObjectAcks()
+      ..acks.addAll(
+        res.body!.acks!.map(
+          (e) => StorageObjectAck(
+            collection: e.collection,
+            key: e.key,
+            userId: e.userId,
+            version: e.version,
+          ),
+        ),
+      );
+  }
+
+  @override
+  Future<StorageObjects> readStorageObjects({
+    required model.Session session,
+    required Iterable<ReadStorageObjectId> ids,
+  }) async {
+    _session = session;
+    final res = await _api.nakamaReadStorageObjects(
+      body: ApiReadStorageObjectsRequest(
+        objectIds: ids
+            .map((e) => ApiReadStorageObjectId(
+                  collection: e.collection,
+                  key: e.key,
+                  userId: e.userId,
+                ))
+            .toList(),
+      ),
+    );
+
+    return StorageObjects()
+      ..objects.addAll(
+        res.body!.objects!.map(
+          (e) => StorageObject(
+            collection: e.collection,
+            createTime: e.createTime != null
+                ? Timestamp(nanos: e.createTime!.millisecondsSinceEpoch)
+                : null,
+            key: e.key,
+            permissionRead: e.permissionRead,
+            permissionWrite: e.permissionWrite,
+            updateTime: e.updateTime != null
+                ? Timestamp(nanos: e.updateTime!.millisecondsSinceEpoch)
+                : null,
+            userId: e.userId,
+            value: e.value,
+            version: e.version,
+          ),
+        ),
+      );
+  }
+
+  @override
+  Future<StorageObjectList> listStorageObjects({
+    required model.Session session,
+    String? collection,
+    String? cursor,
+    int? limit,
+    String? userId,
+  }) async {
+    _session = session;
+
+    final res = await _api.nakamaListStorageObjects(
+      collection: collection,
+      cursor: cursor,
+      limit: limit,
+      userId: userId,
+    );
+
+    return StorageObjectList(
+      cursor: res.body!.cursor,
+      objects: res.body!.objects!
+          .map((e) => StorageObject(
+                collection: e.collection,
+                createTime: e.createTime != null
+                    ? Timestamp(
+                        nanos: e.createTime!.millisecondsSinceEpoch,
+                      )
+                    : null,
+                updateTime: e.updateTime != null
+                    ? Timestamp(
+                        nanos: e.updateTime!.millisecondsSinceEpoch,
+                      )
+                    : null,
+                key: e.key,
+                permissionRead: e.permissionRead,
+                permissionWrite: e.permissionWrite,
+                userId: e.userId,
+                value: e.value,
+                version: e.version,
+              ))
+          .toList(),
     );
   }
 }

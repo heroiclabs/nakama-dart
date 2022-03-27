@@ -68,14 +68,13 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }) {
     this.serverKey = 'Basic ${base64Encode('$serverKey:'.codeUnits)}';
 
-    print('Connecting to $host:$port');
     _channel = ClientChannel(
       host,
       port: port,
       options: ChannelOptions(
         credentials: ssl == true
-            ? ChannelCredentials.secure()
-            : ChannelCredentials.insecure(),
+            ? const ChannelCredentials.secure()
+            : const ChannelCredentials.insecure(),
       ),
     );
 
@@ -316,7 +315,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<void> writeStorageObject({
+  Future<StorageObjectAcks> writeStorageObject({
+    required model.Session session,
     String? collection,
     String? key,
     String? value,
@@ -324,26 +324,75 @@ class NakamaGrpcClient extends NakamaBaseClient {
     StorageWritePermission? writePermission,
     StorageReadPermission? readPermission,
   }) {
-    return _client.writeStorageObjects(WriteStorageObjectsRequest(
-      objects: [
-        WriteStorageObject(
-          collection: collection,
-          key: key,
-          value: value,
-          version: version,
-          permissionWrite: writePermission != null
-              ? Int32Value(
-                  value: StorageWritePermission.values.indexOf(writePermission),
-                )
-              : null,
-          permissionRead: readPermission != null
-              ? Int32Value(
-                  value: StorageReadPermission.values.indexOf(readPermission),
-                )
-              : null,
-        ),
-      ],
-    ));
+    return _client.writeStorageObjects(
+      WriteStorageObjectsRequest(
+        objects: [
+          WriteStorageObject(
+            collection: collection,
+            key: key,
+            value: value,
+            version: version,
+            permissionWrite: writePermission != null
+                ? Int32Value(
+                    value:
+                        StorageWritePermission.values.indexOf(writePermission),
+                  )
+                : null,
+            permissionRead: readPermission != null
+                ? Int32Value(
+                    value: StorageReadPermission.values.indexOf(readPermission),
+                  )
+                : null,
+          ),
+        ],
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
+
+  @override
+  Future<StorageObjectAcks> writeStorageObjects({
+    required model.Session session,
+    required List<WriteStorageObject> objects,
+  }) {
+    return _client.writeStorageObjects(
+      WriteStorageObjectsRequest(
+        objects: objects,
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
+
+  @override
+  Future<StorageObjects> readStorageObjects({
+    required model.Session session,
+    required Iterable<ReadStorageObjectId> ids,
+  }) {
+    return _client.readStorageObjects(
+      ReadStorageObjectsRequest(
+        objectIds: ids.toList(),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
+
+  @override
+  Future<StorageObjectList> listStorageObjects({
+    required model.Session session,
+    String? collection,
+    String? cursor,
+    int? limit,
+    String? userId,
+  }) {
+    return _client.listStorageObjects(
+      ListStorageObjectsRequest(
+        collection: collection,
+        cursor: cursor,
+        limit: Int32Value(value: limit),
+        userId: userId,
+      ),
+      options: _getSessionCallOptions(session),
+    );
   }
 }
 
