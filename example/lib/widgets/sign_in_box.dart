@@ -19,29 +19,29 @@ class SignInBox extends StatelessWidget {
           children: [
             Expanded(
               child: TextField(
-                decoration: InputDecoration(labelText: 'E-Mail'),
+                decoration: const InputDecoration(labelText: 'E-Mail'),
                 controller: _email,
               ),
             ),
             Expanded(
               child: TextField(
-                decoration: InputDecoration(labelText: 'Password'),
+                decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
                 controller: _password,
               ),
             ),
             ElevatedButton(
               onPressed: () => onSignIn.call(_email.text, _password.text),
-              child: Text('Login'),
+              child: const Text('Login'),
             ),
           ],
         ),
-        SizedBox(height: 20),
-        SizedBox(
+        const SizedBox(height: 20),
+        const SizedBox(
           width: double.infinity,
           child: Card(
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(20.0),
               child: Text('Please sign in.'),
             ),
           ),

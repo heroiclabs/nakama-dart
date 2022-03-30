@@ -2,7 +2,6 @@ import 'package:faker/faker.dart';
 import 'package:nakama/api.dart' as api;
 import 'package:nakama/nakama.dart';
 import 'package:nakama/src/nakama_client/nakama_api_client.dart';
-import 'package:test/scaffolding.dart';
 import 'package:test/test.dart';
 
 void main() {

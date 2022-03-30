@@ -1,12 +1,11 @@
 import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
-import 'package:nakama/api.dart';
-import 'package:nakama/nakama.dart';
-import 'package:nakama/src/rest/apigrpc.swagger.dart';
-import 'package:nakama/src/session.dart' as model;
 
-import 'nakama_client.dart';
+import '../../api.dart';
+import '../../nakama.dart';
+import '../rest/apigrpc.swagger.dart';
+import '../session.dart' as model;
 
 const _kDefaultAppKey = 'default';
 
@@ -77,7 +76,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
             return applyHeader(
               request,
               'Authorization',
-              'Basic ' + base64Encode('$serverKey:'.codeUnits),
+              'Basic ${base64Encode('$serverKey:'.codeUnits)}',
             );
           }
 

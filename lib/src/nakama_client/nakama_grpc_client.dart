@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:grpc/grpc_connection_interface.dart';
-import 'package:nakama/api.dart';
-import 'package:nakama/src/api/proto/apigrpc/apigrpc.pbgrpc.dart';
 import 'package:grpc/grpc.dart';
-import 'package:nakama/nakama.dart';
-import 'package:nakama/src/session.dart' as model;
+import 'package:grpc/grpc_connection_interface.dart';
+import 'package:logging/logging.dart';
 
-import 'nakama_client.dart';
+import '../../api.dart';
+import '../../nakama.dart';
+import '../api/proto/apigrpc/apigrpc.pbgrpc.dart';
+import '../session.dart' as model;
 
 const _kDefaultAppKey = 'default';
 
@@ -15,6 +15,7 @@ const _kDefaultAppKey = 'default';
 /// [NakamaGrpcClient] abstracts the gRPC calls and handles authentication
 /// for you.
 class NakamaGrpcClient extends NakamaBaseClient {
+  static final _log = Logger('NakamaGrpcClient');
   static final Map<String, NakamaGrpcClient> _clients = {};
 
   /// The host address of the server.
@@ -68,14 +69,14 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }) {
     this.serverKey = 'Basic ${base64Encode('$serverKey:'.codeUnits)}';
 
-    print('Connecting to $host:$port');
+    _log.info('Connecting to $host:$port');
     _channel = ClientChannel(
       host,
       port: port,
       options: ChannelOptions(
         credentials: ssl == true
-            ? ChannelCredentials.secure()
-            : ChannelCredentials.insecure(),
+            ? const ChannelCredentials.secure()
+            : const ChannelCredentials.insecure(),
       ),
     );
 

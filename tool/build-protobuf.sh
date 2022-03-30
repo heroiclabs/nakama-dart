@@ -58,7 +58,11 @@ mkdir ../lib/src/api/proto
 cp -r dist/* ../lib/src/api/proto
 
 echo "[*] Cleanup..."
-# cd ..
+ cd ..
 # rm -rf .proto-build
+
+echo "[*] Format dart files"
+cd ../lib/src/api/proto
+flutter format --set-exit-if-changed .
 
 echo "[+] Done"

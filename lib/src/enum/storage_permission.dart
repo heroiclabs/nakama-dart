@@ -1,10 +1,10 @@
 enum StorageWritePermission {
-  no_write,
-  owner_write,
+  noWrite,
+  ownerWrite,
 }
 
 enum StorageReadPermission {
-  no_read,
-  owner_read,
-  public_read,
+  noRead,
+  ownerRead,
+  publicRead,
 }
