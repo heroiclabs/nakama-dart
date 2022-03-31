@@ -58,8 +58,8 @@ mkdir ../lib/src/api/proto
 cp -r dist/* ../lib/src/api/proto
 
 echo "[*] Cleanup..."
- cd ..
-# rm -rf .proto-build
+cd ..
+rm -rf .proto-build
 
 echo "[*] Format dart files"
 cd ../lib/src/api/proto
