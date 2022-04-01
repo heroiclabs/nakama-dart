@@ -3,11 +3,10 @@ import 'dart:convert';
 import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:logging/logging.dart';
-
-import '../../api.dart';
-import '../../nakama.dart';
-import '../api/proto/apigrpc/apigrpc.pbgrpc.dart';
-import '../session.dart' as model;
+import 'package:nakama/api.dart';
+import 'package:nakama/nakama.dart';
+import 'package:nakama/src/api/proto/apigrpc/apigrpc.pbgrpc.dart';
+import 'package:nakama/src/session.dart' as model;
 
 const _kDefaultAppKey = 'default';
 

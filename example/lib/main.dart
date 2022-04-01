@@ -3,11 +3,10 @@ import 'package:logging/logging.dart';
 import 'package:nakama/api.dart' as api;
 import 'package:nakama/nakama.dart';
 import 'package:nakama/rtapi.dart' as rt;
-
-import 'widgets/match_area.dart';
-import 'widgets/matchmaker.dart';
-import 'widgets/sign_in_box.dart';
-import 'widgets/welcome.dart';
+import 'package:simple_multiplayer_web/widgets/match_area.dart';
+import 'package:simple_multiplayer_web/widgets/matchmaker.dart';
+import 'package:simple_multiplayer_web/widgets/sign_in_box.dart';
+import 'package:simple_multiplayer_web/widgets/welcome.dart';
 
 void main() {
   Logger.root.level = Level.ALL;

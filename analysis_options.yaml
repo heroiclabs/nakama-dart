@@ -1,12 +1,13 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  exclude: [ lib/src/api/proto/**/*.dart,
-             lib/**/*.swagger*dart]
+  exclude:
+    - lib/src/api/proto/**/*.dart
+    - lib/**/*.swagger*dart
 
 linter:
   rules:
-    prefer_relative_imports: true
+    always_use_package_imports: true
     directives_ordering: true
     prefer_interpolation_to_compose_strings: true
     prefer_final_in_for_each: true
