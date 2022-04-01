@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:nakama/rtapi.dart' as rt;
 import 'package:flutter/material.dart';
 import 'package:nakama/nakama.dart';
+import 'package:nakama/rtapi.dart' as rt;
 
 class MatchArea extends StatefulWidget {
   final rt.Match match;
@@ -60,7 +60,7 @@ class _MatchAreaState extends State<MatchArea> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text('Welcome to ${widget.match.matchId}!'),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 TextField(
                   controller: matchDataController,
                   maxLines: null,

@@ -6,8 +6,6 @@ import 'package:nakama/nakama.dart';
 import 'package:nakama/src/rest/apigrpc.swagger.dart';
 import 'package:nakama/src/session.dart' as model;
 
-import 'nakama_client.dart';
-
 const _kDefaultAppKey = 'default';
 
 /// Base class for communicating with Nakama via gRPC.
@@ -77,7 +75,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
             return applyHeader(
               request,
               'Authorization',
-              'Basic ' + base64Encode('$serverKey:'.codeUnits),
+              'Basic ${base64Encode('$serverKey:'.codeUnits)}',
             );
           }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nakama/nakama.dart';
+import 'package:logging/logging.dart';
 import 'package:nakama/api.dart' as api;
+import 'package:nakama/nakama.dart';
 import 'package:nakama/rtapi.dart' as rt;
 import 'package:simple_multiplayer_web/widgets/match_area.dart';
 import 'package:simple_multiplayer_web/widgets/matchmaker.dart';
@@ -8,14 +9,18 @@ import 'package:simple_multiplayer_web/widgets/sign_in_box.dart';
 import 'package:simple_multiplayer_web/widgets/welcome.dart';
 
 void main() {
-  runApp(MaterialApp(
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((record) {
+    print('${record.level.name}: ${record.time}: ${record.message}');
+  });
+  runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
     home: _HomeScreen(),
   ));
 }
 
 class _HomeScreen extends StatefulWidget {
-  _HomeScreen({Key? key}) : super(key: key);
+  const _HomeScreen({Key? key}) : super(key: key);
 
   @override
   __HomeScreenState createState() => __HomeScreenState();
@@ -69,7 +74,7 @@ class __HomeScreenState extends State<_HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Nakama Flutter Demo')),
+      appBar: AppBar(title: const Text('Nakama Flutter Demo')),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: _session != null && _account != null
