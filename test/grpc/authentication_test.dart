@@ -3,15 +3,17 @@ import 'package:nakama/nakama.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
+import '../config.dart';
+
 void main() {
   group('[gRPC] Test Authentication', () {
     late final NakamaBaseClient client;
 
     setUpAll(() {
       client = getNakamaClient(
-        host: '127.0.0.1',
+        host: kTestHost,
         ssl: false,
-        serverKey: 'defaultkey',
+        serverKey: kTestServerKey,
       );
     });
 
