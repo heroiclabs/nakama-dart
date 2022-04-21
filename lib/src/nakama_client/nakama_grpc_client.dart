@@ -1,13 +1,12 @@
 import 'dart:convert';
 
-import 'package:grpc/grpc_connection_interface.dart';
-import 'package:nakama/api.dart';
-import 'package:nakama/src/api/proto/apigrpc/apigrpc.pbgrpc.dart';
 import 'package:grpc/grpc.dart';
+import 'package:grpc/grpc_connection_interface.dart';
+import 'package:logging/logging.dart';
+import 'package:nakama/api.dart';
 import 'package:nakama/nakama.dart';
+import 'package:nakama/src/api/proto/apigrpc/apigrpc.pbgrpc.dart';
 import 'package:nakama/src/session.dart' as model;
-
-import 'nakama_client.dart';
 
 const _kDefaultAppKey = 'default';
 
@@ -15,6 +14,7 @@ const _kDefaultAppKey = 'default';
 /// [NakamaGrpcClient] abstracts the gRPC calls and handles authentication
 /// for you.
 class NakamaGrpcClient extends NakamaBaseClient {
+  static final _log = Logger('NakamaGrpcClient');
   static final Map<String, NakamaGrpcClient> _clients = {};
 
   /// The host address of the server.
@@ -68,6 +68,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }) {
     this.serverKey = 'Basic ${base64Encode('$serverKey:'.codeUnits)}';
 
+    _log.info('Connecting to $host:$port');
     _channel = ClientChannel(
       host,
       port: port,

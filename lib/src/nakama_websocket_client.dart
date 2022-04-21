@@ -1,9 +1,12 @@
 import 'dart:async';
+
+import 'package:logging/logging.dart';
 import 'package:nakama/api.dart';
 import 'package:nakama/rtapi.dart' as rtpb;
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class NakamaWebsocketClient {
+  static final _log = Logger('NakamaWebsocketClient');
   static final Map<String, NakamaWebsocketClient> _clients = {};
 
   /// The host address of the server.
@@ -106,8 +109,8 @@ class NakamaWebsocketClient {
     this.onDone,
     this.onError,
   }) {
-    print('Connecting ${ssl ? 'WSS' : 'WS'} to $host:$port');
-    print('Using token $token');
+    _log.info('Connecting ${ssl ? 'WSS' : 'WS'} to $host:$port');
+    _log.info('Using token $token');
     final uri = Uri(
       host: host,
       port: port,
@@ -119,7 +122,7 @@ class NakamaWebsocketClient {
       },
     );
     _channel = WebSocketChannel.connect(uri);
-    print('connected');
+    _log.info('connected');
 
     _channel.stream.listen(
       _onData,
@@ -202,12 +205,12 @@ class NakamaWebsocketClient {
           case rtpb.Envelope_Message.streamData:
             return _onStreamDataController.add(receivedEnvelope.streamData);
           default:
-            return print('Not implemented');
+            return _log.warning('Not implemented');
         }
       }
     } catch (e, s) {
-      print(e);
-      print(s);
+      _log.warning(e);
+      _log.warning(s);
     }
   }
 

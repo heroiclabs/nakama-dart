@@ -16,6 +16,6 @@ targets:
             enabled: true
             value: true
           with_converter: true
-          input_folder: "lib/rest/"
-          output_folder: "lib/rest/"
+          input_folder: "lib/src/rest/"
+          output_folder: "lib/src/rest/"
           enums_case_sensitive: true

@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:nakama/rtapi.dart' as rt;
 import 'package:nakama/nakama.dart';
+import 'package:nakama/rtapi.dart' as rt;
 
 class Matchmaker extends StatefulWidget {
   final Function(rt.Match) onMatch;
 
-  Matchmaker({
+  const Matchmaker({
     required this.onMatch,
     Key? key,
   }) : super(key: key);
@@ -66,7 +66,7 @@ class _MatchmakerState extends State<Matchmaker> {
         padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
         child: ElevatedButton(
           onPressed: addMatchmaker,
-          child: Text('Search for a match'),
+          child: const Text('Search for a match'),
         ),
       );
     }
@@ -78,7 +78,7 @@ class _MatchmakerState extends State<Matchmaker> {
           padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: [
+            children: const [
               Text('Searching for a match...'),
               SizedBox(height: 20),
               LinearProgressIndicator(),
