@@ -497,6 +497,19 @@ class NakamaRestApiClient extends NakamaBaseClient {
           .toList(),
     );
   }
+
+// write data to wallet
+  Future<Map> updateWallet({
+    required model.Session session,
+    required Map<String, int> payload,
+  }) async {
+    final result = await _api.nakamaRpcFunc2(
+        id: 'updateWallet', payload: jsonEncode(payload));
+    return {
+      "id": result.body?.id ?? 'no id',
+      "payload": result.body?.payload ?? 'error'
+    };
+  }
 }
 
 NakamaBaseClient getNakamaClient({

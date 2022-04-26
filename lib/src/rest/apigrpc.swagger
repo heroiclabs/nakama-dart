@@ -2775,7 +2775,7 @@
           "Nakama"
         ]
       }
-    },
+    }, 
     "/v2/storage/{collection}/{userId}": {
       "get": {
         "summary": "List publicly readable storage objects in a given collection.",
