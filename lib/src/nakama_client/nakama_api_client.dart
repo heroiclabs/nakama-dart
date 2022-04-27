@@ -498,16 +498,15 @@ class NakamaRestApiClient extends NakamaBaseClient {
     );
   }
 
-// write data to wallet
-  Future<Map> updateWallet({
-    required model.Session session,
-    required Map<String, int> payload,
-  }) async {
+  // implement wallet update
+  @override
+  Future<Map> updateWallet(
+      {required model.Session session, required String payload}) async {
     final result = await _api.nakamaRpcFunc2(
         id: 'updateWallet', payload: jsonEncode(payload));
     return {
-      "id": result.body?.id ?? 'no id',
-      "payload": result.body?.payload ?? 'error'
+      'id': result.body?.id ?? 'no id',
+      'payload': result.body?.payload ?? 'error'
     };
   }
 }

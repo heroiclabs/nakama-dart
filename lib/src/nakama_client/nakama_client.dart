@@ -112,4 +112,9 @@ abstract class NakamaBaseClient {
     int? limit,
     String? userId,
   });
+
+  Future<Map> updateWallet({
+    required model.Session session,
+    required String payload,
+  });
 }
