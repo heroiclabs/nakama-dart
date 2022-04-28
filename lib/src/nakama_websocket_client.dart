@@ -167,6 +167,7 @@ class NakamaWebsocketClient {
       _onStatusPresenceController.close(),
       _onStreamPresenceController.close(),
       _onStreamDataController.close(),
+      _onChannelMessageController.close(),
       _channel.sink.close(),
     ]);
   }
@@ -198,41 +199,30 @@ class NakamaWebsocketClient {
         // map server messages
         switch (receivedEnvelope.whichMessage()) {
           case rtpb.Envelope_Message.channelPresenceEvent:
-            return _onChannelPresenceController.add(
-              receivedEnvelope.channelPresenceEvent,
-            );
+            return _onChannelPresenceController
+                .add(receivedEnvelope.channelPresenceEvent);
           case rtpb.Envelope_Message.matchmakerMatched:
-            return _onMatchmakerMatchedController.add(
-              receivedEnvelope.matchmakerMatched,
-            );
+            return _onMatchmakerMatchedController
+                .add(receivedEnvelope.matchmakerMatched);
           case rtpb.Envelope_Message.matchData:
-            return _onMatchDataController.add(
-              receivedEnvelope.matchData,
-            );
+            return _onMatchDataController.add(receivedEnvelope.matchData);
           case rtpb.Envelope_Message.matchPresenceEvent:
-            return _onMatchPresenceController.add(
-              receivedEnvelope.matchPresenceEvent,
-            );
+            return _onMatchPresenceController
+                .add(receivedEnvelope.matchPresenceEvent);
           case rtpb.Envelope_Message.notifications:
-            return _onNotificationsController.add(
-              receivedEnvelope.notifications,
-            );
+            return _onNotificationsController
+                .add(receivedEnvelope.notifications);
           case rtpb.Envelope_Message.statusPresenceEvent:
-            return _onStatusPresenceController.add(
-              receivedEnvelope.statusPresenceEvent,
-            );
+            return _onStatusPresenceController
+                .add(receivedEnvelope.statusPresenceEvent);
           case rtpb.Envelope_Message.streamPresenceEvent:
-            return _onStreamPresenceController.add(
-              receivedEnvelope.streamPresenceEvent,
-            );
+            return _onStreamPresenceController
+                .add(receivedEnvelope.streamPresenceEvent);
           case rtpb.Envelope_Message.streamData:
-            return _onStreamDataController.add(
-              receivedEnvelope.streamData,
-            );
+            return _onStreamDataController.add(receivedEnvelope.streamData);
           case rtpb.Envelope_Message.channelMessage:
-            return _onChannelMessageController.add(
-              receivedEnvelope.channelMessage,
-            );
+            return _onChannelMessageController
+                .add(receivedEnvelope.channelMessage);
           default:
             return _log.warning('Not implemented');
         }
