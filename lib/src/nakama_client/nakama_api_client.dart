@@ -502,12 +502,18 @@ class NakamaRestApiClient extends NakamaBaseClient {
   @override
   Future<Map> updateWallet(
       {required model.Session session, required String payload}) async {
-    final result = await _api.nakamaRpcFunc2(
-        id: 'updateWallet', payload: jsonEncode(payload));
-    return {
-      'id': result.body?.id ?? 'no id',
-      'payload': result.body?.payload ?? 'error'
-    };
+    String _rpcKey = 'updateWallet';
+    // testing the two RPC
+
+    Map mapPayload = jsonDecode(payload);
+    if (mapPayload['id'] == 1) {
+      final result =
+          await _api.nakamaRpcFunc2(id: _rpcKey, payload: jsonEncode(payload));
+    } else {
+      final result = await _api.nakamaRpcFunc(id: _rpcKey, body: payload);
+    }
+
+    return {'sucess': true};
   }
 }
 
