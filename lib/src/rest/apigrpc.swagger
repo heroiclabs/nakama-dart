@@ -9,6 +9,11 @@
       "email": "hello@heroiclabs.com"
     }
   },
+  "tags": [
+    {
+      "name": "Nakama"
+    }
+  ],
   "host": "127.0.0.1:7350",
   "schemes": [
     "http"
@@ -1618,6 +1623,28 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "langTag",
+            "description": "Language tag filter.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "members",
+            "description": "Number of group members.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "open",
+            "description": "Optional Open/Closed filter.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -3318,7 +3345,7 @@
           "description": "Optional record metadata."
         },
         "operator": {
-          "$ref": "#/definitions/apiOverrideOperator",
+          "$ref": "#/definitions/apiOperator",
           "description": "Operator override."
         }
       },
@@ -3342,7 +3369,7 @@
           "description": "A JSON object of additional properties (optional)."
         },
         "operator": {
-          "$ref": "#/definitions/apiOverrideOperator",
+          "$ref": "#/definitions/apiOperator",
           "description": "Operator override."
         }
       },
@@ -4070,7 +4097,7 @@
       },
       "description": "A collection of zero or more notifications."
     },
-    "apiOverrideOperator": {
+    "apiOperator": {
       "type": "string",
       "enum": [
         "NO_OVERRIDE",
@@ -4314,7 +4341,7 @@
         "sortOrder": {
           "type": "integer",
           "format": "int64",
-          "description": "ASC or DESC sort mode of scores in the tournament."
+          "description": "ASC (0) or DESC (1) sort mode of scores in the tournament."
         },
         "size": {
           "type": "integer",
@@ -4373,6 +4400,15 @@
           "type": "integer",
           "format": "int64",
           "description": "The UNIX time when the tournament start being active. A computed value."
+        },
+        "prevReset": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The UNIX time when the tournament was last reset. A computed value."
+        },
+        "operator": {
+          "$ref": "#/definitions/apiOperator",
+          "description": "Operator."
         }
       },
       "description": "A tournament on the server."
@@ -4677,6 +4713,10 @@
         "environment": {
           "$ref": "#/definitions/ValidatedPurchaseEnvironment",
           "description": "Whether the purchase was done in production or sandbox environment."
+        },
+        "seenBefore": {
+          "type": "boolean",
+          "description": "Whether the purchase had already been validated by Nakama before."
         }
       },
       "description": "Validated Purchase stored by Nakama."
@@ -4729,14 +4769,11 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",

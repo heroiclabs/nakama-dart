@@ -366,20 +366,20 @@ class NakamaRestApiClient extends NakamaBaseClient {
       ),
     );
   }
-}
 
-NakamaBaseClient getNakamaClient({
-  String? host,
-  String? serverKey,
-  String key = _kDefaultAppKey,
-  int httpPort = 7350,
-  int grpcPort = 7349,
-  bool ssl = false,
-}) =>
-    NakamaRestApiClient.init(
-      host: host,
-      key: key,
-      port: httpPort,
-      serverKey: serverKey,
-      ssl: ssl,
+  @override
+  Future<ApiChannelMessageList?> listChannelMessages({
+    required String channelId,
+    int? limit,
+    bool? forward,
+    String? cursor,
+  }) async {
+    final res = await _api.nakamaListChannelMessages(
+      channelId: channelId,
+      limit: limit,
+      forward: forward,
+      cursor: cursor,
     );
+    return res.body;
+  }
+}
