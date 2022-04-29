@@ -397,11 +397,14 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<Map> updateWallet(
-      {required model.Session session, required String payload}) async {
-    final request =
-        Rpc(id: 'walletUpdate', payload: payload, httpKey: 'walletUpdate');
-    final result = await _client.rpcFunc(request);
+  Future<Map> postRPC(
+      {required model.Session session,
+      required String id,
+      String? payload,
+      String? httpkey}) async {
+    final request = Rpc(id: id, payload: payload, httpKey: httpkey);
+    final result = await _client.rpcFunc(request,
+        options: _getSessionCallOptions(session));
     return {'id': result.id, 'payload': result.payload};
   }
 }

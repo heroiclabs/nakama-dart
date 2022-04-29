@@ -113,8 +113,10 @@ abstract class NakamaBaseClient {
     String? userId,
   });
 
-  Future<Map> updateWallet({
+  Future<Map> postRPC({
     required model.Session session,
-    required String payload,
+    required String id,
+    String? payload,
+    String? httpkey,
   });
 }
