@@ -368,18 +368,23 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
-  Future<ApiChannelMessageList?> listChannelMessages({
+  Future<ChannelMessageList?> listChannelMessages({
+    required model.Session session,
     required String channelId,
-    int? limit,
+    int limit = 20,
     bool? forward,
     String? cursor,
   }) async {
+    assert(limit > 0 && limit <= 100);
+
+    _session = session;
     final res = await _api.nakamaListChannelMessages(
       channelId: channelId,
       limit: limit,
       forward: forward,
       cursor: cursor,
     );
-    return res.body;
+
+    return ChannelMessageList()..mergeFromProto3Json(res.body!.toJson());
   }
 }

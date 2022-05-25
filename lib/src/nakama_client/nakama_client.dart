@@ -95,9 +95,10 @@ abstract class NakamaBaseClient {
     StorageReadPermission? readPermission,
   });
 
-  Future<ApiChannelMessageList?> listChannelMessages({
+  Future<ChannelMessageList?> listChannelMessages({
+    required model.Session session,
     required String channelId,
-    int? limit,
+    int limit = 20,
     bool? forward,
     String? cursor,
   });

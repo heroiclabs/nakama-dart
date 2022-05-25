@@ -348,12 +348,23 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<ApiChannelMessageList?> listChannelMessages({
+  Future<ChannelMessageList?> listChannelMessages({
+    required model.Session session,
     required String channelId,
-    int? limit,
+    int limit = 20,
     bool? forward,
     String? cursor,
   }) async {
-    return null;
+    assert(limit > 0 && limit <= 100);
+
+    return _client.listChannelMessages(
+      ListChannelMessagesRequest(
+        channelId: channelId,
+        limit: Int32Value(value: limit),
+        forward: BoolValue(value: forward),
+        cursor: cursor,
+      ),
+      options: _getSessionCallOptions(session),
+    );
   }
 }

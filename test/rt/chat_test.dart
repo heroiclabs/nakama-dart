@@ -11,11 +11,12 @@ import '../config.dart';
 void main() {
   late final Session sessionA;
   late final Session sessionB;
+  late final NakamaBaseClient client;
 
   // Create a new websocket connection for the hole test run (singleton).
   setUpAll(() async {
     // Create nakama clients.
-    final client = getNakamaClient(
+    client = getNakamaClient(
       host: kTestHost,
       ssl: false,
       serverKey: kTestServerKey,
@@ -177,6 +178,47 @@ void main() {
         channelId: senderChannelForA.id,
         content: messageContent,
       );
+    });
+
+    /// In this test we are sending direct messages to each other but without
+    /// being present in the channel. This means, no websocket message will be
+    /// sent. This is a test to ensure that the message is still sent to the
+    /// server and can be received by the other user via the REST API.
+    test('user receives direct message history', () async {
+      // Create two users
+      final a = NakamaWebsocketClient.instance;
+      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
+
+      final senderChannelForA = await a.joinChannel(
+        target: sessionB.userId,
+        type: ChannelJoin_Type.DIRECT_MESSAGE,
+        persistence: true,
+        hidden: false,
+      );
+
+      // Define a test message
+      const messageContent = {'message': 'PING'};
+
+      // Send message from A to B
+      await a.sendMessage(
+        channelId: senderChannelForA.id,
+        content: messageContent,
+      );
+
+      // Check on B's side that the message was received via the REST API
+      final receiverChannelForB = await b.joinChannel(
+        target: sessionA.userId,
+        type: ChannelJoin_Type.DIRECT_MESSAGE,
+        persistence: true,
+        hidden: false,
+      );
+      final messages = await client.listChannelMessages(
+        session: sessionB,
+        channelId: receiverChannelForB.id,
+      );
+
+      expect(messages, isNotNull);
+      expect(messages!.messages, hasLength(1));
     });
   });
 }
