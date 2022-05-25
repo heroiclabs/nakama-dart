@@ -318,6 +318,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> writeStorageObject({
+    required model.Session session,
     String? collection,
     String? key,
     String? value,

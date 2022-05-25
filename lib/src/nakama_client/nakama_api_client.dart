@@ -340,6 +340,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
   @override
   Future<void> writeStorageObject({
+    required model.Session session,
     String? collection,
     String? key,
     String? value,
@@ -347,6 +348,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
     StorageWritePermission? writePermission,
     StorageReadPermission? readPermission,
   }) {
+    _session = session;
+
     return _api.nakamaWriteStorageObjects(
       body: ApiWriteStorageObjectsRequest(
         objects: [

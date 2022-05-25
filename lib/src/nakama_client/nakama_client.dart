@@ -87,6 +87,7 @@ abstract class NakamaBaseClient {
   });
 
   Future<void> writeStorageObject({
+    required model.Session session,
     String? collection,
     String? key,
     String? value,
