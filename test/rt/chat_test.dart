@@ -184,7 +184,7 @@ void main() {
     /// being present in the channel. This means, no websocket message will be
     /// sent. This is a test to ensure that the message is still sent to the
     /// server and can be received by the other user via the REST API.
-    test('user receives direct message history', () async {
+    test('user receives default maximum 20 messages', () async {
       // Create connection for two users
       final a = NakamaWebsocketClient.instance;
       final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
@@ -196,14 +196,11 @@ void main() {
         hidden: false,
       );
 
-      // Define a test message
-      const messageContent = {'message': 'PING'};
-
-      // Send message from A to B
-      await a.sendMessage(
-        channelId: senderChannelForA.id,
-        content: messageContent,
-      );
+      // Send 40 test messages
+      for (final msg
+          in List.generate(40, (index) => {'message': 'PING $index'})) {
+        await a.sendMessage(channelId: senderChannelForA.id, content: msg);
+      }
 
       // Check on B's side that the message was received via the REST API
       final receiverChannelForB = await b.joinChannel(
@@ -218,7 +215,127 @@ void main() {
       );
 
       expect(messages, isNotNull);
-      expect(messages!.messages, hasLength(1));
+      expect(messages!.messages, hasLength(20));
+    });
+
+    test('user receives longer message history on request', () async {
+      // Create connection for two users
+      final a = NakamaWebsocketClient.instance;
+      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
+
+      final senderChannelForA = await a.joinChannel(
+        target: sessionB.userId,
+        type: ChannelJoin_Type.DIRECT_MESSAGE,
+        persistence: true,
+        hidden: false,
+      );
+
+      // Send 40 test messages
+      for (final msg
+          in List.generate(40, (index) => {'message': 'PING $index'})) {
+        await a.sendMessage(channelId: senderChannelForA.id, content: msg);
+      }
+
+      // Check on B's side that the message was received via the REST API
+      final receiverChannelForB = await b.joinChannel(
+        target: sessionA.userId,
+        type: ChannelJoin_Type.DIRECT_MESSAGE,
+        persistence: true,
+        hidden: false,
+      );
+      final messages = await client.listChannelMessages(
+        session: sessionB,
+        channelId: receiverChannelForB.id,
+        limit: 50,
+      );
+
+      expect(messages, isNotNull);
+      expect(messages!.messages, hasLength(40));
+    });
+
+    test('user receives longer message history on request', () async {
+      // Create connection for two users
+      final a = NakamaWebsocketClient.instance;
+      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
+
+      final senderChannelForA = await a.joinChannel(
+        target: sessionB.userId,
+        type: ChannelJoin_Type.DIRECT_MESSAGE,
+        persistence: true,
+        hidden: false,
+      );
+
+      // Send 40 test messages
+      for (final msg
+          in List.generate(40, (index) => {'message': 'PING $index'})) {
+        await a.sendMessage(channelId: senderChannelForA.id, content: msg);
+      }
+
+      // Check on B's side that the message was received via the REST API
+      final receiverChannelForB = await b.joinChannel(
+        target: sessionA.userId,
+        type: ChannelJoin_Type.DIRECT_MESSAGE,
+        persistence: true,
+        hidden: false,
+      );
+      final messages = await client.listChannelMessages(
+        session: sessionB,
+        channelId: receiverChannelForB.id,
+        limit: 50,
+      );
+
+      expect(messages, isNotNull);
+      expect(messages!.messages, hasLength(40));
+    });
+
+    test('user can iterate through messages with cursor', () async {
+      // Create connection for two users
+      final a = NakamaWebsocketClient.instance;
+      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
+
+      final senderChannelForA = await a.joinChannel(
+        target: sessionB.userId,
+        type: ChannelJoin_Type.DIRECT_MESSAGE,
+        persistence: true,
+        hidden: false,
+      );
+
+      // Send 20+15 test messages
+      for (final msg
+          in List.generate(20 + 15, (index) => {'message': 'PING $index'})) {
+        await a.sendMessage(channelId: senderChannelForA.id, content: msg);
+      }
+
+      // Check on B's side that the message was received via the REST API
+      final receiverChannelForB = await b.joinChannel(
+        target: sessionA.userId,
+        type: ChannelJoin_Type.DIRECT_MESSAGE,
+        persistence: true,
+        hidden: false,
+      );
+
+      // List first batch of 20 messages
+      await client
+          .listChannelMessages(
+            session: sessionB,
+            channelId: receiverChannelForB.id,
+          )
+          .then(((messages) {
+            expect(messages, isNotNull);
+            expect(messages!.messages, hasLength(20));
+            return messages;
+          }))
+          .then(
+            (messages) => client.listChannelMessages(
+              session: sessionB,
+              channelId: receiverChannelForB.id,
+              cursor: messages.nextCursor,
+            ),
+          )
+          .then((messages) {
+            expect(messages, isNotNull);
+            expect(messages!.messages, hasLength(15));
+          });
     });
 
     test('presence message coming in after joining', () async {
