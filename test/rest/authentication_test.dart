@@ -1,8 +1,9 @@
 import 'package:faker/faker.dart';
 import 'package:nakama/nakama.dart';
-import 'package:nakama/src/nakama_client/nakama_api_client.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
+
+import '../config.dart';
 
 void main() {
   group('[REST] Test Authentication', () {
@@ -10,9 +11,9 @@ void main() {
 
     setUpAll(() {
       client = NakamaRestApiClient.init(
-        host: '127.0.0.1',
+        host: kTestHost,
         ssl: false,
-        serverKey: 'defaultkey',
+        serverKey: kTestServerKey,
       );
     });
 

@@ -6,6 +6,7 @@ import 'package:logging/logging.dart';
 import 'package:nakama/api.dart';
 import 'package:nakama/nakama.dart';
 import 'package:nakama/src/api/proto/apigrpc/apigrpc.pbgrpc.dart';
+import 'package:nakama/src/rest/apigrpc.swagger.dart';
 import 'package:nakama/src/session.dart' as model;
 
 const _kDefaultAppKey = 'default';
@@ -317,6 +318,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> writeStorageObject({
+    required model.Session session,
     String? collection,
     String? key,
     String? value,
@@ -345,20 +347,25 @@ class NakamaGrpcClient extends NakamaBaseClient {
       ],
     ));
   }
-}
 
-NakamaBaseClient getNakamaClient({
-  String? host,
-  String? serverKey,
-  String key = _kDefaultAppKey,
-  int httpPort = 7350,
-  int grpcPort = 7349,
-  bool ssl = false,
-}) =>
-    NakamaGrpcClient.init(
-      host: host,
-      key: key,
-      port: grpcPort,
-      serverKey: serverKey,
-      ssl: ssl,
+  @override
+  Future<ChannelMessageList?> listChannelMessages({
+    required model.Session session,
+    required String channelId,
+    int limit = 20,
+    bool? forward,
+    String? cursor,
+  }) async {
+    assert(limit > 0 && limit <= 100);
+
+    return _client.listChannelMessages(
+      ListChannelMessagesRequest(
+        channelId: channelId,
+        limit: Int32Value(value: limit),
+        forward: BoolValue(value: forward),
+        cursor: cursor,
+      ),
+      options: _getSessionCallOptions(session),
     );
+  }
+}

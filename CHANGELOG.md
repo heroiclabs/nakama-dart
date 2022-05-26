@@ -1,3 +1,11 @@
+## 0.1.5-dev.2
+
+* Adds `NakamaBaseClient.listChannelMessages()` method
+* Fixed missing session passing on `writeStorageObject()` (issue with multiple clients)
+* Adds chat feature. Please use with care, not yet 100 % covered by tests.
+
+[Feedback appreciated](https://github.com/obrunsmann/flutter_nakama/issues/13)
+
 ## 0.1.4
 * Adds `onError()` and `onDone()` callbacks to `NakamaWebsocketClient`
 

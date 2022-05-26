@@ -3,6 +3,8 @@ import 'package:nakama/api.dart' as api;
 import 'package:nakama/nakama.dart';
 import 'package:test/test.dart';
 
+import '../config.dart';
+
 void main() {
   group('[gRPC] Test Account', () {
     late final NakamaBaseClient client;
@@ -10,9 +12,9 @@ void main() {
 
     setUpAll(() async {
       client = getNakamaClient(
-        host: '127.0.0.1',
+        host: kTestHost,
         ssl: false,
-        serverKey: 'defaultkey',
+        serverKey: kTestServerKey,
       );
 
       session = await client.authenticateDevice(deviceId: faker.guid.guid());

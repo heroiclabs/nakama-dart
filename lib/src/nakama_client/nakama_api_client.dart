@@ -340,6 +340,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
   @override
   Future<void> writeStorageObject({
+    required model.Session session,
     String? collection,
     String? key,
     String? value,
@@ -347,6 +348,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
     StorageWritePermission? writePermission,
     StorageReadPermission? readPermission,
   }) {
+    _session = session;
+
     return _api.nakamaWriteStorageObjects(
       body: ApiWriteStorageObjectsRequest(
         objects: [
@@ -366,20 +369,25 @@ class NakamaRestApiClient extends NakamaBaseClient {
       ),
     );
   }
-}
 
-NakamaBaseClient getNakamaClient({
-  String? host,
-  String? serverKey,
-  String key = _kDefaultAppKey,
-  int httpPort = 7350,
-  int grpcPort = 7349,
-  bool ssl = false,
-}) =>
-    NakamaRestApiClient.init(
-      host: host,
-      key: key,
-      port: httpPort,
-      serverKey: serverKey,
-      ssl: ssl,
+  @override
+  Future<ChannelMessageList?> listChannelMessages({
+    required model.Session session,
+    required String channelId,
+    int limit = 20,
+    bool? forward,
+    String? cursor,
+  }) async {
+    assert(limit > 0 && limit <= 100);
+
+    _session = session;
+    final res = await _api.nakamaListChannelMessages(
+      channelId: channelId,
+      limit: limit,
+      forward: forward,
+      cursor: cursor,
     );
+
+    return ChannelMessageList()..mergeFromProto3Json(res.body!.toJson());
+  }
+}
