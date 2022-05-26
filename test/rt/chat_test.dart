@@ -62,7 +62,7 @@ void main() {
         target: roomCode,
         type: ChannelJoin_Type.ROOM,
         persistence: false,
-        hidden: true,
+        hidden: false,
       );
 
       expect(channel, isNotNull);
@@ -76,7 +76,7 @@ void main() {
         target: faker.lorem.words(2).join('-'),
         type: ChannelJoin_Type.ROOM,
         persistence: false,
-        hidden: true,
+        hidden: false,
       );
 
       // Send message
@@ -98,7 +98,7 @@ void main() {
         target: faker.lorem.words(2).join('-'),
         type: ChannelJoin_Type.ROOM,
         persistence: false,
-        hidden: true,
+        hidden: false,
       );
 
       // Join B to the channel
@@ -107,7 +107,7 @@ void main() {
         target: channel.roomName,
         type: ChannelJoin_Type.ROOM,
         persistence: false,
-        hidden: true,
+        hidden: false,
       );
 
       // Predefine the message content we're going to send
@@ -245,6 +245,30 @@ void main() {
         persistence: true,
         hidden: false,
       );
+    });
+
+    test('receiving initial presence of all connected users', () async {
+      final a = NakamaWebsocketClient.instance;
+      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
+
+      // A creates channel and joins
+      final channel = await a.joinChannel(
+        target: faker.lorem.words(2).join('-'),
+        type: ChannelJoin_Type.ROOM,
+        persistence: true,
+        hidden: false,
+      );
+
+      // Finally join
+      final result = await b.joinChannel(
+        target: channel.roomName,
+        type: ChannelJoin_Type.ROOM,
+        persistence: true,
+        hidden: false,
+      );
+
+      expect(result.presences, hasLength(1));
+      expect(result.presences.first.userId, equals(sessionA.userId));
     });
   });
 }
