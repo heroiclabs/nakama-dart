@@ -270,5 +270,36 @@ void main() {
       expect(result.presences, hasLength(1));
       expect(result.presences.first.userId, equals(sessionA.userId));
     });
+
+    test('leaving chat creates a match presence event', () async {
+      final a = NakamaWebsocketClient.instance;
+      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
+
+      // Both joining channel
+      final name = faker.lorem.words(2).join('-');
+      final channels = await Future.wait([
+        a.joinChannel(
+          target: name,
+          type: ChannelJoin_Type.ROOM,
+          persistence: true,
+          hidden: false,
+        ),
+        b.joinChannel(
+          target: name,
+          type: ChannelJoin_Type.ROOM,
+          persistence: true,
+          hidden: false,
+        ),
+      ]);
+
+      // B receives presence event
+      b.onChannelPresence.listen(expectAsync1((presence) {
+        expect(presence.leaves, hasLength(1));
+        expect(presence.leaves.first.userId, equals(sessionA.userId));
+      }));
+
+      // A leaves
+      await a.leaveChannel(channelId: channels.first.id);
+    });
   });
 }

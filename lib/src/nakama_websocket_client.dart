@@ -331,6 +331,13 @@ class NakamaWebsocketClient {
         hidden: BoolValue(value: hidden),
       )));
 
+  Future<void> leaveChannel({
+    required String channelId,
+  }) =>
+      _send(
+        rtpb.Envelope(channelLeave: rtpb.ChannelLeave(channelId: channelId)),
+      );
+
   Future<rtpb.ChannelMessageAck> sendMessage({
     required String channelId,
     required Map<String, String> content,
