@@ -103,4 +103,11 @@ abstract class NakamaBaseClient {
     bool? forward,
     String? cursor,
   });
+
+  Future<Map> postRPC({
+    required model.Session session,
+    required String id,
+    String? payload,
+    String? httpkey,
+  });
 }

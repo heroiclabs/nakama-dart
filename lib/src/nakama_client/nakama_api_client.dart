@@ -390,4 +390,20 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
     return ChannelMessageList()..mergeFromProto3Json(res.body!.toJson());
   }
+
+  @override
+  Future<Map> postRPC(
+      {required model.Session session,
+      required String id,
+      String? payload,
+      String? httpkey}) async {
+    _session = session;
+    final result =
+        await _api.nakamaRpcFunc(id: id, body: payload, httpKey: httpkey);
+    return {
+      'id': result.body?.id ?? '0',
+      'payload': result.body?.payload ?? '{}',
+      'http': result.body?.httpKey ?? ' '
+    };
+  }
 }

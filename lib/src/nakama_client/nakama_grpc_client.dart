@@ -368,4 +368,16 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
   }
+
+  @override
+  Future<Map> postRPC(
+      {required model.Session session,
+      required String id,
+      String? payload,
+      String? httpkey}) async {
+    final request = Rpc(id: id, payload: payload, httpKey: httpkey);
+    final result = await _client.rpcFunc(request,
+        options: _getSessionCallOptions(session));
+    return {'id': result.id, 'payload': result.payload};
+  }
 }
