@@ -137,7 +137,7 @@ void main() {
     });
 
     test('user can recieve a private message', () async {
-      // Create two users
+      // Create connection for two users
       final a = NakamaWebsocketClient.instance;
       final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
 
@@ -185,7 +185,7 @@ void main() {
     /// sent. This is a test to ensure that the message is still sent to the
     /// server and can be received by the other user via the REST API.
     test('user receives direct message history', () async {
-      // Create two users
+      // Create connection for two users
       final a = NakamaWebsocketClient.instance;
       final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
 
@@ -219,6 +219,32 @@ void main() {
 
       expect(messages, isNotNull);
       expect(messages!.messages, hasLength(1));
+    });
+
+    test('presence message coming in after joining', () async {
+      // Create connection for two users
+      final a = NakamaWebsocketClient.instance;
+      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
+
+      // B is already in his channel and listening for new presence
+      await b.joinChannel(
+        target: sessionA.userId,
+        type: ChannelJoin_Type.DIRECT_MESSAGE,
+        persistence: true,
+        hidden: false,
+      );
+      b.onChannelPresence.listen(expectAsync1((presence) {
+        expect(presence.joins, hasLength(1));
+        expect(presence.joins.first.userId, equals(sessionA.userId));
+      }));
+
+      // A comes online
+      await a.joinChannel(
+        target: sessionB.userId,
+        type: ChannelJoin_Type.DIRECT_MESSAGE,
+        persistence: true,
+        hidden: false,
+      );
     });
   });
 }
