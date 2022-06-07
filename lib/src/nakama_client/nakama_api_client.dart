@@ -392,22 +392,26 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
-  Future<void> listLeaderboardRecords({
+  Future<LeaderboardRecordList> listLeaderboardRecords({
     required model.Session session,
     required String leaderboardId,
     List<String>? ownerIds,
-    int? limit,
+    int limit = 20,
     String? cursor,
     String? expiry,
-  }) {
+  }) async {
+    assert(limit > 0 && limit <= 100);
+
     _session = session;
 
-    return _api.nakamaListLeaderboardRecords(
+    final res = await _api.nakamaListLeaderboardRecords(
       leaderboardId: leaderboardId,
       ownerIds: ownerIds,
       limit: limit,
       cursor: cursor,
       expiry: expiry,
     );
+
+    return LeaderboardRecordList()..mergeFromProto3Json(res.body!.toJson());
   }
 }

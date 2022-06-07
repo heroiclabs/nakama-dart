@@ -6,7 +6,6 @@ import 'package:logging/logging.dart';
 import 'package:nakama/api.dart';
 import 'package:nakama/nakama.dart';
 import 'package:nakama/src/api/proto/apigrpc/apigrpc.pbgrpc.dart';
-import 'package:nakama/src/rest/apigrpc.swagger.dart';
 import 'package:nakama/src/session.dart' as model;
 
 const _kDefaultAppKey = 'default';
@@ -370,20 +369,26 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<void> listLeaderboardRecords({
+  Future<LeaderboardRecordList> listLeaderboardRecords({
     required model.Session session,
     required String leaderboardId,
     List<String>? ownerIds,
-    int? limit,
+    int limit = 20,
     String? cursor,
     String? expiry,
-  }) {
-    return _client.listLeaderboardRecords(ListLeaderboardRecordsRequest(
-      leaderboardId: leaderboardId,
-      ownerIds: ownerIds,
-      limit: limit, // Int32Value?
-      cursor: cursor,
-      expiry: expiry, // Int64Value?
-    ));
+  }) async {
+    assert(limit > 0 && limit <= 100);
+
+    return await _client.listLeaderboardRecords(
+      ListLeaderboardRecordsRequest(
+        leaderboardId: leaderboardId,
+        ownerIds: ownerIds,
+        limit: Int32Value(value: limit),
+        cursor: cursor,
+        expiry:
+            expiry == null ? null : Int64Value(value: Int64(int.parse(expiry))),
+      ),
+      options: _getSessionCallOptions(session),
+    );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:nakama/api.dart';
 import 'package:nakama/nakama.dart';
-import 'package:nakama/src/rest/apigrpc.swagger.dart';
 import 'package:nakama/src/session.dart' as model;
 
 const _kDefaultAppKey = 'default';
@@ -104,11 +103,11 @@ abstract class NakamaBaseClient {
     String? cursor,
   });
 
-  Future<void> listLeaderboardRecords({
+  Future<LeaderboardRecordList> listLeaderboardRecords({
     required model.Session session,
     required String leaderboardId,
     List<String>? ownerIds,
-    int? limit,
+    int limit = 20,
     String? cursor,
     String? expiry,
   });
