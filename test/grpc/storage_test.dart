@@ -25,7 +25,7 @@ void main() {
         session: session,
         collection: 'stats',
         key: 'skills',
-        value: '{"skill":25}',
+        value: '{"skill": 25}',
       );
     });
 
@@ -34,10 +34,22 @@ void main() {
         session: session,
         collection: 'stats',
         key: 'scores',
-        value: '{"skill":25}',
+        value: '{"skill": 25}',
         writePermission: StorageWritePermission.ownerWrite,
         readPermission: StorageReadPermission.publicRead,
       );
+    });
+
+    test('read storage object', () async {
+      final res = await client.readStorageObject(
+        session: session,
+        collection: 'stats',
+        key: 'skills',
+        userId: session.userId,
+      );
+
+      expect(res, isA<api.StorageObject>());
+      expect(res.value, equals('{"skill": 25}'));
     });
   });
 }
