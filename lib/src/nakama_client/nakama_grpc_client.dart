@@ -300,6 +300,30 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> updateAccount({
+    required model.Session session,
+    String? username,
+    String? displayName,
+    String? avatarUrl,
+    String? langTag,
+    String? location,
+    String? timezone,
+  }) async {
+    await _client.updateAccount(
+      UpdateAccountRequest(
+        username: username == null ? null : StringValue(value: username),
+        displayName:
+            displayName == null ? null : StringValue(value: displayName),
+        avatarUrl: avatarUrl == null ? null : StringValue(value: avatarUrl),
+        langTag: langTag == null ? null : StringValue(value: langTag),
+        location: location == null ? null : StringValue(value: location),
+        timezone: timezone == null ? null : StringValue(value: timezone),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
+
+  @override
   Future<Users> getUsers({
     required model.Session session,
     List<String>? facebookIds,

@@ -79,6 +79,16 @@ abstract class NakamaBaseClient {
 
   Future<Account> getAccount(model.Session session);
 
+  Future<void> updateAccount({
+    required model.Session session,
+    String? username,
+    String? displayName,
+    String? avatarUrl,
+    String? langTag,
+    String? location,
+    String? timezone,
+  });
+
   Future<Users> getUsers({
     required model.Session session,
     List<String>? facebookIds,
