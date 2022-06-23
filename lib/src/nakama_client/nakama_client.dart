@@ -111,4 +111,10 @@ abstract class NakamaBaseClient {
     String? cursor,
     String? expiry,
   });
+
+  Future<Rpc> rpc({
+    required model.Session session,
+    required String id,
+    String? payload,
+  });
 }
