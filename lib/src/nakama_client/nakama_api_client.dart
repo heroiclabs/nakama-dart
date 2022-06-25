@@ -394,7 +394,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     List<String>? ownerIds,
     int limit = 20,
     String? cursor,
-    String? expiry,
+    DateTime? expiry,
   }) async {
     assert(limit > 0 && limit <= 100);
 
@@ -405,7 +405,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
       ownerIds: ownerIds,
       limit: limit,
       cursor: cursor,
-      expiry: expiry,
+      expiry: expiry == null
+          ? null
+          : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
     );
 
     return LeaderboardRecordList()..mergeFromProto3Json(res.body!.toJson());

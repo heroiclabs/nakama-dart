@@ -109,6 +109,6 @@ abstract class NakamaBaseClient {
     List<String>? ownerIds,
     int limit = 20,
     String? cursor,
-    String? expiry,
+    DateTime? expiry,
   });
 }
