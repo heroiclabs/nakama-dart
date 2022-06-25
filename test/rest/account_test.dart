@@ -41,5 +41,9 @@ void main() {
       expect(users, isA<api.Users>());
       expect(users.users, hasLength(1));
     });
+
+    test('updating my account', () async {
+      await client.updateAccount(session: session, displayName: 'name');
+    });
   });
 }
