@@ -358,12 +358,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
             key: key,
             value: value,
             version: version,
-            permissionWrite: writePermission != null
-                ? StorageWritePermission.values.indexOf(writePermission)
-                : null,
-            permissionRead: readPermission != null
-                ? StorageReadPermission.values.indexOf(readPermission)
-                : null,
+            permissionWrite: writePermission?.index,
+            permissionRead: readPermission?.index,
           ),
         ],
       ),
