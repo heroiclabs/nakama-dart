@@ -22,7 +22,9 @@ void main() {
 
     test('list leaderboard records', () async {
       final result = await client.listLeaderboardRecords(
-          session: session, leaderboardId: 'test');
+        session: session,
+        leaderboardName: 'test',
+      );
 
       expect(result, isA<api.LeaderboardRecordList>());
       expect(result.records, hasLength(0));

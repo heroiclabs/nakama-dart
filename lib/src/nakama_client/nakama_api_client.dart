@@ -394,7 +394,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   @override
   Future<LeaderboardRecordList> listLeaderboardRecords({
     required model.Session session,
-    required String leaderboardId,
+    required String leaderboardName,
     List<String>? ownerIds,
     int limit = 20,
     String? cursor,
@@ -405,7 +405,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     _session = session;
 
     final res = await _api.nakamaListLeaderboardRecords(
-      leaderboardId: leaderboardId,
+      leaderboardId: leaderboardName,
       ownerIds: ownerIds,
       limit: limit,
       cursor: cursor,
