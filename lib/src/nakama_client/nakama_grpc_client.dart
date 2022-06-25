@@ -299,6 +299,30 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> updateAccount({
+    required model.Session session,
+    String? username,
+    String? displayName,
+    String? avatarUrl,
+    String? langTag,
+    String? location,
+    String? timezone,
+  }) async {
+    await _client.updateAccount(
+      UpdateAccountRequest(
+        username: username == null ? null : StringValue(value: username),
+        displayName:
+            displayName == null ? null : StringValue(value: displayName),
+        avatarUrl: avatarUrl == null ? null : StringValue(value: avatarUrl),
+        langTag: langTag == null ? null : StringValue(value: langTag),
+        location: location == null ? null : StringValue(value: location),
+        timezone: timezone == null ? null : StringValue(value: timezone),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
+
+  @override
   Future<Users> getUsers({
     required model.Session session,
     List<String>? facebookIds,
@@ -325,26 +349,25 @@ class NakamaGrpcClient extends NakamaBaseClient {
     StorageWritePermission? writePermission,
     StorageReadPermission? readPermission,
   }) {
-    return _client.writeStorageObjects(WriteStorageObjectsRequest(
-      objects: [
-        WriteStorageObject(
-          collection: collection,
-          key: key,
-          value: value,
-          version: version,
-          permissionWrite: writePermission != null
-              ? Int32Value(
-                  value: StorageWritePermission.values.indexOf(writePermission),
-                )
-              : null,
-          permissionRead: readPermission != null
-              ? Int32Value(
-                  value: StorageReadPermission.values.indexOf(readPermission),
-                )
-              : null,
-        ),
-      ],
-    ));
+    return _client.writeStorageObjects(
+      WriteStorageObjectsRequest(
+        objects: [
+          WriteStorageObject(
+            collection: collection,
+            key: key,
+            value: value,
+            version: version,
+            permissionWrite: writePermission != null
+                ? Int32Value(value: writePermission.index)
+                : null,
+            permissionRead: readPermission != null
+                ? Int32Value(value: readPermission.index)
+                : null,
+          ),
+        ],
+      ),
+      options: _getSessionCallOptions(session),
+    );
   }
 
   @override

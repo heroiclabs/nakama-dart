@@ -322,6 +322,28 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> updateAccount({
+    required model.Session session,
+    String? username,
+    String? displayName,
+    String? avatarUrl,
+    String? langTag,
+    String? location,
+    String? timezone,
+  }) async {
+    _session = session;
+
+    await _api.nakamaUpdateAccount(
+        body: ApiUpdateAccountRequest(
+            username: username,
+            displayName: displayName,
+            avatarUrl: avatarUrl,
+            langTag: langTag,
+            location: location,
+            timezone: timezone));
+  }
+
+  @override
   Future<Users> getUsers({
     required model.Session session,
     List<String>? facebookIds,
@@ -358,12 +380,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
             key: key,
             value: value,
             version: version,
-            permissionWrite: writePermission != null
-                ? StorageWritePermission.values.indexOf(writePermission)
-                : null,
-            permissionRead: readPermission != null
-                ? StorageReadPermission.values.indexOf(readPermission)
-                : null,
+            permissionWrite: writePermission?.index,
+            permissionRead: readPermission?.index,
           ),
         ],
       ),
