@@ -28,7 +28,6 @@ void main() {
       );
 
       expect(result, isA<api.LeaderboardRecordList>());
-      expect(result.records, hasLength(0));
     });
   });
 }
