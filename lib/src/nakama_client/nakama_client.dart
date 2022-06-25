@@ -1,6 +1,5 @@
 import 'package:nakama/api.dart';
 import 'package:nakama/nakama.dart';
-import 'package:nakama/src/rest/apigrpc.swagger.dart';
 import 'package:nakama/src/session.dart' as model;
 
 const _kDefaultAppKey = 'default';
@@ -78,6 +77,16 @@ abstract class NakamaBaseClient {
   });
 
   Future<Account> getAccount(model.Session session);
+
+  Future<void> updateAccount({
+    required model.Session session,
+    String? username,
+    String? displayName,
+    String? avatarUrl,
+    String? langTag,
+    String? location,
+    String? timezone,
+  });
 
   Future<Users> getUsers({
     required model.Session session,

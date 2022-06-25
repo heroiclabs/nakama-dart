@@ -1,6 +1,6 @@
 ## 0.1.5
 
-* Adds (Real-Time chat)[https://heroiclabs.com/docs/nakama/concepts/chat]
+* Adds [Real-Time chat](https://heroiclabs.com/docs/nakama/concepts/chat)
 * Fixed missing session passing on `writeStorageObject()` (issue with multiple clients)
 
 ## 0.1.4
