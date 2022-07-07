@@ -459,4 +459,25 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
     return LeaderboardRecordList()..mergeFromProto3Json(res.body!.toJson());
   }
+
+  @override
+  Future<LeaderboardRecord> writeLeaderboardRecord({
+    required model.Session session,
+    required String leaderboardId,
+    int? score,
+    int? subscore,
+    String? metadata,
+  }) async {
+    _session = session;
+
+    final res = await _api.nakamaWriteLeaderboardRecord(
+        leaderboardId: leaderboardId,
+        body: WriteLeaderboardRecordRequestLeaderboardRecordWrite(
+          score: score?.toString(),
+          subscore: subscore?.toString(),
+          metadata: metadata,
+        ));
+
+    return LeaderboardRecord()..mergeFromProto3Json(res.body!.toJson());
+  }
 }

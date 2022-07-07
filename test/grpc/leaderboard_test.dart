@@ -29,5 +29,13 @@ void main() {
 
       expect(result, isA<api.LeaderboardRecordList>());
     });
+
+    test('write leaderboard record', () async {
+      final result = await client.writeLeaderboardRecord(
+          session: session, leaderboardId: 'test', score: 10);
+
+      expect(result, isA<api.LeaderboardRecord>());
+      expect(result.score.toInt(), equals(10));
+    });
   });
 }
