@@ -438,4 +438,26 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
   }
+
+  @override
+  Future<LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
+    required model.Session session,
+    required String leaderboardId,
+    String? ownerId,
+    int limit = 20,
+    String? expiry,
+  }) async {
+    assert(limit > 0 && limit <= 100);
+
+    return await _client.listLeaderboardRecordsAroundOwner(
+      ListLeaderboardRecordsAroundOwnerRequest(
+        leaderboardId: leaderboardId,
+        ownerId: ownerId,
+        limit: UInt32Value(value: limit),
+        expiry:
+            expiry == null ? null : Int64Value(value: Int64(int.parse(expiry))),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
 }

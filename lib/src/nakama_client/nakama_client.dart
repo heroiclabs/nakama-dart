@@ -128,4 +128,12 @@ abstract class NakamaBaseClient {
     String? cursor,
     DateTime? expiry,
   });
+
+  Future<LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
+    required model.Session session,
+    required String leaderboardId,
+    String? ownerId,
+    int limit = 20,
+    String? expiry,
+  });
 }

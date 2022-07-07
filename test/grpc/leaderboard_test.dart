@@ -29,5 +29,12 @@ void main() {
 
       expect(result, isA<api.LeaderboardRecordList>());
     });
+
+    test('list leaderboard records around owner', () async {
+      final result = await client.listLeaderboardRecordsAroundOwner(
+          session: session, leaderboardId: 'test', ownerId: session.userId);
+
+      expect(result, isA<api.LeaderboardRecordList>());
+    });
   });
 }
