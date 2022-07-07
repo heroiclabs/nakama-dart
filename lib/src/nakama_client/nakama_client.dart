@@ -105,6 +105,13 @@ abstract class NakamaBaseClient {
     StorageReadPermission? readPermission,
   });
 
+  Future<StorageObject> readStorageObject({
+    required model.Session session,
+    String? collection,
+    String? key,
+    String? userId,
+  });
+
   Future<ChannelMessageList?> listChannelMessages({
     required model.Session session,
     required String channelId,
