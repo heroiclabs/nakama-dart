@@ -389,6 +389,31 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<StorageObject> readStorageObject({
+    required model.Session session,
+    String? collection,
+    String? key,
+    String? userId,
+  }) async {
+    _session = session;
+
+    final res = await _api.nakamaReadStorageObjects(
+      body: ApiReadStorageObjectsRequest(
+        objectIds: [
+          ApiReadStorageObjectId(
+            collection: collection,
+            key: key,
+            userId: userId,
+          ),
+        ],
+      ),
+    );
+
+    final result = StorageObjects()..mergeFromProto3Json(res.body!.toJson());
+    return result.objects.first;
+  }
+
+  @override
   Future<ChannelMessageList?> listChannelMessages({
     required model.Session session,
     required String channelId,
@@ -412,22 +437,24 @@ class NakamaRestApiClient extends NakamaBaseClient {
   @override
   Future<LeaderboardRecordList> listLeaderboardRecords({
     required model.Session session,
-    required String leaderboardId,
+    required String leaderboardName,
     List<String>? ownerIds,
     int limit = 20,
     String? cursor,
-    String? expiry,
+    DateTime? expiry,
   }) async {
     assert(limit > 0 && limit <= 100);
 
     _session = session;
 
     final res = await _api.nakamaListLeaderboardRecords(
-      leaderboardId: leaderboardId,
+      leaderboardId: leaderboardName,
       ownerIds: ownerIds,
       limit: limit,
       cursor: cursor,
-      expiry: expiry,
+      expiry: expiry == null
+          ? null
+          : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
     );
 
     return LeaderboardRecordList()..mergeFromProto3Json(res.body!.toJson());

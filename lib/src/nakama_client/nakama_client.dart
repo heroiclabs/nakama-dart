@@ -105,6 +105,13 @@ abstract class NakamaBaseClient {
     StorageReadPermission? readPermission,
   });
 
+  Future<StorageObject> readStorageObject({
+    required model.Session session,
+    String? collection,
+    String? key,
+    String? userId,
+  });
+
   Future<ChannelMessageList?> listChannelMessages({
     required model.Session session,
     required String channelId,
@@ -115,11 +122,11 @@ abstract class NakamaBaseClient {
 
   Future<LeaderboardRecordList> listLeaderboardRecords({
     required model.Session session,
-    required String leaderboardId,
+    required String leaderboardName,
     List<String>? ownerIds,
     int limit = 20,
     String? cursor,
-    String? expiry,
+    DateTime? expiry,
   });
 
   Future<Rpc> rpc({
