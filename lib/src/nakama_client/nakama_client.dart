@@ -119,4 +119,13 @@ abstract class NakamaBaseClient {
     bool? forward,
     String? cursor,
   });
+
+  Future<LeaderboardRecordList> listLeaderboardRecords({
+    required model.Session session,
+    required String leaderboardName,
+    List<String>? ownerIds,
+    int limit = 20,
+    String? cursor,
+    DateTime? expiry,
+  });
 }
