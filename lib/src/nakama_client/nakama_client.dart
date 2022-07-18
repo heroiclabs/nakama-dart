@@ -128,4 +128,9 @@ abstract class NakamaBaseClient {
     String? cursor,
     DateTime? expiry,
   });
+
+  Future<model.Session> sessionRefresh({
+    required model.Session session,
+    Map<String, String>? vars,
+  });
 }

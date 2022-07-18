@@ -438,4 +438,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
   }
+
+  @override
+  Future<model.Session> sessionRefresh({
+    required model.Session session,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _client.sessionRefresh(
+        SessionRefreshRequest(token: session.refreshToken, vars: vars));
+
+    return model.Session(
+      created: res.created,
+      token: res.token,
+      refreshToken: res.refreshToken,
+    );
+  }
 }

@@ -459,4 +459,23 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
     return LeaderboardRecordList()..mergeFromProto3Json(res.body!.toJson());
   }
+
+  @override
+  Future<model.Session> sessionRefresh({
+    required model.Session session,
+    Map<String, String>? vars,
+  }) async {
+    _session = session;
+
+    final res = await _api.nakamaSessionRefresh(
+        body:
+            ApiSessionRefreshRequest(token: session.refreshToken, vars: vars));
+    final data = res.body!;
+
+    return model.Session(
+      created: data.created ?? false,
+      token: data.token!,
+      refreshToken: data.refreshToken,
+    );
+  }
 }

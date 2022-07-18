@@ -44,5 +44,16 @@ void main() {
 
       expect(account, isNotNull);
     });
+
+    test('test session refresh', () async {
+      final session = await client.authenticateDevice(
+        deviceId: faker.guid.guid(),
+      );
+
+      final newSession = await client.sessionRefresh(session: session);
+
+      expect(newSession.token, isNot(equals(session.token)));
+      expect(newSession.expiresAt, greaterThan(session.expiresAt));
+    });
   });
 }
