@@ -1,4 +1,4 @@
-// Generated code
+// Generated code - do not change
 
 part of 'apigrpc.swagger.dart';
 
@@ -6,7 +6,7 @@ part of 'apigrpc.swagger.dart';
 // ChopperGenerator
 // **************************************************************************
 
-// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations
+// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
 class _$Apigrpc extends Apigrpc {
   _$Apigrpc([ChopperClient? client]) {
     if (client == null) return;
@@ -17,22 +17,22 @@ class _$Apigrpc extends Apigrpc {
   final definitionType = Apigrpc;
 
   @override
-  Future<Response<dynamic>> nakamaHealthcheck() {
+  Future<Response<dynamic>> _healthcheckGet() {
     final $url = '/healthcheck';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
-  Future<Response<ApiAccount>> nakamaGetAccount() {
+  Future<Response<ApiAccount>> _v2AccountGet() {
     final $url = '/v2/account';
     final $request = Request('GET', $url, client.baseUrl);
     return client.send<ApiAccount, ApiAccount>($request);
   }
 
   @override
-  Future<Response<dynamic>> nakamaUpdateAccount(
-      {ApiUpdateAccountRequest? body}) {
+  Future<Response<dynamic>> _v2AccountPut(
+      {required ApiUpdateAccountRequest? body}) {
     final $url = '/v2/account';
     final $body = body;
     final $request = Request('PUT', $url, client.baseUrl, body: $body);
@@ -40,8 +40,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiSession>> nakamaAuthenticateApple(
-      {ApiAccountApple? body, bool? create, String? username}) {
+  Future<Response<ApiSession>> _v2AccountAuthenticateApplePost(
+      {required ApiAccountApple? body, bool? create, String? username}) {
     final $url = '/v2/account/authenticate/apple';
     final $params = <String, dynamic>{'create': create, 'username': username};
     final $body = body;
@@ -51,8 +51,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiSession>> nakamaAuthenticateCustom(
-      {ApiAccountCustom? body, bool? create, String? username}) {
+  Future<Response<ApiSession>> _v2AccountAuthenticateCustomPost(
+      {required ApiAccountCustom? body, bool? create, String? username}) {
     final $url = '/v2/account/authenticate/custom';
     final $params = <String, dynamic>{'create': create, 'username': username};
     final $body = body;
@@ -62,8 +62,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiSession>> nakamaAuthenticateDevice(
-      {ApiAccountDevice? body, bool? create, String? username}) {
+  Future<Response<ApiSession>> _v2AccountAuthenticateDevicePost(
+      {required ApiAccountDevice? body, bool? create, String? username}) {
     final $url = '/v2/account/authenticate/device';
     final $params = <String, dynamic>{'create': create, 'username': username};
     final $body = body;
@@ -73,8 +73,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiSession>> nakamaAuthenticateEmail(
-      {ApiAccountEmail? body, bool? create, String? username}) {
+  Future<Response<ApiSession>> _v2AccountAuthenticateEmailPost(
+      {required ApiAccountEmail? body, bool? create, String? username}) {
     final $url = '/v2/account/authenticate/email';
     final $params = <String, dynamic>{'create': create, 'username': username};
     final $body = body;
@@ -84,8 +84,11 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiSession>> nakamaAuthenticateFacebook(
-      {ApiAccountFacebook? body, bool? create, String? username, bool? $sync}) {
+  Future<Response<ApiSession>> _v2AccountAuthenticateFacebookPost(
+      {required ApiAccountFacebook? body,
+      bool? create,
+      String? username,
+      bool? $sync}) {
     final $url = '/v2/account/authenticate/facebook';
     final $params = <String, dynamic>{
       'create': create,
@@ -99,8 +102,10 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiSession>> nakamaAuthenticateFacebookInstantGame(
-      {ApiAccountFacebookInstantGame? body, bool? create, String? username}) {
+  Future<Response<ApiSession>> _v2AccountAuthenticateFacebookinstantgamePost(
+      {required ApiAccountFacebookInstantGame? body,
+      bool? create,
+      String? username}) {
     final $url = '/v2/account/authenticate/facebookinstantgame';
     final $params = <String, dynamic>{'create': create, 'username': username};
     final $body = body;
@@ -110,8 +115,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiSession>> nakamaAuthenticateGameCenter(
-      {ApiAccountGameCenter? body, bool? create, String? username}) {
+  Future<Response<ApiSession>> _v2AccountAuthenticateGamecenterPost(
+      {required ApiAccountGameCenter? body, bool? create, String? username}) {
     final $url = '/v2/account/authenticate/gamecenter';
     final $params = <String, dynamic>{'create': create, 'username': username};
     final $body = body;
@@ -121,8 +126,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiSession>> nakamaAuthenticateGoogle(
-      {ApiAccountGoogle? body, bool? create, String? username}) {
+  Future<Response<ApiSession>> _v2AccountAuthenticateGooglePost(
+      {required ApiAccountGoogle? body, bool? create, String? username}) {
     final $url = '/v2/account/authenticate/google';
     final $params = <String, dynamic>{'create': create, 'username': username};
     final $body = body;
@@ -132,8 +137,11 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiSession>> nakamaAuthenticateSteam(
-      {ApiAccountSteam? body, bool? create, String? username, bool? $sync}) {
+  Future<Response<ApiSession>> _v2AccountAuthenticateSteamPost(
+      {required ApiAccountSteam? body,
+      bool? create,
+      String? username,
+      bool? $sync}) {
     final $url = '/v2/account/authenticate/steam';
     final $params = <String, dynamic>{
       'create': create,
@@ -147,7 +155,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaLinkApple({ApiAccountApple? body}) {
+  Future<Response<dynamic>> _v2AccountLinkApplePost(
+      {required ApiAccountApple? body}) {
     final $url = '/v2/account/link/apple';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -155,7 +164,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaLinkCustom({ApiAccountCustom? body}) {
+  Future<Response<dynamic>> _v2AccountLinkCustomPost(
+      {required ApiAccountCustom? body}) {
     final $url = '/v2/account/link/custom';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -163,7 +173,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaLinkDevice({ApiAccountDevice? body}) {
+  Future<Response<dynamic>> _v2AccountLinkDevicePost(
+      {required ApiAccountDevice? body}) {
     final $url = '/v2/account/link/device';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -171,7 +182,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaLinkEmail({ApiAccountEmail? body}) {
+  Future<Response<dynamic>> _v2AccountLinkEmailPost(
+      {required ApiAccountEmail? body}) {
     final $url = '/v2/account/link/email';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -179,8 +191,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaLinkFacebook(
-      {ApiAccountFacebook? body, bool? $sync}) {
+  Future<Response<dynamic>> _v2AccountLinkFacebookPost(
+      {required ApiAccountFacebook? body, bool? $sync}) {
     final $url = '/v2/account/link/facebook';
     final $params = <String, dynamic>{'sync': $sync};
     final $body = body;
@@ -190,8 +202,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaLinkFacebookInstantGame(
-      {ApiAccountFacebookInstantGame? body}) {
+  Future<Response<dynamic>> _v2AccountLinkFacebookinstantgamePost(
+      {required ApiAccountFacebookInstantGame? body}) {
     final $url = '/v2/account/link/facebookinstantgame';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -199,7 +211,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaLinkGameCenter({ApiAccountGameCenter? body}) {
+  Future<Response<dynamic>> _v2AccountLinkGamecenterPost(
+      {required ApiAccountGameCenter? body}) {
     final $url = '/v2/account/link/gamecenter';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -207,7 +220,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaLinkGoogle({ApiAccountGoogle? body}) {
+  Future<Response<dynamic>> _v2AccountLinkGooglePost(
+      {required ApiAccountGoogle? body}) {
     final $url = '/v2/account/link/google';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -215,7 +229,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaLinkSteam({ApiLinkSteamRequest? body}) {
+  Future<Response<dynamic>> _v2AccountLinkSteamPost(
+      {required ApiLinkSteamRequest? body}) {
     final $url = '/v2/account/link/steam';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -223,8 +238,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiSession>> nakamaSessionRefresh(
-      {ApiSessionRefreshRequest? body}) {
+  Future<Response<ApiSession>> _v2AccountSessionRefreshPost(
+      {required ApiSessionRefreshRequest? body}) {
     final $url = '/v2/account/session/refresh';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -232,7 +247,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaUnlinkApple({ApiAccountApple? body}) {
+  Future<Response<dynamic>> _v2AccountUnlinkApplePost(
+      {required ApiAccountApple? body}) {
     final $url = '/v2/account/unlink/apple';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -240,7 +256,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaUnlinkCustom({ApiAccountCustom? body}) {
+  Future<Response<dynamic>> _v2AccountUnlinkCustomPost(
+      {required ApiAccountCustom? body}) {
     final $url = '/v2/account/unlink/custom';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -248,7 +265,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaUnlinkDevice({ApiAccountDevice? body}) {
+  Future<Response<dynamic>> _v2AccountUnlinkDevicePost(
+      {required ApiAccountDevice? body}) {
     final $url = '/v2/account/unlink/device';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -256,7 +274,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaUnlinkEmail({ApiAccountEmail? body}) {
+  Future<Response<dynamic>> _v2AccountUnlinkEmailPost(
+      {required ApiAccountEmail? body}) {
     final $url = '/v2/account/unlink/email';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -264,7 +283,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaUnlinkFacebook({ApiAccountFacebook? body}) {
+  Future<Response<dynamic>> _v2AccountUnlinkFacebookPost(
+      {required ApiAccountFacebook? body}) {
     final $url = '/v2/account/unlink/facebook';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -272,8 +292,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaUnlinkFacebookInstantGame(
-      {ApiAccountFacebookInstantGame? body}) {
+  Future<Response<dynamic>> _v2AccountUnlinkFacebookinstantgamePost(
+      {required ApiAccountFacebookInstantGame? body}) {
     final $url = '/v2/account/unlink/facebookinstantgame';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -281,8 +301,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaUnlinkGameCenter(
-      {ApiAccountGameCenter? body}) {
+  Future<Response<dynamic>> _v2AccountUnlinkGamecenterPost(
+      {required ApiAccountGameCenter? body}) {
     final $url = '/v2/account/unlink/gamecenter';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -290,7 +310,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaUnlinkGoogle({ApiAccountGoogle? body}) {
+  Future<Response<dynamic>> _v2AccountUnlinkGooglePost(
+      {required ApiAccountGoogle? body}) {
     final $url = '/v2/account/unlink/google';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -298,7 +319,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaUnlinkSteam({ApiAccountSteam? body}) {
+  Future<Response<dynamic>> _v2AccountUnlinkSteamPost(
+      {required ApiAccountSteam? body}) {
     final $url = '/v2/account/unlink/steam';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -306,9 +328,9 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiChannelMessageList>> nakamaListChannelMessages(
-      {String? channelId, int? limit, bool? forward, String? cursor}) {
-    final $url = '/v2/channel/$channelId';
+  Future<Response<ApiChannelMessageList>> _v2ChannelChannelIdGet(
+      {required String? channelId, int? limit, bool? forward, String? cursor}) {
+    final $url = '/v2/channel/${channelId}';
     final $params = <String, dynamic>{
       'limit': limit,
       'forward': forward,
@@ -319,7 +341,7 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaEvent({ApiEvent? body}) {
+  Future<Response<dynamic>> _v2EventPost({required ApiEvent? body}) {
     final $url = '/v2/event';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -327,7 +349,7 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiFriendList>> nakamaListFriends(
+  Future<Response<ApiFriendList>> _v2FriendGet(
       {int? limit, int? state, String? cursor}) {
     final $url = '/v2/friend';
     final $params = <String, dynamic>{
@@ -340,7 +362,7 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaDeleteFriends(
+  Future<Response<dynamic>> _v2FriendDelete(
       {List<String>? ids, List<String>? usernames}) {
     final $url = '/v2/friend';
     final $params = <String, dynamic>{'ids': ids, 'usernames': usernames};
@@ -350,30 +372,26 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaAddFriends(
-      {List<String>? ids, List<String>? usernames, Object? body}) {
+  Future<Response<dynamic>> _v2FriendPost(
+      {List<String>? ids, List<String>? usernames}) {
     final $url = '/v2/friend';
     final $params = <String, dynamic>{'ids': ids, 'usernames': usernames};
-    final $body = body;
-    final $request =
-        Request('POST', $url, client.baseUrl, body: $body, parameters: $params);
+    final $request = Request('POST', $url, client.baseUrl, parameters: $params);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
-  Future<Response<dynamic>> nakamaBlockFriends(
-      {List<String>? ids, List<String>? usernames, Object? body}) {
+  Future<Response<dynamic>> _v2FriendBlockPost(
+      {List<String>? ids, List<String>? usernames}) {
     final $url = '/v2/friend/block';
     final $params = <String, dynamic>{'ids': ids, 'usernames': usernames};
-    final $body = body;
-    final $request =
-        Request('POST', $url, client.baseUrl, body: $body, parameters: $params);
+    final $request = Request('POST', $url, client.baseUrl, parameters: $params);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
-  Future<Response<dynamic>> nakamaImportFacebookFriends(
-      {ApiAccountFacebook? body, bool? reset}) {
+  Future<Response<dynamic>> _v2FriendFacebookPost(
+      {required ApiAccountFacebook? body, bool? reset}) {
     final $url = '/v2/friend/facebook';
     final $params = <String, dynamic>{'reset': reset};
     final $body = body;
@@ -383,8 +401,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaImportSteamFriends(
-      {ApiAccountSteam? body, bool? reset}) {
+  Future<Response<dynamic>> _v2FriendSteamPost(
+      {required ApiAccountSteam? body, bool? reset}) {
     final $url = '/v2/friend/steam';
     final $params = <String, dynamic>{'reset': reset};
     final $body = body;
@@ -394,20 +412,29 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiGroupList>> nakamaListGroups(
-      {String? name, String? cursor, int? limit}) {
+  Future<Response<ApiGroupList>> _v2GroupGet(
+      {String? name,
+      String? cursor,
+      int? limit,
+      String? langTag,
+      int? members,
+      bool? open}) {
     final $url = '/v2/group';
     final $params = <String, dynamic>{
       'name': name,
       'cursor': cursor,
-      'limit': limit
+      'limit': limit,
+      'langTag': langTag,
+      'members': members,
+      'open': open
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<ApiGroupList, ApiGroupList>($request);
   }
 
   @override
-  Future<Response<ApiGroup>> nakamaCreateGroup({ApiCreateGroupRequest? body}) {
+  Future<Response<ApiGroup>> _v2GroupPost(
+      {required ApiCreateGroupRequest? body}) {
     final $url = '/v2/group';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -415,96 +442,86 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaDeleteGroup({String? groupId}) {
-    final $url = '/v2/group/$groupId';
+  Future<Response<dynamic>> _v2GroupGroupIdDelete({required String? groupId}) {
+    final $url = '/v2/group/${groupId}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
-  Future<Response<dynamic>> nakamaUpdateGroup(
-      {String? groupId, ApiUpdateGroupRequest? body}) {
-    final $url = '/v2/group/$groupId';
+  Future<Response<dynamic>> _v2GroupGroupIdPut(
+      {required String? groupId, required ApiUpdateGroupRequest? body}) {
+    final $url = '/v2/group/${groupId}';
     final $body = body;
     final $request = Request('PUT', $url, client.baseUrl, body: $body);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
-  Future<Response<dynamic>> nakamaAddGroupUsers(
-      {String? groupId, List<String>? user_ids, Object? body}) {
-    final $url = '/v2/group/$groupId/add';
-    final $params = <String, dynamic>{'user_ids': user_ids};
-    final $body = body;
-    final $request =
-        Request('POST', $url, client.baseUrl, body: $body, parameters: $params);
+  Future<Response<dynamic>> _v2GroupGroupIdAddPost(
+      {required String? groupId, List<String>? userIds}) {
+    final $url = '/v2/group/${groupId}/add';
+    final $params = <String, dynamic>{'userIds': userIds};
+    final $request = Request('POST', $url, client.baseUrl, parameters: $params);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
-  Future<Response<dynamic>> nakamaBanGroupUsers(
-      {String? groupId, List<String>? user_ids, Object? body}) {
-    final $url = '/v2/group/$groupId/ban';
-    final $params = <String, dynamic>{'user_ids': user_ids};
-    final $body = body;
-    final $request =
-        Request('POST', $url, client.baseUrl, body: $body, parameters: $params);
+  Future<Response<dynamic>> _v2GroupGroupIdBanPost(
+      {required String? groupId, List<String>? userIds}) {
+    final $url = '/v2/group/${groupId}/ban';
+    final $params = <String, dynamic>{'userIds': userIds};
+    final $request = Request('POST', $url, client.baseUrl, parameters: $params);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
-  Future<Response<dynamic>> nakamaDemoteGroupUsers(
-      {String? groupId, List<String>? user_ids, Object? body}) {
-    final $url = '/v2/group/$groupId/demote';
-    final $params = <String, dynamic>{'user_ids': user_ids};
-    final $body = body;
-    final $request =
-        Request('POST', $url, client.baseUrl, body: $body, parameters: $params);
+  Future<Response<dynamic>> _v2GroupGroupIdDemotePost(
+      {required String? groupId, List<String>? userIds}) {
+    final $url = '/v2/group/${groupId}/demote';
+    final $params = <String, dynamic>{'userIds': userIds};
+    final $request = Request('POST', $url, client.baseUrl, parameters: $params);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
-  Future<Response<dynamic>> nakamaJoinGroup({String? groupId, Object? body}) {
-    final $url = '/v2/group/$groupId/join';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+  Future<Response<dynamic>> _v2GroupGroupIdJoinPost(
+      {required String? groupId}) {
+    final $url = '/v2/group/${groupId}/join';
+    final $request = Request('POST', $url, client.baseUrl);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
-  Future<Response<dynamic>> nakamaKickGroupUsers(
-      {String? groupId, List<String>? user_ids, Object? body}) {
-    final $url = '/v2/group/$groupId/kick';
-    final $params = <String, dynamic>{'user_ids': user_ids};
-    final $body = body;
-    final $request =
-        Request('POST', $url, client.baseUrl, body: $body, parameters: $params);
+  Future<Response<dynamic>> _v2GroupGroupIdKickPost(
+      {required String? groupId, List<String>? userIds}) {
+    final $url = '/v2/group/${groupId}/kick';
+    final $params = <String, dynamic>{'userIds': userIds};
+    final $request = Request('POST', $url, client.baseUrl, parameters: $params);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
-  Future<Response<dynamic>> nakamaLeaveGroup({String? groupId, Object? body}) {
-    final $url = '/v2/group/$groupId/leave';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+  Future<Response<dynamic>> _v2GroupGroupIdLeavePost(
+      {required String? groupId}) {
+    final $url = '/v2/group/${groupId}/leave';
+    final $request = Request('POST', $url, client.baseUrl);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
-  Future<Response<dynamic>> nakamaPromoteGroupUsers(
-      {String? groupId, List<String>? user_ids, Object? body}) {
-    final $url = '/v2/group/$groupId/promote';
-    final $params = <String, dynamic>{'user_ids': user_ids};
-    final $body = body;
-    final $request =
-        Request('POST', $url, client.baseUrl, body: $body, parameters: $params);
+  Future<Response<dynamic>> _v2GroupGroupIdPromotePost(
+      {required String? groupId, List<String>? userIds}) {
+    final $url = '/v2/group/${groupId}/promote';
+    final $params = <String, dynamic>{'userIds': userIds};
+    final $request = Request('POST', $url, client.baseUrl, parameters: $params);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
-  Future<Response<ApiGroupUserList>> nakamaListGroupUsers(
-      {String? groupId, int? limit, int? state, String? cursor}) {
-    final $url = '/v2/group/$groupId/user';
+  Future<Response<ApiGroupUserList>> _v2GroupGroupIdUserGet(
+      {required String? groupId, int? limit, int? state, String? cursor}) {
+    final $url = '/v2/group/${groupId}/user';
     final $params = <String, dynamic>{
       'limit': limit,
       'state': state,
@@ -515,8 +532,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiValidatePurchaseResponse>> nakamaValidatePurchaseApple(
-      {ApiValidatePurchaseAppleRequest? body}) {
+  Future<Response<ApiValidatePurchaseResponse>> _v2IapPurchaseApplePost(
+      {required ApiValidatePurchaseAppleRequest? body}) {
     final $url = '/v2/iap/purchase/apple';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -525,8 +542,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiValidatePurchaseResponse>> nakamaValidatePurchaseGoogle(
-      {ApiValidatePurchaseGoogleRequest? body}) {
+  Future<Response<ApiValidatePurchaseResponse>> _v2IapPurchaseGooglePost(
+      {required ApiValidatePurchaseGoogleRequest? body}) {
     final $url = '/v2/iap/purchase/google';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -535,8 +552,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiValidatePurchaseResponse>> nakamaValidatePurchaseHuawei(
-      {ApiValidatePurchaseHuaweiRequest? body}) {
+  Future<Response<ApiValidatePurchaseResponse>> _v2IapPurchaseHuaweiPost(
+      {required ApiValidatePurchaseHuaweiRequest? body}) {
     final $url = '/v2/iap/purchase/huawei';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -545,13 +562,52 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiLeaderboardRecordList>> nakamaListLeaderboardRecords(
-      {String? leaderboardId,
+  Future<Response<ApiSubscriptionList>> _v2IapSubscriptionPost(
+      {required ApiListSubscriptionsRequest? body}) {
+    final $url = '/v2/iap/subscription';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<ApiSubscriptionList, ApiSubscriptionList>($request);
+  }
+
+  @override
+  Future<Response<ApiValidateSubscriptionResponse>> _v2IapSubscriptionApplePost(
+      {required ApiValidateSubscriptionAppleRequest? body}) {
+    final $url = '/v2/iap/subscription/apple';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<ApiValidateSubscriptionResponse,
+        ApiValidateSubscriptionResponse>($request);
+  }
+
+  @override
+  Future<Response<ApiValidateSubscriptionResponse>>
+      _v2IapSubscriptionGooglePost(
+          {required ApiValidateSubscriptionGoogleRequest? body}) {
+    final $url = '/v2/iap/subscription/google';
+    final $body = body;
+    final $request = Request('POST', $url, client.baseUrl, body: $body);
+    return client.send<ApiValidateSubscriptionResponse,
+        ApiValidateSubscriptionResponse>($request);
+  }
+
+  @override
+  Future<Response<ApiValidatedSubscription>> _v2IapSubscriptionProductIdGet(
+      {required String? productId}) {
+    final $url = '/v2/iap/subscription/${productId}';
+    final $request = Request('GET', $url, client.baseUrl);
+    return client
+        .send<ApiValidatedSubscription, ApiValidatedSubscription>($request);
+  }
+
+  @override
+  Future<Response<ApiLeaderboardRecordList>> _v2LeaderboardLeaderboardIdGet(
+      {required String? leaderboardId,
       List<String>? ownerIds,
       int? limit,
       String? cursor,
       String? expiry}) {
-    final $url = '/v2/leaderboard/$leaderboardId';
+    final $url = '/v2/leaderboard/${leaderboardId}';
     final $params = <String, dynamic>{
       'ownerIds': ownerIds,
       'limit': limit,
@@ -564,18 +620,18 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaDeleteLeaderboardRecord(
-      {String? leaderboardId}) {
-    final $url = '/v2/leaderboard/$leaderboardId';
+  Future<Response<dynamic>> _v2LeaderboardLeaderboardIdDelete(
+      {required String? leaderboardId}) {
+    final $url = '/v2/leaderboard/${leaderboardId}';
     final $request = Request('DELETE', $url, client.baseUrl);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
-  Future<Response<ApiLeaderboardRecord>> nakamaWriteLeaderboardRecord(
-      {String? leaderboardId,
-      WriteLeaderboardRecordRequestLeaderboardRecordWrite? body}) {
-    final $url = '/v2/leaderboard/$leaderboardId';
+  Future<Response<ApiLeaderboardRecord>> _v2LeaderboardLeaderboardIdPost(
+      {required String? leaderboardId,
+      required WriteLeaderboardRecordRequestLeaderboardRecordWrite? body}) {
+    final $url = '/v2/leaderboard/${leaderboardId}';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<ApiLeaderboardRecord, ApiLeaderboardRecord>($request);
@@ -583,12 +639,12 @@ class _$Apigrpc extends Apigrpc {
 
   @override
   Future<Response<ApiLeaderboardRecordList>>
-      nakamaListLeaderboardRecordsAroundOwner(
-          {String? leaderboardId,
-          String? ownerId,
+      _v2LeaderboardLeaderboardIdOwnerOwnerIdGet(
+          {required String? leaderboardId,
+          required String? ownerId,
           int? limit,
           String? expiry}) {
-    final $url = '/v2/leaderboard/$leaderboardId/owner/$ownerId';
+    final $url = '/v2/leaderboard/${leaderboardId}/owner/${ownerId}';
     final $params = <String, dynamic>{'limit': limit, 'expiry': expiry};
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -596,7 +652,7 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiMatchList>> nakamaListMatches(
+  Future<Response<ApiMatchList>> _v2MatchGet(
       {int? limit,
       bool? authoritative,
       String? label,
@@ -617,7 +673,7 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiNotificationList>> nakamaListNotifications(
+  Future<Response<ApiNotificationList>> _v2NotificationGet(
       {int? limit, String? cacheableCursor}) {
     final $url = '/v2/notification';
     final $params = <String, dynamic>{
@@ -629,7 +685,7 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaDeleteNotifications({List<String>? ids}) {
+  Future<Response<dynamic>> _v2NotificationDelete({List<String>? ids}) {
     final $url = '/v2/notification';
     final $params = <String, dynamic>{'ids': ids};
     final $request =
@@ -638,28 +694,43 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiRpc>> nakamaRpcFunc2(
-      {String? id, String? payload, String? httpKey}) {
-    final $url = '/v2/rpc/$id';
+  Future<Response<ApiRpc>> _v2RpcIdGet(
+      {required String? id,
+      String? payload,
+      String? httpKey,
+      String? httpKey$}) {
+    final $url = '/v2/rpc/${id}';
     final $params = <String, dynamic>{'payload': payload, 'httpKey': httpKey};
-    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
+    final $headers = {
+      if (httpKey$ != null) 'http_key': httpKey$,
+    };
+
+    final $request = Request('GET', $url, client.baseUrl,
+        parameters: $params, headers: $headers);
     return client.send<ApiRpc, ApiRpc>($request);
   }
 
   @override
-  Future<Response<ApiRpc>> nakamaRpcFunc(
-      {String? id, Object? body, String? httpKey}) {
-    final $url = '/v2/rpc/$id';
+  Future<Response<ApiRpc>> _v2RpcIdPost(
+      {required String? id,
+      required String? body,
+      String? httpKey,
+      String? httpKey$}) {
+    final $url = '/v2/rpc/${id}';
     final $params = <String, dynamic>{'httpKey': httpKey};
+    final $headers = {
+      if (httpKey$ != null) 'http_key': httpKey$,
+    };
+
     final $body = body;
-    final $request =
-        Request('POST', $url, client.baseUrl, body: $body, parameters: $params);
+    final $request = Request('POST', $url, client.baseUrl,
+        body: $body, parameters: $params, headers: $headers);
     return client.send<ApiRpc, ApiRpc>($request);
   }
 
   @override
-  Future<Response<dynamic>> nakamaSessionLogout(
-      {ApiSessionLogoutRequest? body}) {
+  Future<Response<dynamic>> _v2SessionLogoutPost(
+      {required ApiSessionLogoutRequest? body}) {
     final $url = '/v2/session/logout';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -667,8 +738,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiStorageObjects>> nakamaReadStorageObjects(
-      {ApiReadStorageObjectsRequest? body}) {
+  Future<Response<ApiStorageObjects>> _v2StoragePost(
+      {required ApiReadStorageObjectsRequest? body}) {
     final $url = '/v2/storage';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
@@ -676,8 +747,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiStorageObjectAcks>> nakamaWriteStorageObjects(
-      {ApiWriteStorageObjectsRequest? body}) {
+  Future<Response<ApiStorageObjectAcks>> _v2StoragePut(
+      {required ApiWriteStorageObjectsRequest? body}) {
     final $url = '/v2/storage';
     final $body = body;
     final $request = Request('PUT', $url, client.baseUrl, body: $body);
@@ -685,8 +756,8 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<dynamic>> nakamaDeleteStorageObjects(
-      {ApiDeleteStorageObjectsRequest? body}) {
+  Future<Response<dynamic>> _v2StorageDeletePut(
+      {required ApiDeleteStorageObjectsRequest? body}) {
     final $url = '/v2/storage/delete';
     final $body = body;
     final $request = Request('PUT', $url, client.baseUrl, body: $body);
@@ -694,9 +765,12 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiStorageObjectList>> nakamaListStorageObjects(
-      {String? collection, String? userId, int? limit, String? cursor}) {
-    final $url = '/v2/storage/$collection';
+  Future<Response<ApiStorageObjectList>> _v2StorageCollectionGet(
+      {required String? collection,
+      String? userId,
+      int? limit,
+      String? cursor}) {
+    final $url = '/v2/storage/${collection}';
     final $params = <String, dynamic>{
       'userId': userId,
       'limit': limit,
@@ -707,16 +781,19 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiStorageObjectList>> nakamaListStorageObjects2(
-      {String? collection, String? userId, int? limit, String? cursor}) {
-    final $url = '/v2/storage/$collection/$userId';
+  Future<Response<ApiStorageObjectList>> _v2StorageCollectionUserIdGet(
+      {required String? collection,
+      required String? userId,
+      int? limit,
+      String? cursor}) {
+    final $url = '/v2/storage/${collection}/${userId}';
     final $params = <String, dynamic>{'limit': limit, 'cursor': cursor};
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<ApiStorageObjectList, ApiStorageObjectList>($request);
   }
 
   @override
-  Future<Response<ApiTournamentList>> nakamaListTournaments(
+  Future<Response<ApiTournamentList>> _v2TournamentGet(
       {int? categoryStart,
       int? categoryEnd,
       int? startTime,
@@ -737,13 +814,13 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiTournamentRecordList>> nakamaListTournamentRecords(
-      {String? tournamentId,
+  Future<Response<ApiTournamentRecordList>> _v2TournamentTournamentIdGet(
+      {required String? tournamentId,
       List<String>? ownerIds,
       int? limit,
       String? cursor,
       String? expiry}) {
-    final $url = '/v2/tournament/$tournamentId';
+    final $url = '/v2/tournament/${tournamentId}';
     final $params = <String, dynamic>{
       'ownerIds': ownerIds,
       'limit': limit,
@@ -756,39 +833,41 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiLeaderboardRecord>> nakamaWriteTournamentRecord2(
-      {String? tournamentId,
-      WriteTournamentRecordRequestTournamentRecordWrite? body}) {
-    final $url = '/v2/tournament/$tournamentId';
+  Future<Response<ApiLeaderboardRecord>> _v2TournamentTournamentIdPost(
+      {required String? tournamentId,
+      required WriteTournamentRecordRequestTournamentRecordWrite? body}) {
+    final $url = '/v2/tournament/${tournamentId}';
     final $body = body;
     final $request = Request('POST', $url, client.baseUrl, body: $body);
     return client.send<ApiLeaderboardRecord, ApiLeaderboardRecord>($request);
   }
 
   @override
-  Future<Response<ApiLeaderboardRecord>> nakamaWriteTournamentRecord(
-      {String? tournamentId,
-      WriteTournamentRecordRequestTournamentRecordWrite? body}) {
-    final $url = '/v2/tournament/$tournamentId';
+  Future<Response<ApiLeaderboardRecord>> _v2TournamentTournamentIdPut(
+      {required String? tournamentId,
+      required WriteTournamentRecordRequestTournamentRecordWrite? body}) {
+    final $url = '/v2/tournament/${tournamentId}';
     final $body = body;
     final $request = Request('PUT', $url, client.baseUrl, body: $body);
     return client.send<ApiLeaderboardRecord, ApiLeaderboardRecord>($request);
   }
 
   @override
-  Future<Response<dynamic>> nakamaJoinTournament(
-      {String? tournamentId, Object? body}) {
-    final $url = '/v2/tournament/$tournamentId/join';
-    final $body = body;
-    final $request = Request('POST', $url, client.baseUrl, body: $body);
+  Future<Response<dynamic>> _v2TournamentTournamentIdJoinPost(
+      {required String? tournamentId}) {
+    final $url = '/v2/tournament/${tournamentId}/join';
+    final $request = Request('POST', $url, client.baseUrl);
     return client.send<dynamic, dynamic>($request);
   }
 
   @override
   Future<Response<ApiTournamentRecordList>>
-      nakamaListTournamentRecordsAroundOwner(
-          {String? tournamentId, String? ownerId, int? limit, String? expiry}) {
-    final $url = '/v2/tournament/$tournamentId/owner/$ownerId';
+      _v2TournamentTournamentIdOwnerOwnerIdGet(
+          {required String? tournamentId,
+          required String? ownerId,
+          int? limit,
+          String? expiry}) {
+    final $url = '/v2/tournament/${tournamentId}/owner/${ownerId}';
     final $params = <String, dynamic>{'limit': limit, 'expiry': expiry};
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client
@@ -796,7 +875,7 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiUsers>> nakamaGetUsers(
+  Future<Response<ApiUsers>> _v2UserGet(
       {List<String>? ids, List<String>? usernames, List<String>? facebookIds}) {
     final $url = '/v2/user';
     final $params = <String, dynamic>{
@@ -809,9 +888,9 @@ class _$Apigrpc extends Apigrpc {
   }
 
   @override
-  Future<Response<ApiUserGroupList>> nakamaListUserGroups(
-      {String? userId, int? limit, int? state, String? cursor}) {
-    final $url = '/v2/user/$userId/group';
+  Future<Response<ApiUserGroupList>> _v2UserUserIdGroupGet(
+      {required String? userId, int? limit, int? state, String? cursor}) {
+    final $url = '/v2/user/${userId}/group';
     final $params = <String, dynamic>{
       'limit': limit,
       'state': state,
