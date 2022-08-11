@@ -371,7 +371,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<StorageObject> readStorageObject({
+  Future<StorageObject?> readStorageObject({
     required model.Session session,
     String? collection,
     String? key,
@@ -390,7 +390,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return res.objects.first;
+    return res.objects.isEmpty ? null : res.objects.first;
   }
 
   @override
@@ -412,6 +412,18 @@ class NakamaGrpcClient extends NakamaBaseClient {
     );
 
     return res;
+  }
+
+  Future<void> deleteStorageObject({
+    required model.Session session,
+    required Iterable<DeleteStorageObjectId> objectIds,
+  }) async {
+    await _client.deleteStorageObjects(
+      DeleteStorageObjectsRequest(
+        objectIds: objectIds,
+      ),
+      options: _getSessionCallOptions(session),
+    );
   }
 
   @override

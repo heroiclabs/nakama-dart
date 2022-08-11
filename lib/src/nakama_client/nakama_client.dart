@@ -113,7 +113,12 @@ abstract class NakamaBaseClient {
     int? limit,
   });
 
-  Future<StorageObject> readStorageObject({
+  Future<void> deleteStorageObject({
+    required model.Session session,
+    required Iterable<DeleteStorageObjectId> objectIds,
+  });
+
+  Future<StorageObject?> readStorageObject({
     required model.Session session,
     String? collection,
     String? key,

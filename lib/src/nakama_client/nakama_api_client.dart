@@ -380,7 +380,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
-  Future<StorageObject> readStorageObject({
+  Future<StorageObject?> readStorageObject({
     required model.Session session,
     String? collection,
     String? key,
@@ -401,7 +401,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     );
 
     final result = StorageObjects()..mergeFromProto3Json(res.body!.toJson());
-    return result.objects.first;
+    return result.objects.isEmpty ? null : result.objects.first;
   }
 
   @override
@@ -422,6 +422,25 @@ class NakamaRestApiClient extends NakamaBaseClient {
     );
 
     return StorageObjectList()..mergeFromProto3Json(res.body!.toJson());
+  }
+
+  Future<void> deleteStorageObject({
+    required model.Session session,
+    required Iterable<DeleteStorageObjectId> objectIds,
+  }) async {
+    _session = session;
+
+    await _api.v2StorageDeletePut(
+      body: ApiDeleteStorageObjectsRequest(
+        objectIds: objectIds
+            .map((e) => ApiDeleteStorageObjectId(
+                  collection: e.collection,
+                  key: e.key,
+                  version: e.version,
+                ))
+            .toList(),
+      ),
+    );
   }
 
   @override

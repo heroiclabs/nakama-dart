@@ -1,3 +1,7 @@
+## unreleased
+
+* **Breaking** `readStorageObject()` returns now `Future<StorageObject?>` instead of `Future<StorageObject>`. Future resolves with `null` in case there was no element found with given key.
+
 ## 0.1.5
 
 * Adds [Real-Time chat](https://heroiclabs.com/docs/nakama/concepts/chat)
