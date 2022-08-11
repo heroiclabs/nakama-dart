@@ -1,6 +1,10 @@
-## unreleased
+## 0.1.6
 
+* Full storage object support 🎉
 * **Breaking** `readStorageObject()` returns now `Future<StorageObject?>` instead of `Future<StorageObject>`. Future resolves with `null` in case there was no element found with given key.
+* Adds submitting and listing leaderboard records (more WIP)
+* Adds `updateAccount()` method
+* Bumps dependencies and API client to latest versions
 
 ## 0.1.5
 
