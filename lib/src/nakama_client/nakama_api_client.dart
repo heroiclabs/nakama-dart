@@ -405,6 +405,26 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<StorageObjectList> listStorageObjects({
+    required model.Session session,
+    String? collection,
+    String? cursor,
+    String? userId,
+    int? limit,
+  }) async {
+    _session = session;
+
+    final res = await _api.v2StorageCollectionGet(
+      collection: collection,
+      cursor: cursor,
+      userId: userId,
+      limit: limit,
+    );
+
+    return StorageObjectList()..mergeFromProto3Json(res.body!.toJson());
+  }
+
+  @override
   Future<ChannelMessageList?> listChannelMessages({
     required model.Session session,
     required String channelId,

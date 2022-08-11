@@ -394,6 +394,27 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<StorageObjectList> listStorageObjects({
+    required model.Session session,
+    String? collection,
+    String? cursor,
+    String? userId,
+    int? limit,
+  }) async {
+    final res = await _client.listStorageObjects(
+      ListStorageObjectsRequest(
+        collection: collection,
+        cursor: cursor,
+        limit: Int32Value(value: limit),
+        userId: userId,
+      ),
+      options: _getSessionCallOptions(session),
+    );
+
+    return res;
+  }
+
+  @override
   Future<ChannelMessageList?> listChannelMessages({
     required model.Session session,
     required String channelId,

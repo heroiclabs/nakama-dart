@@ -105,6 +105,14 @@ abstract class NakamaBaseClient {
     StorageReadPermission? readPermission,
   });
 
+  Future<StorageObjectList> listStorageObjects({
+    required model.Session session,
+    String? collection,
+    String? cursor,
+    String? userId,
+    int? limit,
+  });
+
   Future<StorageObject> readStorageObject({
     required model.Session session,
     String? collection,
