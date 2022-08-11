@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   chopper: ^4.0.1
+  collection: ^1.16.0
   fixnum: ^1.0.0
   flutter:
     sdk: flutter

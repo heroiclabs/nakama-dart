@@ -414,6 +414,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
     return res;
   }
 
+  @override
   Future<void> deleteStorageObject({
     required model.Session session,
     required Iterable<DeleteStorageObjectId> objectIds,

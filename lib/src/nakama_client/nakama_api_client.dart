@@ -424,6 +424,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     return StorageObjectList()..mergeFromProto3Json(res.body!.toJson());
   }
 
+  @override
   Future<void> deleteStorageObject({
     required model.Session session,
     required Iterable<DeleteStorageObjectId> objectIds,
