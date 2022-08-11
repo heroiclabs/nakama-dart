@@ -128,4 +128,12 @@ abstract class NakamaBaseClient {
     String? cursor,
     DateTime? expiry,
   });
+
+  Future<LeaderboardRecord> writeLeaderboardRecord({
+    required model.Session session,
+    required String leaderboardId,
+    int? score,
+    int? subscore,
+    String? metadata,
+  });
 }

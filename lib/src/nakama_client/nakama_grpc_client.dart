@@ -438,4 +438,25 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
   }
+
+  @override
+  Future<LeaderboardRecord> writeLeaderboardRecord({
+    required model.Session session,
+    required String leaderboardId,
+    int? score,
+    int? subscore,
+    String? metadata,
+  }) async {
+    return await _client.writeLeaderboardRecord(
+      WriteLeaderboardRecordRequest(
+        leaderboardId: leaderboardId,
+        record: WriteLeaderboardRecordRequest_LeaderboardRecordWrite(
+          score: score == null ? null : Int64(score),
+          subscore: subscore == null ? null : Int64(subscore),
+          metadata: metadata,
+        ),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
 }
