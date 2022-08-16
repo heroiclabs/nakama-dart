@@ -105,7 +105,20 @@ abstract class NakamaBaseClient {
     StorageReadPermission? readPermission,
   });
 
-  Future<StorageObject> readStorageObject({
+  Future<StorageObjectList> listStorageObjects({
+    required model.Session session,
+    String? collection,
+    String? cursor,
+    String? userId,
+    int? limit,
+  });
+
+  Future<void> deleteStorageObject({
+    required model.Session session,
+    required Iterable<DeleteStorageObjectId> objectIds,
+  });
+
+  Future<StorageObject?> readStorageObject({
     required model.Session session,
     String? collection,
     String? key,
@@ -127,6 +140,14 @@ abstract class NakamaBaseClient {
     int limit = 20,
     String? cursor,
     DateTime? expiry,
+  });
+
+  Future<LeaderboardRecord> writeLeaderboardRecord({
+    required model.Session session,
+    required String leaderboardId,
+    int? score,
+    int? subscore,
+    String? metadata,
   });
 
   Future<model.Session> sessionRefresh({

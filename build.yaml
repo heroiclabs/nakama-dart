@@ -9,13 +9,11 @@ targets:
     builders:
       chopper_generator:
         options:
-          header: "// Generated code"
+          header: "// Generated code - do not change"
       swagger_dart_code_generator:
         options:
-          include_if_null:
-            enabled: true
-            value: true
           with_converter: true
-          input_folder: "lib/src/rest/"
+          input_folder: "lib/swaggers"
           output_folder: "lib/src/rest/"
           enums_case_sensitive: true
+          include_if_null: true

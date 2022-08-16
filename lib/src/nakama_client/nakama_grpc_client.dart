@@ -371,7 +371,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<StorageObject> readStorageObject({
+  Future<StorageObject?> readStorageObject({
     required model.Session session,
     String? collection,
     String? key,
@@ -390,7 +390,41 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return res.objects.first;
+    return res.objects.isEmpty ? null : res.objects.first;
+  }
+
+  @override
+  Future<StorageObjectList> listStorageObjects({
+    required model.Session session,
+    String? collection,
+    String? cursor,
+    String? userId,
+    int? limit,
+  }) async {
+    final res = await _client.listStorageObjects(
+      ListStorageObjectsRequest(
+        collection: collection,
+        cursor: cursor,
+        limit: Int32Value(value: limit),
+        userId: userId,
+      ),
+      options: _getSessionCallOptions(session),
+    );
+
+    return res;
+  }
+
+  @override
+  Future<void> deleteStorageObject({
+    required model.Session session,
+    required Iterable<DeleteStorageObjectId> objectIds,
+  }) async {
+    await _client.deleteStorageObjects(
+      DeleteStorageObjectsRequest(
+        objectIds: objectIds,
+      ),
+      options: _getSessionCallOptions(session),
+    );
   }
 
   @override
@@ -440,12 +474,34 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<LeaderboardRecord> writeLeaderboardRecord({
+    required model.Session session,
+    required String leaderboardId,
+    int? score,
+    int? subscore,
+    String? metadata,
+  }) async {
+    return await _client.writeLeaderboardRecord(
+      WriteLeaderboardRecordRequest(
+        leaderboardId: leaderboardId,
+        record: WriteLeaderboardRecordRequest_LeaderboardRecordWrite(
+          score: score == null ? null : Int64(score),
+          subscore: subscore == null ? null : Int64(subscore),
+          metadata: metadata,
+        ),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
+
+  @override
   Future<model.Session> sessionRefresh({
     required model.Session session,
     Map<String, String>? vars,
   }) async {
     final res = await _client.sessionRefresh(
-        SessionRefreshRequest(token: session.refreshToken, vars: vars));
+        SessionRefreshRequest(token: session.refreshToken, vars: vars),
+        options: _getSessionCallOptions(session));
 
     return model.Session(
       created: res.created,

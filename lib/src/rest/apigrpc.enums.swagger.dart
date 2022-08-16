@@ -1,61 +1,47 @@
 import 'package:json_annotation/json_annotation.dart';
 
-enum ValidatedPurchaseEnvironment {
+enum ApiOperator {
   @JsonValue('swaggerGeneratedUnknown')
   swaggerGeneratedUnknown,
-  @JsonValue('UNKNOWN')
-  unknown,
-  @JsonValue('SANDBOX')
-  sandbox,
-  @JsonValue('PRODUCTION')
-  production
-}
-
-const $ValidatedPurchaseEnvironmentMap = {
-  ValidatedPurchaseEnvironment.unknown: 'UNKNOWN',
-  ValidatedPurchaseEnvironment.sandbox: 'SANDBOX',
-  ValidatedPurchaseEnvironment.production: 'PRODUCTION',
-  ValidatedPurchaseEnvironment.swaggerGeneratedUnknown: ''
-};
-
-enum ValidatedPurchaseStore {
-  @JsonValue('swaggerGeneratedUnknown')
-  swaggerGeneratedUnknown,
-  @JsonValue('APPLE_APP_STORE')
-  appleAppStore,
-  @JsonValue('GOOGLE_PLAY_STORE')
-  googlePlayStore,
-  @JsonValue('HUAWEI_APP_GALLERY')
-  huaweiAppGallery
-}
-
-const $ValidatedPurchaseStoreMap = {
-  ValidatedPurchaseStore.appleAppStore: 'APPLE_APP_STORE',
-  ValidatedPurchaseStore.googlePlayStore: 'GOOGLE_PLAY_STORE',
-  ValidatedPurchaseStore.huaweiAppGallery: 'HUAWEI_APP_GALLERY',
-  ValidatedPurchaseStore.swaggerGeneratedUnknown: ''
-};
-
-enum ApiOverrideOperator {
-  @JsonValue('swaggerGeneratedUnknown')
-  swaggerGeneratedUnknown,
-  @JsonValue('NO_OVERRIDE')
   noOverride,
-  @JsonValue('BEST')
   best,
-  @JsonValue('SET')
   $set,
-  @JsonValue('INCREMENT')
   increment,
-  @JsonValue('DECREMENT')
   decrement
 }
 
-const $ApiOverrideOperatorMap = {
-  ApiOverrideOperator.noOverride: 'NO_OVERRIDE',
-  ApiOverrideOperator.best: 'BEST',
-  ApiOverrideOperator.$set: 'SET',
-  ApiOverrideOperator.increment: 'INCREMENT',
-  ApiOverrideOperator.decrement: 'DECREMENT',
-  ApiOverrideOperator.swaggerGeneratedUnknown: ''
+const $ApiOperatorMap = {
+  ApiOperator.noOverride: 'NO_OVERRIDE',
+  ApiOperator.best: 'BEST',
+  ApiOperator.$set: 'SET',
+  ApiOperator.increment: 'INCREMENT',
+  ApiOperator.decrement: 'DECREMENT'
+};
+
+enum ApiStoreEnvironment {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  unknown,
+  sandbox,
+  production
+}
+
+const $ApiStoreEnvironmentMap = {
+  ApiStoreEnvironment.unknown: 'UNKNOWN',
+  ApiStoreEnvironment.sandbox: 'SANDBOX',
+  ApiStoreEnvironment.production: 'PRODUCTION'
+};
+
+enum ApiStoreProvider {
+  @JsonValue('swaggerGeneratedUnknown')
+  swaggerGeneratedUnknown,
+  appleAppStore,
+  googlePlayStore,
+  huaweiAppGallery
+}
+
+const $ApiStoreProviderMap = {
+  ApiStoreProvider.appleAppStore: 'APPLE_APP_STORE',
+  ApiStoreProvider.googlePlayStore: 'GOOGLE_PLAY_STORE',
+  ApiStoreProvider.huaweiAppGallery: 'HUAWEI_APP_GALLERY'
 };

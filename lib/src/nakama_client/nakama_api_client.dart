@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:chopper/chopper.dart';
 import 'package:nakama/api.dart';
 import 'package:nakama/nakama.dart';
-import 'package:nakama/src/rest/apigrpc.swagger.dart';
+import 'package:nakama/src/rest/apigrpc.swagger.dart'
+    hide $ApiAccountWrappedExtension, $ApiAccountDeviceWrappedExtension;
 import 'package:nakama/src/session.dart' as model;
 
 const _kDefaultAppKey = 'default';
@@ -14,7 +15,7 @@ const _kDefaultAppKey = 'default';
 class NakamaRestApiClient extends NakamaBaseClient {
   static final Map<String, NakamaRestApiClient> _clients = {};
 
-  late final ChopperClient _chopperClient;
+  late final Apigrpc _api;
 
   /// The key used to authenticate with the server without a session.
   /// Defaults to "defaultkey".
@@ -59,14 +60,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required int port,
     required bool ssl,
   }) {
-    _chopperClient = ChopperClient(
-      converter: JsonSerializableConverter(),
-      baseUrl: Uri(
-        host: host,
-        scheme: ssl ? 'https' : 'http',
-        port: port,
-      ).toString(),
-      services: [Apigrpc.create()],
+    _api = Apigrpc.create(
+      baseUrl: Uri(host: host, scheme: ssl ? 'https' : 'http', port: port)
+          .toString(),
       interceptors: [
         // Auth Interceptor
         (Request request) async {
@@ -90,8 +86,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     );
   }
 
-  Apigrpc get _api => _chopperClient.getService<Apigrpc>();
-
   @override
   Future<model.Session> authenticateEmail({
     required String email,
@@ -100,7 +94,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
-    final res = await _api.nakamaAuthenticateEmail(
+    final res = await _api.v2AccountAuthenticateEmailPost(
       body: ApiAccountEmail(
         email: email,
         password: password,
@@ -130,11 +124,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
-    final res = await _api.nakamaAuthenticateDevice(
-      body: ApiAccountDevice(
-        id: deviceId,
-        vars: vars,
-      ),
+    final res = await _api.v2AccountAuthenticateDevicePost(
+      body: ApiAccountDevice(id: deviceId, vars: vars),
       create: create,
       username: username,
     );
@@ -160,7 +151,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     Map<String, String>? vars,
     bool import = false,
   }) async {
-    final res = await _api.nakamaAuthenticateFacebook(
+    final res = await _api.v2AccountAuthenticateFacebookPost(
       body: ApiAccountFacebook(
         token: token,
         vars: vars,
@@ -190,7 +181,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
-    final res = await _api.nakamaAuthenticateGoogle(
+    final res = await _api.v2AccountAuthenticateGooglePost(
       body: ApiAccountGoogle(
         token: token,
         vars: vars,
@@ -224,7 +215,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
-    final res = await _api.nakamaAuthenticateGameCenter(
+    final res = await _api.v2AccountAuthenticateGamecenterPost(
       body: ApiAccountGameCenter(
         playerId: playerId,
         bundleId: bundleId,
@@ -258,7 +249,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
-    final res = await _api.nakamaAuthenticateSteam(
+    final res = await _api.v2AccountAuthenticateSteamPost(
       body: ApiAccountSteam(token: token, vars: vars),
       create: create,
       username: username,
@@ -284,7 +275,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
-    final res = await _api.nakamaAuthenticateCustom(
+    final res = await _api.v2AccountAuthenticateCustomPost(
       body: ApiAccountCustom(id: id, vars: vars),
       create: create,
       username: username,
@@ -306,7 +297,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   @override
   Future<Account> getAccount(model.Session session) async {
     _session = session;
-    final res = await _api.nakamaGetAccount();
+    final res = await _api.v2AccountGet();
 
     final acc = Account();
     // Some workaround here while protobuf expects the vars map to not be null
@@ -333,7 +324,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     _session = session;
 
-    await _api.nakamaUpdateAccount(
+    await _api.v2AccountPut(
         body: ApiUpdateAccountRequest(
             username: username,
             displayName: displayName,
@@ -351,7 +342,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     List<String>? usernames,
   }) async {
     _session = session;
-    final res = await _api.nakamaGetUsers(
+    final res = await _api.v2UserGet(
       facebookIds: facebookIds,
       ids: ids,
       usernames: usernames,
@@ -372,7 +363,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) {
     _session = session;
 
-    return _api.nakamaWriteStorageObjects(
+    return _api.v2StoragePut(
       body: ApiWriteStorageObjectsRequest(
         objects: [
           ApiWriteStorageObject(
@@ -389,7 +380,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
-  Future<StorageObject> readStorageObject({
+  Future<StorageObject?> readStorageObject({
     required model.Session session,
     String? collection,
     String? key,
@@ -397,7 +388,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     _session = session;
 
-    final res = await _api.nakamaReadStorageObjects(
+    final res = await _api.v2StoragePost(
       body: ApiReadStorageObjectsRequest(
         objectIds: [
           ApiReadStorageObjectId(
@@ -410,7 +401,47 @@ class NakamaRestApiClient extends NakamaBaseClient {
     );
 
     final result = StorageObjects()..mergeFromProto3Json(res.body!.toJson());
-    return result.objects.first;
+    return result.objects.isEmpty ? null : result.objects.first;
+  }
+
+  @override
+  Future<StorageObjectList> listStorageObjects({
+    required model.Session session,
+    String? collection,
+    String? cursor,
+    String? userId,
+    int? limit,
+  }) async {
+    _session = session;
+
+    final res = await _api.v2StorageCollectionGet(
+      collection: collection,
+      cursor: cursor,
+      userId: userId,
+      limit: limit,
+    );
+
+    return StorageObjectList()..mergeFromProto3Json(res.body!.toJson());
+  }
+
+  @override
+  Future<void> deleteStorageObject({
+    required model.Session session,
+    required Iterable<DeleteStorageObjectId> objectIds,
+  }) async {
+    _session = session;
+
+    await _api.v2StorageDeletePut(
+      body: ApiDeleteStorageObjectsRequest(
+        objectIds: objectIds
+            .map((e) => ApiDeleteStorageObjectId(
+                  collection: e.collection,
+                  key: e.key,
+                  version: e.version,
+                ))
+            .toList(),
+      ),
+    );
   }
 
   @override
@@ -424,7 +455,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     assert(limit > 0 && limit <= 100);
 
     _session = session;
-    final res = await _api.nakamaListChannelMessages(
+    final res = await _api.v2ChannelChannelIdGet(
       channelId: channelId,
       limit: limit,
       forward: forward,
@@ -447,7 +478,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
     _session = session;
 
-    final res = await _api.nakamaListLeaderboardRecords(
+    final res = await _api.v2LeaderboardLeaderboardIdGet(
       leaderboardId: leaderboardName,
       ownerIds: ownerIds,
       limit: limit,
@@ -461,13 +492,34 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<LeaderboardRecord> writeLeaderboardRecord({
+    required model.Session session,
+    required String leaderboardId,
+    int? score,
+    int? subscore,
+    String? metadata,
+  }) async {
+    _session = session;
+
+    final res = await _api.v2LeaderboardLeaderboardIdPost(
+        leaderboardId: leaderboardId,
+        body: WriteLeaderboardRecordRequestLeaderboardRecordWrite(
+          score: score?.toString(),
+          subscore: subscore?.toString(),
+          metadata: metadata,
+        ));
+
+    return LeaderboardRecord()..mergeFromProto3Json(res.body!.toJson());
+  }
+
+  @override
   Future<model.Session> sessionRefresh({
     required model.Session session,
     Map<String, String>? vars,
   }) async {
     _session = session;
 
-    final res = await _api.nakamaSessionRefresh(
+    final res = await _api.v2AccountSessionRefreshPost(
         body:
             ApiSessionRefreshRequest(token: session.refreshToken, vars: vars));
     final data = res.body!;

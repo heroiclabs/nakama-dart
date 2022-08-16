@@ -58,7 +58,78 @@ void main() {
       );
 
       expect(res, isA<api.StorageObject>());
-      expect(res.value, equals('{"skill": 100}'));
+      expect(res!.value, equals('{"skill": 100}'));
+    });
+
+    test('list storage objects', () async {
+      // Write two objects
+      await Future.wait([
+        client.writeStorageObject(
+          session: session,
+          collection: 'stats',
+          key: 'skills',
+          value: '{"skill": 100}',
+          writePermission: StorageWritePermission.ownerWrite,
+          readPermission: StorageReadPermission.publicRead,
+        ),
+        client.writeStorageObject(
+          session: session,
+          collection: 'stats',
+          key: 'achievements',
+          value: '{"hero": 20}',
+          writePermission: StorageWritePermission.ownerWrite,
+          readPermission: StorageReadPermission.publicRead,
+        ),
+      ]);
+
+      final res = await client.listStorageObjects(
+        session: session,
+        collection: 'stats',
+        userId: session.userId,
+        limit: 10,
+      );
+
+      expect(res, isA<api.StorageObjectList>());
+      expect(res.objects, hasLength(2));
+    });
+
+    test('delete storage object', () async {
+      await client.writeStorageObject(
+        session: session,
+        collection: 'stats',
+        key: 'skills',
+        value: '{"skill": 100}',
+        writePermission: StorageWritePermission.ownerWrite,
+        readPermission: StorageReadPermission.publicRead,
+      );
+
+      // Be sure we get a result
+      final res = await client.readStorageObject(
+        session: session,
+        collection: 'stats',
+        key: 'skills',
+        userId: session.userId,
+      );
+
+      expect(res, isA<api.StorageObject>());
+      expect(res!.value, equals('{"skill": 100}'));
+
+      // Delete object
+      await client.deleteStorageObject(session: session, objectIds: [
+        api.DeleteStorageObjectId(
+          collection: 'stats',
+          key: 'skills',
+        ),
+      ]);
+
+      final afterRes = await client.readStorageObject(
+        session: session,
+        collection: 'stats',
+        key: 'skills',
+        userId: session.userId,
+      );
+
+      expect(afterRes, isNull);
     });
   });
 }
