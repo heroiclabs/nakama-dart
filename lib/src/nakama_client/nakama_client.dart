@@ -149,4 +149,16 @@ abstract class NakamaBaseClient {
     int? subscore,
     String? metadata,
   });
+
+  Future<void> linkDevice({
+    required model.Session session,
+    String? id,
+    Map<String, String>? vars,
+  });
+
+  Future<void> unlinkDevice({
+    required model.Session session,
+    String? id,
+    Map<String, String>? vars,
+  });
 }

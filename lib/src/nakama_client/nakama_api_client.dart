@@ -511,4 +511,36 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
     return LeaderboardRecord()..mergeFromProto3Json(res.body!.toJson());
   }
+
+  @override
+  Future<void> linkDevice({
+    required model.Session session,
+    String? id,
+    Map<String, String>? vars,
+  }) async {
+    _session = session;
+
+    await _api.v2AccountLinkDevicePost(
+      body: ApiAccountDevice(
+        id: id,
+        vars: vars,
+      ),
+    );
+  }
+
+  @override
+  Future<void> unlinkDevice({
+    required model.Session session,
+    String? id,
+    Map<String, String>? vars,
+  }) async {
+    _session = session;
+
+    await _api.v2AccountUnlinkDevicePost(
+      body: ApiAccountDevice(
+        id: id,
+        vars: vars,
+      ),
+    );
+  }
 }
