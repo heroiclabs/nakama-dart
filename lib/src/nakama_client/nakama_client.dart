@@ -38,6 +38,12 @@ abstract class NakamaBaseClient {
     Map<String, String>? vars,
   });
 
+  /// # Device authentication
+  /// Nakama Device Authentication uses the physical device’s unique identifier
+  /// to easily authenticate a user and create an account if one does not exist.
+  ///
+  /// When using only device authentication, you don’t need a login UI as the
+  /// player can automatically authenticate when the game launches.
   Future<model.Session> authenticateDevice({
     required String deviceId,
     bool create = false,
@@ -45,6 +51,11 @@ abstract class NakamaBaseClient {
     Map<String, String>? vars,
   });
 
+  /// #Facebook authentication
+  ///
+  /// Nakama Facebook Authentication is an easy to use authentication method
+  /// which lets you optionally import the player’s Facebook friends and add
+  /// them to their Nakama Friends list.
   Future<model.Session> authenticateFacebook({
     required String token,
     bool create = true,
@@ -79,6 +90,10 @@ abstract class NakamaBaseClient {
     Map<String, String>? vars,
   });
 
+  /// # Custom authentication
+  ///
+  /// Nakama supports Custom Authentication methods to integrate with additional
+  /// identity services.
   Future<model.Session> authenticateCustom({
     required String id,
     bool create = true,
@@ -86,8 +101,15 @@ abstract class NakamaBaseClient {
     Map<String, String>? vars,
   });
 
+  /// # Get the user account
+  ///
+  /// Many of Nakama’s features are accessible with an authenticated session,
+  /// like fetching a user account.
   Future<Account> getAccount(model.Session session);
 
+  /// # Update the user account
+  ///
+  /// Nakama provides easy methods to update server stored resources like user accounts.
   Future<void> updateAccount({
     required model.Session session,
     String? username,
@@ -98,6 +120,11 @@ abstract class NakamaBaseClient {
     String? timezone,
   });
 
+  /// # Getting users
+  ///
+  /// In addition to getting the current authenticated player’s user account,
+  /// Nakama has a convenient way to get a list of other players’ public
+  /// profiles from their ids or usernames.
   Future<Users> getUsers({
     required model.Session session,
     List<String>? facebookIds,
@@ -105,6 +132,14 @@ abstract class NakamaBaseClient {
     List<String>? usernames,
   });
 
+  /// # Writing storage objects
+  ///
+  /// Nakama allows developers to write to the Storage Engine from the client
+  /// and server.
+  ///
+  /// Consider what adverse effects a malicious user can have on your game and
+  /// economy when deciding where to put your write logic, for example data that
+  /// should only be written authoritatively (i.e. game unlocks or progress).
   Future<void> writeStorageObject({
     required model.Session session,
     String? collection,
@@ -115,6 +150,10 @@ abstract class NakamaBaseClient {
     StorageReadPermission? readPermission,
   });
 
+  /// # Listing storage objects
+  ///
+  /// Instead of doing multiple read requests with separate keys you can list
+  /// all the storage objects the player has access to in a collection.
   Future<StorageObjectList> listStorageObjects({
     required model.Session session,
     String? collection,
@@ -128,6 +167,11 @@ abstract class NakamaBaseClient {
     required Iterable<DeleteStorageObjectId> objectIds,
   });
 
+  /// Reading storage objects
+  ///
+  /// Define a class that describes the storage object and create a new storage
+  /// object id with the collection name, key and user id. Finally, read the
+  /// storage objects and parse the JSON data:
   Future<StorageObject?> readStorageObject({
     required model.Session session,
     String? collection,
@@ -135,6 +179,10 @@ abstract class NakamaBaseClient {
     String? userId,
   });
 
+  /// #Listing message history
+  ///
+  /// Message listing takes a parameter which indicates if messages are received
+  /// from oldest to newest (forward) or newest to oldest.
   Future<ChannelMessageList?> listChannelMessages({
     required model.Session session,
     required String channelId,
@@ -143,6 +191,7 @@ abstract class NakamaBaseClient {
     String? cursor,
   });
 
+  /// # Listing the top records
   Future<model.LeaderboardRecordList> listLeaderboardRecords({
     required model.Session session,
     required String leaderboardName,
@@ -152,6 +201,12 @@ abstract class NakamaBaseClient {
     DateTime? expiry,
   });
 
+  /// # Submitting scores
+  /// When players submit scores, Nakama will increment the player’s existing
+  /// score by the submitted score value.
+  ///
+  /// Along with the score value, Nakama also has a subscore, which can be used
+  /// for ordering when the scores are the same.
   Future<model.LeaderboardRecord> writeLeaderboardRecord({
     required model.Session session,
     required String leaderboardId,
@@ -160,17 +215,27 @@ abstract class NakamaBaseClient {
     String? metadata,
   });
 
+  /// # Deleting records
   Future<void> deleteLeaderboardRecord({
     required model.Session session,
     required String leaderboardId,
   });
 
+  /// # Adding friends
+  ///
+  /// Adding a friend in Nakama does not immediately add a mutual friend
+  /// relationship. An outgoing friend request is created to each user, which
+  /// they will need to accept.
   Future<void> addFriends({
     required model.Session session,
     List<String>? usernames,
     List<String>? ids,
   });
 
+  /// # Listing friends
+  ///
+  /// Nakama allows developers to list the player’s friends based on their
+  /// friendship state.
   Future<model.FriendsList> listFriends({
     required model.Session session,
     FriendshipState? friendshipState,
@@ -178,18 +243,28 @@ abstract class NakamaBaseClient {
     String? cursor,
   });
 
+  /// # Deleting friends
+  ///
+  /// Players can remove friends by their username or user id.
   Future<void> deleteFriends({
     required model.Session session,
     List<String>? usernames,
     List<String>? ids,
   });
 
+  /// # Blocking users
+  /// Players can block others by their username or user id.
   Future<void> blockFriends({
     required model.Session session,
     List<String>? usernames,
     List<String>? ids,
   });
 
+  /// # Creating groups
+  ///
+  /// Groups have a public or private “open” visibility. Anyone can join public
+  /// groups, but they must request to join and be accepted by a
+  /// superadmin/admin of a private group.
   Future<model.Group> createGroup({
     required model.Session session,
     required String name,
@@ -200,11 +275,22 @@ abstract class NakamaBaseClient {
     bool? open,
   });
 
+  /// # Update group visibility
+  ///
+  /// Nakama allows group superadmin or admin members to update some properties
+  /// from the client, like the open visibility.
   Future<void> updateGroup({
     required model.Session session,
     required model.Group group,
   });
 
+  /// # Listing and filtering groups
+  ///
+  /// Groups can be listed like other Nakama resources and also filtered with a
+  /// wildcard group name.
+  ///
+  /// Players use group listing and filtering to search for existing groups to
+  /// join.
   Future<model.GroupList> listGroups({
     required model.Session session,
     String? name,
@@ -215,16 +301,31 @@ abstract class NakamaBaseClient {
     int limit = defaultLimit,
   });
 
+  /// # Deleting groups
+  /// Nakama allows group superadmins to delete groups.
+  ///
+  /// Developers can disable this feature entirely, see the Guarding APIs guide
+  /// for an example on how to protect various Nakama APIs.
+  ///
+  /// Players can delete groups which they are superadmins for.
   Future<void> deleteGroup({
     required model.Session session,
     required String groupId,
   });
 
+  /// # Joining a group
+  /// If a player joins a public group they immediately become a member, but if
+  /// they try and join a private group they must be accepted by a group admin.
+  ///
+  /// Players can join a group.
   Future<void> joinGroup({
     required model.Session session,
     required String groupId,
   });
 
+  /// # Listing the user’s groups
+  ///
+  /// Players can list groups they are a member of.
   Future<model.UserGroupList> listUserGroups({
     required model.Session session,
     String? cursor,
@@ -233,6 +334,8 @@ abstract class NakamaBaseClient {
     String? userId,
   });
 
+  /// # Listing the user’s groups
+  /// Players can list groups they are a member of.
   Future<model.GroupUserList> listGroupUsers({
     required model.Session session,
     required String groupId,
@@ -241,52 +344,95 @@ abstract class NakamaBaseClient {
     GroupMembershipState? state,
   });
 
+  /// # Accepting join requests
+  ///
+  /// Private group admins or superadmins can accept join requests by re-adding
+  /// the user to the group.
   Future<void> addGroupUsers({
     required model.Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
 
+  /// # Promoting members
+  ///
+  /// Nakama group members can be promoted to admin or superadmin roles to help
+  /// manage a growing group or take over if members leave.
+  ///
+  /// Admins can promote other members to admins, and superadmins can promote
+  /// other members up to superadmins.
+  ///
+  /// The members will be promoted up one level. For example:
+  ///
+  /// * Promoting a member will make them an admin
+  /// * Promoting an admin will make them a superadmin
   Future<void> promoteGroupUsers({
     required model.Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
 
+  /// # Demoting members
+  ///
+  /// Group admins and superadmins can demote members.
   Future<void> demoteGroupUsers({
     required model.Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
 
+  /// # Kicking members
+  ///
+  /// Group admins and superadmins can remove group members.
   Future<void> kickGroupUsers({
     required model.Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
 
+  /// # Banning members
+  ///
+  /// Group admins and superadmins can ban a user when demoting or kicking is
+  /// not severe enough.
   Future<void> banGroupUsers({
     required model.Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
 
+  /// # Leaving groups
+  ///
+  /// Players can leave a group.
   Future<void> leaveGroup({
     required model.Session session,
     required String groupId,
   });
 
+  /// # Listing notifications
+  ///
+  /// Players can list the notifications they received while offline.
   Future<model.NotificationList> listNotifications({
     required model.Session session,
     int limit = defaultLimit,
     String? cursor,
   });
 
+  /// # Deleting notifications
+  ///
+  /// Players can delete notifications once they’ve read them.
   Future<void> deleteNotifications({
     required model.Session session,
     required Iterable<String> notificationIds,
   });
 
+  /// # Listing matches
+  ///
+  /// Match Listing takes a number of criteria to filter matches by including
+  /// player count, a match label and an option to provide a more complex search
+  /// query.
+  ///
+  /// Matches start in a lobby state. The match exists on the server but the
+  /// actual gameplay doesn’t start until enough players have joined.
   Future<List<model.Match>> listMatches({
     required model.Session session,
     bool? authoritative,
@@ -297,11 +443,18 @@ abstract class NakamaBaseClient {
     String? query,
   });
 
+  /// # Joining tournaments
+  ///
+  /// By default in Nakama players don’t have to join tournaments before they
+  /// can submit a score. You can force it in server side code.
   Future<void> joinTournament({
     required model.Session session,
     required String tournamentId,
   });
 
+  /// # Listing tournaments
+  ///
+  /// Players can list and filter tournaments with various criteria.
   Future<model.TournamentList> listTournaments({
     required model.Session session,
     int? categoryStart,
@@ -312,6 +465,9 @@ abstract class NakamaBaseClient {
     int limit = defaultLimit,
   });
 
+  /// # Listing records
+  ///
+  /// Players can list tournament records.
   Future<model.TournamentRecordList> listTournamentRecords({
     required model.Session session,
     required String tournamentId,
@@ -321,6 +477,9 @@ abstract class NakamaBaseClient {
     String? cursor,
   });
 
+  /// # Submitting scores
+  ///
+  /// Players can submit scores, subscores and metadata to the tournament.
   Future<model.LeaderboardRecord> writeTournamentRecord({
     required model.Session session,
     required String tournamentId,
