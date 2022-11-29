@@ -1,8 +1,18 @@
 import 'package:nakama/api.dart';
 import 'package:nakama/nakama.dart';
-import 'package:nakama/src/session.dart' as model;
+import 'package:nakama/src/enum/friendship_state.dart';
+import 'package:nakama/src/enum/group_membership_states.dart';
+import 'package:nakama/src/enum/leaderboard_operator.dart';
+import 'package:nakama/src/models/friends.dart' as model;
+import 'package:nakama/src/models/group.dart' as model;
+import 'package:nakama/src/models/leaderboard.dart' as model;
+import 'package:nakama/src/models/match.dart' as model;
+import 'package:nakama/src/models/notification.dart' as model;
+import 'package:nakama/src/models/session.dart' as model;
+import 'package:nakama/src/models/tournament.dart' as model;
 
 const _kDefaultAppKey = 'default';
+const defaultLimit = 20;
 
 /// This defines the interface to communicate with Nakama API. It is a little
 /// tricky to support web (via REST) and io (via gRPC) with just one codebase
@@ -128,25 +138,195 @@ abstract class NakamaBaseClient {
   Future<ChannelMessageList?> listChannelMessages({
     required model.Session session,
     required String channelId,
-    int limit = 20,
+    int limit = defaultLimit,
     bool? forward,
     String? cursor,
   });
 
-  Future<LeaderboardRecordList> listLeaderboardRecords({
+  Future<model.LeaderboardRecordList> listLeaderboardRecords({
     required model.Session session,
     required String leaderboardName,
     List<String>? ownerIds,
-    int limit = 20,
+    int limit = defaultLimit,
     String? cursor,
     DateTime? expiry,
   });
 
-  Future<LeaderboardRecord> writeLeaderboardRecord({
+  Future<model.LeaderboardRecord> writeLeaderboardRecord({
     required model.Session session,
     required String leaderboardId,
     int? score,
     int? subscore,
     String? metadata,
+  });
+
+  Future<void> deleteLeaderboardRecord({
+    required model.Session session,
+    required String leaderboardId,
+  });
+
+  Future<void> addFriends({
+    required model.Session session,
+    List<String>? usernames,
+    List<String>? ids,
+  });
+
+  Future<model.FriendsList> listFriends({
+    required model.Session session,
+    FriendshipState? friendshipState,
+    int limit = defaultLimit,
+    String? cursor,
+  });
+
+  Future<void> deleteFriends({
+    required model.Session session,
+    List<String>? usernames,
+    List<String>? ids,
+  });
+
+  Future<void> blockFriends({
+    required model.Session session,
+    List<String>? usernames,
+    List<String>? ids,
+  });
+
+  Future<model.Group> createGroup({
+    required model.Session session,
+    required String name,
+    String? avatarUrl,
+    String? description,
+    String? langTag,
+    int? maxCount,
+    bool? open,
+  });
+
+  Future<void> updateGroup({
+    required model.Session session,
+    required model.Group group,
+  });
+
+  Future<model.GroupList> listGroups({
+    required model.Session session,
+    String? name,
+    String? cursor,
+    String? langTag,
+    int? members,
+    bool? open,
+    int limit = defaultLimit,
+  });
+
+  Future<void> deleteGroup({
+    required model.Session session,
+    required String groupId,
+  });
+
+  Future<void> joinGroup({
+    required model.Session session,
+    required String groupId,
+  });
+
+  Future<model.UserGroupList> listUserGroups({
+    required model.Session session,
+    String? cursor,
+    int limit = defaultLimit,
+    GroupMembershipState? state,
+    String? userId,
+  });
+
+  Future<model.GroupUserList> listGroupUsers({
+    required model.Session session,
+    required String groupId,
+    String? cursor,
+    int limit = defaultLimit,
+    GroupMembershipState? state,
+  });
+
+  Future<void> addGroupUsers({
+    required model.Session session,
+    required String groupId,
+    required Iterable<String> userIds,
+  });
+
+  Future<void> promoteGroupUsers({
+    required model.Session session,
+    required String groupId,
+    required Iterable<String> userIds,
+  });
+
+  Future<void> demoteGroupUsers({
+    required model.Session session,
+    required String groupId,
+    required Iterable<String> userIds,
+  });
+
+  Future<void> kickGroupUsers({
+    required model.Session session,
+    required String groupId,
+    required Iterable<String> userIds,
+  });
+
+  Future<void> banGroupUsers({
+    required model.Session session,
+    required String groupId,
+    required Iterable<String> userIds,
+  });
+
+  Future<void> leaveGroup({
+    required model.Session session,
+    required String groupId,
+  });
+
+  Future<model.NotificationList> listNotifications({
+    required model.Session session,
+    int limit = defaultLimit,
+    String? cursor,
+  });
+
+  Future<void> deleteNotifications({
+    required model.Session session,
+    required Iterable<String> notificationIds,
+  });
+
+  Future<List<model.Match>> listMatches({
+    required model.Session session,
+    bool? authoritative,
+    String? label,
+    int limit = defaultLimit,
+    int? maxSize,
+    int? minSize,
+    String? query,
+  });
+
+  Future<void> joinTournament({
+    required model.Session session,
+    required String tournamentId,
+  });
+
+  Future<model.TournamentList> listTournaments({
+    required model.Session session,
+    int? categoryStart,
+    int? categoryEnd,
+    String? cursor,
+    DateTime? startTime,
+    DateTime? endTime,
+    int limit = defaultLimit,
+  });
+
+  Future<model.TournamentRecordList> listTournamentRecords({
+    required model.Session session,
+    required String tournamentId,
+    Iterable<String>? ownerIds,
+    int? expiry,
+    int limit = defaultLimit,
+    String? cursor,
+  });
+
+  Future<model.LeaderboardRecord> writeTournamentRecord({
+    required model.Session session,
+    required String tournamentId,
+    String? metadata,
+    LeaderboardOperator? operator,
+    int? score,
+    int? subscore,
   });
 }

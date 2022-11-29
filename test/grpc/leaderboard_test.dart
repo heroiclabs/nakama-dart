@@ -1,6 +1,6 @@
 import 'package:faker/faker.dart';
-import 'package:nakama/api.dart' as api;
 import 'package:nakama/nakama.dart';
+import 'package:nakama/src/models/leaderboard.dart';
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
 
@@ -27,15 +27,16 @@ void main() {
         leaderboardName: 'test',
       );
 
-      expect(result, isA<api.LeaderboardRecordList>());
+      expect(result, isA<LeaderboardRecordList>());
     });
 
     test('write leaderboard record', () async {
       final result = await client.writeLeaderboardRecord(
           session: session, leaderboardId: 'test', score: 10);
 
-      expect(result, isA<api.LeaderboardRecord>());
-      expect(result.score.toInt(), equals(10));
+      expect(result, isA<LeaderboardRecord>());
+      expect(result.score, isNotNull);
+      expect(result.score!.toInt(), equals(10));
     });
   });
 }

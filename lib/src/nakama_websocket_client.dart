@@ -192,6 +192,10 @@ class NakamaWebsocketClient {
           return waitingFuture.complete(receivedEnvelope.channel);
         } else if (waitingFuture is Completer<rtpb.ChannelMessageAck>) {
           return waitingFuture.complete(receivedEnvelope.channelMessageAck);
+        } else if (waitingFuture is Completer<rtpb.Party>) {
+          return waitingFuture.complete(receivedEnvelope.party);
+        } else if (waitingFuture is Completer<rtpb.PartyMatchmakerTicket>) {
+          return waitingFuture.complete(receivedEnvelope.partyMatchmakerTicket);
         } else {
           return waitingFuture.complete();
         }
@@ -250,6 +254,53 @@ class NakamaWebsocketClient {
 
   Future<rtpb.Match> createMatch() =>
       _send<rtpb.Match>(rtpb.Envelope(matchCreate: rtpb.MatchCreate()));
+
+  /// # Creating parties
+  /// The player who creates the party is the party’s leader. Parties have
+  /// maximum number of players and can be open to automatically accept players
+  /// or closed so that the party leader can accept incoming join requests.
+  Future<rtpb.Party> createParty({int? maxSize, bool? open}) =>
+      _send<rtpb.Party>(rtpb.Envelope(
+          partyCreate: rtpb.PartyCreate(
+        maxSize: maxSize,
+        open: open,
+      )));
+
+  Future<rtpb.Party> joinParty(String partyId) => _send<rtpb.Party>(
+      rtpb.Envelope(partyJoin: rtpb.PartyJoin(partyId: partyId)));
+
+  Future<void> promotePartyMember({
+    required String partyId,
+    required rtpb.UserPresence newLeader,
+  }) =>
+      _send(rtpb.Envelope(
+          partyPromote: rtpb.PartyPromote(
+        partyId: partyId,
+        presence: newLeader,
+      )));
+
+  Future<void> leaveParty(String partyId) => _send<rtpb.Party>(rtpb.Envelope(
+        partyLeave: rtpb.PartyLeave(partyId: partyId),
+      ));
+
+  Future<rtpb.PartyMatchmakerTicket> addMatchmakerParty({
+    required String partyId,
+    required int minCount,
+    int? maxCount,
+    String? query,
+    Map<String, double>? numericProperties,
+    Map<String, String>? stringProperties,
+  }) =>
+      _send<rtpb.PartyMatchmakerTicket>(rtpb.Envelope(
+        partyMatchmakerAdd: rtpb.PartyMatchmakerAdd(
+          partyId: partyId,
+          maxCount: maxCount,
+          minCount: minCount,
+          numericProperties: numericProperties,
+          query: query,
+          stringProperties: stringProperties,
+        ),
+      ));
 
   Future<rtpb.Match> joinMatch(
     String matchId, {

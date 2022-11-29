@@ -6,7 +6,16 @@ import 'package:logging/logging.dart';
 import 'package:nakama/api.dart';
 import 'package:nakama/nakama.dart';
 import 'package:nakama/src/api/proto/apigrpc/apigrpc.pbgrpc.dart';
-import 'package:nakama/src/session.dart' as model;
+import 'package:nakama/src/enum/friendship_state.dart';
+import 'package:nakama/src/enum/group_membership_states.dart';
+import 'package:nakama/src/enum/leaderboard_operator.dart';
+import 'package:nakama/src/models/friends.dart' as model;
+import 'package:nakama/src/models/group.dart' as model;
+import 'package:nakama/src/models/leaderboard.dart' as model;
+import 'package:nakama/src/models/match.dart' as model;
+import 'package:nakama/src/models/notification.dart' as model;
+import 'package:nakama/src/models/session.dart' as model;
+import 'package:nakama/src/models/tournament.dart' as model;
 
 const _kDefaultAppKey = 'default';
 
@@ -449,7 +458,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<LeaderboardRecordList> listLeaderboardRecords({
+  Future<model.LeaderboardRecordList> listLeaderboardRecords({
     required model.Session session,
     required String leaderboardName,
     List<String>? ownerIds,
@@ -459,7 +468,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }) async {
     assert(limit > 0 && limit <= 100);
 
-    return await _client.listLeaderboardRecords(
+    final res = await _client.listLeaderboardRecords(
       ListLeaderboardRecordsRequest(
         leaderboardId: leaderboardName,
         ownerIds: ownerIds,
@@ -471,17 +480,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
       ),
       options: _getSessionCallOptions(session),
     );
+
+    return model.LeaderboardRecordList.fromDto(res);
   }
 
   @override
-  Future<LeaderboardRecord> writeLeaderboardRecord({
+  Future<model.LeaderboardRecord> writeLeaderboardRecord({
     required model.Session session,
     required String leaderboardId,
     int? score,
     int? subscore,
     String? metadata,
   }) async {
-    return await _client.writeLeaderboardRecord(
+    final res = await _client.writeLeaderboardRecord(
       WriteLeaderboardRecordRequest(
         leaderboardId: leaderboardId,
         record: WriteLeaderboardRecordRequest_LeaderboardRecordWrite(
@@ -492,5 +503,394 @@ class NakamaGrpcClient extends NakamaBaseClient {
       ),
       options: _getSessionCallOptions(session),
     );
+
+    return model.LeaderboardRecord.fromDto(res);
+  }
+
+  @override
+  Future<void> deleteLeaderboardRecord({
+    required model.Session session,
+    required String leaderboardId,
+  }) async {
+    await _client.deleteLeaderboardRecord(DeleteLeaderboardRecordRequest(
+      leaderboardId: leaderboardId,
+    ));
+  }
+
+  @override
+  Future<void> addFriends({
+    required model.Session session,
+    List<String>? usernames,
+    List<String>? ids,
+  }) async {
+    await _client.addFriends(AddFriendsRequest(
+      usernames: usernames,
+      ids: ids,
+    ));
+  }
+
+  @override
+  Future<model.FriendsList> listFriends({
+    required model.Session session,
+    FriendshipState? friendshipState,
+    int limit = defaultLimit,
+    String? cursor,
+  }) async {
+    final res = await _client.listFriends(ListFriendsRequest(
+      cursor: cursor,
+      limit: Int32Value(value: limit),
+      state: Int32Value(value: friendshipState?.index),
+    ));
+
+    return model.FriendsList.fromDto(res);
+  }
+
+  @override
+  Future<void> deleteFriends({
+    required model.Session session,
+    List<String>? usernames,
+    List<String>? ids,
+  }) async {
+    await _client.deleteFriends(DeleteFriendsRequest(
+      ids: ids,
+      usernames: usernames,
+    ));
+  }
+
+  @override
+  Future<void> blockFriends({
+    required model.Session session,
+    List<String>? usernames,
+    List<String>? ids,
+  }) async {
+    await _client.blockFriends(BlockFriendsRequest(
+      ids: ids,
+      usernames: usernames,
+    ));
+  }
+
+  @override
+  Future<model.Group> createGroup({
+    required model.Session session,
+    required String name,
+    String? avatarUrl,
+    String? description,
+    String? langTag,
+    int? maxCount,
+    bool? open,
+  }) async {
+    final res = await _client.createGroup(CreateGroupRequest(
+      name: name,
+      avatarUrl: avatarUrl,
+      description: description,
+      langTag: langTag,
+      maxCount: maxCount,
+      open: open,
+    ));
+
+    return model.Group.fromDto(res);
+  }
+
+  @override
+  Future<void> updateGroup({
+    required model.Session session,
+    required model.Group group,
+  }) async {
+    await _client.updateGroup(UpdateGroupRequest(
+      groupId: group.id,
+      avatarUrl: StringValue(value: group.avatarUrl),
+      description: StringValue(value: group.description),
+      langTag: StringValue(value: group.langTag),
+      name: StringValue(value: group.name),
+      open: BoolValue(value: group.open),
+    ));
+  }
+
+  @override
+  Future<model.GroupList> listGroups({
+    required model.Session session,
+    String? name,
+    String? cursor,
+    String? langTag,
+    int? members,
+    bool? open,
+    int limit = defaultLimit,
+  }) async {
+    final res = await _client.listGroups(ListGroupsRequest(
+      name: name,
+      cursor: cursor,
+      langTag: langTag,
+      limit: Int32Value(value: limit),
+      members: Int32Value(value: members),
+      open: BoolValue(value: open),
+    ));
+
+    return model.GroupList.fromDto(res);
+  }
+
+  @override
+  Future<void> deleteGroup({
+    required model.Session session,
+    required String groupId,
+  }) async {
+    await _client.deleteGroup(DeleteGroupRequest(groupId: groupId));
+  }
+
+  @override
+  Future<void> joinGroup({
+    required model.Session session,
+    required String groupId,
+  }) async {
+    await _client.joinGroup(JoinGroupRequest(groupId: groupId));
+  }
+
+  @override
+  Future<model.UserGroupList> listUserGroups({
+    required model.Session session,
+    String? cursor,
+    int limit = defaultLimit,
+    GroupMembershipState? state,
+    String? userId,
+  }) async {
+    final res = await _client.listUserGroups(ListUserGroupsRequest(
+      cursor: cursor,
+      limit: Int32Value(value: limit),
+      state: Int32Value(value: state?.index),
+      userId: userId,
+    ));
+
+    return model.UserGroupList.fromDto(res);
+  }
+
+  @override
+  Future<model.GroupUserList> listGroupUsers({
+    required model.Session session,
+    required String groupId,
+    String? cursor,
+    int limit = defaultLimit,
+    GroupMembershipState? state,
+  }) async {
+    final res = await _client.listGroupUsers(ListGroupUsersRequest(
+      groupId: groupId,
+      cursor: cursor,
+      limit: Int32Value(value: limit),
+      state: Int32Value(value: state?.index),
+    ));
+
+    return model.GroupUserList.fromDto(res);
+  }
+
+  @override
+  Future<void> addGroupUsers({
+    required model.Session session,
+    required String groupId,
+    required Iterable<String> userIds,
+  }) async {
+    await _client.addGroupUsers(AddGroupUsersRequest(
+      groupId: groupId,
+      userIds: userIds,
+    ));
+  }
+
+  @override
+  Future<void> promoteGroupUsers({
+    required model.Session session,
+    required String groupId,
+    required Iterable<String> userIds,
+  }) async {
+    await _client.promoteGroupUsers(PromoteGroupUsersRequest(
+      groupId: groupId,
+      userIds: userIds,
+    ));
+  }
+
+  @override
+  Future<void> demoteGroupUsers({
+    required model.Session session,
+    required String groupId,
+    required Iterable<String> userIds,
+  }) async {
+    await _client.demoteGroupUsers(DemoteGroupUsersRequest(
+      groupId: groupId,
+      userIds: userIds,
+    ));
+  }
+
+  @override
+  Future<void> kickGroupUsers({
+    required model.Session session,
+    required String groupId,
+    required Iterable<String> userIds,
+  }) async {
+    await _client.kickGroupUsers(KickGroupUsersRequest(
+      groupId: groupId,
+      userIds: userIds,
+    ));
+  }
+
+  @override
+  Future<void> banGroupUsers({
+    required model.Session session,
+    required String groupId,
+    required Iterable<String> userIds,
+  }) async {
+    await _client.banGroupUsers(BanGroupUsersRequest(
+      groupId: groupId,
+      userIds: userIds,
+    ));
+  }
+
+  @override
+  Future<void> leaveGroup({
+    required model.Session session,
+    required String groupId,
+  }) async {
+    await _client.leaveGroup(LeaveGroupRequest(
+      groupId: groupId,
+    ));
+  }
+
+  @override
+  Future<model.NotificationList> listNotifications({
+    required model.Session session,
+    int limit = defaultLimit,
+    String? cursor,
+  }) async {
+    final res = await _client.listNotifications(ListNotificationsRequest(
+      cacheableCursor: cursor,
+      limit: Int32Value(value: limit),
+    ));
+
+    return model.NotificationList.fromDto(res);
+  }
+
+  @override
+  Future<void> deleteNotifications({
+    required model.Session session,
+    required Iterable<String> notificationIds,
+  }) async {
+    await _client.deleteNotifications(DeleteNotificationsRequest(
+      ids: notificationIds,
+    ));
+  }
+
+  @override
+  Future<List<model.Match>> listMatches({
+    required model.Session session,
+    bool? authoritative,
+    String? label,
+    int limit = defaultLimit,
+    int? maxSize,
+    int? minSize,
+    String? query,
+  }) async {
+    final res = await _client.listMatches(ListMatchesRequest(
+      authoritative: BoolValue(value: authoritative),
+      label: StringValue(value: label),
+      limit: Int32Value(value: limit),
+      maxSize: Int32Value(value: maxSize),
+      minSize: Int32Value(value: minSize),
+      query: StringValue(value: query),
+    ));
+
+    return res.matches
+        .map((e) => model.Match.fromDto(e))
+        .toList(growable: false);
+  }
+
+  @override
+  Future<void> joinTournament({
+    required model.Session session,
+    required String tournamentId,
+  }) async {
+    await _client.joinTournament(JoinTournamentRequest(
+      tournamentId: tournamentId,
+    ));
+  }
+
+  @override
+  Future<model.TournamentList> listTournaments({
+    required model.Session session,
+    int? categoryStart,
+    int? categoryEnd,
+    String? cursor,
+    DateTime? startTime,
+    DateTime? endTime,
+    int limit = defaultLimit,
+  }) async {
+    final res = await _client.listTournaments(ListTournamentsRequest(
+      categoryEnd: UInt32Value(value: categoryEnd),
+      categoryStart: UInt32Value(value: categoryStart),
+      cursor: cursor,
+      startTime: UInt32Value(
+          value: startTime != null
+              ? startTime.millisecondsSinceEpoch ~/ 1000
+              : null),
+      endTime: UInt32Value(
+          value:
+              endTime != null ? endTime.millisecondsSinceEpoch ~/ 1000 : null),
+      limit: Int32Value(value: limit),
+    ));
+
+    return model.TournamentList.fromDto(res);
+  }
+
+  @override
+  Future<model.TournamentRecordList> listTournamentRecords({
+    required model.Session session,
+    required String tournamentId,
+    Iterable<String>? ownerIds,
+    int? expiry,
+    int limit = defaultLimit,
+    String? cursor,
+  }) async {
+    final res =
+        await _client.listTournamentRecords(ListTournamentRecordsRequest(
+      cursor: cursor,
+      expiry: expiry == null ? null : Int64Value(value: Int64(expiry)),
+      limit: Int32Value(value: limit),
+      ownerIds: ownerIds,
+      tournamentId: tournamentId,
+    ));
+
+    return model.TournamentRecordList.fromDto(res);
+  }
+
+  @override
+  Future<model.LeaderboardRecord> writeTournamentRecord({
+    required model.Session session,
+    required String tournamentId,
+    String? metadata,
+    LeaderboardOperator? operator,
+    int? score,
+    int? subscore,
+  }) async {
+    final res =
+        await _client.writeTournamentRecord(WriteTournamentRecordRequest(
+      tournamentId: tournamentId,
+      record: WriteTournamentRecordRequest_TournamentRecordWrite(
+        metadata: metadata,
+        operator: () {
+          switch (operator) {
+            case LeaderboardOperator.best:
+              return Operator.BEST;
+            case LeaderboardOperator.decrement:
+              return Operator.DECREMENT;
+            case LeaderboardOperator.increment:
+              return Operator.INCREMENT;
+            case LeaderboardOperator.noOverride:
+              return Operator.NO_OVERRIDE;
+            case LeaderboardOperator.set:
+              return Operator.SET;
+            default:
+              return null;
+          }
+        }(),
+        score: score != null ? Int64(score) : null,
+        subscore: subscore != null ? Int64(subscore) : null,
+      ),
+    ));
+
+    return model.LeaderboardRecord.fromDto(res);
   }
 }

@@ -10,4 +10,4 @@ export './src/nakama_client/stub/nakama_client_stub.dart'
     if (dart.library.io) './src/nakama_client/stub/grpc_client.dart'
     if (dart.library.js) './src/nakama_client/stub/api_client.dart';
 export './src/nakama_websocket_client.dart';
-export './src/session.dart';
+export 'src/models/session.dart';

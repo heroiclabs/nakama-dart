@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'package:chopper/chopper.dart';
 
 import 'client_mapping.dart';
+import 'dart:async';
 import 'package:chopper/chopper.dart' as chopper;
 import 'apigrpc.enums.swagger.dart' as enums;
 export 'apigrpc.enums.swagger.dart';
@@ -20,11 +21,12 @@ part 'apigrpc.swagger.g.dart';
 
 @ChopperApi()
 abstract class Apigrpc extends ChopperService {
-  static Apigrpc create(
-      {ChopperClient? client,
-      Authenticator? authenticator,
-      String? baseUrl,
-      Iterable<dynamic>? interceptors}) {
+  static Apigrpc create({
+    ChopperClient? client,
+    Authenticator? authenticator,
+    String? baseUrl,
+    Iterable<dynamic>? interceptors,
+  }) {
     if (client != null) {
       return _$Apigrpc(client);
     }
@@ -78,8 +80,11 @@ abstract class Apigrpc extends ChopperService {
   ///@param body The Apple account details.
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
-  Future<chopper.Response<ApiSession>> v2AccountAuthenticateApplePost(
-      {required ApiAccountApple? body, bool? create, String? username}) {
+  Future<chopper.Response<ApiSession>> v2AccountAuthenticateApplePost({
+    required ApiAccountApple? body,
+    bool? create,
+    String? username,
+  }) {
     generatedMapping.putIfAbsent(
         ApiAccountApple, () => ApiAccountApple.fromJsonFactory);
     generatedMapping.putIfAbsent(ApiSession, () => ApiSession.fromJsonFactory);
@@ -93,17 +98,21 @@ abstract class Apigrpc extends ChopperService {
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
   @Post(path: '/v2/account/authenticate/apple')
-  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateApplePost(
-      {@Body() required ApiAccountApple? body,
-      @Query('create') bool? create,
-      @Query('username') String? username});
+  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateApplePost({
+    @Body() required ApiAccountApple? body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
 
   ///Authenticate a user with a custom id against the server.
   ///@param body The custom account details.
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
-  Future<chopper.Response<ApiSession>> v2AccountAuthenticateCustomPost(
-      {required ApiAccountCustom? body, bool? create, String? username}) {
+  Future<chopper.Response<ApiSession>> v2AccountAuthenticateCustomPost({
+    required ApiAccountCustom? body,
+    bool? create,
+    String? username,
+  }) {
     generatedMapping.putIfAbsent(
         ApiAccountCustom, () => ApiAccountCustom.fromJsonFactory);
     generatedMapping.putIfAbsent(ApiSession, () => ApiSession.fromJsonFactory);
@@ -117,17 +126,21 @@ abstract class Apigrpc extends ChopperService {
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
   @Post(path: '/v2/account/authenticate/custom')
-  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateCustomPost(
-      {@Body() required ApiAccountCustom? body,
-      @Query('create') bool? create,
-      @Query('username') String? username});
+  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateCustomPost({
+    @Body() required ApiAccountCustom? body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
 
   ///Authenticate a user with a device id against the server.
   ///@param body The device account details.
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
-  Future<chopper.Response<ApiSession>> v2AccountAuthenticateDevicePost(
-      {required ApiAccountDevice? body, bool? create, String? username}) {
+  Future<chopper.Response<ApiSession>> v2AccountAuthenticateDevicePost({
+    required ApiAccountDevice? body,
+    bool? create,
+    String? username,
+  }) {
     generatedMapping.putIfAbsent(
         ApiAccountDevice, () => ApiAccountDevice.fromJsonFactory);
     generatedMapping.putIfAbsent(ApiSession, () => ApiSession.fromJsonFactory);
@@ -141,17 +154,21 @@ abstract class Apigrpc extends ChopperService {
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
   @Post(path: '/v2/account/authenticate/device')
-  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateDevicePost(
-      {@Body() required ApiAccountDevice? body,
-      @Query('create') bool? create,
-      @Query('username') String? username});
+  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateDevicePost({
+    @Body() required ApiAccountDevice? body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
 
   ///Authenticate a user with an email+password against the server.
   ///@param body The email account details.
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
-  Future<chopper.Response<ApiSession>> v2AccountAuthenticateEmailPost(
-      {required ApiAccountEmail? body, bool? create, String? username}) {
+  Future<chopper.Response<ApiSession>> v2AccountAuthenticateEmailPost({
+    required ApiAccountEmail? body,
+    bool? create,
+    String? username,
+  }) {
     generatedMapping.putIfAbsent(
         ApiAccountEmail, () => ApiAccountEmail.fromJsonFactory);
     generatedMapping.putIfAbsent(ApiSession, () => ApiSession.fromJsonFactory);
@@ -165,21 +182,23 @@ abstract class Apigrpc extends ChopperService {
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
   @Post(path: '/v2/account/authenticate/email')
-  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateEmailPost(
-      {@Body() required ApiAccountEmail? body,
-      @Query('create') bool? create,
-      @Query('username') String? username});
+  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateEmailPost({
+    @Body() required ApiAccountEmail? body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
 
   ///Authenticate a user with a Facebook OAuth token against the server.
   ///@param body The Facebook account details.
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
   ///@param sync Import Facebook friends for the user.
-  Future<chopper.Response<ApiSession>> v2AccountAuthenticateFacebookPost(
-      {required ApiAccountFacebook? body,
-      bool? create,
-      String? username,
-      bool? $sync}) {
+  Future<chopper.Response<ApiSession>> v2AccountAuthenticateFacebookPost({
+    required ApiAccountFacebook? body,
+    bool? create,
+    String? username,
+    bool? $sync,
+  }) {
     generatedMapping.putIfAbsent(
         ApiAccountFacebook, () => ApiAccountFacebook.fromJsonFactory);
     generatedMapping.putIfAbsent(ApiSession, () => ApiSession.fromJsonFactory);
@@ -194,21 +213,23 @@ abstract class Apigrpc extends ChopperService {
   ///@param username Set the username on the account at register. Must be unique.
   ///@param sync Import Facebook friends for the user.
   @Post(path: '/v2/account/authenticate/facebook')
-  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateFacebookPost(
-      {@Body() required ApiAccountFacebook? body,
-      @Query('create') bool? create,
-      @Query('username') String? username,
-      @Query('sync') bool? $sync});
+  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateFacebookPost({
+    @Body() required ApiAccountFacebook? body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+    @Query('sync') bool? $sync,
+  });
 
   ///Authenticate a user with a Facebook Instant Game token against the server.
   ///@param body The Facebook Instant Game account details.
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
   Future<chopper.Response<ApiSession>>
-      v2AccountAuthenticateFacebookinstantgamePost(
-          {required ApiAccountFacebookInstantGame? body,
-          bool? create,
-          String? username}) {
+      v2AccountAuthenticateFacebookinstantgamePost({
+    required ApiAccountFacebookInstantGame? body,
+    bool? create,
+    String? username,
+  }) {
     generatedMapping.putIfAbsent(ApiAccountFacebookInstantGame,
         () => ApiAccountFacebookInstantGame.fromJsonFactory);
     generatedMapping.putIfAbsent(ApiSession, () => ApiSession.fromJsonFactory);
@@ -223,17 +244,21 @@ abstract class Apigrpc extends ChopperService {
   ///@param username Set the username on the account at register. Must be unique.
   @Post(path: '/v2/account/authenticate/facebookinstantgame')
   Future<chopper.Response<ApiSession>>
-      _v2AccountAuthenticateFacebookinstantgamePost(
-          {@Body() required ApiAccountFacebookInstantGame? body,
-          @Query('create') bool? create,
-          @Query('username') String? username});
+      _v2AccountAuthenticateFacebookinstantgamePost({
+    @Body() required ApiAccountFacebookInstantGame? body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
 
   ///Authenticate a user with Apple's GameCenter against the server.
   ///@param body The Game Center account details.
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
-  Future<chopper.Response<ApiSession>> v2AccountAuthenticateGamecenterPost(
-      {required ApiAccountGameCenter? body, bool? create, String? username}) {
+  Future<chopper.Response<ApiSession>> v2AccountAuthenticateGamecenterPost({
+    required ApiAccountGameCenter? body,
+    bool? create,
+    String? username,
+  }) {
     generatedMapping.putIfAbsent(
         ApiAccountGameCenter, () => ApiAccountGameCenter.fromJsonFactory);
     generatedMapping.putIfAbsent(ApiSession, () => ApiSession.fromJsonFactory);
@@ -247,17 +272,21 @@ abstract class Apigrpc extends ChopperService {
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
   @Post(path: '/v2/account/authenticate/gamecenter')
-  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateGamecenterPost(
-      {@Body() required ApiAccountGameCenter? body,
-      @Query('create') bool? create,
-      @Query('username') String? username});
+  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateGamecenterPost({
+    @Body() required ApiAccountGameCenter? body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
 
   ///Authenticate a user with Google against the server.
   ///@param body The Google account details.
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
-  Future<chopper.Response<ApiSession>> v2AccountAuthenticateGooglePost(
-      {required ApiAccountGoogle? body, bool? create, String? username}) {
+  Future<chopper.Response<ApiSession>> v2AccountAuthenticateGooglePost({
+    required ApiAccountGoogle? body,
+    bool? create,
+    String? username,
+  }) {
     generatedMapping.putIfAbsent(
         ApiAccountGoogle, () => ApiAccountGoogle.fromJsonFactory);
     generatedMapping.putIfAbsent(ApiSession, () => ApiSession.fromJsonFactory);
@@ -271,21 +300,23 @@ abstract class Apigrpc extends ChopperService {
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
   @Post(path: '/v2/account/authenticate/google')
-  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateGooglePost(
-      {@Body() required ApiAccountGoogle? body,
-      @Query('create') bool? create,
-      @Query('username') String? username});
+  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateGooglePost({
+    @Body() required ApiAccountGoogle? body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
 
   ///Authenticate a user with Steam against the server.
   ///@param body The Steam account details.
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
   ///@param sync Import Steam friends for the user.
-  Future<chopper.Response<ApiSession>> v2AccountAuthenticateSteamPost(
-      {required ApiAccountSteam? body,
-      bool? create,
-      String? username,
-      bool? $sync}) {
+  Future<chopper.Response<ApiSession>> v2AccountAuthenticateSteamPost({
+    required ApiAccountSteam? body,
+    bool? create,
+    String? username,
+    bool? $sync,
+  }) {
     generatedMapping.putIfAbsent(
         ApiAccountSteam, () => ApiAccountSteam.fromJsonFactory);
     generatedMapping.putIfAbsent(ApiSession, () => ApiSession.fromJsonFactory);
@@ -300,11 +331,12 @@ abstract class Apigrpc extends ChopperService {
   ///@param username Set the username on the account at register. Must be unique.
   ///@param sync Import Steam friends for the user.
   @Post(path: '/v2/account/authenticate/steam')
-  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateSteamPost(
-      {@Body() required ApiAccountSteam? body,
-      @Query('create') bool? create,
-      @Query('username') String? username,
-      @Query('sync') bool? $sync});
+  Future<chopper.Response<ApiSession>> _v2AccountAuthenticateSteamPost({
+    @Body() required ApiAccountSteam? body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+    @Query('sync') bool? $sync,
+  });
 
   ///Add an Apple ID to the social profiles on the current user's account.
   ///@param body
@@ -373,8 +405,10 @@ abstract class Apigrpc extends ChopperService {
   ///Add Facebook to the social profiles on the current user's account.
   ///@param body The Facebook account details.
   ///@param sync Import Facebook friends for the user.
-  Future<chopper.Response> v2AccountLinkFacebookPost(
-      {required ApiAccountFacebook? body, bool? $sync}) {
+  Future<chopper.Response> v2AccountLinkFacebookPost({
+    required ApiAccountFacebook? body,
+    bool? $sync,
+  }) {
     generatedMapping.putIfAbsent(
         ApiAccountFacebook, () => ApiAccountFacebook.fromJsonFactory);
 
@@ -385,8 +419,10 @@ abstract class Apigrpc extends ChopperService {
   ///@param body The Facebook account details.
   ///@param sync Import Facebook friends for the user.
   @Post(path: '/v2/account/link/facebook')
-  Future<chopper.Response> _v2AccountLinkFacebookPost(
-      {@Body() required ApiAccountFacebook? body, @Query('sync') bool? $sync});
+  Future<chopper.Response> _v2AccountLinkFacebookPost({
+    @Body() required ApiAccountFacebook? body,
+    @Query('sync') bool? $sync,
+  });
 
   ///Add Facebook Instant Game to the social profiles on the current user's account.
   ///@param body
@@ -618,8 +654,12 @@ abstract class Apigrpc extends ChopperService {
   ///@param limit Max number of records to return. Between 1 and 100.
   ///@param forward True if listing should be older messages to newer, false if reverse.
   ///@param cursor A pagination cursor, if any.
-  Future<chopper.Response<ApiChannelMessageList>> v2ChannelChannelIdGet(
-      {required String? channelId, int? limit, bool? forward, String? cursor}) {
+  Future<chopper.Response<ApiChannelMessageList>> v2ChannelChannelIdGet({
+    required String? channelId,
+    int? limit,
+    bool? forward,
+    String? cursor,
+  }) {
     generatedMapping.putIfAbsent(
         ApiChannelMessageList, () => ApiChannelMessageList.fromJsonFactory);
 
@@ -633,11 +673,12 @@ abstract class Apigrpc extends ChopperService {
   ///@param forward True if listing should be older messages to newer, false if reverse.
   ///@param cursor A pagination cursor, if any.
   @Get(path: '/v2/channel/{channelId}')
-  Future<chopper.Response<ApiChannelMessageList>> _v2ChannelChannelIdGet(
-      {@Path('channelId') required String? channelId,
-      @Query('limit') int? limit,
-      @Query('forward') bool? forward,
-      @Query('cursor') String? cursor});
+  Future<chopper.Response<ApiChannelMessageList>> _v2ChannelChannelIdGet({
+    @Path('channelId') required String? channelId,
+    @Query('limit') int? limit,
+    @Query('forward') bool? forward,
+    @Query('cursor') String? cursor,
+  });
 
   ///Submit an event for processing in the server's registered runtime custom events handler.
   ///@param body
@@ -656,8 +697,11 @@ abstract class Apigrpc extends ChopperService {
   ///@param limit Max number of records to return. Between 1 and 100.
   ///@param state The friend state to list.
   ///@param cursor An optional next page cursor.
-  Future<chopper.Response<ApiFriendList>> v2FriendGet(
-      {int? limit, int? state, String? cursor}) {
+  Future<chopper.Response<ApiFriendList>> v2FriendGet({
+    int? limit,
+    int? state,
+    String? cursor,
+  }) {
     generatedMapping.putIfAbsent(
         ApiFriendList, () => ApiFriendList.fromJsonFactory);
 
@@ -669,16 +713,19 @@ abstract class Apigrpc extends ChopperService {
   ///@param state The friend state to list.
   ///@param cursor An optional next page cursor.
   @Get(path: '/v2/friend')
-  Future<chopper.Response<ApiFriendList>> _v2FriendGet(
-      {@Query('limit') int? limit,
-      @Query('state') int? state,
-      @Query('cursor') String? cursor});
+  Future<chopper.Response<ApiFriendList>> _v2FriendGet({
+    @Query('limit') int? limit,
+    @Query('state') int? state,
+    @Query('cursor') String? cursor,
+  });
 
   ///Delete one or more users by ID or username.
   ///@param ids The account id of a user.
   ///@param usernames The account username of a user.
-  Future<chopper.Response> v2FriendDelete(
-      {List<String>? ids, List<String>? usernames}) {
+  Future<chopper.Response> v2FriendDelete({
+    List<String>? ids,
+    List<String>? usernames,
+  }) {
     return _v2FriendDelete(ids: ids, usernames: usernames);
   }
 
@@ -686,47 +733,62 @@ abstract class Apigrpc extends ChopperService {
   ///@param ids The account id of a user.
   ///@param usernames The account username of a user.
   @Delete(path: '/v2/friend')
-  Future<chopper.Response> _v2FriendDelete(
-      {@Query('ids') List<String>? ids,
-      @Query('usernames') List<String>? usernames});
+  Future<chopper.Response> _v2FriendDelete({
+    @Query('ids') List<String>? ids,
+    @Query('usernames') List<String>? usernames,
+  });
 
   ///Add friends by ID or username to a user's account.
   ///@param ids The account id of a user.
   ///@param usernames The account username of a user.
-  Future<chopper.Response> v2FriendPost(
-      {List<String>? ids, List<String>? usernames}) {
+  Future<chopper.Response> v2FriendPost({
+    List<String>? ids,
+    List<String>? usernames,
+  }) {
     return _v2FriendPost(ids: ids, usernames: usernames);
   }
 
   ///Add friends by ID or username to a user's account.
   ///@param ids The account id of a user.
   ///@param usernames The account username of a user.
-  @Post(path: '/v2/friend', optionalBody: true)
-  Future<chopper.Response> _v2FriendPost(
-      {@Query('ids') List<String>? ids,
-      @Query('usernames') List<String>? usernames});
+  @Post(
+    path: '/v2/friend',
+    optionalBody: true,
+  )
+  Future<chopper.Response> _v2FriendPost({
+    @Query('ids') List<String>? ids,
+    @Query('usernames') List<String>? usernames,
+  });
 
   ///Block one or more users by ID or username.
   ///@param ids The account id of a user.
   ///@param usernames The account username of a user.
-  Future<chopper.Response> v2FriendBlockPost(
-      {List<String>? ids, List<String>? usernames}) {
+  Future<chopper.Response> v2FriendBlockPost({
+    List<String>? ids,
+    List<String>? usernames,
+  }) {
     return _v2FriendBlockPost(ids: ids, usernames: usernames);
   }
 
   ///Block one or more users by ID or username.
   ///@param ids The account id of a user.
   ///@param usernames The account username of a user.
-  @Post(path: '/v2/friend/block', optionalBody: true)
-  Future<chopper.Response> _v2FriendBlockPost(
-      {@Query('ids') List<String>? ids,
-      @Query('usernames') List<String>? usernames});
+  @Post(
+    path: '/v2/friend/block',
+    optionalBody: true,
+  )
+  Future<chopper.Response> _v2FriendBlockPost({
+    @Query('ids') List<String>? ids,
+    @Query('usernames') List<String>? usernames,
+  });
 
   ///Import Facebook friends and add them to a user's account.
   ///@param body The Facebook account details.
   ///@param reset Reset the current user's friends list.
-  Future<chopper.Response> v2FriendFacebookPost(
-      {required ApiAccountFacebook? body, bool? reset}) {
+  Future<chopper.Response> v2FriendFacebookPost({
+    required ApiAccountFacebook? body,
+    bool? reset,
+  }) {
     generatedMapping.putIfAbsent(
         ApiAccountFacebook, () => ApiAccountFacebook.fromJsonFactory);
 
@@ -737,14 +799,18 @@ abstract class Apigrpc extends ChopperService {
   ///@param body The Facebook account details.
   ///@param reset Reset the current user's friends list.
   @Post(path: '/v2/friend/facebook')
-  Future<chopper.Response> _v2FriendFacebookPost(
-      {@Body() required ApiAccountFacebook? body, @Query('reset') bool? reset});
+  Future<chopper.Response> _v2FriendFacebookPost({
+    @Body() required ApiAccountFacebook? body,
+    @Query('reset') bool? reset,
+  });
 
   ///Import Steam friends and add them to a user's account.
   ///@param body The Facebook account details.
   ///@param reset Reset the current user's friends list.
-  Future<chopper.Response> v2FriendSteamPost(
-      {required ApiAccountSteam? body, bool? reset}) {
+  Future<chopper.Response> v2FriendSteamPost({
+    required ApiAccountSteam? body,
+    bool? reset,
+  }) {
     generatedMapping.putIfAbsent(
         ApiAccountSteam, () => ApiAccountSteam.fromJsonFactory);
 
@@ -755,8 +821,10 @@ abstract class Apigrpc extends ChopperService {
   ///@param body The Facebook account details.
   ///@param reset Reset the current user's friends list.
   @Post(path: '/v2/friend/steam')
-  Future<chopper.Response> _v2FriendSteamPost(
-      {@Body() required ApiAccountSteam? body, @Query('reset') bool? reset});
+  Future<chopper.Response> _v2FriendSteamPost({
+    @Body() required ApiAccountSteam? body,
+    @Query('reset') bool? reset,
+  });
 
   ///List groups based on given filters.
   ///@param name List groups that contain this value in their names.
@@ -765,13 +833,14 @@ abstract class Apigrpc extends ChopperService {
   ///@param langTag Language tag filter.
   ///@param members Number of group members.
   ///@param open Optional Open/Closed filter.
-  Future<chopper.Response<ApiGroupList>> v2GroupGet(
-      {String? name,
-      String? cursor,
-      int? limit,
-      String? langTag,
-      int? members,
-      bool? open}) {
+  Future<chopper.Response<ApiGroupList>> v2GroupGet({
+    String? name,
+    String? cursor,
+    int? limit,
+    String? langTag,
+    int? members,
+    bool? open,
+  }) {
     generatedMapping.putIfAbsent(
         ApiGroupList, () => ApiGroupList.fromJsonFactory);
 
@@ -792,13 +861,14 @@ abstract class Apigrpc extends ChopperService {
   ///@param members Number of group members.
   ///@param open Optional Open/Closed filter.
   @Get(path: '/v2/group')
-  Future<chopper.Response<ApiGroupList>> _v2GroupGet(
-      {@Query('name') String? name,
-      @Query('cursor') String? cursor,
-      @Query('limit') int? limit,
-      @Query('langTag') String? langTag,
-      @Query('members') int? members,
-      @Query('open') bool? open});
+  Future<chopper.Response<ApiGroupList>> _v2GroupGet({
+    @Query('name') String? name,
+    @Query('cursor') String? cursor,
+    @Query('limit') int? limit,
+    @Query('langTag') String? langTag,
+    @Query('members') int? members,
+    @Query('open') bool? open,
+  });
 
   ///Create a new group with the current user as the owner.
   ///@param body
@@ -832,8 +902,10 @@ abstract class Apigrpc extends ChopperService {
   ///Update fields in a given group.
   ///@param groupId The ID of the group to update.
   ///@param body
-  Future<chopper.Response> v2GroupGroupIdPut(
-      {required String? groupId, required ApiUpdateGroupRequest? body}) {
+  Future<chopper.Response> v2GroupGroupIdPut({
+    required String? groupId,
+    required ApiUpdateGroupRequest? body,
+  }) {
     generatedMapping.putIfAbsent(
         ApiUpdateGroupRequest, () => ApiUpdateGroupRequest.fromJsonFactory);
 
@@ -844,57 +916,76 @@ abstract class Apigrpc extends ChopperService {
   ///@param groupId The ID of the group to update.
   ///@param body
   @Put(path: '/v2/group/{groupId}')
-  Future<chopper.Response> _v2GroupGroupIdPut(
-      {@Path('groupId') required String? groupId,
-      @Body() required ApiUpdateGroupRequest? body});
+  Future<chopper.Response> _v2GroupGroupIdPut({
+    @Path('groupId') required String? groupId,
+    @Body() required ApiUpdateGroupRequest? body,
+  });
 
   ///Add users to a group.
   ///@param groupId The group to add users to.
   ///@param userIds The users to add.
-  Future<chopper.Response> v2GroupGroupIdAddPost(
-      {required String? groupId, List<String>? userIds}) {
+  Future<chopper.Response> v2GroupGroupIdAddPost({
+    required String? groupId,
+    List<String>? userIds,
+  }) {
     return _v2GroupGroupIdAddPost(groupId: groupId, userIds: userIds);
   }
 
   ///Add users to a group.
   ///@param groupId The group to add users to.
   ///@param userIds The users to add.
-  @Post(path: '/v2/group/{groupId}/add', optionalBody: true)
-  Future<chopper.Response> _v2GroupGroupIdAddPost(
-      {@Path('groupId') required String? groupId,
-      @Query('userIds') List<String>? userIds});
+  @Post(
+    path: '/v2/group/{groupId}/add',
+    optionalBody: true,
+  )
+  Future<chopper.Response> _v2GroupGroupIdAddPost({
+    @Path('groupId') required String? groupId,
+    @Query('userIds') List<String>? userIds,
+  });
 
   ///Ban a set of users from a group.
   ///@param groupId The group to ban users from.
   ///@param userIds The users to ban.
-  Future<chopper.Response> v2GroupGroupIdBanPost(
-      {required String? groupId, List<String>? userIds}) {
+  Future<chopper.Response> v2GroupGroupIdBanPost({
+    required String? groupId,
+    List<String>? userIds,
+  }) {
     return _v2GroupGroupIdBanPost(groupId: groupId, userIds: userIds);
   }
 
   ///Ban a set of users from a group.
   ///@param groupId The group to ban users from.
   ///@param userIds The users to ban.
-  @Post(path: '/v2/group/{groupId}/ban', optionalBody: true)
-  Future<chopper.Response> _v2GroupGroupIdBanPost(
-      {@Path('groupId') required String? groupId,
-      @Query('userIds') List<String>? userIds});
+  @Post(
+    path: '/v2/group/{groupId}/ban',
+    optionalBody: true,
+  )
+  Future<chopper.Response> _v2GroupGroupIdBanPost({
+    @Path('groupId') required String? groupId,
+    @Query('userIds') List<String>? userIds,
+  });
 
   ///Demote a set of users in a group to the next role down.
   ///@param groupId The group ID to demote in.
   ///@param userIds The users to demote.
-  Future<chopper.Response> v2GroupGroupIdDemotePost(
-      {required String? groupId, List<String>? userIds}) {
+  Future<chopper.Response> v2GroupGroupIdDemotePost({
+    required String? groupId,
+    List<String>? userIds,
+  }) {
     return _v2GroupGroupIdDemotePost(groupId: groupId, userIds: userIds);
   }
 
   ///Demote a set of users in a group to the next role down.
   ///@param groupId The group ID to demote in.
   ///@param userIds The users to demote.
-  @Post(path: '/v2/group/{groupId}/demote', optionalBody: true)
-  Future<chopper.Response> _v2GroupGroupIdDemotePost(
-      {@Path('groupId') required String? groupId,
-      @Query('userIds') List<String>? userIds});
+  @Post(
+    path: '/v2/group/{groupId}/demote',
+    optionalBody: true,
+  )
+  Future<chopper.Response> _v2GroupGroupIdDemotePost({
+    @Path('groupId') required String? groupId,
+    @Query('userIds') List<String>? userIds,
+  });
 
   ///Immediately join an open group, or request to join a closed one.
   ///@param groupId The group ID to join. The group must already exist.
@@ -904,25 +995,34 @@ abstract class Apigrpc extends ChopperService {
 
   ///Immediately join an open group, or request to join a closed one.
   ///@param groupId The group ID to join. The group must already exist.
-  @Post(path: '/v2/group/{groupId}/join', optionalBody: true)
+  @Post(
+    path: '/v2/group/{groupId}/join',
+    optionalBody: true,
+  )
   Future<chopper.Response> _v2GroupGroupIdJoinPost(
       {@Path('groupId') required String? groupId});
 
   ///Kick a set of users from a group.
   ///@param groupId The group ID to kick from.
   ///@param userIds The users to kick.
-  Future<chopper.Response> v2GroupGroupIdKickPost(
-      {required String? groupId, List<String>? userIds}) {
+  Future<chopper.Response> v2GroupGroupIdKickPost({
+    required String? groupId,
+    List<String>? userIds,
+  }) {
     return _v2GroupGroupIdKickPost(groupId: groupId, userIds: userIds);
   }
 
   ///Kick a set of users from a group.
   ///@param groupId The group ID to kick from.
   ///@param userIds The users to kick.
-  @Post(path: '/v2/group/{groupId}/kick', optionalBody: true)
-  Future<chopper.Response> _v2GroupGroupIdKickPost(
-      {@Path('groupId') required String? groupId,
-      @Query('userIds') List<String>? userIds});
+  @Post(
+    path: '/v2/group/{groupId}/kick',
+    optionalBody: true,
+  )
+  Future<chopper.Response> _v2GroupGroupIdKickPost({
+    @Path('groupId') required String? groupId,
+    @Query('userIds') List<String>? userIds,
+  });
 
   ///Leave a group the user is a member of.
   ///@param groupId The group ID to leave.
@@ -932,33 +1032,46 @@ abstract class Apigrpc extends ChopperService {
 
   ///Leave a group the user is a member of.
   ///@param groupId The group ID to leave.
-  @Post(path: '/v2/group/{groupId}/leave', optionalBody: true)
+  @Post(
+    path: '/v2/group/{groupId}/leave',
+    optionalBody: true,
+  )
   Future<chopper.Response> _v2GroupGroupIdLeavePost(
       {@Path('groupId') required String? groupId});
 
   ///Promote a set of users in a group to the next role up.
   ///@param groupId The group ID to promote in.
   ///@param userIds The users to promote.
-  Future<chopper.Response> v2GroupGroupIdPromotePost(
-      {required String? groupId, List<String>? userIds}) {
+  Future<chopper.Response> v2GroupGroupIdPromotePost({
+    required String? groupId,
+    List<String>? userIds,
+  }) {
     return _v2GroupGroupIdPromotePost(groupId: groupId, userIds: userIds);
   }
 
   ///Promote a set of users in a group to the next role up.
   ///@param groupId The group ID to promote in.
   ///@param userIds The users to promote.
-  @Post(path: '/v2/group/{groupId}/promote', optionalBody: true)
-  Future<chopper.Response> _v2GroupGroupIdPromotePost(
-      {@Path('groupId') required String? groupId,
-      @Query('userIds') List<String>? userIds});
+  @Post(
+    path: '/v2/group/{groupId}/promote',
+    optionalBody: true,
+  )
+  Future<chopper.Response> _v2GroupGroupIdPromotePost({
+    @Path('groupId') required String? groupId,
+    @Query('userIds') List<String>? userIds,
+  });
 
   ///List all users that are part of a group.
   ///@param groupId The group ID to list from.
   ///@param limit Max number of records to return. Between 1 and 100.
   ///@param state The group user state to list.
   ///@param cursor An optional next page cursor.
-  Future<chopper.Response<ApiGroupUserList>> v2GroupGroupIdUserGet(
-      {required String? groupId, int? limit, int? state, String? cursor}) {
+  Future<chopper.Response<ApiGroupUserList>> v2GroupGroupIdUserGet({
+    required String? groupId,
+    int? limit,
+    int? state,
+    String? cursor,
+  }) {
     generatedMapping.putIfAbsent(
         ApiGroupUserList, () => ApiGroupUserList.fromJsonFactory);
 
@@ -972,11 +1085,12 @@ abstract class Apigrpc extends ChopperService {
   ///@param state The group user state to list.
   ///@param cursor An optional next page cursor.
   @Get(path: '/v2/group/{groupId}/user')
-  Future<chopper.Response<ApiGroupUserList>> _v2GroupGroupIdUserGet(
-      {@Path('groupId') required String? groupId,
-      @Query('limit') int? limit,
-      @Query('state') int? state,
-      @Query('cursor') String? cursor});
+  Future<chopper.Response<ApiGroupUserList>> _v2GroupGroupIdUserGet({
+    @Path('groupId') required String? groupId,
+    @Query('limit') int? limit,
+    @Query('state') int? state,
+    @Query('cursor') String? cursor,
+  });
 
   ///Validate Apple IAP Receipt
   ///@param body
@@ -1116,12 +1230,13 @@ abstract class Apigrpc extends ChopperService {
   ///@param cursor A next or previous page cursor.
   ///@param expiry Expiry in seconds (since epoch) to begin fetching records from. Optional. 0 means from current time.
   Future<chopper.Response<ApiLeaderboardRecordList>>
-      v2LeaderboardLeaderboardIdGet(
-          {required String? leaderboardId,
-          List<String>? ownerIds,
-          int? limit,
-          String? cursor,
-          String? expiry}) {
+      v2LeaderboardLeaderboardIdGet({
+    required String? leaderboardId,
+    List<String>? ownerIds,
+    int? limit,
+    String? cursor,
+    String? expiry,
+  }) {
     generatedMapping.putIfAbsent(ApiLeaderboardRecordList,
         () => ApiLeaderboardRecordList.fromJsonFactory);
 
@@ -1141,12 +1256,13 @@ abstract class Apigrpc extends ChopperService {
   ///@param expiry Expiry in seconds (since epoch) to begin fetching records from. Optional. 0 means from current time.
   @Get(path: '/v2/leaderboard/{leaderboardId}')
   Future<chopper.Response<ApiLeaderboardRecordList>>
-      _v2LeaderboardLeaderboardIdGet(
-          {@Path('leaderboardId') required String? leaderboardId,
-          @Query('ownerIds') List<String>? ownerIds,
-          @Query('limit') int? limit,
-          @Query('cursor') String? cursor,
-          @Query('expiry') String? expiry});
+      _v2LeaderboardLeaderboardIdGet({
+    @Path('leaderboardId') required String? leaderboardId,
+    @Query('ownerIds') List<String>? ownerIds,
+    @Query('limit') int? limit,
+    @Query('cursor') String? cursor,
+    @Query('expiry') String? expiry,
+  });
 
   ///Delete a leaderboard record.
   ///@param leaderboardId The leaderboard ID to delete from.
@@ -1164,9 +1280,11 @@ abstract class Apigrpc extends ChopperService {
   ///Write a record to a leaderboard.
   ///@param leaderboardId The ID of the leaderboard to write to.
   ///@param body Record input.
-  Future<chopper.Response<ApiLeaderboardRecord>> v2LeaderboardLeaderboardIdPost(
-      {required String? leaderboardId,
-      required WriteLeaderboardRecordRequestLeaderboardRecordWrite? body}) {
+  Future<chopper.Response<ApiLeaderboardRecord>>
+      v2LeaderboardLeaderboardIdPost({
+    required String? leaderboardId,
+    required WriteLeaderboardRecordRequestLeaderboardRecordWrite? body,
+  }) {
     generatedMapping.putIfAbsent(
         WriteLeaderboardRecordRequestLeaderboardRecordWrite,
         () => WriteLeaderboardRecordRequestLeaderboardRecordWrite
@@ -1183,12 +1301,10 @@ abstract class Apigrpc extends ChopperService {
   ///@param body Record input.
   @Post(path: '/v2/leaderboard/{leaderboardId}')
   Future<chopper.Response<ApiLeaderboardRecord>>
-      _v2LeaderboardLeaderboardIdPost(
-          {@Path('leaderboardId')
-              required String? leaderboardId,
-          @Body()
-              required WriteLeaderboardRecordRequestLeaderboardRecordWrite?
-                  body});
+      _v2LeaderboardLeaderboardIdPost({
+    @Path('leaderboardId') required String? leaderboardId,
+    @Body() required WriteLeaderboardRecordRequestLeaderboardRecordWrite? body,
+  });
 
   ///List leaderboard records that belong to a user.
   ///@param leaderboardId The ID of the tournament to list for.
@@ -1196,11 +1312,12 @@ abstract class Apigrpc extends ChopperService {
   ///@param limit Max number of records to return. Between 1 and 100.
   ///@param expiry Expiry in seconds (since epoch) to begin fetching records from.
   Future<chopper.Response<ApiLeaderboardRecordList>>
-      v2LeaderboardLeaderboardIdOwnerOwnerIdGet(
-          {required String? leaderboardId,
-          required String? ownerId,
-          int? limit,
-          String? expiry}) {
+      v2LeaderboardLeaderboardIdOwnerOwnerIdGet({
+    required String? leaderboardId,
+    required String? ownerId,
+    int? limit,
+    String? expiry,
+  }) {
     generatedMapping.putIfAbsent(ApiLeaderboardRecordList,
         () => ApiLeaderboardRecordList.fromJsonFactory);
 
@@ -1218,11 +1335,12 @@ abstract class Apigrpc extends ChopperService {
   ///@param expiry Expiry in seconds (since epoch) to begin fetching records from.
   @Get(path: '/v2/leaderboard/{leaderboardId}/owner/{ownerId}')
   Future<chopper.Response<ApiLeaderboardRecordList>>
-      _v2LeaderboardLeaderboardIdOwnerOwnerIdGet(
-          {@Path('leaderboardId') required String? leaderboardId,
-          @Path('ownerId') required String? ownerId,
-          @Query('limit') int? limit,
-          @Query('expiry') String? expiry});
+      _v2LeaderboardLeaderboardIdOwnerOwnerIdGet({
+    @Path('leaderboardId') required String? leaderboardId,
+    @Path('ownerId') required String? ownerId,
+    @Query('limit') int? limit,
+    @Query('expiry') String? expiry,
+  });
 
   ///Fetch list of running matches.
   ///@param limit Limit the number of returned matches.
@@ -1231,13 +1349,14 @@ abstract class Apigrpc extends ChopperService {
   ///@param minSize Minimum user count.
   ///@param maxSize Maximum user count.
   ///@param query Arbitrary label query.
-  Future<chopper.Response<ApiMatchList>> v2MatchGet(
-      {int? limit,
-      bool? authoritative,
-      String? label,
-      int? minSize,
-      int? maxSize,
-      String? query}) {
+  Future<chopper.Response<ApiMatchList>> v2MatchGet({
+    int? limit,
+    bool? authoritative,
+    String? label,
+    int? minSize,
+    int? maxSize,
+    String? query,
+  }) {
     generatedMapping.putIfAbsent(
         ApiMatchList, () => ApiMatchList.fromJsonFactory);
 
@@ -1258,19 +1377,22 @@ abstract class Apigrpc extends ChopperService {
   ///@param maxSize Maximum user count.
   ///@param query Arbitrary label query.
   @Get(path: '/v2/match')
-  Future<chopper.Response<ApiMatchList>> _v2MatchGet(
-      {@Query('limit') int? limit,
-      @Query('authoritative') bool? authoritative,
-      @Query('label') String? label,
-      @Query('minSize') int? minSize,
-      @Query('maxSize') int? maxSize,
-      @Query('query') String? query});
+  Future<chopper.Response<ApiMatchList>> _v2MatchGet({
+    @Query('limit') int? limit,
+    @Query('authoritative') bool? authoritative,
+    @Query('label') String? label,
+    @Query('minSize') int? minSize,
+    @Query('maxSize') int? maxSize,
+    @Query('query') String? query,
+  });
 
   ///Fetch list of notifications.
   ///@param limit The number of notifications to get. Between 1 and 100.
   ///@param cacheableCursor A cursor to page through notifications. May be cached by clients to get from point in time forwards.
-  Future<chopper.Response<ApiNotificationList>> v2NotificationGet(
-      {int? limit, String? cacheableCursor}) {
+  Future<chopper.Response<ApiNotificationList>> v2NotificationGet({
+    int? limit,
+    String? cacheableCursor,
+  }) {
     generatedMapping.putIfAbsent(
         ApiNotificationList, () => ApiNotificationList.fromJsonFactory);
 
@@ -1281,9 +1403,10 @@ abstract class Apigrpc extends ChopperService {
   ///@param limit The number of notifications to get. Between 1 and 100.
   ///@param cacheableCursor A cursor to page through notifications. May be cached by clients to get from point in time forwards.
   @Get(path: '/v2/notification')
-  Future<chopper.Response<ApiNotificationList>> _v2NotificationGet(
-      {@Query('limit') int? limit,
-      @Query('cacheableCursor') String? cacheableCursor});
+  Future<chopper.Response<ApiNotificationList>> _v2NotificationGet({
+    @Query('limit') int? limit,
+    @Query('cacheableCursor') String? cacheableCursor,
+  });
 
   ///Delete one or more notifications for the current user.
   ///@param ids The id of notifications.
@@ -1301,11 +1424,12 @@ abstract class Apigrpc extends ChopperService {
   ///@param id The identifier of the function.
   ///@param payload The payload of the function which must be a JSON object.
   ///@param httpKey The authentication key used when executed as a non-client HTTP request.
-  Future<chopper.Response<ApiRpc>> v2RpcIdGet(
-      {required String? id,
-      String? payload,
-      String? httpKey,
-      String? httpKey$}) {
+  Future<chopper.Response<ApiRpc>> v2RpcIdGet({
+    required String? id,
+    String? payload,
+    String? httpKey,
+    String? httpKey$,
+  }) {
     generatedMapping.putIfAbsent(ApiRpc, () => ApiRpc.fromJsonFactory);
 
     return _v2RpcIdGet(
@@ -1317,21 +1441,23 @@ abstract class Apigrpc extends ChopperService {
   ///@param payload The payload of the function which must be a JSON object.
   ///@param httpKey The authentication key used when executed as a non-client HTTP request.
   @Get(path: '/v2/rpc/{id}')
-  Future<chopper.Response<ApiRpc>> _v2RpcIdGet(
-      {@Path('id') required String? id,
-      @Query('payload') String? payload,
-      @Query('httpKey') String? httpKey,
-      @Header('http_key') String? httpKey$});
+  Future<chopper.Response<ApiRpc>> _v2RpcIdGet({
+    @Path('id') required String? id,
+    @Query('payload') String? payload,
+    @Query('httpKey') String? httpKey,
+    @Header('http_key') String? httpKey$,
+  });
 
   ///Execute a Lua function on the server.
   ///@param id The identifier of the function.
   ///@param body The payload of the function which must be a JSON object.
   ///@param httpKey The authentication key used when executed as a non-client HTTP request.
-  Future<chopper.Response<ApiRpc>> v2RpcIdPost(
-      {required String? id,
-      required String? body,
-      String? httpKey,
-      String? httpKey$}) {
+  Future<chopper.Response<ApiRpc>> v2RpcIdPost({
+    required String? id,
+    required String? body,
+    String? httpKey,
+    String? httpKey$,
+  }) {
     generatedMapping.putIfAbsent(ApiRpc, () => ApiRpc.fromJsonFactory);
 
     return _v2RpcIdPost(
@@ -1343,11 +1469,12 @@ abstract class Apigrpc extends ChopperService {
   ///@param body The payload of the function which must be a JSON object.
   ///@param httpKey The authentication key used when executed as a non-client HTTP request.
   @Post(path: '/v2/rpc/{id}')
-  Future<chopper.Response<ApiRpc>> _v2RpcIdPost(
-      {@Path('id') required String? id,
-      @Body() required String? body,
-      @Query('httpKey') String? httpKey,
-      @Header('http_key') String? httpKey$});
+  Future<chopper.Response<ApiRpc>> _v2RpcIdPost({
+    @Path('id') required String? id,
+    @Body() required String? body,
+    @Query('httpKey') String? httpKey,
+    @Header('http_key') String? httpKey$,
+  });
 
   ///Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
   ///@param body
@@ -1422,11 +1549,12 @@ abstract class Apigrpc extends ChopperService {
   ///@param userId ID of the user.
   ///@param limit The number of storage objects to list. Between 1 and 100.
   ///@param cursor The cursor to page through results from.
-  Future<chopper.Response<ApiStorageObjectList>> v2StorageCollectionGet(
-      {required String? collection,
-      String? userId,
-      int? limit,
-      String? cursor}) {
+  Future<chopper.Response<ApiStorageObjectList>> v2StorageCollectionGet({
+    required String? collection,
+    String? userId,
+    int? limit,
+    String? cursor,
+  }) {
     generatedMapping.putIfAbsent(
         ApiStorageObjectList, () => ApiStorageObjectList.fromJsonFactory);
 
@@ -1440,22 +1568,24 @@ abstract class Apigrpc extends ChopperService {
   ///@param limit The number of storage objects to list. Between 1 and 100.
   ///@param cursor The cursor to page through results from.
   @Get(path: '/v2/storage/{collection}')
-  Future<chopper.Response<ApiStorageObjectList>> _v2StorageCollectionGet(
-      {@Path('collection') required String? collection,
-      @Query('userId') String? userId,
-      @Query('limit') int? limit,
-      @Query('cursor') String? cursor});
+  Future<chopper.Response<ApiStorageObjectList>> _v2StorageCollectionGet({
+    @Path('collection') required String? collection,
+    @Query('userId') String? userId,
+    @Query('limit') int? limit,
+    @Query('cursor') String? cursor,
+  });
 
   ///List publicly readable storage objects in a given collection.
   ///@param collection The collection which stores the object.
   ///@param userId ID of the user.
   ///@param limit The number of storage objects to list. Between 1 and 100.
   ///@param cursor The cursor to page through results from.
-  Future<chopper.Response<ApiStorageObjectList>> v2StorageCollectionUserIdGet(
-      {required String? collection,
-      required String? userId,
-      int? limit,
-      String? cursor}) {
+  Future<chopper.Response<ApiStorageObjectList>> v2StorageCollectionUserIdGet({
+    required String? collection,
+    required String? userId,
+    int? limit,
+    String? cursor,
+  }) {
     generatedMapping.putIfAbsent(
         ApiStorageObjectList, () => ApiStorageObjectList.fromJsonFactory);
 
@@ -1469,11 +1599,12 @@ abstract class Apigrpc extends ChopperService {
   ///@param limit The number of storage objects to list. Between 1 and 100.
   ///@param cursor The cursor to page through results from.
   @Get(path: '/v2/storage/{collection}/{userId}')
-  Future<chopper.Response<ApiStorageObjectList>> _v2StorageCollectionUserIdGet(
-      {@Path('collection') required String? collection,
-      @Path('userId') required String? userId,
-      @Query('limit') int? limit,
-      @Query('cursor') String? cursor});
+  Future<chopper.Response<ApiStorageObjectList>> _v2StorageCollectionUserIdGet({
+    @Path('collection') required String? collection,
+    @Path('userId') required String? userId,
+    @Query('limit') int? limit,
+    @Query('cursor') String? cursor,
+  });
 
   ///List current or upcoming tournaments.
   ///@param categoryStart The start of the categories to include. Defaults to 0.
@@ -1482,13 +1613,14 @@ abstract class Apigrpc extends ChopperService {
   ///@param endTime The end time for tournaments. Defaults to +1 year from current Unix time.
   ///@param limit Max number of records to return. Between 1 and 100.
   ///@param cursor A next page cursor for listings (optional).
-  Future<chopper.Response<ApiTournamentList>> v2TournamentGet(
-      {int? categoryStart,
-      int? categoryEnd,
-      int? startTime,
-      int? endTime,
-      int? limit,
-      String? cursor}) {
+  Future<chopper.Response<ApiTournamentList>> v2TournamentGet({
+    int? categoryStart,
+    int? categoryEnd,
+    int? startTime,
+    int? endTime,
+    int? limit,
+    String? cursor,
+  }) {
     generatedMapping.putIfAbsent(
         ApiTournamentList, () => ApiTournamentList.fromJsonFactory);
 
@@ -1509,13 +1641,14 @@ abstract class Apigrpc extends ChopperService {
   ///@param limit Max number of records to return. Between 1 and 100.
   ///@param cursor A next page cursor for listings (optional).
   @Get(path: '/v2/tournament')
-  Future<chopper.Response<ApiTournamentList>> _v2TournamentGet(
-      {@Query('categoryStart') int? categoryStart,
-      @Query('categoryEnd') int? categoryEnd,
-      @Query('startTime') int? startTime,
-      @Query('endTime') int? endTime,
-      @Query('limit') int? limit,
-      @Query('cursor') String? cursor});
+  Future<chopper.Response<ApiTournamentList>> _v2TournamentGet({
+    @Query('categoryStart') int? categoryStart,
+    @Query('categoryEnd') int? categoryEnd,
+    @Query('startTime') int? startTime,
+    @Query('endTime') int? endTime,
+    @Query('limit') int? limit,
+    @Query('cursor') String? cursor,
+  });
 
   ///List tournament records.
   ///@param tournamentId The ID of the tournament to list for.
@@ -1523,12 +1656,14 @@ abstract class Apigrpc extends ChopperService {
   ///@param limit Max number of records to return. Between 1 and 100.
   ///@param cursor A next or previous page cursor.
   ///@param expiry Expiry in seconds (since epoch) to begin fetching records from.
-  Future<chopper.Response<ApiTournamentRecordList>> v2TournamentTournamentIdGet(
-      {required String? tournamentId,
-      List<String>? ownerIds,
-      int? limit,
-      String? cursor,
-      String? expiry}) {
+  Future<chopper.Response<ApiTournamentRecordList>>
+      v2TournamentTournamentIdGet({
+    required String? tournamentId,
+    List<String>? ownerIds,
+    int? limit,
+    String? cursor,
+    String? expiry,
+  }) {
     generatedMapping.putIfAbsent(
         ApiTournamentRecordList, () => ApiTournamentRecordList.fromJsonFactory);
 
@@ -1548,19 +1683,21 @@ abstract class Apigrpc extends ChopperService {
   ///@param expiry Expiry in seconds (since epoch) to begin fetching records from.
   @Get(path: '/v2/tournament/{tournamentId}')
   Future<chopper.Response<ApiTournamentRecordList>>
-      _v2TournamentTournamentIdGet(
-          {@Path('tournamentId') required String? tournamentId,
-          @Query('ownerIds') List<String>? ownerIds,
-          @Query('limit') int? limit,
-          @Query('cursor') String? cursor,
-          @Query('expiry') String? expiry});
+      _v2TournamentTournamentIdGet({
+    @Path('tournamentId') required String? tournamentId,
+    @Query('ownerIds') List<String>? ownerIds,
+    @Query('limit') int? limit,
+    @Query('cursor') String? cursor,
+    @Query('expiry') String? expiry,
+  });
 
   ///Write a record to a tournament.
   ///@param tournamentId The tournament ID to write the record for.
   ///@param body Record input.
-  Future<chopper.Response<ApiLeaderboardRecord>> v2TournamentTournamentIdPost(
-      {required String? tournamentId,
-      required WriteTournamentRecordRequestTournamentRecordWrite? body}) {
+  Future<chopper.Response<ApiLeaderboardRecord>> v2TournamentTournamentIdPost({
+    required String? tournamentId,
+    required WriteTournamentRecordRequestTournamentRecordWrite? body,
+  }) {
     generatedMapping.putIfAbsent(
         WriteTournamentRecordRequestTournamentRecordWrite,
         () =>
@@ -1576,18 +1713,18 @@ abstract class Apigrpc extends ChopperService {
   ///@param tournamentId The tournament ID to write the record for.
   ///@param body Record input.
   @Post(path: '/v2/tournament/{tournamentId}')
-  Future<chopper.Response<ApiLeaderboardRecord>> _v2TournamentTournamentIdPost(
-      {@Path('tournamentId')
-          required String? tournamentId,
-      @Body()
-          required WriteTournamentRecordRequestTournamentRecordWrite? body});
+  Future<chopper.Response<ApiLeaderboardRecord>> _v2TournamentTournamentIdPost({
+    @Path('tournamentId') required String? tournamentId,
+    @Body() required WriteTournamentRecordRequestTournamentRecordWrite? body,
+  });
 
   ///Write a record to a tournament.
   ///@param tournamentId The tournament ID to write the record for.
   ///@param body Record input.
-  Future<chopper.Response<ApiLeaderboardRecord>> v2TournamentTournamentIdPut(
-      {required String? tournamentId,
-      required WriteTournamentRecordRequestTournamentRecordWrite? body}) {
+  Future<chopper.Response<ApiLeaderboardRecord>> v2TournamentTournamentIdPut({
+    required String? tournamentId,
+    required WriteTournamentRecordRequestTournamentRecordWrite? body,
+  }) {
     generatedMapping.putIfAbsent(
         WriteTournamentRecordRequestTournamentRecordWrite,
         () =>
@@ -1602,11 +1739,10 @@ abstract class Apigrpc extends ChopperService {
   ///@param tournamentId The tournament ID to write the record for.
   ///@param body Record input.
   @Put(path: '/v2/tournament/{tournamentId}')
-  Future<chopper.Response<ApiLeaderboardRecord>> _v2TournamentTournamentIdPut(
-      {@Path('tournamentId')
-          required String? tournamentId,
-      @Body()
-          required WriteTournamentRecordRequestTournamentRecordWrite? body});
+  Future<chopper.Response<ApiLeaderboardRecord>> _v2TournamentTournamentIdPut({
+    @Path('tournamentId') required String? tournamentId,
+    @Body() required WriteTournamentRecordRequestTournamentRecordWrite? body,
+  });
 
   ///Attempt to join an open and running tournament.
   ///@param tournamentId The ID of the tournament to join. The tournament must already exist.
@@ -1617,7 +1753,10 @@ abstract class Apigrpc extends ChopperService {
 
   ///Attempt to join an open and running tournament.
   ///@param tournamentId The ID of the tournament to join. The tournament must already exist.
-  @Post(path: '/v2/tournament/{tournamentId}/join', optionalBody: true)
+  @Post(
+    path: '/v2/tournament/{tournamentId}/join',
+    optionalBody: true,
+  )
   Future<chopper.Response> _v2TournamentTournamentIdJoinPost(
       {@Path('tournamentId') required String? tournamentId});
 
@@ -1627,11 +1766,12 @@ abstract class Apigrpc extends ChopperService {
   ///@param limit Max number of records to return. Between 1 and 100.
   ///@param expiry Expiry in seconds (since epoch) to begin fetching records from.
   Future<chopper.Response<ApiTournamentRecordList>>
-      v2TournamentTournamentIdOwnerOwnerIdGet(
-          {required String? tournamentId,
-          required String? ownerId,
-          int? limit,
-          String? expiry}) {
+      v2TournamentTournamentIdOwnerOwnerIdGet({
+    required String? tournamentId,
+    required String? ownerId,
+    int? limit,
+    String? expiry,
+  }) {
     generatedMapping.putIfAbsent(
         ApiTournamentRecordList, () => ApiTournamentRecordList.fromJsonFactory);
 
@@ -1649,18 +1789,22 @@ abstract class Apigrpc extends ChopperService {
   ///@param expiry Expiry in seconds (since epoch) to begin fetching records from.
   @Get(path: '/v2/tournament/{tournamentId}/owner/{ownerId}')
   Future<chopper.Response<ApiTournamentRecordList>>
-      _v2TournamentTournamentIdOwnerOwnerIdGet(
-          {@Path('tournamentId') required String? tournamentId,
-          @Path('ownerId') required String? ownerId,
-          @Query('limit') int? limit,
-          @Query('expiry') String? expiry});
+      _v2TournamentTournamentIdOwnerOwnerIdGet({
+    @Path('tournamentId') required String? tournamentId,
+    @Path('ownerId') required String? ownerId,
+    @Query('limit') int? limit,
+    @Query('expiry') String? expiry,
+  });
 
   ///Fetch zero or more users by ID and/or username.
   ///@param ids The account id of a user.
   ///@param usernames The account username of a user.
   ///@param facebookIds The Facebook ID of a user.
-  Future<chopper.Response<ApiUsers>> v2UserGet(
-      {List<String>? ids, List<String>? usernames, List<String>? facebookIds}) {
+  Future<chopper.Response<ApiUsers>> v2UserGet({
+    List<String>? ids,
+    List<String>? usernames,
+    List<String>? facebookIds,
+  }) {
     generatedMapping.putIfAbsent(ApiUsers, () => ApiUsers.fromJsonFactory);
 
     return _v2UserGet(ids: ids, usernames: usernames, facebookIds: facebookIds);
@@ -1671,18 +1815,23 @@ abstract class Apigrpc extends ChopperService {
   ///@param usernames The account username of a user.
   ///@param facebookIds The Facebook ID of a user.
   @Get(path: '/v2/user')
-  Future<chopper.Response<ApiUsers>> _v2UserGet(
-      {@Query('ids') List<String>? ids,
-      @Query('usernames') List<String>? usernames,
-      @Query('facebookIds') List<String>? facebookIds});
+  Future<chopper.Response<ApiUsers>> _v2UserGet({
+    @Query('ids') List<String>? ids,
+    @Query('usernames') List<String>? usernames,
+    @Query('facebookIds') List<String>? facebookIds,
+  });
 
   ///List groups the current user belongs to.
   ///@param userId ID of the user.
   ///@param limit Max number of records to return. Between 1 and 100.
   ///@param state The user group state to list.
   ///@param cursor An optional next page cursor.
-  Future<chopper.Response<ApiUserGroupList>> v2UserUserIdGroupGet(
-      {required String? userId, int? limit, int? state, String? cursor}) {
+  Future<chopper.Response<ApiUserGroupList>> v2UserUserIdGroupGet({
+    required String? userId,
+    int? limit,
+    int? state,
+    String? cursor,
+  }) {
     generatedMapping.putIfAbsent(
         ApiUserGroupList, () => ApiUserGroupList.fromJsonFactory);
 
@@ -1696,11 +1845,12 @@ abstract class Apigrpc extends ChopperService {
   ///@param state The user group state to list.
   ///@param cursor An optional next page cursor.
   @Get(path: '/v2/user/{userId}/group')
-  Future<chopper.Response<ApiUserGroupList>> _v2UserUserIdGroupGet(
-      {@Path('userId') required String? userId,
-      @Query('limit') int? limit,
-      @Query('state') int? state,
-      @Query('cursor') String? cursor});
+  Future<chopper.Response<ApiUserGroupList>> _v2UserUserIdGroupGet({
+    @Path('userId') required String? userId,
+    @Query('limit') int? limit,
+    @Query('state') int? state,
+    @Query('cursor') String? cursor,
+  });
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -1722,9 +1872,6 @@ class GroupUserListGroupUser {
   Map<String, dynamic> toJson() => _$GroupUserListGroupUserToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is GroupUserListGroupUser &&
@@ -1733,6 +1880,9 @@ class GroupUserListGroupUser {
             (identical(other.state, state) ||
                 const DeepCollectionEquality().equals(other.state, state)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -1746,10 +1896,8 @@ extension $GroupUserListGroupUserExtension on GroupUserListGroupUser {
     return GroupUserListGroupUser(
         user: user ?? this.user, state: state ?? this.state);
   }
-}
 
-extension $GroupUserListGroupUserWrappedExtension on GroupUserListGroupUser {
-  GroupUserListGroupUser copyWith(
+  GroupUserListGroupUser copyWithWrapped(
       {Wrapped<ApiUser?>? user, Wrapped<int?>? state}) {
     return GroupUserListGroupUser(
         user: (user != null ? user.value : this.user),
@@ -1776,9 +1924,6 @@ class UserGroupListUserGroup {
   Map<String, dynamic> toJson() => _$UserGroupListUserGroupToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is UserGroupListUserGroup &&
@@ -1787,6 +1932,9 @@ class UserGroupListUserGroup {
             (identical(other.state, state) ||
                 const DeepCollectionEquality().equals(other.state, state)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -1800,10 +1948,8 @@ extension $UserGroupListUserGroupExtension on UserGroupListUserGroup {
     return UserGroupListUserGroup(
         group: group ?? this.group, state: state ?? this.state);
   }
-}
 
-extension $UserGroupListUserGroupWrappedExtension on UserGroupListUserGroup {
-  UserGroupListUserGroup copyWith(
+  UserGroupListUserGroup copyWithWrapped(
       {Wrapped<ApiGroup?>? group, Wrapped<int?>? state}) {
     return UserGroupListUserGroup(
         group: (group != null ? group.value : this.group),
@@ -1831,10 +1977,11 @@ class WriteLeaderboardRecordRequestLeaderboardRecordWrite {
   @JsonKey(name: 'metadata', includeIfNull: true)
   final String? metadata;
   @JsonKey(
-      name: 'operator',
-      includeIfNull: true,
-      toJson: apiOperatorToJson,
-      fromJson: apiOperatorFromJson)
+    name: 'operator',
+    includeIfNull: true,
+    toJson: apiOperatorToJson,
+    fromJson: apiOperatorFromJson,
+  )
   final enums.ApiOperator? $operator;
   static const fromJsonFactory =
       _$WriteLeaderboardRecordRequestLeaderboardRecordWriteFromJson;
@@ -1842,9 +1989,6 @@ class WriteLeaderboardRecordRequestLeaderboardRecordWrite {
       _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson;
   Map<String, dynamic> toJson() =>
       _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -1862,6 +2006,9 @@ class WriteLeaderboardRecordRequestLeaderboardRecordWrite {
                 const DeepCollectionEquality()
                     .equals(other.$operator, $operator)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -1885,11 +2032,8 @@ extension $WriteLeaderboardRecordRequestLeaderboardRecordWriteExtension
         metadata: metadata ?? this.metadata,
         $operator: $operator ?? this.$operator);
   }
-}
 
-extension $WriteLeaderboardRecordRequestLeaderboardRecordWriteWrappedExtension
-    on WriteLeaderboardRecordRequestLeaderboardRecordWrite {
-  WriteLeaderboardRecordRequestLeaderboardRecordWrite copyWith(
+  WriteLeaderboardRecordRequestLeaderboardRecordWrite copyWithWrapped(
       {Wrapped<String?>? score,
       Wrapped<String?>? subscore,
       Wrapped<String?>? metadata,
@@ -1922,10 +2066,11 @@ class WriteTournamentRecordRequestTournamentRecordWrite {
   @JsonKey(name: 'metadata', includeIfNull: true)
   final String? metadata;
   @JsonKey(
-      name: 'operator',
-      includeIfNull: true,
-      toJson: apiOperatorToJson,
-      fromJson: apiOperatorFromJson)
+    name: 'operator',
+    includeIfNull: true,
+    toJson: apiOperatorToJson,
+    fromJson: apiOperatorFromJson,
+  )
   final enums.ApiOperator? $operator;
   static const fromJsonFactory =
       _$WriteTournamentRecordRequestTournamentRecordWriteFromJson;
@@ -1933,9 +2078,6 @@ class WriteTournamentRecordRequestTournamentRecordWrite {
       _$WriteTournamentRecordRequestTournamentRecordWriteToJson;
   Map<String, dynamic> toJson() =>
       _$WriteTournamentRecordRequestTournamentRecordWriteToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -1953,6 +2095,9 @@ class WriteTournamentRecordRequestTournamentRecordWrite {
                 const DeepCollectionEquality()
                     .equals(other.$operator, $operator)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -1976,11 +2121,8 @@ extension $WriteTournamentRecordRequestTournamentRecordWriteExtension
         metadata: metadata ?? this.metadata,
         $operator: $operator ?? this.$operator);
   }
-}
 
-extension $WriteTournamentRecordRequestTournamentRecordWriteWrappedExtension
-    on WriteTournamentRecordRequestTournamentRecordWrite {
-  WriteTournamentRecordRequestTournamentRecordWrite copyWith(
+  WriteTournamentRecordRequestTournamentRecordWrite copyWithWrapped(
       {Wrapped<String?>? score,
       Wrapped<String?>? subscore,
       Wrapped<String?>? metadata,
@@ -2028,9 +2170,6 @@ class ApiAccount {
   Map<String, dynamic> toJson() => _$ApiAccountToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiAccount &&
@@ -2053,6 +2192,9 @@ class ApiAccount {
                 const DeepCollectionEquality()
                     .equals(other.disableTime, disableTime)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -2084,10 +2226,8 @@ extension $ApiAccountExtension on ApiAccount {
         verifyTime: verifyTime ?? this.verifyTime,
         disableTime: disableTime ?? this.disableTime);
   }
-}
 
-extension $ApiAccountWrappedExtension on ApiAccount {
-  ApiAccount copyWith(
+  ApiAccount copyWithWrapped(
       {Wrapped<ApiUser?>? user,
       Wrapped<String?>? wallet,
       Wrapped<String?>? email,
@@ -2126,9 +2266,6 @@ class ApiAccountApple {
   Map<String, dynamic> toJson() => _$ApiAccountAppleToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiAccountApple &&
@@ -2137,6 +2274,9 @@ class ApiAccountApple {
             (identical(other.vars, vars) ||
                 const DeepCollectionEquality().equals(other.vars, vars)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -2149,10 +2289,8 @@ extension $ApiAccountAppleExtension on ApiAccountApple {
   ApiAccountApple copyWith({String? token, Map<String, dynamic>? vars}) {
     return ApiAccountApple(token: token ?? this.token, vars: vars ?? this.vars);
   }
-}
 
-extension $ApiAccountAppleWrappedExtension on ApiAccountApple {
-  ApiAccountApple copyWith(
+  ApiAccountApple copyWithWrapped(
       {Wrapped<String?>? token, Wrapped<Map<String, dynamic>?>? vars}) {
     return ApiAccountApple(
         token: (token != null ? token.value : this.token),
@@ -2179,9 +2317,6 @@ class ApiAccountCustom {
   Map<String, dynamic> toJson() => _$ApiAccountCustomToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiAccountCustom &&
@@ -2190,6 +2325,9 @@ class ApiAccountCustom {
             (identical(other.vars, vars) ||
                 const DeepCollectionEquality().equals(other.vars, vars)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -2202,10 +2340,8 @@ extension $ApiAccountCustomExtension on ApiAccountCustom {
   ApiAccountCustom copyWith({String? id, Map<String, dynamic>? vars}) {
     return ApiAccountCustom(id: id ?? this.id, vars: vars ?? this.vars);
   }
-}
 
-extension $ApiAccountCustomWrappedExtension on ApiAccountCustom {
-  ApiAccountCustom copyWith(
+  ApiAccountCustom copyWithWrapped(
       {Wrapped<String?>? id, Wrapped<Map<String, dynamic>?>? vars}) {
     return ApiAccountCustom(
         id: (id != null ? id.value : this.id),
@@ -2232,9 +2368,6 @@ class ApiAccountDevice {
   Map<String, dynamic> toJson() => _$ApiAccountDeviceToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiAccountDevice &&
@@ -2243,6 +2376,9 @@ class ApiAccountDevice {
             (identical(other.vars, vars) ||
                 const DeepCollectionEquality().equals(other.vars, vars)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -2255,10 +2391,8 @@ extension $ApiAccountDeviceExtension on ApiAccountDevice {
   ApiAccountDevice copyWith({String? id, Map<String, dynamic>? vars}) {
     return ApiAccountDevice(id: id ?? this.id, vars: vars ?? this.vars);
   }
-}
 
-extension $ApiAccountDeviceWrappedExtension on ApiAccountDevice {
-  ApiAccountDevice copyWith(
+  ApiAccountDevice copyWithWrapped(
       {Wrapped<String?>? id, Wrapped<Map<String, dynamic>?>? vars}) {
     return ApiAccountDevice(
         id: (id != null ? id.value : this.id),
@@ -2288,9 +2422,6 @@ class ApiAccountEmail {
   Map<String, dynamic> toJson() => _$ApiAccountEmailToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiAccountEmail &&
@@ -2302,6 +2433,9 @@ class ApiAccountEmail {
             (identical(other.vars, vars) ||
                 const DeepCollectionEquality().equals(other.vars, vars)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -2319,10 +2453,8 @@ extension $ApiAccountEmailExtension on ApiAccountEmail {
         password: password ?? this.password,
         vars: vars ?? this.vars);
   }
-}
 
-extension $ApiAccountEmailWrappedExtension on ApiAccountEmail {
-  ApiAccountEmail copyWith(
+  ApiAccountEmail copyWithWrapped(
       {Wrapped<String?>? email,
       Wrapped<String?>? password,
       Wrapped<Map<String, dynamic>?>? vars}) {
@@ -2352,9 +2484,6 @@ class ApiAccountFacebook {
   Map<String, dynamic> toJson() => _$ApiAccountFacebookToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiAccountFacebook &&
@@ -2363,6 +2492,9 @@ class ApiAccountFacebook {
             (identical(other.vars, vars) ||
                 const DeepCollectionEquality().equals(other.vars, vars)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -2376,10 +2508,8 @@ extension $ApiAccountFacebookExtension on ApiAccountFacebook {
     return ApiAccountFacebook(
         token: token ?? this.token, vars: vars ?? this.vars);
   }
-}
 
-extension $ApiAccountFacebookWrappedExtension on ApiAccountFacebook {
-  ApiAccountFacebook copyWith(
+  ApiAccountFacebook copyWithWrapped(
       {Wrapped<String?>? token, Wrapped<Map<String, dynamic>?>? vars}) {
     return ApiAccountFacebook(
         token: (token != null ? token.value : this.token),
@@ -2406,9 +2536,6 @@ class ApiAccountFacebookInstantGame {
   Map<String, dynamic> toJson() => _$ApiAccountFacebookInstantGameToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiAccountFacebookInstantGame &&
@@ -2418,6 +2545,9 @@ class ApiAccountFacebookInstantGame {
             (identical(other.vars, vars) ||
                 const DeepCollectionEquality().equals(other.vars, vars)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -2434,11 +2564,8 @@ extension $ApiAccountFacebookInstantGameExtension
         signedPlayerInfo: signedPlayerInfo ?? this.signedPlayerInfo,
         vars: vars ?? this.vars);
   }
-}
 
-extension $ApiAccountFacebookInstantGameWrappedExtension
-    on ApiAccountFacebookInstantGame {
-  ApiAccountFacebookInstantGame copyWith(
+  ApiAccountFacebookInstantGame copyWithWrapped(
       {Wrapped<String?>? signedPlayerInfo,
       Wrapped<Map<String, dynamic>?>? vars}) {
     return ApiAccountFacebookInstantGame(
@@ -2483,9 +2610,6 @@ class ApiAccountGameCenter {
   Map<String, dynamic> toJson() => _$ApiAccountGameCenterToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiAccountGameCenter &&
@@ -2509,6 +2633,9 @@ class ApiAccountGameCenter {
             (identical(other.vars, vars) ||
                 const DeepCollectionEquality().equals(other.vars, vars)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -2540,10 +2667,8 @@ extension $ApiAccountGameCenterExtension on ApiAccountGameCenter {
         publicKeyUrl: publicKeyUrl ?? this.publicKeyUrl,
         vars: vars ?? this.vars);
   }
-}
 
-extension $ApiAccountGameCenterWrappedExtension on ApiAccountGameCenter {
-  ApiAccountGameCenter copyWith(
+  ApiAccountGameCenter copyWithWrapped(
       {Wrapped<String?>? playerId,
       Wrapped<String?>? bundleId,
       Wrapped<String?>? timestampSeconds,
@@ -2584,9 +2709,6 @@ class ApiAccountGoogle {
   Map<String, dynamic> toJson() => _$ApiAccountGoogleToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiAccountGoogle &&
@@ -2595,6 +2717,9 @@ class ApiAccountGoogle {
             (identical(other.vars, vars) ||
                 const DeepCollectionEquality().equals(other.vars, vars)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -2608,10 +2733,8 @@ extension $ApiAccountGoogleExtension on ApiAccountGoogle {
     return ApiAccountGoogle(
         token: token ?? this.token, vars: vars ?? this.vars);
   }
-}
 
-extension $ApiAccountGoogleWrappedExtension on ApiAccountGoogle {
-  ApiAccountGoogle copyWith(
+  ApiAccountGoogle copyWithWrapped(
       {Wrapped<String?>? token, Wrapped<Map<String, dynamic>?>? vars}) {
     return ApiAccountGoogle(
         token: (token != null ? token.value : this.token),
@@ -2638,9 +2761,6 @@ class ApiAccountSteam {
   Map<String, dynamic> toJson() => _$ApiAccountSteamToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiAccountSteam &&
@@ -2649,6 +2769,9 @@ class ApiAccountSteam {
             (identical(other.vars, vars) ||
                 const DeepCollectionEquality().equals(other.vars, vars)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -2661,10 +2784,8 @@ extension $ApiAccountSteamExtension on ApiAccountSteam {
   ApiAccountSteam copyWith({String? token, Map<String, dynamic>? vars}) {
     return ApiAccountSteam(token: token ?? this.token, vars: vars ?? this.vars);
   }
-}
 
-extension $ApiAccountSteamWrappedExtension on ApiAccountSteam {
-  ApiAccountSteam copyWith(
+  ApiAccountSteam copyWithWrapped(
       {Wrapped<String?>? token, Wrapped<Map<String, dynamic>?>? vars}) {
     return ApiAccountSteam(
         token: (token != null ? token.value : this.token),
@@ -2724,9 +2845,6 @@ class ApiChannelMessage {
   Map<String, dynamic> toJson() => _$ApiChannelMessageToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiChannelMessage &&
@@ -2769,6 +2887,9 @@ class ApiChannelMessage {
                 const DeepCollectionEquality()
                     .equals(other.userIdTwo, userIdTwo)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -2818,10 +2939,8 @@ extension $ApiChannelMessageExtension on ApiChannelMessage {
         userIdOne: userIdOne ?? this.userIdOne,
         userIdTwo: userIdTwo ?? this.userIdTwo);
   }
-}
 
-extension $ApiChannelMessageWrappedExtension on ApiChannelMessage {
-  ApiChannelMessage copyWith(
+  ApiChannelMessage copyWithWrapped(
       {Wrapped<String?>? channelId,
       Wrapped<String?>? messageId,
       Wrapped<int?>? code,
@@ -2880,9 +2999,6 @@ class ApiChannelMessageList {
   Map<String, dynamic> toJson() => _$ApiChannelMessageListToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiChannelMessageList &&
@@ -2899,6 +3015,9 @@ class ApiChannelMessageList {
                 const DeepCollectionEquality()
                     .equals(other.cacheableCursor, cacheableCursor)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -2921,10 +3040,8 @@ extension $ApiChannelMessageListExtension on ApiChannelMessageList {
         prevCursor: prevCursor ?? this.prevCursor,
         cacheableCursor: cacheableCursor ?? this.cacheableCursor);
   }
-}
 
-extension $ApiChannelMessageListWrappedExtension on ApiChannelMessageList {
-  ApiChannelMessageList copyWith(
+  ApiChannelMessageList copyWithWrapped(
       {Wrapped<List<ApiChannelMessage>?>? messages,
       Wrapped<String?>? nextCursor,
       Wrapped<String?>? prevCursor,
@@ -2970,9 +3087,6 @@ class ApiCreateGroupRequest {
   Map<String, dynamic> toJson() => _$ApiCreateGroupRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiCreateGroupRequest &&
@@ -2993,6 +3107,9 @@ class ApiCreateGroupRequest {
                 const DeepCollectionEquality()
                     .equals(other.maxCount, maxCount)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -3021,10 +3138,8 @@ extension $ApiCreateGroupRequestExtension on ApiCreateGroupRequest {
         open: open ?? this.open,
         maxCount: maxCount ?? this.maxCount);
   }
-}
 
-extension $ApiCreateGroupRequestWrappedExtension on ApiCreateGroupRequest {
-  ApiCreateGroupRequest copyWith(
+  ApiCreateGroupRequest copyWithWrapped(
       {Wrapped<String?>? name,
       Wrapped<String?>? description,
       Wrapped<String?>? langTag,
@@ -3064,9 +3179,6 @@ class ApiDeleteStorageObjectId {
   Map<String, dynamic> toJson() => _$ApiDeleteStorageObjectIdToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiDeleteStorageObjectId &&
@@ -3078,6 +3190,9 @@ class ApiDeleteStorageObjectId {
             (identical(other.version, version) ||
                 const DeepCollectionEquality().equals(other.version, version)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -3095,11 +3210,8 @@ extension $ApiDeleteStorageObjectIdExtension on ApiDeleteStorageObjectId {
         key: key ?? this.key,
         version: version ?? this.version);
   }
-}
 
-extension $ApiDeleteStorageObjectIdWrappedExtension
-    on ApiDeleteStorageObjectId {
-  ApiDeleteStorageObjectId copyWith(
+  ApiDeleteStorageObjectId copyWithWrapped(
       {Wrapped<String?>? collection,
       Wrapped<String?>? key,
       Wrapped<String?>? version}) {
@@ -3129,9 +3241,6 @@ class ApiDeleteStorageObjectsRequest {
   Map<String, dynamic> toJson() => _$ApiDeleteStorageObjectsRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiDeleteStorageObjectsRequest &&
@@ -3139,6 +3248,9 @@ class ApiDeleteStorageObjectsRequest {
                 const DeepCollectionEquality()
                     .equals(other.objectIds, objectIds)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -3152,11 +3264,8 @@ extension $ApiDeleteStorageObjectsRequestExtension
     return ApiDeleteStorageObjectsRequest(
         objectIds: objectIds ?? this.objectIds);
   }
-}
 
-extension $ApiDeleteStorageObjectsRequestWrappedExtension
-    on ApiDeleteStorageObjectsRequest {
-  ApiDeleteStorageObjectsRequest copyWith(
+  ApiDeleteStorageObjectsRequest copyWithWrapped(
       {Wrapped<List<ApiDeleteStorageObjectId>?>? objectIds}) {
     return ApiDeleteStorageObjectsRequest(
         objectIds: (objectIds != null ? objectIds.value : this.objectIds));
@@ -3188,9 +3297,6 @@ class ApiEvent {
   Map<String, dynamic> toJson() => _$ApiEventToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiEvent &&
@@ -3206,6 +3312,9 @@ class ApiEvent {
                 const DeepCollectionEquality()
                     .equals(other.$external, $external)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -3228,10 +3337,8 @@ extension $ApiEventExtension on ApiEvent {
         timestamp: timestamp ?? this.timestamp,
         $external: $external ?? this.$external);
   }
-}
 
-extension $ApiEventWrappedExtension on ApiEvent {
-  ApiEvent copyWith(
+  ApiEvent copyWithWrapped(
       {Wrapped<String?>? name,
       Wrapped<Map<String, dynamic>?>? properties,
       Wrapped<DateTime?>? timestamp,
@@ -3266,9 +3373,6 @@ class ApiFriend {
   Map<String, dynamic> toJson() => _$ApiFriendToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiFriend &&
@@ -3280,6 +3384,9 @@ class ApiFriend {
                 const DeepCollectionEquality()
                     .equals(other.updateTime, updateTime)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -3296,10 +3403,8 @@ extension $ApiFriendExtension on ApiFriend {
         state: state ?? this.state,
         updateTime: updateTime ?? this.updateTime);
   }
-}
 
-extension $ApiFriendWrappedExtension on ApiFriend {
-  ApiFriend copyWith(
+  ApiFriend copyWithWrapped(
       {Wrapped<ApiUser?>? user,
       Wrapped<int?>? state,
       Wrapped<DateTime?>? updateTime}) {
@@ -3329,9 +3434,6 @@ class ApiFriendList {
   Map<String, dynamic> toJson() => _$ApiFriendListToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiFriendList &&
@@ -3341,6 +3443,9 @@ class ApiFriendList {
             (identical(other.cursor, cursor) ||
                 const DeepCollectionEquality().equals(other.cursor, cursor)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -3354,10 +3459,8 @@ extension $ApiFriendListExtension on ApiFriendList {
     return ApiFriendList(
         friends: friends ?? this.friends, cursor: cursor ?? this.cursor);
   }
-}
 
-extension $ApiFriendListWrappedExtension on ApiFriendList {
-  ApiFriendList copyWith(
+  ApiFriendList copyWithWrapped(
       {Wrapped<List<ApiFriend>?>? friends, Wrapped<String?>? cursor}) {
     return ApiFriendList(
         friends: (friends != null ? friends.value : this.friends),
@@ -3414,9 +3517,6 @@ class ApiGroup {
   Map<String, dynamic> toJson() => _$ApiGroupToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiGroup &&
@@ -3454,6 +3554,9 @@ class ApiGroup {
                 const DeepCollectionEquality()
                     .equals(other.updateTime, updateTime)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -3500,10 +3603,8 @@ extension $ApiGroupExtension on ApiGroup {
         createTime: createTime ?? this.createTime,
         updateTime: updateTime ?? this.updateTime);
   }
-}
 
-extension $ApiGroupWrappedExtension on ApiGroup {
-  ApiGroup copyWith(
+  ApiGroup copyWithWrapped(
       {Wrapped<String?>? id,
       Wrapped<String?>? creatorId,
       Wrapped<String?>? name,
@@ -3552,9 +3653,6 @@ class ApiGroupList {
   Map<String, dynamic> toJson() => _$ApiGroupListToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiGroupList &&
@@ -3563,6 +3661,9 @@ class ApiGroupList {
             (identical(other.cursor, cursor) ||
                 const DeepCollectionEquality().equals(other.cursor, cursor)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -3576,10 +3677,8 @@ extension $ApiGroupListExtension on ApiGroupList {
     return ApiGroupList(
         groups: groups ?? this.groups, cursor: cursor ?? this.cursor);
   }
-}
 
-extension $ApiGroupListWrappedExtension on ApiGroupList {
-  ApiGroupList copyWith(
+  ApiGroupList copyWithWrapped(
       {Wrapped<List<ApiGroup>?>? groups, Wrapped<String?>? cursor}) {
     return ApiGroupList(
         groups: (groups != null ? groups.value : this.groups),
@@ -3609,9 +3708,6 @@ class ApiGroupUserList {
   Map<String, dynamic> toJson() => _$ApiGroupUserListToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiGroupUserList &&
@@ -3621,6 +3717,9 @@ class ApiGroupUserList {
             (identical(other.cursor, cursor) ||
                 const DeepCollectionEquality().equals(other.cursor, cursor)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -3636,10 +3735,8 @@ extension $ApiGroupUserListExtension on ApiGroupUserList {
         groupUsers: groupUsers ?? this.groupUsers,
         cursor: cursor ?? this.cursor);
   }
-}
 
-extension $ApiGroupUserListWrappedExtension on ApiGroupUserList {
-  ApiGroupUserList copyWith(
+  ApiGroupUserList copyWithWrapped(
       {Wrapped<List<GroupUserListGroupUser>?>? groupUsers,
       Wrapped<String?>? cursor}) {
     return ApiGroupUserList(
@@ -3697,9 +3794,6 @@ class ApiLeaderboardRecord {
   Map<String, dynamic> toJson() => _$ApiLeaderboardRecordToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiLeaderboardRecord &&
@@ -3738,6 +3832,9 @@ class ApiLeaderboardRecord {
                 const DeepCollectionEquality()
                     .equals(other.maxNumScore, maxNumScore)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -3784,10 +3881,8 @@ extension $ApiLeaderboardRecordExtension on ApiLeaderboardRecord {
         rank: rank ?? this.rank,
         maxNumScore: maxNumScore ?? this.maxNumScore);
   }
-}
 
-extension $ApiLeaderboardRecordWrappedExtension on ApiLeaderboardRecord {
-  ApiLeaderboardRecord copyWith(
+  ApiLeaderboardRecord copyWithWrapped(
       {Wrapped<String?>? leaderboardId,
       Wrapped<String?>? ownerId,
       Wrapped<String?>? username,
@@ -3849,9 +3944,6 @@ class ApiLeaderboardRecordList {
   Map<String, dynamic> toJson() => _$ApiLeaderboardRecordListToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiLeaderboardRecordList &&
@@ -3868,6 +3960,9 @@ class ApiLeaderboardRecordList {
                 const DeepCollectionEquality()
                     .equals(other.prevCursor, prevCursor)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -3890,11 +3985,8 @@ extension $ApiLeaderboardRecordListExtension on ApiLeaderboardRecordList {
         nextCursor: nextCursor ?? this.nextCursor,
         prevCursor: prevCursor ?? this.prevCursor);
   }
-}
 
-extension $ApiLeaderboardRecordListWrappedExtension
-    on ApiLeaderboardRecordList {
-  ApiLeaderboardRecordList copyWith(
+  ApiLeaderboardRecordList copyWithWrapped(
       {Wrapped<List<ApiLeaderboardRecord>?>? records,
       Wrapped<List<ApiLeaderboardRecord>?>? ownerRecords,
       Wrapped<String?>? nextCursor,
@@ -3927,9 +4019,6 @@ class ApiLinkSteamRequest {
   Map<String, dynamic> toJson() => _$ApiLinkSteamRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiLinkSteamRequest &&
@@ -3939,6 +4028,9 @@ class ApiLinkSteamRequest {
             (identical(other.$sync, $sync) ||
                 const DeepCollectionEquality().equals(other.$sync, $sync)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -3952,10 +4044,8 @@ extension $ApiLinkSteamRequestExtension on ApiLinkSteamRequest {
     return ApiLinkSteamRequest(
         account: account ?? this.account, $sync: $sync ?? this.$sync);
   }
-}
 
-extension $ApiLinkSteamRequestWrappedExtension on ApiLinkSteamRequest {
-  ApiLinkSteamRequest copyWith(
+  ApiLinkSteamRequest copyWithWrapped(
       {Wrapped<ApiAccountSteam?>? account, Wrapped<bool?>? $sync}) {
     return ApiLinkSteamRequest(
         account: (account != null ? account.value : this.account),
@@ -3982,9 +4072,6 @@ class ApiListSubscriptionsRequest {
   Map<String, dynamic> toJson() => _$ApiListSubscriptionsRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiListSubscriptionsRequest &&
@@ -3993,6 +4080,9 @@ class ApiListSubscriptionsRequest {
             (identical(other.cursor, cursor) ||
                 const DeepCollectionEquality().equals(other.cursor, cursor)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4006,11 +4096,8 @@ extension $ApiListSubscriptionsRequestExtension on ApiListSubscriptionsRequest {
     return ApiListSubscriptionsRequest(
         limit: limit ?? this.limit, cursor: cursor ?? this.cursor);
   }
-}
 
-extension $ApiListSubscriptionsRequestWrappedExtension
-    on ApiListSubscriptionsRequest {
-  ApiListSubscriptionsRequest copyWith(
+  ApiListSubscriptionsRequest copyWithWrapped(
       {Wrapped<int?>? limit, Wrapped<String?>? cursor}) {
     return ApiListSubscriptionsRequest(
         limit: (limit != null ? limit.value : this.limit),
@@ -4049,9 +4136,6 @@ class ApiMatch {
   Map<String, dynamic> toJson() => _$ApiMatchToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiMatch &&
@@ -4072,6 +4156,9 @@ class ApiMatch {
                 const DeepCollectionEquality()
                     .equals(other.handlerName, handlerName)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4100,10 +4187,8 @@ extension $ApiMatchExtension on ApiMatch {
         tickRate: tickRate ?? this.tickRate,
         handlerName: handlerName ?? this.handlerName);
   }
-}
 
-extension $ApiMatchWrappedExtension on ApiMatch {
-  ApiMatch copyWith(
+  ApiMatch copyWithWrapped(
       {Wrapped<String?>? matchId,
       Wrapped<bool?>? authoritative,
       Wrapped<String?>? label,
@@ -4138,15 +4223,15 @@ class ApiMatchList {
   Map<String, dynamic> toJson() => _$ApiMatchListToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiMatchList &&
             (identical(other.matches, matches) ||
                 const DeepCollectionEquality().equals(other.matches, matches)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4157,10 +4242,8 @@ extension $ApiMatchListExtension on ApiMatchList {
   ApiMatchList copyWith({List<ApiMatch>? matches}) {
     return ApiMatchList(matches: matches ?? this.matches);
   }
-}
 
-extension $ApiMatchListWrappedExtension on ApiMatchList {
-  ApiMatchList copyWith({Wrapped<List<ApiMatch>?>? matches}) {
+  ApiMatchList copyWithWrapped({Wrapped<List<ApiMatch>?>? matches}) {
     return ApiMatchList(
         matches: (matches != null ? matches.value : this.matches));
   }
@@ -4200,9 +4283,6 @@ class ApiNotification {
   Map<String, dynamic> toJson() => _$ApiNotificationToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiNotification &&
@@ -4226,6 +4306,9 @@ class ApiNotification {
                 const DeepCollectionEquality()
                     .equals(other.persistent, persistent)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4257,10 +4340,8 @@ extension $ApiNotificationExtension on ApiNotification {
         createTime: createTime ?? this.createTime,
         persistent: persistent ?? this.persistent);
   }
-}
 
-extension $ApiNotificationWrappedExtension on ApiNotification {
-  ApiNotification copyWith(
+  ApiNotification copyWithWrapped(
       {Wrapped<String?>? id,
       Wrapped<String?>? subject,
       Wrapped<String?>? content,
@@ -4301,9 +4382,6 @@ class ApiNotificationList {
   Map<String, dynamic> toJson() => _$ApiNotificationListToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiNotificationList &&
@@ -4314,6 +4392,9 @@ class ApiNotificationList {
                 const DeepCollectionEquality()
                     .equals(other.cacheableCursor, cacheableCursor)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4329,10 +4410,8 @@ extension $ApiNotificationListExtension on ApiNotificationList {
         notifications: notifications ?? this.notifications,
         cacheableCursor: cacheableCursor ?? this.cacheableCursor);
   }
-}
 
-extension $ApiNotificationListWrappedExtension on ApiNotificationList {
-  ApiNotificationList copyWith(
+  ApiNotificationList copyWithWrapped(
       {Wrapped<List<ApiNotification>?>? notifications,
       Wrapped<String?>? cacheableCursor}) {
     return ApiNotificationList(
@@ -4366,9 +4445,6 @@ class ApiReadStorageObjectId {
   Map<String, dynamic> toJson() => _$ApiReadStorageObjectIdToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiReadStorageObjectId &&
@@ -4380,6 +4456,9 @@ class ApiReadStorageObjectId {
             (identical(other.userId, userId) ||
                 const DeepCollectionEquality().equals(other.userId, userId)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4397,10 +4476,8 @@ extension $ApiReadStorageObjectIdExtension on ApiReadStorageObjectId {
         key: key ?? this.key,
         userId: userId ?? this.userId);
   }
-}
 
-extension $ApiReadStorageObjectIdWrappedExtension on ApiReadStorageObjectId {
-  ApiReadStorageObjectId copyWith(
+  ApiReadStorageObjectId copyWithWrapped(
       {Wrapped<String?>? collection,
       Wrapped<String?>? key,
       Wrapped<String?>? userId}) {
@@ -4430,9 +4507,6 @@ class ApiReadStorageObjectsRequest {
   Map<String, dynamic> toJson() => _$ApiReadStorageObjectsRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiReadStorageObjectsRequest &&
@@ -4440,6 +4514,9 @@ class ApiReadStorageObjectsRequest {
                 const DeepCollectionEquality()
                     .equals(other.objectIds, objectIds)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4452,11 +4529,8 @@ extension $ApiReadStorageObjectsRequestExtension
       {List<ApiReadStorageObjectId>? objectIds}) {
     return ApiReadStorageObjectsRequest(objectIds: objectIds ?? this.objectIds);
   }
-}
 
-extension $ApiReadStorageObjectsRequestWrappedExtension
-    on ApiReadStorageObjectsRequest {
-  ApiReadStorageObjectsRequest copyWith(
+  ApiReadStorageObjectsRequest copyWithWrapped(
       {Wrapped<List<ApiReadStorageObjectId>?>? objectIds}) {
     return ApiReadStorageObjectsRequest(
         objectIds: (objectIds != null ? objectIds.value : this.objectIds));
@@ -4484,9 +4558,6 @@ class ApiRpc {
   Map<String, dynamic> toJson() => _$ApiRpcToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiRpc &&
@@ -4498,6 +4569,9 @@ class ApiRpc {
             (identical(other.httpKey, httpKey) ||
                 const DeepCollectionEquality().equals(other.httpKey, httpKey)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4514,10 +4588,8 @@ extension $ApiRpcExtension on ApiRpc {
         payload: payload ?? this.payload,
         httpKey: httpKey ?? this.httpKey);
   }
-}
 
-extension $ApiRpcWrappedExtension on ApiRpc {
-  ApiRpc copyWith(
+  ApiRpc copyWithWrapped(
       {Wrapped<String?>? id,
       Wrapped<String?>? payload,
       Wrapped<String?>? httpKey}) {
@@ -4550,9 +4622,6 @@ class ApiSession {
   Map<String, dynamic> toJson() => _$ApiSessionToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiSession &&
@@ -4565,6 +4634,9 @@ class ApiSession {
                 const DeepCollectionEquality()
                     .equals(other.refreshToken, refreshToken)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4581,10 +4653,8 @@ extension $ApiSessionExtension on ApiSession {
         token: token ?? this.token,
         refreshToken: refreshToken ?? this.refreshToken);
   }
-}
 
-extension $ApiSessionWrappedExtension on ApiSession {
-  ApiSession copyWith(
+  ApiSession copyWithWrapped(
       {Wrapped<bool?>? created,
       Wrapped<String?>? token,
       Wrapped<String?>? refreshToken}) {
@@ -4615,9 +4685,6 @@ class ApiSessionLogoutRequest {
   Map<String, dynamic> toJson() => _$ApiSessionLogoutRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiSessionLogoutRequest &&
@@ -4627,6 +4694,9 @@ class ApiSessionLogoutRequest {
                 const DeepCollectionEquality()
                     .equals(other.refreshToken, refreshToken)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4641,10 +4711,8 @@ extension $ApiSessionLogoutRequestExtension on ApiSessionLogoutRequest {
         token: token ?? this.token,
         refreshToken: refreshToken ?? this.refreshToken);
   }
-}
 
-extension $ApiSessionLogoutRequestWrappedExtension on ApiSessionLogoutRequest {
-  ApiSessionLogoutRequest copyWith(
+  ApiSessionLogoutRequest copyWithWrapped(
       {Wrapped<String?>? token, Wrapped<String?>? refreshToken}) {
     return ApiSessionLogoutRequest(
         token: (token != null ? token.value : this.token),
@@ -4672,9 +4740,6 @@ class ApiSessionRefreshRequest {
   Map<String, dynamic> toJson() => _$ApiSessionRefreshRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiSessionRefreshRequest &&
@@ -4683,6 +4748,9 @@ class ApiSessionRefreshRequest {
             (identical(other.vars, vars) ||
                 const DeepCollectionEquality().equals(other.vars, vars)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4697,11 +4765,8 @@ extension $ApiSessionRefreshRequestExtension on ApiSessionRefreshRequest {
     return ApiSessionRefreshRequest(
         token: token ?? this.token, vars: vars ?? this.vars);
   }
-}
 
-extension $ApiSessionRefreshRequestWrappedExtension
-    on ApiSessionRefreshRequest {
-  ApiSessionRefreshRequest copyWith(
+  ApiSessionRefreshRequest copyWithWrapped(
       {Wrapped<String?>? token, Wrapped<Map<String, dynamic>?>? vars}) {
     return ApiSessionRefreshRequest(
         token: (token != null ? token.value : this.token),
@@ -4749,9 +4814,6 @@ class ApiStorageObject {
   Map<String, dynamic> toJson() => _$ApiStorageObjectToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiStorageObject &&
@@ -4780,6 +4842,9 @@ class ApiStorageObject {
                 const DeepCollectionEquality()
                     .equals(other.updateTime, updateTime)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4817,10 +4882,8 @@ extension $ApiStorageObjectExtension on ApiStorageObject {
         createTime: createTime ?? this.createTime,
         updateTime: updateTime ?? this.updateTime);
   }
-}
 
-extension $ApiStorageObjectWrappedExtension on ApiStorageObject {
-  ApiStorageObject copyWith(
+  ApiStorageObject copyWithWrapped(
       {Wrapped<String?>? collection,
       Wrapped<String?>? key,
       Wrapped<String?>? userId,
@@ -4872,9 +4935,6 @@ class ApiStorageObjectAck {
   Map<String, dynamic> toJson() => _$ApiStorageObjectAckToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiStorageObjectAck &&
@@ -4889,6 +4949,9 @@ class ApiStorageObjectAck {
             (identical(other.userId, userId) ||
                 const DeepCollectionEquality().equals(other.userId, userId)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4908,10 +4971,8 @@ extension $ApiStorageObjectAckExtension on ApiStorageObjectAck {
         version: version ?? this.version,
         userId: userId ?? this.userId);
   }
-}
 
-extension $ApiStorageObjectAckWrappedExtension on ApiStorageObjectAck {
-  ApiStorageObjectAck copyWith(
+  ApiStorageObjectAck copyWithWrapped(
       {Wrapped<String?>? collection,
       Wrapped<String?>? key,
       Wrapped<String?>? version,
@@ -4941,15 +5002,15 @@ class ApiStorageObjectAcks {
   Map<String, dynamic> toJson() => _$ApiStorageObjectAcksToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiStorageObjectAcks &&
             (identical(other.acks, acks) ||
                 const DeepCollectionEquality().equals(other.acks, acks)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -4960,10 +5021,9 @@ extension $ApiStorageObjectAcksExtension on ApiStorageObjectAcks {
   ApiStorageObjectAcks copyWith({List<ApiStorageObjectAck>? acks}) {
     return ApiStorageObjectAcks(acks: acks ?? this.acks);
   }
-}
 
-extension $ApiStorageObjectAcksWrappedExtension on ApiStorageObjectAcks {
-  ApiStorageObjectAcks copyWith({Wrapped<List<ApiStorageObjectAck>?>? acks}) {
+  ApiStorageObjectAcks copyWithWrapped(
+      {Wrapped<List<ApiStorageObjectAck>?>? acks}) {
     return ApiStorageObjectAcks(acks: (acks != null ? acks.value : this.acks));
   }
 }
@@ -4988,9 +5048,6 @@ class ApiStorageObjectList {
   Map<String, dynamic> toJson() => _$ApiStorageObjectListToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiStorageObjectList &&
@@ -5000,6 +5057,9 @@ class ApiStorageObjectList {
             (identical(other.cursor, cursor) ||
                 const DeepCollectionEquality().equals(other.cursor, cursor)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -5014,10 +5074,8 @@ extension $ApiStorageObjectListExtension on ApiStorageObjectList {
     return ApiStorageObjectList(
         objects: objects ?? this.objects, cursor: cursor ?? this.cursor);
   }
-}
 
-extension $ApiStorageObjectListWrappedExtension on ApiStorageObjectList {
-  ApiStorageObjectList copyWith(
+  ApiStorageObjectList copyWithWrapped(
       {Wrapped<List<ApiStorageObject>?>? objects, Wrapped<String?>? cursor}) {
     return ApiStorageObjectList(
         objects: (objects != null ? objects.value : this.objects),
@@ -5042,15 +5100,15 @@ class ApiStorageObjects {
   Map<String, dynamic> toJson() => _$ApiStorageObjectsToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiStorageObjects &&
             (identical(other.objects, objects) ||
                 const DeepCollectionEquality().equals(other.objects, objects)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -5061,10 +5119,9 @@ extension $ApiStorageObjectsExtension on ApiStorageObjects {
   ApiStorageObjects copyWith({List<ApiStorageObject>? objects}) {
     return ApiStorageObjects(objects: objects ?? this.objects);
   }
-}
 
-extension $ApiStorageObjectsWrappedExtension on ApiStorageObjects {
-  ApiStorageObjects copyWith({Wrapped<List<ApiStorageObject>?>? objects}) {
+  ApiStorageObjects copyWithWrapped(
+      {Wrapped<List<ApiStorageObject>?>? objects}) {
     return ApiStorageObjects(
         objects: (objects != null ? objects.value : this.objects));
   }
@@ -5095,9 +5152,6 @@ class ApiSubscriptionList {
   Map<String, dynamic> toJson() => _$ApiSubscriptionListToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiSubscriptionList &&
@@ -5110,6 +5164,9 @@ class ApiSubscriptionList {
                 const DeepCollectionEquality()
                     .equals(other.prevCursor, prevCursor)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -5130,10 +5187,8 @@ extension $ApiSubscriptionListExtension on ApiSubscriptionList {
         cursor: cursor ?? this.cursor,
         prevCursor: prevCursor ?? this.prevCursor);
   }
-}
 
-extension $ApiSubscriptionListWrappedExtension on ApiSubscriptionList {
-  ApiSubscriptionList copyWith(
+  ApiSubscriptionList copyWithWrapped(
       {Wrapped<List<ApiValidatedSubscription>?>? validatedSubscriptions,
       Wrapped<String?>? cursor,
       Wrapped<String?>? prevCursor}) {
@@ -5210,17 +5265,15 @@ class ApiTournament {
   @JsonKey(name: 'prevReset', includeIfNull: true)
   final num? prevReset;
   @JsonKey(
-      name: 'operator',
-      includeIfNull: true,
-      toJson: apiOperatorToJson,
-      fromJson: apiOperatorFromJson)
+    name: 'operator',
+    includeIfNull: true,
+    toJson: apiOperatorToJson,
+    fromJson: apiOperatorFromJson,
+  )
   final enums.ApiOperator? $operator;
   static const fromJsonFactory = _$ApiTournamentFromJson;
   static const toJsonFactory = _$ApiTournamentToJson;
   Map<String, dynamic> toJson() => _$ApiTournamentToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -5281,6 +5334,9 @@ class ApiTournament {
                 const DeepCollectionEquality()
                     .equals(other.$operator, $operator)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -5348,10 +5404,8 @@ extension $ApiTournamentExtension on ApiTournament {
         prevReset: prevReset ?? this.prevReset,
         $operator: $operator ?? this.$operator);
   }
-}
 
-extension $ApiTournamentWrappedExtension on ApiTournament {
-  ApiTournament copyWith(
+  ApiTournament copyWithWrapped(
       {Wrapped<String?>? id,
       Wrapped<String?>? title,
       Wrapped<String?>? description,
@@ -5417,9 +5471,6 @@ class ApiTournamentList {
   Map<String, dynamic> toJson() => _$ApiTournamentListToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiTournamentList &&
@@ -5429,6 +5480,9 @@ class ApiTournamentList {
             (identical(other.cursor, cursor) ||
                 const DeepCollectionEquality().equals(other.cursor, cursor)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -5444,10 +5498,8 @@ extension $ApiTournamentListExtension on ApiTournamentList {
         tournaments: tournaments ?? this.tournaments,
         cursor: cursor ?? this.cursor);
   }
-}
 
-extension $ApiTournamentListWrappedExtension on ApiTournamentList {
-  ApiTournamentList copyWith(
+  ApiTournamentList copyWithWrapped(
       {Wrapped<List<ApiTournament>?>? tournaments, Wrapped<String?>? cursor}) {
     return ApiTournamentList(
         tournaments:
@@ -5487,9 +5539,6 @@ class ApiTournamentRecordList {
   Map<String, dynamic> toJson() => _$ApiTournamentRecordListToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiTournamentRecordList &&
@@ -5506,6 +5555,9 @@ class ApiTournamentRecordList {
                 const DeepCollectionEquality()
                     .equals(other.prevCursor, prevCursor)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -5528,10 +5580,8 @@ extension $ApiTournamentRecordListExtension on ApiTournamentRecordList {
         nextCursor: nextCursor ?? this.nextCursor,
         prevCursor: prevCursor ?? this.prevCursor);
   }
-}
 
-extension $ApiTournamentRecordListWrappedExtension on ApiTournamentRecordList {
-  ApiTournamentRecordList copyWith(
+  ApiTournamentRecordList copyWithWrapped(
       {Wrapped<List<ApiLeaderboardRecord>?>? records,
       Wrapped<List<ApiLeaderboardRecord>?>? ownerRecords,
       Wrapped<String?>? nextCursor,
@@ -5576,9 +5626,6 @@ class ApiUpdateAccountRequest {
   Map<String, dynamic> toJson() => _$ApiUpdateAccountRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiUpdateAccountRequest &&
@@ -5601,6 +5648,9 @@ class ApiUpdateAccountRequest {
                 const DeepCollectionEquality()
                     .equals(other.timezone, timezone)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -5629,10 +5679,8 @@ extension $ApiUpdateAccountRequestExtension on ApiUpdateAccountRequest {
         location: location ?? this.location,
         timezone: timezone ?? this.timezone);
   }
-}
 
-extension $ApiUpdateAccountRequestWrappedExtension on ApiUpdateAccountRequest {
-  ApiUpdateAccountRequest copyWith(
+  ApiUpdateAccountRequest copyWithWrapped(
       {Wrapped<String?>? username,
       Wrapped<String?>? displayName,
       Wrapped<String?>? avatarUrl,
@@ -5681,9 +5729,6 @@ class ApiUpdateGroupRequest {
   Map<String, dynamic> toJson() => _$ApiUpdateGroupRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiUpdateGroupRequest &&
@@ -5704,6 +5749,9 @@ class ApiUpdateGroupRequest {
             (identical(other.open, open) ||
                 const DeepCollectionEquality().equals(other.open, open)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -5732,10 +5780,8 @@ extension $ApiUpdateGroupRequestExtension on ApiUpdateGroupRequest {
         avatarUrl: avatarUrl ?? this.avatarUrl,
         open: open ?? this.open);
   }
-}
 
-extension $ApiUpdateGroupRequestWrappedExtension on ApiUpdateGroupRequest {
-  ApiUpdateGroupRequest copyWith(
+  ApiUpdateGroupRequest copyWithWrapped(
       {Wrapped<String?>? groupId,
       Wrapped<String?>? name,
       Wrapped<String?>? description,
@@ -5820,9 +5866,6 @@ class ApiUser {
   Map<String, dynamic> toJson() => _$ApiUserToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiUser &&
@@ -5878,6 +5921,9 @@ class ApiUser {
             (identical(other.appleId, appleId) ||
                 const DeepCollectionEquality().equals(other.appleId, appleId)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -5943,10 +5989,8 @@ extension $ApiUserExtension on ApiUser {
             facebookInstantGameId ?? this.facebookInstantGameId,
         appleId: appleId ?? this.appleId);
   }
-}
 
-extension $ApiUserWrappedExtension on ApiUser {
-  ApiUser copyWith(
+  ApiUser copyWithWrapped(
       {Wrapped<String?>? id,
       Wrapped<String?>? username,
       Wrapped<String?>? displayName,
@@ -6013,9 +6057,6 @@ class ApiUserGroupList {
   Map<String, dynamic> toJson() => _$ApiUserGroupListToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiUserGroupList &&
@@ -6025,6 +6066,9 @@ class ApiUserGroupList {
             (identical(other.cursor, cursor) ||
                 const DeepCollectionEquality().equals(other.cursor, cursor)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -6040,10 +6084,8 @@ extension $ApiUserGroupListExtension on ApiUserGroupList {
         userGroups: userGroups ?? this.userGroups,
         cursor: cursor ?? this.cursor);
   }
-}
 
-extension $ApiUserGroupListWrappedExtension on ApiUserGroupList {
-  ApiUserGroupList copyWith(
+  ApiUserGroupList copyWithWrapped(
       {Wrapped<List<UserGroupListUserGroup>?>? userGroups,
       Wrapped<String?>? cursor}) {
     return ApiUserGroupList(
@@ -6068,15 +6110,15 @@ class ApiUsers {
   Map<String, dynamic> toJson() => _$ApiUsersToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiUsers &&
             (identical(other.users, users) ||
                 const DeepCollectionEquality().equals(other.users, users)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -6087,10 +6129,8 @@ extension $ApiUsersExtension on ApiUsers {
   ApiUsers copyWith({List<ApiUser>? users}) {
     return ApiUsers(users: users ?? this.users);
   }
-}
 
-extension $ApiUsersWrappedExtension on ApiUsers {
-  ApiUsers copyWith({Wrapped<List<ApiUser>?>? users}) {
+  ApiUsers copyWithWrapped({Wrapped<List<ApiUser>?>? users}) {
     return ApiUsers(users: (users != null ? users.value : this.users));
   }
 }
@@ -6115,9 +6155,6 @@ class ApiValidatePurchaseAppleRequest {
       _$ApiValidatePurchaseAppleRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiValidatePurchaseAppleRequest &&
@@ -6127,6 +6164,9 @@ class ApiValidatePurchaseAppleRequest {
             (identical(other.persist, persist) ||
                 const DeepCollectionEquality().equals(other.persist, persist)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -6141,11 +6181,8 @@ extension $ApiValidatePurchaseAppleRequestExtension
     return ApiValidatePurchaseAppleRequest(
         receipt: receipt ?? this.receipt, persist: persist ?? this.persist);
   }
-}
 
-extension $ApiValidatePurchaseAppleRequestWrappedExtension
-    on ApiValidatePurchaseAppleRequest {
-  ApiValidatePurchaseAppleRequest copyWith(
+  ApiValidatePurchaseAppleRequest copyWithWrapped(
       {Wrapped<String?>? receipt, Wrapped<bool?>? persist}) {
     return ApiValidatePurchaseAppleRequest(
         receipt: (receipt != null ? receipt.value : this.receipt),
@@ -6174,9 +6211,6 @@ class ApiValidatePurchaseGoogleRequest {
       _$ApiValidatePurchaseGoogleRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiValidatePurchaseGoogleRequest &&
@@ -6186,6 +6220,9 @@ class ApiValidatePurchaseGoogleRequest {
             (identical(other.persist, persist) ||
                 const DeepCollectionEquality().equals(other.persist, persist)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -6200,11 +6237,8 @@ extension $ApiValidatePurchaseGoogleRequestExtension
     return ApiValidatePurchaseGoogleRequest(
         purchase: purchase ?? this.purchase, persist: persist ?? this.persist);
   }
-}
 
-extension $ApiValidatePurchaseGoogleRequestWrappedExtension
-    on ApiValidatePurchaseGoogleRequest {
-  ApiValidatePurchaseGoogleRequest copyWith(
+  ApiValidatePurchaseGoogleRequest copyWithWrapped(
       {Wrapped<String?>? purchase, Wrapped<bool?>? persist}) {
     return ApiValidatePurchaseGoogleRequest(
         purchase: (purchase != null ? purchase.value : this.purchase),
@@ -6236,9 +6270,6 @@ class ApiValidatePurchaseHuaweiRequest {
       _$ApiValidatePurchaseHuaweiRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiValidatePurchaseHuaweiRequest &&
@@ -6251,6 +6282,9 @@ class ApiValidatePurchaseHuaweiRequest {
             (identical(other.persist, persist) ||
                 const DeepCollectionEquality().equals(other.persist, persist)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -6269,11 +6303,8 @@ extension $ApiValidatePurchaseHuaweiRequestExtension
         signature: signature ?? this.signature,
         persist: persist ?? this.persist);
   }
-}
 
-extension $ApiValidatePurchaseHuaweiRequestWrappedExtension
-    on ApiValidatePurchaseHuaweiRequest {
-  ApiValidatePurchaseHuaweiRequest copyWith(
+  ApiValidatePurchaseHuaweiRequest copyWithWrapped(
       {Wrapped<String?>? purchase,
       Wrapped<String?>? signature,
       Wrapped<bool?>? persist}) {
@@ -6303,9 +6334,6 @@ class ApiValidatePurchaseResponse {
   Map<String, dynamic> toJson() => _$ApiValidatePurchaseResponseToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiValidatePurchaseResponse &&
@@ -6313,6 +6341,9 @@ class ApiValidatePurchaseResponse {
                 const DeepCollectionEquality()
                     .equals(other.validatedPurchases, validatedPurchases)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -6326,11 +6357,8 @@ extension $ApiValidatePurchaseResponseExtension on ApiValidatePurchaseResponse {
     return ApiValidatePurchaseResponse(
         validatedPurchases: validatedPurchases ?? this.validatedPurchases);
   }
-}
 
-extension $ApiValidatePurchaseResponseWrappedExtension
-    on ApiValidatePurchaseResponse {
-  ApiValidatePurchaseResponse copyWith(
+  ApiValidatePurchaseResponse copyWithWrapped(
       {Wrapped<List<ApiValidatedPurchase>?>? validatedPurchases}) {
     return ApiValidatePurchaseResponse(
         validatedPurchases: (validatedPurchases != null
@@ -6360,9 +6388,6 @@ class ApiValidateSubscriptionAppleRequest {
       _$ApiValidateSubscriptionAppleRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiValidateSubscriptionAppleRequest &&
@@ -6372,6 +6397,9 @@ class ApiValidateSubscriptionAppleRequest {
             (identical(other.persist, persist) ||
                 const DeepCollectionEquality().equals(other.persist, persist)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -6387,11 +6415,8 @@ extension $ApiValidateSubscriptionAppleRequestExtension
     return ApiValidateSubscriptionAppleRequest(
         receipt: receipt ?? this.receipt, persist: persist ?? this.persist);
   }
-}
 
-extension $ApiValidateSubscriptionAppleRequestWrappedExtension
-    on ApiValidateSubscriptionAppleRequest {
-  ApiValidateSubscriptionAppleRequest copyWith(
+  ApiValidateSubscriptionAppleRequest copyWithWrapped(
       {Wrapped<String?>? receipt, Wrapped<bool?>? persist}) {
     return ApiValidateSubscriptionAppleRequest(
         receipt: (receipt != null ? receipt.value : this.receipt),
@@ -6420,9 +6445,6 @@ class ApiValidateSubscriptionGoogleRequest {
       _$ApiValidateSubscriptionGoogleRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiValidateSubscriptionGoogleRequest &&
@@ -6432,6 +6454,9 @@ class ApiValidateSubscriptionGoogleRequest {
             (identical(other.persist, persist) ||
                 const DeepCollectionEquality().equals(other.persist, persist)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -6447,11 +6472,8 @@ extension $ApiValidateSubscriptionGoogleRequestExtension
     return ApiValidateSubscriptionGoogleRequest(
         receipt: receipt ?? this.receipt, persist: persist ?? this.persist);
   }
-}
 
-extension $ApiValidateSubscriptionGoogleRequestWrappedExtension
-    on ApiValidateSubscriptionGoogleRequest {
-  ApiValidateSubscriptionGoogleRequest copyWith(
+  ApiValidateSubscriptionGoogleRequest copyWithWrapped(
       {Wrapped<String?>? receipt, Wrapped<bool?>? persist}) {
     return ApiValidateSubscriptionGoogleRequest(
         receipt: (receipt != null ? receipt.value : this.receipt),
@@ -6476,9 +6498,6 @@ class ApiValidateSubscriptionResponse {
       _$ApiValidateSubscriptionResponseToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiValidateSubscriptionResponse &&
@@ -6486,6 +6505,9 @@ class ApiValidateSubscriptionResponse {
                 const DeepCollectionEquality().equals(
                     other.validatedSubscription, validatedSubscription)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -6501,11 +6523,8 @@ extension $ApiValidateSubscriptionResponseExtension
         validatedSubscription:
             validatedSubscription ?? this.validatedSubscription);
   }
-}
 
-extension $ApiValidateSubscriptionResponseWrappedExtension
-    on ApiValidateSubscriptionResponse {
-  ApiValidateSubscriptionResponse copyWith(
+  ApiValidateSubscriptionResponse copyWithWrapped(
       {Wrapped<ApiValidatedSubscription?>? validatedSubscription}) {
     return ApiValidateSubscriptionResponse(
         validatedSubscription: (validatedSubscription != null
@@ -6536,10 +6555,11 @@ class ApiValidatedPurchase {
   @JsonKey(name: 'transactionId', includeIfNull: true)
   final String? transactionId;
   @JsonKey(
-      name: 'store',
-      includeIfNull: true,
-      toJson: apiStoreProviderToJson,
-      fromJson: apiStoreProviderFromJson)
+    name: 'store',
+    includeIfNull: true,
+    toJson: apiStoreProviderToJson,
+    fromJson: apiStoreProviderFromJson,
+  )
   final enums.ApiStoreProvider? store;
   @JsonKey(name: 'purchaseTime', includeIfNull: true)
   final DateTime? purchaseTime;
@@ -6550,19 +6570,17 @@ class ApiValidatedPurchase {
   @JsonKey(name: 'providerResponse', includeIfNull: true)
   final String? providerResponse;
   @JsonKey(
-      name: 'environment',
-      includeIfNull: true,
-      toJson: apiStoreEnvironmentToJson,
-      fromJson: apiStoreEnvironmentFromJson)
+    name: 'environment',
+    includeIfNull: true,
+    toJson: apiStoreEnvironmentToJson,
+    fromJson: apiStoreEnvironmentFromJson,
+  )
   final enums.ApiStoreEnvironment? environment;
   @JsonKey(name: 'seenBefore', includeIfNull: true)
   final bool? seenBefore;
   static const fromJsonFactory = _$ApiValidatedPurchaseFromJson;
   static const toJsonFactory = _$ApiValidatedPurchaseToJson;
   Map<String, dynamic> toJson() => _$ApiValidatedPurchaseToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6595,6 +6613,9 @@ class ApiValidatedPurchase {
                 const DeepCollectionEquality()
                     .equals(other.seenBefore, seenBefore)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -6632,10 +6653,8 @@ extension $ApiValidatedPurchaseExtension on ApiValidatedPurchase {
         environment: environment ?? this.environment,
         seenBefore: seenBefore ?? this.seenBefore);
   }
-}
 
-extension $ApiValidatedPurchaseWrappedExtension on ApiValidatedPurchase {
-  ApiValidatedPurchase copyWith(
+  ApiValidatedPurchase copyWithWrapped(
       {Wrapped<String?>? productId,
       Wrapped<String?>? transactionId,
       Wrapped<enums.ApiStoreProvider?>? store,
@@ -6685,10 +6704,11 @@ class ApiValidatedSubscription {
   @JsonKey(name: 'originalTransactionId', includeIfNull: true)
   final String? originalTransactionId;
   @JsonKey(
-      name: 'store',
-      includeIfNull: true,
-      toJson: apiStoreProviderToJson,
-      fromJson: apiStoreProviderFromJson)
+    name: 'store',
+    includeIfNull: true,
+    toJson: apiStoreProviderToJson,
+    fromJson: apiStoreProviderFromJson,
+  )
   final enums.ApiStoreProvider? store;
   @JsonKey(name: 'purchaseTime', includeIfNull: true)
   final DateTime? purchaseTime;
@@ -6697,10 +6717,11 @@ class ApiValidatedSubscription {
   @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
   @JsonKey(
-      name: 'environment',
-      includeIfNull: true,
-      toJson: apiStoreEnvironmentToJson,
-      fromJson: apiStoreEnvironmentFromJson)
+    name: 'environment',
+    includeIfNull: true,
+    toJson: apiStoreEnvironmentToJson,
+    fromJson: apiStoreEnvironmentFromJson,
+  )
   final enums.ApiStoreEnvironment? environment;
   @JsonKey(name: 'expiryTime', includeIfNull: true)
   final DateTime? expiryTime;
@@ -6709,9 +6730,6 @@ class ApiValidatedSubscription {
   static const fromJsonFactory = _$ApiValidatedSubscriptionFromJson;
   static const toJsonFactory = _$ApiValidatedSubscriptionToJson;
   Map<String, dynamic> toJson() => _$ApiValidatedSubscriptionToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6743,6 +6761,9 @@ class ApiValidatedSubscription {
             (identical(other.active, active) ||
                 const DeepCollectionEquality().equals(other.active, active)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -6781,11 +6802,8 @@ extension $ApiValidatedSubscriptionExtension on ApiValidatedSubscription {
         expiryTime: expiryTime ?? this.expiryTime,
         active: active ?? this.active);
   }
-}
 
-extension $ApiValidatedSubscriptionWrappedExtension
-    on ApiValidatedSubscription {
-  ApiValidatedSubscription copyWith(
+  ApiValidatedSubscription copyWithWrapped(
       {Wrapped<String?>? productId,
       Wrapped<String?>? originalTransactionId,
       Wrapped<enums.ApiStoreProvider?>? store,
@@ -6843,9 +6861,6 @@ class ApiWriteStorageObject {
   Map<String, dynamic> toJson() => _$ApiWriteStorageObjectToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiWriteStorageObject &&
@@ -6866,6 +6881,9 @@ class ApiWriteStorageObject {
                 const DeepCollectionEquality()
                     .equals(other.permissionWrite, permissionWrite)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -6894,10 +6912,8 @@ extension $ApiWriteStorageObjectExtension on ApiWriteStorageObject {
         permissionRead: permissionRead ?? this.permissionRead,
         permissionWrite: permissionWrite ?? this.permissionWrite);
   }
-}
 
-extension $ApiWriteStorageObjectWrappedExtension on ApiWriteStorageObject {
-  ApiWriteStorageObject copyWith(
+  ApiWriteStorageObject copyWithWrapped(
       {Wrapped<String?>? collection,
       Wrapped<String?>? key,
       Wrapped<String?>? value,
@@ -6937,15 +6953,15 @@ class ApiWriteStorageObjectsRequest {
   Map<String, dynamic> toJson() => _$ApiWriteStorageObjectsRequestToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ApiWriteStorageObjectsRequest &&
             (identical(other.objects, objects) ||
                 const DeepCollectionEquality().equals(other.objects, objects)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -6958,11 +6974,8 @@ extension $ApiWriteStorageObjectsRequestExtension
       {List<ApiWriteStorageObject>? objects}) {
     return ApiWriteStorageObjectsRequest(objects: objects ?? this.objects);
   }
-}
 
-extension $ApiWriteStorageObjectsRequestWrappedExtension
-    on ApiWriteStorageObjectsRequest {
-  ApiWriteStorageObjectsRequest copyWith(
+  ApiWriteStorageObjectsRequest copyWithWrapped(
       {Wrapped<List<ApiWriteStorageObject>?>? objects}) {
     return ApiWriteStorageObjectsRequest(
         objects: (objects != null ? objects.value : this.objects));
@@ -6988,9 +7001,6 @@ class ProtobufAny {
   Map<String, dynamic> toJson() => _$ProtobufAnyToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ProtobufAny &&
@@ -7000,6 +7010,9 @@ class ProtobufAny {
             (identical(other.value, value) ||
                 const DeepCollectionEquality().equals(other.value, value)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -7013,10 +7026,9 @@ extension $ProtobufAnyExtension on ProtobufAny {
     return ProtobufAny(
         typeUrl: typeUrl ?? this.typeUrl, value: value ?? this.value);
   }
-}
 
-extension $ProtobufAnyWrappedExtension on ProtobufAny {
-  ProtobufAny copyWith({Wrapped<String?>? typeUrl, Wrapped<String?>? value}) {
+  ProtobufAny copyWithWrapped(
+      {Wrapped<String?>? typeUrl, Wrapped<String?>? value}) {
     return ProtobufAny(
         typeUrl: (typeUrl != null ? typeUrl.value : this.typeUrl),
         value: (value != null ? value.value : this.value));
@@ -7045,9 +7057,6 @@ class RpcStatus {
   Map<String, dynamic> toJson() => _$RpcStatusToJson(this);
 
   @override
-  String toString() => jsonEncode(this);
-
-  @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is RpcStatus &&
@@ -7059,6 +7068,9 @@ class RpcStatus {
             (identical(other.details, details) ||
                 const DeepCollectionEquality().equals(other.details, details)));
   }
+
+  @override
+  String toString() => jsonEncode(this);
 
   @override
   int get hashCode =>
@@ -7075,10 +7087,8 @@ extension $RpcStatusExtension on RpcStatus {
         message: message ?? this.message,
         details: details ?? this.details);
   }
-}
 
-extension $RpcStatusWrappedExtension on RpcStatus {
-  RpcStatus copyWith(
+  RpcStatus copyWithWrapped(
       {Wrapped<int?>? code,
       Wrapped<String?>? message,
       Wrapped<List<ProtobufAny>?>? details}) {
@@ -7130,6 +7140,17 @@ List<enums.ApiOperator> apiOperatorListFromJson(
 ]) {
   if (apiOperator == null) {
     return defaultValue ?? [];
+  }
+
+  return apiOperator.map((e) => apiOperatorFromJson(e.toString())).toList();
+}
+
+List<enums.ApiOperator>? apiOperatorNullableListFromJson(
+  List? apiOperator, [
+  List<enums.ApiOperator>? defaultValue,
+]) {
+  if (apiOperator == null) {
+    return defaultValue;
   }
 
   return apiOperator.map((e) => apiOperatorFromJson(e.toString())).toList();
@@ -7187,6 +7208,19 @@ List<enums.ApiStoreEnvironment> apiStoreEnvironmentListFromJson(
       .toList();
 }
 
+List<enums.ApiStoreEnvironment>? apiStoreEnvironmentNullableListFromJson(
+  List? apiStoreEnvironment, [
+  List<enums.ApiStoreEnvironment>? defaultValue,
+]) {
+  if (apiStoreEnvironment == null) {
+    return defaultValue;
+  }
+
+  return apiStoreEnvironment
+      .map((e) => apiStoreEnvironmentFromJson(e.toString()))
+      .toList();
+}
+
 String? apiStoreProviderToJson(enums.ApiStoreProvider? apiStoreProvider) {
   return enums.$ApiStoreProviderMap[apiStoreProvider];
 }
@@ -7229,6 +7263,19 @@ List<enums.ApiStoreProvider> apiStoreProviderListFromJson(
 ]) {
   if (apiStoreProvider == null) {
     return defaultValue ?? [];
+  }
+
+  return apiStoreProvider
+      .map((e) => apiStoreProviderFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.ApiStoreProvider>? apiStoreProviderNullableListFromJson(
+  List? apiStoreProvider, [
+  List<enums.ApiStoreProvider>? defaultValue,
+]) {
+  if (apiStoreProvider == null) {
+    return defaultValue;
   }
 
   return apiStoreProvider
@@ -7282,15 +7329,15 @@ class $CustomJsonDecoder {
 
 class $JsonSerializableConverter extends chopper.JsonConverter {
   @override
-  chopper.Response<ResultType> convertResponse<ResultType, Item>(
-      chopper.Response response) {
+  FutureOr<chopper.Response<ResultType>> convertResponse<ResultType, Item>(
+      chopper.Response response) async {
     if (response.bodyString.isEmpty) {
       // In rare cases, when let's say 204 (no content) is returned -
       // we cannot decode the missing json with the result type specified
       return chopper.Response(response.base, null, error: response.error);
     }
 
-    final jsonRes = super.convertResponse(response);
+    final jsonRes = await super.convertResponse(response);
     return jsonRes.copyWith<ResultType>(
         body: $jsonDecoder.decode<Item>(jsonRes.body) as ResultType);
   }
