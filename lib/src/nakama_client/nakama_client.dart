@@ -35,6 +35,10 @@ abstract class NakamaBaseClient {
     Map<String, String>? vars,
   });
 
+  /// Log out a session, invalidate a refresh token, or log out all
+  /// sessions/refresh tokens for a user.
+  Future<void> sessionLogout({required model.Session session});
+
   Future<model.Session> authenticateEmail({
     required String email,
     required String password,

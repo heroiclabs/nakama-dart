@@ -116,6 +116,18 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> sessionLogout({required model.Session session}) async {
+    _session = session;
+
+    await _api.v2SessionLogoutPost(
+      body: ApiSessionLogoutRequest(
+        refreshToken: session.refreshToken,
+        token: session.token,
+      ),
+    );
+  }
+
+  @override
   Future<model.Session> authenticateEmail({
     required String email,
     required String password,

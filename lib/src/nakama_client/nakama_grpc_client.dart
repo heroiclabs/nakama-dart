@@ -120,6 +120,14 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> sessionLogout({required model.Session session}) async {
+    await _client.sessionLogout(SessionLogoutRequest(
+      refreshToken: session.refreshToken,
+      token: session.token,
+    ));
+  }
+
+  @override
   Future<model.Session> authenticateEmail({
     required String email,
     required String password,
