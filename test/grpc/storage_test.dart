@@ -1,5 +1,4 @@
 import 'package:faker/faker.dart';
-import 'package:nakama/api.dart' as api;
 import 'package:nakama/nakama.dart';
 import 'package:test/test.dart';
 
@@ -57,7 +56,7 @@ void main() {
         userId: session.userId,
       );
 
-      expect(res, isA<api.StorageObject>());
+      expect(res, isA<StorageObject>());
       expect(res!.value, equals('{"skill": 100}'));
     });
 
@@ -89,7 +88,7 @@ void main() {
         limit: 10,
       );
 
-      expect(res, isA<api.StorageObjectList>());
+      expect(res, isA<StorageObjectList>());
       expect(res.objects, hasLength(2));
     });
 
@@ -111,15 +110,12 @@ void main() {
         userId: session.userId,
       );
 
-      expect(res, isA<api.StorageObject>());
+      expect(res, isA<StorageObject>());
       expect(res!.value, equals('{"skill": 100}'));
 
       // Delete object
       await client.deleteStorageObject(session: session, objectIds: [
-        api.DeleteStorageObjectId(
-          collection: 'stats',
-          key: 'skills',
-        ),
+        const StorageObjectId(collection: 'stats', key: 'skills'),
       ]);
 
       final afterRes = await client.readStorageObject(

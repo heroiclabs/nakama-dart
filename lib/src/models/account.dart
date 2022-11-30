@@ -15,10 +15,24 @@ class Account with _$Account {
     String? customId,
     DateTime? verifyTime,
     DateTime? disableTime,
+    required User user,
   }) = _Account;
 
   factory Account.fromJson(Map<String, Object?> json) =>
       _$AccountFromJson(json);
+
+  factory Account.fromDto(api.Account dto) => Account(
+        wallet: dto.wallet,
+        email: dto.email,
+        devices:
+            dto.devices.map((e) => Device.fromDto(e)).toList(growable: false),
+        customId: dto.customId,
+        verifyTime:
+            dto.verifyTime.hasNanos() ? dto.verifyTime.toDateTime() : null,
+        disableTime:
+            dto.disableTime.hasNanos() ? dto.disableTime.toDateTime() : null,
+        user: User.fromDto(dto.user),
+      );
 }
 
 @freezed
@@ -31,6 +45,11 @@ class Device with _$Device {
   }) = _Device;
 
   factory Device.fromJson(Map<String, Object?> json) => _$DeviceFromJson(json);
+
+  factory Device.fromDto(api.AccountDevice dto) => Device(
+        id: dto.id,
+        vars: dto.vars,
+      );
 }
 
 @freezed

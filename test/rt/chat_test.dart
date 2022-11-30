@@ -215,7 +215,7 @@ void main() {
       );
 
       expect(messages, isNotNull);
-      expect(messages!.messages, hasLength(20));
+      expect(messages.messages, hasLength(20));
     });
 
     test('user receives longer message history on request', () async {
@@ -250,7 +250,7 @@ void main() {
       );
 
       expect(messages, isNotNull);
-      expect(messages!.messages, hasLength(40));
+      expect(messages.messages, hasLength(40));
     });
 
     test('user receives longer message history on request', () async {
@@ -285,7 +285,7 @@ void main() {
       );
 
       expect(messages, isNotNull);
-      expect(messages!.messages, hasLength(40));
+      expect(messages.messages, hasLength(40));
     });
 
     test('user can iterate through messages with cursor', () async {
@@ -322,7 +322,7 @@ void main() {
           )
           .then(((messages) {
             expect(messages, isNotNull);
-            expect(messages!.messages, hasLength(20));
+            expect(messages.messages, hasLength(20));
             return messages;
           }))
           .then(
@@ -334,7 +334,7 @@ void main() {
           )
           .then((messages) {
             expect(messages, isNotNull);
-            expect(messages!.messages, hasLength(15));
+            expect(messages.messages, hasLength(15));
           });
     });
 

@@ -1,17 +1,16 @@
 import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
-import 'package:nakama/api.dart';
 import 'package:nakama/nakama.dart';
-import 'package:nakama/src/enum/friendship_state.dart';
-import 'package:nakama/src/enum/group_membership_states.dart';
-import 'package:nakama/src/enum/leaderboard_operator.dart';
+import 'package:nakama/src/models/account.dart' as model;
+import 'package:nakama/src/models/channel_message.dart' as model;
 import 'package:nakama/src/models/friends.dart' as model;
 import 'package:nakama/src/models/group.dart' as model;
 import 'package:nakama/src/models/leaderboard.dart' as model;
 import 'package:nakama/src/models/match.dart' as model;
 import 'package:nakama/src/models/notification.dart' as model;
 import 'package:nakama/src/models/session.dart' as model;
+import 'package:nakama/src/models/storage.dart' as model;
 import 'package:nakama/src/models/tournament.dart' as model;
 import 'package:nakama/src/rest/apigrpc.swagger.dart';
 
@@ -696,21 +695,11 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
-  Future<Account> getAccount(model.Session session) async {
+  Future<model.Account> getAccount(model.Session session) async {
     _session = session;
     final res = await _api.v2AccountGet();
 
-    final acc = Account();
-    // Some workaround here while protobuf expects the vars map to not be null
-    acc.mergeFromProto3Json((res.body!.copyWith(
-      devices: res.body!.devices!
-          .map((e) => e.copyWith(
-                vars: e.vars ?? {},
-              ))
-          .toList(growable: false),
-    )).toJson());
-
-    return acc;
+    return Account.fromJson(res.body!.toJson());
   }
 
   @override
@@ -736,7 +725,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
-  Future<Users> getUsers({
+  Future<List<model.User>> getUsers({
     required model.Session session,
     List<String>? facebookIds,
     List<String>? ids,
@@ -749,7 +738,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
       usernames: usernames,
     );
 
-    return Users()..mergeFromProto3Json(res.body!.toJson());
+    return res.body!.users!
+        .map((e) => model.User.fromJson(e.toJson()))
+        .toList(growable: false);
   }
 
   @override
@@ -781,7 +772,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
-  Future<StorageObject?> readStorageObject({
+  Future<model.StorageObject?> readStorageObject({
     required model.Session session,
     String? collection,
     String? key,
@@ -801,12 +792,13 @@ class NakamaRestApiClient extends NakamaBaseClient {
       ),
     );
 
-    final result = StorageObjects()..mergeFromProto3Json(res.body!.toJson());
-    return result.objects.isEmpty ? null : result.objects.first;
+    return res.body?.objects?.isEmpty != false
+        ? null
+        : model.StorageObject.fromJson(res.body!.objects!.first.toJson());
   }
 
   @override
-  Future<StorageObjectList> listStorageObjects({
+  Future<model.StorageObjectList> listStorageObjects({
     required model.Session session,
     String? collection,
     String? cursor,
@@ -822,13 +814,13 @@ class NakamaRestApiClient extends NakamaBaseClient {
       limit: limit,
     );
 
-    return StorageObjectList()..mergeFromProto3Json(res.body!.toJson());
+    return model.StorageObjectList.fromJson(res.body!.toJson());
   }
 
   @override
   Future<void> deleteStorageObject({
     required model.Session session,
-    required Iterable<DeleteStorageObjectId> objectIds,
+    required Iterable<model.StorageObjectId> objectIds,
   }) async {
     _session = session;
 
@@ -846,7 +838,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
-  Future<ChannelMessageList?> listChannelMessages({
+  Future<model.ChannelMessageList> listChannelMessages({
     required model.Session session,
     required String channelId,
     int limit = defaultLimit,
@@ -863,7 +855,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
       cursor: cursor,
     );
 
-    return ChannelMessageList()..mergeFromProto3Json(res.body!.toJson());
+    return model.ChannelMessageList.fromJson(res.body!.toJson());
   }
 
   @override

@@ -1,14 +1,13 @@
-import 'package:nakama/api.dart';
 import 'package:nakama/nakama.dart';
-import 'package:nakama/src/enum/friendship_state.dart';
-import 'package:nakama/src/enum/group_membership_states.dart';
-import 'package:nakama/src/enum/leaderboard_operator.dart';
+import 'package:nakama/src/models/account.dart' as model;
+import 'package:nakama/src/models/channel_message.dart' as model;
 import 'package:nakama/src/models/friends.dart' as model;
 import 'package:nakama/src/models/group.dart' as model;
 import 'package:nakama/src/models/leaderboard.dart' as model;
 import 'package:nakama/src/models/match.dart' as model;
 import 'package:nakama/src/models/notification.dart' as model;
 import 'package:nakama/src/models/session.dart' as model;
+import 'package:nakama/src/models/storage.dart' as model;
 import 'package:nakama/src/models/tournament.dart' as model;
 
 const _kDefaultAppKey = 'default';
@@ -268,7 +267,7 @@ abstract class NakamaBaseClient {
   ///
   /// Many of Nakama’s features are accessible with an authenticated session,
   /// like fetching a user account.
-  Future<Account> getAccount(model.Session session);
+  Future<model.Account> getAccount(model.Session session);
 
   /// # Update the user account
   ///
@@ -288,7 +287,7 @@ abstract class NakamaBaseClient {
   /// In addition to getting the current authenticated player’s user account,
   /// Nakama has a convenient way to get a list of other players’ public
   /// profiles from their ids or usernames.
-  Future<Users> getUsers({
+  Future<List<model.User>> getUsers({
     required model.Session session,
     List<String>? facebookIds,
     List<String>? ids,
@@ -317,7 +316,7 @@ abstract class NakamaBaseClient {
   ///
   /// Instead of doing multiple read requests with separate keys you can list
   /// all the storage objects the player has access to in a collection.
-  Future<StorageObjectList> listStorageObjects({
+  Future<model.StorageObjectList> listStorageObjects({
     required model.Session session,
     String? collection,
     String? cursor,
@@ -327,7 +326,7 @@ abstract class NakamaBaseClient {
 
   Future<void> deleteStorageObject({
     required model.Session session,
-    required Iterable<DeleteStorageObjectId> objectIds,
+    required Iterable<model.StorageObjectId> objectIds,
   });
 
   /// Reading storage objects
@@ -335,7 +334,7 @@ abstract class NakamaBaseClient {
   /// Define a class that describes the storage object and create a new storage
   /// object id with the collection name, key and user id. Finally, read the
   /// storage objects and parse the JSON data:
-  Future<StorageObject?> readStorageObject({
+  Future<model.StorageObject?> readStorageObject({
     required model.Session session,
     String? collection,
     String? key,
@@ -346,7 +345,7 @@ abstract class NakamaBaseClient {
   ///
   /// Message listing takes a parameter which indicates if messages are received
   /// from oldest to newest (forward) or newest to oldest.
-  Future<ChannelMessageList?> listChannelMessages({
+  Future<model.ChannelMessageList> listChannelMessages({
     required model.Session session,
     required String channelId,
     int limit = defaultLimit,

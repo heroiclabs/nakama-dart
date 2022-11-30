@@ -26,6 +26,7 @@ mixin _$Account {
   String? get customId => throw _privateConstructorUsedError;
   DateTime? get verifyTime => throw _privateConstructorUsedError;
   DateTime? get disableTime => throw _privateConstructorUsedError;
+  User get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,10 @@ abstract class $AccountCopyWith<$Res> {
       List<Device> devices,
       String? customId,
       DateTime? verifyTime,
-      DateTime? disableTime});
+      DateTime? disableTime,
+      User user});
+
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -65,6 +69,7 @@ class _$AccountCopyWithImpl<$Res, $Val extends Account>
     Object? customId = freezed,
     Object? verifyTime = freezed,
     Object? disableTime = freezed,
+    Object? user = null,
   }) {
     return _then(_value.copyWith(
       wallet: freezed == wallet
@@ -91,7 +96,19 @@ class _$AccountCopyWithImpl<$Res, $Val extends Account>
           ? _value.disableTime
           : disableTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res> get user {
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
   }
 }
 
@@ -108,7 +125,11 @@ abstract class _$$_AccountCopyWith<$Res> implements $AccountCopyWith<$Res> {
       List<Device> devices,
       String? customId,
       DateTime? verifyTime,
-      DateTime? disableTime});
+      DateTime? disableTime,
+      User user});
+
+  @override
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -127,6 +148,7 @@ class __$$_AccountCopyWithImpl<$Res>
     Object? customId = freezed,
     Object? verifyTime = freezed,
     Object? disableTime = freezed,
+    Object? user = null,
   }) {
     return _then(_$_Account(
       wallet: freezed == wallet
@@ -153,6 +175,10 @@ class __$$_AccountCopyWithImpl<$Res>
           ? _value.disableTime
           : disableTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
     ));
   }
 }
@@ -166,7 +192,8 @@ class _$_Account extends _Account {
       final List<Device> devices = const [],
       this.customId,
       this.verifyTime,
-      this.disableTime})
+      this.disableTime,
+      required this.user})
       : _devices = devices,
         super._();
 
@@ -191,10 +218,12 @@ class _$_Account extends _Account {
   final DateTime? verifyTime;
   @override
   final DateTime? disableTime;
+  @override
+  final User user;
 
   @override
   String toString() {
-    return 'Account(wallet: $wallet, email: $email, devices: $devices, customId: $customId, verifyTime: $verifyTime, disableTime: $disableTime)';
+    return 'Account(wallet: $wallet, email: $email, devices: $devices, customId: $customId, verifyTime: $verifyTime, disableTime: $disableTime, user: $user)';
   }
 
   @override
@@ -210,7 +239,8 @@ class _$_Account extends _Account {
             (identical(other.verifyTime, verifyTime) ||
                 other.verifyTime == verifyTime) &&
             (identical(other.disableTime, disableTime) ||
-                other.disableTime == disableTime));
+                other.disableTime == disableTime) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(ignore: true)
@@ -222,7 +252,8 @@ class _$_Account extends _Account {
       const DeepCollectionEquality().hash(_devices),
       customId,
       verifyTime,
-      disableTime);
+      disableTime,
+      user);
 
   @JsonKey(ignore: true)
   @override
@@ -245,7 +276,8 @@ abstract class _Account extends Account {
       final List<Device> devices,
       final String? customId,
       final DateTime? verifyTime,
-      final DateTime? disableTime}) = _$_Account;
+      final DateTime? disableTime,
+      required final User user}) = _$_Account;
   const _Account._() : super._();
 
   factory _Account.fromJson(Map<String, dynamic> json) = _$_Account.fromJson;
@@ -262,6 +294,8 @@ abstract class _Account extends Account {
   DateTime? get verifyTime;
   @override
   DateTime? get disableTime;
+  @override
+  User get user;
   @override
   @JsonKey(ignore: true)
   _$$_AccountCopyWith<_$_Account> get copyWith =>

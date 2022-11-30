@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
-import 'package:nakama/api.dart' as api;
 import 'package:nakama/nakama.dart';
 import 'package:nakama/rtapi.dart' as rt;
 import 'package:simple_multiplayer_web/widgets/match_area.dart';
@@ -30,7 +29,7 @@ class __HomeScreenState extends State<_HomeScreen> {
   late final NakamaBaseClient _nakamaClient;
 
   Session? _session;
-  api.Account? _account;
+  Account? _account;
   rt.Match? _match;
 
   @override

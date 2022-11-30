@@ -20,6 +20,7 @@ _$_Account _$$_AccountFromJson(Map<String, dynamic> json) => _$_Account(
       disableTime: json['disableTime'] == null
           ? null
           : DateTime.parse(json['disableTime'] as String),
+      user: User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_AccountToJson(_$_Account instance) =>
@@ -30,6 +31,7 @@ Map<String, dynamic> _$$_AccountToJson(_$_Account instance) =>
       'customId': instance.customId,
       'verifyTime': instance.verifyTime?.toIso8601String(),
       'disableTime': instance.disableTime?.toIso8601String(),
+      'user': instance.user,
     };
 
 _$_Device _$$_DeviceFromJson(Map<String, dynamic> json) => _$_Device(
