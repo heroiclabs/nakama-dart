@@ -281,6 +281,51 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.Session> authenticateApple({
+    required String token,
+    bool create = true,
+    String? username,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountAuthenticateApplePost(
+      body: ApiAccountApple(
+        token: token,
+        vars: vars,
+      ),
+      create: create,
+      username: username,
+    );
+
+    if (res.body == null) {
+      throw Exception('Authentication failed.');
+    }
+
+    final data = res.body!;
+
+    return model.Session(
+      created: data.created ?? false,
+      token: data.token!,
+      refreshToken: data.refreshToken,
+    );
+  }
+
+  @override
+  Future<void> linkApple({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountLinkApplePost(
+      body: ApiAccountApple(
+        token: token,
+        vars: vars,
+      ),
+    );
+
+    if (!res.isSuccessful) throw Exception('Linking failed.');
+  }
+
+  @override
   Future<model.Session> authenticateGameCenter({
     required String playerId,
     required String bundleId,

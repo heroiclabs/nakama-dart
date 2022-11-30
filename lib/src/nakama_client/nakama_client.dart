@@ -105,6 +105,19 @@ abstract class NakamaBaseClient {
     Map<String, String>? vars,
   });
 
+  Future<model.Session> authenticateApple({
+    required String token,
+    bool create = true,
+    String? username,
+    Map<String, String>? vars,
+  });
+
+  Future<void> linkApple({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+  });
+
   Future<model.Session> authenticateGameCenter({
     required String playerId,
     required String bundleId,

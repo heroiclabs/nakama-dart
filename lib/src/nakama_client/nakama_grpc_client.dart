@@ -230,6 +230,45 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.Session> authenticateApple({
+    required String token,
+    bool create = true,
+    String? username,
+    Map<String, String>? vars,
+  }) async {
+    final request = AuthenticateAppleRequest()
+      ..create_2 = BoolValue(value: create)
+      ..account = (AccountApple()
+        ..token = token
+        ..vars.addAll(vars ?? {}));
+
+    if (username != null) {
+      request.username = username;
+    }
+
+    final res = await _client.authenticateApple(request);
+
+    return model.Session(
+      created: res.created,
+      token: res.token,
+      refreshToken: res.refreshToken,
+    );
+  }
+
+  @override
+  Future<void> linkApple({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountApple()
+      ..token = token
+      ..vars.addAll(vars ?? {});
+
+    await _client.linkApple(request);
+  }
+
+  @override
   Future<model.Session> authenticateGoogle({
     required String token,
     bool create = true,
