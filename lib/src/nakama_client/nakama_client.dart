@@ -38,6 +38,14 @@ abstract class NakamaBaseClient {
     Map<String, String>? vars,
   });
 
+  /// # Linking E-Mail authentication
+  Future<void> linkEmail({
+    required model.Session session,
+    required String email,
+    required String password,
+    Map<String, String>? vars,
+  });
+
   /// # Device authentication
   /// Nakama Device Authentication uses the physical device’s unique identifier
   /// to easily authenticate a user and create an account if one does not exist.
@@ -51,11 +59,20 @@ abstract class NakamaBaseClient {
     Map<String, String>? vars,
   });
 
+  /// # Linking Device ID authentication
+  Future<void> linkDevice({
+    required model.Session session,
+    required String deviceId,
+    Map<String, String>? vars,
+  });
+
   /// #Facebook authentication
   ///
   /// Nakama Facebook Authentication is an easy to use authentication method
   /// which lets you optionally import the player’s Facebook friends and add
   /// them to their Nakama Friends list.
+  ///
+  /// Set [import] to `true` to import friends from the user's facebook account.
   Future<model.Session> authenticateFacebook({
     required String token,
     bool create = true,
@@ -64,10 +81,27 @@ abstract class NakamaBaseClient {
     bool import = false,
   });
 
+  /// # Linking Facebook authentication
+  ///
+  /// Set [import] to `true` to import friends from the user's facebook account.
+  Future<void> linkFacebook({
+    required model.Session session,
+    required String token,
+    bool import = false,
+    Map<String, String>? vars,
+  });
+
   Future<model.Session> authenticateGoogle({
     required String token,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
+  });
+
+  /// # Linking Google authentication
+  Future<void> linkGoogle({
+    required model.Session session,
+    required String token,
     Map<String, String>? vars,
   });
 
@@ -83,11 +117,37 @@ abstract class NakamaBaseClient {
     Map<String, String>? vars,
   });
 
+  /// # Linking Game Center authentication
+  Future<void> linkGameCenter({
+    required model.Session session,
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    Map<String, String>? vars,
+  });
+
+  /// # Authenticate with steam token
+  ///
+  /// Set [import] to `true` to import friends.
   Future<model.Session> authenticateSteam({
     required String token,
     bool create = true,
     String? username,
     Map<String, String>? vars,
+    bool import = false,
+  });
+
+  /// # Linking steam authentication
+  ///
+  /// Set [import] to `true` to import friends.
+  Future<void> linkSteam({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+    bool import = false,
   });
 
   /// # Custom authentication
@@ -98,6 +158,13 @@ abstract class NakamaBaseClient {
     required String id,
     bool create = true,
     String? username,
+    Map<String, String>? vars,
+  });
+
+  /// # Link custom authentication
+  Future<void> linkCustom({
+    required model.Session session,
+    required String id,
     Map<String, String>? vars,
   });
 

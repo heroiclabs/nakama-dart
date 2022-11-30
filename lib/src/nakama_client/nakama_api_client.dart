@@ -126,6 +126,24 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> linkEmail({
+    required model.Session session,
+    required String email,
+    required String password,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountLinkEmailPost(
+      body: ApiAccountEmail(
+        email: email,
+        password: password,
+        vars: vars,
+      ),
+    );
+
+    if (!res.isSuccessful) throw Exception('Linking failed.');
+  }
+
+  @override
   Future<model.Session> authenticateDevice({
     required String deviceId,
     bool create = true,
@@ -149,6 +167,23 @@ class NakamaRestApiClient extends NakamaBaseClient {
       token: data.token!,
       refreshToken: data.refreshToken,
     );
+  }
+
+  @override
+  Future<void> linkDevice({
+    required model.Session session,
+    required String deviceId,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountLinkDevicePost(
+      body: ApiAccountDevice(id: deviceId, vars: vars),
+    );
+
+    if (res.body == null) {
+      throw Exception('Authentication failed.');
+    }
+
+    if (!res.isSuccessful) throw Exception('Linking failed.');
   }
 
   @override
@@ -183,6 +218,24 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> linkFacebook({
+    required model.Session session,
+    required String token,
+    bool import = false,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountLinkFacebookPost(
+      body: ApiAccountFacebook(
+        token: token,
+        vars: vars,
+      ),
+      $sync: import,
+    );
+
+    if (!res.isSuccessful) throw Exception('Linking failed.');
+  }
+
+  @override
   Future<model.Session> authenticateGoogle({
     required String token,
     bool create = true,
@@ -209,6 +262,22 @@ class NakamaRestApiClient extends NakamaBaseClient {
       token: data.token!,
       refreshToken: data.refreshToken,
     );
+  }
+
+  @override
+  Future<void> linkGoogle({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountLinkGooglePost(
+      body: ApiAccountGoogle(
+        token: token,
+        vars: vars,
+      ),
+    );
+
+    if (!res.isSuccessful) throw Exception('Linking failed.');
   }
 
   @override
@@ -251,16 +320,44 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> linkGameCenter({
+    required model.Session session,
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountLinkGamecenterPost(
+      body: ApiAccountGameCenter(
+        playerId: playerId,
+        bundleId: bundleId,
+        timestampSeconds: timestampSeconds.toString(),
+        salt: salt,
+        signature: signature,
+        publicKeyUrl: publicKeyUrl,
+        vars: vars,
+      ),
+    );
+
+    if (!res.isSuccessful) throw Exception('Linking failed.');
+  }
+
+  @override
   Future<model.Session> authenticateSteam({
     required String token,
     bool create = true,
     String? username,
     Map<String, String>? vars,
+    bool import = false,
   }) async {
     final res = await _api.v2AccountAuthenticateSteamPost(
       body: ApiAccountSteam(token: token, vars: vars),
       create: create,
       username: username,
+      $sync: import,
     );
 
     if (res.body == null) {
@@ -274,6 +371,22 @@ class NakamaRestApiClient extends NakamaBaseClient {
       token: data.token!,
       refreshToken: data.refreshToken,
     );
+  }
+
+  @override
+  Future<void> linkSteam({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+    bool import = false,
+  }) async {
+    final res = await _api.v2AccountLinkSteamPost(
+      body: ApiLinkSteamRequest(
+        account: ApiAccountSteam(token: token, vars: vars),
+      ),
+    );
+
+    if (!res.isSuccessful) throw Exception('Linking failed.');
   }
 
   @override
@@ -300,6 +413,23 @@ class NakamaRestApiClient extends NakamaBaseClient {
       token: data.token!,
       refreshToken: data.refreshToken,
     );
+  }
+
+  @override
+  Future<void> linkCustom({
+    required model.Session session,
+    required String id,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountLinkCustomPost(
+      body: ApiAccountCustom(id: id, vars: vars),
+    );
+
+    if (res.body == null) {
+      throw Exception('Authentication failed.');
+    }
+
+    if (!res.isSuccessful) throw Exception('Linking failed.');
   }
 
   @override

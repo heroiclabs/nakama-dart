@@ -132,6 +132,21 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> linkEmail({
+    required model.Session session,
+    required String email,
+    required String password,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountEmail()
+      ..email = email
+      ..password = password
+      ..vars.addAll(vars ?? {});
+
+    await _client.linkEmail(request);
+  }
+
+  @override
   Future<model.Session> authenticateDevice({
     required String deviceId,
     bool create = true,
@@ -155,6 +170,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
       token: res.token,
       refreshToken: res.refreshToken,
     );
+  }
+
+  @override
+  Future<void> linkDevice({
+    required model.Session session,
+    required String deviceId,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountDevice()
+      ..id = deviceId
+      ..vars.addAll(vars ?? {});
+
+    await _client.linkDevice(request);
   }
 
   @override
@@ -186,6 +214,22 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> linkFacebook({
+    required model.Session session,
+    required String token,
+    bool import = false,
+    Map<String, String>? vars,
+  }) async {
+    final request = LinkFacebookRequest()
+      ..account = (AccountFacebook()
+        ..token = token
+        ..vars.addAll(vars ?? {}))
+      ..sync = BoolValue(value: import);
+
+    await _client.linkFacebook(request);
+  }
+
+  @override
   Future<model.Session> authenticateGoogle({
     required String token,
     bool create = true,
@@ -209,6 +253,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
       token: res.token,
       refreshToken: res.refreshToken,
     );
+  }
+
+  @override
+  Future<void> linkGoogle({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountGoogle()
+      ..token = token
+      ..vars.addAll(vars ?? {});
+
+    await _client.linkGoogle(request);
   }
 
   @override
@@ -248,14 +305,39 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> linkGameCenter({
+    required model.Session session,
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountGameCenter()
+      ..playerId = playerId
+      ..bundleId = bundleId
+      ..timestampSeconds = Int64(timestampSeconds)
+      ..salt = salt
+      ..signature = signature
+      ..publicKeyUrl = publicKeyUrl
+      ..vars.addAll(vars ?? {});
+
+    await _client.linkGameCenter(request);
+  }
+
+  @override
   Future<model.Session> authenticateSteam({
     required String token,
     bool create = true,
     String? username,
     Map<String, String>? vars,
+    bool import = false,
   }) async {
     final request = AuthenticateSteamRequest()
       ..create_2 = BoolValue(value: create)
+      ..sync = BoolValue(value: import)
       ..account = (AccountSteam()
         ..token = token
         ..vars.addAll(vars ?? {}));
@@ -271,6 +353,22 @@ class NakamaGrpcClient extends NakamaBaseClient {
       token: res.token,
       refreshToken: res.refreshToken,
     );
+  }
+
+  @override
+  Future<void> linkSteam({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+    bool import = false,
+  }) async {
+    final request = LinkSteamRequest()
+      ..sync = BoolValue(value: import)
+      ..account = (AccountSteam()
+        ..token = token
+        ..vars.addAll(vars ?? {}));
+
+    await _client.linkSteam(request);
   }
 
   @override
@@ -297,6 +395,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
       token: res.token,
       refreshToken: res.refreshToken,
     );
+  }
+
+  @override
+  Future<void> linkCustom({
+    required model.Session session,
+    required String id,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountCustom()
+      ..id = id
+      ..vars.addAll(vars ?? {});
+
+    await _client.linkCustom(request);
   }
 
   @override
