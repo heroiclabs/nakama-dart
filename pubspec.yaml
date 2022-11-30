@@ -1,7 +1,7 @@
 name: nakama
 description: Nakama is an open-source scalable game server that lets you focus
   on building games.
-version: 1.0.0-dev.2
+version: 1.0.0-dev.3
 repository: https://github.com/obrunsmann/flutter_nakama
 homepage: https://flutter-nakama.gitbook.io
 
