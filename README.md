@@ -16,13 +16,13 @@ This is the 1.0-Prerelease. Feel free to play around and give some final feebdac
 ### 1. Setup Nakama Server
 You need a Nakama instance for developing. I suggest setting up Nakama with **Docker Compose**. You find a tutorial here: [Install Nakama with Docker Compose](https://heroiclabs.com/docs/install-docker-quickstart/) and here [Installation & Setup](installation-and-setup.md).
 
-### 2. Add flutter\_nakama to pubspec.yaml.
+### 2. Add flutter\_nakama pre-release to pubspec.yaml.
 ```yaml
 name: your_game
 dependencies:
     flutter:
         sdk: flutter
-    flutter_nakama: ^0.1.0
+    flutter_nakama: ^1.0.0-dev.2
 ```
 
 ### 3. Create nakama base client
