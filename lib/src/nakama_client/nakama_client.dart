@@ -360,6 +360,14 @@ abstract class NakamaBaseClient {
     DateTime? expiry,
   });
 
+  Future<model.LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
+    required model.Session session,
+    required String leaderboardName,
+    required String ownerId,
+    int limit = defaultLimit,
+    DateTime? expiry,
+  });
+
   /// # Submitting scores
   /// When players submit scores, Nakama will increment the player’s existing
   /// score by the submitted score value.

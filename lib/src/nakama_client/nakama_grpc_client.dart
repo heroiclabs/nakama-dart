@@ -822,6 +822,31 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
+    required model.Session session,
+    required String leaderboardName,
+    required String ownerId,
+    int limit = 20,
+    DateTime? expiry,
+  }) async {
+    assert(limit > 0 && limit <= 100);
+
+    final res = await _client.listLeaderboardRecordsAroundOwner(
+      ListLeaderboardRecordsAroundOwnerRequest(
+        leaderboardId: leaderboardName,
+        ownerId: ownerId,
+        limit: UInt32Value(value: limit),
+        expiry: expiry == null
+            ? null
+            : Int64Value(value: Int64(expiry.millisecondsSinceEpoch ~/ 1000)),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+
+    return model.LeaderboardRecordList.fromDto(res);
+  }
+
+  @override
   Future<model.LeaderboardRecord> writeLeaderboardRecord({
     required model.Session session,
     required String leaderboardId,

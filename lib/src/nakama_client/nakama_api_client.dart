@@ -881,6 +881,30 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
+    required model.Session session,
+    required String leaderboardName,
+    required String ownerId,
+    int limit = defaultLimit,
+    DateTime? expiry,
+  }) async {
+    assert(limit > 0 && limit <= 100);
+
+    _session = session;
+
+    final res = await _api.v2LeaderboardLeaderboardIdOwnerOwnerIdGet(
+      leaderboardId: leaderboardName,
+      ownerId: ownerId,
+      limit: limit,
+      expiry: expiry == null
+          ? null
+          : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
+    );
+
+    return model.LeaderboardRecordList.fromJson(res.body!.toJson());
+  }
+
+  @override
   Future<model.LeaderboardRecord> writeLeaderboardRecord({
     required model.Session session,
     required String leaderboardId,
