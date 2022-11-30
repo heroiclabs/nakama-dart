@@ -326,6 +326,51 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.Session> authenticateFacebookInstantGame({
+    required String signedPlayerInfo,
+    bool create = true,
+    String? username,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountAuthenticateFacebookinstantgamePost(
+      body: ApiAccountFacebookInstantGame(
+        signedPlayerInfo: signedPlayerInfo,
+        vars: vars,
+      ),
+      create: create,
+      username: username,
+    );
+
+    if (res.body == null) {
+      throw Exception('Authentication failed.');
+    }
+
+    final data = res.body!;
+
+    return model.Session(
+      created: data.created ?? false,
+      token: data.token!,
+      refreshToken: data.refreshToken,
+    );
+  }
+
+  @override
+  Future<void> linkFacebookInstantGame({
+    required model.Session session,
+    required String signedPlayerInfo,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountLinkFacebookinstantgamePost(
+      body: ApiAccountFacebookInstantGame(
+        signedPlayerInfo: signedPlayerInfo,
+        vars: vars,
+      ),
+    );
+
+    if (!res.isSuccessful) throw Exception('Linking failed.');
+  }
+
+  @override
   Future<model.Session> authenticateGameCenter({
     required String playerId,
     required String bundleId,

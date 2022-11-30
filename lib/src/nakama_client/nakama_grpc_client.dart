@@ -269,6 +269,45 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.Session> authenticateFacebookInstantGame({
+    required String signedPlayerInfo,
+    bool create = true,
+    String? username,
+    Map<String, String>? vars,
+  }) async {
+    final request = AuthenticateFacebookInstantGameRequest()
+      ..create_2 = BoolValue(value: create)
+      ..account = (AccountFacebookInstantGame()
+        ..signedPlayerInfo = signedPlayerInfo
+        ..vars.addAll(vars ?? {}));
+
+    if (username != null) {
+      request.username = username;
+    }
+
+    final res = await _client.authenticateFacebookInstantGame(request);
+
+    return model.Session(
+      created: res.created,
+      token: res.token,
+      refreshToken: res.refreshToken,
+    );
+  }
+
+  @override
+  Future<void> linkFacebookInstantGame({
+    required model.Session session,
+    required String signedPlayerInfo,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountFacebookInstantGame()
+      ..signedPlayerInfo = signedPlayerInfo
+      ..vars.addAll(vars ?? {});
+
+    await _client.linkFacebookInstantGame(request);
+  }
+
+  @override
   Future<model.Session> authenticateGoogle({
     required String token,
     bool create = true,
