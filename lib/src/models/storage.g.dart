@@ -10,7 +10,7 @@ _$_StorageObject _$$_StorageObjectFromJson(Map<String, dynamic> json) =>
     _$_StorageObject(
       collection: json['collection'] as String,
       key: json['key'] as String,
-      userId: json['userId'] as String,
+      userId: json['userId'] as String?,
       value: json['value'] as String,
       version: json['version'] as String,
       permissionRead: json['permissionRead'] as int,

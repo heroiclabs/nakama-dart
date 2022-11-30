@@ -11,7 +11,7 @@ class StorageObject with _$StorageObject {
   const factory StorageObject({
     required String collection,
     required String key,
-    required String userId,
+    String? userId,
     required String value,
     required String version,
     required int permissionRead,

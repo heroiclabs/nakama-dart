@@ -1,5 +1,4 @@
 import 'package:faker/faker.dart';
-import 'package:nakama/api.dart' as api;
 import 'package:nakama/nakama.dart';
 import 'package:test/test.dart';
 
@@ -23,7 +22,7 @@ void main() {
     test('fetching my account', () async {
       final account = await client.getAccount(session);
 
-      expect(account, isA<api.Account>());
+      expect(account, isA<Account>());
     });
 
     test('fetch another\'s account', () async {
@@ -38,7 +37,7 @@ void main() {
         ids: [anotherUser.userId],
       );
 
-      expect(users, isA<api.Users>());
+      expect(users, isA<List<User>>());
       expect(users, hasLength(1));
     });
 

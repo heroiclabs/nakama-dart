@@ -22,7 +22,7 @@ StorageObject _$StorageObjectFromJson(Map<String, dynamic> json) {
 mixin _$StorageObject {
   String get collection => throw _privateConstructorUsedError;
   String get key => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
   String get version => throw _privateConstructorUsedError;
   int get permissionRead => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $StorageObjectCopyWith<$Res> {
   $Res call(
       {String collection,
       String key,
-      String userId,
+      String? userId,
       String value,
       String version,
       int permissionRead,
@@ -69,7 +69,7 @@ class _$StorageObjectCopyWithImpl<$Res, $Val extends StorageObject>
   $Res call({
     Object? collection = null,
     Object? key = null,
-    Object? userId = null,
+    Object? userId = freezed,
     Object? value = null,
     Object? version = null,
     Object? permissionRead = null,
@@ -86,10 +86,10 @@ class _$StorageObjectCopyWithImpl<$Res, $Val extends StorageObject>
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -129,7 +129,7 @@ abstract class _$$_StorageObjectCopyWith<$Res>
   $Res call(
       {String collection,
       String key,
-      String userId,
+      String? userId,
       String value,
       String version,
       int permissionRead,
@@ -151,7 +151,7 @@ class __$$_StorageObjectCopyWithImpl<$Res>
   $Res call({
     Object? collection = null,
     Object? key = null,
-    Object? userId = null,
+    Object? userId = freezed,
     Object? value = null,
     Object? version = null,
     Object? permissionRead = null,
@@ -168,10 +168,10 @@ class __$$_StorageObjectCopyWithImpl<$Res>
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: null == userId
+      userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -206,7 +206,7 @@ class _$_StorageObject extends _StorageObject {
   const _$_StorageObject(
       {required this.collection,
       required this.key,
-      required this.userId,
+      this.userId,
       required this.value,
       required this.version,
       required this.permissionRead,
@@ -223,7 +223,7 @@ class _$_StorageObject extends _StorageObject {
   @override
   final String key;
   @override
-  final String userId;
+  final String? userId;
   @override
   final String value;
   @override
@@ -286,7 +286,7 @@ abstract class _StorageObject extends StorageObject {
   const factory _StorageObject(
       {required final String collection,
       required final String key,
-      required final String userId,
+      final String? userId,
       required final String value,
       required final String version,
       required final int permissionRead,
@@ -303,7 +303,7 @@ abstract class _StorageObject extends StorageObject {
   @override
   String get key;
   @override
-  String get userId;
+  String? get userId;
   @override
   String get value;
   @override
