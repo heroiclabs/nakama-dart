@@ -1,6 +1,6 @@
 name: simple_multiplayer_web
 description: A new Flutter project.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
@@ -18,8 +18,4 @@ dev_dependencies:
   flutter_lints: ^1.0.4
 
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
