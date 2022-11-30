@@ -1,3 +1,8 @@
+## 1.0.0-dev.2
+
+* Full removed exported references of the underlaying raw datastructures
+* Refactored realtime client
+
 ## 1.0.0-dev.1
 
 * Changed License from MIT to Apache 2.0
