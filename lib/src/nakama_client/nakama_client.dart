@@ -30,6 +30,11 @@ abstract class NakamaBaseClient {
 
   NakamaBaseClient();
 
+  Future<model.Session> sessionRefresh({
+    required model.Session session,
+    Map<String, String>? vars,
+  });
+
   Future<model.Session> authenticateEmail({
     required String email,
     required String password,
@@ -107,7 +112,6 @@ abstract class NakamaBaseClient {
   Future<void> unlinkFacebook({
     required model.Session session,
     required String token,
-    bool import = false,
     Map<String, String>? vars,
   });
 

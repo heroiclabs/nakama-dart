@@ -104,6 +104,22 @@ class NakamaGrpcClient extends NakamaBaseClient {
       );
 
   @override
+  Future<model.Session> sessionRefresh({
+    required model.Session session,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _client.sessionRefresh(
+      SessionRefreshRequest(token: session.refreshToken, vars: vars),
+    );
+
+    return model.Session(
+      created: res.created,
+      token: res.token,
+      refreshToken: res.refreshToken,
+    );
+  }
+
+  @override
   Future<model.Session> authenticateEmail({
     required String email,
     required String password,
