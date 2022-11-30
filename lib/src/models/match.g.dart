@@ -11,8 +11,8 @@ _$_Match _$$_MatchFromJson(Map<String, dynamic> json) => _$_Match(
       authoritative: json['authoritative'] as bool,
       label: json['label'] as String,
       size: json['size'] as int,
-      tickRate: json['tickRate'] as int,
-      handlerName: json['handlerName'] as String,
+      tickRate: json['tickRate'] as int?,
+      handlerName: json['handlerName'] as String?,
     );
 
 Map<String, dynamic> _$$_MatchToJson(_$_Match instance) => <String, dynamic>{

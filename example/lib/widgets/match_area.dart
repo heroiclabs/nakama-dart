@@ -2,10 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:nakama/nakama.dart';
-import 'package:nakama/rtapi.dart' as rt;
 
 class MatchArea extends StatefulWidget {
-  final rt.Match match;
+  final Match match;
 
   const MatchArea(this.match, {Key? key}) : super(key: key);
 

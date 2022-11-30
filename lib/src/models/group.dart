@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nakama/api.dart' as api;
+import 'package:nakama/src/api/api.dart' as api;
 import 'package:nakama/src/enum/group_membership_states.dart';
 import 'package:nakama/src/models/account.dart';
 

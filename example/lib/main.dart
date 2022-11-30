@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:nakama/nakama.dart';
-import 'package:nakama/rtapi.dart' as rt;
 import 'package:simple_multiplayer_web/widgets/match_area.dart';
 import 'package:simple_multiplayer_web/widgets/matchmaker.dart';
 import 'package:simple_multiplayer_web/widgets/sign_in_box.dart';
@@ -30,7 +29,7 @@ class __HomeScreenState extends State<_HomeScreen> {
 
   Session? _session;
   Account? _account;
-  rt.Match? _match;
+  Match? _match;
 
   @override
   void initState() {

@@ -13,10 +13,14 @@ _$_StorageObject _$$_StorageObjectFromJson(Map<String, dynamic> json) =>
       userId: json['userId'] as String?,
       value: json['value'] as String,
       version: json['version'] as String,
-      permissionRead: json['permissionRead'] as int,
-      permissionWrite: json['permissionWrite'] as int,
-      createTime: DateTime.parse(json['createTime'] as String),
-      updateTime: DateTime.parse(json['updateTime'] as String),
+      permissionRead: json['permissionRead'] as int?,
+      permissionWrite: json['permissionWrite'] as int?,
+      createTime: json['createTime'] == null
+          ? null
+          : DateTime.parse(json['createTime'] as String),
+      updateTime: json['updateTime'] == null
+          ? null
+          : DateTime.parse(json['updateTime'] as String),
     );
 
 Map<String, dynamic> _$$_StorageObjectToJson(_$_StorageObject instance) =>
@@ -28,13 +32,13 @@ Map<String, dynamic> _$$_StorageObjectToJson(_$_StorageObject instance) =>
       'version': instance.version,
       'permissionRead': instance.permissionRead,
       'permissionWrite': instance.permissionWrite,
-      'createTime': instance.createTime.toIso8601String(),
-      'updateTime': instance.updateTime.toIso8601String(),
+      'createTime': instance.createTime?.toIso8601String(),
+      'updateTime': instance.updateTime?.toIso8601String(),
     };
 
 _$_StorageObjectList _$$_StorageObjectListFromJson(Map<String, dynamic> json) =>
     _$_StorageObjectList(
-      cursor: json['cursor'] as String,
+      cursor: json['cursor'] as String?,
       objects: (json['objects'] as List<dynamic>)
           .map((e) => StorageObject.fromJson(e as Map<String, dynamic>))
           .toList(),

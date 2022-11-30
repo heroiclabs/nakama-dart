@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nakama/api.dart' as api;
+import 'package:nakama/src/api/api.dart' as api;
 
 part 'storage.g.dart';
 part 'storage.freezed.dart';
@@ -14,10 +14,10 @@ class StorageObject with _$StorageObject {
     String? userId,
     required String value,
     required String version,
-    required int permissionRead,
-    required int permissionWrite,
-    required DateTime createTime,
-    required DateTime updateTime,
+    int? permissionRead,
+    int? permissionWrite,
+    DateTime? createTime,
+    DateTime? updateTime,
   }) = _StorageObject;
 
   factory StorageObject.fromJson(Map<String, Object?> json) =>
@@ -41,7 +41,7 @@ class StorageObjectList with _$StorageObjectList {
   const StorageObjectList._();
 
   const factory StorageObjectList({
-    required String cursor,
+    String? cursor,
     required List<StorageObject> objects,
   }) = _StorageObjectList;
 

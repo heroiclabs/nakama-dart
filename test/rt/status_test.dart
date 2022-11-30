@@ -60,7 +60,7 @@ void main() {
       const statusText = 'Running some tests...';
       a.onStatusPresence.listen(expectAsync1((event) {
         expect(event.joins, hasLength(1));
-        expect(event.joins.first.status.value, equals(statusText));
+        expect(event.joins.first.status, equals(statusText));
       }, count: 1));
 
       await a.updateStatus(statusText);

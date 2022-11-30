@@ -25,10 +25,10 @@ mixin _$StorageObject {
   String? get userId => throw _privateConstructorUsedError;
   String get value => throw _privateConstructorUsedError;
   String get version => throw _privateConstructorUsedError;
-  int get permissionRead => throw _privateConstructorUsedError;
-  int get permissionWrite => throw _privateConstructorUsedError;
-  DateTime get createTime => throw _privateConstructorUsedError;
-  DateTime get updateTime => throw _privateConstructorUsedError;
+  int? get permissionRead => throw _privateConstructorUsedError;
+  int? get permissionWrite => throw _privateConstructorUsedError;
+  DateTime? get createTime => throw _privateConstructorUsedError;
+  DateTime? get updateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,10 +48,10 @@ abstract class $StorageObjectCopyWith<$Res> {
       String? userId,
       String value,
       String version,
-      int permissionRead,
-      int permissionWrite,
-      DateTime createTime,
-      DateTime updateTime});
+      int? permissionRead,
+      int? permissionWrite,
+      DateTime? createTime,
+      DateTime? updateTime});
 }
 
 /// @nodoc
@@ -72,10 +72,10 @@ class _$StorageObjectCopyWithImpl<$Res, $Val extends StorageObject>
     Object? userId = freezed,
     Object? value = null,
     Object? version = null,
-    Object? permissionRead = null,
-    Object? permissionWrite = null,
-    Object? createTime = null,
-    Object? updateTime = null,
+    Object? permissionRead = freezed,
+    Object? permissionWrite = freezed,
+    Object? createTime = freezed,
+    Object? updateTime = freezed,
   }) {
     return _then(_value.copyWith(
       collection: null == collection
@@ -98,22 +98,22 @@ class _$StorageObjectCopyWithImpl<$Res, $Val extends StorageObject>
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
               as String,
-      permissionRead: null == permissionRead
+      permissionRead: freezed == permissionRead
           ? _value.permissionRead
           : permissionRead // ignore: cast_nullable_to_non_nullable
-              as int,
-      permissionWrite: null == permissionWrite
+              as int?,
+      permissionWrite: freezed == permissionWrite
           ? _value.permissionWrite
           : permissionWrite // ignore: cast_nullable_to_non_nullable
-              as int,
-      createTime: null == createTime
+              as int?,
+      createTime: freezed == createTime
           ? _value.createTime
           : createTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updateTime: null == updateTime
+              as DateTime?,
+      updateTime: freezed == updateTime
           ? _value.updateTime
           : updateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -132,10 +132,10 @@ abstract class _$$_StorageObjectCopyWith<$Res>
       String? userId,
       String value,
       String version,
-      int permissionRead,
-      int permissionWrite,
-      DateTime createTime,
-      DateTime updateTime});
+      int? permissionRead,
+      int? permissionWrite,
+      DateTime? createTime,
+      DateTime? updateTime});
 }
 
 /// @nodoc
@@ -154,10 +154,10 @@ class __$$_StorageObjectCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? value = null,
     Object? version = null,
-    Object? permissionRead = null,
-    Object? permissionWrite = null,
-    Object? createTime = null,
-    Object? updateTime = null,
+    Object? permissionRead = freezed,
+    Object? permissionWrite = freezed,
+    Object? createTime = freezed,
+    Object? updateTime = freezed,
   }) {
     return _then(_$_StorageObject(
       collection: null == collection
@@ -180,22 +180,22 @@ class __$$_StorageObjectCopyWithImpl<$Res>
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
               as String,
-      permissionRead: null == permissionRead
+      permissionRead: freezed == permissionRead
           ? _value.permissionRead
           : permissionRead // ignore: cast_nullable_to_non_nullable
-              as int,
-      permissionWrite: null == permissionWrite
+              as int?,
+      permissionWrite: freezed == permissionWrite
           ? _value.permissionWrite
           : permissionWrite // ignore: cast_nullable_to_non_nullable
-              as int,
-      createTime: null == createTime
+              as int?,
+      createTime: freezed == createTime
           ? _value.createTime
           : createTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updateTime: null == updateTime
+              as DateTime?,
+      updateTime: freezed == updateTime
           ? _value.updateTime
           : updateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
     ));
   }
 }
@@ -209,10 +209,10 @@ class _$_StorageObject extends _StorageObject {
       this.userId,
       required this.value,
       required this.version,
-      required this.permissionRead,
-      required this.permissionWrite,
-      required this.createTime,
-      required this.updateTime})
+      this.permissionRead,
+      this.permissionWrite,
+      this.createTime,
+      this.updateTime})
       : super._();
 
   factory _$_StorageObject.fromJson(Map<String, dynamic> json) =>
@@ -229,13 +229,13 @@ class _$_StorageObject extends _StorageObject {
   @override
   final String version;
   @override
-  final int permissionRead;
+  final int? permissionRead;
   @override
-  final int permissionWrite;
+  final int? permissionWrite;
   @override
-  final DateTime createTime;
+  final DateTime? createTime;
   @override
-  final DateTime updateTime;
+  final DateTime? updateTime;
 
   @override
   String toString() {
@@ -289,10 +289,10 @@ abstract class _StorageObject extends StorageObject {
       final String? userId,
       required final String value,
       required final String version,
-      required final int permissionRead,
-      required final int permissionWrite,
-      required final DateTime createTime,
-      required final DateTime updateTime}) = _$_StorageObject;
+      final int? permissionRead,
+      final int? permissionWrite,
+      final DateTime? createTime,
+      final DateTime? updateTime}) = _$_StorageObject;
   const _StorageObject._() : super._();
 
   factory _StorageObject.fromJson(Map<String, dynamic> json) =
@@ -309,13 +309,13 @@ abstract class _StorageObject extends StorageObject {
   @override
   String get version;
   @override
-  int get permissionRead;
+  int? get permissionRead;
   @override
-  int get permissionWrite;
+  int? get permissionWrite;
   @override
-  DateTime get createTime;
+  DateTime? get createTime;
   @override
-  DateTime get updateTime;
+  DateTime? get updateTime;
   @override
   @JsonKey(ignore: true)
   _$$_StorageObjectCopyWith<_$_StorageObject> get copyWith =>
@@ -328,7 +328,7 @@ StorageObjectList _$StorageObjectListFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StorageObjectList {
-  String get cursor => throw _privateConstructorUsedError;
+  String? get cursor => throw _privateConstructorUsedError;
   List<StorageObject> get objects => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -343,7 +343,7 @@ abstract class $StorageObjectListCopyWith<$Res> {
           StorageObjectList value, $Res Function(StorageObjectList) then) =
       _$StorageObjectListCopyWithImpl<$Res, StorageObjectList>;
   @useResult
-  $Res call({String cursor, List<StorageObject> objects});
+  $Res call({String? cursor, List<StorageObject> objects});
 }
 
 /// @nodoc
@@ -359,14 +359,14 @@ class _$StorageObjectListCopyWithImpl<$Res, $Val extends StorageObjectList>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cursor = null,
+    Object? cursor = freezed,
     Object? objects = null,
   }) {
     return _then(_value.copyWith(
-      cursor: null == cursor
+      cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       objects: null == objects
           ? _value.objects
           : objects // ignore: cast_nullable_to_non_nullable
@@ -383,7 +383,7 @@ abstract class _$$_StorageObjectListCopyWith<$Res>
       __$$_StorageObjectListCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String cursor, List<StorageObject> objects});
+  $Res call({String? cursor, List<StorageObject> objects});
 }
 
 /// @nodoc
@@ -397,14 +397,14 @@ class __$$_StorageObjectListCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cursor = null,
+    Object? cursor = freezed,
     Object? objects = null,
   }) {
     return _then(_$_StorageObjectList(
-      cursor: null == cursor
+      cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       objects: null == objects
           ? _value._objects
           : objects // ignore: cast_nullable_to_non_nullable
@@ -417,7 +417,7 @@ class __$$_StorageObjectListCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_StorageObjectList extends _StorageObjectList {
   const _$_StorageObjectList(
-      {required this.cursor, required final List<StorageObject> objects})
+      {this.cursor, required final List<StorageObject> objects})
       : _objects = objects,
         super._();
 
@@ -425,7 +425,7 @@ class _$_StorageObjectList extends _StorageObjectList {
       _$$_StorageObjectListFromJson(json);
 
   @override
-  final String cursor;
+  final String? cursor;
   final List<StorageObject> _objects;
   @override
   List<StorageObject> get objects {
@@ -469,7 +469,7 @@ class _$_StorageObjectList extends _StorageObjectList {
 
 abstract class _StorageObjectList extends StorageObjectList {
   const factory _StorageObjectList(
-      {required final String cursor,
+      {final String? cursor,
       required final List<StorageObject> objects}) = _$_StorageObjectList;
   const _StorageObjectList._() : super._();
 
@@ -477,7 +477,7 @@ abstract class _StorageObjectList extends StorageObjectList {
       _$_StorageObjectList.fromJson;
 
   @override
-  String get cursor;
+  String? get cursor;
   @override
   List<StorageObject> get objects;
   @override
