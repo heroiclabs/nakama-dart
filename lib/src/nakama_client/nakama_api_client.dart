@@ -144,6 +144,24 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> unlinkEmail({
+    required model.Session session,
+    required String email,
+    required String password,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountLinkEmailPost(
+      body: ApiAccountEmail(
+        email: email,
+        password: password,
+        vars: vars,
+      ),
+    );
+
+    if (!res.isSuccessful) throw Exception('Unlinking failed.');
+  }
+
+  @override
   Future<model.Session> authenticateDevice({
     required String deviceId,
     bool create = true,
@@ -179,11 +197,20 @@ class NakamaRestApiClient extends NakamaBaseClient {
       body: ApiAccountDevice(id: deviceId, vars: vars),
     );
 
-    if (res.body == null) {
-      throw Exception('Authentication failed.');
-    }
-
     if (!res.isSuccessful) throw Exception('Linking failed.');
+  }
+
+  @override
+  Future<void> unlinkDevice({
+    required model.Session session,
+    required String deviceId,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountUnlinkDevicePost(
+      body: ApiAccountDevice(id: deviceId, vars: vars),
+    );
+
+    if (!res.isSuccessful) throw Exception('Unlinking failed.');
   }
 
   @override
@@ -236,6 +263,22 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> unlinkFacebook({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountUnlinkFacebookPost(
+      body: ApiAccountFacebook(
+        token: token,
+        vars: vars,
+      ),
+    );
+
+    if (!res.isSuccessful) throw Exception('Unlinking failed.');
+  }
+
+  @override
   Future<model.Session> authenticateGoogle({
     required String token,
     bool create = true,
@@ -278,6 +321,22 @@ class NakamaRestApiClient extends NakamaBaseClient {
     );
 
     if (!res.isSuccessful) throw Exception('Linking failed.');
+  }
+
+  @override
+  Future<void> unlinkGoogle({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountUnlinkGooglePost(
+      body: ApiAccountGoogle(
+        token: token,
+        vars: vars,
+      ),
+    );
+
+    if (!res.isSuccessful) throw Exception('Unlinking failed.');
   }
 
   @override
@@ -326,6 +385,22 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> unlinkApple({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountUnlinkApplePost(
+      body: ApiAccountApple(
+        token: token,
+        vars: vars,
+      ),
+    );
+
+    if (!res.isSuccessful) throw Exception('Unlinking failed.');
+  }
+
+  @override
   Future<model.Session> authenticateFacebookInstantGame({
     required String signedPlayerInfo,
     bool create = true,
@@ -368,6 +443,22 @@ class NakamaRestApiClient extends NakamaBaseClient {
     );
 
     if (!res.isSuccessful) throw Exception('Linking failed.');
+  }
+
+  @override
+  Future<void> unlinkFacebookInstantGame({
+    required model.Session session,
+    required String signedPlayerInfo,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountUnlinkFacebookinstantgamePost(
+      body: ApiAccountFacebookInstantGame(
+        signedPlayerInfo: signedPlayerInfo,
+        vars: vars,
+      ),
+    );
+
+    if (!res.isSuccessful) throw Exception('Unlinking failed.');
   }
 
   @override
@@ -436,6 +527,32 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> unlinkGameCenter({
+    required model.Session session,
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountUnlinkGamecenterPost(
+      body: ApiAccountGameCenter(
+        playerId: playerId,
+        bundleId: bundleId,
+        timestampSeconds: timestampSeconds.toString(),
+        salt: salt,
+        signature: signature,
+        publicKeyUrl: publicKeyUrl,
+        vars: vars,
+      ),
+    );
+
+    if (!res.isSuccessful) throw Exception('Unlinking failed.');
+  }
+
+  @override
   Future<model.Session> authenticateSteam({
     required String token,
     bool create = true,
@@ -480,6 +597,20 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> unlinkSteam({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+    bool import = false,
+  }) async {
+    final res = await _api.v2AccountUnlinkSteamPost(
+      body: ApiAccountSteam(token: token, vars: vars),
+    );
+
+    if (!res.isSuccessful) throw Exception('Unlinking failed.');
+  }
+
+  @override
   Future<model.Session> authenticateCustom({
     required String id,
     bool create = true,
@@ -515,11 +646,20 @@ class NakamaRestApiClient extends NakamaBaseClient {
       body: ApiAccountCustom(id: id, vars: vars),
     );
 
-    if (res.body == null) {
-      throw Exception('Authentication failed.');
-    }
-
     if (!res.isSuccessful) throw Exception('Linking failed.');
+  }
+
+  @override
+  Future<void> unlinkCustom({
+    required model.Session session,
+    required String id,
+    Map<String, String>? vars,
+  }) async {
+    final res = await _api.v2AccountUnlinkCustomPost(
+      body: ApiAccountCustom(id: id, vars: vars),
+    );
+
+    if (!res.isSuccessful) throw Exception('Unlinking failed.');
   }
 
   @override

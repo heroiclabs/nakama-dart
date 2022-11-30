@@ -147,6 +147,21 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> unlinkEmail({
+    required model.Session session,
+    required String email,
+    required String password,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountEmail()
+      ..email = email
+      ..password = password
+      ..vars.addAll(vars ?? {});
+
+    await _client.unlinkEmail(request);
+  }
+
+  @override
   Future<model.Session> authenticateDevice({
     required String deviceId,
     bool create = true,
@@ -183,6 +198,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
       ..vars.addAll(vars ?? {});
 
     await _client.linkDevice(request);
+  }
+
+  @override
+  Future<void> unlinkDevice({
+    required model.Session session,
+    required String deviceId,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountDevice()
+      ..id = deviceId
+      ..vars.addAll(vars ?? {});
+
+    await _client.unlinkDevice(request);
   }
 
   @override
@@ -230,6 +258,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> unlinkFacebook({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountFacebook()
+      ..token = token
+      ..vars.addAll(vars ?? {});
+
+    await _client.unlinkFacebook(request);
+  }
+
+  @override
   Future<model.Session> authenticateApple({
     required String token,
     bool create = true,
@@ -266,6 +307,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
       ..vars.addAll(vars ?? {});
 
     await _client.linkApple(request);
+  }
+
+  @override
+  Future<void> unlinkApple({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountApple()
+      ..token = token
+      ..vars.addAll(vars ?? {});
+
+    await _client.unlinkApple(request);
   }
 
   @override
@@ -308,6 +362,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> unlinkFacebookInstantGame({
+    required model.Session session,
+    required String signedPlayerInfo,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountFacebookInstantGame()
+      ..signedPlayerInfo = signedPlayerInfo
+      ..vars.addAll(vars ?? {});
+
+    await _client.unlinkFacebookInstantGame(request);
+  }
+
+  @override
   Future<model.Session> authenticateGoogle({
     required String token,
     bool create = true,
@@ -344,6 +411,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
       ..vars.addAll(vars ?? {});
 
     await _client.linkGoogle(request);
+  }
+
+  @override
+  Future<void> unlinkGoogle({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountGoogle()
+      ..token = token
+      ..vars.addAll(vars ?? {});
+
+    await _client.unlinkGoogle(request);
   }
 
   @override
@@ -406,6 +486,29 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> unlinkGameCenter({
+    required model.Session session,
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountGameCenter()
+      ..playerId = playerId
+      ..bundleId = bundleId
+      ..timestampSeconds = Int64(timestampSeconds)
+      ..salt = salt
+      ..signature = signature
+      ..publicKeyUrl = publicKeyUrl
+      ..vars.addAll(vars ?? {});
+
+    await _client.unlinkGameCenter(request);
+  }
+
+  @override
   Future<model.Session> authenticateSteam({
     required String token,
     bool create = true,
@@ -450,6 +553,22 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> unlinkSteam({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+    bool import = false,
+  }) async {
+    final request = LinkSteamRequest()
+      ..sync = BoolValue(value: import)
+      ..account = (AccountSteam()
+        ..token = token
+        ..vars.addAll(vars ?? {}));
+
+    await _client.linkSteam(request);
+  }
+
+  @override
   Future<model.Session> authenticateCustom({
     required String id,
     bool create = true,
@@ -477,6 +596,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> linkCustom({
+    required model.Session session,
+    required String id,
+    Map<String, String>? vars,
+  }) async {
+    final request = AccountCustom()
+      ..id = id
+      ..vars.addAll(vars ?? {});
+
+    await _client.linkCustom(request);
+  }
+
+  @override
+  Future<void> unlinkCustom({
     required model.Session session,
     required String id,
     Map<String, String>? vars,

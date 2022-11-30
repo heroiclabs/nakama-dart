@@ -46,6 +46,13 @@ abstract class NakamaBaseClient {
     Map<String, String>? vars,
   });
 
+  Future<void> unlinkEmail({
+    required model.Session session,
+    required String email,
+    required String password,
+    Map<String, String>? vars,
+  });
+
   /// # Device authentication
   /// Nakama Device Authentication uses the physical device’s unique identifier
   /// to easily authenticate a user and create an account if one does not exist.
@@ -61,6 +68,12 @@ abstract class NakamaBaseClient {
 
   /// # Linking Device ID authentication
   Future<void> linkDevice({
+    required model.Session session,
+    required String deviceId,
+    Map<String, String>? vars,
+  });
+
+  Future<void> unlinkDevice({
     required model.Session session,
     required String deviceId,
     Map<String, String>? vars,
@@ -91,6 +104,13 @@ abstract class NakamaBaseClient {
     Map<String, String>? vars,
   });
 
+  Future<void> unlinkFacebook({
+    required model.Session session,
+    required String token,
+    bool import = false,
+    Map<String, String>? vars,
+  });
+
   Future<model.Session> authenticateGoogle({
     required String token,
     bool create = true,
@@ -100,6 +120,12 @@ abstract class NakamaBaseClient {
 
   /// # Linking Google authentication
   Future<void> linkGoogle({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+  });
+
+  Future<void> unlinkGoogle({
     required model.Session session,
     required String token,
     Map<String, String>? vars,
@@ -118,6 +144,12 @@ abstract class NakamaBaseClient {
     Map<String, String>? vars,
   });
 
+  Future<void> unlinkApple({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+  });
+
   Future<model.Session> authenticateFacebookInstantGame({
     required String signedPlayerInfo,
     bool create = true,
@@ -126,6 +158,12 @@ abstract class NakamaBaseClient {
   });
 
   Future<void> linkFacebookInstantGame({
+    required model.Session session,
+    required String signedPlayerInfo,
+    Map<String, String>? vars,
+  });
+
+  Future<void> unlinkFacebookInstantGame({
     required model.Session session,
     required String signedPlayerInfo,
     Map<String, String>? vars,
@@ -145,6 +183,17 @@ abstract class NakamaBaseClient {
 
   /// # Linking Game Center authentication
   Future<void> linkGameCenter({
+    required model.Session session,
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    Map<String, String>? vars,
+  });
+
+  Future<void> unlinkGameCenter({
     required model.Session session,
     required String playerId,
     required String bundleId,
@@ -176,6 +225,13 @@ abstract class NakamaBaseClient {
     bool import = false,
   });
 
+  Future<void> unlinkSteam({
+    required model.Session session,
+    required String token,
+    Map<String, String>? vars,
+    bool import = false,
+  });
+
   /// # Custom authentication
   ///
   /// Nakama supports Custom Authentication methods to integrate with additional
@@ -189,6 +245,12 @@ abstract class NakamaBaseClient {
 
   /// # Link custom authentication
   Future<void> linkCustom({
+    required model.Session session,
+    required String id,
+    Map<String, String>? vars,
+  });
+
+  Future<void> unlinkCustom({
     required model.Session session,
     required String id,
     Map<String, String>? vars,
