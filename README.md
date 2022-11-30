@@ -9,7 +9,7 @@
 ---
 ## 🚦 Current Status
 
-Almost all basic functions which are necessary to start playing around with Nakama are ready to use. Please feel free to give your feedback with creating an issue. I am currently working on getting a 100 % coverage with this SDK.
+This is the 1.0-Prerelease. Feel free to play around and give some final feebdack. All basic functions are ready to use.
 
 ## 🚀 Getting Started
 

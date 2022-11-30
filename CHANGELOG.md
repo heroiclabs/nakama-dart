@@ -1,3 +1,15 @@
+## 1.0.0-dev.1
+
+* Changed License from MIT to Apache 2.0
+* **Breaking:** Refactored the SDK to use own models instead of returning the underlaying Protobuf objects
+* Most of the functionality added to achieve a stable release:
+  * Authentication (Session refresh, missing drivers, linking and unlinking)
+  * Leaderboard 
+  * Friends & Groups
+  * Notifications
+  * Tournaments
+  * Matches
+
 ## 0.1.6
 
 * Full storage object support 🎉
