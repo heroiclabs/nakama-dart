@@ -24,7 +24,6 @@ export 'src/models/group.dart';
 export 'src/models/leaderboard.dart';
 export 'src/models/match.dart';
 export 'src/models/matchmaker.dart';
-export 'src/models/matchmaker.dart';
 export 'src/models/notification.dart';
 export 'src/models/rpc.dart';
 export 'src/models/session.dart';
