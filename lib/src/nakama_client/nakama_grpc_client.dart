@@ -1277,4 +1277,18 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     return model.LeaderboardRecord.fromDto(res);
   }
+
+  @override
+  Future<String?> rpc({
+    required model.Session session,
+    required String id,
+    String? payload,
+  }) async {
+    final res = await _client.rpcFunc(api.Rpc(
+      id: id,
+      payload: payload,
+    ));
+
+    return res.payload;
+  }
 }

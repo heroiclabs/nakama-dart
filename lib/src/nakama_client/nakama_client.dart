@@ -658,4 +658,10 @@ abstract class NakamaBaseClient {
     int? score,
     int? subscore,
   });
+
+  Future<String?> rpc({
+    required model.Session session,
+    required String id,
+    String? payload,
+  });
 }
