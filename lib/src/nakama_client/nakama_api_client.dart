@@ -1031,7 +1031,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   @override
   Future<void> updateGroup({
     required model.Session session,
-    required String id,
+    required String groupId,
     String? name,
     String? avatarUrl,
     String? description,
@@ -1042,13 +1042,13 @@ class NakamaRestApiClient extends NakamaBaseClient {
     _session = session;
 
     await _api.v2GroupGroupIdPut(
-      groupId: id,
+      groupId: groupId,
       body: ApiUpdateGroupRequest(
         name: name,
         avatarUrl: avatarUrl,
         description: description,
         langTag: langTag,
-        groupId: id,
+        groupId: groupId,
         open: open,
       ),
     );
