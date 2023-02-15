@@ -451,7 +451,13 @@ abstract class NakamaBaseClient {
   /// from the client, like the open visibility.
   Future<void> updateGroup({
     required model.Session session,
-    required model.Group group,
+    required String id,
+    String? name,
+    String? avatarUrl,
+    String? description,
+    String? langTag,
+    int? maxCount,
+    bool? open,
   });
 
   /// # Listing and filtering groups

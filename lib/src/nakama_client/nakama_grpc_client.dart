@@ -978,15 +978,21 @@ class NakamaGrpcClient extends NakamaBaseClient {
   @override
   Future<void> updateGroup({
     required model.Session session,
-    required model.Group group,
+    required String id,
+    String? name,
+    String? avatarUrl,
+    String? description,
+    String? langTag,
+    int? maxCount,
+    bool? open,
   }) async {
     await _client.updateGroup(api.UpdateGroupRequest(
-      groupId: group.id,
-      avatarUrl: api.StringValue(value: group.avatarUrl),
-      description: api.StringValue(value: group.description),
-      langTag: api.StringValue(value: group.langTag),
-      name: api.StringValue(value: group.name),
-      open: api.BoolValue(value: group.open),
+      groupId: id,
+      avatarUrl: api.StringValue(value: avatarUrl),
+      description: api.StringValue(value: description),
+      langTag: api.StringValue(value: langTag),
+      name: api.StringValue(value: name),
+      open: api.BoolValue(value: open),
     ));
   }
 

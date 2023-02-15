@@ -1031,19 +1031,25 @@ class NakamaRestApiClient extends NakamaBaseClient {
   @override
   Future<void> updateGroup({
     required model.Session session,
-    required model.Group group,
+    required String id,
+    String? name,
+    String? avatarUrl,
+    String? description,
+    String? langTag,
+    int? maxCount,
+    bool? open,
   }) async {
     _session = session;
 
     await _api.v2GroupGroupIdPut(
-      groupId: group.id,
+      groupId: id,
       body: ApiUpdateGroupRequest(
-        name: group.name,
-        avatarUrl: group.avatarUrl,
-        description: group.description,
-        langTag: group.langTag,
-        groupId: group.id,
-        open: group.open,
+        name: name,
+        avatarUrl: avatarUrl,
+        description: description,
+        langTag: langTag,
+        groupId: id,
+        open: open,
       ),
     );
   }
