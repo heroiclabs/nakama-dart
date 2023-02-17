@@ -59,7 +59,7 @@ void main() {
 
       final channel = s.joinChannel(
         target: roomCode,
-        type: ChannelJoinType.room,
+        type: ChannelType.room,
         persistence: false,
         hidden: false,
       );
@@ -73,7 +73,7 @@ void main() {
       // Create channel
       final channel = await s.joinChannel(
         target: faker.lorem.words(2).join('-'),
-        type: ChannelJoinType.room,
+        type: ChannelType.room,
         persistence: false,
         hidden: false,
       );
@@ -95,7 +95,7 @@ void main() {
       final s = NakamaWebsocketClient.instance;
       final channel = await s.joinChannel(
         target: faker.lorem.words(2).join('-'),
-        type: ChannelJoinType.room,
+        type: ChannelType.room,
         persistence: false,
         hidden: false,
       );
@@ -104,7 +104,7 @@ void main() {
       final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
       await b.joinChannel(
         target: channel.roomName,
-        type: ChannelJoinType.room,
+        type: ChannelType.room,
         persistence: false,
         hidden: false,
       );
@@ -144,13 +144,13 @@ void main() {
       final senderChannelForA = (await Future.wait([
         a.joinChannel(
           target: sessionB.userId,
-          type: ChannelJoinType.directMessage,
+          type: ChannelType.directMessage,
           persistence: true,
           hidden: false,
         ),
         b.joinChannel(
           target: sessionA.userId,
-          type: ChannelJoinType.directMessage,
+          type: ChannelType.directMessage,
           persistence: true,
           hidden: false,
         ),
@@ -190,7 +190,7 @@ void main() {
 
       final senderChannelForA = await a.joinChannel(
         target: sessionB.userId,
-        type: ChannelJoinType.directMessage,
+        type: ChannelType.directMessage,
         persistence: true,
         hidden: false,
       );
@@ -204,7 +204,7 @@ void main() {
       // Check on B's side that the message was received via the REST API
       final receiverChannelForB = await b.joinChannel(
         target: sessionA.userId,
-        type: ChannelJoinType.directMessage,
+        type: ChannelType.directMessage,
         persistence: true,
         hidden: false,
       );
@@ -224,7 +224,7 @@ void main() {
 
       final senderChannelForA = await a.joinChannel(
         target: sessionB.userId,
-        type: ChannelJoinType.directMessage,
+        type: ChannelType.directMessage,
         persistence: true,
         hidden: false,
       );
@@ -238,7 +238,7 @@ void main() {
       // Check on B's side that the message was received via the REST API
       final receiverChannelForB = await b.joinChannel(
         target: sessionA.userId,
-        type: ChannelJoinType.directMessage,
+        type: ChannelType.directMessage,
         persistence: true,
         hidden: false,
       );
@@ -259,7 +259,7 @@ void main() {
 
       final senderChannelForA = await a.joinChannel(
         target: sessionB.userId,
-        type: ChannelJoinType.directMessage,
+        type: ChannelType.directMessage,
         persistence: true,
         hidden: false,
       );
@@ -273,7 +273,7 @@ void main() {
       // Check on B's side that the message was received via the REST API
       final receiverChannelForB = await b.joinChannel(
         target: sessionA.userId,
-        type: ChannelJoinType.directMessage,
+        type: ChannelType.directMessage,
         persistence: true,
         hidden: false,
       );
@@ -294,7 +294,7 @@ void main() {
 
       final senderChannelForA = await a.joinChannel(
         target: sessionB.userId,
-        type: ChannelJoinType.directMessage,
+        type: ChannelType.directMessage,
         persistence: true,
         hidden: false,
       );
@@ -308,7 +308,7 @@ void main() {
       // Check on B's side that the message was received via the REST API
       final receiverChannelForB = await b.joinChannel(
         target: sessionA.userId,
-        type: ChannelJoinType.directMessage,
+        type: ChannelType.directMessage,
         persistence: true,
         hidden: false,
       );
@@ -345,7 +345,7 @@ void main() {
       // B is already in his channel and listening for new presence
       await b.joinChannel(
         target: sessionA.userId,
-        type: ChannelJoinType.directMessage,
+        type: ChannelType.directMessage,
         persistence: true,
         hidden: false,
       );
@@ -357,7 +357,7 @@ void main() {
       // A comes online
       await a.joinChannel(
         target: sessionB.userId,
-        type: ChannelJoinType.directMessage,
+        type: ChannelType.directMessage,
         persistence: true,
         hidden: false,
       );
@@ -370,7 +370,7 @@ void main() {
       // A creates channel and joins
       final channel = await a.joinChannel(
         target: faker.lorem.words(2).join('-'),
-        type: ChannelJoinType.room,
+        type: ChannelType.room,
         persistence: true,
         hidden: false,
       );
@@ -378,7 +378,7 @@ void main() {
       // Finally join
       final result = await b.joinChannel(
         target: channel.roomName,
-        type: ChannelJoinType.room,
+        type: ChannelType.room,
         persistence: true,
         hidden: false,
       );
@@ -396,13 +396,13 @@ void main() {
       final channels = await Future.wait([
         a.joinChannel(
           target: name,
-          type: ChannelJoinType.room,
+          type: ChannelType.room,
           persistence: true,
           hidden: false,
         ),
         b.joinChannel(
           target: name,
-          type: ChannelJoinType.room,
+          type: ChannelType.room,
           persistence: true,
           hidden: false,
         ),

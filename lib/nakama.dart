@@ -3,7 +3,7 @@ library nakama;
 export 'package:fixnum/fixnum.dart' show Int64;
 
 // Enums
-export './src/enum/channel_join_type.dart';
+export './src/enum/channel_type.dart';
 export './src/enum/friendship_state.dart';
 export './src/enum/group_membership_states.dart';
 export './src/enum/leaderboard_operator.dart';

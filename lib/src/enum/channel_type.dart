@@ -1,4 +1,4 @@
-enum ChannelJoinType {
+enum ChannelType {
   directMessage,
   group,
   room,

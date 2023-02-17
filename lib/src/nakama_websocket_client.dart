@@ -418,7 +418,7 @@ class NakamaWebsocketClient {
 
   Future<Channel> joinChannel({
     required String target,
-    required ChannelJoinType type,
+    required ChannelType type,
     required bool persistence,
     required bool hidden,
   }) async {
@@ -427,11 +427,11 @@ class NakamaWebsocketClient {
       target: target,
       type: () {
         switch (type) {
-          case ChannelJoinType.room:
+          case ChannelType.room:
             return rtpb.ChannelJoin_Type.ROOM;
-          case ChannelJoinType.group:
+          case ChannelType.group:
             return rtpb.ChannelJoin_Type.GROUP;
-          case ChannelJoinType.directMessage:
+          case ChannelType.directMessage:
             return rtpb.ChannelJoin_Type.DIRECT_MESSAGE;
           default:
             return rtpb.ChannelJoin_Type.TYPE_UNSPECIFIED;

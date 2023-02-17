@@ -1,3 +1,7 @@
+## unreleased
+
+* **Breaking:** Renamed `ChannelJoinType` enum to `ChannelType`
+
 ## 1.0.0-dev.3
 
 * **Breaking:** Changed signature of `updateGroup` method to match standard update signature. Instead of passing modified model you now have to pass the changed parameters directly to `updateGroup`
