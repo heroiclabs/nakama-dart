@@ -3,6 +3,7 @@
 * **Breaking:** Renamed `ChannelJoinType` enum to `ChannelType`
 * **Breaking:** Renamed `leaderboardId` parameter to `leaderboardName` in `writeLeaderboardRecord` and `deleteLeaderboardRecord`
 * Added `onPartyData` stream to realtime client
+* Added `listTournamentRecordsAroundOwner` to client
 
 ## 1.0.0-dev.3
 

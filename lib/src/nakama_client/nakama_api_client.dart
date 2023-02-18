@@ -1320,6 +1320,26 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.TournamentRecordList> listTournamentRecordsAroundOwner({
+    required model.Session session,
+    required String tournamentId,
+    required String ownerId,
+    int? expiry,
+    int limit = defaultLimit,
+  }) async {
+    _session = session;
+
+    final res = await _api.v2TournamentTournamentIdOwnerOwnerIdGet(
+      ownerId: ownerId,
+      tournamentId: tournamentId,
+      expiry: expiry?.toString(),
+      limit: limit,
+    );
+
+    return model.TournamentRecordList.fromJson(res.body!.toJson());
+  }
+
+  @override
   Future<model.LeaderboardRecord> writeTournamentRecord({
     required model.Session session,
     required String tournamentId,

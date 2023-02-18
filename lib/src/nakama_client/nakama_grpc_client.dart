@@ -1247,6 +1247,25 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.TournamentRecordList> listTournamentRecordsAroundOwner({
+    required model.Session session,
+    required String tournamentId,
+    required String ownerId,
+    int? expiry,
+    int limit = defaultLimit,
+  }) async {
+    final res = await _client.listTournamentRecordsAroundOwner(
+        api.ListTournamentRecordsAroundOwnerRequest(
+      expiry: expiry == null ? null : api.Int64Value(value: Int64(expiry)),
+      limit: api.UInt32Value(value: limit),
+      ownerId: ownerId,
+      tournamentId: tournamentId,
+    ));
+
+    return model.TournamentRecordList.fromDto(res);
+  }
+
+  @override
   Future<model.LeaderboardRecord> writeTournamentRecord({
     required model.Session session,
     required String tournamentId,

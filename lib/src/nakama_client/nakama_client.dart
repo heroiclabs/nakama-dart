@@ -653,6 +653,18 @@ abstract class NakamaBaseClient {
     String? cursor,
   });
 
+  /// # Listing records around a user**
+  ///
+  /// Similarly to leaderboards, Sagi-shi players can get other player scores
+  /// around them.
+  Future<model.TournamentRecordList> listTournamentRecordsAroundOwner({
+    required model.Session session,
+    required String tournamentId,
+    required String ownerId,
+    int? expiry,
+    int limit = defaultLimit,
+  });
+
   /// # Submitting scores
   ///
   /// Players can submit scores, subscores and metadata to the tournament.
