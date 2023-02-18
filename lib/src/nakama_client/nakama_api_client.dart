@@ -68,8 +68,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required bool ssl,
   }) {
     _api = Apigrpc.create(
-      baseUrl: Uri(host: host, scheme: ssl ? 'https' : 'http', port: port)
-          .toString(),
+      baseUrl: Uri(host: host, scheme: ssl ? 'https' : 'http', port: port),
       interceptors: [
         // Auth Interceptor
         (Request request) async {
