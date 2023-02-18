@@ -379,7 +379,7 @@ abstract class NakamaBaseClient {
   /// for ordering when the scores are the same.
   Future<model.LeaderboardRecord> writeLeaderboardRecord({
     required model.Session session,
-    required String leaderboardId,
+    required String leaderboardName,
     int? score,
     int? subscore,
     String? metadata,
@@ -388,7 +388,7 @@ abstract class NakamaBaseClient {
   /// # Deleting records
   Future<void> deleteLeaderboardRecord({
     required model.Session session,
-    required String leaderboardId,
+    required String leaderboardName,
   });
 
   /// # Adding friends

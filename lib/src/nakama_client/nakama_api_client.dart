@@ -910,7 +910,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   @override
   Future<model.LeaderboardRecord> writeLeaderboardRecord({
     required model.Session session,
-    required String leaderboardId,
+    required String leaderboardName,
     int? score,
     int? subscore,
     String? metadata,
@@ -918,7 +918,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     _session = session;
 
     final res = await _api.v2LeaderboardLeaderboardIdPost(
-        leaderboardId: leaderboardId,
+        leaderboardId: leaderboardName,
         body: WriteLeaderboardRecordRequestLeaderboardRecordWrite(
           score: score?.toString(),
           subscore: subscore?.toString(),
@@ -931,11 +931,11 @@ class NakamaRestApiClient extends NakamaBaseClient {
   @override
   Future<void> deleteLeaderboardRecord({
     required model.Session session,
-    required String leaderboardId,
+    required String leaderboardName,
   }) async {
     _session = session;
 
-    await _api.v2LeaderboardLeaderboardIdDelete(leaderboardId: leaderboardId);
+    await _api.v2LeaderboardLeaderboardIdDelete(leaderboardId: leaderboardName);
   }
 
   @override

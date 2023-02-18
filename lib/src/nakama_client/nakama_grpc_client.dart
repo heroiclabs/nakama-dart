@@ -871,14 +871,14 @@ class NakamaGrpcClient extends NakamaBaseClient {
   @override
   Future<model.LeaderboardRecord> writeLeaderboardRecord({
     required model.Session session,
-    required String leaderboardId,
+    required String leaderboardName,
     int? score,
     int? subscore,
     String? metadata,
   }) async {
     final res = await _client.writeLeaderboardRecord(
       api.WriteLeaderboardRecordRequest(
-        leaderboardId: leaderboardId,
+        leaderboardId: leaderboardName,
         record: api.WriteLeaderboardRecordRequest_LeaderboardRecordWrite(
           score: score == null ? null : Int64(score),
           subscore: subscore == null ? null : Int64(subscore),
@@ -894,10 +894,10 @@ class NakamaGrpcClient extends NakamaBaseClient {
   @override
   Future<void> deleteLeaderboardRecord({
     required model.Session session,
-    required String leaderboardId,
+    required String leaderboardName,
   }) async {
     await _client.deleteLeaderboardRecord(api.DeleteLeaderboardRecordRequest(
-      leaderboardId: leaderboardId,
+      leaderboardId: leaderboardName,
     ));
   }
 

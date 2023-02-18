@@ -30,7 +30,7 @@ void main() {
 
     test('write leaderboard record', () async {
       final result = await client.writeLeaderboardRecord(
-          session: session, leaderboardId: 'test', score: 10);
+          session: session, leaderboardName: 'test', score: 10);
 
       expect(result, isA<LeaderboardRecord>());
       expect(result.score, isNotNull);
