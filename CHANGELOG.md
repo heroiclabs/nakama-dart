@@ -1,4 +1,4 @@
-## unreleased
+## 1.0.0-dev.5
 
 * **Breaking:** Renamed `ChannelJoinType` enum to `ChannelType`
 * **Breaking:** Renamed `leaderboardId` parameter to `leaderboardName` in `writeLeaderboardRecord` and `deleteLeaderboardRecord`
