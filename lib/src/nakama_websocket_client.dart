@@ -52,11 +52,9 @@ class NakamaWebsocketClient {
   Stream<MatchPresenceEvent> get onMatchPresence =>
       _onMatchPresenceController.stream;
 
-  final _onNotificationsController =
-      StreamController<List<Notification>>.broadcast();
+  final _onNotificationsController = StreamController<Notification>.broadcast();
 
-  Stream<List<Notification>> get onNotifications =>
-      _onNotificationsController.stream;
+  Stream<Notification> get onNotifications => _onNotificationsController.stream;
 
   final _onStatusPresenceController =
       StreamController<StatusPresenceEvent>.broadcast();
@@ -226,10 +224,10 @@ class NakamaWebsocketClient {
             return _onMatchPresenceController.add(MatchPresenceEvent.fromDto(
                 receivedEnvelope.matchPresenceEvent));
           case rtpb.Envelope_Message.notifications:
-            return _onNotificationsController.add(receivedEnvelope
-                .notifications.notifications
+            receivedEnvelope.notifications.notifications
                 .map((e) => Notification.fromDto(e))
-                .toList(growable: false));
+                .forEach((element) => _onNotificationsController.add(element));
+            return;
           case rtpb.Envelope_Message.statusPresenceEvent:
             return _onStatusPresenceController.add(StatusPresenceEvent.fromDto(
                 receivedEnvelope.statusPresenceEvent));
