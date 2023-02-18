@@ -1,6 +1,7 @@
 ## unreleased
 
 * **Breaking:** Renamed `ChannelJoinType` enum to `ChannelType`
+* Added `onPartyData` stream to realtime client
 
 ## 1.0.0-dev.3
 
