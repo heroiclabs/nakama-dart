@@ -18,7 +18,7 @@ class _$Apigrpc extends Apigrpc {
 
   @override
   Future<Response<dynamic>> _healthcheckGet() {
-    final String $url = '/healthcheck';
+    final Uri $url = Uri.parse('/healthcheck');
     final Request $request = Request(
       'GET',
       $url,
@@ -29,7 +29,7 @@ class _$Apigrpc extends Apigrpc {
 
   @override
   Future<Response<ApiAccount>> _v2AccountGet() {
-    final String $url = '/v2/account';
+    final Uri $url = Uri.parse('/v2/account');
     final Request $request = Request(
       'GET',
       $url,
@@ -41,7 +41,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountPut(
       {required ApiUpdateAccountRequest? body}) {
-    final String $url = '/v2/account';
+    final Uri $url = Uri.parse('/v2/account');
     final $body = body;
     final Request $request = Request(
       'PUT',
@@ -58,7 +58,7 @@ class _$Apigrpc extends Apigrpc {
     bool? create,
     String? username,
   }) {
-    final String $url = '/v2/account/authenticate/apple';
+    final Uri $url = Uri.parse('/v2/account/authenticate/apple');
     final Map<String, dynamic> $params = <String, dynamic>{
       'create': create,
       'username': username,
@@ -80,7 +80,7 @@ class _$Apigrpc extends Apigrpc {
     bool? create,
     String? username,
   }) {
-    final String $url = '/v2/account/authenticate/custom';
+    final Uri $url = Uri.parse('/v2/account/authenticate/custom');
     final Map<String, dynamic> $params = <String, dynamic>{
       'create': create,
       'username': username,
@@ -102,7 +102,7 @@ class _$Apigrpc extends Apigrpc {
     bool? create,
     String? username,
   }) {
-    final String $url = '/v2/account/authenticate/device';
+    final Uri $url = Uri.parse('/v2/account/authenticate/device');
     final Map<String, dynamic> $params = <String, dynamic>{
       'create': create,
       'username': username,
@@ -124,7 +124,7 @@ class _$Apigrpc extends Apigrpc {
     bool? create,
     String? username,
   }) {
-    final String $url = '/v2/account/authenticate/email';
+    final Uri $url = Uri.parse('/v2/account/authenticate/email');
     final Map<String, dynamic> $params = <String, dynamic>{
       'create': create,
       'username': username,
@@ -147,7 +147,7 @@ class _$Apigrpc extends Apigrpc {
     String? username,
     bool? $sync,
   }) {
-    final String $url = '/v2/account/authenticate/facebook';
+    final Uri $url = Uri.parse('/v2/account/authenticate/facebook');
     final Map<String, dynamic> $params = <String, dynamic>{
       'create': create,
       'username': username,
@@ -170,7 +170,7 @@ class _$Apigrpc extends Apigrpc {
     bool? create,
     String? username,
   }) {
-    final String $url = '/v2/account/authenticate/facebookinstantgame';
+    final Uri $url = Uri.parse('/v2/account/authenticate/facebookinstantgame');
     final Map<String, dynamic> $params = <String, dynamic>{
       'create': create,
       'username': username,
@@ -192,7 +192,7 @@ class _$Apigrpc extends Apigrpc {
     bool? create,
     String? username,
   }) {
-    final String $url = '/v2/account/authenticate/gamecenter';
+    final Uri $url = Uri.parse('/v2/account/authenticate/gamecenter');
     final Map<String, dynamic> $params = <String, dynamic>{
       'create': create,
       'username': username,
@@ -214,7 +214,7 @@ class _$Apigrpc extends Apigrpc {
     bool? create,
     String? username,
   }) {
-    final String $url = '/v2/account/authenticate/google';
+    final Uri $url = Uri.parse('/v2/account/authenticate/google');
     final Map<String, dynamic> $params = <String, dynamic>{
       'create': create,
       'username': username,
@@ -237,7 +237,7 @@ class _$Apigrpc extends Apigrpc {
     String? username,
     bool? $sync,
   }) {
-    final String $url = '/v2/account/authenticate/steam';
+    final Uri $url = Uri.parse('/v2/account/authenticate/steam');
     final Map<String, dynamic> $params = <String, dynamic>{
       'create': create,
       'username': username,
@@ -257,7 +257,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountLinkApplePost(
       {required ApiAccountApple? body}) {
-    final String $url = '/v2/account/link/apple';
+    final Uri $url = Uri.parse('/v2/account/link/apple');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -271,7 +271,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountLinkCustomPost(
       {required ApiAccountCustom? body}) {
-    final String $url = '/v2/account/link/custom';
+    final Uri $url = Uri.parse('/v2/account/link/custom');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -285,7 +285,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountLinkDevicePost(
       {required ApiAccountDevice? body}) {
-    final String $url = '/v2/account/link/device';
+    final Uri $url = Uri.parse('/v2/account/link/device');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -299,7 +299,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountLinkEmailPost(
       {required ApiAccountEmail? body}) {
-    final String $url = '/v2/account/link/email';
+    final Uri $url = Uri.parse('/v2/account/link/email');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -315,7 +315,7 @@ class _$Apigrpc extends Apigrpc {
     required ApiAccountFacebook? body,
     bool? $sync,
   }) {
-    final String $url = '/v2/account/link/facebook';
+    final Uri $url = Uri.parse('/v2/account/link/facebook');
     final Map<String, dynamic> $params = <String, dynamic>{'sync': $sync};
     final $body = body;
     final Request $request = Request(
@@ -331,7 +331,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountLinkFacebookinstantgamePost(
       {required ApiAccountFacebookInstantGame? body}) {
-    final String $url = '/v2/account/link/facebookinstantgame';
+    final Uri $url = Uri.parse('/v2/account/link/facebookinstantgame');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -345,7 +345,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountLinkGamecenterPost(
       {required ApiAccountGameCenter? body}) {
-    final String $url = '/v2/account/link/gamecenter';
+    final Uri $url = Uri.parse('/v2/account/link/gamecenter');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -359,7 +359,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountLinkGooglePost(
       {required ApiAccountGoogle? body}) {
-    final String $url = '/v2/account/link/google';
+    final Uri $url = Uri.parse('/v2/account/link/google');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -373,7 +373,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountLinkSteamPost(
       {required ApiLinkSteamRequest? body}) {
-    final String $url = '/v2/account/link/steam';
+    final Uri $url = Uri.parse('/v2/account/link/steam');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -387,7 +387,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<ApiSession>> _v2AccountSessionRefreshPost(
       {required ApiSessionRefreshRequest? body}) {
-    final String $url = '/v2/account/session/refresh';
+    final Uri $url = Uri.parse('/v2/account/session/refresh');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -401,7 +401,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountUnlinkApplePost(
       {required ApiAccountApple? body}) {
-    final String $url = '/v2/account/unlink/apple';
+    final Uri $url = Uri.parse('/v2/account/unlink/apple');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -415,7 +415,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountUnlinkCustomPost(
       {required ApiAccountCustom? body}) {
-    final String $url = '/v2/account/unlink/custom';
+    final Uri $url = Uri.parse('/v2/account/unlink/custom');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -429,7 +429,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountUnlinkDevicePost(
       {required ApiAccountDevice? body}) {
-    final String $url = '/v2/account/unlink/device';
+    final Uri $url = Uri.parse('/v2/account/unlink/device');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -443,7 +443,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountUnlinkEmailPost(
       {required ApiAccountEmail? body}) {
-    final String $url = '/v2/account/unlink/email';
+    final Uri $url = Uri.parse('/v2/account/unlink/email');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -457,7 +457,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountUnlinkFacebookPost(
       {required ApiAccountFacebook? body}) {
-    final String $url = '/v2/account/unlink/facebook';
+    final Uri $url = Uri.parse('/v2/account/unlink/facebook');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -471,7 +471,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountUnlinkFacebookinstantgamePost(
       {required ApiAccountFacebookInstantGame? body}) {
-    final String $url = '/v2/account/unlink/facebookinstantgame';
+    final Uri $url = Uri.parse('/v2/account/unlink/facebookinstantgame');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -485,7 +485,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountUnlinkGamecenterPost(
       {required ApiAccountGameCenter? body}) {
-    final String $url = '/v2/account/unlink/gamecenter';
+    final Uri $url = Uri.parse('/v2/account/unlink/gamecenter');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -499,7 +499,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountUnlinkGooglePost(
       {required ApiAccountGoogle? body}) {
-    final String $url = '/v2/account/unlink/google';
+    final Uri $url = Uri.parse('/v2/account/unlink/google');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -513,7 +513,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2AccountUnlinkSteamPost(
       {required ApiAccountSteam? body}) {
-    final String $url = '/v2/account/unlink/steam';
+    final Uri $url = Uri.parse('/v2/account/unlink/steam');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -531,7 +531,7 @@ class _$Apigrpc extends Apigrpc {
     bool? forward,
     String? cursor,
   }) {
-    final String $url = '/v2/channel/${channelId}';
+    final Uri $url = Uri.parse('/v2/channel/${channelId}');
     final Map<String, dynamic> $params = <String, dynamic>{
       'limit': limit,
       'forward': forward,
@@ -548,7 +548,7 @@ class _$Apigrpc extends Apigrpc {
 
   @override
   Future<Response<dynamic>> _v2EventPost({required ApiEvent? body}) {
-    final String $url = '/v2/event';
+    final Uri $url = Uri.parse('/v2/event');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -565,7 +565,7 @@ class _$Apigrpc extends Apigrpc {
     int? state,
     String? cursor,
   }) {
-    final String $url = '/v2/friend';
+    final Uri $url = Uri.parse('/v2/friend');
     final Map<String, dynamic> $params = <String, dynamic>{
       'limit': limit,
       'state': state,
@@ -585,7 +585,7 @@ class _$Apigrpc extends Apigrpc {
     List<String>? ids,
     List<String>? usernames,
   }) {
-    final String $url = '/v2/friend';
+    final Uri $url = Uri.parse('/v2/friend');
     final Map<String, dynamic> $params = <String, dynamic>{
       'ids': ids,
       'usernames': usernames,
@@ -604,7 +604,7 @@ class _$Apigrpc extends Apigrpc {
     List<String>? ids,
     List<String>? usernames,
   }) {
-    final String $url = '/v2/friend';
+    final Uri $url = Uri.parse('/v2/friend');
     final Map<String, dynamic> $params = <String, dynamic>{
       'ids': ids,
       'usernames': usernames,
@@ -623,7 +623,7 @@ class _$Apigrpc extends Apigrpc {
     List<String>? ids,
     List<String>? usernames,
   }) {
-    final String $url = '/v2/friend/block';
+    final Uri $url = Uri.parse('/v2/friend/block');
     final Map<String, dynamic> $params = <String, dynamic>{
       'ids': ids,
       'usernames': usernames,
@@ -642,7 +642,7 @@ class _$Apigrpc extends Apigrpc {
     required ApiAccountFacebook? body,
     bool? reset,
   }) {
-    final String $url = '/v2/friend/facebook';
+    final Uri $url = Uri.parse('/v2/friend/facebook');
     final Map<String, dynamic> $params = <String, dynamic>{'reset': reset};
     final $body = body;
     final Request $request = Request(
@@ -660,7 +660,7 @@ class _$Apigrpc extends Apigrpc {
     required ApiAccountSteam? body,
     bool? reset,
   }) {
-    final String $url = '/v2/friend/steam';
+    final Uri $url = Uri.parse('/v2/friend/steam');
     final Map<String, dynamic> $params = <String, dynamic>{'reset': reset};
     final $body = body;
     final Request $request = Request(
@@ -682,7 +682,7 @@ class _$Apigrpc extends Apigrpc {
     int? members,
     bool? open,
   }) {
-    final String $url = '/v2/group';
+    final Uri $url = Uri.parse('/v2/group');
     final Map<String, dynamic> $params = <String, dynamic>{
       'name': name,
       'cursor': cursor,
@@ -703,7 +703,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<ApiGroup>> _v2GroupPost(
       {required ApiCreateGroupRequest? body}) {
-    final String $url = '/v2/group';
+    final Uri $url = Uri.parse('/v2/group');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -716,7 +716,7 @@ class _$Apigrpc extends Apigrpc {
 
   @override
   Future<Response<dynamic>> _v2GroupGroupIdDelete({required String? groupId}) {
-    final String $url = '/v2/group/${groupId}';
+    final Uri $url = Uri.parse('/v2/group/${groupId}');
     final Request $request = Request(
       'DELETE',
       $url,
@@ -730,7 +730,7 @@ class _$Apigrpc extends Apigrpc {
     required String? groupId,
     required ApiUpdateGroupRequest? body,
   }) {
-    final String $url = '/v2/group/${groupId}';
+    final Uri $url = Uri.parse('/v2/group/${groupId}');
     final $body = body;
     final Request $request = Request(
       'PUT',
@@ -746,7 +746,7 @@ class _$Apigrpc extends Apigrpc {
     required String? groupId,
     List<String>? userIds,
   }) {
-    final String $url = '/v2/group/${groupId}/add';
+    final Uri $url = Uri.parse('/v2/group/${groupId}/add');
     final Map<String, dynamic> $params = <String, dynamic>{'userIds': userIds};
     final Request $request = Request(
       'POST',
@@ -762,7 +762,7 @@ class _$Apigrpc extends Apigrpc {
     required String? groupId,
     List<String>? userIds,
   }) {
-    final String $url = '/v2/group/${groupId}/ban';
+    final Uri $url = Uri.parse('/v2/group/${groupId}/ban');
     final Map<String, dynamic> $params = <String, dynamic>{'userIds': userIds};
     final Request $request = Request(
       'POST',
@@ -778,7 +778,7 @@ class _$Apigrpc extends Apigrpc {
     required String? groupId,
     List<String>? userIds,
   }) {
-    final String $url = '/v2/group/${groupId}/demote';
+    final Uri $url = Uri.parse('/v2/group/${groupId}/demote');
     final Map<String, dynamic> $params = <String, dynamic>{'userIds': userIds};
     final Request $request = Request(
       'POST',
@@ -792,7 +792,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2GroupGroupIdJoinPost(
       {required String? groupId}) {
-    final String $url = '/v2/group/${groupId}/join';
+    final Uri $url = Uri.parse('/v2/group/${groupId}/join');
     final Request $request = Request(
       'POST',
       $url,
@@ -806,7 +806,7 @@ class _$Apigrpc extends Apigrpc {
     required String? groupId,
     List<String>? userIds,
   }) {
-    final String $url = '/v2/group/${groupId}/kick';
+    final Uri $url = Uri.parse('/v2/group/${groupId}/kick');
     final Map<String, dynamic> $params = <String, dynamic>{'userIds': userIds};
     final Request $request = Request(
       'POST',
@@ -820,7 +820,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2GroupGroupIdLeavePost(
       {required String? groupId}) {
-    final String $url = '/v2/group/${groupId}/leave';
+    final Uri $url = Uri.parse('/v2/group/${groupId}/leave');
     final Request $request = Request(
       'POST',
       $url,
@@ -834,7 +834,7 @@ class _$Apigrpc extends Apigrpc {
     required String? groupId,
     List<String>? userIds,
   }) {
-    final String $url = '/v2/group/${groupId}/promote';
+    final Uri $url = Uri.parse('/v2/group/${groupId}/promote');
     final Map<String, dynamic> $params = <String, dynamic>{'userIds': userIds};
     final Request $request = Request(
       'POST',
@@ -852,7 +852,7 @@ class _$Apigrpc extends Apigrpc {
     int? state,
     String? cursor,
   }) {
-    final String $url = '/v2/group/${groupId}/user';
+    final Uri $url = Uri.parse('/v2/group/${groupId}/user');
     final Map<String, dynamic> $params = <String, dynamic>{
       'limit': limit,
       'state': state,
@@ -870,7 +870,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<ApiValidatePurchaseResponse>> _v2IapPurchaseApplePost(
       {required ApiValidatePurchaseAppleRequest? body}) {
-    final String $url = '/v2/iap/purchase/apple';
+    final Uri $url = Uri.parse('/v2/iap/purchase/apple');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -885,7 +885,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<ApiValidatePurchaseResponse>> _v2IapPurchaseGooglePost(
       {required ApiValidatePurchaseGoogleRequest? body}) {
-    final String $url = '/v2/iap/purchase/google';
+    final Uri $url = Uri.parse('/v2/iap/purchase/google');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -900,7 +900,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<ApiValidatePurchaseResponse>> _v2IapPurchaseHuaweiPost(
       {required ApiValidatePurchaseHuaweiRequest? body}) {
-    final String $url = '/v2/iap/purchase/huawei';
+    final Uri $url = Uri.parse('/v2/iap/purchase/huawei');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -915,7 +915,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<ApiSubscriptionList>> _v2IapSubscriptionPost(
       {required ApiListSubscriptionsRequest? body}) {
-    final String $url = '/v2/iap/subscription';
+    final Uri $url = Uri.parse('/v2/iap/subscription');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -929,7 +929,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<ApiValidateSubscriptionResponse>> _v2IapSubscriptionApplePost(
       {required ApiValidateSubscriptionAppleRequest? body}) {
-    final String $url = '/v2/iap/subscription/apple';
+    final Uri $url = Uri.parse('/v2/iap/subscription/apple');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -945,7 +945,7 @@ class _$Apigrpc extends Apigrpc {
   Future<Response<ApiValidateSubscriptionResponse>>
       _v2IapSubscriptionGooglePost(
           {required ApiValidateSubscriptionGoogleRequest? body}) {
-    final String $url = '/v2/iap/subscription/google';
+    final Uri $url = Uri.parse('/v2/iap/subscription/google');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -960,7 +960,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<ApiValidatedSubscription>> _v2IapSubscriptionProductIdGet(
       {required String? productId}) {
-    final String $url = '/v2/iap/subscription/${productId}';
+    final Uri $url = Uri.parse('/v2/iap/subscription/${productId}');
     final Request $request = Request(
       'GET',
       $url,
@@ -978,7 +978,7 @@ class _$Apigrpc extends Apigrpc {
     String? cursor,
     String? expiry,
   }) {
-    final String $url = '/v2/leaderboard/${leaderboardId}';
+    final Uri $url = Uri.parse('/v2/leaderboard/${leaderboardId}');
     final Map<String, dynamic> $params = <String, dynamic>{
       'ownerIds': ownerIds,
       'limit': limit,
@@ -998,7 +998,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2LeaderboardLeaderboardIdDelete(
       {required String? leaderboardId}) {
-    final String $url = '/v2/leaderboard/${leaderboardId}';
+    final Uri $url = Uri.parse('/v2/leaderboard/${leaderboardId}');
     final Request $request = Request(
       'DELETE',
       $url,
@@ -1012,7 +1012,7 @@ class _$Apigrpc extends Apigrpc {
     required String? leaderboardId,
     required WriteLeaderboardRecordRequestLeaderboardRecordWrite? body,
   }) {
-    final String $url = '/v2/leaderboard/${leaderboardId}';
+    final Uri $url = Uri.parse('/v2/leaderboard/${leaderboardId}');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -1031,7 +1031,8 @@ class _$Apigrpc extends Apigrpc {
     int? limit,
     String? expiry,
   }) {
-    final String $url = '/v2/leaderboard/${leaderboardId}/owner/${ownerId}';
+    final Uri $url =
+        Uri.parse('/v2/leaderboard/${leaderboardId}/owner/${ownerId}');
     final Map<String, dynamic> $params = <String, dynamic>{
       'limit': limit,
       'expiry': expiry,
@@ -1055,7 +1056,7 @@ class _$Apigrpc extends Apigrpc {
     int? maxSize,
     String? query,
   }) {
-    final String $url = '/v2/match';
+    final Uri $url = Uri.parse('/v2/match');
     final Map<String, dynamic> $params = <String, dynamic>{
       'limit': limit,
       'authoritative': authoritative,
@@ -1078,7 +1079,7 @@ class _$Apigrpc extends Apigrpc {
     int? limit,
     String? cacheableCursor,
   }) {
-    final String $url = '/v2/notification';
+    final Uri $url = Uri.parse('/v2/notification');
     final Map<String, dynamic> $params = <String, dynamic>{
       'limit': limit,
       'cacheableCursor': cacheableCursor,
@@ -1094,7 +1095,7 @@ class _$Apigrpc extends Apigrpc {
 
   @override
   Future<Response<dynamic>> _v2NotificationDelete({List<String>? ids}) {
-    final String $url = '/v2/notification';
+    final Uri $url = Uri.parse('/v2/notification');
     final Map<String, dynamic> $params = <String, dynamic>{'ids': ids};
     final Request $request = Request(
       'DELETE',
@@ -1112,7 +1113,7 @@ class _$Apigrpc extends Apigrpc {
     String? httpKey,
     String? httpKey$,
   }) {
-    final String $url = '/v2/rpc/${id}';
+    final Uri $url = Uri.parse('/v2/rpc/${id}');
     final Map<String, dynamic> $params = <String, dynamic>{
       'payload': payload,
       'httpKey': httpKey,
@@ -1137,7 +1138,7 @@ class _$Apigrpc extends Apigrpc {
     String? httpKey,
     String? httpKey$,
   }) {
-    final String $url = '/v2/rpc/${id}';
+    final Uri $url = Uri.parse('/v2/rpc/${id}');
     final Map<String, dynamic> $params = <String, dynamic>{'httpKey': httpKey};
     final Map<String, String> $headers = {
       if (httpKey$ != null) 'http_key': httpKey$,
@@ -1157,7 +1158,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2SessionLogoutPost(
       {required ApiSessionLogoutRequest? body}) {
-    final String $url = '/v2/session/logout';
+    final Uri $url = Uri.parse('/v2/session/logout');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -1171,7 +1172,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<ApiStorageObjects>> _v2StoragePost(
       {required ApiReadStorageObjectsRequest? body}) {
-    final String $url = '/v2/storage';
+    final Uri $url = Uri.parse('/v2/storage');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -1185,7 +1186,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<ApiStorageObjectAcks>> _v2StoragePut(
       {required ApiWriteStorageObjectsRequest? body}) {
-    final String $url = '/v2/storage';
+    final Uri $url = Uri.parse('/v2/storage');
     final $body = body;
     final Request $request = Request(
       'PUT',
@@ -1199,7 +1200,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2StorageDeletePut(
       {required ApiDeleteStorageObjectsRequest? body}) {
-    final String $url = '/v2/storage/delete';
+    final Uri $url = Uri.parse('/v2/storage/delete');
     final $body = body;
     final Request $request = Request(
       'PUT',
@@ -1217,7 +1218,7 @@ class _$Apigrpc extends Apigrpc {
     int? limit,
     String? cursor,
   }) {
-    final String $url = '/v2/storage/${collection}';
+    final Uri $url = Uri.parse('/v2/storage/${collection}');
     final Map<String, dynamic> $params = <String, dynamic>{
       'userId': userId,
       'limit': limit,
@@ -1239,7 +1240,7 @@ class _$Apigrpc extends Apigrpc {
     int? limit,
     String? cursor,
   }) {
-    final String $url = '/v2/storage/${collection}/${userId}';
+    final Uri $url = Uri.parse('/v2/storage/${collection}/${userId}');
     final Map<String, dynamic> $params = <String, dynamic>{
       'limit': limit,
       'cursor': cursor,
@@ -1262,7 +1263,7 @@ class _$Apigrpc extends Apigrpc {
     int? limit,
     String? cursor,
   }) {
-    final String $url = '/v2/tournament';
+    final Uri $url = Uri.parse('/v2/tournament');
     final Map<String, dynamic> $params = <String, dynamic>{
       'categoryStart': categoryStart,
       'categoryEnd': categoryEnd,
@@ -1288,7 +1289,7 @@ class _$Apigrpc extends Apigrpc {
     String? cursor,
     String? expiry,
   }) {
-    final String $url = '/v2/tournament/${tournamentId}';
+    final Uri $url = Uri.parse('/v2/tournament/${tournamentId}');
     final Map<String, dynamic> $params = <String, dynamic>{
       'ownerIds': ownerIds,
       'limit': limit,
@@ -1310,7 +1311,7 @@ class _$Apigrpc extends Apigrpc {
     required String? tournamentId,
     required WriteTournamentRecordRequestTournamentRecordWrite? body,
   }) {
-    final String $url = '/v2/tournament/${tournamentId}';
+    final Uri $url = Uri.parse('/v2/tournament/${tournamentId}');
     final $body = body;
     final Request $request = Request(
       'POST',
@@ -1326,7 +1327,7 @@ class _$Apigrpc extends Apigrpc {
     required String? tournamentId,
     required WriteTournamentRecordRequestTournamentRecordWrite? body,
   }) {
-    final String $url = '/v2/tournament/${tournamentId}';
+    final Uri $url = Uri.parse('/v2/tournament/${tournamentId}');
     final $body = body;
     final Request $request = Request(
       'PUT',
@@ -1340,7 +1341,7 @@ class _$Apigrpc extends Apigrpc {
   @override
   Future<Response<dynamic>> _v2TournamentTournamentIdJoinPost(
       {required String? tournamentId}) {
-    final String $url = '/v2/tournament/${tournamentId}/join';
+    final Uri $url = Uri.parse('/v2/tournament/${tournamentId}/join');
     final Request $request = Request(
       'POST',
       $url,
@@ -1357,7 +1358,8 @@ class _$Apigrpc extends Apigrpc {
     int? limit,
     String? expiry,
   }) {
-    final String $url = '/v2/tournament/${tournamentId}/owner/${ownerId}';
+    final Uri $url =
+        Uri.parse('/v2/tournament/${tournamentId}/owner/${ownerId}');
     final Map<String, dynamic> $params = <String, dynamic>{
       'limit': limit,
       'expiry': expiry,
@@ -1378,7 +1380,7 @@ class _$Apigrpc extends Apigrpc {
     List<String>? usernames,
     List<String>? facebookIds,
   }) {
-    final String $url = '/v2/user';
+    final Uri $url = Uri.parse('/v2/user');
     final Map<String, dynamic> $params = <String, dynamic>{
       'ids': ids,
       'usernames': usernames,
@@ -1400,7 +1402,7 @@ class _$Apigrpc extends Apigrpc {
     int? state,
     String? cursor,
   }) {
-    final String $url = '/v2/user/${userId}/group';
+    final Uri $url = Uri.parse('/v2/user/${userId}/group');
     final Map<String, dynamic> $params = <String, dynamic>{
       'limit': limit,
       'state': state,

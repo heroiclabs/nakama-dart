@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'account.dart';
 
@@ -208,6 +208,7 @@ class _$_Account extends _Account {
   @override
   @JsonKey()
   List<Device> get devices {
+    if (_devices is EqualUnmodifiableListView) return _devices;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_devices);
   }
@@ -405,6 +406,7 @@ class _$_Device extends _Device {
   @override
   @JsonKey()
   Map<String, dynamic> get vars {
+    if (_vars is EqualUnmodifiableMapView) return _vars;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_vars);
   }

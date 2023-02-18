@@ -42,6 +42,10 @@ class NakamaWebsocketClient {
 
   Stream<MatchData> get onMatchData => _onMatchDataController.stream;
 
+  final _onPartyDataController = StreamController<PartyData>.broadcast();
+
+  Stream<PartyData> get onPartyData => _onPartyDataController.stream;
+
   final _onMatchPresenceController =
       StreamController<MatchPresenceEvent>.broadcast();
 
@@ -164,6 +168,7 @@ class NakamaWebsocketClient {
       _onChannelPresenceController.close(),
       _onMatchmakerMatchedController.close(),
       _onMatchDataController.close(),
+      _onPartyDataController.close(),
       _onMatchPresenceController.close(),
       _onNotificationsController.close(),
       _onStatusPresenceController.close(),
@@ -214,6 +219,9 @@ class NakamaWebsocketClient {
           case rtpb.Envelope_Message.matchData:
             return _onMatchDataController
                 .add(MatchData.fromDto(receivedEnvelope.matchData));
+          case rtpb.Envelope_Message.partyData:
+            return _onPartyDataController
+                .add(PartyData.fromDto(receivedEnvelope.partyData));
           case rtpb.Envelope_Message.matchPresenceEvent:
             return _onMatchPresenceController.add(MatchPresenceEvent.fromDto(
                 receivedEnvelope.matchPresenceEvent));
@@ -409,6 +417,21 @@ class NakamaWebsocketClient {
     final res = await _send<rtpb.Status>(rtpb.Envelope(
         matchDataSend: rtpb.MatchDataSend(
       matchId: matchId,
+      opCode: opCode,
+      data: data,
+    )));
+
+    return res.presences.map(UserPresence.fromDto).toList();
+  }
+
+  Future<List<UserPresence>> sendPartyData({
+    required String partyId,
+    required api.Int64 opCode,
+    required List<int> data,
+  }) async {
+    final res = await _send<rtpb.Status>(rtpb.Envelope(
+        partyDataSend: rtpb.PartyDataSend(
+      partyId: partyId,
       opCode: opCode,
       data: data,
     )));

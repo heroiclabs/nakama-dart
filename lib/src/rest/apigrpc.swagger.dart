@@ -24,7 +24,7 @@ abstract class Apigrpc extends ChopperService {
   static Apigrpc create({
     ChopperClient? client,
     Authenticator? authenticator,
-    String? baseUrl,
+    Uri? baseUrl,
     Iterable<dynamic>? interceptors,
   }) {
     if (client != null) {
@@ -36,7 +36,7 @@ abstract class Apigrpc extends ChopperService {
         converter: $JsonSerializableConverter(),
         interceptors: interceptors ?? [],
         authenticator: authenticator,
-        baseUrl: baseUrl ?? 'http://127.0.0.1:7350');
+        baseUrl: baseUrl ?? Uri.parse('http://127.0.0.1:7350'));
     return _$Apigrpc(newClient);
   }
 
@@ -7100,28 +7100,15 @@ extension $RpcStatusExtension on RpcStatus {
 }
 
 String? apiOperatorToJson(enums.ApiOperator? apiOperator) {
-  return enums.$ApiOperatorMap[apiOperator];
+  return apiOperator?.value;
 }
 
 enums.ApiOperator apiOperatorFromJson(
   Object? apiOperator, [
   enums.ApiOperator? defaultValue,
 ]) {
-  if (apiOperator is String) {
-    return enums.$ApiOperatorMap.entries
-        .firstWhere((element) => element.value == apiOperator,
-            orElse: () =>
-                const MapEntry(enums.ApiOperator.swaggerGeneratedUnknown, ''))
-        .key;
-  }
-
-  final parsedResult = defaultValue == null
-      ? null
-      : enums.$ApiOperatorMap.entries
-          .firstWhereOrNull((element) => element.value == defaultValue)
-          ?.key;
-
-  return parsedResult ??
+  return enums.ApiOperator.values
+          .firstWhereOrNull((e) => e.value == apiOperator) ??
       defaultValue ??
       enums.ApiOperator.swaggerGeneratedUnknown;
 }
@@ -7131,7 +7118,7 @@ List<String> apiOperatorListToJson(List<enums.ApiOperator>? apiOperator) {
     return [];
   }
 
-  return apiOperator.map((e) => enums.$ApiOperatorMap[e]!).toList();
+  return apiOperator.map((e) => e.value!).toList();
 }
 
 List<enums.ApiOperator> apiOperatorListFromJson(
@@ -7158,28 +7145,15 @@ List<enums.ApiOperator>? apiOperatorNullableListFromJson(
 
 String? apiStoreEnvironmentToJson(
     enums.ApiStoreEnvironment? apiStoreEnvironment) {
-  return enums.$ApiStoreEnvironmentMap[apiStoreEnvironment];
+  return apiStoreEnvironment?.value;
 }
 
 enums.ApiStoreEnvironment apiStoreEnvironmentFromJson(
   Object? apiStoreEnvironment, [
   enums.ApiStoreEnvironment? defaultValue,
 ]) {
-  if (apiStoreEnvironment is String) {
-    return enums.$ApiStoreEnvironmentMap.entries
-        .firstWhere((element) => element.value == apiStoreEnvironment,
-            orElse: () => const MapEntry(
-                enums.ApiStoreEnvironment.swaggerGeneratedUnknown, ''))
-        .key;
-  }
-
-  final parsedResult = defaultValue == null
-      ? null
-      : enums.$ApiStoreEnvironmentMap.entries
-          .firstWhereOrNull((element) => element.value == defaultValue)
-          ?.key;
-
-  return parsedResult ??
+  return enums.ApiStoreEnvironment.values
+          .firstWhereOrNull((e) => e.value == apiStoreEnvironment) ??
       defaultValue ??
       enums.ApiStoreEnvironment.swaggerGeneratedUnknown;
 }
@@ -7190,9 +7164,7 @@ List<String> apiStoreEnvironmentListToJson(
     return [];
   }
 
-  return apiStoreEnvironment
-      .map((e) => enums.$ApiStoreEnvironmentMap[e]!)
-      .toList();
+  return apiStoreEnvironment.map((e) => e.value!).toList();
 }
 
 List<enums.ApiStoreEnvironment> apiStoreEnvironmentListFromJson(
@@ -7222,28 +7194,15 @@ List<enums.ApiStoreEnvironment>? apiStoreEnvironmentNullableListFromJson(
 }
 
 String? apiStoreProviderToJson(enums.ApiStoreProvider? apiStoreProvider) {
-  return enums.$ApiStoreProviderMap[apiStoreProvider];
+  return apiStoreProvider?.value;
 }
 
 enums.ApiStoreProvider apiStoreProviderFromJson(
   Object? apiStoreProvider, [
   enums.ApiStoreProvider? defaultValue,
 ]) {
-  if (apiStoreProvider is String) {
-    return enums.$ApiStoreProviderMap.entries
-        .firstWhere((element) => element.value == apiStoreProvider,
-            orElse: () => const MapEntry(
-                enums.ApiStoreProvider.swaggerGeneratedUnknown, ''))
-        .key;
-  }
-
-  final parsedResult = defaultValue == null
-      ? null
-      : enums.$ApiStoreProviderMap.entries
-          .firstWhereOrNull((element) => element.value == defaultValue)
-          ?.key;
-
-  return parsedResult ??
+  return enums.ApiStoreProvider.values
+          .firstWhereOrNull((e) => e.value == apiStoreProvider) ??
       defaultValue ??
       enums.ApiStoreProvider.swaggerGeneratedUnknown;
 }
@@ -7254,7 +7213,7 @@ List<String> apiStoreProviderListToJson(
     return [];
   }
 
-  return apiStoreProvider.map((e) => enums.$ApiStoreProviderMap[e]!).toList();
+  return apiStoreProvider.map((e) => e.value!).toList();
 }
 
 List<enums.ApiStoreProvider> apiStoreProviderListFromJson(

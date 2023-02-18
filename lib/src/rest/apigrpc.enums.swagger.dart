@@ -1,58 +1,54 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:collection/collection.dart';
 
 enum ApiOperator {
-  @JsonValue('swaggerGeneratedUnknown')
-  swaggerGeneratedUnknown,
-  @JsonValue('NO_OVERRIDE')
-  noOverride,
-  @JsonValue('BEST')
-  best,
-  @JsonValue('SET')
-  $set,
-  @JsonValue('INCREMENT')
-  increment,
-  @JsonValue('DECREMENT')
-  decrement
-}
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
 
-const $ApiOperatorMap = {
-  ApiOperator.noOverride: 'NO_OVERRIDE',
-  ApiOperator.best: 'BEST',
-  ApiOperator.$set: 'SET',
-  ApiOperator.increment: 'INCREMENT',
-  ApiOperator.decrement: 'DECREMENT'
-};
+  @JsonValue('NO_OVERRIDE')
+  noOverride('NO_OVERRIDE'),
+  @JsonValue('BEST')
+  best('BEST'),
+  @JsonValue('SET')
+  $set('SET'),
+  @JsonValue('INCREMENT')
+  increment('INCREMENT'),
+  @JsonValue('DECREMENT')
+  decrement('DECREMENT');
+
+  final String? value;
+
+  const ApiOperator(this.value);
+}
 
 enum ApiStoreEnvironment {
-  @JsonValue('swaggerGeneratedUnknown')
-  swaggerGeneratedUnknown,
-  @JsonValue('UNKNOWN')
-  unknown,
-  @JsonValue('SANDBOX')
-  sandbox,
-  @JsonValue('PRODUCTION')
-  production
-}
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
 
-const $ApiStoreEnvironmentMap = {
-  ApiStoreEnvironment.unknown: 'UNKNOWN',
-  ApiStoreEnvironment.sandbox: 'SANDBOX',
-  ApiStoreEnvironment.production: 'PRODUCTION'
-};
+  @JsonValue('UNKNOWN')
+  unknown('UNKNOWN'),
+  @JsonValue('SANDBOX')
+  sandbox('SANDBOX'),
+  @JsonValue('PRODUCTION')
+  production('PRODUCTION');
+
+  final String? value;
+
+  const ApiStoreEnvironment(this.value);
+}
 
 enum ApiStoreProvider {
-  @JsonValue('swaggerGeneratedUnknown')
-  swaggerGeneratedUnknown,
-  @JsonValue('APPLE_APP_STORE')
-  appleAppStore,
-  @JsonValue('GOOGLE_PLAY_STORE')
-  googlePlayStore,
-  @JsonValue('HUAWEI_APP_GALLERY')
-  huaweiAppGallery
-}
+  @JsonValue(null)
+  swaggerGeneratedUnknown(null),
 
-const $ApiStoreProviderMap = {
-  ApiStoreProvider.appleAppStore: 'APPLE_APP_STORE',
-  ApiStoreProvider.googlePlayStore: 'GOOGLE_PLAY_STORE',
-  ApiStoreProvider.huaweiAppGallery: 'HUAWEI_APP_GALLERY'
-};
+  @JsonValue('APPLE_APP_STORE')
+  appleAppStore('APPLE_APP_STORE'),
+  @JsonValue('GOOGLE_PLAY_STORE')
+  googlePlayStore('GOOGLE_PLAY_STORE'),
+  @JsonValue('HUAWEI_APP_GALLERY')
+  huaweiAppGallery('HUAWEI_APP_GALLERY');
+
+  final String? value;
+
+  const ApiStoreProvider(this.value);
+}
