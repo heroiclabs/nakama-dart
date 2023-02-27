@@ -19,6 +19,8 @@ mixin _$Session {
   String get token => throw _privateConstructorUsedError;
   String? get refreshToken => throw _privateConstructorUsedError;
   bool get created => throw _privateConstructorUsedError;
+  Map<String, String>? get vars => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SessionCopyWith<Session> get copyWith => throw _privateConstructorUsedError;
@@ -29,7 +31,12 @@ abstract class $SessionCopyWith<$Res> {
   factory $SessionCopyWith(Session value, $Res Function(Session) then) =
       _$SessionCopyWithImpl<$Res, Session>;
   @useResult
-  $Res call({String token, String? refreshToken, bool created});
+  $Res call(
+      {String token,
+      String? refreshToken,
+      bool created,
+      Map<String, String>? vars,
+      String userId});
 }
 
 /// @nodoc
@@ -48,6 +55,8 @@ class _$SessionCopyWithImpl<$Res, $Val extends Session>
     Object? token = null,
     Object? refreshToken = freezed,
     Object? created = null,
+    Object? vars = freezed,
+    Object? userId = null,
   }) {
     return _then(_value.copyWith(
       token: null == token
@@ -62,6 +71,14 @@ class _$SessionCopyWithImpl<$Res, $Val extends Session>
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as bool,
+      vars: freezed == vars
+          ? _value.vars
+          : vars // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -73,7 +90,12 @@ abstract class _$$_SessionCopyWith<$Res> implements $SessionCopyWith<$Res> {
       __$$_SessionCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String token, String? refreshToken, bool created});
+  $Res call(
+      {String token,
+      String? refreshToken,
+      bool created,
+      Map<String, String>? vars,
+      String userId});
 }
 
 /// @nodoc
@@ -89,6 +111,8 @@ class __$$_SessionCopyWithImpl<$Res>
     Object? token = null,
     Object? refreshToken = freezed,
     Object? created = null,
+    Object? vars = freezed,
+    Object? userId = null,
   }) {
     return _then(_$_Session(
       token: null == token
@@ -103,6 +127,14 @@ class __$$_SessionCopyWithImpl<$Res>
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as bool,
+      vars: freezed == vars
+          ? _value._vars
+          : vars // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -111,8 +143,13 @@ class __$$_SessionCopyWithImpl<$Res>
 
 class _$_Session extends _Session {
   _$_Session(
-      {required this.token, required this.refreshToken, required this.created})
-      : super._();
+      {required this.token,
+      required this.refreshToken,
+      required this.created,
+      required final Map<String, String>? vars,
+      required this.userId})
+      : _vars = vars,
+        super._();
 
   @override
   final String token;
@@ -120,10 +157,22 @@ class _$_Session extends _Session {
   final String? refreshToken;
   @override
   final bool created;
+  final Map<String, String>? _vars;
+  @override
+  Map<String, String>? get vars {
+    final value = _vars;
+    if (value == null) return null;
+    if (_vars is EqualUnmodifiableMapView) return _vars;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  final String userId;
 
   @override
   String toString() {
-    return 'Session(token: $token, refreshToken: $refreshToken, created: $created)';
+    return 'Session(token: $token, refreshToken: $refreshToken, created: $created, vars: $vars, userId: $userId)';
   }
 
   @override
@@ -134,11 +183,14 @@ class _$_Session extends _Session {
             (identical(other.token, token) || other.token == token) &&
             (identical(other.refreshToken, refreshToken) ||
                 other.refreshToken == refreshToken) &&
-            (identical(other.created, created) || other.created == created));
+            (identical(other.created, created) || other.created == created) &&
+            const DeepCollectionEquality().equals(other._vars, _vars) &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, token, refreshToken, created);
+  int get hashCode => Object.hash(runtimeType, token, refreshToken, created,
+      const DeepCollectionEquality().hash(_vars), userId);
 
   @JsonKey(ignore: true)
   @override
@@ -151,7 +203,9 @@ abstract class _Session extends Session {
   factory _Session(
       {required final String token,
       required final String? refreshToken,
-      required final bool created}) = _$_Session;
+      required final bool created,
+      required final Map<String, String>? vars,
+      required final String userId}) = _$_Session;
   _Session._() : super._();
 
   @override
@@ -160,6 +214,10 @@ abstract class _Session extends Session {
   String? get refreshToken;
   @override
   bool get created;
+  @override
+  Map<String, String>? get vars;
+  @override
+  String get userId;
   @override
   @JsonKey(ignore: true)
   _$$_SessionCopyWith<_$_Session> get copyWith =>

@@ -112,11 +112,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
       api.SessionRefreshRequest(token: session.refreshToken, vars: vars),
     );
 
-    return model.Session(
-      created: res.created,
-      token: res.token,
-      refreshToken: res.refreshToken,
-    );
+    return model.Session.fromDto(res);
   }
 
   @override
@@ -148,11 +144,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateEmail(request);
 
-    return model.Session(
-      created: res.created,
-      token: res.token,
-      refreshToken: res.refreshToken,
-    );
+    return model.Session.fromDto(res);
   }
 
   @override
@@ -204,11 +196,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateDevice(request);
 
-    return model.Session(
-      created: res.created,
-      token: res.token,
-      refreshToken: res.refreshToken,
-    );
+    return model.Session.fromDto(res);
   }
 
   @override
@@ -258,11 +246,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateFacebook(request);
 
-    return model.Session(
-      created: res.created,
-      token: res.token,
-      refreshToken: res.refreshToken,
-    );
+    return model.Session.fromDto(res);
   }
 
   @override
@@ -313,11 +297,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateApple(request);
 
-    return model.Session(
-      created: res.created,
-      token: res.token,
-      refreshToken: res.refreshToken,
-    );
+    return model.Session.fromDto(res);
   }
 
   @override
@@ -365,11 +345,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateFacebookInstantGame(request);
 
-    return model.Session(
-      created: res.created,
-      token: res.token,
-      refreshToken: res.refreshToken,
-    );
+    return model.Session.fromDto(res);
   }
 
   @override
@@ -417,11 +393,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateGoogle(request);
 
-    return model.Session(
-      created: res.created,
-      token: res.token,
-      refreshToken: res.refreshToken,
-    );
+    return model.Session.fromDto(res);
   }
 
   @override
@@ -479,11 +451,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateGameCenter(request);
 
-    return model.Session(
-      created: res.created,
-      token: res.token,
-      refreshToken: res.refreshToken,
-    );
+    return model.Session.fromDto(res);
   }
 
   @override
@@ -553,11 +521,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateSteam(request);
 
-    return model.Session(
-      created: res.created,
-      token: res.token,
-      refreshToken: res.refreshToken,
-    );
+    return model.Session.fromDto(res);
   }
 
   @override
@@ -611,11 +575,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateCustom(request);
 
-    return model.Session(
-      created: res.created,
-      token: res.token,
-      refreshToken: res.refreshToken,
-    );
+    return model.Session.fromDto(res);
   }
 
   @override
