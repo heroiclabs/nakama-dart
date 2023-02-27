@@ -265,9 +265,10 @@ class NakamaWebsocketClient {
   Future updateStatus(String status) => _send<void>(rtpb.Envelope(
       statusUpdate: rtpb.StatusUpdate(status: api.StringValue(value: status))));
 
-  Future<Match> createMatch() async {
-    final res =
-        await _send<rtpb.Match>(rtpb.Envelope(matchCreate: rtpb.MatchCreate()));
+  Future<Match> createMatch([String? name]) async {
+    final res = await _send<rtpb.Match>(
+      rtpb.Envelope(matchCreate: rtpb.MatchCreate(name: name)),
+    );
 
     return Match.fromRtpb(res);
   }

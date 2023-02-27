@@ -1,3 +1,8 @@
+## 1.0.0-dev.6
+
+* Added creating a match by match name
+* Added missing `vars` to session model
+
 ## 1.0.0-dev.5
 
 * **Breaking:** Renamed `ChannelJoinType` enum to `ChannelType`
