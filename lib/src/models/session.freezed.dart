@@ -21,6 +21,8 @@ mixin _$Session {
   bool get created => throw _privateConstructorUsedError;
   Map<String, String>? get vars => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
+  DateTime get expiresAt => throw _privateConstructorUsedError;
+  DateTime get refreshExpiresAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SessionCopyWith<Session> get copyWith => throw _privateConstructorUsedError;
@@ -36,7 +38,9 @@ abstract class $SessionCopyWith<$Res> {
       String? refreshToken,
       bool created,
       Map<String, String>? vars,
-      String userId});
+      String userId,
+      DateTime expiresAt,
+      DateTime refreshExpiresAt});
 }
 
 /// @nodoc
@@ -57,6 +61,8 @@ class _$SessionCopyWithImpl<$Res, $Val extends Session>
     Object? created = null,
     Object? vars = freezed,
     Object? userId = null,
+    Object? expiresAt = null,
+    Object? refreshExpiresAt = null,
   }) {
     return _then(_value.copyWith(
       token: null == token
@@ -79,6 +85,14 @@ class _$SessionCopyWithImpl<$Res, $Val extends Session>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      expiresAt: null == expiresAt
+          ? _value.expiresAt
+          : expiresAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      refreshExpiresAt: null == refreshExpiresAt
+          ? _value.refreshExpiresAt
+          : refreshExpiresAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -95,7 +109,9 @@ abstract class _$$_SessionCopyWith<$Res> implements $SessionCopyWith<$Res> {
       String? refreshToken,
       bool created,
       Map<String, String>? vars,
-      String userId});
+      String userId,
+      DateTime expiresAt,
+      DateTime refreshExpiresAt});
 }
 
 /// @nodoc
@@ -113,6 +129,8 @@ class __$$_SessionCopyWithImpl<$Res>
     Object? created = null,
     Object? vars = freezed,
     Object? userId = null,
+    Object? expiresAt = null,
+    Object? refreshExpiresAt = null,
   }) {
     return _then(_$_Session(
       token: null == token
@@ -135,6 +153,14 @@ class __$$_SessionCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      expiresAt: null == expiresAt
+          ? _value.expiresAt
+          : expiresAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      refreshExpiresAt: null == refreshExpiresAt
+          ? _value.refreshExpiresAt
+          : refreshExpiresAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -147,7 +173,9 @@ class _$_Session extends _Session {
       required this.refreshToken,
       required this.created,
       required final Map<String, String>? vars,
-      required this.userId})
+      required this.userId,
+      required this.expiresAt,
+      required this.refreshExpiresAt})
       : _vars = vars,
         super._();
 
@@ -169,10 +197,14 @@ class _$_Session extends _Session {
 
   @override
   final String userId;
+  @override
+  final DateTime expiresAt;
+  @override
+  final DateTime refreshExpiresAt;
 
   @override
   String toString() {
-    return 'Session(token: $token, refreshToken: $refreshToken, created: $created, vars: $vars, userId: $userId)';
+    return 'Session(token: $token, refreshToken: $refreshToken, created: $created, vars: $vars, userId: $userId, expiresAt: $expiresAt, refreshExpiresAt: $refreshExpiresAt)';
   }
 
   @override
@@ -185,12 +217,23 @@ class _$_Session extends _Session {
                 other.refreshToken == refreshToken) &&
             (identical(other.created, created) || other.created == created) &&
             const DeepCollectionEquality().equals(other._vars, _vars) &&
-            (identical(other.userId, userId) || other.userId == userId));
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.expiresAt, expiresAt) ||
+                other.expiresAt == expiresAt) &&
+            (identical(other.refreshExpiresAt, refreshExpiresAt) ||
+                other.refreshExpiresAt == refreshExpiresAt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, token, refreshToken, created,
-      const DeepCollectionEquality().hash(_vars), userId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      token,
+      refreshToken,
+      created,
+      const DeepCollectionEquality().hash(_vars),
+      userId,
+      expiresAt,
+      refreshExpiresAt);
 
   @JsonKey(ignore: true)
   @override
@@ -205,7 +248,9 @@ abstract class _Session extends Session {
       required final String? refreshToken,
       required final bool created,
       required final Map<String, String>? vars,
-      required final String userId}) = _$_Session;
+      required final String userId,
+      required final DateTime expiresAt,
+      required final DateTime refreshExpiresAt}) = _$_Session;
   _Session._() : super._();
 
   @override
@@ -218,6 +263,10 @@ abstract class _Session extends Session {
   Map<String, String>? get vars;
   @override
   String get userId;
+  @override
+  DateTime get expiresAt;
+  @override
+  DateTime get refreshExpiresAt;
   @override
   @JsonKey(ignore: true)
   _$$_SessionCopyWith<_$_Session> get copyWith =>

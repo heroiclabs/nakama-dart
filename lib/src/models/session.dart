@@ -15,11 +15,15 @@ class Session with _$Session {
     required bool created,
     required Map<String, String>? vars,
     required String userId,
+    required DateTime expiresAt,
+    required DateTime refreshExpiresAt,
   }) = _Session;
 
   factory Session.fromDto(dto.Session session) {
     final token = JwtDecoder.decode(session.token);
     assert(token.containsKey('uid'));
+
+    final refreshToken = JwtDecoder.decode(session.refreshToken);
 
     return Session(
       token: session.token,
@@ -29,12 +33,20 @@ class Session with _$Session {
           ? token['vars'] as Map<String, String>?
           : {},
       userId: token['uid'] as String,
+      expiresAt: DateTime.fromMillisecondsSinceEpoch(
+        token['exp'] as int,
+      ),
+      refreshExpiresAt: DateTime.fromMillisecondsSinceEpoch(
+        refreshToken['exp'] as int,
+      ),
     );
   }
 
   factory Session.fromApi(ApiSession session) {
     final token = JwtDecoder.decode(session.token!);
     assert(token.containsKey('uid'));
+
+    final refreshToken = JwtDecoder.decode(session.refreshToken!);
 
     return Session(
       token: session.token!,
@@ -44,6 +56,18 @@ class Session with _$Session {
           ? token['vars'] as Map<String, String>?
           : {},
       userId: token['uid'] as String,
+      expiresAt: DateTime.fromMillisecondsSinceEpoch(
+        token['exp'] as int,
+      ),
+      refreshExpiresAt: DateTime.fromMillisecondsSinceEpoch(
+        refreshToken['exp'] as int,
+      ),
     );
   }
+
+  bool hasExpired(DateTime time) => expiresAt.isBefore(time);
+  bool get isExpired => hasExpired(DateTime.now());
+
+  bool hasRefreshExpired(DateTime time) => refreshExpiresAt.isBefore(time);
+  bool get isRefreshExpired => hasRefreshExpired(DateTime.now());
 }
