@@ -3,7 +3,7 @@
 //  source: rtapi/realtime.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
 import 'dart:core' as $core;
 
@@ -2849,10 +2849,23 @@ class MatchCreate extends $pb.GeneratedMessage {
               ? ''
               : 'nakama.realtime'),
       createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'name')
     ..hasRequiredFields = false;
 
   MatchCreate._() : super();
-  factory MatchCreate() => create();
+  factory MatchCreate({
+    $core.String? name,
+  }) {
+    final _result = create();
+    if (name != null) {
+      _result.name = name;
+    }
+    return _result;
+  }
   factory MatchCreate.fromBuffer($core.List<$core.int> i,
           [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(i, r);
@@ -2878,6 +2891,18 @@ class MatchCreate extends $pb.GeneratedMessage {
   static MatchCreate getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<MatchCreate>(create);
   static MatchCreate? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set name($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
 }
 
 class MatchData extends $pb.GeneratedMessage {
@@ -3499,6 +3524,12 @@ class MatchmakerAdd extends $pb.GeneratedMessage {
         keyFieldType: $pb.PbFieldType.OS,
         valueFieldType: $pb.PbFieldType.OD,
         packageName: const $pb.PackageName('nakama.realtime'))
+    ..aOM<$1.Int32Value>(
+        6,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'countMultiple',
+        subBuilder: $1.Int32Value.create)
     ..hasRequiredFields = false;
 
   MatchmakerAdd._() : super();
@@ -3508,6 +3539,7 @@ class MatchmakerAdd extends $pb.GeneratedMessage {
     $core.String? query,
     $core.Map<$core.String, $core.String>? stringProperties,
     $core.Map<$core.String, $core.double>? numericProperties,
+    $1.Int32Value? countMultiple,
   }) {
     final _result = create();
     if (minCount != null) {
@@ -3524,6 +3556,9 @@ class MatchmakerAdd extends $pb.GeneratedMessage {
     }
     if (numericProperties != null) {
       _result.numericProperties.addAll(numericProperties);
+    }
+    if (countMultiple != null) {
+      _result.countMultiple = countMultiple;
     }
     return _result;
   }
@@ -3595,6 +3630,20 @@ class MatchmakerAdd extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(5)
   $core.Map<$core.String, $core.double> get numericProperties => $_getMap(4);
+
+  @$pb.TagNumber(6)
+  $1.Int32Value get countMultiple => $_getN(5);
+  @$pb.TagNumber(6)
+  set countMultiple($1.Int32Value v) {
+    setField(6, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasCountMultiple() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearCountMultiple() => clearField(6);
+  @$pb.TagNumber(6)
+  $1.Int32Value ensureCountMultiple() => $_ensure(5);
 }
 
 class MatchmakerMatched_MatchmakerUser extends $pb.GeneratedMessage {
@@ -5098,6 +5147,12 @@ class PartyMatchmakerAdd extends $pb.GeneratedMessage {
         keyFieldType: $pb.PbFieldType.OS,
         valueFieldType: $pb.PbFieldType.OD,
         packageName: const $pb.PackageName('nakama.realtime'))
+    ..aOM<$1.Int32Value>(
+        7,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'countMultiple',
+        subBuilder: $1.Int32Value.create)
     ..hasRequiredFields = false;
 
   PartyMatchmakerAdd._() : super();
@@ -5108,6 +5163,7 @@ class PartyMatchmakerAdd extends $pb.GeneratedMessage {
     $core.String? query,
     $core.Map<$core.String, $core.String>? stringProperties,
     $core.Map<$core.String, $core.double>? numericProperties,
+    $1.Int32Value? countMultiple,
   }) {
     final _result = create();
     if (partyId != null) {
@@ -5127,6 +5183,9 @@ class PartyMatchmakerAdd extends $pb.GeneratedMessage {
     }
     if (numericProperties != null) {
       _result.numericProperties.addAll(numericProperties);
+    }
+    if (countMultiple != null) {
+      _result.countMultiple = countMultiple;
     }
     return _result;
   }
@@ -5210,6 +5269,20 @@ class PartyMatchmakerAdd extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(6)
   $core.Map<$core.String, $core.double> get numericProperties => $_getMap(5);
+
+  @$pb.TagNumber(7)
+  $1.Int32Value get countMultiple => $_getN(6);
+  @$pb.TagNumber(7)
+  set countMultiple($1.Int32Value v) {
+    setField(7, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasCountMultiple() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearCountMultiple() => clearField(7);
+  @$pb.TagNumber(7)
+  $1.Int32Value ensureCountMultiple() => $_ensure(6);
 }
 
 class PartyMatchmakerRemove extends $pb.GeneratedMessage {

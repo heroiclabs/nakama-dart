@@ -3,7 +3,7 @@
 //  source: rtapi/realtime.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields,deprecated_member_use_from_same_package
+// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,deprecated_member_use_from_same_package,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
@@ -750,11 +750,14 @@ final $typed_data.Uint8List matchDescriptor = $convert.base64Decode(
 @$core.Deprecated('Use matchCreateDescriptor instead')
 const MatchCreate$json = const {
   '1': 'MatchCreate',
+  '2': const [
+    const {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+  ],
 };
 
 /// Descriptor for `MatchCreate`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List matchCreateDescriptor =
-    $convert.base64Decode('CgtNYXRjaENyZWF0ZQ==');
+    $convert.base64Decode('CgtNYXRjaENyZWF0ZRISCgRuYW1lGAEgASgJUgRuYW1l');
 @$core.Deprecated('Use matchDataDescriptor instead')
 const MatchData$json = const {
   '1': 'MatchData',
@@ -894,6 +897,14 @@ const MatchmakerAdd$json = const {
       '6': '.nakama.realtime.MatchmakerAdd.NumericPropertiesEntry',
       '10': 'numericProperties'
     },
+    const {
+      '1': 'count_multiple',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Int32Value',
+      '10': 'countMultiple'
+    },
   ],
   '3': const [
     MatchmakerAdd_StringPropertiesEntry$json,
@@ -923,7 +934,7 @@ const MatchmakerAdd_NumericPropertiesEntry$json = const {
 
 /// Descriptor for `MatchmakerAdd`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List matchmakerAddDescriptor = $convert.base64Decode(
-    'Cg1NYXRjaG1ha2VyQWRkEhsKCW1pbl9jb3VudBgBIAEoBVIIbWluQ291bnQSGwoJbWF4X2NvdW50GAIgASgFUghtYXhDb3VudBIUCgVxdWVyeRgDIAEoCVIFcXVlcnkSYQoRc3RyaW5nX3Byb3BlcnRpZXMYBCADKAsyNC5uYWthbWEucmVhbHRpbWUuTWF0Y2htYWtlckFkZC5TdHJpbmdQcm9wZXJ0aWVzRW50cnlSEHN0cmluZ1Byb3BlcnRpZXMSZAoSbnVtZXJpY19wcm9wZXJ0aWVzGAUgAygLMjUubmFrYW1hLnJlYWx0aW1lLk1hdGNobWFrZXJBZGQuTnVtZXJpY1Byb3BlcnRpZXNFbnRyeVIRbnVtZXJpY1Byb3BlcnRpZXMaQwoVU3RyaW5nUHJvcGVydGllc0VudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAEaRAoWTnVtZXJpY1Byb3BlcnRpZXNFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoAVIFdmFsdWU6AjgB');
+    'Cg1NYXRjaG1ha2VyQWRkEhsKCW1pbl9jb3VudBgBIAEoBVIIbWluQ291bnQSGwoJbWF4X2NvdW50GAIgASgFUghtYXhDb3VudBIUCgVxdWVyeRgDIAEoCVIFcXVlcnkSYQoRc3RyaW5nX3Byb3BlcnRpZXMYBCADKAsyNC5uYWthbWEucmVhbHRpbWUuTWF0Y2htYWtlckFkZC5TdHJpbmdQcm9wZXJ0aWVzRW50cnlSEHN0cmluZ1Byb3BlcnRpZXMSZAoSbnVtZXJpY19wcm9wZXJ0aWVzGAUgAygLMjUubmFrYW1hLnJlYWx0aW1lLk1hdGNobWFrZXJBZGQuTnVtZXJpY1Byb3BlcnRpZXNFbnRyeVIRbnVtZXJpY1Byb3BlcnRpZXMSQgoOY291bnRfbXVsdGlwbGUYBiABKAsyGy5nb29nbGUucHJvdG9idWYuSW50MzJWYWx1ZVINY291bnRNdWx0aXBsZRpDChVTdHJpbmdQcm9wZXJ0aWVzRW50cnkSEAoDa2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4ARpEChZOdW1lcmljUHJvcGVydGllc0VudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgBUgV2YWx1ZToCOAE=');
 @$core.Deprecated('Use matchmakerMatchedDescriptor instead')
 const MatchmakerMatched$json = const {
   '1': 'MatchmakerMatched',
@@ -1268,6 +1279,14 @@ const PartyMatchmakerAdd$json = const {
       '6': '.nakama.realtime.PartyMatchmakerAdd.NumericPropertiesEntry',
       '10': 'numericProperties'
     },
+    const {
+      '1': 'count_multiple',
+      '3': 7,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Int32Value',
+      '10': 'countMultiple'
+    },
   ],
   '3': const [
     PartyMatchmakerAdd_StringPropertiesEntry$json,
@@ -1297,7 +1316,7 @@ const PartyMatchmakerAdd_NumericPropertiesEntry$json = const {
 
 /// Descriptor for `PartyMatchmakerAdd`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List partyMatchmakerAddDescriptor = $convert.base64Decode(
-    'ChJQYXJ0eU1hdGNobWFrZXJBZGQSGQoIcGFydHlfaWQYASABKAlSB3BhcnR5SWQSGwoJbWluX2NvdW50GAIgASgFUghtaW5Db3VudBIbCgltYXhfY291bnQYAyABKAVSCG1heENvdW50EhQKBXF1ZXJ5GAQgASgJUgVxdWVyeRJmChFzdHJpbmdfcHJvcGVydGllcxgFIAMoCzI5Lm5ha2FtYS5yZWFsdGltZS5QYXJ0eU1hdGNobWFrZXJBZGQuU3RyaW5nUHJvcGVydGllc0VudHJ5UhBzdHJpbmdQcm9wZXJ0aWVzEmkKEm51bWVyaWNfcHJvcGVydGllcxgGIAMoCzI6Lm5ha2FtYS5yZWFsdGltZS5QYXJ0eU1hdGNobWFrZXJBZGQuTnVtZXJpY1Byb3BlcnRpZXNFbnRyeVIRbnVtZXJpY1Byb3BlcnRpZXMaQwoVU3RyaW5nUHJvcGVydGllc0VudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgJUgV2YWx1ZToCOAEaRAoWTnVtZXJpY1Byb3BlcnRpZXNFbnRyeRIQCgNrZXkYASABKAlSA2tleRIUCgV2YWx1ZRgCIAEoAVIFdmFsdWU6AjgB');
+    'ChJQYXJ0eU1hdGNobWFrZXJBZGQSGQoIcGFydHlfaWQYASABKAlSB3BhcnR5SWQSGwoJbWluX2NvdW50GAIgASgFUghtaW5Db3VudBIbCgltYXhfY291bnQYAyABKAVSCG1heENvdW50EhQKBXF1ZXJ5GAQgASgJUgVxdWVyeRJmChFzdHJpbmdfcHJvcGVydGllcxgFIAMoCzI5Lm5ha2FtYS5yZWFsdGltZS5QYXJ0eU1hdGNobWFrZXJBZGQuU3RyaW5nUHJvcGVydGllc0VudHJ5UhBzdHJpbmdQcm9wZXJ0aWVzEmkKEm51bWVyaWNfcHJvcGVydGllcxgGIAMoCzI6Lm5ha2FtYS5yZWFsdGltZS5QYXJ0eU1hdGNobWFrZXJBZGQuTnVtZXJpY1Byb3BlcnRpZXNFbnRyeVIRbnVtZXJpY1Byb3BlcnRpZXMSQgoOY291bnRfbXVsdGlwbGUYByABKAsyGy5nb29nbGUucHJvdG9idWYuSW50MzJWYWx1ZVINY291bnRNdWx0aXBsZRpDChVTdHJpbmdQcm9wZXJ0aWVzRW50cnkSEAoDa2V5GAEgASgJUgNrZXkSFAoFdmFsdWUYAiABKAlSBXZhbHVlOgI4ARpEChZOdW1lcmljUHJvcGVydGllc0VudHJ5EhAKA2tleRgBIAEoCVIDa2V5EhQKBXZhbHVlGAIgASgBUgV2YWx1ZToCOAE=');
 @$core.Deprecated('Use partyMatchmakerRemoveDescriptor instead')
 const PartyMatchmakerRemove$json = const {
   '1': 'PartyMatchmakerRemove',

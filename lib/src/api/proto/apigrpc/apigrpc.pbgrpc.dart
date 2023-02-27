@@ -3,14 +3,14 @@
 //  source: apigrpc/apigrpc.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
 import 'dart:async' as $async;
 
 import 'dart:core' as $core;
 
 import 'package:grpc/service_api.dart' as $grpc;
-import '../api/api.pb.dart' as $0;
+import '../github.com/heroiclabs/nakama-common/api/api.pb.dart' as $0;
 import '../google/protobuf/empty.pb.dart' as $1;
 export 'apigrpc.pb.dart';
 
@@ -96,6 +96,10 @@ class NakamaClient extends $grpc.Client {
           '/nakama.api.Nakama/CreateGroup',
           ($0.CreateGroupRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.Group.fromBuffer(value));
+  static final _$deleteAccount = $grpc.ClientMethod<$1.Empty, $1.Empty>(
+      '/nakama.api.Nakama/DeleteAccount',
+      ($1.Empty value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
   static final _$deleteFriends =
       $grpc.ClientMethod<$0.DeleteFriendsRequest, $1.Empty>(
           '/nakama.api.Nakama/DeleteFriends',
@@ -116,6 +120,11 @@ class NakamaClient extends $grpc.Client {
           '/nakama.api.Nakama/DeleteNotifications',
           ($0.DeleteNotificationsRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$deleteTournamentRecord =
+      $grpc.ClientMethod<$0.DeleteTournamentRecordRequest, $1.Empty>(
+          '/nakama.api.Nakama/DeleteTournamentRecord',
+          ($0.DeleteTournamentRecordRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
   static final _$deleteStorageObjects =
       $grpc.ClientMethod<$0.DeleteStorageObjectsRequest, $1.Empty>(
           '/nakama.api.Nakama/DeleteStorageObjects',
@@ -133,6 +142,12 @@ class NakamaClient extends $grpc.Client {
       '/nakama.api.Nakama/GetUsers',
       ($0.GetUsersRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.Users.fromBuffer(value));
+  static final _$getSubscription =
+      $grpc.ClientMethod<$0.GetSubscriptionRequest, $0.ValidatedSubscription>(
+          '/nakama.api.Nakama/GetSubscription',
+          ($0.GetSubscriptionRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.ValidatedSubscription.fromBuffer(value));
   static final _$healthcheck = $grpc.ClientMethod<$1.Empty, $1.Empty>(
       '/nakama.api.Nakama/Healthcheck',
       ($1.Empty value) => value.writeToBuffer(),
@@ -257,6 +272,12 @@ class NakamaClient extends $grpc.Client {
           ($0.ListStorageObjectsRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.StorageObjectList.fromBuffer(value));
+  static final _$listSubscriptions =
+      $grpc.ClientMethod<$0.ListSubscriptionsRequest, $0.SubscriptionList>(
+          '/nakama.api.Nakama/ListSubscriptions',
+          ($0.ListSubscriptionsRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.SubscriptionList.fromBuffer(value));
   static final _$listTournaments =
       $grpc.ClientMethod<$0.ListTournamentsRequest, $0.TournamentList>(
           '/nakama.api.Nakama/ListTournaments',
@@ -354,12 +375,25 @@ class NakamaClient extends $grpc.Client {
       ($0.ValidatePurchaseAppleRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
           $0.ValidatePurchaseResponse.fromBuffer(value));
+  static final _$validateSubscriptionApple = $grpc.ClientMethod<
+          $0.ValidateSubscriptionAppleRequest, $0.ValidateSubscriptionResponse>(
+      '/nakama.api.Nakama/ValidateSubscriptionApple',
+      ($0.ValidateSubscriptionAppleRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.ValidateSubscriptionResponse.fromBuffer(value));
   static final _$validatePurchaseGoogle = $grpc.ClientMethod<
           $0.ValidatePurchaseGoogleRequest, $0.ValidatePurchaseResponse>(
       '/nakama.api.Nakama/ValidatePurchaseGoogle',
       ($0.ValidatePurchaseGoogleRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
           $0.ValidatePurchaseResponse.fromBuffer(value));
+  static final _$validateSubscriptionGoogle = $grpc.ClientMethod<
+          $0.ValidateSubscriptionGoogleRequest,
+          $0.ValidateSubscriptionResponse>(
+      '/nakama.api.Nakama/ValidateSubscriptionGoogle',
+      ($0.ValidateSubscriptionGoogleRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) =>
+          $0.ValidateSubscriptionResponse.fromBuffer(value));
   static final _$validatePurchaseHuawei = $grpc.ClientMethod<
           $0.ValidatePurchaseHuaweiRequest, $0.ValidatePurchaseResponse>(
       '/nakama.api.Nakama/ValidatePurchaseHuawei',
@@ -481,6 +515,11 @@ class NakamaClient extends $grpc.Client {
     return $createUnaryCall(_$createGroup, request, options: options);
   }
 
+  $grpc.ResponseFuture<$1.Empty> deleteAccount($1.Empty request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$deleteAccount, request, options: options);
+  }
+
   $grpc.ResponseFuture<$1.Empty> deleteFriends($0.DeleteFriendsRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$deleteFriends, request, options: options);
@@ -504,6 +543,13 @@ class NakamaClient extends $grpc.Client {
     return $createUnaryCall(_$deleteNotifications, request, options: options);
   }
 
+  $grpc.ResponseFuture<$1.Empty> deleteTournamentRecord(
+      $0.DeleteTournamentRecordRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$deleteTournamentRecord, request,
+        options: options);
+  }
+
   $grpc.ResponseFuture<$1.Empty> deleteStorageObjects(
       $0.DeleteStorageObjectsRequest request,
       {$grpc.CallOptions? options}) {
@@ -523,6 +569,12 @@ class NakamaClient extends $grpc.Client {
   $grpc.ResponseFuture<$0.Users> getUsers($0.GetUsersRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getUsers, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.ValidatedSubscription> getSubscription(
+      $0.GetSubscriptionRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$getSubscription, request, options: options);
   }
 
   $grpc.ResponseFuture<$1.Empty> healthcheck($1.Empty request,
@@ -665,6 +717,12 @@ class NakamaClient extends $grpc.Client {
     return $createUnaryCall(_$listStorageObjects, request, options: options);
   }
 
+  $grpc.ResponseFuture<$0.SubscriptionList> listSubscriptions(
+      $0.ListSubscriptionsRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$listSubscriptions, request, options: options);
+  }
+
   $grpc.ResponseFuture<$0.TournamentList> listTournaments(
       $0.ListTournamentsRequest request,
       {$grpc.CallOptions? options}) {
@@ -777,10 +835,24 @@ class NakamaClient extends $grpc.Client {
     return $createUnaryCall(_$validatePurchaseApple, request, options: options);
   }
 
+  $grpc.ResponseFuture<$0.ValidateSubscriptionResponse>
+      validateSubscriptionApple($0.ValidateSubscriptionAppleRequest request,
+          {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$validateSubscriptionApple, request,
+        options: options);
+  }
+
   $grpc.ResponseFuture<$0.ValidatePurchaseResponse> validatePurchaseGoogle(
       $0.ValidatePurchaseGoogleRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$validatePurchaseGoogle, request,
+        options: options);
+  }
+
+  $grpc.ResponseFuture<$0.ValidateSubscriptionResponse>
+      validateSubscriptionGoogle($0.ValidateSubscriptionGoogleRequest request,
+          {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$validateSubscriptionGoogle, request,
         options: options);
   }
 
@@ -944,6 +1016,13 @@ abstract class NakamaServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.CreateGroupRequest.fromBuffer(value),
         ($0.Group value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.Empty, $1.Empty>(
+        'DeleteAccount',
+        deleteAccount_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $1.Empty.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.DeleteFriendsRequest, $1.Empty>(
         'DeleteFriends',
         deleteFriends_Pre,
@@ -976,6 +1055,14 @@ abstract class NakamaServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.DeleteNotificationsRequest.fromBuffer(value),
         ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.DeleteTournamentRecordRequest, $1.Empty>(
+        'DeleteTournamentRecord',
+        deleteTournamentRecord_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.DeleteTournamentRecordRequest.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.DeleteStorageObjectsRequest, $1.Empty>(
         'DeleteStorageObjects',
         deleteStorageObjects_Pre,
@@ -1005,6 +1092,15 @@ abstract class NakamaServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.GetUsersRequest.fromBuffer(value),
         ($0.Users value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetSubscriptionRequest,
+            $0.ValidatedSubscription>(
+        'GetSubscription',
+        getSubscription_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.GetSubscriptionRequest.fromBuffer(value),
+        ($0.ValidatedSubscription value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$1.Empty, $1.Empty>(
         'Healthcheck',
         healthcheck_Pre,
@@ -1200,6 +1296,15 @@ abstract class NakamaServiceBase extends $grpc.Service {
                 $0.ListStorageObjectsRequest.fromBuffer(value),
             ($0.StorageObjectList value) => value.writeToBuffer()));
     $addMethod(
+        $grpc.ServiceMethod<$0.ListSubscriptionsRequest, $0.SubscriptionList>(
+            'ListSubscriptions',
+            listSubscriptions_Pre,
+            false,
+            false,
+            ($core.List<$core.int> value) =>
+                $0.ListSubscriptionsRequest.fromBuffer(value),
+            ($0.SubscriptionList value) => value.writeToBuffer()));
+    $addMethod(
         $grpc.ServiceMethod<$0.ListTournamentsRequest, $0.TournamentList>(
             'ListTournaments',
             listTournaments_Pre,
@@ -1355,6 +1460,15 @@ abstract class NakamaServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.ValidatePurchaseAppleRequest.fromBuffer(value),
         ($0.ValidatePurchaseResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ValidateSubscriptionAppleRequest,
+            $0.ValidateSubscriptionResponse>(
+        'ValidateSubscriptionApple',
+        validateSubscriptionApple_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.ValidateSubscriptionAppleRequest.fromBuffer(value),
+        ($0.ValidateSubscriptionResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.ValidatePurchaseGoogleRequest,
             $0.ValidatePurchaseResponse>(
         'ValidatePurchaseGoogle',
@@ -1364,6 +1478,15 @@ abstract class NakamaServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.ValidatePurchaseGoogleRequest.fromBuffer(value),
         ($0.ValidatePurchaseResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ValidateSubscriptionGoogleRequest,
+            $0.ValidateSubscriptionResponse>(
+        'ValidateSubscriptionGoogle',
+        validateSubscriptionGoogle_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.ValidateSubscriptionGoogleRequest.fromBuffer(value),
+        ($0.ValidateSubscriptionResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.ValidatePurchaseHuaweiRequest,
             $0.ValidatePurchaseResponse>(
         'ValidatePurchaseHuawei',
@@ -1483,6 +1606,11 @@ abstract class NakamaServiceBase extends $grpc.Service {
     return createGroup(call, await request);
   }
 
+  $async.Future<$1.Empty> deleteAccount_Pre(
+      $grpc.ServiceCall call, $async.Future<$1.Empty> request) async {
+    return deleteAccount(call, await request);
+  }
+
   $async.Future<$1.Empty> deleteFriends_Pre($grpc.ServiceCall call,
       $async.Future<$0.DeleteFriendsRequest> request) async {
     return deleteFriends(call, await request);
@@ -1503,6 +1631,11 @@ abstract class NakamaServiceBase extends $grpc.Service {
     return deleteNotifications(call, await request);
   }
 
+  $async.Future<$1.Empty> deleteTournamentRecord_Pre($grpc.ServiceCall call,
+      $async.Future<$0.DeleteTournamentRecordRequest> request) async {
+    return deleteTournamentRecord(call, await request);
+  }
+
   $async.Future<$1.Empty> deleteStorageObjects_Pre($grpc.ServiceCall call,
       $async.Future<$0.DeleteStorageObjectsRequest> request) async {
     return deleteStorageObjects(call, await request);
@@ -1521,6 +1654,12 @@ abstract class NakamaServiceBase extends $grpc.Service {
   $async.Future<$0.Users> getUsers_Pre(
       $grpc.ServiceCall call, $async.Future<$0.GetUsersRequest> request) async {
     return getUsers(call, await request);
+  }
+
+  $async.Future<$0.ValidatedSubscription> getSubscription_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.GetSubscriptionRequest> request) async {
+    return getSubscription(call, await request);
   }
 
   $async.Future<$1.Empty> healthcheck_Pre(
@@ -1654,6 +1793,12 @@ abstract class NakamaServiceBase extends $grpc.Service {
     return listStorageObjects(call, await request);
   }
 
+  $async.Future<$0.SubscriptionList> listSubscriptions_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.ListSubscriptionsRequest> request) async {
+    return listSubscriptions(call, await request);
+  }
+
   $async.Future<$0.TournamentList> listTournaments_Pre($grpc.ServiceCall call,
       $async.Future<$0.ListTournamentsRequest> request) async {
     return listTournaments(call, await request);
@@ -1758,10 +1903,22 @@ abstract class NakamaServiceBase extends $grpc.Service {
     return validatePurchaseApple(call, await request);
   }
 
+  $async.Future<$0.ValidateSubscriptionResponse> validateSubscriptionApple_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.ValidateSubscriptionAppleRequest> request) async {
+    return validateSubscriptionApple(call, await request);
+  }
+
   $async.Future<$0.ValidatePurchaseResponse> validatePurchaseGoogle_Pre(
       $grpc.ServiceCall call,
       $async.Future<$0.ValidatePurchaseGoogleRequest> request) async {
     return validatePurchaseGoogle(call, await request);
+  }
+
+  $async.Future<$0.ValidateSubscriptionResponse> validateSubscriptionGoogle_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.ValidateSubscriptionGoogleRequest> request) async {
+    return validateSubscriptionGoogle(call, await request);
   }
 
   $async.Future<$0.ValidatePurchaseResponse> validatePurchaseHuawei_Pre(
@@ -1821,6 +1978,8 @@ abstract class NakamaServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.BlockFriendsRequest request);
   $async.Future<$0.Group> createGroup(
       $grpc.ServiceCall call, $0.CreateGroupRequest request);
+  $async.Future<$1.Empty> deleteAccount(
+      $grpc.ServiceCall call, $1.Empty request);
   $async.Future<$1.Empty> deleteFriends(
       $grpc.ServiceCall call, $0.DeleteFriendsRequest request);
   $async.Future<$1.Empty> deleteGroup(
@@ -1829,6 +1988,8 @@ abstract class NakamaServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.DeleteLeaderboardRecordRequest request);
   $async.Future<$1.Empty> deleteNotifications(
       $grpc.ServiceCall call, $0.DeleteNotificationsRequest request);
+  $async.Future<$1.Empty> deleteTournamentRecord(
+      $grpc.ServiceCall call, $0.DeleteTournamentRecordRequest request);
   $async.Future<$1.Empty> deleteStorageObjects(
       $grpc.ServiceCall call, $0.DeleteStorageObjectsRequest request);
   $async.Future<$1.Empty> event($grpc.ServiceCall call, $0.Event request);
@@ -1836,6 +1997,8 @@ abstract class NakamaServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $1.Empty request);
   $async.Future<$0.Users> getUsers(
       $grpc.ServiceCall call, $0.GetUsersRequest request);
+  $async.Future<$0.ValidatedSubscription> getSubscription(
+      $grpc.ServiceCall call, $0.GetSubscriptionRequest request);
   $async.Future<$1.Empty> healthcheck($grpc.ServiceCall call, $1.Empty request);
   $async.Future<$1.Empty> importFacebookFriends(
       $grpc.ServiceCall call, $0.ImportFacebookFriendsRequest request);
@@ -1886,6 +2049,8 @@ abstract class NakamaServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.ListNotificationsRequest request);
   $async.Future<$0.StorageObjectList> listStorageObjects(
       $grpc.ServiceCall call, $0.ListStorageObjectsRequest request);
+  $async.Future<$0.SubscriptionList> listSubscriptions(
+      $grpc.ServiceCall call, $0.ListSubscriptionsRequest request);
   $async.Future<$0.TournamentList> listTournaments(
       $grpc.ServiceCall call, $0.ListTournamentsRequest request);
   $async.Future<$0.TournamentRecordList> listTournamentRecords(
@@ -1926,8 +2091,12 @@ abstract class NakamaServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.UpdateGroupRequest request);
   $async.Future<$0.ValidatePurchaseResponse> validatePurchaseApple(
       $grpc.ServiceCall call, $0.ValidatePurchaseAppleRequest request);
+  $async.Future<$0.ValidateSubscriptionResponse> validateSubscriptionApple(
+      $grpc.ServiceCall call, $0.ValidateSubscriptionAppleRequest request);
   $async.Future<$0.ValidatePurchaseResponse> validatePurchaseGoogle(
       $grpc.ServiceCall call, $0.ValidatePurchaseGoogleRequest request);
+  $async.Future<$0.ValidateSubscriptionResponse> validateSubscriptionGoogle(
+      $grpc.ServiceCall call, $0.ValidateSubscriptionGoogleRequest request);
   $async.Future<$0.ValidatePurchaseResponse> validatePurchaseHuawei(
       $grpc.ServiceCall call, $0.ValidatePurchaseHuaweiRequest request);
   $async.Future<$0.LeaderboardRecord> writeLeaderboardRecord(

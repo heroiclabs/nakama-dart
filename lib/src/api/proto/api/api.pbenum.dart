@@ -3,11 +3,71 @@
 //  source: api/api.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
 // ignore_for_file: UNDEFINED_SHOWN_NAME
 import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
+
+class StoreProvider extends $pb.ProtobufEnum {
+  static const StoreProvider APPLE_APP_STORE = StoreProvider._(
+      0,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'APPLE_APP_STORE');
+  static const StoreProvider GOOGLE_PLAY_STORE = StoreProvider._(
+      1,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'GOOGLE_PLAY_STORE');
+  static const StoreProvider HUAWEI_APP_GALLERY = StoreProvider._(
+      2,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'HUAWEI_APP_GALLERY');
+
+  static const $core.List<StoreProvider> values = <StoreProvider>[
+    APPLE_APP_STORE,
+    GOOGLE_PLAY_STORE,
+    HUAWEI_APP_GALLERY,
+  ];
+
+  static final $core.Map<$core.int, StoreProvider> _byValue =
+      $pb.ProtobufEnum.initByValue(values);
+  static StoreProvider? valueOf($core.int value) => _byValue[value];
+
+  const StoreProvider._($core.int v, $core.String n) : super(v, n);
+}
+
+class StoreEnvironment extends $pb.ProtobufEnum {
+  static const StoreEnvironment UNKNOWN = StoreEnvironment._(
+      0,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'UNKNOWN');
+  static const StoreEnvironment SANDBOX = StoreEnvironment._(
+      1,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'SANDBOX');
+  static const StoreEnvironment PRODUCTION = StoreEnvironment._(
+      2,
+      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
+          ? ''
+          : 'PRODUCTION');
+
+  static const $core.List<StoreEnvironment> values = <StoreEnvironment>[
+    UNKNOWN,
+    SANDBOX,
+    PRODUCTION,
+  ];
+
+  static final $core.Map<$core.int, StoreEnvironment> _byValue =
+      $pb.ProtobufEnum.initByValue(values);
+  static StoreEnvironment? valueOf($core.int value) => _byValue[value];
+
+  const StoreEnvironment._($core.int v, $core.String n) : super(v, n);
+}
 
 class Operator extends $pb.ProtobufEnum {
   static const Operator NO_OVERRIDE = Operator._(
@@ -170,75 +230,5 @@ class UserGroupList_UserGroup_State extends $pb.ProtobufEnum {
       _byValue[value];
 
   const UserGroupList_UserGroup_State._($core.int v, $core.String n)
-      : super(v, n);
-}
-
-class ValidatedPurchase_Store extends $pb.ProtobufEnum {
-  static const ValidatedPurchase_Store APPLE_APP_STORE =
-      ValidatedPurchase_Store._(
-          0,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'APPLE_APP_STORE');
-  static const ValidatedPurchase_Store GOOGLE_PLAY_STORE =
-      ValidatedPurchase_Store._(
-          1,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'GOOGLE_PLAY_STORE');
-  static const ValidatedPurchase_Store HUAWEI_APP_GALLERY =
-      ValidatedPurchase_Store._(
-          2,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'HUAWEI_APP_GALLERY');
-
-  static const $core.List<ValidatedPurchase_Store> values =
-      <ValidatedPurchase_Store>[
-    APPLE_APP_STORE,
-    GOOGLE_PLAY_STORE,
-    HUAWEI_APP_GALLERY,
-  ];
-
-  static final $core.Map<$core.int, ValidatedPurchase_Store> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
-  static ValidatedPurchase_Store? valueOf($core.int value) => _byValue[value];
-
-  const ValidatedPurchase_Store._($core.int v, $core.String n) : super(v, n);
-}
-
-class ValidatedPurchase_Environment extends $pb.ProtobufEnum {
-  static const ValidatedPurchase_Environment UNKNOWN =
-      ValidatedPurchase_Environment._(
-          0,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'UNKNOWN');
-  static const ValidatedPurchase_Environment SANDBOX =
-      ValidatedPurchase_Environment._(
-          1,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'SANDBOX');
-  static const ValidatedPurchase_Environment PRODUCTION =
-      ValidatedPurchase_Environment._(
-          2,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'PRODUCTION');
-
-  static const $core.List<ValidatedPurchase_Environment> values =
-      <ValidatedPurchase_Environment>[
-    UNKNOWN,
-    SANDBOX,
-    PRODUCTION,
-  ];
-
-  static final $core.Map<$core.int, ValidatedPurchase_Environment> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
-  static ValidatedPurchase_Environment? valueOf($core.int value) =>
-      _byValue[value];
-
-  const ValidatedPurchase_Environment._($core.int v, $core.String n)
       : super(v, n);
 }

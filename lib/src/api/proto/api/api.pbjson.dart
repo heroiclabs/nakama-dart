@@ -3,12 +3,38 @@
 //  source: api/api.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields,deprecated_member_use_from_same_package
+// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,deprecated_member_use_from_same_package,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
 
+@$core.Deprecated('Use storeProviderDescriptor instead')
+const StoreProvider$json = const {
+  '1': 'StoreProvider',
+  '2': const [
+    const {'1': 'APPLE_APP_STORE', '2': 0},
+    const {'1': 'GOOGLE_PLAY_STORE', '2': 1},
+    const {'1': 'HUAWEI_APP_GALLERY', '2': 2},
+  ],
+};
+
+/// Descriptor for `StoreProvider`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List storeProviderDescriptor = $convert.base64Decode(
+    'Cg1TdG9yZVByb3ZpZGVyEhMKD0FQUExFX0FQUF9TVE9SRRAAEhUKEUdPT0dMRV9QTEFZX1NUT1JFEAESFgoSSFVBV0VJX0FQUF9HQUxMRVJZEAI=');
+@$core.Deprecated('Use storeEnvironmentDescriptor instead')
+const StoreEnvironment$json = const {
+  '1': 'StoreEnvironment',
+  '2': const [
+    const {'1': 'UNKNOWN', '2': 0},
+    const {'1': 'SANDBOX', '2': 1},
+    const {'1': 'PRODUCTION', '2': 2},
+  ],
+};
+
+/// Descriptor for `StoreEnvironment`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List storeEnvironmentDescriptor = $convert.base64Decode(
+    'ChBTdG9yZUVudmlyb25tZW50EgsKB1VOS05PV04QABILCgdTQU5EQk9YEAESDgoKUFJPRFVDVElPThAC');
 @$core.Deprecated('Use operatorDescriptor instead')
 const Operator$json = const {
   '1': 'Operator',
@@ -895,6 +921,18 @@ const DeleteNotificationsRequest$json = const {
 final $typed_data.Uint8List deleteNotificationsRequestDescriptor =
     $convert.base64Decode(
         'ChpEZWxldGVOb3RpZmljYXRpb25zUmVxdWVzdBIQCgNpZHMYASADKAlSA2lkcw==');
+@$core.Deprecated('Use deleteTournamentRecordRequestDescriptor instead')
+const DeleteTournamentRecordRequest$json = const {
+  '1': 'DeleteTournamentRecordRequest',
+  '2': const [
+    const {'1': 'tournament_id', '3': 1, '4': 1, '5': 9, '10': 'tournamentId'},
+  ],
+};
+
+/// Descriptor for `DeleteTournamentRecordRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List deleteTournamentRecordRequestDescriptor =
+    $convert.base64Decode(
+        'Ch1EZWxldGVUb3VybmFtZW50UmVjb3JkUmVxdWVzdBIjCg10b3VybmFtZW50X2lkGAEgASgJUgx0b3VybmFtZW50SWQ=');
 @$core.Deprecated('Use deleteStorageObjectIdDescriptor instead')
 const DeleteStorageObjectId$json = const {
   '1': 'DeleteStorageObjectId',
@@ -1044,6 +1082,18 @@ const GetUsersRequest$json = const {
 /// Descriptor for `GetUsersRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getUsersRequestDescriptor = $convert.base64Decode(
     'Cg9HZXRVc2Vyc1JlcXVlc3QSEAoDaWRzGAEgAygJUgNpZHMSHAoJdXNlcm5hbWVzGAIgAygJUgl1c2VybmFtZXMSIQoMZmFjZWJvb2tfaWRzGAMgAygJUgtmYWNlYm9va0lkcw==');
+@$core.Deprecated('Use getSubscriptionRequestDescriptor instead')
+const GetSubscriptionRequest$json = const {
+  '1': 'GetSubscriptionRequest',
+  '2': const [
+    const {'1': 'product_id', '3': 1, '4': 1, '5': 9, '10': 'productId'},
+  ],
+};
+
+/// Descriptor for `GetSubscriptionRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List getSubscriptionRequestDescriptor =
+    $convert.base64Decode(
+        'ChZHZXRTdWJzY3JpcHRpb25SZXF1ZXN0Eh0KCnByb2R1Y3RfaWQYASABKAlSCXByb2R1Y3RJZA==');
 @$core.Deprecated('Use groupDescriptor instead')
 const Group$json = const {
   '1': 'Group',
@@ -1597,13 +1647,14 @@ const ListLeaderboardRecordsAroundOwnerRequest$json = const {
       '6': '.google.protobuf.Int64Value',
       '10': 'expiry'
     },
+    const {'1': 'cursor', '3': 5, '4': 1, '5': 9, '10': 'cursor'},
   ],
 };
 
 /// Descriptor for `ListLeaderboardRecordsAroundOwnerRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List listLeaderboardRecordsAroundOwnerRequestDescriptor =
     $convert.base64Decode(
-        'CihMaXN0TGVhZGVyYm9hcmRSZWNvcmRzQXJvdW5kT3duZXJSZXF1ZXN0EiUKDmxlYWRlcmJvYXJkX2lkGAEgASgJUg1sZWFkZXJib2FyZElkEjIKBWxpbWl0GAIgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlVJbnQzMlZhbHVlUgVsaW1pdBIZCghvd25lcl9pZBgDIAEoCVIHb3duZXJJZBIzCgZleHBpcnkYBCABKAsyGy5nb29nbGUucHJvdG9idWYuSW50NjRWYWx1ZVIGZXhwaXJ5');
+        'CihMaXN0TGVhZGVyYm9hcmRSZWNvcmRzQXJvdW5kT3duZXJSZXF1ZXN0EiUKDmxlYWRlcmJvYXJkX2lkGAEgASgJUg1sZWFkZXJib2FyZElkEjIKBWxpbWl0GAIgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlVJbnQzMlZhbHVlUgVsaW1pdBIZCghvd25lcl9pZBgDIAEoCVIHb3duZXJJZBIzCgZleHBpcnkYBCABKAsyGy5nb29nbGUucHJvdG9idWYuSW50NjRWYWx1ZVIGZXhwaXJ5EhYKBmN1cnNvchgFIAEoCVIGY3Vyc29y');
 @$core.Deprecated('Use listLeaderboardRecordsRequestDescriptor instead')
 const ListLeaderboardRecordsRequest$json = const {
   '1': 'ListLeaderboardRecordsRequest',
@@ -1746,6 +1797,26 @@ const ListStorageObjectsRequest$json = const {
 final $typed_data.Uint8List listStorageObjectsRequestDescriptor =
     $convert.base64Decode(
         'ChlMaXN0U3RvcmFnZU9iamVjdHNSZXF1ZXN0EhcKB3VzZXJfaWQYASABKAlSBnVzZXJJZBIeCgpjb2xsZWN0aW9uGAIgASgJUgpjb2xsZWN0aW9uEjEKBWxpbWl0GAMgASgLMhsuZ29vZ2xlLnByb3RvYnVmLkludDMyVmFsdWVSBWxpbWl0EhYKBmN1cnNvchgEIAEoCVIGY3Vyc29y');
+@$core.Deprecated('Use listSubscriptionsRequestDescriptor instead')
+const ListSubscriptionsRequest$json = const {
+  '1': 'ListSubscriptionsRequest',
+  '2': const [
+    const {
+      '1': 'limit',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Int32Value',
+      '10': 'limit'
+    },
+    const {'1': 'cursor', '3': 2, '4': 1, '5': 9, '10': 'cursor'},
+  ],
+};
+
+/// Descriptor for `ListSubscriptionsRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List listSubscriptionsRequestDescriptor =
+    $convert.base64Decode(
+        'ChhMaXN0U3Vic2NyaXB0aW9uc1JlcXVlc3QSMQoFbGltaXQYASABKAsyGy5nb29nbGUucHJvdG9idWYuSW50MzJWYWx1ZVIFbGltaXQSFgoGY3Vyc29yGAIgASgJUgZjdXJzb3I=');
 @$core
     .Deprecated('Use listTournamentRecordsAroundOwnerRequestDescriptor instead')
 const ListTournamentRecordsAroundOwnerRequest$json = const {
@@ -1769,13 +1840,14 @@ const ListTournamentRecordsAroundOwnerRequest$json = const {
       '6': '.google.protobuf.Int64Value',
       '10': 'expiry'
     },
+    const {'1': 'cursor', '3': 5, '4': 1, '5': 9, '10': 'cursor'},
   ],
 };
 
 /// Descriptor for `ListTournamentRecordsAroundOwnerRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List listTournamentRecordsAroundOwnerRequestDescriptor =
     $convert.base64Decode(
-        'CidMaXN0VG91cm5hbWVudFJlY29yZHNBcm91bmRPd25lclJlcXVlc3QSIwoNdG91cm5hbWVudF9pZBgBIAEoCVIMdG91cm5hbWVudElkEjIKBWxpbWl0GAIgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlVJbnQzMlZhbHVlUgVsaW1pdBIZCghvd25lcl9pZBgDIAEoCVIHb3duZXJJZBIzCgZleHBpcnkYBCABKAsyGy5nb29nbGUucHJvdG9idWYuSW50NjRWYWx1ZVIGZXhwaXJ5');
+        'CidMaXN0VG91cm5hbWVudFJlY29yZHNBcm91bmRPd25lclJlcXVlc3QSIwoNdG91cm5hbWVudF9pZBgBIAEoCVIMdG91cm5hbWVudElkEjIKBWxpbWl0GAIgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlVJbnQzMlZhbHVlUgVsaW1pdBIZCghvd25lcl9pZBgDIAEoCVIHb3duZXJJZBIzCgZleHBpcnkYBCABKAsyGy5nb29nbGUucHJvdG9idWYuSW50NjRWYWx1ZVIGZXhwaXJ5EhYKBmN1cnNvchgFIAEoCVIGY3Vyc29y');
 @$core.Deprecated('Use listTournamentRecordsRequestDescriptor instead')
 const ListTournamentRecordsRequest$json = const {
   '1': 'ListTournamentRecordsRequest',
@@ -2225,12 +2297,19 @@ const Tournament$json = const {
       '6': '.nakama.api.Operator',
       '10': 'operator'
     },
+    const {
+      '1': 'authoritative',
+      '3': 20,
+      '4': 1,
+      '5': 8,
+      '10': 'authoritative'
+    },
   ],
 };
 
 /// Descriptor for `Tournament`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List tournamentDescriptor = $convert.base64Decode(
-    'CgpUb3VybmFtZW50Eg4KAmlkGAEgASgJUgJpZBIUCgV0aXRsZRgCIAEoCVIFdGl0bGUSIAoLZGVzY3JpcHRpb24YAyABKAlSC2Rlc2NyaXB0aW9uEhoKCGNhdGVnb3J5GAQgASgNUghjYXRlZ29yeRIdCgpzb3J0X29yZGVyGAUgASgNUglzb3J0T3JkZXISEgoEc2l6ZRgGIAEoDVIEc2l6ZRIZCghtYXhfc2l6ZRgHIAEoDVIHbWF4U2l6ZRIiCg1tYXhfbnVtX3Njb3JlGAggASgNUgttYXhOdW1TY29yZRIbCgljYW5fZW50ZXIYCSABKAhSCGNhbkVudGVyEh0KCmVuZF9hY3RpdmUYCiABKA1SCWVuZEFjdGl2ZRIdCgpuZXh0X3Jlc2V0GAsgASgNUgluZXh0UmVzZXQSGgoIbWV0YWRhdGEYDCABKAlSCG1ldGFkYXRhEjsKC2NyZWF0ZV90aW1lGA0gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIKY3JlYXRlVGltZRI5CgpzdGFydF90aW1lGA4gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIJc3RhcnRUaW1lEjUKCGVuZF90aW1lGA8gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIHZW5kVGltZRIaCghkdXJhdGlvbhgQIAEoDVIIZHVyYXRpb24SIQoMc3RhcnRfYWN0aXZlGBEgASgNUgtzdGFydEFjdGl2ZRIdCgpwcmV2X3Jlc2V0GBIgASgNUglwcmV2UmVzZXQSMAoIb3BlcmF0b3IYEyABKA4yFC5uYWthbWEuYXBpLk9wZXJhdG9yUghvcGVyYXRvcg==');
+    'CgpUb3VybmFtZW50Eg4KAmlkGAEgASgJUgJpZBIUCgV0aXRsZRgCIAEoCVIFdGl0bGUSIAoLZGVzY3JpcHRpb24YAyABKAlSC2Rlc2NyaXB0aW9uEhoKCGNhdGVnb3J5GAQgASgNUghjYXRlZ29yeRIdCgpzb3J0X29yZGVyGAUgASgNUglzb3J0T3JkZXISEgoEc2l6ZRgGIAEoDVIEc2l6ZRIZCghtYXhfc2l6ZRgHIAEoDVIHbWF4U2l6ZRIiCg1tYXhfbnVtX3Njb3JlGAggASgNUgttYXhOdW1TY29yZRIbCgljYW5fZW50ZXIYCSABKAhSCGNhbkVudGVyEh0KCmVuZF9hY3RpdmUYCiABKA1SCWVuZEFjdGl2ZRIdCgpuZXh0X3Jlc2V0GAsgASgNUgluZXh0UmVzZXQSGgoIbWV0YWRhdGEYDCABKAlSCG1ldGFkYXRhEjsKC2NyZWF0ZV90aW1lGA0gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIKY3JlYXRlVGltZRI5CgpzdGFydF90aW1lGA4gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIJc3RhcnRUaW1lEjUKCGVuZF90aW1lGA8gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIHZW5kVGltZRIaCghkdXJhdGlvbhgQIAEoDVIIZHVyYXRpb24SIQoMc3RhcnRfYWN0aXZlGBEgASgNUgtzdGFydEFjdGl2ZRIdCgpwcmV2X3Jlc2V0GBIgASgNUglwcmV2UmVzZXQSMAoIb3BlcmF0b3IYEyABKA4yFC5uYWthbWEuYXBpLk9wZXJhdG9yUghvcGVyYXRvchIkCg1hdXRob3JpdGF0aXZlGBQgASgIUg1hdXRob3JpdGF0aXZl');
 @$core.Deprecated('Use tournamentListDescriptor instead')
 const TournamentList$json = const {
   '1': 'TournamentList',
@@ -2513,61 +2592,126 @@ const ValidatePurchaseAppleRequest$json = const {
   '1': 'ValidatePurchaseAppleRequest',
   '2': const [
     const {'1': 'receipt', '3': 1, '4': 1, '5': 9, '10': 'receipt'},
+    const {
+      '1': 'persist',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.BoolValue',
+      '10': 'persist'
+    },
   ],
 };
 
 /// Descriptor for `ValidatePurchaseAppleRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List validatePurchaseAppleRequestDescriptor =
     $convert.base64Decode(
-        'ChxWYWxpZGF0ZVB1cmNoYXNlQXBwbGVSZXF1ZXN0EhgKB3JlY2VpcHQYASABKAlSB3JlY2VpcHQ=');
+        'ChxWYWxpZGF0ZVB1cmNoYXNlQXBwbGVSZXF1ZXN0EhgKB3JlY2VpcHQYASABKAlSB3JlY2VpcHQSNAoHcGVyc2lzdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5Cb29sVmFsdWVSB3BlcnNpc3Q=');
+@$core.Deprecated('Use validateSubscriptionAppleRequestDescriptor instead')
+const ValidateSubscriptionAppleRequest$json = const {
+  '1': 'ValidateSubscriptionAppleRequest',
+  '2': const [
+    const {'1': 'receipt', '3': 1, '4': 1, '5': 9, '10': 'receipt'},
+    const {
+      '1': 'persist',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.BoolValue',
+      '10': 'persist'
+    },
+  ],
+};
+
+/// Descriptor for `ValidateSubscriptionAppleRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List validateSubscriptionAppleRequestDescriptor =
+    $convert.base64Decode(
+        'CiBWYWxpZGF0ZVN1YnNjcmlwdGlvbkFwcGxlUmVxdWVzdBIYCgdyZWNlaXB0GAEgASgJUgdyZWNlaXB0EjQKB3BlcnNpc3QYAiABKAsyGi5nb29nbGUucHJvdG9idWYuQm9vbFZhbHVlUgdwZXJzaXN0');
 @$core.Deprecated('Use validatePurchaseGoogleRequestDescriptor instead')
 const ValidatePurchaseGoogleRequest$json = const {
   '1': 'ValidatePurchaseGoogleRequest',
   '2': const [
     const {'1': 'purchase', '3': 1, '4': 1, '5': 9, '10': 'purchase'},
+    const {
+      '1': 'persist',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.BoolValue',
+      '10': 'persist'
+    },
   ],
 };
 
 /// Descriptor for `ValidatePurchaseGoogleRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List validatePurchaseGoogleRequestDescriptor =
     $convert.base64Decode(
-        'Ch1WYWxpZGF0ZVB1cmNoYXNlR29vZ2xlUmVxdWVzdBIaCghwdXJjaGFzZRgBIAEoCVIIcHVyY2hhc2U=');
+        'Ch1WYWxpZGF0ZVB1cmNoYXNlR29vZ2xlUmVxdWVzdBIaCghwdXJjaGFzZRgBIAEoCVIIcHVyY2hhc2USNAoHcGVyc2lzdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5Cb29sVmFsdWVSB3BlcnNpc3Q=');
+@$core.Deprecated('Use validateSubscriptionGoogleRequestDescriptor instead')
+const ValidateSubscriptionGoogleRequest$json = const {
+  '1': 'ValidateSubscriptionGoogleRequest',
+  '2': const [
+    const {'1': 'receipt', '3': 1, '4': 1, '5': 9, '10': 'receipt'},
+    const {
+      '1': 'persist',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.BoolValue',
+      '10': 'persist'
+    },
+  ],
+};
+
+/// Descriptor for `ValidateSubscriptionGoogleRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List validateSubscriptionGoogleRequestDescriptor =
+    $convert.base64Decode(
+        'CiFWYWxpZGF0ZVN1YnNjcmlwdGlvbkdvb2dsZVJlcXVlc3QSGAoHcmVjZWlwdBgBIAEoCVIHcmVjZWlwdBI0CgdwZXJzaXN0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLkJvb2xWYWx1ZVIHcGVyc2lzdA==');
 @$core.Deprecated('Use validatePurchaseHuaweiRequestDescriptor instead')
 const ValidatePurchaseHuaweiRequest$json = const {
   '1': 'ValidatePurchaseHuaweiRequest',
   '2': const [
     const {'1': 'purchase', '3': 1, '4': 1, '5': 9, '10': 'purchase'},
     const {'1': 'signature', '3': 2, '4': 1, '5': 9, '10': 'signature'},
+    const {
+      '1': 'persist',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.BoolValue',
+      '10': 'persist'
+    },
   ],
 };
 
 /// Descriptor for `ValidatePurchaseHuaweiRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List validatePurchaseHuaweiRequestDescriptor =
     $convert.base64Decode(
-        'Ch1WYWxpZGF0ZVB1cmNoYXNlSHVhd2VpUmVxdWVzdBIaCghwdXJjaGFzZRgBIAEoCVIIcHVyY2hhc2USHAoJc2lnbmF0dXJlGAIgASgJUglzaWduYXR1cmU=');
+        'Ch1WYWxpZGF0ZVB1cmNoYXNlSHVhd2VpUmVxdWVzdBIaCghwdXJjaGFzZRgBIAEoCVIIcHVyY2hhc2USHAoJc2lnbmF0dXJlGAIgASgJUglzaWduYXR1cmUSNAoHcGVyc2lzdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5Cb29sVmFsdWVSB3BlcnNpc3Q=');
 @$core.Deprecated('Use validatedPurchaseDescriptor instead')
 const ValidatedPurchase$json = const {
   '1': 'ValidatedPurchase',
   '2': const [
-    const {'1': 'product_id', '3': 1, '4': 1, '5': 9, '10': 'productId'},
+    const {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    const {'1': 'product_id', '3': 2, '4': 1, '5': 9, '10': 'productId'},
     const {
       '1': 'transaction_id',
-      '3': 2,
+      '3': 3,
       '4': 1,
       '5': 9,
       '10': 'transactionId'
     },
     const {
       '1': 'store',
-      '3': 3,
+      '3': 4,
       '4': 1,
       '5': 14,
-      '6': '.nakama.api.ValidatedPurchase.Store',
+      '6': '.nakama.api.StoreProvider',
       '10': 'store'
     },
     const {
       '1': 'purchase_time',
-      '3': 4,
+      '3': 5,
       '4': 1,
       '5': 11,
       '6': '.google.protobuf.Timestamp',
@@ -2575,7 +2719,7 @@ const ValidatedPurchase$json = const {
     },
     const {
       '1': 'create_time',
-      '3': 5,
+      '3': 6,
       '4': 1,
       '5': 11,
       '6': '.google.protobuf.Timestamp',
@@ -2583,54 +2727,42 @@ const ValidatedPurchase$json = const {
     },
     const {
       '1': 'update_time',
-      '3': 6,
+      '3': 7,
       '4': 1,
       '5': 11,
       '6': '.google.protobuf.Timestamp',
       '10': 'updateTime'
     },
     const {
+      '1': 'refund_time',
+      '3': 8,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Timestamp',
+      '10': 'refundTime'
+    },
+    const {
       '1': 'provider_response',
-      '3': 7,
+      '3': 9,
       '4': 1,
       '5': 9,
       '10': 'providerResponse'
     },
     const {
       '1': 'environment',
-      '3': 8,
+      '3': 10,
       '4': 1,
       '5': 14,
-      '6': '.nakama.api.ValidatedPurchase.Environment',
+      '6': '.nakama.api.StoreEnvironment',
       '10': 'environment'
     },
-  ],
-  '4': const [ValidatedPurchase_Store$json, ValidatedPurchase_Environment$json],
-};
-
-@$core.Deprecated('Use validatedPurchaseDescriptor instead')
-const ValidatedPurchase_Store$json = const {
-  '1': 'Store',
-  '2': const [
-    const {'1': 'APPLE_APP_STORE', '2': 0},
-    const {'1': 'GOOGLE_PLAY_STORE', '2': 1},
-    const {'1': 'HUAWEI_APP_GALLERY', '2': 2},
-  ],
-};
-
-@$core.Deprecated('Use validatedPurchaseDescriptor instead')
-const ValidatedPurchase_Environment$json = const {
-  '1': 'Environment',
-  '2': const [
-    const {'1': 'UNKNOWN', '2': 0},
-    const {'1': 'SANDBOX', '2': 1},
-    const {'1': 'PRODUCTION', '2': 2},
+    const {'1': 'seen_before', '3': 11, '4': 1, '5': 8, '10': 'seenBefore'},
   ],
 };
 
 /// Descriptor for `ValidatedPurchase`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List validatedPurchaseDescriptor = $convert.base64Decode(
-    'ChFWYWxpZGF0ZWRQdXJjaGFzZRIdCgpwcm9kdWN0X2lkGAEgASgJUglwcm9kdWN0SWQSJQoOdHJhbnNhY3Rpb25faWQYAiABKAlSDXRyYW5zYWN0aW9uSWQSOQoFc3RvcmUYAyABKA4yIy5uYWthbWEuYXBpLlZhbGlkYXRlZFB1cmNoYXNlLlN0b3JlUgVzdG9yZRI/Cg1wdXJjaGFzZV90aW1lGAQgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIMcHVyY2hhc2VUaW1lEjsKC2NyZWF0ZV90aW1lGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIKY3JlYXRlVGltZRI7Cgt1cGRhdGVfdGltZRgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCnVwZGF0ZVRpbWUSKwoRcHJvdmlkZXJfcmVzcG9uc2UYByABKAlSEHByb3ZpZGVyUmVzcG9uc2USSwoLZW52aXJvbm1lbnQYCCABKA4yKS5uYWthbWEuYXBpLlZhbGlkYXRlZFB1cmNoYXNlLkVudmlyb25tZW50UgtlbnZpcm9ubWVudCJLCgVTdG9yZRITCg9BUFBMRV9BUFBfU1RPUkUQABIVChFHT09HTEVfUExBWV9TVE9SRRABEhYKEkhVQVdFSV9BUFBfR0FMTEVSWRACIjcKC0Vudmlyb25tZW50EgsKB1VOS05PV04QABILCgdTQU5EQk9YEAESDgoKUFJPRFVDVElPThAC');
+    'ChFWYWxpZGF0ZWRQdXJjaGFzZRIXCgd1c2VyX2lkGAEgASgJUgZ1c2VySWQSHQoKcHJvZHVjdF9pZBgCIAEoCVIJcHJvZHVjdElkEiUKDnRyYW5zYWN0aW9uX2lkGAMgASgJUg10cmFuc2FjdGlvbklkEi8KBXN0b3JlGAQgASgOMhkubmFrYW1hLmFwaS5TdG9yZVByb3ZpZGVyUgVzdG9yZRI/Cg1wdXJjaGFzZV90aW1lGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIMcHVyY2hhc2VUaW1lEjsKC2NyZWF0ZV90aW1lGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIKY3JlYXRlVGltZRI7Cgt1cGRhdGVfdGltZRgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCnVwZGF0ZVRpbWUSOwoLcmVmdW5kX3RpbWUYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgpyZWZ1bmRUaW1lEisKEXByb3ZpZGVyX3Jlc3BvbnNlGAkgASgJUhBwcm92aWRlclJlc3BvbnNlEj4KC2Vudmlyb25tZW50GAogASgOMhwubmFrYW1hLmFwaS5TdG9yZUVudmlyb25tZW50UgtlbnZpcm9ubWVudBIfCgtzZWVuX2JlZm9yZRgLIAEoCFIKc2VlbkJlZm9yZQ==');
 @$core.Deprecated('Use validatePurchaseResponseDescriptor instead')
 const ValidatePurchaseResponse$json = const {
   '1': 'ValidatePurchaseResponse',
@@ -2650,6 +2782,115 @@ const ValidatePurchaseResponse$json = const {
 final $typed_data.Uint8List validatePurchaseResponseDescriptor =
     $convert.base64Decode(
         'ChhWYWxpZGF0ZVB1cmNoYXNlUmVzcG9uc2USTgoTdmFsaWRhdGVkX3B1cmNoYXNlcxgBIAMoCzIdLm5ha2FtYS5hcGkuVmFsaWRhdGVkUHVyY2hhc2VSEnZhbGlkYXRlZFB1cmNoYXNlcw==');
+@$core.Deprecated('Use validateSubscriptionResponseDescriptor instead')
+const ValidateSubscriptionResponse$json = const {
+  '1': 'ValidateSubscriptionResponse',
+  '2': const [
+    const {
+      '1': 'validated_subscription',
+      '3': 1,
+      '4': 1,
+      '5': 11,
+      '6': '.nakama.api.ValidatedSubscription',
+      '10': 'validatedSubscription'
+    },
+  ],
+};
+
+/// Descriptor for `ValidateSubscriptionResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List validateSubscriptionResponseDescriptor =
+    $convert.base64Decode(
+        'ChxWYWxpZGF0ZVN1YnNjcmlwdGlvblJlc3BvbnNlElgKFnZhbGlkYXRlZF9zdWJzY3JpcHRpb24YASABKAsyIS5uYWthbWEuYXBpLlZhbGlkYXRlZFN1YnNjcmlwdGlvblIVdmFsaWRhdGVkU3Vic2NyaXB0aW9u');
+@$core.Deprecated('Use validatedSubscriptionDescriptor instead')
+const ValidatedSubscription$json = const {
+  '1': 'ValidatedSubscription',
+  '2': const [
+    const {'1': 'user_id', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+    const {'1': 'product_id', '3': 2, '4': 1, '5': 9, '10': 'productId'},
+    const {
+      '1': 'original_transaction_id',
+      '3': 3,
+      '4': 1,
+      '5': 9,
+      '10': 'originalTransactionId'
+    },
+    const {
+      '1': 'store',
+      '3': 4,
+      '4': 1,
+      '5': 14,
+      '6': '.nakama.api.StoreProvider',
+      '10': 'store'
+    },
+    const {
+      '1': 'purchase_time',
+      '3': 5,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Timestamp',
+      '10': 'purchaseTime'
+    },
+    const {
+      '1': 'create_time',
+      '3': 6,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Timestamp',
+      '10': 'createTime'
+    },
+    const {
+      '1': 'update_time',
+      '3': 7,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Timestamp',
+      '10': 'updateTime'
+    },
+    const {
+      '1': 'environment',
+      '3': 8,
+      '4': 1,
+      '5': 14,
+      '6': '.nakama.api.StoreEnvironment',
+      '10': 'environment'
+    },
+    const {
+      '1': 'expiry_time',
+      '3': 9,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Timestamp',
+      '10': 'expiryTime'
+    },
+    const {
+      '1': 'refund_time',
+      '3': 10,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Timestamp',
+      '10': 'refundTime'
+    },
+    const {
+      '1': 'provider_response',
+      '3': 11,
+      '4': 1,
+      '5': 9,
+      '10': 'providerResponse'
+    },
+    const {
+      '1': 'provider_notification',
+      '3': 12,
+      '4': 1,
+      '5': 9,
+      '10': 'providerNotification'
+    },
+    const {'1': 'active', '3': 13, '4': 1, '5': 8, '10': 'active'},
+  ],
+};
+
+/// Descriptor for `ValidatedSubscription`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List validatedSubscriptionDescriptor = $convert.base64Decode(
+    'ChVWYWxpZGF0ZWRTdWJzY3JpcHRpb24SFwoHdXNlcl9pZBgBIAEoCVIGdXNlcklkEh0KCnByb2R1Y3RfaWQYAiABKAlSCXByb2R1Y3RJZBI2ChdvcmlnaW5hbF90cmFuc2FjdGlvbl9pZBgDIAEoCVIVb3JpZ2luYWxUcmFuc2FjdGlvbklkEi8KBXN0b3JlGAQgASgOMhkubmFrYW1hLmFwaS5TdG9yZVByb3ZpZGVyUgVzdG9yZRI/Cg1wdXJjaGFzZV90aW1lGAUgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIMcHVyY2hhc2VUaW1lEjsKC2NyZWF0ZV90aW1lGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIKY3JlYXRlVGltZRI7Cgt1cGRhdGVfdGltZRgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCnVwZGF0ZVRpbWUSPgoLZW52aXJvbm1lbnQYCCABKA4yHC5uYWthbWEuYXBpLlN0b3JlRW52aXJvbm1lbnRSC2Vudmlyb25tZW50EjsKC2V4cGlyeV90aW1lGAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIKZXhwaXJ5VGltZRI7CgtyZWZ1bmRfdGltZRgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCnJlZnVuZFRpbWUSKwoRcHJvdmlkZXJfcmVzcG9uc2UYCyABKAlSEHByb3ZpZGVyUmVzcG9uc2USMwoVcHJvdmlkZXJfbm90aWZpY2F0aW9uGAwgASgJUhRwcm92aWRlck5vdGlmaWNhdGlvbhIWCgZhY3RpdmUYDSABKAhSBmFjdGl2ZQ==');
 @$core.Deprecated('Use purchaseListDescriptor instead')
 const PurchaseList$json = const {
   '1': 'PurchaseList',
@@ -2663,12 +2904,33 @@ const PurchaseList$json = const {
       '10': 'validatedPurchases'
     },
     const {'1': 'cursor', '3': 2, '4': 1, '5': 9, '10': 'cursor'},
+    const {'1': 'prev_cursor', '3': 3, '4': 1, '5': 9, '10': 'prevCursor'},
   ],
 };
 
 /// Descriptor for `PurchaseList`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List purchaseListDescriptor = $convert.base64Decode(
-    'CgxQdXJjaGFzZUxpc3QSTgoTdmFsaWRhdGVkX3B1cmNoYXNlcxgBIAMoCzIdLm5ha2FtYS5hcGkuVmFsaWRhdGVkUHVyY2hhc2VSEnZhbGlkYXRlZFB1cmNoYXNlcxIWCgZjdXJzb3IYAiABKAlSBmN1cnNvcg==');
+    'CgxQdXJjaGFzZUxpc3QSTgoTdmFsaWRhdGVkX3B1cmNoYXNlcxgBIAMoCzIdLm5ha2FtYS5hcGkuVmFsaWRhdGVkUHVyY2hhc2VSEnZhbGlkYXRlZFB1cmNoYXNlcxIWCgZjdXJzb3IYAiABKAlSBmN1cnNvchIfCgtwcmV2X2N1cnNvchgDIAEoCVIKcHJldkN1cnNvcg==');
+@$core.Deprecated('Use subscriptionListDescriptor instead')
+const SubscriptionList$json = const {
+  '1': 'SubscriptionList',
+  '2': const [
+    const {
+      '1': 'validated_subscriptions',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.nakama.api.ValidatedSubscription',
+      '10': 'validatedSubscriptions'
+    },
+    const {'1': 'cursor', '3': 2, '4': 1, '5': 9, '10': 'cursor'},
+    const {'1': 'prev_cursor', '3': 3, '4': 1, '5': 9, '10': 'prevCursor'},
+  ],
+};
+
+/// Descriptor for `SubscriptionList`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List subscriptionListDescriptor = $convert.base64Decode(
+    'ChBTdWJzY3JpcHRpb25MaXN0EloKF3ZhbGlkYXRlZF9zdWJzY3JpcHRpb25zGAEgAygLMiEubmFrYW1hLmFwaS5WYWxpZGF0ZWRTdWJzY3JpcHRpb25SFnZhbGlkYXRlZFN1YnNjcmlwdGlvbnMSFgoGY3Vyc29yGAIgASgJUgZjdXJzb3ISHwoLcHJldl9jdXJzb3IYAyABKAlSCnByZXZDdXJzb3I=');
 @$core.Deprecated('Use writeLeaderboardRecordRequestDescriptor instead')
 const WriteLeaderboardRecordRequest$json = const {
   '1': 'WriteLeaderboardRecordRequest',

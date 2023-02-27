@@ -3,7 +3,7 @@
 //  source: api/api.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,unnecessary_const,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type,unnecessary_this,prefer_final_fields
+// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
 
 import 'dart:core' as $core;
 
@@ -3650,6 +3650,77 @@ class DeleteNotificationsRequest extends $pb.GeneratedMessage {
   $core.List<$core.String> get ids => $_getList(0);
 }
 
+class DeleteTournamentRecordRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'DeleteTournamentRecordRequest',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'nakama.api'),
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'tournamentId')
+    ..hasRequiredFields = false;
+
+  DeleteTournamentRecordRequest._() : super();
+  factory DeleteTournamentRecordRequest({
+    $core.String? tournamentId,
+  }) {
+    final _result = create();
+    if (tournamentId != null) {
+      _result.tournamentId = tournamentId;
+    }
+    return _result;
+  }
+  factory DeleteTournamentRecordRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory DeleteTournamentRecordRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  DeleteTournamentRecordRequest clone() =>
+      DeleteTournamentRecordRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  DeleteTournamentRecordRequest copyWith(
+          void Function(DeleteTournamentRecordRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as DeleteTournamentRecordRequest))
+          as DeleteTournamentRecordRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static DeleteTournamentRecordRequest create() =>
+      DeleteTournamentRecordRequest._();
+  DeleteTournamentRecordRequest createEmptyInstance() => create();
+  static $pb.PbList<DeleteTournamentRecordRequest> createRepeated() =>
+      $pb.PbList<DeleteTournamentRecordRequest>();
+  @$core.pragma('dart2js:noInline')
+  static DeleteTournamentRecordRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<DeleteTournamentRecordRequest>(create);
+  static DeleteTournamentRecordRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get tournamentId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set tournamentId($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasTournamentId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTournamentId() => clearField(1);
+}
+
 class DeleteStorageObjectId extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
@@ -4229,6 +4300,75 @@ class GetUsersRequest extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   $core.List<$core.String> get facebookIds => $_getList(2);
+}
+
+class GetSubscriptionRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'GetSubscriptionRequest',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'nakama.api'),
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'productId')
+    ..hasRequiredFields = false;
+
+  GetSubscriptionRequest._() : super();
+  factory GetSubscriptionRequest({
+    $core.String? productId,
+  }) {
+    final _result = create();
+    if (productId != null) {
+      _result.productId = productId;
+    }
+    return _result;
+  }
+  factory GetSubscriptionRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory GetSubscriptionRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  GetSubscriptionRequest clone() =>
+      GetSubscriptionRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  GetSubscriptionRequest copyWith(
+          void Function(GetSubscriptionRequest) updates) =>
+      super.copyWith((message) => updates(message as GetSubscriptionRequest))
+          as GetSubscriptionRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetSubscriptionRequest create() => GetSubscriptionRequest._();
+  GetSubscriptionRequest createEmptyInstance() => create();
+  static $pb.PbList<GetSubscriptionRequest> createRepeated() =>
+      $pb.PbList<GetSubscriptionRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetSubscriptionRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<GetSubscriptionRequest>(create);
+  static GetSubscriptionRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get productId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set productId($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasProductId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearProductId() => clearField(1);
 }
 
 class Group extends $pb.GeneratedMessage {
@@ -6801,6 +6941,11 @@ class ListLeaderboardRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
             ? ''
             : 'expiry',
         subBuilder: $1.Int64Value.create)
+    ..aOS(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'cursor')
     ..hasRequiredFields = false;
 
   ListLeaderboardRecordsAroundOwnerRequest._() : super();
@@ -6809,6 +6954,7 @@ class ListLeaderboardRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
     $1.UInt32Value? limit,
     $core.String? ownerId,
     $1.Int64Value? expiry,
+    $core.String? cursor,
   }) {
     final _result = create();
     if (leaderboardId != null) {
@@ -6822,6 +6968,9 @@ class ListLeaderboardRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
     }
     if (expiry != null) {
       _result.expiry = expiry;
+    }
+    if (cursor != null) {
+      _result.cursor = cursor;
     }
     return _result;
   }
@@ -6910,6 +7059,18 @@ class ListLeaderboardRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
   void clearExpiry() => clearField(4);
   @$pb.TagNumber(4)
   $1.Int64Value ensureExpiry() => $_ensure(3);
+
+  @$pb.TagNumber(5)
+  $core.String get cursor => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set cursor($core.String v) {
+    $_setString(4, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasCursor() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearCursor() => clearField(5);
 }
 
 class ListLeaderboardRecordsRequest extends $pb.GeneratedMessage {
@@ -7482,6 +7643,99 @@ class ListStorageObjectsRequest extends $pb.GeneratedMessage {
   void clearCursor() => clearField(4);
 }
 
+class ListSubscriptionsRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'ListSubscriptionsRequest',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'nakama.api'),
+      createEmptyInstance: create)
+    ..aOM<$1.Int32Value>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'limit',
+        subBuilder: $1.Int32Value.create)
+    ..aOS(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'cursor')
+    ..hasRequiredFields = false;
+
+  ListSubscriptionsRequest._() : super();
+  factory ListSubscriptionsRequest({
+    $1.Int32Value? limit,
+    $core.String? cursor,
+  }) {
+    final _result = create();
+    if (limit != null) {
+      _result.limit = limit;
+    }
+    if (cursor != null) {
+      _result.cursor = cursor;
+    }
+    return _result;
+  }
+  factory ListSubscriptionsRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ListSubscriptionsRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ListSubscriptionsRequest clone() =>
+      ListSubscriptionsRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ListSubscriptionsRequest copyWith(
+          void Function(ListSubscriptionsRequest) updates) =>
+      super.copyWith((message) => updates(message as ListSubscriptionsRequest))
+          as ListSubscriptionsRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static ListSubscriptionsRequest create() => ListSubscriptionsRequest._();
+  ListSubscriptionsRequest createEmptyInstance() => create();
+  static $pb.PbList<ListSubscriptionsRequest> createRepeated() =>
+      $pb.PbList<ListSubscriptionsRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ListSubscriptionsRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ListSubscriptionsRequest>(create);
+  static ListSubscriptionsRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $1.Int32Value get limit => $_getN(0);
+  @$pb.TagNumber(1)
+  set limit($1.Int32Value v) {
+    setField(1, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasLimit() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearLimit() => clearField(1);
+  @$pb.TagNumber(1)
+  $1.Int32Value ensureLimit() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.String get cursor => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set cursor($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasCursor() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCursor() => clearField(2);
+}
+
 class ListTournamentRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
@@ -7514,6 +7768,11 @@ class ListTournamentRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
             ? ''
             : 'expiry',
         subBuilder: $1.Int64Value.create)
+    ..aOS(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'cursor')
     ..hasRequiredFields = false;
 
   ListTournamentRecordsAroundOwnerRequest._() : super();
@@ -7522,6 +7781,7 @@ class ListTournamentRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
     $1.UInt32Value? limit,
     $core.String? ownerId,
     $1.Int64Value? expiry,
+    $core.String? cursor,
   }) {
     final _result = create();
     if (tournamentId != null) {
@@ -7535,6 +7795,9 @@ class ListTournamentRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
     }
     if (expiry != null) {
       _result.expiry = expiry;
+    }
+    if (cursor != null) {
+      _result.cursor = cursor;
     }
     return _result;
   }
@@ -7622,6 +7885,18 @@ class ListTournamentRecordsAroundOwnerRequest extends $pb.GeneratedMessage {
   void clearExpiry() => clearField(4);
   @$pb.TagNumber(4)
   $1.Int64Value ensureExpiry() => $_ensure(3);
+
+  @$pb.TagNumber(5)
+  $core.String get cursor => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set cursor($core.String v) {
+    $_setString(4, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasCursor() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearCursor() => clearField(5);
 }
 
 class ListTournamentRecordsRequest extends $pb.GeneratedMessage {
@@ -9861,6 +10136,11 @@ class Tournament extends $pb.GeneratedMessage {
         defaultOrMaker: Operator.NO_OVERRIDE,
         valueOf: Operator.valueOf,
         enumValues: Operator.values)
+    ..aOB(
+        20,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'authoritative')
     ..hasRequiredFields = false;
 
   Tournament._() : super();
@@ -9884,6 +10164,7 @@ class Tournament extends $pb.GeneratedMessage {
     $core.int? startActive,
     $core.int? prevReset,
     Operator? operator,
+    $core.bool? authoritative,
   }) {
     final _result = create();
     if (id != null) {
@@ -9942,6 +10223,9 @@ class Tournament extends $pb.GeneratedMessage {
     }
     if (operator != null) {
       _result.operator = operator;
+    }
+    if (authoritative != null) {
+      _result.authoritative = authoritative;
     }
     return _result;
   }
@@ -10204,6 +10488,18 @@ class Tournament extends $pb.GeneratedMessage {
   $core.bool hasOperator() => $_has(18);
   @$pb.TagNumber(19)
   void clearOperator() => clearField(19);
+
+  @$pb.TagNumber(20)
+  $core.bool get authoritative => $_getBF(19);
+  @$pb.TagNumber(20)
+  set authoritative($core.bool v) {
+    $_setBool(19, v);
+  }
+
+  @$pb.TagNumber(20)
+  $core.bool hasAuthoritative() => $_has(19);
+  @$pb.TagNumber(20)
+  void clearAuthoritative() => clearField(20);
 }
 
 class TournamentList extends $pb.GeneratedMessage {
@@ -11463,15 +11759,25 @@ class ValidatePurchaseAppleRequest extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'receipt')
+    ..aOM<$1.BoolValue>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'persist',
+        subBuilder: $1.BoolValue.create)
     ..hasRequiredFields = false;
 
   ValidatePurchaseAppleRequest._() : super();
   factory ValidatePurchaseAppleRequest({
     $core.String? receipt,
+    $1.BoolValue? persist,
   }) {
     final _result = create();
     if (receipt != null) {
       _result.receipt = receipt;
+    }
+    if (persist != null) {
+      _result.persist = persist;
     }
     return _result;
   }
@@ -11517,6 +11823,116 @@ class ValidatePurchaseAppleRequest extends $pb.GeneratedMessage {
   $core.bool hasReceipt() => $_has(0);
   @$pb.TagNumber(1)
   void clearReceipt() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $1.BoolValue get persist => $_getN(1);
+  @$pb.TagNumber(2)
+  set persist($1.BoolValue v) {
+    setField(2, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasPersist() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPersist() => clearField(2);
+  @$pb.TagNumber(2)
+  $1.BoolValue ensurePersist() => $_ensure(1);
+}
+
+class ValidateSubscriptionAppleRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'ValidateSubscriptionAppleRequest',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'nakama.api'),
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'receipt')
+    ..aOM<$1.BoolValue>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'persist',
+        subBuilder: $1.BoolValue.create)
+    ..hasRequiredFields = false;
+
+  ValidateSubscriptionAppleRequest._() : super();
+  factory ValidateSubscriptionAppleRequest({
+    $core.String? receipt,
+    $1.BoolValue? persist,
+  }) {
+    final _result = create();
+    if (receipt != null) {
+      _result.receipt = receipt;
+    }
+    if (persist != null) {
+      _result.persist = persist;
+    }
+    return _result;
+  }
+  factory ValidateSubscriptionAppleRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ValidateSubscriptionAppleRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ValidateSubscriptionAppleRequest clone() =>
+      ValidateSubscriptionAppleRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ValidateSubscriptionAppleRequest copyWith(
+          void Function(ValidateSubscriptionAppleRequest) updates) =>
+      super.copyWith(
+              (message) => updates(message as ValidateSubscriptionAppleRequest))
+          as ValidateSubscriptionAppleRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static ValidateSubscriptionAppleRequest create() =>
+      ValidateSubscriptionAppleRequest._();
+  ValidateSubscriptionAppleRequest createEmptyInstance() => create();
+  static $pb.PbList<ValidateSubscriptionAppleRequest> createRepeated() =>
+      $pb.PbList<ValidateSubscriptionAppleRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ValidateSubscriptionAppleRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ValidateSubscriptionAppleRequest>(
+          create);
+  static ValidateSubscriptionAppleRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get receipt => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set receipt($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasReceipt() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearReceipt() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $1.BoolValue get persist => $_getN(1);
+  @$pb.TagNumber(2)
+  set persist($1.BoolValue v) {
+    setField(2, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasPersist() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPersist() => clearField(2);
+  @$pb.TagNumber(2)
+  $1.BoolValue ensurePersist() => $_ensure(1);
 }
 
 class ValidatePurchaseGoogleRequest extends $pb.GeneratedMessage {
@@ -11534,15 +11950,25 @@ class ValidatePurchaseGoogleRequest extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'purchase')
+    ..aOM<$1.BoolValue>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'persist',
+        subBuilder: $1.BoolValue.create)
     ..hasRequiredFields = false;
 
   ValidatePurchaseGoogleRequest._() : super();
   factory ValidatePurchaseGoogleRequest({
     $core.String? purchase,
+    $1.BoolValue? persist,
   }) {
     final _result = create();
     if (purchase != null) {
       _result.purchase = purchase;
+    }
+    if (persist != null) {
+      _result.persist = persist;
     }
     return _result;
   }
@@ -11588,6 +12014,116 @@ class ValidatePurchaseGoogleRequest extends $pb.GeneratedMessage {
   $core.bool hasPurchase() => $_has(0);
   @$pb.TagNumber(1)
   void clearPurchase() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $1.BoolValue get persist => $_getN(1);
+  @$pb.TagNumber(2)
+  set persist($1.BoolValue v) {
+    setField(2, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasPersist() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPersist() => clearField(2);
+  @$pb.TagNumber(2)
+  $1.BoolValue ensurePersist() => $_ensure(1);
+}
+
+class ValidateSubscriptionGoogleRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'ValidateSubscriptionGoogleRequest',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'nakama.api'),
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'receipt')
+    ..aOM<$1.BoolValue>(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'persist',
+        subBuilder: $1.BoolValue.create)
+    ..hasRequiredFields = false;
+
+  ValidateSubscriptionGoogleRequest._() : super();
+  factory ValidateSubscriptionGoogleRequest({
+    $core.String? receipt,
+    $1.BoolValue? persist,
+  }) {
+    final _result = create();
+    if (receipt != null) {
+      _result.receipt = receipt;
+    }
+    if (persist != null) {
+      _result.persist = persist;
+    }
+    return _result;
+  }
+  factory ValidateSubscriptionGoogleRequest.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ValidateSubscriptionGoogleRequest.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ValidateSubscriptionGoogleRequest clone() =>
+      ValidateSubscriptionGoogleRequest()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ValidateSubscriptionGoogleRequest copyWith(
+          void Function(ValidateSubscriptionGoogleRequest) updates) =>
+      super.copyWith((message) =>
+              updates(message as ValidateSubscriptionGoogleRequest))
+          as ValidateSubscriptionGoogleRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static ValidateSubscriptionGoogleRequest create() =>
+      ValidateSubscriptionGoogleRequest._();
+  ValidateSubscriptionGoogleRequest createEmptyInstance() => create();
+  static $pb.PbList<ValidateSubscriptionGoogleRequest> createRepeated() =>
+      $pb.PbList<ValidateSubscriptionGoogleRequest>();
+  @$core.pragma('dart2js:noInline')
+  static ValidateSubscriptionGoogleRequest getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ValidateSubscriptionGoogleRequest>(
+          create);
+  static ValidateSubscriptionGoogleRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get receipt => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set receipt($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasReceipt() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearReceipt() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $1.BoolValue get persist => $_getN(1);
+  @$pb.TagNumber(2)
+  set persist($1.BoolValue v) {
+    setField(2, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasPersist() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPersist() => clearField(2);
+  @$pb.TagNumber(2)
+  $1.BoolValue ensurePersist() => $_ensure(1);
 }
 
 class ValidatePurchaseHuaweiRequest extends $pb.GeneratedMessage {
@@ -11610,12 +12146,19 @@ class ValidatePurchaseHuaweiRequest extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'signature')
+    ..aOM<$1.BoolValue>(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'persist',
+        subBuilder: $1.BoolValue.create)
     ..hasRequiredFields = false;
 
   ValidatePurchaseHuaweiRequest._() : super();
   factory ValidatePurchaseHuaweiRequest({
     $core.String? purchase,
     $core.String? signature,
+    $1.BoolValue? persist,
   }) {
     final _result = create();
     if (purchase != null) {
@@ -11623,6 +12166,9 @@ class ValidatePurchaseHuaweiRequest extends $pb.GeneratedMessage {
     }
     if (signature != null) {
       _result.signature = signature;
+    }
+    if (persist != null) {
+      _result.persist = persist;
     }
     return _result;
   }
@@ -11680,6 +12226,20 @@ class ValidatePurchaseHuaweiRequest extends $pb.GeneratedMessage {
   $core.bool hasSignature() => $_has(1);
   @$pb.TagNumber(2)
   void clearSignature() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $1.BoolValue get persist => $_getN(2);
+  @$pb.TagNumber(3)
+  set persist($1.BoolValue v) {
+    setField(3, v);
+  }
+
+  @$pb.TagNumber(3)
+  $core.bool hasPersist() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearPersist() => clearField(3);
+  @$pb.TagNumber(3)
+  $1.BoolValue ensurePersist() => $_ensure(2);
 }
 
 class ValidatedPurchase extends $pb.GeneratedMessage {
@@ -11696,67 +12256,89 @@ class ValidatedPurchase extends $pb.GeneratedMessage {
         1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'productId')
+            : 'userId')
     ..aOS(
         2,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'transactionId')
-    ..e<ValidatedPurchase_Store>(
+            : 'productId')
+    ..aOS(
         3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'transactionId')
+    ..e<StoreProvider>(
+        4,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'store',
         $pb.PbFieldType.OE,
-        defaultOrMaker: ValidatedPurchase_Store.APPLE_APP_STORE,
-        valueOf: ValidatedPurchase_Store.valueOf,
-        enumValues: ValidatedPurchase_Store.values)
+        defaultOrMaker: StoreProvider.APPLE_APP_STORE,
+        valueOf: StoreProvider.valueOf,
+        enumValues: StoreProvider.values)
     ..aOM<$0.Timestamp>(
-        4,
+        5,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'purchaseTime',
         subBuilder: $0.Timestamp.create)
     ..aOM<$0.Timestamp>(
-        5,
+        6,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'createTime',
         subBuilder: $0.Timestamp.create)
     ..aOM<$0.Timestamp>(
-        6,
+        7,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'updateTime',
         subBuilder: $0.Timestamp.create)
+    ..aOM<$0.Timestamp>(
+        8,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'refundTime',
+        subBuilder: $0.Timestamp.create)
     ..aOS(
-        7,
+        9,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'providerResponse')
-    ..e<ValidatedPurchase_Environment>(
-        8,
+    ..e<StoreEnvironment>(
+        10,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'environment',
         $pb.PbFieldType.OE,
-        defaultOrMaker: ValidatedPurchase_Environment.UNKNOWN,
-        valueOf: ValidatedPurchase_Environment.valueOf,
-        enumValues: ValidatedPurchase_Environment.values)
+        defaultOrMaker: StoreEnvironment.UNKNOWN,
+        valueOf: StoreEnvironment.valueOf,
+        enumValues: StoreEnvironment.values)
+    ..aOB(
+        11,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'seenBefore')
     ..hasRequiredFields = false;
 
   ValidatedPurchase._() : super();
   factory ValidatedPurchase({
+    $core.String? userId,
     $core.String? productId,
     $core.String? transactionId,
-    ValidatedPurchase_Store? store,
+    StoreProvider? store,
     $0.Timestamp? purchaseTime,
     $0.Timestamp? createTime,
     $0.Timestamp? updateTime,
+    $0.Timestamp? refundTime,
     $core.String? providerResponse,
-    ValidatedPurchase_Environment? environment,
+    StoreEnvironment? environment,
+    $core.bool? seenBefore,
   }) {
     final _result = create();
+    if (userId != null) {
+      _result.userId = userId;
+    }
     if (productId != null) {
       _result.productId = productId;
     }
@@ -11775,11 +12357,17 @@ class ValidatedPurchase extends $pb.GeneratedMessage {
     if (updateTime != null) {
       _result.updateTime = updateTime;
     }
+    if (refundTime != null) {
+      _result.refundTime = refundTime;
+    }
     if (providerResponse != null) {
       _result.providerResponse = providerResponse;
     }
     if (environment != null) {
       _result.environment = environment;
+    }
+    if (seenBefore != null) {
+      _result.seenBefore = seenBefore;
     }
     return _result;
   }
@@ -11811,106 +12399,144 @@ class ValidatedPurchase extends $pb.GeneratedMessage {
   static ValidatedPurchase? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get productId => $_getSZ(0);
+  $core.String get userId => $_getSZ(0);
   @$pb.TagNumber(1)
-  set productId($core.String v) {
+  set userId($core.String v) {
     $_setString(0, v);
   }
 
   @$pb.TagNumber(1)
-  $core.bool hasProductId() => $_has(0);
+  $core.bool hasUserId() => $_has(0);
   @$pb.TagNumber(1)
-  void clearProductId() => clearField(1);
+  void clearUserId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get transactionId => $_getSZ(1);
+  $core.String get productId => $_getSZ(1);
   @$pb.TagNumber(2)
-  set transactionId($core.String v) {
+  set productId($core.String v) {
     $_setString(1, v);
   }
 
   @$pb.TagNumber(2)
-  $core.bool hasTransactionId() => $_has(1);
+  $core.bool hasProductId() => $_has(1);
   @$pb.TagNumber(2)
-  void clearTransactionId() => clearField(2);
+  void clearProductId() => clearField(2);
 
   @$pb.TagNumber(3)
-  ValidatedPurchase_Store get store => $_getN(2);
+  $core.String get transactionId => $_getSZ(2);
   @$pb.TagNumber(3)
-  set store(ValidatedPurchase_Store v) {
-    setField(3, v);
+  set transactionId($core.String v) {
+    $_setString(2, v);
   }
 
   @$pb.TagNumber(3)
-  $core.bool hasStore() => $_has(2);
+  $core.bool hasTransactionId() => $_has(2);
   @$pb.TagNumber(3)
-  void clearStore() => clearField(3);
+  void clearTransactionId() => clearField(3);
 
   @$pb.TagNumber(4)
-  $0.Timestamp get purchaseTime => $_getN(3);
+  StoreProvider get store => $_getN(3);
   @$pb.TagNumber(4)
-  set purchaseTime($0.Timestamp v) {
+  set store(StoreProvider v) {
     setField(4, v);
   }
 
   @$pb.TagNumber(4)
-  $core.bool hasPurchaseTime() => $_has(3);
+  $core.bool hasStore() => $_has(3);
   @$pb.TagNumber(4)
-  void clearPurchaseTime() => clearField(4);
-  @$pb.TagNumber(4)
-  $0.Timestamp ensurePurchaseTime() => $_ensure(3);
+  void clearStore() => clearField(4);
 
   @$pb.TagNumber(5)
-  $0.Timestamp get createTime => $_getN(4);
+  $0.Timestamp get purchaseTime => $_getN(4);
   @$pb.TagNumber(5)
-  set createTime($0.Timestamp v) {
+  set purchaseTime($0.Timestamp v) {
     setField(5, v);
   }
 
   @$pb.TagNumber(5)
-  $core.bool hasCreateTime() => $_has(4);
+  $core.bool hasPurchaseTime() => $_has(4);
   @$pb.TagNumber(5)
-  void clearCreateTime() => clearField(5);
+  void clearPurchaseTime() => clearField(5);
   @$pb.TagNumber(5)
-  $0.Timestamp ensureCreateTime() => $_ensure(4);
+  $0.Timestamp ensurePurchaseTime() => $_ensure(4);
 
   @$pb.TagNumber(6)
-  $0.Timestamp get updateTime => $_getN(5);
+  $0.Timestamp get createTime => $_getN(5);
   @$pb.TagNumber(6)
-  set updateTime($0.Timestamp v) {
+  set createTime($0.Timestamp v) {
     setField(6, v);
   }
 
   @$pb.TagNumber(6)
-  $core.bool hasUpdateTime() => $_has(5);
+  $core.bool hasCreateTime() => $_has(5);
   @$pb.TagNumber(6)
-  void clearUpdateTime() => clearField(6);
+  void clearCreateTime() => clearField(6);
   @$pb.TagNumber(6)
-  $0.Timestamp ensureUpdateTime() => $_ensure(5);
+  $0.Timestamp ensureCreateTime() => $_ensure(5);
 
   @$pb.TagNumber(7)
-  $core.String get providerResponse => $_getSZ(6);
+  $0.Timestamp get updateTime => $_getN(6);
   @$pb.TagNumber(7)
-  set providerResponse($core.String v) {
-    $_setString(6, v);
+  set updateTime($0.Timestamp v) {
+    setField(7, v);
   }
 
   @$pb.TagNumber(7)
-  $core.bool hasProviderResponse() => $_has(6);
+  $core.bool hasUpdateTime() => $_has(6);
   @$pb.TagNumber(7)
-  void clearProviderResponse() => clearField(7);
+  void clearUpdateTime() => clearField(7);
+  @$pb.TagNumber(7)
+  $0.Timestamp ensureUpdateTime() => $_ensure(6);
 
   @$pb.TagNumber(8)
-  ValidatedPurchase_Environment get environment => $_getN(7);
+  $0.Timestamp get refundTime => $_getN(7);
   @$pb.TagNumber(8)
-  set environment(ValidatedPurchase_Environment v) {
+  set refundTime($0.Timestamp v) {
     setField(8, v);
   }
 
   @$pb.TagNumber(8)
-  $core.bool hasEnvironment() => $_has(7);
+  $core.bool hasRefundTime() => $_has(7);
   @$pb.TagNumber(8)
-  void clearEnvironment() => clearField(8);
+  void clearRefundTime() => clearField(8);
+  @$pb.TagNumber(8)
+  $0.Timestamp ensureRefundTime() => $_ensure(7);
+
+  @$pb.TagNumber(9)
+  $core.String get providerResponse => $_getSZ(8);
+  @$pb.TagNumber(9)
+  set providerResponse($core.String v) {
+    $_setString(8, v);
+  }
+
+  @$pb.TagNumber(9)
+  $core.bool hasProviderResponse() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearProviderResponse() => clearField(9);
+
+  @$pb.TagNumber(10)
+  StoreEnvironment get environment => $_getN(9);
+  @$pb.TagNumber(10)
+  set environment(StoreEnvironment v) {
+    setField(10, v);
+  }
+
+  @$pb.TagNumber(10)
+  $core.bool hasEnvironment() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearEnvironment() => clearField(10);
+
+  @$pb.TagNumber(11)
+  $core.bool get seenBefore => $_getBF(10);
+  @$pb.TagNumber(11)
+  set seenBefore($core.bool v) {
+    $_setBool(10, v);
+  }
+
+  @$pb.TagNumber(11)
+  $core.bool hasSeenBefore() => $_has(10);
+  @$pb.TagNumber(11)
+  void clearSeenBefore() => clearField(11);
 }
 
 class ValidatePurchaseResponse extends $pb.GeneratedMessage {
@@ -11975,6 +12601,424 @@ class ValidatePurchaseResponse extends $pb.GeneratedMessage {
   $core.List<ValidatedPurchase> get validatedPurchases => $_getList(0);
 }
 
+class ValidateSubscriptionResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'ValidateSubscriptionResponse',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'nakama.api'),
+      createEmptyInstance: create)
+    ..aOM<ValidatedSubscription>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'validatedSubscription',
+        subBuilder: ValidatedSubscription.create)
+    ..hasRequiredFields = false;
+
+  ValidateSubscriptionResponse._() : super();
+  factory ValidateSubscriptionResponse({
+    ValidatedSubscription? validatedSubscription,
+  }) {
+    final _result = create();
+    if (validatedSubscription != null) {
+      _result.validatedSubscription = validatedSubscription;
+    }
+    return _result;
+  }
+  factory ValidateSubscriptionResponse.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ValidateSubscriptionResponse.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ValidateSubscriptionResponse clone() =>
+      ValidateSubscriptionResponse()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ValidateSubscriptionResponse copyWith(
+          void Function(ValidateSubscriptionResponse) updates) =>
+      super.copyWith(
+              (message) => updates(message as ValidateSubscriptionResponse))
+          as ValidateSubscriptionResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static ValidateSubscriptionResponse create() =>
+      ValidateSubscriptionResponse._();
+  ValidateSubscriptionResponse createEmptyInstance() => create();
+  static $pb.PbList<ValidateSubscriptionResponse> createRepeated() =>
+      $pb.PbList<ValidateSubscriptionResponse>();
+  @$core.pragma('dart2js:noInline')
+  static ValidateSubscriptionResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ValidateSubscriptionResponse>(create);
+  static ValidateSubscriptionResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  ValidatedSubscription get validatedSubscription => $_getN(0);
+  @$pb.TagNumber(1)
+  set validatedSubscription(ValidatedSubscription v) {
+    setField(1, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasValidatedSubscription() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearValidatedSubscription() => clearField(1);
+  @$pb.TagNumber(1)
+  ValidatedSubscription ensureValidatedSubscription() => $_ensure(0);
+}
+
+class ValidatedSubscription extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'ValidatedSubscription',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'nakama.api'),
+      createEmptyInstance: create)
+    ..aOS(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'userId')
+    ..aOS(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'productId')
+    ..aOS(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'originalTransactionId')
+    ..e<StoreProvider>(
+        4,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'store',
+        $pb.PbFieldType.OE,
+        defaultOrMaker: StoreProvider.APPLE_APP_STORE,
+        valueOf: StoreProvider.valueOf,
+        enumValues: StoreProvider.values)
+    ..aOM<$0.Timestamp>(
+        5,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'purchaseTime',
+        subBuilder: $0.Timestamp.create)
+    ..aOM<$0.Timestamp>(
+        6,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'createTime',
+        subBuilder: $0.Timestamp.create)
+    ..aOM<$0.Timestamp>(
+        7,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'updateTime',
+        subBuilder: $0.Timestamp.create)
+    ..e<StoreEnvironment>(
+        8,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'environment',
+        $pb.PbFieldType.OE,
+        defaultOrMaker: StoreEnvironment.UNKNOWN,
+        valueOf: StoreEnvironment.valueOf,
+        enumValues: StoreEnvironment.values)
+    ..aOM<$0.Timestamp>(
+        9,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'expiryTime',
+        subBuilder: $0.Timestamp.create)
+    ..aOM<$0.Timestamp>(
+        10,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'refundTime',
+        subBuilder: $0.Timestamp.create)
+    ..aOS(
+        11,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'providerResponse')
+    ..aOS(
+        12,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'providerNotification')
+    ..aOB(
+        13,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'active')
+    ..hasRequiredFields = false;
+
+  ValidatedSubscription._() : super();
+  factory ValidatedSubscription({
+    $core.String? userId,
+    $core.String? productId,
+    $core.String? originalTransactionId,
+    StoreProvider? store,
+    $0.Timestamp? purchaseTime,
+    $0.Timestamp? createTime,
+    $0.Timestamp? updateTime,
+    StoreEnvironment? environment,
+    $0.Timestamp? expiryTime,
+    $0.Timestamp? refundTime,
+    $core.String? providerResponse,
+    $core.String? providerNotification,
+    $core.bool? active,
+  }) {
+    final _result = create();
+    if (userId != null) {
+      _result.userId = userId;
+    }
+    if (productId != null) {
+      _result.productId = productId;
+    }
+    if (originalTransactionId != null) {
+      _result.originalTransactionId = originalTransactionId;
+    }
+    if (store != null) {
+      _result.store = store;
+    }
+    if (purchaseTime != null) {
+      _result.purchaseTime = purchaseTime;
+    }
+    if (createTime != null) {
+      _result.createTime = createTime;
+    }
+    if (updateTime != null) {
+      _result.updateTime = updateTime;
+    }
+    if (environment != null) {
+      _result.environment = environment;
+    }
+    if (expiryTime != null) {
+      _result.expiryTime = expiryTime;
+    }
+    if (refundTime != null) {
+      _result.refundTime = refundTime;
+    }
+    if (providerResponse != null) {
+      _result.providerResponse = providerResponse;
+    }
+    if (providerNotification != null) {
+      _result.providerNotification = providerNotification;
+    }
+    if (active != null) {
+      _result.active = active;
+    }
+    return _result;
+  }
+  factory ValidatedSubscription.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory ValidatedSubscription.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  ValidatedSubscription clone() =>
+      ValidatedSubscription()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  ValidatedSubscription copyWith(
+          void Function(ValidatedSubscription) updates) =>
+      super.copyWith((message) => updates(message as ValidatedSubscription))
+          as ValidatedSubscription; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static ValidatedSubscription create() => ValidatedSubscription._();
+  ValidatedSubscription createEmptyInstance() => create();
+  static $pb.PbList<ValidatedSubscription> createRepeated() =>
+      $pb.PbList<ValidatedSubscription>();
+  @$core.pragma('dart2js:noInline')
+  static ValidatedSubscription getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<ValidatedSubscription>(create);
+  static ValidatedSubscription? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get userId => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set userId($core.String v) {
+    $_setString(0, v);
+  }
+
+  @$pb.TagNumber(1)
+  $core.bool hasUserId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearUserId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get productId => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set productId($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasProductId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearProductId() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get originalTransactionId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set originalTransactionId($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(3)
+  $core.bool hasOriginalTransactionId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearOriginalTransactionId() => clearField(3);
+
+  @$pb.TagNumber(4)
+  StoreProvider get store => $_getN(3);
+  @$pb.TagNumber(4)
+  set store(StoreProvider v) {
+    setField(4, v);
+  }
+
+  @$pb.TagNumber(4)
+  $core.bool hasStore() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearStore() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $0.Timestamp get purchaseTime => $_getN(4);
+  @$pb.TagNumber(5)
+  set purchaseTime($0.Timestamp v) {
+    setField(5, v);
+  }
+
+  @$pb.TagNumber(5)
+  $core.bool hasPurchaseTime() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearPurchaseTime() => clearField(5);
+  @$pb.TagNumber(5)
+  $0.Timestamp ensurePurchaseTime() => $_ensure(4);
+
+  @$pb.TagNumber(6)
+  $0.Timestamp get createTime => $_getN(5);
+  @$pb.TagNumber(6)
+  set createTime($0.Timestamp v) {
+    setField(6, v);
+  }
+
+  @$pb.TagNumber(6)
+  $core.bool hasCreateTime() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearCreateTime() => clearField(6);
+  @$pb.TagNumber(6)
+  $0.Timestamp ensureCreateTime() => $_ensure(5);
+
+  @$pb.TagNumber(7)
+  $0.Timestamp get updateTime => $_getN(6);
+  @$pb.TagNumber(7)
+  set updateTime($0.Timestamp v) {
+    setField(7, v);
+  }
+
+  @$pb.TagNumber(7)
+  $core.bool hasUpdateTime() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearUpdateTime() => clearField(7);
+  @$pb.TagNumber(7)
+  $0.Timestamp ensureUpdateTime() => $_ensure(6);
+
+  @$pb.TagNumber(8)
+  StoreEnvironment get environment => $_getN(7);
+  @$pb.TagNumber(8)
+  set environment(StoreEnvironment v) {
+    setField(8, v);
+  }
+
+  @$pb.TagNumber(8)
+  $core.bool hasEnvironment() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearEnvironment() => clearField(8);
+
+  @$pb.TagNumber(9)
+  $0.Timestamp get expiryTime => $_getN(8);
+  @$pb.TagNumber(9)
+  set expiryTime($0.Timestamp v) {
+    setField(9, v);
+  }
+
+  @$pb.TagNumber(9)
+  $core.bool hasExpiryTime() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearExpiryTime() => clearField(9);
+  @$pb.TagNumber(9)
+  $0.Timestamp ensureExpiryTime() => $_ensure(8);
+
+  @$pb.TagNumber(10)
+  $0.Timestamp get refundTime => $_getN(9);
+  @$pb.TagNumber(10)
+  set refundTime($0.Timestamp v) {
+    setField(10, v);
+  }
+
+  @$pb.TagNumber(10)
+  $core.bool hasRefundTime() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearRefundTime() => clearField(10);
+  @$pb.TagNumber(10)
+  $0.Timestamp ensureRefundTime() => $_ensure(9);
+
+  @$pb.TagNumber(11)
+  $core.String get providerResponse => $_getSZ(10);
+  @$pb.TagNumber(11)
+  set providerResponse($core.String v) {
+    $_setString(10, v);
+  }
+
+  @$pb.TagNumber(11)
+  $core.bool hasProviderResponse() => $_has(10);
+  @$pb.TagNumber(11)
+  void clearProviderResponse() => clearField(11);
+
+  @$pb.TagNumber(12)
+  $core.String get providerNotification => $_getSZ(11);
+  @$pb.TagNumber(12)
+  set providerNotification($core.String v) {
+    $_setString(11, v);
+  }
+
+  @$pb.TagNumber(12)
+  $core.bool hasProviderNotification() => $_has(11);
+  @$pb.TagNumber(12)
+  void clearProviderNotification() => clearField(12);
+
+  @$pb.TagNumber(13)
+  $core.bool get active => $_getBF(12);
+  @$pb.TagNumber(13)
+  set active($core.bool v) {
+    $_setBool(12, v);
+  }
+
+  @$pb.TagNumber(13)
+  $core.bool hasActive() => $_has(12);
+  @$pb.TagNumber(13)
+  void clearActive() => clearField(13);
+}
+
 class PurchaseList extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
@@ -11997,12 +13041,18 @@ class PurchaseList extends $pb.GeneratedMessage {
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
             : 'cursor')
+    ..aOS(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'prevCursor')
     ..hasRequiredFields = false;
 
   PurchaseList._() : super();
   factory PurchaseList({
     $core.Iterable<ValidatedPurchase>? validatedPurchases,
     $core.String? cursor,
+    $core.String? prevCursor,
   }) {
     final _result = create();
     if (validatedPurchases != null) {
@@ -12010,6 +13060,9 @@ class PurchaseList extends $pb.GeneratedMessage {
     }
     if (cursor != null) {
       _result.cursor = cursor;
+    }
+    if (prevCursor != null) {
+      _result.prevCursor = prevCursor;
     }
     return _result;
   }
@@ -12054,6 +13107,120 @@ class PurchaseList extends $pb.GeneratedMessage {
   $core.bool hasCursor() => $_has(1);
   @$pb.TagNumber(2)
   void clearCursor() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get prevCursor => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set prevCursor($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(3)
+  $core.bool hasPrevCursor() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearPrevCursor() => clearField(3);
+}
+
+class SubscriptionList extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'SubscriptionList',
+      package: const $pb.PackageName(
+          const $core.bool.fromEnvironment('protobuf.omit_message_names')
+              ? ''
+              : 'nakama.api'),
+      createEmptyInstance: create)
+    ..pc<ValidatedSubscription>(
+        1,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'validatedSubscriptions',
+        $pb.PbFieldType.PM,
+        subBuilder: ValidatedSubscription.create)
+    ..aOS(
+        2,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'cursor')
+    ..aOS(
+        3,
+        const $core.bool.fromEnvironment('protobuf.omit_field_names')
+            ? ''
+            : 'prevCursor')
+    ..hasRequiredFields = false;
+
+  SubscriptionList._() : super();
+  factory SubscriptionList({
+    $core.Iterable<ValidatedSubscription>? validatedSubscriptions,
+    $core.String? cursor,
+    $core.String? prevCursor,
+  }) {
+    final _result = create();
+    if (validatedSubscriptions != null) {
+      _result.validatedSubscriptions.addAll(validatedSubscriptions);
+    }
+    if (cursor != null) {
+      _result.cursor = cursor;
+    }
+    if (prevCursor != null) {
+      _result.prevCursor = prevCursor;
+    }
+    return _result;
+  }
+  factory SubscriptionList.fromBuffer($core.List<$core.int> i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(i, r);
+  factory SubscriptionList.fromJson($core.String i,
+          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(i, r);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+      'Will be removed in next major version')
+  SubscriptionList clone() => SubscriptionList()..mergeFromMessage(this);
+  @$core.Deprecated('Using this can add significant overhead to your binary. '
+      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+      'Will be removed in next major version')
+  SubscriptionList copyWith(void Function(SubscriptionList) updates) =>
+      super.copyWith((message) => updates(message as SubscriptionList))
+          as SubscriptionList; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SubscriptionList create() => SubscriptionList._();
+  SubscriptionList createEmptyInstance() => create();
+  static $pb.PbList<SubscriptionList> createRepeated() =>
+      $pb.PbList<SubscriptionList>();
+  @$core.pragma('dart2js:noInline')
+  static SubscriptionList getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SubscriptionList>(create);
+  static SubscriptionList? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<ValidatedSubscription> get validatedSubscriptions => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.String get cursor => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set cursor($core.String v) {
+    $_setString(1, v);
+  }
+
+  @$pb.TagNumber(2)
+  $core.bool hasCursor() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCursor() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get prevCursor => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set prevCursor($core.String v) {
+    $_setString(2, v);
+  }
+
+  @$pb.TagNumber(3)
+  $core.bool hasPrevCursor() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearPrevCursor() => clearField(3);
 }
 
 class WriteLeaderboardRecordRequest_LeaderboardRecordWrite

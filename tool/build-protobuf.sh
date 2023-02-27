@@ -63,6 +63,6 @@ rm -rf .proto-build
 
 echo "[*] Format dart files"
 cd ../lib/src/api/proto
-flutter format --set-exit-if-changed .
+dart format --set-exit-if-changed .
 
 echo "[+] Done"
