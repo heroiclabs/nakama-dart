@@ -10,7 +10,7 @@ import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:grpc/service_api.dart' as $grpc;
-import '../github.com/heroiclabs/nakama-common/api/api.pb.dart' as $0;
+import '../api/api.pb.dart' as $0;
 import '../google/protobuf/empty.pb.dart' as $1;
 export 'apigrpc.pb.dart';
 
