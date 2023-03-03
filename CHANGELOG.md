@@ -2,6 +2,7 @@
 
 * Added creating a match by match name
 * Added missing `vars` to session model
+* Added `presences` to match
 
 ## 1.0.0-dev.5
 

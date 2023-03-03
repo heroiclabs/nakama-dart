@@ -15,7 +15,16 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Match _$MatchFromJson(Map<String, dynamic> json) {
-  return _Match.fromJson(json);
+  switch (json['runtimeType']) {
+    case 'default':
+      return _Match.fromJson(json);
+    case 'realtime':
+      return RealtimeMatch.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'Match',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
 }
 
 /// @nodoc
@@ -26,7 +35,68 @@ mixin _$Match {
   int get size => throw _privateConstructorUsedError;
   int? get tickRate => throw _privateConstructorUsedError;
   String? get handlerName => throw _privateConstructorUsedError;
-
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String matchId, bool authoritative, String label, int size,
+            int? tickRate, String? handlerName)
+        $default, {
+    required TResult Function(
+            String matchId,
+            bool authoritative,
+            String label,
+            int size,
+            int? tickRate,
+            String? handlerName,
+            List<UserPresence> presences)
+        realtime,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String matchId, bool authoritative, String label,
+            int size, int? tickRate, String? handlerName)?
+        $default, {
+    TResult? Function(
+            String matchId,
+            bool authoritative,
+            String label,
+            int size,
+            int? tickRate,
+            String? handlerName,
+            List<UserPresence> presences)?
+        realtime,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String matchId, bool authoritative, String label, int size,
+            int? tickRate, String? handlerName)?
+        $default, {
+    TResult Function(String matchId, bool authoritative, String label, int size,
+            int? tickRate, String? handlerName, List<UserPresence> presences)?
+        realtime,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Match value) $default, {
+    required TResult Function(RealtimeMatch value) realtime,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Match value)? $default, {
+    TResult? Function(RealtimeMatch value)? realtime,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Match value)? $default, {
+    TResult Function(RealtimeMatch value)? realtime,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MatchCopyWith<Match> get copyWith => throw _privateConstructorUsedError;
@@ -164,8 +234,10 @@ class _$_Match extends _Match {
       required this.label,
       required this.size,
       this.tickRate,
-      this.handlerName})
-      : super._();
+      this.handlerName,
+      final String? $type})
+      : $type = $type ?? 'default',
+        super._();
 
   factory _$_Match.fromJson(Map<String, dynamic> json) =>
       _$$_MatchFromJson(json);
@@ -182,6 +254,9 @@ class _$_Match extends _Match {
   final int? tickRate;
   @override
   final String? handlerName;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -214,6 +289,94 @@ class _$_Match extends _Match {
   @pragma('vm:prefer-inline')
   _$$_MatchCopyWith<_$_Match> get copyWith =>
       __$$_MatchCopyWithImpl<_$_Match>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String matchId, bool authoritative, String label, int size,
+            int? tickRate, String? handlerName)
+        $default, {
+    required TResult Function(
+            String matchId,
+            bool authoritative,
+            String label,
+            int size,
+            int? tickRate,
+            String? handlerName,
+            List<UserPresence> presences)
+        realtime,
+  }) {
+    return $default(matchId, authoritative, label, size, tickRate, handlerName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String matchId, bool authoritative, String label,
+            int size, int? tickRate, String? handlerName)?
+        $default, {
+    TResult? Function(
+            String matchId,
+            bool authoritative,
+            String label,
+            int size,
+            int? tickRate,
+            String? handlerName,
+            List<UserPresence> presences)?
+        realtime,
+  }) {
+    return $default?.call(
+        matchId, authoritative, label, size, tickRate, handlerName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String matchId, bool authoritative, String label, int size,
+            int? tickRate, String? handlerName)?
+        $default, {
+    TResult Function(String matchId, bool authoritative, String label, int size,
+            int? tickRate, String? handlerName, List<UserPresence> presences)?
+        realtime,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(
+          matchId, authoritative, label, size, tickRate, handlerName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Match value) $default, {
+    required TResult Function(RealtimeMatch value) realtime,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Match value)? $default, {
+    TResult? Function(RealtimeMatch value)? realtime,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Match value)? $default, {
+    TResult Function(RealtimeMatch value)? realtime,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -250,6 +413,288 @@ abstract class _Match extends Match {
   @override
   @JsonKey(ignore: true)
   _$$_MatchCopyWith<_$_Match> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RealtimeMatchCopyWith<$Res> implements $MatchCopyWith<$Res> {
+  factory _$$RealtimeMatchCopyWith(
+          _$RealtimeMatch value, $Res Function(_$RealtimeMatch) then) =
+      __$$RealtimeMatchCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String matchId,
+      bool authoritative,
+      String label,
+      int size,
+      int? tickRate,
+      String? handlerName,
+      List<UserPresence> presences});
+}
+
+/// @nodoc
+class __$$RealtimeMatchCopyWithImpl<$Res>
+    extends _$MatchCopyWithImpl<$Res, _$RealtimeMatch>
+    implements _$$RealtimeMatchCopyWith<$Res> {
+  __$$RealtimeMatchCopyWithImpl(
+      _$RealtimeMatch _value, $Res Function(_$RealtimeMatch) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? matchId = null,
+    Object? authoritative = null,
+    Object? label = null,
+    Object? size = null,
+    Object? tickRate = freezed,
+    Object? handlerName = freezed,
+    Object? presences = null,
+  }) {
+    return _then(_$RealtimeMatch(
+      matchId: null == matchId
+          ? _value.matchId
+          : matchId // ignore: cast_nullable_to_non_nullable
+              as String,
+      authoritative: null == authoritative
+          ? _value.authoritative
+          : authoritative // ignore: cast_nullable_to_non_nullable
+              as bool,
+      label: null == label
+          ? _value.label
+          : label // ignore: cast_nullable_to_non_nullable
+              as String,
+      size: null == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
+              as int,
+      tickRate: freezed == tickRate
+          ? _value.tickRate
+          : tickRate // ignore: cast_nullable_to_non_nullable
+              as int?,
+      handlerName: freezed == handlerName
+          ? _value.handlerName
+          : handlerName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      presences: null == presences
+          ? _value._presences
+          : presences // ignore: cast_nullable_to_non_nullable
+              as List<UserPresence>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RealtimeMatch extends RealtimeMatch {
+  _$RealtimeMatch(
+      {required this.matchId,
+      required this.authoritative,
+      required this.label,
+      required this.size,
+      this.tickRate,
+      this.handlerName,
+      required final List<UserPresence> presences,
+      final String? $type})
+      : _presences = presences,
+        $type = $type ?? 'realtime',
+        super._();
+
+  factory _$RealtimeMatch.fromJson(Map<String, dynamic> json) =>
+      _$$RealtimeMatchFromJson(json);
+
+  @override
+  final String matchId;
+  @override
+  final bool authoritative;
+  @override
+  final String label;
+  @override
+  final int size;
+  @override
+  final int? tickRate;
+  @override
+  final String? handlerName;
+  final List<UserPresence> _presences;
+  @override
+  List<UserPresence> get presences {
+    if (_presences is EqualUnmodifiableListView) return _presences;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_presences);
+  }
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'Match.realtime(matchId: $matchId, authoritative: $authoritative, label: $label, size: $size, tickRate: $tickRate, handlerName: $handlerName, presences: $presences)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RealtimeMatch &&
+            (identical(other.matchId, matchId) || other.matchId == matchId) &&
+            (identical(other.authoritative, authoritative) ||
+                other.authoritative == authoritative) &&
+            (identical(other.label, label) || other.label == label) &&
+            (identical(other.size, size) || other.size == size) &&
+            (identical(other.tickRate, tickRate) ||
+                other.tickRate == tickRate) &&
+            (identical(other.handlerName, handlerName) ||
+                other.handlerName == handlerName) &&
+            const DeepCollectionEquality()
+                .equals(other._presences, _presences));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      matchId,
+      authoritative,
+      label,
+      size,
+      tickRate,
+      handlerName,
+      const DeepCollectionEquality().hash(_presences));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RealtimeMatchCopyWith<_$RealtimeMatch> get copyWith =>
+      __$$RealtimeMatchCopyWithImpl<_$RealtimeMatch>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String matchId, bool authoritative, String label, int size,
+            int? tickRate, String? handlerName)
+        $default, {
+    required TResult Function(
+            String matchId,
+            bool authoritative,
+            String label,
+            int size,
+            int? tickRate,
+            String? handlerName,
+            List<UserPresence> presences)
+        realtime,
+  }) {
+    return realtime(
+        matchId, authoritative, label, size, tickRate, handlerName, presences);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String matchId, bool authoritative, String label,
+            int size, int? tickRate, String? handlerName)?
+        $default, {
+    TResult? Function(
+            String matchId,
+            bool authoritative,
+            String label,
+            int size,
+            int? tickRate,
+            String? handlerName,
+            List<UserPresence> presences)?
+        realtime,
+  }) {
+    return realtime?.call(
+        matchId, authoritative, label, size, tickRate, handlerName, presences);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String matchId, bool authoritative, String label, int size,
+            int? tickRate, String? handlerName)?
+        $default, {
+    TResult Function(String matchId, bool authoritative, String label, int size,
+            int? tickRate, String? handlerName, List<UserPresence> presences)?
+        realtime,
+    required TResult orElse(),
+  }) {
+    if (realtime != null) {
+      return realtime(matchId, authoritative, label, size, tickRate,
+          handlerName, presences);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_Match value) $default, {
+    required TResult Function(RealtimeMatch value) realtime,
+  }) {
+    return realtime(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_Match value)? $default, {
+    TResult? Function(RealtimeMatch value)? realtime,
+  }) {
+    return realtime?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_Match value)? $default, {
+    TResult Function(RealtimeMatch value)? realtime,
+    required TResult orElse(),
+  }) {
+    if (realtime != null) {
+      return realtime(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RealtimeMatchToJson(
+      this,
+    );
+  }
+}
+
+abstract class RealtimeMatch extends Match {
+  factory RealtimeMatch(
+      {required final String matchId,
+      required final bool authoritative,
+      required final String label,
+      required final int size,
+      final int? tickRate,
+      final String? handlerName,
+      required final List<UserPresence> presences}) = _$RealtimeMatch;
+  RealtimeMatch._() : super._();
+
+  factory RealtimeMatch.fromJson(Map<String, dynamic> json) =
+      _$RealtimeMatch.fromJson;
+
+  @override
+  String get matchId;
+  @override
+  bool get authoritative;
+  @override
+  String get label;
+  @override
+  int get size;
+  @override
+  int? get tickRate;
+  @override
+  String? get handlerName;
+  List<UserPresence> get presences;
+  @override
+  @JsonKey(ignore: true)
+  _$$RealtimeMatchCopyWith<_$RealtimeMatch> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

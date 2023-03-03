@@ -19,22 +19,36 @@ class Match with _$Match {
     String? handlerName,
   }) = _Match;
 
+  factory Match.realtime({
+    required String matchId,
+    required bool authoritative,
+    required String label,
+    required int size,
+    int? tickRate,
+    String? handlerName,
+    required List<UserPresence> presences,
+  }) = RealtimeMatch;
+
   factory Match.fromJson(Map<String, Object?> json) => _$MatchFromJson(json);
 
-  factory Match.fromDto(api.Match dto) => Match(
+  factory Match.fromDto(api.Match dto) => Match.realtime(
         matchId: dto.matchId,
         authoritative: dto.authoritative,
         handlerName: dto.handlerName,
         label: dto.label.value,
         size: dto.size,
         tickRate: dto.tickRate,
+        presences: [],
       );
 
-  factory Match.fromRtpb(rtpb.Match dto) => Match(
+  factory Match.fromRtpb(rtpb.Match dto) => Match.realtime(
         matchId: dto.matchId,
         authoritative: dto.authoritative,
         label: dto.label.value,
         size: dto.size,
+        presences: dto.presences
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
       );
 }
 

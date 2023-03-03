@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+UserPresence _$UserPresenceFromJson(Map<String, dynamic> json) {
+  return _UserPresence.fromJson(json);
+}
+
 /// @nodoc
 mixin _$UserPresence {
   /// The user this presence belongs to.
@@ -33,6 +37,7 @@ mixin _$UserPresence {
   /// A user-set status message for this stream, if applicable.
   String? get status => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserPresenceCopyWith<UserPresence> get copyWith =>
       throw _privateConstructorUsedError;
@@ -155,7 +160,7 @@ class __$$_UserPresenceCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_UserPresence extends _UserPresence {
   const _$_UserPresence(
       {required this.userId,
@@ -164,6 +169,9 @@ class _$_UserPresence extends _UserPresence {
       required this.persistence,
       this.status})
       : super._();
+
+  factory _$_UserPresence.fromJson(Map<String, dynamic> json) =>
+      _$$_UserPresenceFromJson(json);
 
   /// The user this presence belongs to.
   @override
@@ -207,6 +215,7 @@ class _$_UserPresence extends _UserPresence {
             (identical(other.status, status) || other.status == status));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, userId, sessionId, username, persistence, status);
@@ -216,6 +225,13 @@ class _$_UserPresence extends _UserPresence {
   @pragma('vm:prefer-inline')
   _$$_UserPresenceCopyWith<_$_UserPresence> get copyWith =>
       __$$_UserPresenceCopyWithImpl<_$_UserPresence>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_UserPresenceToJson(
+      this,
+    );
+  }
 }
 
 abstract class _UserPresence extends UserPresence {
@@ -226,6 +242,9 @@ abstract class _UserPresence extends UserPresence {
       required final bool persistence,
       final String? status}) = _$_UserPresence;
   const _UserPresence._() : super._();
+
+  factory _UserPresence.fromJson(Map<String, dynamic> json) =
+      _$_UserPresence.fromJson;
 
   @override
 

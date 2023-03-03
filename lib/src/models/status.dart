@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nakama/src/api/rtapi.dart' as rtpb;
 
 part 'status.freezed.dart';
+part 'status.g.dart';
 
 @freezed
 class UserPresence with _$UserPresence {
@@ -33,6 +34,9 @@ class UserPresence with _$UserPresence {
         persistence: dto.persistence,
         status: dto.status.value.isNotEmpty ? dto.status.value : null,
       );
+
+  factory UserPresence.fromJson(Map<String, Object?> json) =>
+      _$UserPresenceFromJson(json);
 }
 
 @freezed
