@@ -46,7 +46,15 @@ class Session with _$Session {
     final token = JwtDecoder.decode(session.token!);
     assert(token.containsKey('uid'));
 
-    final refreshToken = JwtDecoder.decode(session.refreshToken!);
+    DateTime refreshExpiresAt;
+
+    if (session.refreshToken != null) {
+      refreshExpiresAt = DateTime.fromMillisecondsSinceEpoch(
+        JwtDecoder.decode(session.refreshToken!)['exp'] as int,
+      );
+    } else {
+      refreshExpiresAt = DateTime.now()..add(const Duration(days: 1));
+    }
 
     return Session(
       token: session.token!,
@@ -59,9 +67,7 @@ class Session with _$Session {
       expiresAt: DateTime.fromMillisecondsSinceEpoch(
         token['exp'] as int,
       ),
-      refreshExpiresAt: DateTime.fromMillisecondsSinceEpoch(
-        refreshToken['exp'] as int,
-      ),
+      refreshExpiresAt: refreshExpiresAt,
     );
   }
 
