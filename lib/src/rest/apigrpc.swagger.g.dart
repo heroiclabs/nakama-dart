@@ -476,7 +476,7 @@ ApiLeaderboardRecord _$ApiLeaderboardRecordFromJson(
           ? null
           : DateTime.parse(json['expiryTime'] as String),
       rank: json['rank'] as String?,
-      maxNumScore: json['maxNumScore'] as num?,
+      maxNumScore: json['maxNumScore'] as int?,
     );
 
 Map<String, dynamic> _$ApiLeaderboardRecordToJson(
@@ -824,14 +824,14 @@ ApiTournament _$ApiTournamentFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
-      category: json['category'] as num?,
-      sortOrder: json['sortOrder'] as num?,
-      size: json['size'] as num?,
-      maxSize: json['maxSize'] as num?,
-      maxNumScore: json['maxNumScore'] as num?,
+      category: json['category'] as int?,
+      sortOrder: json['sortOrder'] as int?,
+      size: json['size'] as int?,
+      maxSize: json['maxSize'] as int?,
+      maxNumScore: json['maxNumScore'] as int?,
       canEnter: json['canEnter'] as bool?,
-      endActive: json['endActive'] as num?,
-      nextReset: json['nextReset'] as num?,
+      endActive: json['endActive'] as int?,
+      nextReset: json['nextReset'] as int?,
       metadata: json['metadata'] as String?,
       createTime: json['createTime'] == null
           ? null
@@ -842,9 +842,9 @@ ApiTournament _$ApiTournamentFromJson(Map<String, dynamic> json) =>
       endTime: json['endTime'] == null
           ? null
           : DateTime.parse(json['endTime'] as String),
-      duration: json['duration'] as num?,
-      startActive: json['startActive'] as num?,
-      prevReset: json['prevReset'] as num?,
+      duration: json['duration'] as int?,
+      startActive: json['startActive'] as int?,
+      prevReset: json['prevReset'] as int?,
       $operator: apiOperatorFromJson(json['operator']),
     );
 
