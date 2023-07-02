@@ -22,7 +22,7 @@ name: your_game
 dependencies:
     flutter:
         sdk: flutter
-    flutter_nakama: ^1.0.0-dev.2
+    nakama: ^1.0.0-dev.2
 ```
 
 ### 3. Create nakama base client
