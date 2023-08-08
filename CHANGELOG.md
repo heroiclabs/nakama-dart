@@ -1,4 +1,4 @@
-## unreleased
+## 1.0.0-dev.7
 
 * Fixed missing session in rpc call
 
