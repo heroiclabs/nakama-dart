@@ -1,3 +1,7 @@
+## unreleased
+
+* Fixed missing session in rpc call
+
 ## 1.0.0-dev.6
 
 * Added creating a match by match name

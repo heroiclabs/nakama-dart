@@ -1269,10 +1269,13 @@ class NakamaGrpcClient extends NakamaBaseClient {
     required String id,
     String? payload,
   }) async {
-    final res = await _client.rpcFunc(api.Rpc(
-      id: id,
-      payload: payload,
-    ));
+    final res = await _client.rpcFunc(
+      api.Rpc(
+        id: id,
+        payload: payload,
+      ),
+      options: _getSessionCallOptions(session),
+    );
 
     return res.payload;
   }
