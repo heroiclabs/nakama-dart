@@ -7,10 +7,6 @@
 ![Pub Version](https://img.shields.io/pub/v/nakama?style=flat-square)
 
 ---
-## 🚦 Current Status
-
-This is the 1.0-Prerelease. Feel free to play around and give some final feebdack. All basic functions are ready to use.
-
 ## 🚀 Getting Started
 
 ### 1. Setup Nakama Server
