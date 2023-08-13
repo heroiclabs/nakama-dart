@@ -1,4 +1,4 @@
-# Nakama Flutter Client 🤩 🎮 🌍 🛰
+# Nakama Dart/Flutter Client
 
 [Nakama](https://github.com/heroiclabs/nakama) is an open-source scalable game server. This is a Flutter client for Nakama written in pure dart and supports cross platform gaming on iOS, Android, Web and more.
 
@@ -47,8 +47,11 @@ print('Hey, you are logged in! UserID: ${session.userId}');
 ```
 
 # Documentation
-**Flutter SDK Docs:**
+**Dart/Flutter SDK Docs:**
 [https://flutter-nakama.gitbook.io](https://flutter-nakama.gitbook.io)
 
 **Nakama Docs:**
 [https://heroiclabs.com/docs](https://heroiclabs.com/docs)
+
+# Special Thanks
+Thanks to Oliver Brunsmann (@obrunsmann) for his excellent contribution and maintainance of this library.
