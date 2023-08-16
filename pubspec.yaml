@@ -1,9 +1,9 @@
-name: nakama
+name: nakama-dart
 description: Nakama is an open-source scalable game server that lets you focus
-  on building games.
+  on building games. This is a Flutter client for Nakama written in pure Dart and supports cross platform gaming on iOS, Android, Web and more.
 version: 1.0.0
-repository: https://github.com/obrunsmann/flutter_nakama
-homepage: https://flutter-nakama.gitbook.io
+repository: https://github.com/heroiclabs/nakama-dart
+homepage: https://heroiclabs.com/docs/nakama/client-libraries/dart/
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
