@@ -165,7 +165,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param create Register the account if the user does not already exist.
   ///@param username Set the username on the account at register. Must be unique.
   Future<chopper.Response<ApiSession>> v2AccountAuthenticateEmailPost({
-    required ApiAccountEmail? body,
+    ApiAccountEmail? body,
     bool? create,
     String? username,
   }) {
@@ -183,7 +183,7 @@ abstract class Apigrpc extends ChopperService {
   ///@param username Set the username on the account at register. Must be unique.
   @Post(path: '/v2/account/authenticate/email')
   Future<chopper.Response<ApiSession>> _v2AccountAuthenticateEmailPost({
-    @Body() required ApiAccountEmail? body,
+    @Body() ApiAccountEmail? body,
     @Query('create') bool? create,
     @Query('username') String? username,
   });

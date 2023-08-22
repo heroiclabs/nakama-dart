@@ -622,8 +622,8 @@ class AccountEmail extends $pb.GeneratedMessage {
   @$pb.TagNumber(1)
   $core.String get email => $_getSZ(0);
   @$pb.TagNumber(1)
-  set email($core.String v) {
-    $_setString(0, v);
+  set email($core.String? v) {
+    if (v != null) $_setString(0, v);
   }
 
   @$pb.TagNumber(1)

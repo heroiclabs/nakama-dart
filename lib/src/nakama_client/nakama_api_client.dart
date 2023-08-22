@@ -123,7 +123,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
   @override
   Future<model.Session> authenticateEmail({
-    required String email,
+    String? email,
     required String password,
     bool create = true,
     String? username,

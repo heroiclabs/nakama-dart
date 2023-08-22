@@ -120,7 +120,7 @@ class _$Apigrpc extends Apigrpc {
 
   @override
   Future<Response<ApiSession>> _v2AccountAuthenticateEmailPost({
-    required ApiAccountEmail? body,
+    ApiAccountEmail? body,
     bool? create,
     String? username,
   }) {
