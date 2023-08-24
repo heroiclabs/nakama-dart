@@ -12,7 +12,7 @@ These instructions guide the release process for new official Nakama client SDK 
 6. Feel free to create a new "unreleased"-section in CHANGELOG.md to collect all new updates:
 
 ```md
-# [unreleased]
+## [unreleased]
 
 * Change 1
 * Change 2
@@ -23,7 +23,7 @@ These instructions guide the release process for new official Nakama client SDK 
 The format of CHANGELOG.md is predefined because it is read by pub.dev to display the changes there. It is important that the latest version is always at the top. Example:
 
 ```md
-# 1.0.0
+## 1.0.0
 
 * chore: v1.0.0 release 🚀
 
