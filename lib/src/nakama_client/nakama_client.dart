@@ -39,10 +39,10 @@ abstract class NakamaBaseClient {
   Future<void> sessionLogout({required model.Session session});
 
   Future<model.Session> authenticateEmail({
-    required String email,
+    String? email,
+    String? username,
     required String password,
     bool create = false,
-    String? username,
     Map<String, String>? vars,
   });
 

@@ -1,3 +1,7 @@
+# 1.0.1
+
+* Added support for signing in with username + password in `authenticateEmail` method
+
 # 1.0.0
 
 * chore: v1.0.0 release 🚀

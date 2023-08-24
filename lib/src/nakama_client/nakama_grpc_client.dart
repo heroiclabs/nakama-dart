@@ -125,18 +125,28 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<model.Session> authenticateEmail({
-    required String email,
-    required String password,
-    bool create = true,
+    String? email,
     String? username,
+    required String password,
+    bool create = false,
     Map<String, String>? vars,
   }) async {
+    assert(email != null || username != null);
+    assert(create == false || email != null);
+
+    // Create the account email object
+    final accountEmail = api.AccountEmail()
+      ..password = password
+      ..vars.addAll(vars ?? {});
+
+    if (email != null) {
+      accountEmail.email = email;
+    }
+
+    // Create the request
     final request = api.AuthenticateEmailRequest()
       ..create_2 = api.BoolValue(value: create)
-      ..account = (api.AccountEmail()
-        ..email = email
-        ..password = password
-        ..vars.addAll(vars ?? {}));
+      ..account = accountEmail;
 
     if (username != null) {
       request.username = username;

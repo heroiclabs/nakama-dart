@@ -123,12 +123,15 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
   @override
   Future<model.Session> authenticateEmail({
-    required String email,
-    required String password,
-    bool create = true,
+    String? email,
     String? username,
+    required String password,
+    bool create = false,
     Map<String, String>? vars,
   }) async {
+    assert(email != null || username != null);
+    assert(create == true && email != null);
+
     final res = await _api.v2AccountAuthenticateEmailPost(
       body: ApiAccountEmail(
         email: email,
