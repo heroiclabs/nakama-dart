@@ -40,9 +40,9 @@ abstract class NakamaBaseClient {
 
   Future<model.Session> authenticateEmail({
     String? email,
+    String? username,
     required String password,
     bool create = false,
-    String? username,
     Map<String, String>? vars,
   });
 
