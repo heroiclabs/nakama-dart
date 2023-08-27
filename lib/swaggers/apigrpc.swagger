@@ -4302,7 +4302,7 @@
           "type": "string",
           "description": "Authentication credentials."
         },
-        "refreshToken": {
+        "refresh_token": {
           "type": "string",
           "description": "Refresh token that can be used for session token renewal."
         }
@@ -4316,7 +4316,7 @@
           "type": "string",
           "description": "Session token to log out."
         },
-        "refreshToken": {
+        "refresh_token": {
           "type": "string",
           "description": "Refresh token to invalidate."
         }

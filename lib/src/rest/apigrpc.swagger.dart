@@ -8,6 +8,7 @@ import 'package:chopper/chopper.dart';
 
 import 'client_mapping.dart';
 import 'dart:async';
+import 'package:http/http.dart' as http;
 import 'package:chopper/chopper.dart' as chopper;
 import 'apigrpc.enums.swagger.dart' as enums;
 export 'apigrpc.enums.swagger.dart';
@@ -23,7 +24,9 @@ part 'apigrpc.swagger.g.dart';
 abstract class Apigrpc extends ChopperService {
   static Apigrpc create({
     ChopperClient? client,
+    http.Client? httpClient,
     Authenticator? authenticator,
+    Converter? converter,
     Uri? baseUrl,
     Iterable<dynamic>? interceptors,
   }) {
@@ -33,8 +36,9 @@ abstract class Apigrpc extends ChopperService {
 
     final newClient = ChopperClient(
         services: [_$Apigrpc()],
-        converter: $JsonSerializableConverter(),
+        converter: converter ?? $JsonSerializableConverter(),
         interceptors: interceptors ?? [],
+        client: httpClient,
         authenticator: authenticator,
         baseUrl: baseUrl ?? Uri.parse('http://127.0.0.1:7350'));
     return _$Apigrpc(newClient);
@@ -1428,12 +1432,15 @@ abstract class Apigrpc extends ChopperService {
     required String? id,
     String? payload,
     String? httpKey,
-    String? httpKey$,
+    dynamic httpKey$,
   }) {
     generatedMapping.putIfAbsent(ApiRpc, () => ApiRpc.fromJsonFactory);
 
     return _v2RpcIdGet(
-        id: id, payload: payload, httpKey: httpKey, httpKey$: httpKey$);
+        id: id,
+        payload: payload,
+        httpKey: httpKey,
+        httpKey$: httpKey$?.toString());
   }
 
   ///Execute a Lua function on the server.
@@ -1456,12 +1463,12 @@ abstract class Apigrpc extends ChopperService {
     required String? id,
     required String? body,
     String? httpKey,
-    String? httpKey$,
+    dynamic httpKey$,
   }) {
     generatedMapping.putIfAbsent(ApiRpc, () => ApiRpc.fromJsonFactory);
 
     return _v2RpcIdPost(
-        id: id, body: body, httpKey: httpKey, httpKey$: httpKey$);
+        id: id, body: body, httpKey: httpKey, httpKey$: httpKey$?.toString());
   }
 
   ///Execute a Lua function on the server.
@@ -4654,7 +4661,7 @@ class ApiSession {
   final bool? created;
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
-  @JsonKey(name: 'refreshToken', includeIfNull: true)
+  @JsonKey(name: 'refresh_token', includeIfNull: true)
   final String? refreshToken;
   static const fromJsonFactory = _$ApiSessionFromJson;
 
@@ -4718,7 +4725,7 @@ class ApiSessionLogoutRequest {
 
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
-  @JsonKey(name: 'refreshToken', includeIfNull: true)
+  @JsonKey(name: 'refresh_token', includeIfNull: true)
   final String? refreshToken;
   static const fromJsonFactory = _$ApiSessionLogoutRequestFromJson;
 
