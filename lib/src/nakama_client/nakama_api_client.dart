@@ -130,7 +130,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     Map<String, String>? vars,
   }) async {
     assert(email != null || username != null);
-    assert(create == true && email != null);
+    assert(create == false || email != null);
 
     final res = await _api.v2AccountAuthenticateEmailPost(
       body: ApiAccountEmail(
