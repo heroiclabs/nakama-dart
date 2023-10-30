@@ -1863,13 +1863,14 @@ class GroupUserListGroupUser {
   factory GroupUserListGroupUser.fromJson(Map<String, dynamic> json) =>
       _$GroupUserListGroupUserFromJson(json);
 
+  static const toJsonFactory = _$GroupUserListGroupUserToJson;
+  Map<String, dynamic> toJson() => _$GroupUserListGroupUserToJson(this);
+
   @JsonKey(name: 'user', includeIfNull: true)
   final ApiUser? user;
   @JsonKey(name: 'state', includeIfNull: true)
   final int? state;
   static const fromJsonFactory = _$GroupUserListGroupUserFromJson;
-  static const toJsonFactory = _$GroupUserListGroupUserToJson;
-  Map<String, dynamic> toJson() => _$GroupUserListGroupUserToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -1915,13 +1916,14 @@ class UserGroupListUserGroup {
   factory UserGroupListUserGroup.fromJson(Map<String, dynamic> json) =>
       _$UserGroupListUserGroupFromJson(json);
 
+  static const toJsonFactory = _$UserGroupListUserGroupToJson;
+  Map<String, dynamic> toJson() => _$UserGroupListUserGroupToJson(this);
+
   @JsonKey(name: 'group', includeIfNull: true)
   final ApiGroup? group;
   @JsonKey(name: 'state', includeIfNull: true)
   final int? state;
   static const fromJsonFactory = _$UserGroupListUserGroupFromJson;
-  static const toJsonFactory = _$UserGroupListUserGroupToJson;
-  Map<String, dynamic> toJson() => _$UserGroupListUserGroupToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -1970,6 +1972,11 @@ class WriteLeaderboardRecordRequestLeaderboardRecordWrite {
           Map<String, dynamic> json) =>
       _$WriteLeaderboardRecordRequestLeaderboardRecordWriteFromJson(json);
 
+  static const toJsonFactory =
+      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson;
+  Map<String, dynamic> toJson() =>
+      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson(this);
+
   @JsonKey(name: 'score', includeIfNull: true)
   final String? score;
   @JsonKey(name: 'subscore', includeIfNull: true)
@@ -1985,10 +1992,6 @@ class WriteLeaderboardRecordRequestLeaderboardRecordWrite {
   final enums.ApiOperator? $operator;
   static const fromJsonFactory =
       _$WriteLeaderboardRecordRequestLeaderboardRecordWriteFromJson;
-  static const toJsonFactory =
-      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson;
-  Map<String, dynamic> toJson() =>
-      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -2059,6 +2062,11 @@ class WriteTournamentRecordRequestTournamentRecordWrite {
           Map<String, dynamic> json) =>
       _$WriteTournamentRecordRequestTournamentRecordWriteFromJson(json);
 
+  static const toJsonFactory =
+      _$WriteTournamentRecordRequestTournamentRecordWriteToJson;
+  Map<String, dynamic> toJson() =>
+      _$WriteTournamentRecordRequestTournamentRecordWriteToJson(this);
+
   @JsonKey(name: 'score', includeIfNull: true)
   final String? score;
   @JsonKey(name: 'subscore', includeIfNull: true)
@@ -2074,10 +2082,6 @@ class WriteTournamentRecordRequestTournamentRecordWrite {
   final enums.ApiOperator? $operator;
   static const fromJsonFactory =
       _$WriteTournamentRecordRequestTournamentRecordWriteFromJson;
-  static const toJsonFactory =
-      _$WriteTournamentRecordRequestTournamentRecordWriteToJson;
-  Map<String, dynamic> toJson() =>
-      _$WriteTournamentRecordRequestTournamentRecordWriteToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -2150,6 +2154,9 @@ class ApiAccount {
   factory ApiAccount.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountFromJson(json);
 
+  static const toJsonFactory = _$ApiAccountToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountToJson(this);
+
   @JsonKey(name: 'user', includeIfNull: true)
   final ApiUser? user;
   @JsonKey(name: 'wallet', includeIfNull: true)
@@ -2166,8 +2173,6 @@ class ApiAccount {
   @JsonKey(name: 'disableTime', includeIfNull: true)
   final DateTime? disableTime;
   static const fromJsonFactory = _$ApiAccountFromJson;
-  static const toJsonFactory = _$ApiAccountToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -2257,13 +2262,14 @@ class ApiAccountApple {
   factory ApiAccountApple.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountAppleFromJson(json);
 
+  static const toJsonFactory = _$ApiAccountAppleToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountAppleToJson(this);
+
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Map<String, dynamic>? vars;
   static const fromJsonFactory = _$ApiAccountAppleFromJson;
-  static const toJsonFactory = _$ApiAccountAppleToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountAppleToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -2308,13 +2314,14 @@ class ApiAccountCustom {
   factory ApiAccountCustom.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountCustomFromJson(json);
 
+  static const toJsonFactory = _$ApiAccountCustomToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountCustomToJson(this);
+
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Map<String, dynamic>? vars;
   static const fromJsonFactory = _$ApiAccountCustomFromJson;
-  static const toJsonFactory = _$ApiAccountCustomToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountCustomToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -2359,13 +2366,14 @@ class ApiAccountDevice {
   factory ApiAccountDevice.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountDeviceFromJson(json);
 
+  static const toJsonFactory = _$ApiAccountDeviceToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountDeviceToJson(this);
+
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Map<String, dynamic>? vars;
   static const fromJsonFactory = _$ApiAccountDeviceFromJson;
-  static const toJsonFactory = _$ApiAccountDeviceToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountDeviceToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -2411,6 +2419,9 @@ class ApiAccountEmail {
   factory ApiAccountEmail.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountEmailFromJson(json);
 
+  static const toJsonFactory = _$ApiAccountEmailToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountEmailToJson(this);
+
   @JsonKey(name: 'email', includeIfNull: true)
   final String? email;
   @JsonKey(name: 'password', includeIfNull: true)
@@ -2418,8 +2429,6 @@ class ApiAccountEmail {
   @JsonKey(name: 'vars', includeIfNull: true)
   final Map<String, dynamic>? vars;
   static const fromJsonFactory = _$ApiAccountEmailFromJson;
-  static const toJsonFactory = _$ApiAccountEmailToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountEmailToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -2475,13 +2484,14 @@ class ApiAccountFacebook {
   factory ApiAccountFacebook.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountFacebookFromJson(json);
 
+  static const toJsonFactory = _$ApiAccountFacebookToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountFacebookToJson(this);
+
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Map<String, dynamic>? vars;
   static const fromJsonFactory = _$ApiAccountFacebookFromJson;
-  static const toJsonFactory = _$ApiAccountFacebookToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountFacebookToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -2527,13 +2537,14 @@ class ApiAccountFacebookInstantGame {
   factory ApiAccountFacebookInstantGame.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountFacebookInstantGameFromJson(json);
 
+  static const toJsonFactory = _$ApiAccountFacebookInstantGameToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountFacebookInstantGameToJson(this);
+
   @JsonKey(name: 'signedPlayerInfo', includeIfNull: true)
   final String? signedPlayerInfo;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Map<String, dynamic>? vars;
   static const fromJsonFactory = _$ApiAccountFacebookInstantGameFromJson;
-  static const toJsonFactory = _$ApiAccountFacebookInstantGameToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountFacebookInstantGameToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -2591,6 +2602,9 @@ class ApiAccountGameCenter {
   factory ApiAccountGameCenter.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountGameCenterFromJson(json);
 
+  static const toJsonFactory = _$ApiAccountGameCenterToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountGameCenterToJson(this);
+
   @JsonKey(name: 'playerId', includeIfNull: true)
   final String? playerId;
   @JsonKey(name: 'bundleId', includeIfNull: true)
@@ -2606,8 +2620,6 @@ class ApiAccountGameCenter {
   @JsonKey(name: 'vars', includeIfNull: true)
   final Map<String, dynamic>? vars;
   static const fromJsonFactory = _$ApiAccountGameCenterFromJson;
-  static const toJsonFactory = _$ApiAccountGameCenterToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountGameCenterToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -2700,13 +2712,14 @@ class ApiAccountGoogle {
   factory ApiAccountGoogle.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountGoogleFromJson(json);
 
+  static const toJsonFactory = _$ApiAccountGoogleToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountGoogleToJson(this);
+
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Map<String, dynamic>? vars;
   static const fromJsonFactory = _$ApiAccountGoogleFromJson;
-  static const toJsonFactory = _$ApiAccountGoogleToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountGoogleToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -2752,13 +2765,14 @@ class ApiAccountSteam {
   factory ApiAccountSteam.fromJson(Map<String, dynamic> json) =>
       _$ApiAccountSteamFromJson(json);
 
+  static const toJsonFactory = _$ApiAccountSteamToJson;
+  Map<String, dynamic> toJson() => _$ApiAccountSteamToJson(this);
+
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Map<String, dynamic>? vars;
   static const fromJsonFactory = _$ApiAccountSteamFromJson;
-  static const toJsonFactory = _$ApiAccountSteamToJson;
-  Map<String, dynamic> toJson() => _$ApiAccountSteamToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -2814,6 +2828,9 @@ class ApiChannelMessage {
   factory ApiChannelMessage.fromJson(Map<String, dynamic> json) =>
       _$ApiChannelMessageFromJson(json);
 
+  static const toJsonFactory = _$ApiChannelMessageToJson;
+  Map<String, dynamic> toJson() => _$ApiChannelMessageToJson(this);
+
   @JsonKey(name: 'channelId', includeIfNull: true)
   final String? channelId;
   @JsonKey(name: 'messageId', includeIfNull: true)
@@ -2841,8 +2858,6 @@ class ApiChannelMessage {
   @JsonKey(name: 'userIdTwo', includeIfNull: true)
   final String? userIdTwo;
   static const fromJsonFactory = _$ApiChannelMessageFromJson;
-  static const toJsonFactory = _$ApiChannelMessageToJson;
-  Map<String, dynamic> toJson() => _$ApiChannelMessageToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -2983,6 +2998,9 @@ class ApiChannelMessageList {
   factory ApiChannelMessageList.fromJson(Map<String, dynamic> json) =>
       _$ApiChannelMessageListFromJson(json);
 
+  static const toJsonFactory = _$ApiChannelMessageListToJson;
+  Map<String, dynamic> toJson() => _$ApiChannelMessageListToJson(this);
+
   @JsonKey(
       name: 'messages',
       includeIfNull: true,
@@ -2995,8 +3013,6 @@ class ApiChannelMessageList {
   @JsonKey(name: 'cacheableCursor', includeIfNull: true)
   final String? cacheableCursor;
   static const fromJsonFactory = _$ApiChannelMessageListFromJson;
-  static const toJsonFactory = _$ApiChannelMessageListToJson;
-  Map<String, dynamic> toJson() => _$ApiChannelMessageListToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -3070,6 +3086,9 @@ class ApiCreateGroupRequest {
   factory ApiCreateGroupRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiCreateGroupRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiCreateGroupRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiCreateGroupRequestToJson(this);
+
   @JsonKey(name: 'name', includeIfNull: true)
   final String? name;
   @JsonKey(name: 'description', includeIfNull: true)
@@ -3083,8 +3102,6 @@ class ApiCreateGroupRequest {
   @JsonKey(name: 'maxCount', includeIfNull: true)
   final int? maxCount;
   static const fromJsonFactory = _$ApiCreateGroupRequestFromJson;
-  static const toJsonFactory = _$ApiCreateGroupRequestToJson;
-  Map<String, dynamic> toJson() => _$ApiCreateGroupRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -3168,6 +3185,9 @@ class ApiDeleteStorageObjectId {
   factory ApiDeleteStorageObjectId.fromJson(Map<String, dynamic> json) =>
       _$ApiDeleteStorageObjectIdFromJson(json);
 
+  static const toJsonFactory = _$ApiDeleteStorageObjectIdToJson;
+  Map<String, dynamic> toJson() => _$ApiDeleteStorageObjectIdToJson(this);
+
   @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
   @JsonKey(name: 'key', includeIfNull: true)
@@ -3175,8 +3195,6 @@ class ApiDeleteStorageObjectId {
   @JsonKey(name: 'version', includeIfNull: true)
   final String? version;
   static const fromJsonFactory = _$ApiDeleteStorageObjectIdFromJson;
-  static const toJsonFactory = _$ApiDeleteStorageObjectIdToJson;
-  Map<String, dynamic> toJson() => _$ApiDeleteStorageObjectIdToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -3231,14 +3249,15 @@ class ApiDeleteStorageObjectsRequest {
   factory ApiDeleteStorageObjectsRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiDeleteStorageObjectsRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiDeleteStorageObjectsRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiDeleteStorageObjectsRequestToJson(this);
+
   @JsonKey(
       name: 'objectIds',
       includeIfNull: true,
       defaultValue: <ApiDeleteStorageObjectId>[])
   final List<ApiDeleteStorageObjectId>? objectIds;
   static const fromJsonFactory = _$ApiDeleteStorageObjectsRequestFromJson;
-  static const toJsonFactory = _$ApiDeleteStorageObjectsRequestToJson;
-  Map<String, dynamic> toJson() => _$ApiDeleteStorageObjectsRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -3284,6 +3303,9 @@ class ApiEvent {
   factory ApiEvent.fromJson(Map<String, dynamic> json) =>
       _$ApiEventFromJson(json);
 
+  static const toJsonFactory = _$ApiEventToJson;
+  Map<String, dynamic> toJson() => _$ApiEventToJson(this);
+
   @JsonKey(name: 'name', includeIfNull: true)
   final String? name;
   @JsonKey(name: 'properties', includeIfNull: true)
@@ -3293,8 +3315,6 @@ class ApiEvent {
   @JsonKey(name: 'external', includeIfNull: true)
   final bool? $external;
   static const fromJsonFactory = _$ApiEventFromJson;
-  static const toJsonFactory = _$ApiEventToJson;
-  Map<String, dynamic> toJson() => _$ApiEventToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -3362,6 +3382,9 @@ class ApiFriend {
   factory ApiFriend.fromJson(Map<String, dynamic> json) =>
       _$ApiFriendFromJson(json);
 
+  static const toJsonFactory = _$ApiFriendToJson;
+  Map<String, dynamic> toJson() => _$ApiFriendToJson(this);
+
   @JsonKey(name: 'user', includeIfNull: true)
   final ApiUser? user;
   @JsonKey(name: 'state', includeIfNull: true)
@@ -3369,8 +3392,6 @@ class ApiFriend {
   @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
   static const fromJsonFactory = _$ApiFriendFromJson;
-  static const toJsonFactory = _$ApiFriendToJson;
-  Map<String, dynamic> toJson() => _$ApiFriendToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -3425,13 +3446,14 @@ class ApiFriendList {
   factory ApiFriendList.fromJson(Map<String, dynamic> json) =>
       _$ApiFriendListFromJson(json);
 
+  static const toJsonFactory = _$ApiFriendListToJson;
+  Map<String, dynamic> toJson() => _$ApiFriendListToJson(this);
+
   @JsonKey(name: 'friends', includeIfNull: true, defaultValue: <ApiFriend>[])
   final List<ApiFriend>? friends;
   @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
   static const fromJsonFactory = _$ApiFriendListFromJson;
-  static const toJsonFactory = _$ApiFriendListToJson;
-  Map<String, dynamic> toJson() => _$ApiFriendListToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -3488,6 +3510,9 @@ class ApiGroup {
   factory ApiGroup.fromJson(Map<String, dynamic> json) =>
       _$ApiGroupFromJson(json);
 
+  static const toJsonFactory = _$ApiGroupToJson;
+  Map<String, dynamic> toJson() => _$ApiGroupToJson(this);
+
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
   @JsonKey(name: 'creatorId', includeIfNull: true)
@@ -3513,8 +3538,6 @@ class ApiGroup {
   @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
   static const fromJsonFactory = _$ApiGroupFromJson;
-  static const toJsonFactory = _$ApiGroupToJson;
-  Map<String, dynamic> toJson() => _$ApiGroupToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -3644,13 +3667,14 @@ class ApiGroupList {
   factory ApiGroupList.fromJson(Map<String, dynamic> json) =>
       _$ApiGroupListFromJson(json);
 
+  static const toJsonFactory = _$ApiGroupListToJson;
+  Map<String, dynamic> toJson() => _$ApiGroupListToJson(this);
+
   @JsonKey(name: 'groups', includeIfNull: true, defaultValue: <ApiGroup>[])
   final List<ApiGroup>? groups;
   @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
   static const fromJsonFactory = _$ApiGroupListFromJson;
-  static const toJsonFactory = _$ApiGroupListToJson;
-  Map<String, dynamic> toJson() => _$ApiGroupListToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -3696,6 +3720,9 @@ class ApiGroupUserList {
   factory ApiGroupUserList.fromJson(Map<String, dynamic> json) =>
       _$ApiGroupUserListFromJson(json);
 
+  static const toJsonFactory = _$ApiGroupUserListToJson;
+  Map<String, dynamic> toJson() => _$ApiGroupUserListToJson(this);
+
   @JsonKey(
       name: 'groupUsers',
       includeIfNull: true,
@@ -3704,8 +3731,6 @@ class ApiGroupUserList {
   @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
   static const fromJsonFactory = _$ApiGroupUserListFromJson;
-  static const toJsonFactory = _$ApiGroupUserListToJson;
-  Map<String, dynamic> toJson() => _$ApiGroupUserListToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -3765,6 +3790,9 @@ class ApiLeaderboardRecord {
   factory ApiLeaderboardRecord.fromJson(Map<String, dynamic> json) =>
       _$ApiLeaderboardRecordFromJson(json);
 
+  static const toJsonFactory = _$ApiLeaderboardRecordToJson;
+  Map<String, dynamic> toJson() => _$ApiLeaderboardRecordToJson(this);
+
   @JsonKey(name: 'leaderboardId', includeIfNull: true)
   final String? leaderboardId;
   @JsonKey(name: 'ownerId', includeIfNull: true)
@@ -3788,10 +3816,8 @@ class ApiLeaderboardRecord {
   @JsonKey(name: 'rank', includeIfNull: true)
   final String? rank;
   @JsonKey(name: 'maxNumScore', includeIfNull: true)
-  final num? maxNumScore;
+  final int? maxNumScore;
   static const fromJsonFactory = _$ApiLeaderboardRecordFromJson;
-  static const toJsonFactory = _$ApiLeaderboardRecordToJson;
-  Map<String, dynamic> toJson() => _$ApiLeaderboardRecordToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -3866,7 +3892,7 @@ extension $ApiLeaderboardRecordExtension on ApiLeaderboardRecord {
       DateTime? updateTime,
       DateTime? expiryTime,
       String? rank,
-      num? maxNumScore}) {
+      int? maxNumScore}) {
     return ApiLeaderboardRecord(
         leaderboardId: leaderboardId ?? this.leaderboardId,
         ownerId: ownerId ?? this.ownerId,
@@ -3894,7 +3920,7 @@ extension $ApiLeaderboardRecordExtension on ApiLeaderboardRecord {
       Wrapped<DateTime?>? updateTime,
       Wrapped<DateTime?>? expiryTime,
       Wrapped<String?>? rank,
-      Wrapped<num?>? maxNumScore}) {
+      Wrapped<int?>? maxNumScore}) {
     return ApiLeaderboardRecord(
         leaderboardId:
             (leaderboardId != null ? leaderboardId.value : this.leaderboardId),
@@ -3925,6 +3951,9 @@ class ApiLeaderboardRecordList {
   factory ApiLeaderboardRecordList.fromJson(Map<String, dynamic> json) =>
       _$ApiLeaderboardRecordListFromJson(json);
 
+  static const toJsonFactory = _$ApiLeaderboardRecordListToJson;
+  Map<String, dynamic> toJson() => _$ApiLeaderboardRecordListToJson(this);
+
   @JsonKey(
       name: 'records',
       includeIfNull: true,
@@ -3940,8 +3969,6 @@ class ApiLeaderboardRecordList {
   @JsonKey(name: 'prevCursor', includeIfNull: true)
   final String? prevCursor;
   static const fromJsonFactory = _$ApiLeaderboardRecordListFromJson;
-  static const toJsonFactory = _$ApiLeaderboardRecordListToJson;
-  Map<String, dynamic> toJson() => _$ApiLeaderboardRecordListToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4010,13 +4037,14 @@ class ApiLinkSteamRequest {
   factory ApiLinkSteamRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiLinkSteamRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiLinkSteamRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiLinkSteamRequestToJson(this);
+
   @JsonKey(name: 'account', includeIfNull: true)
   final ApiAccountSteam? account;
   @JsonKey(name: 'sync', includeIfNull: true)
   final bool? $sync;
   static const fromJsonFactory = _$ApiLinkSteamRequestFromJson;
-  static const toJsonFactory = _$ApiLinkSteamRequestToJson;
-  Map<String, dynamic> toJson() => _$ApiLinkSteamRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4063,13 +4091,14 @@ class ApiListSubscriptionsRequest {
   factory ApiListSubscriptionsRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiListSubscriptionsRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiListSubscriptionsRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiListSubscriptionsRequestToJson(this);
+
   @JsonKey(name: 'limit', includeIfNull: true)
   final int? limit;
   @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
   static const fromJsonFactory = _$ApiListSubscriptionsRequestFromJson;
-  static const toJsonFactory = _$ApiListSubscriptionsRequestToJson;
-  Map<String, dynamic> toJson() => _$ApiListSubscriptionsRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4119,6 +4148,9 @@ class ApiMatch {
   factory ApiMatch.fromJson(Map<String, dynamic> json) =>
       _$ApiMatchFromJson(json);
 
+  static const toJsonFactory = _$ApiMatchToJson;
+  Map<String, dynamic> toJson() => _$ApiMatchToJson(this);
+
   @JsonKey(name: 'matchId', includeIfNull: true)
   final String? matchId;
   @JsonKey(name: 'authoritative', includeIfNull: true)
@@ -4132,8 +4164,6 @@ class ApiMatch {
   @JsonKey(name: 'handlerName', includeIfNull: true)
   final String? handlerName;
   static const fromJsonFactory = _$ApiMatchFromJson;
-  static const toJsonFactory = _$ApiMatchToJson;
-  Map<String, dynamic> toJson() => _$ApiMatchToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4216,11 +4246,12 @@ class ApiMatchList {
   factory ApiMatchList.fromJson(Map<String, dynamic> json) =>
       _$ApiMatchListFromJson(json);
 
+  static const toJsonFactory = _$ApiMatchListToJson;
+  Map<String, dynamic> toJson() => _$ApiMatchListToJson(this);
+
   @JsonKey(name: 'matches', includeIfNull: true, defaultValue: <ApiMatch>[])
   final List<ApiMatch>? matches;
   static const fromJsonFactory = _$ApiMatchListFromJson;
-  static const toJsonFactory = _$ApiMatchListToJson;
-  Map<String, dynamic> toJson() => _$ApiMatchListToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4264,6 +4295,9 @@ class ApiNotification {
   factory ApiNotification.fromJson(Map<String, dynamic> json) =>
       _$ApiNotificationFromJson(json);
 
+  static const toJsonFactory = _$ApiNotificationToJson;
+  Map<String, dynamic> toJson() => _$ApiNotificationToJson(this);
+
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
   @JsonKey(name: 'subject', includeIfNull: true)
@@ -4279,8 +4313,6 @@ class ApiNotification {
   @JsonKey(name: 'persistent', includeIfNull: true)
   final bool? persistent;
   static const fromJsonFactory = _$ApiNotificationFromJson;
-  static const toJsonFactory = _$ApiNotificationToJson;
-  Map<String, dynamic> toJson() => _$ApiNotificationToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4370,6 +4402,9 @@ class ApiNotificationList {
   factory ApiNotificationList.fromJson(Map<String, dynamic> json) =>
       _$ApiNotificationListFromJson(json);
 
+  static const toJsonFactory = _$ApiNotificationListToJson;
+  Map<String, dynamic> toJson() => _$ApiNotificationListToJson(this);
+
   @JsonKey(
       name: 'notifications',
       includeIfNull: true,
@@ -4378,8 +4413,6 @@ class ApiNotificationList {
   @JsonKey(name: 'cacheableCursor', includeIfNull: true)
   final String? cacheableCursor;
   static const fromJsonFactory = _$ApiNotificationListFromJson;
-  static const toJsonFactory = _$ApiNotificationListToJson;
-  Map<String, dynamic> toJson() => _$ApiNotificationListToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4434,6 +4467,9 @@ class ApiReadStorageObjectId {
   factory ApiReadStorageObjectId.fromJson(Map<String, dynamic> json) =>
       _$ApiReadStorageObjectIdFromJson(json);
 
+  static const toJsonFactory = _$ApiReadStorageObjectIdToJson;
+  Map<String, dynamic> toJson() => _$ApiReadStorageObjectIdToJson(this);
+
   @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
   @JsonKey(name: 'key', includeIfNull: true)
@@ -4441,8 +4477,6 @@ class ApiReadStorageObjectId {
   @JsonKey(name: 'userId', includeIfNull: true)
   final String? userId;
   static const fromJsonFactory = _$ApiReadStorageObjectIdFromJson;
-  static const toJsonFactory = _$ApiReadStorageObjectIdToJson;
-  Map<String, dynamic> toJson() => _$ApiReadStorageObjectIdToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4497,14 +4531,15 @@ class ApiReadStorageObjectsRequest {
   factory ApiReadStorageObjectsRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiReadStorageObjectsRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiReadStorageObjectsRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiReadStorageObjectsRequestToJson(this);
+
   @JsonKey(
       name: 'objectIds',
       includeIfNull: true,
       defaultValue: <ApiReadStorageObjectId>[])
   final List<ApiReadStorageObjectId>? objectIds;
   static const fromJsonFactory = _$ApiReadStorageObjectsRequestFromJson;
-  static const toJsonFactory = _$ApiReadStorageObjectsRequestToJson;
-  Map<String, dynamic> toJson() => _$ApiReadStorageObjectsRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4547,6 +4582,9 @@ class ApiRpc {
 
   factory ApiRpc.fromJson(Map<String, dynamic> json) => _$ApiRpcFromJson(json);
 
+  static const toJsonFactory = _$ApiRpcToJson;
+  Map<String, dynamic> toJson() => _$ApiRpcToJson(this);
+
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
   @JsonKey(name: 'payload', includeIfNull: true)
@@ -4554,8 +4592,6 @@ class ApiRpc {
   @JsonKey(name: 'httpKey', includeIfNull: true)
   final String? httpKey;
   static const fromJsonFactory = _$ApiRpcFromJson;
-  static const toJsonFactory = _$ApiRpcToJson;
-  Map<String, dynamic> toJson() => _$ApiRpcToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4611,6 +4647,9 @@ class ApiSession {
   factory ApiSession.fromJson(Map<String, dynamic> json) =>
       _$ApiSessionFromJson(json);
 
+  static const toJsonFactory = _$ApiSessionToJson;
+  Map<String, dynamic> toJson() => _$ApiSessionToJson(this);
+
   @JsonKey(name: 'created', includeIfNull: true)
   final bool? created;
   @JsonKey(name: 'token', includeIfNull: true)
@@ -4618,8 +4657,6 @@ class ApiSession {
   @JsonKey(name: 'refreshToken', includeIfNull: true)
   final String? refreshToken;
   static const fromJsonFactory = _$ApiSessionFromJson;
-  static const toJsonFactory = _$ApiSessionToJson;
-  Map<String, dynamic> toJson() => _$ApiSessionToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4676,13 +4713,14 @@ class ApiSessionLogoutRequest {
   factory ApiSessionLogoutRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiSessionLogoutRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiSessionLogoutRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiSessionLogoutRequestToJson(this);
+
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
   @JsonKey(name: 'refreshToken', includeIfNull: true)
   final String? refreshToken;
   static const fromJsonFactory = _$ApiSessionLogoutRequestFromJson;
-  static const toJsonFactory = _$ApiSessionLogoutRequestToJson;
-  Map<String, dynamic> toJson() => _$ApiSessionLogoutRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4731,13 +4769,14 @@ class ApiSessionRefreshRequest {
   factory ApiSessionRefreshRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiSessionRefreshRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiSessionRefreshRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiSessionRefreshRequestToJson(this);
+
   @JsonKey(name: 'token', includeIfNull: true)
   final String? token;
   @JsonKey(name: 'vars', includeIfNull: true)
   final Map<String, dynamic>? vars;
   static const fromJsonFactory = _$ApiSessionRefreshRequestFromJson;
-  static const toJsonFactory = _$ApiSessionRefreshRequestToJson;
-  Map<String, dynamic> toJson() => _$ApiSessionRefreshRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4791,6 +4830,9 @@ class ApiStorageObject {
   factory ApiStorageObject.fromJson(Map<String, dynamic> json) =>
       _$ApiStorageObjectFromJson(json);
 
+  static const toJsonFactory = _$ApiStorageObjectToJson;
+  Map<String, dynamic> toJson() => _$ApiStorageObjectToJson(this);
+
   @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
   @JsonKey(name: 'key', includeIfNull: true)
@@ -4810,8 +4852,6 @@ class ApiStorageObject {
   @JsonKey(name: 'updateTime', includeIfNull: true)
   final DateTime? updateTime;
   static const fromJsonFactory = _$ApiStorageObjectFromJson;
-  static const toJsonFactory = _$ApiStorageObjectToJson;
-  Map<String, dynamic> toJson() => _$ApiStorageObjectToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4922,6 +4962,9 @@ class ApiStorageObjectAck {
   factory ApiStorageObjectAck.fromJson(Map<String, dynamic> json) =>
       _$ApiStorageObjectAckFromJson(json);
 
+  static const toJsonFactory = _$ApiStorageObjectAckToJson;
+  Map<String, dynamic> toJson() => _$ApiStorageObjectAckToJson(this);
+
   @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
   @JsonKey(name: 'key', includeIfNull: true)
@@ -4931,8 +4974,6 @@ class ApiStorageObjectAck {
   @JsonKey(name: 'userId', includeIfNull: true)
   final String? userId;
   static const fromJsonFactory = _$ApiStorageObjectAckFromJson;
-  static const toJsonFactory = _$ApiStorageObjectAckToJson;
-  Map<String, dynamic> toJson() => _$ApiStorageObjectAckToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -4994,12 +5035,13 @@ class ApiStorageObjectAcks {
   factory ApiStorageObjectAcks.fromJson(Map<String, dynamic> json) =>
       _$ApiStorageObjectAcksFromJson(json);
 
+  static const toJsonFactory = _$ApiStorageObjectAcksToJson;
+  Map<String, dynamic> toJson() => _$ApiStorageObjectAcksToJson(this);
+
   @JsonKey(
       name: 'acks', includeIfNull: true, defaultValue: <ApiStorageObjectAck>[])
   final List<ApiStorageObjectAck>? acks;
   static const fromJsonFactory = _$ApiStorageObjectAcksFromJson;
-  static const toJsonFactory = _$ApiStorageObjectAcksToJson;
-  Map<String, dynamic> toJson() => _$ApiStorageObjectAcksToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -5038,14 +5080,15 @@ class ApiStorageObjectList {
   factory ApiStorageObjectList.fromJson(Map<String, dynamic> json) =>
       _$ApiStorageObjectListFromJson(json);
 
+  static const toJsonFactory = _$ApiStorageObjectListToJson;
+  Map<String, dynamic> toJson() => _$ApiStorageObjectListToJson(this);
+
   @JsonKey(
       name: 'objects', includeIfNull: true, defaultValue: <ApiStorageObject>[])
   final List<ApiStorageObject>? objects;
   @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
   static const fromJsonFactory = _$ApiStorageObjectListFromJson;
-  static const toJsonFactory = _$ApiStorageObjectListToJson;
-  Map<String, dynamic> toJson() => _$ApiStorageObjectListToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -5092,12 +5135,13 @@ class ApiStorageObjects {
   factory ApiStorageObjects.fromJson(Map<String, dynamic> json) =>
       _$ApiStorageObjectsFromJson(json);
 
+  static const toJsonFactory = _$ApiStorageObjectsToJson;
+  Map<String, dynamic> toJson() => _$ApiStorageObjectsToJson(this);
+
   @JsonKey(
       name: 'objects', includeIfNull: true, defaultValue: <ApiStorageObject>[])
   final List<ApiStorageObject>? objects;
   static const fromJsonFactory = _$ApiStorageObjectsFromJson;
-  static const toJsonFactory = _$ApiStorageObjectsToJson;
-  Map<String, dynamic> toJson() => _$ApiStorageObjectsToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -5138,6 +5182,9 @@ class ApiSubscriptionList {
   factory ApiSubscriptionList.fromJson(Map<String, dynamic> json) =>
       _$ApiSubscriptionListFromJson(json);
 
+  static const toJsonFactory = _$ApiSubscriptionListToJson;
+  Map<String, dynamic> toJson() => _$ApiSubscriptionListToJson(this);
+
   @JsonKey(
       name: 'validatedSubscriptions',
       includeIfNull: true,
@@ -5148,8 +5195,6 @@ class ApiSubscriptionList {
   @JsonKey(name: 'prevCursor', includeIfNull: true)
   final String? prevCursor;
   static const fromJsonFactory = _$ApiSubscriptionListFromJson;
-  static const toJsonFactory = _$ApiSubscriptionListToJson;
-  Map<String, dynamic> toJson() => _$ApiSubscriptionListToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -5228,6 +5273,9 @@ class ApiTournament {
   factory ApiTournament.fromJson(Map<String, dynamic> json) =>
       _$ApiTournamentFromJson(json);
 
+  static const toJsonFactory = _$ApiTournamentToJson;
+  Map<String, dynamic> toJson() => _$ApiTournamentToJson(this);
+
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
   @JsonKey(name: 'title', includeIfNull: true)
@@ -5235,21 +5283,21 @@ class ApiTournament {
   @JsonKey(name: 'description', includeIfNull: true)
   final String? description;
   @JsonKey(name: 'category', includeIfNull: true)
-  final num? category;
+  final int? category;
   @JsonKey(name: 'sortOrder', includeIfNull: true)
-  final num? sortOrder;
+  final int? sortOrder;
   @JsonKey(name: 'size', includeIfNull: true)
-  final num? size;
+  final int? size;
   @JsonKey(name: 'maxSize', includeIfNull: true)
-  final num? maxSize;
+  final int? maxSize;
   @JsonKey(name: 'maxNumScore', includeIfNull: true)
-  final num? maxNumScore;
+  final int? maxNumScore;
   @JsonKey(name: 'canEnter', includeIfNull: true)
   final bool? canEnter;
   @JsonKey(name: 'endActive', includeIfNull: true)
-  final num? endActive;
+  final int? endActive;
   @JsonKey(name: 'nextReset', includeIfNull: true)
-  final num? nextReset;
+  final int? nextReset;
   @JsonKey(name: 'metadata', includeIfNull: true)
   final String? metadata;
   @JsonKey(name: 'createTime', includeIfNull: true)
@@ -5259,11 +5307,11 @@ class ApiTournament {
   @JsonKey(name: 'endTime', includeIfNull: true)
   final DateTime? endTime;
   @JsonKey(name: 'duration', includeIfNull: true)
-  final num? duration;
+  final int? duration;
   @JsonKey(name: 'startActive', includeIfNull: true)
-  final num? startActive;
+  final int? startActive;
   @JsonKey(name: 'prevReset', includeIfNull: true)
-  final num? prevReset;
+  final int? prevReset;
   @JsonKey(
     name: 'operator',
     includeIfNull: true,
@@ -5272,8 +5320,6 @@ class ApiTournament {
   )
   final enums.ApiOperator? $operator;
   static const fromJsonFactory = _$ApiTournamentFromJson;
-  static const toJsonFactory = _$ApiTournamentToJson;
-  Map<String, dynamic> toJson() => _$ApiTournamentToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -5367,21 +5413,21 @@ extension $ApiTournamentExtension on ApiTournament {
       {String? id,
       String? title,
       String? description,
-      num? category,
-      num? sortOrder,
-      num? size,
-      num? maxSize,
-      num? maxNumScore,
+      int? category,
+      int? sortOrder,
+      int? size,
+      int? maxSize,
+      int? maxNumScore,
       bool? canEnter,
-      num? endActive,
-      num? nextReset,
+      int? endActive,
+      int? nextReset,
       String? metadata,
       DateTime? createTime,
       DateTime? startTime,
       DateTime? endTime,
-      num? duration,
-      num? startActive,
-      num? prevReset,
+      int? duration,
+      int? startActive,
+      int? prevReset,
       enums.ApiOperator? $operator}) {
     return ApiTournament(
         id: id ?? this.id,
@@ -5409,21 +5455,21 @@ extension $ApiTournamentExtension on ApiTournament {
       {Wrapped<String?>? id,
       Wrapped<String?>? title,
       Wrapped<String?>? description,
-      Wrapped<num?>? category,
-      Wrapped<num?>? sortOrder,
-      Wrapped<num?>? size,
-      Wrapped<num?>? maxSize,
-      Wrapped<num?>? maxNumScore,
+      Wrapped<int?>? category,
+      Wrapped<int?>? sortOrder,
+      Wrapped<int?>? size,
+      Wrapped<int?>? maxSize,
+      Wrapped<int?>? maxNumScore,
       Wrapped<bool?>? canEnter,
-      Wrapped<num?>? endActive,
-      Wrapped<num?>? nextReset,
+      Wrapped<int?>? endActive,
+      Wrapped<int?>? nextReset,
       Wrapped<String?>? metadata,
       Wrapped<DateTime?>? createTime,
       Wrapped<DateTime?>? startTime,
       Wrapped<DateTime?>? endTime,
-      Wrapped<num?>? duration,
-      Wrapped<num?>? startActive,
-      Wrapped<num?>? prevReset,
+      Wrapped<int?>? duration,
+      Wrapped<int?>? startActive,
+      Wrapped<int?>? prevReset,
       Wrapped<enums.ApiOperator?>? $operator}) {
     return ApiTournament(
         id: (id != null ? id.value : this.id),
@@ -5461,14 +5507,15 @@ class ApiTournamentList {
   factory ApiTournamentList.fromJson(Map<String, dynamic> json) =>
       _$ApiTournamentListFromJson(json);
 
+  static const toJsonFactory = _$ApiTournamentListToJson;
+  Map<String, dynamic> toJson() => _$ApiTournamentListToJson(this);
+
   @JsonKey(
       name: 'tournaments', includeIfNull: true, defaultValue: <ApiTournament>[])
   final List<ApiTournament>? tournaments;
   @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
   static const fromJsonFactory = _$ApiTournamentListFromJson;
-  static const toJsonFactory = _$ApiTournamentListToJson;
-  Map<String, dynamic> toJson() => _$ApiTournamentListToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -5520,6 +5567,9 @@ class ApiTournamentRecordList {
   factory ApiTournamentRecordList.fromJson(Map<String, dynamic> json) =>
       _$ApiTournamentRecordListFromJson(json);
 
+  static const toJsonFactory = _$ApiTournamentRecordListToJson;
+  Map<String, dynamic> toJson() => _$ApiTournamentRecordListToJson(this);
+
   @JsonKey(
       name: 'records',
       includeIfNull: true,
@@ -5535,8 +5585,6 @@ class ApiTournamentRecordList {
   @JsonKey(name: 'prevCursor', includeIfNull: true)
   final String? prevCursor;
   static const fromJsonFactory = _$ApiTournamentRecordListFromJson;
-  static const toJsonFactory = _$ApiTournamentRecordListToJson;
-  Map<String, dynamic> toJson() => _$ApiTournamentRecordListToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -5609,6 +5657,9 @@ class ApiUpdateAccountRequest {
   factory ApiUpdateAccountRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiUpdateAccountRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiUpdateAccountRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiUpdateAccountRequestToJson(this);
+
   @JsonKey(name: 'username', includeIfNull: true)
   final String? username;
   @JsonKey(name: 'displayName', includeIfNull: true)
@@ -5622,8 +5673,6 @@ class ApiUpdateAccountRequest {
   @JsonKey(name: 'timezone', includeIfNull: true)
   final String? timezone;
   static const fromJsonFactory = _$ApiUpdateAccountRequestFromJson;
-  static const toJsonFactory = _$ApiUpdateAccountRequestToJson;
-  Map<String, dynamic> toJson() => _$ApiUpdateAccountRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -5712,6 +5761,9 @@ class ApiUpdateGroupRequest {
   factory ApiUpdateGroupRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiUpdateGroupRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiUpdateGroupRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiUpdateGroupRequestToJson(this);
+
   @JsonKey(name: 'groupId', includeIfNull: true)
   final String? groupId;
   @JsonKey(name: 'name', includeIfNull: true)
@@ -5725,8 +5777,6 @@ class ApiUpdateGroupRequest {
   @JsonKey(name: 'open', includeIfNull: true)
   final bool? open;
   static const fromJsonFactory = _$ApiUpdateGroupRequestFromJson;
-  static const toJsonFactory = _$ApiUpdateGroupRequestToJson;
-  Map<String, dynamic> toJson() => _$ApiUpdateGroupRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -5825,6 +5875,9 @@ class ApiUser {
   factory ApiUser.fromJson(Map<String, dynamic> json) =>
       _$ApiUserFromJson(json);
 
+  static const toJsonFactory = _$ApiUserToJson;
+  Map<String, dynamic> toJson() => _$ApiUserToJson(this);
+
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
   @JsonKey(name: 'username', includeIfNull: true)
@@ -5862,8 +5915,6 @@ class ApiUser {
   @JsonKey(name: 'appleId', includeIfNull: true)
   final String? appleId;
   static const fromJsonFactory = _$ApiUserFromJson;
-  static const toJsonFactory = _$ApiUserToJson;
-  Map<String, dynamic> toJson() => _$ApiUserToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6045,6 +6096,9 @@ class ApiUserGroupList {
   factory ApiUserGroupList.fromJson(Map<String, dynamic> json) =>
       _$ApiUserGroupListFromJson(json);
 
+  static const toJsonFactory = _$ApiUserGroupListToJson;
+  Map<String, dynamic> toJson() => _$ApiUserGroupListToJson(this);
+
   @JsonKey(
       name: 'userGroups',
       includeIfNull: true,
@@ -6053,8 +6107,6 @@ class ApiUserGroupList {
   @JsonKey(name: 'cursor', includeIfNull: true)
   final String? cursor;
   static const fromJsonFactory = _$ApiUserGroupListFromJson;
-  static const toJsonFactory = _$ApiUserGroupListToJson;
-  Map<String, dynamic> toJson() => _$ApiUserGroupListToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6103,11 +6155,12 @@ class ApiUsers {
   factory ApiUsers.fromJson(Map<String, dynamic> json) =>
       _$ApiUsersFromJson(json);
 
+  static const toJsonFactory = _$ApiUsersToJson;
+  Map<String, dynamic> toJson() => _$ApiUsersToJson(this);
+
   @JsonKey(name: 'users', includeIfNull: true, defaultValue: <ApiUser>[])
   final List<ApiUser>? users;
   static const fromJsonFactory = _$ApiUsersFromJson;
-  static const toJsonFactory = _$ApiUsersToJson;
-  Map<String, dynamic> toJson() => _$ApiUsersToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6145,14 +6198,15 @@ class ApiValidatePurchaseAppleRequest {
   factory ApiValidatePurchaseAppleRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiValidatePurchaseAppleRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiValidatePurchaseAppleRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$ApiValidatePurchaseAppleRequestToJson(this);
+
   @JsonKey(name: 'receipt', includeIfNull: true)
   final String? receipt;
   @JsonKey(name: 'persist', includeIfNull: true)
   final bool? persist;
   static const fromJsonFactory = _$ApiValidatePurchaseAppleRequestFromJson;
-  static const toJsonFactory = _$ApiValidatePurchaseAppleRequestToJson;
-  Map<String, dynamic> toJson() =>
-      _$ApiValidatePurchaseAppleRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6201,14 +6255,15 @@ class ApiValidatePurchaseGoogleRequest {
           Map<String, dynamic> json) =>
       _$ApiValidatePurchaseGoogleRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiValidatePurchaseGoogleRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$ApiValidatePurchaseGoogleRequestToJson(this);
+
   @JsonKey(name: 'purchase', includeIfNull: true)
   final String? purchase;
   @JsonKey(name: 'persist', includeIfNull: true)
   final bool? persist;
   static const fromJsonFactory = _$ApiValidatePurchaseGoogleRequestFromJson;
-  static const toJsonFactory = _$ApiValidatePurchaseGoogleRequestToJson;
-  Map<String, dynamic> toJson() =>
-      _$ApiValidatePurchaseGoogleRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6258,6 +6313,10 @@ class ApiValidatePurchaseHuaweiRequest {
           Map<String, dynamic> json) =>
       _$ApiValidatePurchaseHuaweiRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiValidatePurchaseHuaweiRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$ApiValidatePurchaseHuaweiRequestToJson(this);
+
   @JsonKey(name: 'purchase', includeIfNull: true)
   final String? purchase;
   @JsonKey(name: 'signature', includeIfNull: true)
@@ -6265,9 +6324,6 @@ class ApiValidatePurchaseHuaweiRequest {
   @JsonKey(name: 'persist', includeIfNull: true)
   final bool? persist;
   static const fromJsonFactory = _$ApiValidatePurchaseHuaweiRequestFromJson;
-  static const toJsonFactory = _$ApiValidatePurchaseHuaweiRequestToJson;
-  Map<String, dynamic> toJson() =>
-      _$ApiValidatePurchaseHuaweiRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6324,14 +6380,15 @@ class ApiValidatePurchaseResponse {
   factory ApiValidatePurchaseResponse.fromJson(Map<String, dynamic> json) =>
       _$ApiValidatePurchaseResponseFromJson(json);
 
+  static const toJsonFactory = _$ApiValidatePurchaseResponseToJson;
+  Map<String, dynamic> toJson() => _$ApiValidatePurchaseResponseToJson(this);
+
   @JsonKey(
       name: 'validatedPurchases',
       includeIfNull: true,
       defaultValue: <ApiValidatedPurchase>[])
   final List<ApiValidatedPurchase>? validatedPurchases;
   static const fromJsonFactory = _$ApiValidatePurchaseResponseFromJson;
-  static const toJsonFactory = _$ApiValidatePurchaseResponseToJson;
-  Map<String, dynamic> toJson() => _$ApiValidatePurchaseResponseToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6378,14 +6435,15 @@ class ApiValidateSubscriptionAppleRequest {
           Map<String, dynamic> json) =>
       _$ApiValidateSubscriptionAppleRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiValidateSubscriptionAppleRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$ApiValidateSubscriptionAppleRequestToJson(this);
+
   @JsonKey(name: 'receipt', includeIfNull: true)
   final String? receipt;
   @JsonKey(name: 'persist', includeIfNull: true)
   final bool? persist;
   static const fromJsonFactory = _$ApiValidateSubscriptionAppleRequestFromJson;
-  static const toJsonFactory = _$ApiValidateSubscriptionAppleRequestToJson;
-  Map<String, dynamic> toJson() =>
-      _$ApiValidateSubscriptionAppleRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6435,14 +6493,15 @@ class ApiValidateSubscriptionGoogleRequest {
           Map<String, dynamic> json) =>
       _$ApiValidateSubscriptionGoogleRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiValidateSubscriptionGoogleRequestToJson;
+  Map<String, dynamic> toJson() =>
+      _$ApiValidateSubscriptionGoogleRequestToJson(this);
+
   @JsonKey(name: 'receipt', includeIfNull: true)
   final String? receipt;
   @JsonKey(name: 'persist', includeIfNull: true)
   final bool? persist;
   static const fromJsonFactory = _$ApiValidateSubscriptionGoogleRequestFromJson;
-  static const toJsonFactory = _$ApiValidateSubscriptionGoogleRequestToJson;
-  Map<String, dynamic> toJson() =>
-      _$ApiValidateSubscriptionGoogleRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6490,12 +6549,13 @@ class ApiValidateSubscriptionResponse {
   factory ApiValidateSubscriptionResponse.fromJson(Map<String, dynamic> json) =>
       _$ApiValidateSubscriptionResponseFromJson(json);
 
-  @JsonKey(name: 'validatedSubscription', includeIfNull: true)
-  final ApiValidatedSubscription? validatedSubscription;
-  static const fromJsonFactory = _$ApiValidateSubscriptionResponseFromJson;
   static const toJsonFactory = _$ApiValidateSubscriptionResponseToJson;
   Map<String, dynamic> toJson() =>
       _$ApiValidateSubscriptionResponseToJson(this);
+
+  @JsonKey(name: 'validatedSubscription', includeIfNull: true)
+  final ApiValidatedSubscription? validatedSubscription;
+  static const fromJsonFactory = _$ApiValidateSubscriptionResponseFromJson;
 
   @override
   bool operator ==(dynamic other) {
@@ -6550,6 +6610,9 @@ class ApiValidatedPurchase {
   factory ApiValidatedPurchase.fromJson(Map<String, dynamic> json) =>
       _$ApiValidatedPurchaseFromJson(json);
 
+  static const toJsonFactory = _$ApiValidatedPurchaseToJson;
+  Map<String, dynamic> toJson() => _$ApiValidatedPurchaseToJson(this);
+
   @JsonKey(name: 'productId', includeIfNull: true)
   final String? productId;
   @JsonKey(name: 'transactionId', includeIfNull: true)
@@ -6579,8 +6642,6 @@ class ApiValidatedPurchase {
   @JsonKey(name: 'seenBefore', includeIfNull: true)
   final bool? seenBefore;
   static const fromJsonFactory = _$ApiValidatedPurchaseFromJson;
-  static const toJsonFactory = _$ApiValidatedPurchaseToJson;
-  Map<String, dynamic> toJson() => _$ApiValidatedPurchaseToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6699,6 +6760,9 @@ class ApiValidatedSubscription {
   factory ApiValidatedSubscription.fromJson(Map<String, dynamic> json) =>
       _$ApiValidatedSubscriptionFromJson(json);
 
+  static const toJsonFactory = _$ApiValidatedSubscriptionToJson;
+  Map<String, dynamic> toJson() => _$ApiValidatedSubscriptionToJson(this);
+
   @JsonKey(name: 'productId', includeIfNull: true)
   final String? productId;
   @JsonKey(name: 'originalTransactionId', includeIfNull: true)
@@ -6728,8 +6792,6 @@ class ApiValidatedSubscription {
   @JsonKey(name: 'active', includeIfNull: true)
   final bool? active;
   static const fromJsonFactory = _$ApiValidatedSubscriptionFromJson;
-  static const toJsonFactory = _$ApiValidatedSubscriptionToJson;
-  Map<String, dynamic> toJson() => _$ApiValidatedSubscriptionToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6844,6 +6906,9 @@ class ApiWriteStorageObject {
   factory ApiWriteStorageObject.fromJson(Map<String, dynamic> json) =>
       _$ApiWriteStorageObjectFromJson(json);
 
+  static const toJsonFactory = _$ApiWriteStorageObjectToJson;
+  Map<String, dynamic> toJson() => _$ApiWriteStorageObjectToJson(this);
+
   @JsonKey(name: 'collection', includeIfNull: true)
   final String? collection;
   @JsonKey(name: 'key', includeIfNull: true)
@@ -6857,8 +6922,6 @@ class ApiWriteStorageObject {
   @JsonKey(name: 'permissionWrite', includeIfNull: true)
   final int? permissionWrite;
   static const fromJsonFactory = _$ApiWriteStorageObjectFromJson;
-  static const toJsonFactory = _$ApiWriteStorageObjectToJson;
-  Map<String, dynamic> toJson() => _$ApiWriteStorageObjectToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6943,14 +7006,15 @@ class ApiWriteStorageObjectsRequest {
   factory ApiWriteStorageObjectsRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiWriteStorageObjectsRequestFromJson(json);
 
+  static const toJsonFactory = _$ApiWriteStorageObjectsRequestToJson;
+  Map<String, dynamic> toJson() => _$ApiWriteStorageObjectsRequestToJson(this);
+
   @JsonKey(
       name: 'objects',
       includeIfNull: true,
       defaultValue: <ApiWriteStorageObject>[])
   final List<ApiWriteStorageObject>? objects;
   static const fromJsonFactory = _$ApiWriteStorageObjectsRequestFromJson;
-  static const toJsonFactory = _$ApiWriteStorageObjectsRequestToJson;
-  Map<String, dynamic> toJson() => _$ApiWriteStorageObjectsRequestToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -6992,13 +7056,14 @@ class ProtobufAny {
   factory ProtobufAny.fromJson(Map<String, dynamic> json) =>
       _$ProtobufAnyFromJson(json);
 
+  static const toJsonFactory = _$ProtobufAnyToJson;
+  Map<String, dynamic> toJson() => _$ProtobufAnyToJson(this);
+
   @JsonKey(name: 'typeUrl', includeIfNull: true)
   final String? typeUrl;
   @JsonKey(name: 'value', includeIfNull: true)
   final String? value;
   static const fromJsonFactory = _$ProtobufAnyFromJson;
-  static const toJsonFactory = _$ProtobufAnyToJson;
-  Map<String, dynamic> toJson() => _$ProtobufAnyToJson(this);
 
   @override
   bool operator ==(dynamic other) {
@@ -7046,6 +7111,9 @@ class RpcStatus {
   factory RpcStatus.fromJson(Map<String, dynamic> json) =>
       _$RpcStatusFromJson(json);
 
+  static const toJsonFactory = _$RpcStatusToJson;
+  Map<String, dynamic> toJson() => _$RpcStatusToJson(this);
+
   @JsonKey(name: 'code', includeIfNull: true)
   final int? code;
   @JsonKey(name: 'message', includeIfNull: true)
@@ -7053,8 +7121,6 @@ class RpcStatus {
   @JsonKey(name: 'details', includeIfNull: true, defaultValue: <ProtobufAny>[])
   final List<ProtobufAny>? details;
   static const fromJsonFactory = _$RpcStatusFromJson;
-  static const toJsonFactory = _$RpcStatusToJson;
-  Map<String, dynamic> toJson() => _$RpcStatusToJson(this);
 
   @override
   bool operator ==(dynamic other) {

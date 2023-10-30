@@ -1,3 +1,15 @@
+# 1.0.1
+
+* Added support for signing in with username + password in `authenticateEmail` method
+
+# 1.0.0
+
+* chore: v1.0.0 release 🚀
+
+## 1.0.0-dev.7
+
+* Fixed missing session in rpc call
+
 ## 1.0.0-dev.6
 
 * Added creating a match by match name

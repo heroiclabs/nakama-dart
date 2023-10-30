@@ -17,10 +17,30 @@ void main() {
       );
     });
 
-    test('login with email', () async {
+    test('sign up with email', () async {
       final session = await client.authenticateEmail(
         email: faker.internet.email(),
         password: faker.internet.password(),
+        create: true,
+      );
+
+      expect(session, isNotNull);
+    });
+
+    test('sign up with email and log in with username', () async {
+      final username = faker.internet.userName();
+      final password = faker.internet.password();
+
+      await client.authenticateEmail(
+        email: faker.internet.email(),
+        password: password,
+        username: username,
+        create: true,
+      );
+
+      final session = await client.authenticateEmail(
+        password: password,
+        username: username,
       );
 
       expect(session, isNotNull);
