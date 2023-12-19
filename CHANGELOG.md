@@ -1,3 +1,8 @@
+## [unreleased]
+
+* Fixed: JWT Expiry was parsed incorrectly so that the session was always expired [#73](https://github.com/heroiclabs/nakama-dart/issues/73)
+* Fixed: Auth token was not passed in gRPC calls [#78](https://github.com/heroiclabs/nakama-dart/pull/78)
+
 ## 1.0.1
 
 * Added support for signing in with username + password in `authenticateEmail` method
