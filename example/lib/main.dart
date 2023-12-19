@@ -27,6 +27,8 @@ class _HomeScreen extends StatefulWidget {
 class __HomeScreenState extends State<_HomeScreen> {
   late final NakamaBaseClient _nakamaClient;
 
+  bool signInError = false;
+
   Session? _session;
   Account? _account;
   Match? _match;
@@ -48,26 +50,37 @@ class __HomeScreenState extends State<_HomeScreen> {
     super.dispose();
   }
 
-  void _signIn(String email, String password) {
-    _nakamaClient
-        .authenticateEmail(
-          email: email,
-          password: password,
-          create: true,
-        )
-        // sign in was successful
-        .then((value) => setState(() => _session = value))
+  void _signIn(String email, String password) async {
+    setState(() {
+      signInError = false;
+    });
 
-        // get user's profile
-        .then((value) => _nakamaClient.getAccount(_session!))
-        .then((value) => setState(() => _account = value))
-        .then(
-          (value) => NakamaWebsocketClient.init(
-            host: '127.0.0.1',
-            ssl: false,
-            token: _session!.token,
-          ),
-        );
+    try {
+      final session = await _nakamaClient.authenticateEmail(
+        email: email,
+        password: password,
+        create: true,
+      );
+
+      // sign in was successful
+      final profile = await _nakamaClient.getAccount(session);
+
+      setState(() {
+        _session = session;
+        _account = profile;
+      });
+
+      NakamaWebsocketClient.init(
+        host: '127.0.0.1',
+        ssl: false,
+        token: _session!.token,
+      );
+    } catch (_) {
+      // sign in failed
+      setState(() {
+        signInError = true;
+      });
+    }
   }
 
   @override
@@ -87,7 +100,16 @@ class __HomeScreenState extends State<_HomeScreen> {
                   if (_match != null) MatchArea(_match!),
                 ],
               )
-            : SignInBox(onSignIn: _signIn),
+            : Column(
+                children: [
+                  if (signInError)
+                    const Text(
+                      'Sign in failed. Please try again.',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  SignInBox(onSignIn: _signIn),
+                ],
+              ),
       ),
     );
   }
