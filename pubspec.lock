@@ -290,7 +290,7 @@ packages:
     source: hosted
     version: "3.2.4"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       sha256: d4872660c46d929f6b8a9ef4e7a7eff7e49bbf0c4ec3f385ee32df5119175139

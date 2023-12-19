@@ -1,3 +1,7 @@
+## 1.0.3
+
+* Added missing `http` dependency
+
 ## 1.0.2
 
 * Fixed: JWT Expiry was parsed incorrectly so that the session was always expired [#73](https://github.com/heroiclabs/nakama-dart/issues/73)
