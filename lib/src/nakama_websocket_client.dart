@@ -408,19 +408,17 @@ class NakamaWebsocketClient {
     return res.presences.map(UserPresence.fromDto).toList();
   }
 
-  Future<List<UserPresence>> sendMatchData({
+  void sendMatchData({
     required String matchId,
     required api.Int64 opCode,
     required List<int> data,
   }) async {
-    final res = await _send<rtpb.Status>(rtpb.Envelope(
+    _send<void>(rtpb.Envelope(
         matchDataSend: rtpb.MatchDataSend(
       matchId: matchId,
       opCode: opCode,
       data: data,
     )));
-
-    return res.presences.map(UserPresence.fromDto).toList();
   }
 
   Future<List<UserPresence>> sendPartyData({
