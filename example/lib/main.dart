@@ -53,6 +53,7 @@ class __HomeScreenState extends State<_HomeScreen> {
         .authenticateEmail(
           email: email,
           password: password,
+          create: true,
         )
         // sign in was successful
         .then((value) => setState(() => _session = value))
