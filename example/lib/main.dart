@@ -18,7 +18,7 @@ void main() {
 }
 
 class _HomeScreen extends StatefulWidget {
-  const _HomeScreen({Key? key}) : super(key: key);
+  const _HomeScreen();
 
   @override
   __HomeScreenState createState() => __HomeScreenState();

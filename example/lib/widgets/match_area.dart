@@ -6,13 +6,13 @@ import 'package:nakama/nakama.dart';
 class MatchArea extends StatefulWidget {
   final Match match;
 
-  const MatchArea(this.match, {Key? key}) : super(key: key);
+  const MatchArea(this.match, {super.key});
 
   @override
-  _MatchAreaState createState() => _MatchAreaState();
+  MatchAreaState createState() => MatchAreaState();
 }
 
-class _MatchAreaState extends State<MatchArea> {
+class MatchAreaState extends State<MatchArea> {
   final matchDataController = TextEditingController();
   late final StreamSubscription onMatchDataSubscription;
   String matchData = '';
@@ -64,6 +64,10 @@ class _MatchAreaState extends State<MatchArea> {
                   controller: matchDataController,
                   maxLines: null,
                   onChanged: sendMatchData,
+                  decoration: const InputDecoration(
+                    hintText:
+                        'Write some match data, which is then synchronized across all participants in real time.',
+                  ),
                 ),
               ],
             ),

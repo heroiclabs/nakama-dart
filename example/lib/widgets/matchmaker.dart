@@ -8,14 +8,14 @@ class Matchmaker extends StatefulWidget {
 
   const Matchmaker({
     required this.onMatch,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
-  _MatchmakerState createState() => _MatchmakerState();
+  MatchmakerState createState() => MatchmakerState();
 }
 
-class _MatchmakerState extends State<Matchmaker> {
+class MatchmakerState extends State<Matchmaker> {
   MatchmakerTicket? matchmakerTicket;
   StreamSubscription? onMatchmakerMatchedSubscription;
 

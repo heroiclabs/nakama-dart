@@ -4,7 +4,7 @@ import 'package:nakama/nakama.dart';
 class Welcome extends StatelessWidget {
   final Account account;
 
-  const Welcome(this.account, {Key? key}) : super(key: key);
+  const Welcome(this.account, {super.key});
 
   @override
   Widget build(BuildContext context) {

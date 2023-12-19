@@ -7,9 +7,9 @@ class SignInBox extends StatelessWidget {
   final Function(String, String) onSignIn;
 
   SignInBox({
-    Key? key,
+    super.key,
     required this.onSignIn,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
