@@ -1,4 +1,4 @@
-## [unreleased]
+## 1.0.2
 
 * Fixed: JWT Expiry was parsed incorrectly so that the session was always expired [#73](https://github.com/heroiclabs/nakama-dart/issues/73)
 * Fixed: Auth token was not passed in gRPC calls [#78](https://github.com/heroiclabs/nakama-dart/pull/78)
