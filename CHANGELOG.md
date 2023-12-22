@@ -1,3 +1,7 @@
+## 1.0.4
+
+* Fixed: Missing content and subject notification [#80](https://github.com/heroiclabs/nakama-dart/issues/80)
+
 ## 1.0.3
 
 * Added missing `http` dependency
