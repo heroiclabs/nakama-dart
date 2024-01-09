@@ -1,4 +1,4 @@
-## [unreleased]
+## 1.0.5
 
 * Fixed: Cursors are nullable `FriendsList.cursor`, `GroupList.cursor`, `UserGroupList.cursor`, `GroupUserList.cursor`, `NotificationList.cursor`
 
