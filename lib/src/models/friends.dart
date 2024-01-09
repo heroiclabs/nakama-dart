@@ -11,7 +11,7 @@ class FriendsList with _$FriendsList {
   const FriendsList._();
 
   const factory FriendsList({
-    required String cursor,
+    String? cursor,
     required List<Friend> friends,
   }) = _FriendsList;
 

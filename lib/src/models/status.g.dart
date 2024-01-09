@@ -6,8 +6,8 @@ part of 'status.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UserPresence _$$_UserPresenceFromJson(Map<String, dynamic> json) =>
-    _$_UserPresence(
+_$UserPresenceImpl _$$UserPresenceImplFromJson(Map<String, dynamic> json) =>
+    _$UserPresenceImpl(
       userId: json['userId'] as String,
       sessionId: json['sessionId'] as String,
       username: json['username'] as String,
@@ -15,7 +15,7 @@ _$_UserPresence _$$_UserPresenceFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String?,
     );
 
-Map<String, dynamic> _$$_UserPresenceToJson(_$_UserPresence instance) =>
+Map<String, dynamic> _$$UserPresenceImplToJson(_$UserPresenceImpl instance) =>
     <String, dynamic>{
       'userId': instance.userId,
       'sessionId': instance.sessionId,

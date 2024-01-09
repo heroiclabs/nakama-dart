@@ -6,7 +6,8 @@ part of 'account.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Account _$$_AccountFromJson(Map<String, dynamic> json) => _$_Account(
+_$AccountImpl _$$AccountImplFromJson(Map<String, dynamic> json) =>
+    _$AccountImpl(
       wallet: json['wallet'] as String?,
       email: json['email'] as String?,
       devices: (json['devices'] as List<dynamic>?)
@@ -23,7 +24,7 @@ _$_Account _$$_AccountFromJson(Map<String, dynamic> json) => _$_Account(
       user: User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_AccountToJson(_$_Account instance) =>
+Map<String, dynamic> _$$AccountImplToJson(_$AccountImpl instance) =>
     <String, dynamic>{
       'wallet': instance.wallet,
       'email': instance.email,
@@ -34,17 +35,18 @@ Map<String, dynamic> _$$_AccountToJson(_$_Account instance) =>
       'user': instance.user,
     };
 
-_$_Device _$$_DeviceFromJson(Map<String, dynamic> json) => _$_Device(
+_$DeviceImpl _$$DeviceImplFromJson(Map<String, dynamic> json) => _$DeviceImpl(
       id: json['id'] as String,
       vars: json['vars'] as Map<String, dynamic>? ?? const {},
     );
 
-Map<String, dynamic> _$$_DeviceToJson(_$_Device instance) => <String, dynamic>{
+Map<String, dynamic> _$$DeviceImplToJson(_$DeviceImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'vars': instance.vars,
     };
 
-_$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
+_$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       id: json['id'] as String,
       username: json['username'] as String?,
       displayName: json['displayName'] as String?,
@@ -69,7 +71,8 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       appleId: json['appleId'] as String?,
     );
 
-Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
+Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'username': instance.username,
       'displayName': instance.displayName,

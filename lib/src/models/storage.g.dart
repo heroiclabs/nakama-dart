@@ -6,8 +6,8 @@ part of 'storage.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_StorageObject _$$_StorageObjectFromJson(Map<String, dynamic> json) =>
-    _$_StorageObject(
+_$StorageObjectImpl _$$StorageObjectImplFromJson(Map<String, dynamic> json) =>
+    _$StorageObjectImpl(
       collection: json['collection'] as String,
       key: json['key'] as String,
       userId: json['userId'] as String?,
@@ -23,7 +23,7 @@ _$_StorageObject _$$_StorageObjectFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['updateTime'] as String),
     );
 
-Map<String, dynamic> _$$_StorageObjectToJson(_$_StorageObject instance) =>
+Map<String, dynamic> _$$StorageObjectImplToJson(_$StorageObjectImpl instance) =>
     <String, dynamic>{
       'collection': instance.collection,
       'key': instance.key,
@@ -36,29 +36,32 @@ Map<String, dynamic> _$$_StorageObjectToJson(_$_StorageObject instance) =>
       'updateTime': instance.updateTime?.toIso8601String(),
     };
 
-_$_StorageObjectList _$$_StorageObjectListFromJson(Map<String, dynamic> json) =>
-    _$_StorageObjectList(
+_$StorageObjectListImpl _$$StorageObjectListImplFromJson(
+        Map<String, dynamic> json) =>
+    _$StorageObjectListImpl(
       cursor: json['cursor'] as String?,
       objects: (json['objects'] as List<dynamic>)
           .map((e) => StorageObject.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_StorageObjectListToJson(
-        _$_StorageObjectList instance) =>
+Map<String, dynamic> _$$StorageObjectListImplToJson(
+        _$StorageObjectListImpl instance) =>
     <String, dynamic>{
       'cursor': instance.cursor,
       'objects': instance.objects,
     };
 
-_$_StorageObjectId _$$_StorageObjectIdFromJson(Map<String, dynamic> json) =>
-    _$_StorageObjectId(
+_$StorageObjectIdImpl _$$StorageObjectIdImplFromJson(
+        Map<String, dynamic> json) =>
+    _$StorageObjectIdImpl(
       collection: json['collection'] as String,
       key: json['key'] as String,
       version: json['version'] as String?,
     );
 
-Map<String, dynamic> _$$_StorageObjectIdToJson(_$_StorageObjectId instance) =>
+Map<String, dynamic> _$$StorageObjectIdImplToJson(
+        _$StorageObjectIdImpl instance) =>
     <String, dynamic>{
       'collection': instance.collection,
       'key': instance.key,

@@ -119,11 +119,11 @@ class _$StorageObjectCopyWithImpl<$Res, $Val extends StorageObject>
 }
 
 /// @nodoc
-abstract class _$$_StorageObjectCopyWith<$Res>
+abstract class _$$StorageObjectImplCopyWith<$Res>
     implements $StorageObjectCopyWith<$Res> {
-  factory _$$_StorageObjectCopyWith(
-          _$_StorageObject value, $Res Function(_$_StorageObject) then) =
-      __$$_StorageObjectCopyWithImpl<$Res>;
+  factory _$$StorageObjectImplCopyWith(
+          _$StorageObjectImpl value, $Res Function(_$StorageObjectImpl) then) =
+      __$$StorageObjectImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -139,11 +139,11 @@ abstract class _$$_StorageObjectCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_StorageObjectCopyWithImpl<$Res>
-    extends _$StorageObjectCopyWithImpl<$Res, _$_StorageObject>
-    implements _$$_StorageObjectCopyWith<$Res> {
-  __$$_StorageObjectCopyWithImpl(
-      _$_StorageObject _value, $Res Function(_$_StorageObject) _then)
+class __$$StorageObjectImplCopyWithImpl<$Res>
+    extends _$StorageObjectCopyWithImpl<$Res, _$StorageObjectImpl>
+    implements _$$StorageObjectImplCopyWith<$Res> {
+  __$$StorageObjectImplCopyWithImpl(
+      _$StorageObjectImpl _value, $Res Function(_$StorageObjectImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -159,7 +159,7 @@ class __$$_StorageObjectCopyWithImpl<$Res>
     Object? createTime = freezed,
     Object? updateTime = freezed,
   }) {
-    return _then(_$_StorageObject(
+    return _then(_$StorageObjectImpl(
       collection: null == collection
           ? _value.collection
           : collection // ignore: cast_nullable_to_non_nullable
@@ -202,8 +202,8 @@ class __$$_StorageObjectCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_StorageObject extends _StorageObject {
-  const _$_StorageObject(
+class _$StorageObjectImpl extends _StorageObject {
+  const _$StorageObjectImpl(
       {required this.collection,
       required this.key,
       this.userId,
@@ -215,8 +215,8 @@ class _$_StorageObject extends _StorageObject {
       this.updateTime})
       : super._();
 
-  factory _$_StorageObject.fromJson(Map<String, dynamic> json) =>
-      _$$_StorageObjectFromJson(json);
+  factory _$StorageObjectImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StorageObjectImplFromJson(json);
 
   @override
   final String collection;
@@ -243,10 +243,10 @@ class _$_StorageObject extends _StorageObject {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StorageObject &&
+            other is _$StorageObjectImpl &&
             (identical(other.collection, collection) ||
                 other.collection == collection) &&
             (identical(other.key, key) || other.key == key) &&
@@ -271,12 +271,12 @@ class _$_StorageObject extends _StorageObject {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StorageObjectCopyWith<_$_StorageObject> get copyWith =>
-      __$$_StorageObjectCopyWithImpl<_$_StorageObject>(this, _$identity);
+  _$$StorageObjectImplCopyWith<_$StorageObjectImpl> get copyWith =>
+      __$$StorageObjectImplCopyWithImpl<_$StorageObjectImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StorageObjectToJson(
+    return _$$StorageObjectImplToJson(
       this,
     );
   }
@@ -292,11 +292,11 @@ abstract class _StorageObject extends StorageObject {
       final int? permissionRead,
       final int? permissionWrite,
       final DateTime? createTime,
-      final DateTime? updateTime}) = _$_StorageObject;
+      final DateTime? updateTime}) = _$StorageObjectImpl;
   const _StorageObject._() : super._();
 
   factory _StorageObject.fromJson(Map<String, dynamic> json) =
-      _$_StorageObject.fromJson;
+      _$StorageObjectImpl.fromJson;
 
   @override
   String get collection;
@@ -318,7 +318,7 @@ abstract class _StorageObject extends StorageObject {
   DateTime? get updateTime;
   @override
   @JsonKey(ignore: true)
-  _$$_StorageObjectCopyWith<_$_StorageObject> get copyWith =>
+  _$$StorageObjectImplCopyWith<_$StorageObjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -376,22 +376,22 @@ class _$StorageObjectListCopyWithImpl<$Res, $Val extends StorageObjectList>
 }
 
 /// @nodoc
-abstract class _$$_StorageObjectListCopyWith<$Res>
+abstract class _$$StorageObjectListImplCopyWith<$Res>
     implements $StorageObjectListCopyWith<$Res> {
-  factory _$$_StorageObjectListCopyWith(_$_StorageObjectList value,
-          $Res Function(_$_StorageObjectList) then) =
-      __$$_StorageObjectListCopyWithImpl<$Res>;
+  factory _$$StorageObjectListImplCopyWith(_$StorageObjectListImpl value,
+          $Res Function(_$StorageObjectListImpl) then) =
+      __$$StorageObjectListImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? cursor, List<StorageObject> objects});
 }
 
 /// @nodoc
-class __$$_StorageObjectListCopyWithImpl<$Res>
-    extends _$StorageObjectListCopyWithImpl<$Res, _$_StorageObjectList>
-    implements _$$_StorageObjectListCopyWith<$Res> {
-  __$$_StorageObjectListCopyWithImpl(
-      _$_StorageObjectList _value, $Res Function(_$_StorageObjectList) _then)
+class __$$StorageObjectListImplCopyWithImpl<$Res>
+    extends _$StorageObjectListCopyWithImpl<$Res, _$StorageObjectListImpl>
+    implements _$$StorageObjectListImplCopyWith<$Res> {
+  __$$StorageObjectListImplCopyWithImpl(_$StorageObjectListImpl _value,
+      $Res Function(_$StorageObjectListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -400,7 +400,7 @@ class __$$_StorageObjectListCopyWithImpl<$Res>
     Object? cursor = freezed,
     Object? objects = null,
   }) {
-    return _then(_$_StorageObjectList(
+    return _then(_$StorageObjectListImpl(
       cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
@@ -415,14 +415,14 @@ class __$$_StorageObjectListCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_StorageObjectList extends _StorageObjectList {
-  const _$_StorageObjectList(
+class _$StorageObjectListImpl extends _StorageObjectList {
+  const _$StorageObjectListImpl(
       {this.cursor, required final List<StorageObject> objects})
       : _objects = objects,
         super._();
 
-  factory _$_StorageObjectList.fromJson(Map<String, dynamic> json) =>
-      _$$_StorageObjectListFromJson(json);
+  factory _$StorageObjectListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StorageObjectListImplFromJson(json);
 
   @override
   final String? cursor;
@@ -440,10 +440,10 @@ class _$_StorageObjectList extends _StorageObjectList {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StorageObjectList &&
+            other is _$StorageObjectListImpl &&
             (identical(other.cursor, cursor) || other.cursor == cursor) &&
             const DeepCollectionEquality().equals(other._objects, _objects));
   }
@@ -456,13 +456,13 @@ class _$_StorageObjectList extends _StorageObjectList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StorageObjectListCopyWith<_$_StorageObjectList> get copyWith =>
-      __$$_StorageObjectListCopyWithImpl<_$_StorageObjectList>(
+  _$$StorageObjectListImplCopyWith<_$StorageObjectListImpl> get copyWith =>
+      __$$StorageObjectListImplCopyWithImpl<_$StorageObjectListImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StorageObjectListToJson(
+    return _$$StorageObjectListImplToJson(
       this,
     );
   }
@@ -471,11 +471,11 @@ class _$_StorageObjectList extends _StorageObjectList {
 abstract class _StorageObjectList extends StorageObjectList {
   const factory _StorageObjectList(
       {final String? cursor,
-      required final List<StorageObject> objects}) = _$_StorageObjectList;
+      required final List<StorageObject> objects}) = _$StorageObjectListImpl;
   const _StorageObjectList._() : super._();
 
   factory _StorageObjectList.fromJson(Map<String, dynamic> json) =
-      _$_StorageObjectList.fromJson;
+      _$StorageObjectListImpl.fromJson;
 
   @override
   String? get cursor;
@@ -483,7 +483,7 @@ abstract class _StorageObjectList extends StorageObjectList {
   List<StorageObject> get objects;
   @override
   @JsonKey(ignore: true)
-  _$$_StorageObjectListCopyWith<_$_StorageObjectList> get copyWith =>
+  _$$StorageObjectListImplCopyWith<_$StorageObjectListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -547,22 +547,22 @@ class _$StorageObjectIdCopyWithImpl<$Res, $Val extends StorageObjectId>
 }
 
 /// @nodoc
-abstract class _$$_StorageObjectIdCopyWith<$Res>
+abstract class _$$StorageObjectIdImplCopyWith<$Res>
     implements $StorageObjectIdCopyWith<$Res> {
-  factory _$$_StorageObjectIdCopyWith(
-          _$_StorageObjectId value, $Res Function(_$_StorageObjectId) then) =
-      __$$_StorageObjectIdCopyWithImpl<$Res>;
+  factory _$$StorageObjectIdImplCopyWith(_$StorageObjectIdImpl value,
+          $Res Function(_$StorageObjectIdImpl) then) =
+      __$$StorageObjectIdImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String collection, String key, String? version});
 }
 
 /// @nodoc
-class __$$_StorageObjectIdCopyWithImpl<$Res>
-    extends _$StorageObjectIdCopyWithImpl<$Res, _$_StorageObjectId>
-    implements _$$_StorageObjectIdCopyWith<$Res> {
-  __$$_StorageObjectIdCopyWithImpl(
-      _$_StorageObjectId _value, $Res Function(_$_StorageObjectId) _then)
+class __$$StorageObjectIdImplCopyWithImpl<$Res>
+    extends _$StorageObjectIdCopyWithImpl<$Res, _$StorageObjectIdImpl>
+    implements _$$StorageObjectIdImplCopyWith<$Res> {
+  __$$StorageObjectIdImplCopyWithImpl(
+      _$StorageObjectIdImpl _value, $Res Function(_$StorageObjectIdImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -572,7 +572,7 @@ class __$$_StorageObjectIdCopyWithImpl<$Res>
     Object? key = null,
     Object? version = freezed,
   }) {
-    return _then(_$_StorageObjectId(
+    return _then(_$StorageObjectIdImpl(
       collection: null == collection
           ? _value.collection
           : collection // ignore: cast_nullable_to_non_nullable
@@ -591,13 +591,13 @@ class __$$_StorageObjectIdCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_StorageObjectId extends _StorageObjectId {
-  const _$_StorageObjectId(
+class _$StorageObjectIdImpl extends _StorageObjectId {
+  const _$StorageObjectIdImpl(
       {required this.collection, required this.key, this.version})
       : super._();
 
-  factory _$_StorageObjectId.fromJson(Map<String, dynamic> json) =>
-      _$$_StorageObjectIdFromJson(json);
+  factory _$StorageObjectIdImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StorageObjectIdImplFromJson(json);
 
   @override
   final String collection;
@@ -612,10 +612,10 @@ class _$_StorageObjectId extends _StorageObjectId {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StorageObjectId &&
+            other is _$StorageObjectIdImpl &&
             (identical(other.collection, collection) ||
                 other.collection == collection) &&
             (identical(other.key, key) || other.key == key) &&
@@ -629,12 +629,13 @@ class _$_StorageObjectId extends _StorageObjectId {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StorageObjectIdCopyWith<_$_StorageObjectId> get copyWith =>
-      __$$_StorageObjectIdCopyWithImpl<_$_StorageObjectId>(this, _$identity);
+  _$$StorageObjectIdImplCopyWith<_$StorageObjectIdImpl> get copyWith =>
+      __$$StorageObjectIdImplCopyWithImpl<_$StorageObjectIdImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StorageObjectIdToJson(
+    return _$$StorageObjectIdImplToJson(
       this,
     );
   }
@@ -644,11 +645,11 @@ abstract class _StorageObjectId extends StorageObjectId {
   const factory _StorageObjectId(
       {required final String collection,
       required final String key,
-      final String? version}) = _$_StorageObjectId;
+      final String? version}) = _$StorageObjectIdImpl;
   const _StorageObjectId._() : super._();
 
   factory _StorageObjectId.fromJson(Map<String, dynamic> json) =
-      _$_StorageObjectId.fromJson;
+      _$StorageObjectIdImpl.fromJson;
 
   @override
   String get collection;
@@ -658,6 +659,6 @@ abstract class _StorageObjectId extends StorageObjectId {
   String? get version;
   @override
   @JsonKey(ignore: true)
-  _$$_StorageObjectIdCopyWith<_$_StorageObjectId> get copyWith =>
+  _$$StorageObjectIdImplCopyWith<_$StorageObjectIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

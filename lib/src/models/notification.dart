@@ -37,7 +37,7 @@ class NotificationList with _$NotificationList {
   const NotificationList._();
 
   const factory NotificationList({
-    required String cursor,
+    String? cursor,
     required List<Notification> notifications,
   }) = _NotificationList;
 

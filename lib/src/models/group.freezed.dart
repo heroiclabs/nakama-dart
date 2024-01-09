@@ -138,9 +138,10 @@ class _$GroupCopyWithImpl<$Res, $Val extends Group>
 }
 
 /// @nodoc
-abstract class _$$_GroupCopyWith<$Res> implements $GroupCopyWith<$Res> {
-  factory _$$_GroupCopyWith(_$_Group value, $Res Function(_$_Group) then) =
-      __$$_GroupCopyWithImpl<$Res>;
+abstract class _$$GroupImplCopyWith<$Res> implements $GroupCopyWith<$Res> {
+  factory _$$GroupImplCopyWith(
+          _$GroupImpl value, $Res Function(_$GroupImpl) then) =
+      __$$GroupImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -159,9 +160,11 @@ abstract class _$$_GroupCopyWith<$Res> implements $GroupCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_GroupCopyWithImpl<$Res> extends _$GroupCopyWithImpl<$Res, _$_Group>
-    implements _$$_GroupCopyWith<$Res> {
-  __$$_GroupCopyWithImpl(_$_Group _value, $Res Function(_$_Group) _then)
+class __$$GroupImplCopyWithImpl<$Res>
+    extends _$GroupCopyWithImpl<$Res, _$GroupImpl>
+    implements _$$GroupImplCopyWith<$Res> {
+  __$$GroupImplCopyWithImpl(
+      _$GroupImpl _value, $Res Function(_$GroupImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -180,7 +183,7 @@ class __$$_GroupCopyWithImpl<$Res> extends _$GroupCopyWithImpl<$Res, _$_Group>
     Object? createTime = freezed,
     Object? updateTime = freezed,
   }) {
-    return _then(_$_Group(
+    return _then(_$GroupImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -235,8 +238,8 @@ class __$$_GroupCopyWithImpl<$Res> extends _$GroupCopyWithImpl<$Res, _$_Group>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Group extends _Group {
-  const _$_Group(
+class _$GroupImpl extends _Group {
+  const _$GroupImpl(
       {required this.id,
       this.creatorId,
       this.name,
@@ -251,8 +254,8 @@ class _$_Group extends _Group {
       this.updateTime})
       : super._();
 
-  factory _$_Group.fromJson(Map<String, dynamic> json) =>
-      _$$_GroupFromJson(json);
+  factory _$GroupImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GroupImplFromJson(json);
 
   @override
   final String id;
@@ -285,10 +288,10 @@ class _$_Group extends _Group {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Group &&
+            other is _$GroupImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.creatorId, creatorId) ||
                 other.creatorId == creatorId) &&
@@ -331,12 +334,12 @@ class _$_Group extends _Group {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GroupCopyWith<_$_Group> get copyWith =>
-      __$$_GroupCopyWithImpl<_$_Group>(this, _$identity);
+  _$$GroupImplCopyWith<_$GroupImpl> get copyWith =>
+      __$$GroupImplCopyWithImpl<_$GroupImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GroupToJson(
+    return _$$GroupImplToJson(
       this,
     );
   }
@@ -355,10 +358,10 @@ abstract class _Group extends Group {
       final int? edgeCount,
       final int? maxCount,
       final DateTime? createTime,
-      final DateTime? updateTime}) = _$_Group;
+      final DateTime? updateTime}) = _$GroupImpl;
   const _Group._() : super._();
 
-  factory _Group.fromJson(Map<String, dynamic> json) = _$_Group.fromJson;
+  factory _Group.fromJson(Map<String, dynamic> json) = _$GroupImpl.fromJson;
 
   @override
   String get id;
@@ -386,7 +389,7 @@ abstract class _Group extends Group {
   DateTime? get updateTime;
   @override
   @JsonKey(ignore: true)
-  _$$_GroupCopyWith<_$_Group> get copyWith =>
+  _$$GroupImplCopyWith<_$GroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -396,7 +399,7 @@ GroupList _$GroupListFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GroupList {
-  String get cursor => throw _privateConstructorUsedError;
+  String? get cursor => throw _privateConstructorUsedError;
   List<Group> get groups => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -410,7 +413,7 @@ abstract class $GroupListCopyWith<$Res> {
   factory $GroupListCopyWith(GroupList value, $Res Function(GroupList) then) =
       _$GroupListCopyWithImpl<$Res, GroupList>;
   @useResult
-  $Res call({String cursor, List<Group> groups});
+  $Res call({String? cursor, List<Group> groups});
 }
 
 /// @nodoc
@@ -426,14 +429,14 @@ class _$GroupListCopyWithImpl<$Res, $Val extends GroupList>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cursor = null,
+    Object? cursor = freezed,
     Object? groups = null,
   }) {
     return _then(_value.copyWith(
-      cursor: null == cursor
+      cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       groups: null == groups
           ? _value.groups
           : groups // ignore: cast_nullable_to_non_nullable
@@ -443,34 +446,35 @@ class _$GroupListCopyWithImpl<$Res, $Val extends GroupList>
 }
 
 /// @nodoc
-abstract class _$$_GroupListCopyWith<$Res> implements $GroupListCopyWith<$Res> {
-  factory _$$_GroupListCopyWith(
-          _$_GroupList value, $Res Function(_$_GroupList) then) =
-      __$$_GroupListCopyWithImpl<$Res>;
+abstract class _$$GroupListImplCopyWith<$Res>
+    implements $GroupListCopyWith<$Res> {
+  factory _$$GroupListImplCopyWith(
+          _$GroupListImpl value, $Res Function(_$GroupListImpl) then) =
+      __$$GroupListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String cursor, List<Group> groups});
+  $Res call({String? cursor, List<Group> groups});
 }
 
 /// @nodoc
-class __$$_GroupListCopyWithImpl<$Res>
-    extends _$GroupListCopyWithImpl<$Res, _$_GroupList>
-    implements _$$_GroupListCopyWith<$Res> {
-  __$$_GroupListCopyWithImpl(
-      _$_GroupList _value, $Res Function(_$_GroupList) _then)
+class __$$GroupListImplCopyWithImpl<$Res>
+    extends _$GroupListCopyWithImpl<$Res, _$GroupListImpl>
+    implements _$$GroupListImplCopyWith<$Res> {
+  __$$GroupListImplCopyWithImpl(
+      _$GroupListImpl _value, $Res Function(_$GroupListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cursor = null,
+    Object? cursor = freezed,
     Object? groups = null,
   }) {
-    return _then(_$_GroupList(
-      cursor: null == cursor
+    return _then(_$GroupListImpl(
+      cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       groups: null == groups
           ? _value._groups
           : groups // ignore: cast_nullable_to_non_nullable
@@ -481,16 +485,16 @@ class __$$_GroupListCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GroupList extends _GroupList {
-  const _$_GroupList({required this.cursor, required final List<Group> groups})
+class _$GroupListImpl extends _GroupList {
+  const _$GroupListImpl({this.cursor, required final List<Group> groups})
       : _groups = groups,
         super._();
 
-  factory _$_GroupList.fromJson(Map<String, dynamic> json) =>
-      _$$_GroupListFromJson(json);
+  factory _$GroupListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GroupListImplFromJson(json);
 
   @override
-  final String cursor;
+  final String? cursor;
   final List<Group> _groups;
   @override
   List<Group> get groups {
@@ -505,10 +509,10 @@ class _$_GroupList extends _GroupList {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GroupList &&
+            other is _$GroupListImpl &&
             (identical(other.cursor, cursor) || other.cursor == cursor) &&
             const DeepCollectionEquality().equals(other._groups, _groups));
   }
@@ -521,12 +525,12 @@ class _$_GroupList extends _GroupList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GroupListCopyWith<_$_GroupList> get copyWith =>
-      __$$_GroupListCopyWithImpl<_$_GroupList>(this, _$identity);
+  _$$GroupListImplCopyWith<_$GroupListImpl> get copyWith =>
+      __$$GroupListImplCopyWithImpl<_$GroupListImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GroupListToJson(
+    return _$$GroupListImplToJson(
       this,
     );
   }
@@ -534,20 +538,20 @@ class _$_GroupList extends _GroupList {
 
 abstract class _GroupList extends GroupList {
   const factory _GroupList(
-      {required final String cursor,
-      required final List<Group> groups}) = _$_GroupList;
+      {final String? cursor,
+      required final List<Group> groups}) = _$GroupListImpl;
   const _GroupList._() : super._();
 
   factory _GroupList.fromJson(Map<String, dynamic> json) =
-      _$_GroupList.fromJson;
+      _$GroupListImpl.fromJson;
 
   @override
-  String get cursor;
+  String? get cursor;
   @override
   List<Group> get groups;
   @override
   @JsonKey(ignore: true)
-  _$$_GroupListCopyWith<_$_GroupList> get copyWith =>
+  _$$GroupListImplCopyWith<_$GroupListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -557,7 +561,7 @@ UserGroupList _$UserGroupListFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserGroupList {
-  String get cursor => throw _privateConstructorUsedError;
+  String? get cursor => throw _privateConstructorUsedError;
   List<UserGroup> get userGroups => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -572,7 +576,7 @@ abstract class $UserGroupListCopyWith<$Res> {
           UserGroupList value, $Res Function(UserGroupList) then) =
       _$UserGroupListCopyWithImpl<$Res, UserGroupList>;
   @useResult
-  $Res call({String cursor, List<UserGroup> userGroups});
+  $Res call({String? cursor, List<UserGroup> userGroups});
 }
 
 /// @nodoc
@@ -588,14 +592,14 @@ class _$UserGroupListCopyWithImpl<$Res, $Val extends UserGroupList>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cursor = null,
+    Object? cursor = freezed,
     Object? userGroups = null,
   }) {
     return _then(_value.copyWith(
-      cursor: null == cursor
+      cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       userGroups: null == userGroups
           ? _value.userGroups
           : userGroups // ignore: cast_nullable_to_non_nullable
@@ -605,35 +609,35 @@ class _$UserGroupListCopyWithImpl<$Res, $Val extends UserGroupList>
 }
 
 /// @nodoc
-abstract class _$$_UserGroupListCopyWith<$Res>
+abstract class _$$UserGroupListImplCopyWith<$Res>
     implements $UserGroupListCopyWith<$Res> {
-  factory _$$_UserGroupListCopyWith(
-          _$_UserGroupList value, $Res Function(_$_UserGroupList) then) =
-      __$$_UserGroupListCopyWithImpl<$Res>;
+  factory _$$UserGroupListImplCopyWith(
+          _$UserGroupListImpl value, $Res Function(_$UserGroupListImpl) then) =
+      __$$UserGroupListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String cursor, List<UserGroup> userGroups});
+  $Res call({String? cursor, List<UserGroup> userGroups});
 }
 
 /// @nodoc
-class __$$_UserGroupListCopyWithImpl<$Res>
-    extends _$UserGroupListCopyWithImpl<$Res, _$_UserGroupList>
-    implements _$$_UserGroupListCopyWith<$Res> {
-  __$$_UserGroupListCopyWithImpl(
-      _$_UserGroupList _value, $Res Function(_$_UserGroupList) _then)
+class __$$UserGroupListImplCopyWithImpl<$Res>
+    extends _$UserGroupListCopyWithImpl<$Res, _$UserGroupListImpl>
+    implements _$$UserGroupListImplCopyWith<$Res> {
+  __$$UserGroupListImplCopyWithImpl(
+      _$UserGroupListImpl _value, $Res Function(_$UserGroupListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cursor = null,
+    Object? cursor = freezed,
     Object? userGroups = null,
   }) {
-    return _then(_$_UserGroupList(
-      cursor: null == cursor
+    return _then(_$UserGroupListImpl(
+      cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       userGroups: null == userGroups
           ? _value._userGroups
           : userGroups // ignore: cast_nullable_to_non_nullable
@@ -644,17 +648,17 @@ class __$$_UserGroupListCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserGroupList extends _UserGroupList {
-  const _$_UserGroupList(
-      {required this.cursor, required final List<UserGroup> userGroups})
+class _$UserGroupListImpl extends _UserGroupList {
+  const _$UserGroupListImpl(
+      {this.cursor, required final List<UserGroup> userGroups})
       : _userGroups = userGroups,
         super._();
 
-  factory _$_UserGroupList.fromJson(Map<String, dynamic> json) =>
-      _$$_UserGroupListFromJson(json);
+  factory _$UserGroupListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserGroupListImplFromJson(json);
 
   @override
-  final String cursor;
+  final String? cursor;
   final List<UserGroup> _userGroups;
   @override
   List<UserGroup> get userGroups {
@@ -669,10 +673,10 @@ class _$_UserGroupList extends _UserGroupList {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserGroupList &&
+            other is _$UserGroupListImpl &&
             (identical(other.cursor, cursor) || other.cursor == cursor) &&
             const DeepCollectionEquality()
                 .equals(other._userGroups, _userGroups));
@@ -686,12 +690,12 @@ class _$_UserGroupList extends _UserGroupList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserGroupListCopyWith<_$_UserGroupList> get copyWith =>
-      __$$_UserGroupListCopyWithImpl<_$_UserGroupList>(this, _$identity);
+  _$$UserGroupListImplCopyWith<_$UserGroupListImpl> get copyWith =>
+      __$$UserGroupListImplCopyWithImpl<_$UserGroupListImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserGroupListToJson(
+    return _$$UserGroupListImplToJson(
       this,
     );
   }
@@ -699,20 +703,20 @@ class _$_UserGroupList extends _UserGroupList {
 
 abstract class _UserGroupList extends UserGroupList {
   const factory _UserGroupList(
-      {required final String cursor,
-      required final List<UserGroup> userGroups}) = _$_UserGroupList;
+      {final String? cursor,
+      required final List<UserGroup> userGroups}) = _$UserGroupListImpl;
   const _UserGroupList._() : super._();
 
   factory _UserGroupList.fromJson(Map<String, dynamic> json) =
-      _$_UserGroupList.fromJson;
+      _$UserGroupListImpl.fromJson;
 
   @override
-  String get cursor;
+  String? get cursor;
   @override
   List<UserGroup> get userGroups;
   @override
   @JsonKey(ignore: true)
-  _$$_UserGroupListCopyWith<_$_UserGroupList> get copyWith =>
+  _$$UserGroupListImplCopyWith<_$UserGroupListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -779,10 +783,11 @@ class _$UserGroupCopyWithImpl<$Res, $Val extends UserGroup>
 }
 
 /// @nodoc
-abstract class _$$_UserGroupCopyWith<$Res> implements $UserGroupCopyWith<$Res> {
-  factory _$$_UserGroupCopyWith(
-          _$_UserGroup value, $Res Function(_$_UserGroup) then) =
-      __$$_UserGroupCopyWithImpl<$Res>;
+abstract class _$$UserGroupImplCopyWith<$Res>
+    implements $UserGroupCopyWith<$Res> {
+  factory _$$UserGroupImplCopyWith(
+          _$UserGroupImpl value, $Res Function(_$UserGroupImpl) then) =
+      __$$UserGroupImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({GroupMembershipState state, Group group});
@@ -792,11 +797,11 @@ abstract class _$$_UserGroupCopyWith<$Res> implements $UserGroupCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UserGroupCopyWithImpl<$Res>
-    extends _$UserGroupCopyWithImpl<$Res, _$_UserGroup>
-    implements _$$_UserGroupCopyWith<$Res> {
-  __$$_UserGroupCopyWithImpl(
-      _$_UserGroup _value, $Res Function(_$_UserGroup) _then)
+class __$$UserGroupImplCopyWithImpl<$Res>
+    extends _$UserGroupCopyWithImpl<$Res, _$UserGroupImpl>
+    implements _$$UserGroupImplCopyWith<$Res> {
+  __$$UserGroupImplCopyWithImpl(
+      _$UserGroupImpl _value, $Res Function(_$UserGroupImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -805,7 +810,7 @@ class __$$_UserGroupCopyWithImpl<$Res>
     Object? state = null,
     Object? group = null,
   }) {
-    return _then(_$_UserGroup(
+    return _then(_$UserGroupImpl(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -820,11 +825,11 @@ class __$$_UserGroupCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserGroup extends _UserGroup {
-  const _$_UserGroup({required this.state, required this.group}) : super._();
+class _$UserGroupImpl extends _UserGroup {
+  const _$UserGroupImpl({required this.state, required this.group}) : super._();
 
-  factory _$_UserGroup.fromJson(Map<String, dynamic> json) =>
-      _$$_UserGroupFromJson(json);
+  factory _$UserGroupImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserGroupImplFromJson(json);
 
   @override
   final GroupMembershipState state;
@@ -837,10 +842,10 @@ class _$_UserGroup extends _UserGroup {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserGroup &&
+            other is _$UserGroupImpl &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.group, group) || other.group == group));
   }
@@ -852,12 +857,12 @@ class _$_UserGroup extends _UserGroup {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserGroupCopyWith<_$_UserGroup> get copyWith =>
-      __$$_UserGroupCopyWithImpl<_$_UserGroup>(this, _$identity);
+  _$$UserGroupImplCopyWith<_$UserGroupImpl> get copyWith =>
+      __$$UserGroupImplCopyWithImpl<_$UserGroupImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserGroupToJson(
+    return _$$UserGroupImplToJson(
       this,
     );
   }
@@ -866,11 +871,11 @@ class _$_UserGroup extends _UserGroup {
 abstract class _UserGroup extends UserGroup {
   const factory _UserGroup(
       {required final GroupMembershipState state,
-      required final Group group}) = _$_UserGroup;
+      required final Group group}) = _$UserGroupImpl;
   const _UserGroup._() : super._();
 
   factory _UserGroup.fromJson(Map<String, dynamic> json) =
-      _$_UserGroup.fromJson;
+      _$UserGroupImpl.fromJson;
 
   @override
   GroupMembershipState get state;
@@ -878,7 +883,7 @@ abstract class _UserGroup extends UserGroup {
   Group get group;
   @override
   @JsonKey(ignore: true)
-  _$$_UserGroupCopyWith<_$_UserGroup> get copyWith =>
+  _$$UserGroupImplCopyWith<_$UserGroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -888,7 +893,7 @@ GroupUserList _$GroupUserListFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$GroupUserList {
-  String get cursor => throw _privateConstructorUsedError;
+  String? get cursor => throw _privateConstructorUsedError;
   List<GroupUser> get groupUsers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -903,7 +908,7 @@ abstract class $GroupUserListCopyWith<$Res> {
           GroupUserList value, $Res Function(GroupUserList) then) =
       _$GroupUserListCopyWithImpl<$Res, GroupUserList>;
   @useResult
-  $Res call({String cursor, List<GroupUser> groupUsers});
+  $Res call({String? cursor, List<GroupUser> groupUsers});
 }
 
 /// @nodoc
@@ -919,14 +924,14 @@ class _$GroupUserListCopyWithImpl<$Res, $Val extends GroupUserList>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cursor = null,
+    Object? cursor = freezed,
     Object? groupUsers = null,
   }) {
     return _then(_value.copyWith(
-      cursor: null == cursor
+      cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       groupUsers: null == groupUsers
           ? _value.groupUsers
           : groupUsers // ignore: cast_nullable_to_non_nullable
@@ -936,35 +941,35 @@ class _$GroupUserListCopyWithImpl<$Res, $Val extends GroupUserList>
 }
 
 /// @nodoc
-abstract class _$$_GroupUserListCopyWith<$Res>
+abstract class _$$GroupUserListImplCopyWith<$Res>
     implements $GroupUserListCopyWith<$Res> {
-  factory _$$_GroupUserListCopyWith(
-          _$_GroupUserList value, $Res Function(_$_GroupUserList) then) =
-      __$$_GroupUserListCopyWithImpl<$Res>;
+  factory _$$GroupUserListImplCopyWith(
+          _$GroupUserListImpl value, $Res Function(_$GroupUserListImpl) then) =
+      __$$GroupUserListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String cursor, List<GroupUser> groupUsers});
+  $Res call({String? cursor, List<GroupUser> groupUsers});
 }
 
 /// @nodoc
-class __$$_GroupUserListCopyWithImpl<$Res>
-    extends _$GroupUserListCopyWithImpl<$Res, _$_GroupUserList>
-    implements _$$_GroupUserListCopyWith<$Res> {
-  __$$_GroupUserListCopyWithImpl(
-      _$_GroupUserList _value, $Res Function(_$_GroupUserList) _then)
+class __$$GroupUserListImplCopyWithImpl<$Res>
+    extends _$GroupUserListCopyWithImpl<$Res, _$GroupUserListImpl>
+    implements _$$GroupUserListImplCopyWith<$Res> {
+  __$$GroupUserListImplCopyWithImpl(
+      _$GroupUserListImpl _value, $Res Function(_$GroupUserListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cursor = null,
+    Object? cursor = freezed,
     Object? groupUsers = null,
   }) {
-    return _then(_$_GroupUserList(
-      cursor: null == cursor
+    return _then(_$GroupUserListImpl(
+      cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       groupUsers: null == groupUsers
           ? _value._groupUsers
           : groupUsers // ignore: cast_nullable_to_non_nullable
@@ -975,17 +980,17 @@ class __$$_GroupUserListCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GroupUserList extends _GroupUserList {
-  const _$_GroupUserList(
-      {required this.cursor, required final List<GroupUser> groupUsers})
+class _$GroupUserListImpl extends _GroupUserList {
+  const _$GroupUserListImpl(
+      {this.cursor, required final List<GroupUser> groupUsers})
       : _groupUsers = groupUsers,
         super._();
 
-  factory _$_GroupUserList.fromJson(Map<String, dynamic> json) =>
-      _$$_GroupUserListFromJson(json);
+  factory _$GroupUserListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GroupUserListImplFromJson(json);
 
   @override
-  final String cursor;
+  final String? cursor;
   final List<GroupUser> _groupUsers;
   @override
   List<GroupUser> get groupUsers {
@@ -1000,10 +1005,10 @@ class _$_GroupUserList extends _GroupUserList {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GroupUserList &&
+            other is _$GroupUserListImpl &&
             (identical(other.cursor, cursor) || other.cursor == cursor) &&
             const DeepCollectionEquality()
                 .equals(other._groupUsers, _groupUsers));
@@ -1017,12 +1022,12 @@ class _$_GroupUserList extends _GroupUserList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GroupUserListCopyWith<_$_GroupUserList> get copyWith =>
-      __$$_GroupUserListCopyWithImpl<_$_GroupUserList>(this, _$identity);
+  _$$GroupUserListImplCopyWith<_$GroupUserListImpl> get copyWith =>
+      __$$GroupUserListImplCopyWithImpl<_$GroupUserListImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GroupUserListToJson(
+    return _$$GroupUserListImplToJson(
       this,
     );
   }
@@ -1030,20 +1035,20 @@ class _$_GroupUserList extends _GroupUserList {
 
 abstract class _GroupUserList extends GroupUserList {
   const factory _GroupUserList(
-      {required final String cursor,
-      required final List<GroupUser> groupUsers}) = _$_GroupUserList;
+      {final String? cursor,
+      required final List<GroupUser> groupUsers}) = _$GroupUserListImpl;
   const _GroupUserList._() : super._();
 
   factory _GroupUserList.fromJson(Map<String, dynamic> json) =
-      _$_GroupUserList.fromJson;
+      _$GroupUserListImpl.fromJson;
 
   @override
-  String get cursor;
+  String? get cursor;
   @override
   List<GroupUser> get groupUsers;
   @override
   @JsonKey(ignore: true)
-  _$$_GroupUserListCopyWith<_$_GroupUserList> get copyWith =>
+  _$$GroupUserListImplCopyWith<_$GroupUserListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1110,10 +1115,11 @@ class _$GroupUserCopyWithImpl<$Res, $Val extends GroupUser>
 }
 
 /// @nodoc
-abstract class _$$_GroupUserCopyWith<$Res> implements $GroupUserCopyWith<$Res> {
-  factory _$$_GroupUserCopyWith(
-          _$_GroupUser value, $Res Function(_$_GroupUser) then) =
-      __$$_GroupUserCopyWithImpl<$Res>;
+abstract class _$$GroupUserImplCopyWith<$Res>
+    implements $GroupUserCopyWith<$Res> {
+  factory _$$GroupUserImplCopyWith(
+          _$GroupUserImpl value, $Res Function(_$GroupUserImpl) then) =
+      __$$GroupUserImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({GroupMembershipState state, User user});
@@ -1123,11 +1129,11 @@ abstract class _$$_GroupUserCopyWith<$Res> implements $GroupUserCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_GroupUserCopyWithImpl<$Res>
-    extends _$GroupUserCopyWithImpl<$Res, _$_GroupUser>
-    implements _$$_GroupUserCopyWith<$Res> {
-  __$$_GroupUserCopyWithImpl(
-      _$_GroupUser _value, $Res Function(_$_GroupUser) _then)
+class __$$GroupUserImplCopyWithImpl<$Res>
+    extends _$GroupUserCopyWithImpl<$Res, _$GroupUserImpl>
+    implements _$$GroupUserImplCopyWith<$Res> {
+  __$$GroupUserImplCopyWithImpl(
+      _$GroupUserImpl _value, $Res Function(_$GroupUserImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1136,7 +1142,7 @@ class __$$_GroupUserCopyWithImpl<$Res>
     Object? state = null,
     Object? user = null,
   }) {
-    return _then(_$_GroupUser(
+    return _then(_$GroupUserImpl(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -1151,11 +1157,11 @@ class __$$_GroupUserCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GroupUser extends _GroupUser {
-  const _$_GroupUser({required this.state, required this.user}) : super._();
+class _$GroupUserImpl extends _GroupUser {
+  const _$GroupUserImpl({required this.state, required this.user}) : super._();
 
-  factory _$_GroupUser.fromJson(Map<String, dynamic> json) =>
-      _$$_GroupUserFromJson(json);
+  factory _$GroupUserImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GroupUserImplFromJson(json);
 
   @override
   final GroupMembershipState state;
@@ -1168,10 +1174,10 @@ class _$_GroupUser extends _GroupUser {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GroupUser &&
+            other is _$GroupUserImpl &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.user, user) || other.user == user));
   }
@@ -1183,12 +1189,12 @@ class _$_GroupUser extends _GroupUser {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GroupUserCopyWith<_$_GroupUser> get copyWith =>
-      __$$_GroupUserCopyWithImpl<_$_GroupUser>(this, _$identity);
+  _$$GroupUserImplCopyWith<_$GroupUserImpl> get copyWith =>
+      __$$GroupUserImplCopyWithImpl<_$GroupUserImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GroupUserToJson(
+    return _$$GroupUserImplToJson(
       this,
     );
   }
@@ -1197,11 +1203,11 @@ class _$_GroupUser extends _GroupUser {
 abstract class _GroupUser extends GroupUser {
   const factory _GroupUser(
       {required final GroupMembershipState state,
-      required final User user}) = _$_GroupUser;
+      required final User user}) = _$GroupUserImpl;
   const _GroupUser._() : super._();
 
   factory _GroupUser.fromJson(Map<String, dynamic> json) =
-      _$_GroupUser.fromJson;
+      _$GroupUserImpl.fromJson;
 
   @override
   GroupMembershipState get state;
@@ -1209,6 +1215,6 @@ abstract class _GroupUser extends GroupUser {
   User get user;
   @override
   @JsonKey(ignore: true)
-  _$$_GroupUserCopyWith<_$_GroupUser> get copyWith =>
+  _$$GroupUserImplCopyWith<_$GroupUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

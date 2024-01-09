@@ -182,11 +182,11 @@ class _$TournamentCopyWithImpl<$Res, $Val extends Tournament>
 }
 
 /// @nodoc
-abstract class _$$_TournamentCopyWith<$Res>
+abstract class _$$TournamentImplCopyWith<$Res>
     implements $TournamentCopyWith<$Res> {
-  factory _$$_TournamentCopyWith(
-          _$_Tournament value, $Res Function(_$_Tournament) then) =
-      __$$_TournamentCopyWithImpl<$Res>;
+  factory _$$TournamentImplCopyWith(
+          _$TournamentImpl value, $Res Function(_$TournamentImpl) then) =
+      __$$TournamentImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -211,11 +211,11 @@ abstract class _$$_TournamentCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TournamentCopyWithImpl<$Res>
-    extends _$TournamentCopyWithImpl<$Res, _$_Tournament>
-    implements _$$_TournamentCopyWith<$Res> {
-  __$$_TournamentCopyWithImpl(
-      _$_Tournament _value, $Res Function(_$_Tournament) _then)
+class __$$TournamentImplCopyWithImpl<$Res>
+    extends _$TournamentCopyWithImpl<$Res, _$TournamentImpl>
+    implements _$$TournamentImplCopyWith<$Res> {
+  __$$TournamentImplCopyWithImpl(
+      _$TournamentImpl _value, $Res Function(_$TournamentImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -240,7 +240,7 @@ class __$$_TournamentCopyWithImpl<$Res>
     Object? startActive = freezed,
     Object? prevReset = freezed,
   }) {
-    return _then(_$_Tournament(
+    return _then(_$TournamentImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -319,8 +319,8 @@ class __$$_TournamentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Tournament extends _Tournament {
-  const _$_Tournament(
+class _$TournamentImpl extends _Tournament {
+  const _$TournamentImpl(
       {required this.id,
       this.title,
       this.description,
@@ -341,8 +341,8 @@ class _$_Tournament extends _Tournament {
       this.prevReset})
       : super._();
 
-  factory _$_Tournament.fromJson(Map<String, dynamic> json) =>
-      _$$_TournamentFromJson(json);
+  factory _$TournamentImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TournamentImplFromJson(json);
 
   @override
   final String id;
@@ -387,10 +387,10 @@ class _$_Tournament extends _Tournament {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Tournament &&
+            other is _$TournamentImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
@@ -450,12 +450,12 @@ class _$_Tournament extends _Tournament {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TournamentCopyWith<_$_Tournament> get copyWith =>
-      __$$_TournamentCopyWithImpl<_$_Tournament>(this, _$identity);
+  _$$TournamentImplCopyWith<_$TournamentImpl> get copyWith =>
+      __$$TournamentImplCopyWithImpl<_$TournamentImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TournamentToJson(
+    return _$$TournamentImplToJson(
       this,
     );
   }
@@ -480,11 +480,11 @@ abstract class _Tournament extends Tournament {
       final DateTime? endTime,
       final int? duration,
       final int? startActive,
-      final int? prevReset}) = _$_Tournament;
+      final int? prevReset}) = _$TournamentImpl;
   const _Tournament._() : super._();
 
   factory _Tournament.fromJson(Map<String, dynamic> json) =
-      _$_Tournament.fromJson;
+      _$TournamentImpl.fromJson;
 
   @override
   String get id;
@@ -524,7 +524,7 @@ abstract class _Tournament extends Tournament {
   int? get prevReset;
   @override
   @JsonKey(ignore: true)
-  _$$_TournamentCopyWith<_$_Tournament> get copyWith =>
+  _$$TournamentImplCopyWith<_$TournamentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -582,22 +582,22 @@ class _$TournamentListCopyWithImpl<$Res, $Val extends TournamentList>
 }
 
 /// @nodoc
-abstract class _$$_TournamentListCopyWith<$Res>
+abstract class _$$TournamentListImplCopyWith<$Res>
     implements $TournamentListCopyWith<$Res> {
-  factory _$$_TournamentListCopyWith(
-          _$_TournamentList value, $Res Function(_$_TournamentList) then) =
-      __$$_TournamentListCopyWithImpl<$Res>;
+  factory _$$TournamentListImplCopyWith(_$TournamentListImpl value,
+          $Res Function(_$TournamentListImpl) then) =
+      __$$TournamentListImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? cursor, List<Tournament> tournaments});
 }
 
 /// @nodoc
-class __$$_TournamentListCopyWithImpl<$Res>
-    extends _$TournamentListCopyWithImpl<$Res, _$_TournamentList>
-    implements _$$_TournamentListCopyWith<$Res> {
-  __$$_TournamentListCopyWithImpl(
-      _$_TournamentList _value, $Res Function(_$_TournamentList) _then)
+class __$$TournamentListImplCopyWithImpl<$Res>
+    extends _$TournamentListCopyWithImpl<$Res, _$TournamentListImpl>
+    implements _$$TournamentListImplCopyWith<$Res> {
+  __$$TournamentListImplCopyWithImpl(
+      _$TournamentListImpl _value, $Res Function(_$TournamentListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -606,7 +606,7 @@ class __$$_TournamentListCopyWithImpl<$Res>
     Object? cursor = freezed,
     Object? tournaments = null,
   }) {
-    return _then(_$_TournamentList(
+    return _then(_$TournamentListImpl(
       cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
@@ -621,14 +621,14 @@ class __$$_TournamentListCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TournamentList extends _TournamentList {
-  const _$_TournamentList(
+class _$TournamentListImpl extends _TournamentList {
+  const _$TournamentListImpl(
       {this.cursor, required final List<Tournament> tournaments})
       : _tournaments = tournaments,
         super._();
 
-  factory _$_TournamentList.fromJson(Map<String, dynamic> json) =>
-      _$$_TournamentListFromJson(json);
+  factory _$TournamentListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TournamentListImplFromJson(json);
 
   @override
   final String? cursor;
@@ -646,10 +646,10 @@ class _$_TournamentList extends _TournamentList {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TournamentList &&
+            other is _$TournamentListImpl &&
             (identical(other.cursor, cursor) || other.cursor == cursor) &&
             const DeepCollectionEquality()
                 .equals(other._tournaments, _tournaments));
@@ -663,12 +663,13 @@ class _$_TournamentList extends _TournamentList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TournamentListCopyWith<_$_TournamentList> get copyWith =>
-      __$$_TournamentListCopyWithImpl<_$_TournamentList>(this, _$identity);
+  _$$TournamentListImplCopyWith<_$TournamentListImpl> get copyWith =>
+      __$$TournamentListImplCopyWithImpl<_$TournamentListImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TournamentListToJson(
+    return _$$TournamentListImplToJson(
       this,
     );
   }
@@ -677,11 +678,11 @@ class _$_TournamentList extends _TournamentList {
 abstract class _TournamentList extends TournamentList {
   const factory _TournamentList(
       {final String? cursor,
-      required final List<Tournament> tournaments}) = _$_TournamentList;
+      required final List<Tournament> tournaments}) = _$TournamentListImpl;
   const _TournamentList._() : super._();
 
   factory _TournamentList.fromJson(Map<String, dynamic> json) =
-      _$_TournamentList.fromJson;
+      _$TournamentListImpl.fromJson;
 
   @override
   String? get cursor;
@@ -689,7 +690,7 @@ abstract class _TournamentList extends TournamentList {
   List<Tournament> get tournaments;
   @override
   @JsonKey(ignore: true)
-  _$$_TournamentListCopyWith<_$_TournamentList> get copyWith =>
+  _$$TournamentListImplCopyWith<_$TournamentListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -765,11 +766,11 @@ class _$TournamentRecordListCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TournamentRecordListCopyWith<$Res>
+abstract class _$$TournamentRecordListImplCopyWith<$Res>
     implements $TournamentRecordListCopyWith<$Res> {
-  factory _$$_TournamentRecordListCopyWith(_$_TournamentRecordList value,
-          $Res Function(_$_TournamentRecordList) then) =
-      __$$_TournamentRecordListCopyWithImpl<$Res>;
+  factory _$$TournamentRecordListImplCopyWith(_$TournamentRecordListImpl value,
+          $Res Function(_$TournamentRecordListImpl) then) =
+      __$$TournamentRecordListImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -780,11 +781,11 @@ abstract class _$$_TournamentRecordListCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TournamentRecordListCopyWithImpl<$Res>
-    extends _$TournamentRecordListCopyWithImpl<$Res, _$_TournamentRecordList>
-    implements _$$_TournamentRecordListCopyWith<$Res> {
-  __$$_TournamentRecordListCopyWithImpl(_$_TournamentRecordList _value,
-      $Res Function(_$_TournamentRecordList) _then)
+class __$$TournamentRecordListImplCopyWithImpl<$Res>
+    extends _$TournamentRecordListCopyWithImpl<$Res, _$TournamentRecordListImpl>
+    implements _$$TournamentRecordListImplCopyWith<$Res> {
+  __$$TournamentRecordListImplCopyWithImpl(_$TournamentRecordListImpl _value,
+      $Res Function(_$TournamentRecordListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -795,7 +796,7 @@ class __$$_TournamentRecordListCopyWithImpl<$Res>
     Object? nextCursor = freezed,
     Object? previousCursor = freezed,
   }) {
-    return _then(_$_TournamentRecordList(
+    return _then(_$TournamentRecordListImpl(
       records: null == records
           ? _value._records
           : records // ignore: cast_nullable_to_non_nullable
@@ -818,8 +819,8 @@ class __$$_TournamentRecordListCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TournamentRecordList extends _TournamentRecordList {
-  const _$_TournamentRecordList(
+class _$TournamentRecordListImpl extends _TournamentRecordList {
+  const _$TournamentRecordListImpl(
       {required final List<LeaderboardRecord> records,
       required final List<LeaderboardRecord> ownerRecords,
       this.nextCursor,
@@ -828,8 +829,8 @@ class _$_TournamentRecordList extends _TournamentRecordList {
         _ownerRecords = ownerRecords,
         super._();
 
-  factory _$_TournamentRecordList.fromJson(Map<String, dynamic> json) =>
-      _$$_TournamentRecordListFromJson(json);
+  factory _$TournamentRecordListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TournamentRecordListImplFromJson(json);
 
   final List<LeaderboardRecord> _records;
   @override
@@ -858,10 +859,10 @@ class _$_TournamentRecordList extends _TournamentRecordList {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TournamentRecordList &&
+            other is _$TournamentRecordListImpl &&
             const DeepCollectionEquality().equals(other._records, _records) &&
             const DeepCollectionEquality()
                 .equals(other._ownerRecords, _ownerRecords) &&
@@ -883,13 +884,14 @@ class _$_TournamentRecordList extends _TournamentRecordList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TournamentRecordListCopyWith<_$_TournamentRecordList> get copyWith =>
-      __$$_TournamentRecordListCopyWithImpl<_$_TournamentRecordList>(
-          this, _$identity);
+  _$$TournamentRecordListImplCopyWith<_$TournamentRecordListImpl>
+      get copyWith =>
+          __$$TournamentRecordListImplCopyWithImpl<_$TournamentRecordListImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TournamentRecordListToJson(
+    return _$$TournamentRecordListImplToJson(
       this,
     );
   }
@@ -900,11 +902,11 @@ abstract class _TournamentRecordList extends TournamentRecordList {
       {required final List<LeaderboardRecord> records,
       required final List<LeaderboardRecord> ownerRecords,
       final String? nextCursor,
-      final String? previousCursor}) = _$_TournamentRecordList;
+      final String? previousCursor}) = _$TournamentRecordListImpl;
   const _TournamentRecordList._() : super._();
 
   factory _TournamentRecordList.fromJson(Map<String, dynamic> json) =
-      _$_TournamentRecordList.fromJson;
+      _$TournamentRecordListImpl.fromJson;
 
   @override
   List<LeaderboardRecord> get records;
@@ -916,6 +918,6 @@ abstract class _TournamentRecordList extends TournamentRecordList {
   String? get previousCursor;
   @override
   @JsonKey(ignore: true)
-  _$$_TournamentRecordListCopyWith<_$_TournamentRecordList> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$TournamentRecordListImplCopyWith<_$TournamentRecordListImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

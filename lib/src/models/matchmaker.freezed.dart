@@ -58,22 +58,22 @@ class _$MatchmakerTicketCopyWithImpl<$Res, $Val extends MatchmakerTicket>
 }
 
 /// @nodoc
-abstract class _$$_MatchmakerTicketCopyWith<$Res>
+abstract class _$$MatchmakerTicketImplCopyWith<$Res>
     implements $MatchmakerTicketCopyWith<$Res> {
-  factory _$$_MatchmakerTicketCopyWith(
-          _$_MatchmakerTicket value, $Res Function(_$_MatchmakerTicket) then) =
-      __$$_MatchmakerTicketCopyWithImpl<$Res>;
+  factory _$$MatchmakerTicketImplCopyWith(_$MatchmakerTicketImpl value,
+          $Res Function(_$MatchmakerTicketImpl) then) =
+      __$$MatchmakerTicketImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String ticket});
 }
 
 /// @nodoc
-class __$$_MatchmakerTicketCopyWithImpl<$Res>
-    extends _$MatchmakerTicketCopyWithImpl<$Res, _$_MatchmakerTicket>
-    implements _$$_MatchmakerTicketCopyWith<$Res> {
-  __$$_MatchmakerTicketCopyWithImpl(
-      _$_MatchmakerTicket _value, $Res Function(_$_MatchmakerTicket) _then)
+class __$$MatchmakerTicketImplCopyWithImpl<$Res>
+    extends _$MatchmakerTicketCopyWithImpl<$Res, _$MatchmakerTicketImpl>
+    implements _$$MatchmakerTicketImplCopyWith<$Res> {
+  __$$MatchmakerTicketImplCopyWithImpl(_$MatchmakerTicketImpl _value,
+      $Res Function(_$MatchmakerTicketImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -81,7 +81,7 @@ class __$$_MatchmakerTicketCopyWithImpl<$Res>
   $Res call({
     Object? ticket = null,
   }) {
-    return _then(_$_MatchmakerTicket(
+    return _then(_$MatchmakerTicketImpl(
       ticket: null == ticket
           ? _value.ticket
           : ticket // ignore: cast_nullable_to_non_nullable
@@ -92,8 +92,8 @@ class __$$_MatchmakerTicketCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MatchmakerTicket extends _MatchmakerTicket {
-  const _$_MatchmakerTicket({required this.ticket}) : super._();
+class _$MatchmakerTicketImpl extends _MatchmakerTicket {
+  const _$MatchmakerTicketImpl({required this.ticket}) : super._();
 
   /// The ticket that can be used to cancel matchmaking.
   @override
@@ -105,10 +105,10 @@ class _$_MatchmakerTicket extends _MatchmakerTicket {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MatchmakerTicket &&
+            other is _$MatchmakerTicketImpl &&
             (identical(other.ticket, ticket) || other.ticket == ticket));
   }
 
@@ -118,13 +118,14 @@ class _$_MatchmakerTicket extends _MatchmakerTicket {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MatchmakerTicketCopyWith<_$_MatchmakerTicket> get copyWith =>
-      __$$_MatchmakerTicketCopyWithImpl<_$_MatchmakerTicket>(this, _$identity);
+  _$$MatchmakerTicketImplCopyWith<_$MatchmakerTicketImpl> get copyWith =>
+      __$$MatchmakerTicketImplCopyWithImpl<_$MatchmakerTicketImpl>(
+          this, _$identity);
 }
 
 abstract class _MatchmakerTicket extends MatchmakerTicket {
   const factory _MatchmakerTicket({required final String ticket}) =
-      _$_MatchmakerTicket;
+      _$MatchmakerTicketImpl;
   const _MatchmakerTicket._() : super._();
 
   @override
@@ -133,7 +134,7 @@ abstract class _MatchmakerTicket extends MatchmakerTicket {
   String get ticket;
   @override
   @JsonKey(ignore: true)
-  _$$_MatchmakerTicketCopyWith<_$_MatchmakerTicket> get copyWith =>
+  _$$MatchmakerTicketImplCopyWith<_$MatchmakerTicketImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -190,22 +191,24 @@ class _$PartyMatchmakerTicketCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_PartyMatchmakerTicketCopyWith<$Res>
+abstract class _$$PartyMatchmakerTicketImplCopyWith<$Res>
     implements $PartyMatchmakerTicketCopyWith<$Res> {
-  factory _$$_PartyMatchmakerTicketCopyWith(_$_PartyMatchmakerTicket value,
-          $Res Function(_$_PartyMatchmakerTicket) then) =
-      __$$_PartyMatchmakerTicketCopyWithImpl<$Res>;
+  factory _$$PartyMatchmakerTicketImplCopyWith(
+          _$PartyMatchmakerTicketImpl value,
+          $Res Function(_$PartyMatchmakerTicketImpl) then) =
+      __$$PartyMatchmakerTicketImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String partyId, String ticket});
 }
 
 /// @nodoc
-class __$$_PartyMatchmakerTicketCopyWithImpl<$Res>
-    extends _$PartyMatchmakerTicketCopyWithImpl<$Res, _$_PartyMatchmakerTicket>
-    implements _$$_PartyMatchmakerTicketCopyWith<$Res> {
-  __$$_PartyMatchmakerTicketCopyWithImpl(_$_PartyMatchmakerTicket _value,
-      $Res Function(_$_PartyMatchmakerTicket) _then)
+class __$$PartyMatchmakerTicketImplCopyWithImpl<$Res>
+    extends _$PartyMatchmakerTicketCopyWithImpl<$Res,
+        _$PartyMatchmakerTicketImpl>
+    implements _$$PartyMatchmakerTicketImplCopyWith<$Res> {
+  __$$PartyMatchmakerTicketImplCopyWithImpl(_$PartyMatchmakerTicketImpl _value,
+      $Res Function(_$PartyMatchmakerTicketImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -214,7 +217,7 @@ class __$$_PartyMatchmakerTicketCopyWithImpl<$Res>
     Object? partyId = null,
     Object? ticket = null,
   }) {
-    return _then(_$_PartyMatchmakerTicket(
+    return _then(_$PartyMatchmakerTicketImpl(
       partyId: null == partyId
           ? _value.partyId
           : partyId // ignore: cast_nullable_to_non_nullable
@@ -229,8 +232,9 @@ class __$$_PartyMatchmakerTicketCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PartyMatchmakerTicket extends _PartyMatchmakerTicket {
-  const _$_PartyMatchmakerTicket({required this.partyId, required this.ticket})
+class _$PartyMatchmakerTicketImpl extends _PartyMatchmakerTicket {
+  const _$PartyMatchmakerTicketImpl(
+      {required this.partyId, required this.ticket})
       : super._();
 
   /// Party ID.
@@ -247,10 +251,10 @@ class _$_PartyMatchmakerTicket extends _PartyMatchmakerTicket {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PartyMatchmakerTicket &&
+            other is _$PartyMatchmakerTicketImpl &&
             (identical(other.partyId, partyId) || other.partyId == partyId) &&
             (identical(other.ticket, ticket) || other.ticket == ticket));
   }
@@ -261,15 +265,15 @@ class _$_PartyMatchmakerTicket extends _PartyMatchmakerTicket {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PartyMatchmakerTicketCopyWith<_$_PartyMatchmakerTicket> get copyWith =>
-      __$$_PartyMatchmakerTicketCopyWithImpl<_$_PartyMatchmakerTicket>(
-          this, _$identity);
+  _$$PartyMatchmakerTicketImplCopyWith<_$PartyMatchmakerTicketImpl>
+      get copyWith => __$$PartyMatchmakerTicketImplCopyWithImpl<
+          _$PartyMatchmakerTicketImpl>(this, _$identity);
 }
 
 abstract class _PartyMatchmakerTicket extends PartyMatchmakerTicket {
   const factory _PartyMatchmakerTicket(
       {required final String partyId,
-      required final String ticket}) = _$_PartyMatchmakerTicket;
+      required final String ticket}) = _$PartyMatchmakerTicketImpl;
   const _PartyMatchmakerTicket._() : super._();
 
   @override
@@ -282,8 +286,8 @@ abstract class _PartyMatchmakerTicket extends PartyMatchmakerTicket {
   String get ticket;
   @override
   @JsonKey(ignore: true)
-  _$$_PartyMatchmakerTicketCopyWith<_$_PartyMatchmakerTicket> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PartyMatchmakerTicketImplCopyWith<_$PartyMatchmakerTicketImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -390,11 +394,11 @@ class _$ChannelPresenceEventCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ChannelPresenceEventCopyWith<$Res>
+abstract class _$$ChannelPresenceEventImplCopyWith<$Res>
     implements $ChannelPresenceEventCopyWith<$Res> {
-  factory _$$_ChannelPresenceEventCopyWith(_$_ChannelPresenceEvent value,
-          $Res Function(_$_ChannelPresenceEvent) then) =
-      __$$_ChannelPresenceEventCopyWithImpl<$Res>;
+  factory _$$ChannelPresenceEventImplCopyWith(_$ChannelPresenceEventImpl value,
+          $Res Function(_$ChannelPresenceEventImpl) then) =
+      __$$ChannelPresenceEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -408,11 +412,11 @@ abstract class _$$_ChannelPresenceEventCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChannelPresenceEventCopyWithImpl<$Res>
-    extends _$ChannelPresenceEventCopyWithImpl<$Res, _$_ChannelPresenceEvent>
-    implements _$$_ChannelPresenceEventCopyWith<$Res> {
-  __$$_ChannelPresenceEventCopyWithImpl(_$_ChannelPresenceEvent _value,
-      $Res Function(_$_ChannelPresenceEvent) _then)
+class __$$ChannelPresenceEventImplCopyWithImpl<$Res>
+    extends _$ChannelPresenceEventCopyWithImpl<$Res, _$ChannelPresenceEventImpl>
+    implements _$$ChannelPresenceEventImplCopyWith<$Res> {
+  __$$ChannelPresenceEventImplCopyWithImpl(_$ChannelPresenceEventImpl _value,
+      $Res Function(_$ChannelPresenceEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -426,7 +430,7 @@ class __$$_ChannelPresenceEventCopyWithImpl<$Res>
     Object? userIdOne = freezed,
     Object? userIdTwo = freezed,
   }) {
-    return _then(_$_ChannelPresenceEvent(
+    return _then(_$ChannelPresenceEventImpl(
       channelId: null == channelId
           ? _value.channelId
           : channelId // ignore: cast_nullable_to_non_nullable
@@ -461,8 +465,8 @@ class __$$_ChannelPresenceEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ChannelPresenceEvent extends _ChannelPresenceEvent {
-  const _$_ChannelPresenceEvent(
+class _$ChannelPresenceEventImpl extends _ChannelPresenceEvent {
+  const _$ChannelPresenceEventImpl(
       {required this.channelId,
       required this.roomName,
       required this.groupId,
@@ -510,10 +514,10 @@ class _$_ChannelPresenceEvent extends _ChannelPresenceEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChannelPresenceEvent &&
+            other is _$ChannelPresenceEventImpl &&
             (identical(other.channelId, channelId) ||
                 other.channelId == channelId) &&
             (identical(other.roomName, roomName) ||
@@ -541,9 +545,10 @@ class _$_ChannelPresenceEvent extends _ChannelPresenceEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChannelPresenceEventCopyWith<_$_ChannelPresenceEvent> get copyWith =>
-      __$$_ChannelPresenceEventCopyWithImpl<_$_ChannelPresenceEvent>(
-          this, _$identity);
+  _$$ChannelPresenceEventImplCopyWith<_$ChannelPresenceEventImpl>
+      get copyWith =>
+          __$$ChannelPresenceEventImplCopyWithImpl<_$ChannelPresenceEventImpl>(
+              this, _$identity);
 }
 
 abstract class _ChannelPresenceEvent extends ChannelPresenceEvent {
@@ -554,7 +559,7 @@ abstract class _ChannelPresenceEvent extends ChannelPresenceEvent {
       required final Iterable<UserPresence> joins,
       required final Iterable<UserPresence> leaves,
       final String? userIdOne,
-      final String? userIdTwo}) = _$_ChannelPresenceEvent;
+      final String? userIdTwo}) = _$ChannelPresenceEventImpl;
   const _ChannelPresenceEvent._() : super._();
 
   @override
@@ -591,8 +596,8 @@ abstract class _ChannelPresenceEvent extends ChannelPresenceEvent {
   String? get userIdTwo;
   @override
   @JsonKey(ignore: true)
-  _$$_ChannelPresenceEventCopyWith<_$_ChannelPresenceEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ChannelPresenceEventImplCopyWith<_$ChannelPresenceEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -679,11 +684,11 @@ class _$MatchmakerUserCopyWithImpl<$Res, $Val extends MatchmakerUser>
 }
 
 /// @nodoc
-abstract class _$$_MatchmakerUserCopyWith<$Res>
+abstract class _$$MatchmakerUserImplCopyWith<$Res>
     implements $MatchmakerUserCopyWith<$Res> {
-  factory _$$_MatchmakerUserCopyWith(
-          _$_MatchmakerUser value, $Res Function(_$_MatchmakerUser) then) =
-      __$$_MatchmakerUserCopyWithImpl<$Res>;
+  factory _$$MatchmakerUserImplCopyWith(_$MatchmakerUserImpl value,
+          $Res Function(_$MatchmakerUserImpl) then) =
+      __$$MatchmakerUserImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -697,11 +702,11 @@ abstract class _$$_MatchmakerUserCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MatchmakerUserCopyWithImpl<$Res>
-    extends _$MatchmakerUserCopyWithImpl<$Res, _$_MatchmakerUser>
-    implements _$$_MatchmakerUserCopyWith<$Res> {
-  __$$_MatchmakerUserCopyWithImpl(
-      _$_MatchmakerUser _value, $Res Function(_$_MatchmakerUser) _then)
+class __$$MatchmakerUserImplCopyWithImpl<$Res>
+    extends _$MatchmakerUserCopyWithImpl<$Res, _$MatchmakerUserImpl>
+    implements _$$MatchmakerUserImplCopyWith<$Res> {
+  __$$MatchmakerUserImplCopyWithImpl(
+      _$MatchmakerUserImpl _value, $Res Function(_$MatchmakerUserImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -712,7 +717,7 @@ class __$$_MatchmakerUserCopyWithImpl<$Res>
     Object? stringProperties = null,
     Object? numericProperties = null,
   }) {
-    return _then(_$_MatchmakerUser(
+    return _then(_$MatchmakerUserImpl(
       presence: null == presence
           ? _value.presence
           : presence // ignore: cast_nullable_to_non_nullable
@@ -735,8 +740,8 @@ class __$$_MatchmakerUserCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MatchmakerUser extends _MatchmakerUser {
-  const _$_MatchmakerUser(
+class _$MatchmakerUserImpl extends _MatchmakerUser {
+  const _$MatchmakerUserImpl(
       {required this.presence,
       required this.partyId,
       required final Map<String, String> stringProperties,
@@ -782,10 +787,10 @@ class _$_MatchmakerUser extends _MatchmakerUser {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MatchmakerUser &&
+            other is _$MatchmakerUserImpl &&
             (identical(other.presence, presence) ||
                 other.presence == presence) &&
             (identical(other.partyId, partyId) || other.partyId == partyId) &&
@@ -806,8 +811,9 @@ class _$_MatchmakerUser extends _MatchmakerUser {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MatchmakerUserCopyWith<_$_MatchmakerUser> get copyWith =>
-      __$$_MatchmakerUserCopyWithImpl<_$_MatchmakerUser>(this, _$identity);
+  _$$MatchmakerUserImplCopyWith<_$MatchmakerUserImpl> get copyWith =>
+      __$$MatchmakerUserImplCopyWithImpl<_$MatchmakerUserImpl>(
+          this, _$identity);
 }
 
 abstract class _MatchmakerUser extends MatchmakerUser {
@@ -816,7 +822,7 @@ abstract class _MatchmakerUser extends MatchmakerUser {
           required final String partyId,
           required final Map<String, String> stringProperties,
           required final Map<String, double> numericProperties}) =
-      _$_MatchmakerUser;
+      _$MatchmakerUserImpl;
   const _MatchmakerUser._() : super._();
 
   @override
@@ -837,7 +843,7 @@ abstract class _MatchmakerUser extends MatchmakerUser {
   Map<String, double> get numericProperties;
   @override
   @JsonKey(ignore: true)
-  _$$_MatchmakerUserCopyWith<_$_MatchmakerUser> get copyWith =>
+  _$$MatchmakerUserImplCopyWith<_$MatchmakerUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -932,11 +938,11 @@ class _$MatchmakerMatchedCopyWithImpl<$Res, $Val extends MatchmakerMatched>
 }
 
 /// @nodoc
-abstract class _$$_MatchmakerMatchedCopyWith<$Res>
+abstract class _$$MatchmakerMatchedImplCopyWith<$Res>
     implements $MatchmakerMatchedCopyWith<$Res> {
-  factory _$$_MatchmakerMatchedCopyWith(_$_MatchmakerMatched value,
-          $Res Function(_$_MatchmakerMatched) then) =
-      __$$_MatchmakerMatchedCopyWithImpl<$Res>;
+  factory _$$MatchmakerMatchedImplCopyWith(_$MatchmakerMatchedImpl value,
+          $Res Function(_$MatchmakerMatchedImpl) then) =
+      __$$MatchmakerMatchedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -951,11 +957,11 @@ abstract class _$$_MatchmakerMatchedCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MatchmakerMatchedCopyWithImpl<$Res>
-    extends _$MatchmakerMatchedCopyWithImpl<$Res, _$_MatchmakerMatched>
-    implements _$$_MatchmakerMatchedCopyWith<$Res> {
-  __$$_MatchmakerMatchedCopyWithImpl(
-      _$_MatchmakerMatched _value, $Res Function(_$_MatchmakerMatched) _then)
+class __$$MatchmakerMatchedImplCopyWithImpl<$Res>
+    extends _$MatchmakerMatchedCopyWithImpl<$Res, _$MatchmakerMatchedImpl>
+    implements _$$MatchmakerMatchedImplCopyWith<$Res> {
+  __$$MatchmakerMatchedImplCopyWithImpl(_$MatchmakerMatchedImpl _value,
+      $Res Function(_$MatchmakerMatchedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -967,7 +973,7 @@ class __$$_MatchmakerMatchedCopyWithImpl<$Res>
     Object? users = null,
     Object? self = null,
   }) {
-    return _then(_$_MatchmakerMatched(
+    return _then(_$MatchmakerMatchedImpl(
       ticket: null == ticket
           ? _value.ticket
           : ticket // ignore: cast_nullable_to_non_nullable
@@ -994,8 +1000,8 @@ class __$$_MatchmakerMatchedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MatchmakerMatched extends _MatchmakerMatched {
-  const _$_MatchmakerMatched(
+class _$MatchmakerMatchedImpl extends _MatchmakerMatched {
+  const _$MatchmakerMatchedImpl(
       {required this.ticket,
       this.matchId,
       this.token,
@@ -1029,10 +1035,10 @@ class _$_MatchmakerMatched extends _MatchmakerMatched {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MatchmakerMatched &&
+            other is _$MatchmakerMatchedImpl &&
             (identical(other.ticket, ticket) || other.ticket == ticket) &&
             (identical(other.matchId, matchId) || other.matchId == matchId) &&
             (identical(other.token, token) || other.token == token) &&
@@ -1047,8 +1053,8 @@ class _$_MatchmakerMatched extends _MatchmakerMatched {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MatchmakerMatchedCopyWith<_$_MatchmakerMatched> get copyWith =>
-      __$$_MatchmakerMatchedCopyWithImpl<_$_MatchmakerMatched>(
+  _$$MatchmakerMatchedImplCopyWith<_$MatchmakerMatchedImpl> get copyWith =>
+      __$$MatchmakerMatchedImplCopyWithImpl<_$MatchmakerMatchedImpl>(
           this, _$identity);
 }
 
@@ -1058,7 +1064,7 @@ abstract class _MatchmakerMatched extends MatchmakerMatched {
       final String? matchId,
       final String? token,
       required final Iterable<MatchmakerUser> users,
-      required final MatchmakerUser self}) = _$_MatchmakerMatched;
+      required final MatchmakerUser self}) = _$MatchmakerMatchedImpl;
   const _MatchmakerMatched._() : super._();
 
   @override
@@ -1083,7 +1089,7 @@ abstract class _MatchmakerMatched extends MatchmakerMatched {
   MatchmakerUser get self;
   @override
   @JsonKey(ignore: true)
-  _$$_MatchmakerMatchedCopyWith<_$_MatchmakerMatched> get copyWith =>
+  _$$MatchmakerMatchedImplCopyWith<_$MatchmakerMatchedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1177,10 +1183,11 @@ class _$MatchDataCopyWithImpl<$Res, $Val extends MatchData>
 }
 
 /// @nodoc
-abstract class _$$_MatchDataCopyWith<$Res> implements $MatchDataCopyWith<$Res> {
-  factory _$$_MatchDataCopyWith(
-          _$_MatchData value, $Res Function(_$_MatchData) then) =
-      __$$_MatchDataCopyWithImpl<$Res>;
+abstract class _$$MatchDataImplCopyWith<$Res>
+    implements $MatchDataCopyWith<$Res> {
+  factory _$$MatchDataImplCopyWith(
+          _$MatchDataImpl value, $Res Function(_$MatchDataImpl) then) =
+      __$$MatchDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1195,11 +1202,11 @@ abstract class _$$_MatchDataCopyWith<$Res> implements $MatchDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_MatchDataCopyWithImpl<$Res>
-    extends _$MatchDataCopyWithImpl<$Res, _$_MatchData>
-    implements _$$_MatchDataCopyWith<$Res> {
-  __$$_MatchDataCopyWithImpl(
-      _$_MatchData _value, $Res Function(_$_MatchData) _then)
+class __$$MatchDataImplCopyWithImpl<$Res>
+    extends _$MatchDataCopyWithImpl<$Res, _$MatchDataImpl>
+    implements _$$MatchDataImplCopyWith<$Res> {
+  __$$MatchDataImplCopyWithImpl(
+      _$MatchDataImpl _value, $Res Function(_$MatchDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1211,7 +1218,7 @@ class __$$_MatchDataCopyWithImpl<$Res>
     Object? data = null,
     Object? reliable = null,
   }) {
-    return _then(_$_MatchData(
+    return _then(_$MatchDataImpl(
       matchId: null == matchId
           ? _value.matchId
           : matchId // ignore: cast_nullable_to_non_nullable
@@ -1238,8 +1245,8 @@ class __$$_MatchDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MatchData extends _MatchData {
-  const _$_MatchData(
+class _$MatchDataImpl extends _MatchData {
+  const _$MatchDataImpl(
       {required this.matchId,
       required this.presence,
       required this.opCode,
@@ -1281,10 +1288,10 @@ class _$_MatchData extends _MatchData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MatchData &&
+            other is _$MatchDataImpl &&
             (identical(other.matchId, matchId) || other.matchId == matchId) &&
             (identical(other.presence, presence) ||
                 other.presence == presence) &&
@@ -1301,8 +1308,8 @@ class _$_MatchData extends _MatchData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MatchDataCopyWith<_$_MatchData> get copyWith =>
-      __$$_MatchDataCopyWithImpl<_$_MatchData>(this, _$identity);
+  _$$MatchDataImplCopyWith<_$MatchDataImpl> get copyWith =>
+      __$$MatchDataImplCopyWithImpl<_$MatchDataImpl>(this, _$identity);
 }
 
 abstract class _MatchData extends MatchData {
@@ -1311,7 +1318,7 @@ abstract class _MatchData extends MatchData {
       required final UserPresence presence,
       required final int opCode,
       required final List<int> data,
-      required final bool reliable}) = _$_MatchData;
+      required final bool reliable}) = _$MatchDataImpl;
   const _MatchData._() : super._();
 
   @override
@@ -1336,7 +1343,7 @@ abstract class _MatchData extends MatchData {
   bool get reliable;
   @override
   @JsonKey(ignore: true)
-  _$$_MatchDataCopyWith<_$_MatchData> get copyWith =>
+  _$$MatchDataImplCopyWith<_$MatchDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1401,11 +1408,11 @@ class _$MatchPresenceEventCopyWithImpl<$Res, $Val extends MatchPresenceEvent>
 }
 
 /// @nodoc
-abstract class _$$_MatchPresenceEventCopyWith<$Res>
+abstract class _$$MatchPresenceEventImplCopyWith<$Res>
     implements $MatchPresenceEventCopyWith<$Res> {
-  factory _$$_MatchPresenceEventCopyWith(_$_MatchPresenceEvent value,
-          $Res Function(_$_MatchPresenceEvent) then) =
-      __$$_MatchPresenceEventCopyWithImpl<$Res>;
+  factory _$$MatchPresenceEventImplCopyWith(_$MatchPresenceEventImpl value,
+          $Res Function(_$MatchPresenceEventImpl) then) =
+      __$$MatchPresenceEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1413,11 +1420,11 @@ abstract class _$$_MatchPresenceEventCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MatchPresenceEventCopyWithImpl<$Res>
-    extends _$MatchPresenceEventCopyWithImpl<$Res, _$_MatchPresenceEvent>
-    implements _$$_MatchPresenceEventCopyWith<$Res> {
-  __$$_MatchPresenceEventCopyWithImpl(
-      _$_MatchPresenceEvent _value, $Res Function(_$_MatchPresenceEvent) _then)
+class __$$MatchPresenceEventImplCopyWithImpl<$Res>
+    extends _$MatchPresenceEventCopyWithImpl<$Res, _$MatchPresenceEventImpl>
+    implements _$$MatchPresenceEventImplCopyWith<$Res> {
+  __$$MatchPresenceEventImplCopyWithImpl(_$MatchPresenceEventImpl _value,
+      $Res Function(_$MatchPresenceEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1427,7 +1434,7 @@ class __$$_MatchPresenceEventCopyWithImpl<$Res>
     Object? joins = null,
     Object? leaves = null,
   }) {
-    return _then(_$_MatchPresenceEvent(
+    return _then(_$MatchPresenceEventImpl(
       matchId: null == matchId
           ? _value.matchId
           : matchId // ignore: cast_nullable_to_non_nullable
@@ -1446,8 +1453,8 @@ class __$$_MatchPresenceEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MatchPresenceEvent extends _MatchPresenceEvent {
-  const _$_MatchPresenceEvent(
+class _$MatchPresenceEventImpl extends _MatchPresenceEvent {
+  const _$MatchPresenceEventImpl(
       {required this.matchId,
       required final List<UserPresence> joins,
       required final List<UserPresence> leaves})
@@ -1487,10 +1494,10 @@ class _$_MatchPresenceEvent extends _MatchPresenceEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MatchPresenceEvent &&
+            other is _$MatchPresenceEventImpl &&
             (identical(other.matchId, matchId) || other.matchId == matchId) &&
             const DeepCollectionEquality().equals(other._joins, _joins) &&
             const DeepCollectionEquality().equals(other._leaves, _leaves));
@@ -1506,8 +1513,8 @@ class _$_MatchPresenceEvent extends _MatchPresenceEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MatchPresenceEventCopyWith<_$_MatchPresenceEvent> get copyWith =>
-      __$$_MatchPresenceEventCopyWithImpl<_$_MatchPresenceEvent>(
+  _$$MatchPresenceEventImplCopyWith<_$MatchPresenceEventImpl> get copyWith =>
+      __$$MatchPresenceEventImplCopyWithImpl<_$MatchPresenceEventImpl>(
           this, _$identity);
 }
 
@@ -1515,7 +1522,7 @@ abstract class _MatchPresenceEvent extends MatchPresenceEvent {
   const factory _MatchPresenceEvent(
       {required final String matchId,
       required final List<UserPresence> joins,
-      required final List<UserPresence> leaves}) = _$_MatchPresenceEvent;
+      required final List<UserPresence> leaves}) = _$MatchPresenceEventImpl;
   const _MatchPresenceEvent._() : super._();
 
   @override
@@ -1532,6 +1539,6 @@ abstract class _MatchPresenceEvent extends MatchPresenceEvent {
   List<UserPresence> get leaves;
   @override
   @JsonKey(ignore: true)
-  _$$_MatchPresenceEventCopyWith<_$_MatchPresenceEvent> get copyWith =>
+  _$$MatchPresenceEventImplCopyWith<_$MatchPresenceEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

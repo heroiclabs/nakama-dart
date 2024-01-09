@@ -6,8 +6,8 @@ part of 'channel_message.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ChannelMessage _$$_ChannelMessageFromJson(Map<String, dynamic> json) =>
-    _$_ChannelMessage(
+_$ChannelMessageImpl _$$ChannelMessageImplFromJson(Map<String, dynamic> json) =>
+    _$ChannelMessageImpl(
       channelId: json['channelId'] as String,
       messageId: json['messageId'] as String,
       code: json['code'] as int,
@@ -23,7 +23,8 @@ _$_ChannelMessage _$$_ChannelMessageFromJson(Map<String, dynamic> json) =>
       userIdTwo: json['userIdTwo'] as String,
     );
 
-Map<String, dynamic> _$$_ChannelMessageToJson(_$_ChannelMessage instance) =>
+Map<String, dynamic> _$$ChannelMessageImplToJson(
+        _$ChannelMessageImpl instance) =>
     <String, dynamic>{
       'channelId': instance.channelId,
       'messageId': instance.messageId,
@@ -40,9 +41,9 @@ Map<String, dynamic> _$$_ChannelMessageToJson(_$_ChannelMessage instance) =>
       'userIdTwo': instance.userIdTwo,
     };
 
-_$_ChannelMessageList _$$_ChannelMessageListFromJson(
+_$ChannelMessageListImpl _$$ChannelMessageListImplFromJson(
         Map<String, dynamic> json) =>
-    _$_ChannelMessageList(
+    _$ChannelMessageListImpl(
       messages: (json['messages'] as List<dynamic>)
           .map((e) => ChannelMessage.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -51,8 +52,8 @@ _$_ChannelMessageList _$$_ChannelMessageListFromJson(
       cacheableCursor: json['cacheableCursor'] as String,
     );
 
-Map<String, dynamic> _$$_ChannelMessageListToJson(
-        _$_ChannelMessageList instance) =>
+Map<String, dynamic> _$$ChannelMessageListImplToJson(
+        _$ChannelMessageListImpl instance) =>
     <String, dynamic>{
       'messages': instance.messages,
       'nextCursor': instance.nextCursor,

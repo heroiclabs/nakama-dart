@@ -48,7 +48,7 @@ class GroupList with _$GroupList {
   const GroupList._();
 
   const factory GroupList({
-    required String cursor,
+    String? cursor,
     required List<Group> groups,
   }) = _GroupList;
 
@@ -66,7 +66,7 @@ class UserGroupList with _$UserGroupList {
   const UserGroupList._();
 
   const factory UserGroupList({
-    required String cursor,
+    String? cursor,
     required List<UserGroup> userGroups,
   }) = _UserGroupList;
 
@@ -104,7 +104,7 @@ class GroupUserList with _$GroupUserList {
   const GroupUserList._();
 
   const factory GroupUserList({
-    required String cursor,
+    String? cursor,
     required List<GroupUser> groupUsers,
   }) = _GroupUserList;
 

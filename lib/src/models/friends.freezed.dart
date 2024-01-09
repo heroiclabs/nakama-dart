@@ -20,7 +20,7 @@ FriendsList _$FriendsListFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FriendsList {
-  String get cursor => throw _privateConstructorUsedError;
+  String? get cursor => throw _privateConstructorUsedError;
   List<Friend> get friends => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $FriendsListCopyWith<$Res> {
           FriendsList value, $Res Function(FriendsList) then) =
       _$FriendsListCopyWithImpl<$Res, FriendsList>;
   @useResult
-  $Res call({String cursor, List<Friend> friends});
+  $Res call({String? cursor, List<Friend> friends});
 }
 
 /// @nodoc
@@ -51,14 +51,14 @@ class _$FriendsListCopyWithImpl<$Res, $Val extends FriendsList>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cursor = null,
+    Object? cursor = freezed,
     Object? friends = null,
   }) {
     return _then(_value.copyWith(
-      cursor: null == cursor
+      cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       friends: null == friends
           ? _value.friends
           : friends // ignore: cast_nullable_to_non_nullable
@@ -68,35 +68,35 @@ class _$FriendsListCopyWithImpl<$Res, $Val extends FriendsList>
 }
 
 /// @nodoc
-abstract class _$$_FriendsListCopyWith<$Res>
+abstract class _$$FriendsListImplCopyWith<$Res>
     implements $FriendsListCopyWith<$Res> {
-  factory _$$_FriendsListCopyWith(
-          _$_FriendsList value, $Res Function(_$_FriendsList) then) =
-      __$$_FriendsListCopyWithImpl<$Res>;
+  factory _$$FriendsListImplCopyWith(
+          _$FriendsListImpl value, $Res Function(_$FriendsListImpl) then) =
+      __$$FriendsListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String cursor, List<Friend> friends});
+  $Res call({String? cursor, List<Friend> friends});
 }
 
 /// @nodoc
-class __$$_FriendsListCopyWithImpl<$Res>
-    extends _$FriendsListCopyWithImpl<$Res, _$_FriendsList>
-    implements _$$_FriendsListCopyWith<$Res> {
-  __$$_FriendsListCopyWithImpl(
-      _$_FriendsList _value, $Res Function(_$_FriendsList) _then)
+class __$$FriendsListImplCopyWithImpl<$Res>
+    extends _$FriendsListCopyWithImpl<$Res, _$FriendsListImpl>
+    implements _$$FriendsListImplCopyWith<$Res> {
+  __$$FriendsListImplCopyWithImpl(
+      _$FriendsListImpl _value, $Res Function(_$FriendsListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cursor = null,
+    Object? cursor = freezed,
     Object? friends = null,
   }) {
-    return _then(_$_FriendsList(
-      cursor: null == cursor
+    return _then(_$FriendsListImpl(
+      cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       friends: null == friends
           ? _value._friends
           : friends // ignore: cast_nullable_to_non_nullable
@@ -107,17 +107,16 @@ class __$$_FriendsListCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_FriendsList extends _FriendsList {
-  const _$_FriendsList(
-      {required this.cursor, required final List<Friend> friends})
+class _$FriendsListImpl extends _FriendsList {
+  const _$FriendsListImpl({this.cursor, required final List<Friend> friends})
       : _friends = friends,
         super._();
 
-  factory _$_FriendsList.fromJson(Map<String, dynamic> json) =>
-      _$$_FriendsListFromJson(json);
+  factory _$FriendsListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FriendsListImplFromJson(json);
 
   @override
-  final String cursor;
+  final String? cursor;
   final List<Friend> _friends;
   @override
   List<Friend> get friends {
@@ -132,10 +131,10 @@ class _$_FriendsList extends _FriendsList {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_FriendsList &&
+            other is _$FriendsListImpl &&
             (identical(other.cursor, cursor) || other.cursor == cursor) &&
             const DeepCollectionEquality().equals(other._friends, _friends));
   }
@@ -148,12 +147,12 @@ class _$_FriendsList extends _FriendsList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FriendsListCopyWith<_$_FriendsList> get copyWith =>
-      __$$_FriendsListCopyWithImpl<_$_FriendsList>(this, _$identity);
+  _$$FriendsListImplCopyWith<_$FriendsListImpl> get copyWith =>
+      __$$FriendsListImplCopyWithImpl<_$FriendsListImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FriendsListToJson(
+    return _$$FriendsListImplToJson(
       this,
     );
   }
@@ -161,20 +160,20 @@ class _$_FriendsList extends _FriendsList {
 
 abstract class _FriendsList extends FriendsList {
   const factory _FriendsList(
-      {required final String cursor,
-      required final List<Friend> friends}) = _$_FriendsList;
+      {final String? cursor,
+      required final List<Friend> friends}) = _$FriendsListImpl;
   const _FriendsList._() : super._();
 
   factory _FriendsList.fromJson(Map<String, dynamic> json) =
-      _$_FriendsList.fromJson;
+      _$FriendsListImpl.fromJson;
 
   @override
-  String get cursor;
+  String? get cursor;
   @override
   List<Friend> get friends;
   @override
   @JsonKey(ignore: true)
-  _$$_FriendsListCopyWith<_$_FriendsList> get copyWith =>
+  _$$FriendsListImplCopyWith<_$FriendsListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -246,9 +245,10 @@ class _$FriendCopyWithImpl<$Res, $Val extends Friend>
 }
 
 /// @nodoc
-abstract class _$$_FriendCopyWith<$Res> implements $FriendCopyWith<$Res> {
-  factory _$$_FriendCopyWith(_$_Friend value, $Res Function(_$_Friend) then) =
-      __$$_FriendCopyWithImpl<$Res>;
+abstract class _$$FriendImplCopyWith<$Res> implements $FriendCopyWith<$Res> {
+  factory _$$FriendImplCopyWith(
+          _$FriendImpl value, $Res Function(_$FriendImpl) then) =
+      __$$FriendImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({FriendshipState state, DateTime updateTime, User user});
@@ -258,10 +258,11 @@ abstract class _$$_FriendCopyWith<$Res> implements $FriendCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_FriendCopyWithImpl<$Res>
-    extends _$FriendCopyWithImpl<$Res, _$_Friend>
-    implements _$$_FriendCopyWith<$Res> {
-  __$$_FriendCopyWithImpl(_$_Friend _value, $Res Function(_$_Friend) _then)
+class __$$FriendImplCopyWithImpl<$Res>
+    extends _$FriendCopyWithImpl<$Res, _$FriendImpl>
+    implements _$$FriendImplCopyWith<$Res> {
+  __$$FriendImplCopyWithImpl(
+      _$FriendImpl _value, $Res Function(_$FriendImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -271,7 +272,7 @@ class __$$_FriendCopyWithImpl<$Res>
     Object? updateTime = null,
     Object? user = null,
   }) {
-    return _then(_$_Friend(
+    return _then(_$FriendImpl(
       state: null == state
           ? _value.state
           : state // ignore: cast_nullable_to_non_nullable
@@ -290,13 +291,13 @@ class __$$_FriendCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Friend extends _Friend {
-  const _$_Friend(
+class _$FriendImpl extends _Friend {
+  const _$FriendImpl(
       {required this.state, required this.updateTime, required this.user})
       : super._();
 
-  factory _$_Friend.fromJson(Map<String, dynamic> json) =>
-      _$$_FriendFromJson(json);
+  factory _$FriendImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FriendImplFromJson(json);
 
   @override
   final FriendshipState state;
@@ -311,10 +312,10 @@ class _$_Friend extends _Friend {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Friend &&
+            other is _$FriendImpl &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.updateTime, updateTime) ||
                 other.updateTime == updateTime) &&
@@ -328,12 +329,12 @@ class _$_Friend extends _Friend {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FriendCopyWith<_$_Friend> get copyWith =>
-      __$$_FriendCopyWithImpl<_$_Friend>(this, _$identity);
+  _$$FriendImplCopyWith<_$FriendImpl> get copyWith =>
+      __$$FriendImplCopyWithImpl<_$FriendImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FriendToJson(
+    return _$$FriendImplToJson(
       this,
     );
   }
@@ -343,10 +344,10 @@ abstract class _Friend extends Friend {
   const factory _Friend(
       {required final FriendshipState state,
       required final DateTime updateTime,
-      required final User user}) = _$_Friend;
+      required final User user}) = _$FriendImpl;
   const _Friend._() : super._();
 
-  factory _Friend.fromJson(Map<String, dynamic> json) = _$_Friend.fromJson;
+  factory _Friend.fromJson(Map<String, dynamic> json) = _$FriendImpl.fromJson;
 
   @override
   FriendshipState get state;
@@ -356,6 +357,6 @@ abstract class _Friend extends Friend {
   User get user;
   @override
   @JsonKey(ignore: true)
-  _$$_FriendCopyWith<_$_Friend> get copyWith =>
+  _$$FriendImplCopyWith<_$FriendImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

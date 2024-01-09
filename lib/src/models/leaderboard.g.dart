@@ -6,9 +6,9 @@ part of 'leaderboard.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_LeaderboardRecordList _$$_LeaderboardRecordListFromJson(
+_$LeaderboardRecordListImpl _$$LeaderboardRecordListImplFromJson(
         Map<String, dynamic> json) =>
-    _$_LeaderboardRecordList(
+    _$LeaderboardRecordListImpl(
       records: (json['records'] as List<dynamic>)
           .map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -19,8 +19,8 @@ _$_LeaderboardRecordList _$$_LeaderboardRecordListFromJson(
       prevCursor: json['prevCursor'] as String?,
     );
 
-Map<String, dynamic> _$$_LeaderboardRecordListToJson(
-        _$_LeaderboardRecordList instance) =>
+Map<String, dynamic> _$$LeaderboardRecordListImplToJson(
+        _$LeaderboardRecordListImpl instance) =>
     <String, dynamic>{
       'records': instance.records,
       'ownerRecords': instance.ownerRecords,
@@ -28,8 +28,9 @@ Map<String, dynamic> _$$_LeaderboardRecordListToJson(
       'prevCursor': instance.prevCursor,
     };
 
-_$_LeaderboardRecord _$$_LeaderboardRecordFromJson(Map<String, dynamic> json) =>
-    _$_LeaderboardRecord(
+_$LeaderboardRecordImpl _$$LeaderboardRecordImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LeaderboardRecordImpl(
       leaderboardId: json['leaderboardId'] as String?,
       ownerId: json['ownerId'] as String?,
       username: json['username'] as String?,
@@ -50,8 +51,8 @@ _$_LeaderboardRecord _$$_LeaderboardRecordFromJson(Map<String, dynamic> json) =>
       maxNumScore: json['maxNumScore'] as int? ?? 0,
     );
 
-Map<String, dynamic> _$$_LeaderboardRecordToJson(
-        _$_LeaderboardRecord instance) =>
+Map<String, dynamic> _$$LeaderboardRecordImplToJson(
+        _$LeaderboardRecordImpl instance) =>
     <String, dynamic>{
       'leaderboardId': instance.leaderboardId,
       'ownerId': instance.ownerId,

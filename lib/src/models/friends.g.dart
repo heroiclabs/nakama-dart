@@ -6,27 +6,28 @@ part of 'friends.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_FriendsList _$$_FriendsListFromJson(Map<String, dynamic> json) =>
-    _$_FriendsList(
-      cursor: json['cursor'] as String,
+_$FriendsListImpl _$$FriendsListImplFromJson(Map<String, dynamic> json) =>
+    _$FriendsListImpl(
+      cursor: json['cursor'] as String?,
       friends: (json['friends'] as List<dynamic>)
           .map((e) => Friend.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_FriendsListToJson(_$_FriendsList instance) =>
+Map<String, dynamic> _$$FriendsListImplToJson(_$FriendsListImpl instance) =>
     <String, dynamic>{
       'cursor': instance.cursor,
       'friends': instance.friends,
     };
 
-_$_Friend _$$_FriendFromJson(Map<String, dynamic> json) => _$_Friend(
+_$FriendImpl _$$FriendImplFromJson(Map<String, dynamic> json) => _$FriendImpl(
       state: $enumDecode(_$FriendshipStateEnumMap, json['state']),
       updateTime: DateTime.parse(json['updateTime'] as String),
       user: User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_FriendToJson(_$_Friend instance) => <String, dynamic>{
+Map<String, dynamic> _$$FriendImplToJson(_$FriendImpl instance) =>
+    <String, dynamic>{
       'state': _$FriendshipStateEnumMap[instance.state]!,
       'updateTime': instance.updateTime.toIso8601String(),
       'user': instance.user,

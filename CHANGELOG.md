@@ -1,3 +1,7 @@
+## [unreleased]
+
+* Fixed: Cursors are nullable `FriendsList.cursor`, `GroupList.cursor`, `UserGroupList.cursor`, `GroupUserList.cursor`, `NotificationList.cursor`
+
 ## 1.0.4
 
 * Fixed: Missing content and subject notification [#80](https://github.com/heroiclabs/nakama-dart/issues/80)

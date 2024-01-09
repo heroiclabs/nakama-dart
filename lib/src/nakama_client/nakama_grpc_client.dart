@@ -1057,8 +1057,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
         cursor: cursor,
         langTag: langTag,
         limit: api.Int32Value(value: limit),
-        members: api.Int32Value(value: members),
-        open: api.BoolValue(value: open),
+        members: members == null ? null : api.Int32Value(value: members),
+        open: open == null ? null : api.BoolValue(value: open),
       ),
       options: _getSessionCallOptions(session),
     );

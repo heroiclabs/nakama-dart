@@ -125,10 +125,10 @@ class _$ChannelCopyWithImpl<$Res, $Val extends Channel>
 }
 
 /// @nodoc
-abstract class _$$_ChannelCopyWith<$Res> implements $ChannelCopyWith<$Res> {
-  factory _$$_ChannelCopyWith(
-          _$_Channel value, $Res Function(_$_Channel) then) =
-      __$$_ChannelCopyWithImpl<$Res>;
+abstract class _$$ChannelImplCopyWith<$Res> implements $ChannelCopyWith<$Res> {
+  factory _$$ChannelImplCopyWith(
+          _$ChannelImpl value, $Res Function(_$ChannelImpl) then) =
+      __$$ChannelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -145,10 +145,11 @@ abstract class _$$_ChannelCopyWith<$Res> implements $ChannelCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ChannelCopyWithImpl<$Res>
-    extends _$ChannelCopyWithImpl<$Res, _$_Channel>
-    implements _$$_ChannelCopyWith<$Res> {
-  __$$_ChannelCopyWithImpl(_$_Channel _value, $Res Function(_$_Channel) _then)
+class __$$ChannelImplCopyWithImpl<$Res>
+    extends _$ChannelCopyWithImpl<$Res, _$ChannelImpl>
+    implements _$$ChannelImplCopyWith<$Res> {
+  __$$ChannelImplCopyWithImpl(
+      _$ChannelImpl _value, $Res Function(_$ChannelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -162,7 +163,7 @@ class __$$_ChannelCopyWithImpl<$Res>
     Object? userIdOne = null,
     Object? userIdTwo = null,
   }) {
-    return _then(_$_Channel(
+    return _then(_$ChannelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -197,8 +198,8 @@ class __$$_ChannelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Channel extends _Channel {
-  const _$_Channel(
+class _$ChannelImpl extends _Channel {
+  const _$ChannelImpl(
       {required this.id,
       required final List<UserPresence> presences,
       required this.self,
@@ -254,10 +255,10 @@ class _$_Channel extends _Channel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Channel &&
+            other is _$ChannelImpl &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._presences, _presences) &&
@@ -285,8 +286,8 @@ class _$_Channel extends _Channel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChannelCopyWith<_$_Channel> get copyWith =>
-      __$$_ChannelCopyWithImpl<_$_Channel>(this, _$identity);
+  _$$ChannelImplCopyWith<_$ChannelImpl> get copyWith =>
+      __$$ChannelImplCopyWithImpl<_$ChannelImpl>(this, _$identity);
 }
 
 abstract class _Channel extends Channel {
@@ -297,7 +298,7 @@ abstract class _Channel extends Channel {
       required final String roomName,
       required final String groupId,
       required final String userIdOne,
-      required final String userIdTwo}) = _$_Channel;
+      required final String userIdTwo}) = _$ChannelImpl;
   const _Channel._() : super._();
 
   @override
@@ -334,7 +335,7 @@ abstract class _Channel extends Channel {
   String get userIdTwo;
   @override
   @JsonKey(ignore: true)
-  _$$_ChannelCopyWith<_$_Channel> get copyWith =>
+  _$$ChannelImplCopyWith<_$ChannelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -473,11 +474,11 @@ class _$ChannelMessageAckCopyWithImpl<$Res, $Val extends ChannelMessageAck>
 }
 
 /// @nodoc
-abstract class _$$_ChannelMessageAckCopyWith<$Res>
+abstract class _$$ChannelMessageAckImplCopyWith<$Res>
     implements $ChannelMessageAckCopyWith<$Res> {
-  factory _$$_ChannelMessageAckCopyWith(_$_ChannelMessageAck value,
-          $Res Function(_$_ChannelMessageAck) then) =
-      __$$_ChannelMessageAckCopyWithImpl<$Res>;
+  factory _$$ChannelMessageAckImplCopyWith(_$ChannelMessageAckImpl value,
+          $Res Function(_$ChannelMessageAckImpl) then) =
+      __$$ChannelMessageAckImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -495,11 +496,11 @@ abstract class _$$_ChannelMessageAckCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChannelMessageAckCopyWithImpl<$Res>
-    extends _$ChannelMessageAckCopyWithImpl<$Res, _$_ChannelMessageAck>
-    implements _$$_ChannelMessageAckCopyWith<$Res> {
-  __$$_ChannelMessageAckCopyWithImpl(
-      _$_ChannelMessageAck _value, $Res Function(_$_ChannelMessageAck) _then)
+class __$$ChannelMessageAckImplCopyWithImpl<$Res>
+    extends _$ChannelMessageAckCopyWithImpl<$Res, _$ChannelMessageAckImpl>
+    implements _$$ChannelMessageAckImplCopyWith<$Res> {
+  __$$ChannelMessageAckImplCopyWithImpl(_$ChannelMessageAckImpl _value,
+      $Res Function(_$ChannelMessageAckImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -517,7 +518,7 @@ class __$$_ChannelMessageAckCopyWithImpl<$Res>
     Object? userIdOne = null,
     Object? userIdTwo = null,
   }) {
-    return _then(_$_ChannelMessageAck(
+    return _then(_$ChannelMessageAckImpl(
       channelId: null == channelId
           ? _value.channelId
           : channelId // ignore: cast_nullable_to_non_nullable
@@ -568,8 +569,8 @@ class __$$_ChannelMessageAckCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ChannelMessageAck extends _ChannelMessageAck {
-  const _$_ChannelMessageAck(
+class _$ChannelMessageAckImpl extends _ChannelMessageAck {
+  const _$ChannelMessageAckImpl(
       {required this.channelId,
       required this.messageId,
       required this.code,
@@ -633,10 +634,10 @@ class _$_ChannelMessageAck extends _ChannelMessageAck {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChannelMessageAck &&
+            other is _$ChannelMessageAckImpl &&
             (identical(other.channelId, channelId) ||
                 other.channelId == channelId) &&
             (identical(other.messageId, messageId) ||
@@ -675,8 +676,8 @@ class _$_ChannelMessageAck extends _ChannelMessageAck {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChannelMessageAckCopyWith<_$_ChannelMessageAck> get copyWith =>
-      __$$_ChannelMessageAckCopyWithImpl<_$_ChannelMessageAck>(
+  _$$ChannelMessageAckImplCopyWith<_$ChannelMessageAckImpl> get copyWith =>
+      __$$ChannelMessageAckImplCopyWithImpl<_$ChannelMessageAckImpl>(
           this, _$identity);
 }
 
@@ -692,7 +693,7 @@ abstract class _ChannelMessageAck extends ChannelMessageAck {
       required final String roomName,
       required final String groupId,
       required final String userIdOne,
-      required final String userIdTwo}) = _$_ChannelMessageAck;
+      required final String userIdTwo}) = _$ChannelMessageAckImpl;
   const _ChannelMessageAck._() : super._();
 
   @override
@@ -741,6 +742,6 @@ abstract class _ChannelMessageAck extends ChannelMessageAck {
   String get userIdTwo;
   @override
   @JsonKey(ignore: true)
-  _$$_ChannelMessageAckCopyWith<_$_ChannelMessageAck> get copyWith =>
+  _$$ChannelMessageAckImplCopyWith<_$ChannelMessageAckImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

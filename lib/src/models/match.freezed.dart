@@ -166,9 +166,10 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
 }
 
 /// @nodoc
-abstract class _$$_MatchCopyWith<$Res> implements $MatchCopyWith<$Res> {
-  factory _$$_MatchCopyWith(_$_Match value, $Res Function(_$_Match) then) =
-      __$$_MatchCopyWithImpl<$Res>;
+abstract class _$$MatchImplCopyWith<$Res> implements $MatchCopyWith<$Res> {
+  factory _$$MatchImplCopyWith(
+          _$MatchImpl value, $Res Function(_$MatchImpl) then) =
+      __$$MatchImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -181,9 +182,11 @@ abstract class _$$_MatchCopyWith<$Res> implements $MatchCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_MatchCopyWithImpl<$Res> extends _$MatchCopyWithImpl<$Res, _$_Match>
-    implements _$$_MatchCopyWith<$Res> {
-  __$$_MatchCopyWithImpl(_$_Match _value, $Res Function(_$_Match) _then)
+class __$$MatchImplCopyWithImpl<$Res>
+    extends _$MatchCopyWithImpl<$Res, _$MatchImpl>
+    implements _$$MatchImplCopyWith<$Res> {
+  __$$MatchImplCopyWithImpl(
+      _$MatchImpl _value, $Res Function(_$MatchImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -196,7 +199,7 @@ class __$$_MatchCopyWithImpl<$Res> extends _$MatchCopyWithImpl<$Res, _$_Match>
     Object? tickRate = freezed,
     Object? handlerName = freezed,
   }) {
-    return _then(_$_Match(
+    return _then(_$MatchImpl(
       matchId: null == matchId
           ? _value.matchId
           : matchId // ignore: cast_nullable_to_non_nullable
@@ -227,8 +230,8 @@ class __$$_MatchCopyWithImpl<$Res> extends _$MatchCopyWithImpl<$Res, _$_Match>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Match extends _Match {
-  const _$_Match(
+class _$MatchImpl extends _Match {
+  const _$MatchImpl(
       {required this.matchId,
       required this.authoritative,
       required this.label,
@@ -239,8 +242,8 @@ class _$_Match extends _Match {
       : $type = $type ?? 'default',
         super._();
 
-  factory _$_Match.fromJson(Map<String, dynamic> json) =>
-      _$$_MatchFromJson(json);
+  factory _$MatchImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MatchImplFromJson(json);
 
   @override
   final String matchId;
@@ -264,10 +267,10 @@ class _$_Match extends _Match {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Match &&
+            other is _$MatchImpl &&
             (identical(other.matchId, matchId) || other.matchId == matchId) &&
             (identical(other.authoritative, authoritative) ||
                 other.authoritative == authoritative) &&
@@ -287,8 +290,8 @@ class _$_Match extends _Match {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MatchCopyWith<_$_Match> get copyWith =>
-      __$$_MatchCopyWithImpl<_$_Match>(this, _$identity);
+  _$$MatchImplCopyWith<_$MatchImpl> get copyWith =>
+      __$$MatchImplCopyWithImpl<_$MatchImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -380,7 +383,7 @@ class _$_Match extends _Match {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_MatchToJson(
+    return _$$MatchImplToJson(
       this,
     );
   }
@@ -393,10 +396,10 @@ abstract class _Match extends Match {
       required final String label,
       required final int size,
       final int? tickRate,
-      final String? handlerName}) = _$_Match;
+      final String? handlerName}) = _$MatchImpl;
   const _Match._() : super._();
 
-  factory _Match.fromJson(Map<String, dynamic> json) = _$_Match.fromJson;
+  factory _Match.fromJson(Map<String, dynamic> json) = _$MatchImpl.fromJson;
 
   @override
   String get matchId;
@@ -412,15 +415,16 @@ abstract class _Match extends Match {
   String? get handlerName;
   @override
   @JsonKey(ignore: true)
-  _$$_MatchCopyWith<_$_Match> get copyWith =>
+  _$$MatchImplCopyWith<_$MatchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RealtimeMatchCopyWith<$Res> implements $MatchCopyWith<$Res> {
-  factory _$$RealtimeMatchCopyWith(
-          _$RealtimeMatch value, $Res Function(_$RealtimeMatch) then) =
-      __$$RealtimeMatchCopyWithImpl<$Res>;
+abstract class _$$RealtimeMatchImplCopyWith<$Res>
+    implements $MatchCopyWith<$Res> {
+  factory _$$RealtimeMatchImplCopyWith(
+          _$RealtimeMatchImpl value, $Res Function(_$RealtimeMatchImpl) then) =
+      __$$RealtimeMatchImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -434,11 +438,11 @@ abstract class _$$RealtimeMatchCopyWith<$Res> implements $MatchCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$RealtimeMatchCopyWithImpl<$Res>
-    extends _$MatchCopyWithImpl<$Res, _$RealtimeMatch>
-    implements _$$RealtimeMatchCopyWith<$Res> {
-  __$$RealtimeMatchCopyWithImpl(
-      _$RealtimeMatch _value, $Res Function(_$RealtimeMatch) _then)
+class __$$RealtimeMatchImplCopyWithImpl<$Res>
+    extends _$MatchCopyWithImpl<$Res, _$RealtimeMatchImpl>
+    implements _$$RealtimeMatchImplCopyWith<$Res> {
+  __$$RealtimeMatchImplCopyWithImpl(
+      _$RealtimeMatchImpl _value, $Res Function(_$RealtimeMatchImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -452,7 +456,7 @@ class __$$RealtimeMatchCopyWithImpl<$Res>
     Object? handlerName = freezed,
     Object? presences = null,
   }) {
-    return _then(_$RealtimeMatch(
+    return _then(_$RealtimeMatchImpl(
       matchId: null == matchId
           ? _value.matchId
           : matchId // ignore: cast_nullable_to_non_nullable
@@ -487,8 +491,8 @@ class __$$RealtimeMatchCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RealtimeMatch extends RealtimeMatch {
-  _$RealtimeMatch(
+class _$RealtimeMatchImpl extends RealtimeMatch {
+  _$RealtimeMatchImpl(
       {required this.matchId,
       required this.authoritative,
       required this.label,
@@ -501,8 +505,8 @@ class _$RealtimeMatch extends RealtimeMatch {
         $type = $type ?? 'realtime',
         super._();
 
-  factory _$RealtimeMatch.fromJson(Map<String, dynamic> json) =>
-      _$$RealtimeMatchFromJson(json);
+  factory _$RealtimeMatchImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RealtimeMatchImplFromJson(json);
 
   @override
   final String matchId;
@@ -533,10 +537,10 @@ class _$RealtimeMatch extends RealtimeMatch {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RealtimeMatch &&
+            other is _$RealtimeMatchImpl &&
             (identical(other.matchId, matchId) || other.matchId == matchId) &&
             (identical(other.authoritative, authoritative) ||
                 other.authoritative == authoritative) &&
@@ -565,8 +569,8 @@ class _$RealtimeMatch extends RealtimeMatch {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RealtimeMatchCopyWith<_$RealtimeMatch> get copyWith =>
-      __$$RealtimeMatchCopyWithImpl<_$RealtimeMatch>(this, _$identity);
+  _$$RealtimeMatchImplCopyWith<_$RealtimeMatchImpl> get copyWith =>
+      __$$RealtimeMatchImplCopyWithImpl<_$RealtimeMatchImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -659,7 +663,7 @@ class _$RealtimeMatch extends RealtimeMatch {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$RealtimeMatchToJson(
+    return _$$RealtimeMatchImplToJson(
       this,
     );
   }
@@ -673,11 +677,11 @@ abstract class RealtimeMatch extends Match {
       required final int size,
       final int? tickRate,
       final String? handlerName,
-      required final List<UserPresence> presences}) = _$RealtimeMatch;
+      required final List<UserPresence> presences}) = _$RealtimeMatchImpl;
   RealtimeMatch._() : super._();
 
   factory RealtimeMatch.fromJson(Map<String, dynamic> json) =
-      _$RealtimeMatch.fromJson;
+      _$RealtimeMatchImpl.fromJson;
 
   @override
   String get matchId;
@@ -694,7 +698,7 @@ abstract class RealtimeMatch extends Match {
   List<UserPresence> get presences;
   @override
   @JsonKey(ignore: true)
-  _$$RealtimeMatchCopyWith<_$RealtimeMatch> get copyWith =>
+  _$$RealtimeMatchImplCopyWith<_$RealtimeMatchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -805,9 +809,10 @@ class _$PartyCopyWithImpl<$Res, $Val extends Party>
 }
 
 /// @nodoc
-abstract class _$$_PartyCopyWith<$Res> implements $PartyCopyWith<$Res> {
-  factory _$$_PartyCopyWith(_$_Party value, $Res Function(_$_Party) then) =
-      __$$_PartyCopyWithImpl<$Res>;
+abstract class _$$PartyImplCopyWith<$Res> implements $PartyCopyWith<$Res> {
+  factory _$$PartyImplCopyWith(
+          _$PartyImpl value, $Res Function(_$PartyImpl) then) =
+      __$$PartyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -825,9 +830,11 @@ abstract class _$$_PartyCopyWith<$Res> implements $PartyCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PartyCopyWithImpl<$Res> extends _$PartyCopyWithImpl<$Res, _$_Party>
-    implements _$$_PartyCopyWith<$Res> {
-  __$$_PartyCopyWithImpl(_$_Party _value, $Res Function(_$_Party) _then)
+class __$$PartyImplCopyWithImpl<$Res>
+    extends _$PartyCopyWithImpl<$Res, _$PartyImpl>
+    implements _$$PartyImplCopyWith<$Res> {
+  __$$PartyImplCopyWithImpl(
+      _$PartyImpl _value, $Res Function(_$PartyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -840,7 +847,7 @@ class __$$_PartyCopyWithImpl<$Res> extends _$PartyCopyWithImpl<$Res, _$_Party>
     Object? leader = null,
     Object? presences = null,
   }) {
-    return _then(_$_Party(
+    return _then(_$PartyImpl(
       partyId: null == partyId
           ? _value.partyId
           : partyId // ignore: cast_nullable_to_non_nullable
@@ -871,8 +878,8 @@ class __$$_PartyCopyWithImpl<$Res> extends _$PartyCopyWithImpl<$Res, _$_Party>
 
 /// @nodoc
 
-class _$_Party extends _Party {
-  const _$_Party(
+class _$PartyImpl extends _Party {
+  const _$PartyImpl(
       {required this.partyId,
       required this.open,
       required this.maxSize,
@@ -919,10 +926,10 @@ class _$_Party extends _Party {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Party &&
+            other is _$PartyImpl &&
             (identical(other.partyId, partyId) || other.partyId == partyId) &&
             (identical(other.open, open) || other.open == open) &&
             (identical(other.maxSize, maxSize) || other.maxSize == maxSize) &&
@@ -939,8 +946,8 @@ class _$_Party extends _Party {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PartyCopyWith<_$_Party> get copyWith =>
-      __$$_PartyCopyWithImpl<_$_Party>(this, _$identity);
+  _$$PartyImplCopyWith<_$PartyImpl> get copyWith =>
+      __$$PartyImplCopyWithImpl<_$PartyImpl>(this, _$identity);
 }
 
 abstract class _Party extends Party {
@@ -950,7 +957,7 @@ abstract class _Party extends Party {
       required final int maxSize,
       required final UserPresence self,
       required final UserPresence leader,
-      required final List<UserPresence> presences}) = _$_Party;
+      required final List<UserPresence> presences}) = _$PartyImpl;
   const _Party._() : super._();
 
   @override
@@ -979,6 +986,6 @@ abstract class _Party extends Party {
   List<UserPresence> get presences;
   @override
   @JsonKey(ignore: true)
-  _$$_PartyCopyWith<_$_Party> get copyWith =>
+  _$$PartyImplCopyWith<_$PartyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

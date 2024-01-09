@@ -9,6 +9,7 @@ import 'package:chopper/chopper.dart';
 import 'client_mapping.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart' show MultipartFile;
 import 'package:chopper/chopper.dart' as chopper;
 import 'apigrpc.enums.swagger.dart' as enums;
 export 'apigrpc.enums.swagger.dart';
@@ -26,6 +27,7 @@ abstract class Apigrpc extends ChopperService {
     ChopperClient? client,
     http.Client? httpClient,
     Authenticator? authenticator,
+    ErrorConverter? errorConverter,
     Converter? converter,
     Uri? baseUrl,
     Iterable<dynamic>? interceptors,
@@ -40,6 +42,7 @@ abstract class Apigrpc extends ChopperService {
         interceptors: interceptors ?? [],
         client: httpClient,
         authenticator: authenticator,
+        errorConverter: errorConverter,
         baseUrl: baseUrl ?? Uri.parse('http://127.0.0.1:7350'));
     return _$Apigrpc(newClient);
   }
@@ -1862,7 +1865,7 @@ abstract class Apigrpc extends ChopperService {
 
 @JsonSerializable(explicitToJson: true)
 class GroupUserListGroupUser {
-  GroupUserListGroupUser({
+  const GroupUserListGroupUser({
     this.user,
     this.state,
   });
@@ -1915,7 +1918,7 @@ extension $GroupUserListGroupUserExtension on GroupUserListGroupUser {
 
 @JsonSerializable(explicitToJson: true)
 class UserGroupListUserGroup {
-  UserGroupListUserGroup({
+  const UserGroupListUserGroup({
     this.group,
     this.state,
   });
@@ -1968,7 +1971,7 @@ extension $UserGroupListUserGroupExtension on UserGroupListUserGroup {
 
 @JsonSerializable(explicitToJson: true)
 class WriteLeaderboardRecordRequestLeaderboardRecordWrite {
-  WriteLeaderboardRecordRequestLeaderboardRecordWrite({
+  const WriteLeaderboardRecordRequestLeaderboardRecordWrite({
     this.score,
     this.subscore,
     this.metadata,
@@ -1993,8 +1996,8 @@ class WriteLeaderboardRecordRequestLeaderboardRecordWrite {
   @JsonKey(
     name: 'operator',
     includeIfNull: true,
-    toJson: apiOperatorToJson,
-    fromJson: apiOperatorFromJson,
+    toJson: apiOperatorNullableToJson,
+    fromJson: apiOperatorNullableFromJson,
   )
   final enums.ApiOperator? $operator;
   static const fromJsonFactory =
@@ -2058,7 +2061,7 @@ extension $WriteLeaderboardRecordRequestLeaderboardRecordWriteExtension
 
 @JsonSerializable(explicitToJson: true)
 class WriteTournamentRecordRequestTournamentRecordWrite {
-  WriteTournamentRecordRequestTournamentRecordWrite({
+  const WriteTournamentRecordRequestTournamentRecordWrite({
     this.score,
     this.subscore,
     this.metadata,
@@ -2083,8 +2086,8 @@ class WriteTournamentRecordRequestTournamentRecordWrite {
   @JsonKey(
     name: 'operator',
     includeIfNull: true,
-    toJson: apiOperatorToJson,
-    fromJson: apiOperatorFromJson,
+    toJson: apiOperatorNullableToJson,
+    fromJson: apiOperatorNullableFromJson,
   )
   final enums.ApiOperator? $operator;
   static const fromJsonFactory =
@@ -2148,7 +2151,7 @@ extension $WriteTournamentRecordRequestTournamentRecordWriteExtension
 
 @JsonSerializable(explicitToJson: true)
 class ApiAccount {
-  ApiAccount({
+  const ApiAccount({
     this.user,
     this.wallet,
     this.email,
@@ -2261,7 +2264,7 @@ extension $ApiAccountExtension on ApiAccount {
 
 @JsonSerializable(explicitToJson: true)
 class ApiAccountApple {
-  ApiAccountApple({
+  const ApiAccountApple({
     this.token,
     this.vars,
   });
@@ -2313,7 +2316,7 @@ extension $ApiAccountAppleExtension on ApiAccountApple {
 
 @JsonSerializable(explicitToJson: true)
 class ApiAccountCustom {
-  ApiAccountCustom({
+  const ApiAccountCustom({
     this.id,
     this.vars,
   });
@@ -2365,7 +2368,7 @@ extension $ApiAccountCustomExtension on ApiAccountCustom {
 
 @JsonSerializable(explicitToJson: true)
 class ApiAccountDevice {
-  ApiAccountDevice({
+  const ApiAccountDevice({
     this.id,
     this.vars,
   });
@@ -2417,7 +2420,7 @@ extension $ApiAccountDeviceExtension on ApiAccountDevice {
 
 @JsonSerializable(explicitToJson: true)
 class ApiAccountEmail {
-  ApiAccountEmail({
+  const ApiAccountEmail({
     this.email,
     this.password,
     this.vars,
@@ -2483,7 +2486,7 @@ extension $ApiAccountEmailExtension on ApiAccountEmail {
 
 @JsonSerializable(explicitToJson: true)
 class ApiAccountFacebook {
-  ApiAccountFacebook({
+  const ApiAccountFacebook({
     this.token,
     this.vars,
   });
@@ -2536,7 +2539,7 @@ extension $ApiAccountFacebookExtension on ApiAccountFacebook {
 
 @JsonSerializable(explicitToJson: true)
 class ApiAccountFacebookInstantGame {
-  ApiAccountFacebookInstantGame({
+  const ApiAccountFacebookInstantGame({
     this.signedPlayerInfo,
     this.vars,
   });
@@ -2596,7 +2599,7 @@ extension $ApiAccountFacebookInstantGameExtension
 
 @JsonSerializable(explicitToJson: true)
 class ApiAccountGameCenter {
-  ApiAccountGameCenter({
+  const ApiAccountGameCenter({
     this.playerId,
     this.bundleId,
     this.timestampSeconds,
@@ -2711,7 +2714,7 @@ extension $ApiAccountGameCenterExtension on ApiAccountGameCenter {
 
 @JsonSerializable(explicitToJson: true)
 class ApiAccountGoogle {
-  ApiAccountGoogle({
+  const ApiAccountGoogle({
     this.token,
     this.vars,
   });
@@ -2764,7 +2767,7 @@ extension $ApiAccountGoogleExtension on ApiAccountGoogle {
 
 @JsonSerializable(explicitToJson: true)
 class ApiAccountSteam {
-  ApiAccountSteam({
+  const ApiAccountSteam({
     this.token,
     this.vars,
   });
@@ -2816,7 +2819,7 @@ extension $ApiAccountSteamExtension on ApiAccountSteam {
 
 @JsonSerializable(explicitToJson: true)
 class ApiChannelMessage {
-  ApiChannelMessage({
+  const ApiChannelMessage({
     this.channelId,
     this.messageId,
     this.code,
@@ -2995,7 +2998,7 @@ extension $ApiChannelMessageExtension on ApiChannelMessage {
 
 @JsonSerializable(explicitToJson: true)
 class ApiChannelMessageList {
-  ApiChannelMessageList({
+  const ApiChannelMessageList({
     this.messages,
     this.nextCursor,
     this.prevCursor,
@@ -3081,7 +3084,7 @@ extension $ApiChannelMessageListExtension on ApiChannelMessageList {
 
 @JsonSerializable(explicitToJson: true)
 class ApiCreateGroupRequest {
-  ApiCreateGroupRequest({
+  const ApiCreateGroupRequest({
     this.name,
     this.description,
     this.langTag,
@@ -3183,7 +3186,7 @@ extension $ApiCreateGroupRequestExtension on ApiCreateGroupRequest {
 
 @JsonSerializable(explicitToJson: true)
 class ApiDeleteStorageObjectId {
-  ApiDeleteStorageObjectId({
+  const ApiDeleteStorageObjectId({
     this.collection,
     this.key,
     this.version,
@@ -3249,7 +3252,7 @@ extension $ApiDeleteStorageObjectIdExtension on ApiDeleteStorageObjectId {
 
 @JsonSerializable(explicitToJson: true)
 class ApiDeleteStorageObjectsRequest {
-  ApiDeleteStorageObjectsRequest({
+  const ApiDeleteStorageObjectsRequest({
     this.objectIds,
   });
 
@@ -3300,7 +3303,7 @@ extension $ApiDeleteStorageObjectsRequestExtension
 
 @JsonSerializable(explicitToJson: true)
 class ApiEvent {
-  ApiEvent({
+  const ApiEvent({
     this.name,
     this.properties,
     this.timestamp,
@@ -3380,7 +3383,7 @@ extension $ApiEventExtension on ApiEvent {
 
 @JsonSerializable(explicitToJson: true)
 class ApiFriend {
-  ApiFriend({
+  const ApiFriend({
     this.user,
     this.state,
     this.updateTime,
@@ -3445,7 +3448,7 @@ extension $ApiFriendExtension on ApiFriend {
 
 @JsonSerializable(explicitToJson: true)
 class ApiFriendList {
-  ApiFriendList({
+  const ApiFriendList({
     this.friends,
     this.cursor,
   });
@@ -3499,7 +3502,7 @@ extension $ApiFriendListExtension on ApiFriendList {
 
 @JsonSerializable(explicitToJson: true)
 class ApiGroup {
-  ApiGroup({
+  const ApiGroup({
     this.id,
     this.creatorId,
     this.name,
@@ -3666,7 +3669,7 @@ extension $ApiGroupExtension on ApiGroup {
 
 @JsonSerializable(explicitToJson: true)
 class ApiGroupList {
-  ApiGroupList({
+  const ApiGroupList({
     this.groups,
     this.cursor,
   });
@@ -3719,7 +3722,7 @@ extension $ApiGroupListExtension on ApiGroupList {
 
 @JsonSerializable(explicitToJson: true)
 class ApiGroupUserList {
-  ApiGroupUserList({
+  const ApiGroupUserList({
     this.groupUsers,
     this.cursor,
   });
@@ -3779,7 +3782,7 @@ extension $ApiGroupUserListExtension on ApiGroupUserList {
 
 @JsonSerializable(explicitToJson: true)
 class ApiLeaderboardRecord {
-  ApiLeaderboardRecord({
+  const ApiLeaderboardRecord({
     this.leaderboardId,
     this.ownerId,
     this.username,
@@ -3948,7 +3951,7 @@ extension $ApiLeaderboardRecordExtension on ApiLeaderboardRecord {
 
 @JsonSerializable(explicitToJson: true)
 class ApiLeaderboardRecordList {
-  ApiLeaderboardRecordList({
+  const ApiLeaderboardRecordList({
     this.records,
     this.ownerRecords,
     this.nextCursor,
@@ -4036,7 +4039,7 @@ extension $ApiLeaderboardRecordListExtension on ApiLeaderboardRecordList {
 
 @JsonSerializable(explicitToJson: true)
 class ApiLinkSteamRequest {
-  ApiLinkSteamRequest({
+  const ApiLinkSteamRequest({
     this.account,
     this.$sync,
   });
@@ -4090,7 +4093,7 @@ extension $ApiLinkSteamRequestExtension on ApiLinkSteamRequest {
 
 @JsonSerializable(explicitToJson: true)
 class ApiListSubscriptionsRequest {
-  ApiListSubscriptionsRequest({
+  const ApiListSubscriptionsRequest({
     this.limit,
     this.cursor,
   });
@@ -4143,7 +4146,7 @@ extension $ApiListSubscriptionsRequestExtension on ApiListSubscriptionsRequest {
 
 @JsonSerializable(explicitToJson: true)
 class ApiMatch {
-  ApiMatch({
+  const ApiMatch({
     this.matchId,
     this.authoritative,
     this.label,
@@ -4246,7 +4249,7 @@ extension $ApiMatchExtension on ApiMatch {
 
 @JsonSerializable(explicitToJson: true)
 class ApiMatchList {
-  ApiMatchList({
+  const ApiMatchList({
     this.matches,
   });
 
@@ -4289,7 +4292,7 @@ extension $ApiMatchListExtension on ApiMatchList {
 
 @JsonSerializable(explicitToJson: true)
 class ApiNotification {
-  ApiNotification({
+  const ApiNotification({
     this.id,
     this.subject,
     this.content,
@@ -4401,7 +4404,7 @@ extension $ApiNotificationExtension on ApiNotification {
 
 @JsonSerializable(explicitToJson: true)
 class ApiNotificationList {
-  ApiNotificationList({
+  const ApiNotificationList({
     this.notifications,
     this.cacheableCursor,
   });
@@ -4465,7 +4468,7 @@ extension $ApiNotificationListExtension on ApiNotificationList {
 
 @JsonSerializable(explicitToJson: true)
 class ApiReadStorageObjectId {
-  ApiReadStorageObjectId({
+  const ApiReadStorageObjectId({
     this.collection,
     this.key,
     this.userId,
@@ -4531,7 +4534,7 @@ extension $ApiReadStorageObjectIdExtension on ApiReadStorageObjectId {
 
 @JsonSerializable(explicitToJson: true)
 class ApiReadStorageObjectsRequest {
-  ApiReadStorageObjectsRequest({
+  const ApiReadStorageObjectsRequest({
     this.objectIds,
   });
 
@@ -4581,7 +4584,7 @@ extension $ApiReadStorageObjectsRequestExtension
 
 @JsonSerializable(explicitToJson: true)
 class ApiRpc {
-  ApiRpc({
+  const ApiRpc({
     this.id,
     this.payload,
     this.httpKey,
@@ -4645,7 +4648,7 @@ extension $ApiRpcExtension on ApiRpc {
 
 @JsonSerializable(explicitToJson: true)
 class ApiSession {
-  ApiSession({
+  const ApiSession({
     this.created,
     this.token,
     this.refreshToken,
@@ -4712,7 +4715,7 @@ extension $ApiSessionExtension on ApiSession {
 
 @JsonSerializable(explicitToJson: true)
 class ApiSessionLogoutRequest {
-  ApiSessionLogoutRequest({
+  const ApiSessionLogoutRequest({
     this.token,
     this.refreshToken,
   });
@@ -4768,7 +4771,7 @@ extension $ApiSessionLogoutRequestExtension on ApiSessionLogoutRequest {
 
 @JsonSerializable(explicitToJson: true)
 class ApiSessionRefreshRequest {
-  ApiSessionRefreshRequest({
+  const ApiSessionRefreshRequest({
     this.token,
     this.vars,
   });
@@ -4822,7 +4825,7 @@ extension $ApiSessionRefreshRequestExtension on ApiSessionRefreshRequest {
 
 @JsonSerializable(explicitToJson: true)
 class ApiStorageObject {
-  ApiStorageObject({
+  const ApiStorageObject({
     this.collection,
     this.key,
     this.userId,
@@ -4959,7 +4962,7 @@ extension $ApiStorageObjectExtension on ApiStorageObject {
 
 @JsonSerializable(explicitToJson: true)
 class ApiStorageObjectAck {
-  ApiStorageObjectAck({
+  const ApiStorageObjectAck({
     this.collection,
     this.key,
     this.version,
@@ -5035,7 +5038,7 @@ extension $ApiStorageObjectAckExtension on ApiStorageObjectAck {
 
 @JsonSerializable(explicitToJson: true)
 class ApiStorageObjectAcks {
-  ApiStorageObjectAcks({
+  const ApiStorageObjectAcks({
     this.acks,
   });
 
@@ -5079,7 +5082,7 @@ extension $ApiStorageObjectAcksExtension on ApiStorageObjectAcks {
 
 @JsonSerializable(explicitToJson: true)
 class ApiStorageObjectList {
-  ApiStorageObjectList({
+  const ApiStorageObjectList({
     this.objects,
     this.cursor,
   });
@@ -5135,7 +5138,7 @@ extension $ApiStorageObjectListExtension on ApiStorageObjectList {
 
 @JsonSerializable(explicitToJson: true)
 class ApiStorageObjects {
-  ApiStorageObjects({
+  const ApiStorageObjects({
     this.objects,
   });
 
@@ -5180,7 +5183,7 @@ extension $ApiStorageObjectsExtension on ApiStorageObjects {
 
 @JsonSerializable(explicitToJson: true)
 class ApiSubscriptionList {
-  ApiSubscriptionList({
+  const ApiSubscriptionList({
     this.validatedSubscriptions,
     this.cursor,
     this.prevCursor,
@@ -5255,7 +5258,7 @@ extension $ApiSubscriptionListExtension on ApiSubscriptionList {
 
 @JsonSerializable(explicitToJson: true)
 class ApiTournament {
-  ApiTournament({
+  const ApiTournament({
     this.id,
     this.title,
     this.description,
@@ -5322,8 +5325,8 @@ class ApiTournament {
   @JsonKey(
     name: 'operator',
     includeIfNull: true,
-    toJson: apiOperatorToJson,
-    fromJson: apiOperatorFromJson,
+    toJson: apiOperatorNullableToJson,
+    fromJson: apiOperatorNullableFromJson,
   )
   final enums.ApiOperator? $operator;
   static const fromJsonFactory = _$ApiTournamentFromJson;
@@ -5506,7 +5509,7 @@ extension $ApiTournamentExtension on ApiTournament {
 
 @JsonSerializable(explicitToJson: true)
 class ApiTournamentList {
-  ApiTournamentList({
+  const ApiTournamentList({
     this.tournaments,
     this.cursor,
   });
@@ -5564,7 +5567,7 @@ extension $ApiTournamentListExtension on ApiTournamentList {
 
 @JsonSerializable(explicitToJson: true)
 class ApiTournamentRecordList {
-  ApiTournamentRecordList({
+  const ApiTournamentRecordList({
     this.records,
     this.ownerRecords,
     this.nextCursor,
@@ -5652,7 +5655,7 @@ extension $ApiTournamentRecordListExtension on ApiTournamentRecordList {
 
 @JsonSerializable(explicitToJson: true)
 class ApiUpdateAccountRequest {
-  ApiUpdateAccountRequest({
+  const ApiUpdateAccountRequest({
     this.username,
     this.displayName,
     this.avatarUrl,
@@ -5756,7 +5759,7 @@ extension $ApiUpdateAccountRequestExtension on ApiUpdateAccountRequest {
 
 @JsonSerializable(explicitToJson: true)
 class ApiUpdateGroupRequest {
-  ApiUpdateGroupRequest({
+  const ApiUpdateGroupRequest({
     this.groupId,
     this.name,
     this.description,
@@ -5858,7 +5861,7 @@ extension $ApiUpdateGroupRequestExtension on ApiUpdateGroupRequest {
 
 @JsonSerializable(explicitToJson: true)
 class ApiUser {
-  ApiUser({
+  const ApiUser({
     this.id,
     this.username,
     this.displayName,
@@ -6095,7 +6098,7 @@ extension $ApiUserExtension on ApiUser {
 
 @JsonSerializable(explicitToJson: true)
 class ApiUserGroupList {
-  ApiUserGroupList({
+  const ApiUserGroupList({
     this.userGroups,
     this.cursor,
   });
@@ -6155,7 +6158,7 @@ extension $ApiUserGroupListExtension on ApiUserGroupList {
 
 @JsonSerializable(explicitToJson: true)
 class ApiUsers {
-  ApiUsers({
+  const ApiUsers({
     this.users,
   });
 
@@ -6197,7 +6200,7 @@ extension $ApiUsersExtension on ApiUsers {
 
 @JsonSerializable(explicitToJson: true)
 class ApiValidatePurchaseAppleRequest {
-  ApiValidatePurchaseAppleRequest({
+  const ApiValidatePurchaseAppleRequest({
     this.receipt,
     this.persist,
   });
@@ -6253,7 +6256,7 @@ extension $ApiValidatePurchaseAppleRequestExtension
 
 @JsonSerializable(explicitToJson: true)
 class ApiValidatePurchaseGoogleRequest {
-  ApiValidatePurchaseGoogleRequest({
+  const ApiValidatePurchaseGoogleRequest({
     this.purchase,
     this.persist,
   });
@@ -6310,7 +6313,7 @@ extension $ApiValidatePurchaseGoogleRequestExtension
 
 @JsonSerializable(explicitToJson: true)
 class ApiValidatePurchaseHuaweiRequest {
-  ApiValidatePurchaseHuaweiRequest({
+  const ApiValidatePurchaseHuaweiRequest({
     this.purchase,
     this.signature,
     this.persist,
@@ -6380,7 +6383,7 @@ extension $ApiValidatePurchaseHuaweiRequestExtension
 
 @JsonSerializable(explicitToJson: true)
 class ApiValidatePurchaseResponse {
-  ApiValidatePurchaseResponse({
+  const ApiValidatePurchaseResponse({
     this.validatedPurchases,
   });
 
@@ -6433,7 +6436,7 @@ extension $ApiValidatePurchaseResponseExtension on ApiValidatePurchaseResponse {
 
 @JsonSerializable(explicitToJson: true)
 class ApiValidateSubscriptionAppleRequest {
-  ApiValidateSubscriptionAppleRequest({
+  const ApiValidateSubscriptionAppleRequest({
     this.receipt,
     this.persist,
   });
@@ -6491,7 +6494,7 @@ extension $ApiValidateSubscriptionAppleRequestExtension
 
 @JsonSerializable(explicitToJson: true)
 class ApiValidateSubscriptionGoogleRequest {
-  ApiValidateSubscriptionGoogleRequest({
+  const ApiValidateSubscriptionGoogleRequest({
     this.receipt,
     this.persist,
   });
@@ -6549,7 +6552,7 @@ extension $ApiValidateSubscriptionGoogleRequestExtension
 
 @JsonSerializable(explicitToJson: true)
 class ApiValidateSubscriptionResponse {
-  ApiValidateSubscriptionResponse({
+  const ApiValidateSubscriptionResponse({
     this.validatedSubscription,
   });
 
@@ -6602,7 +6605,7 @@ extension $ApiValidateSubscriptionResponseExtension
 
 @JsonSerializable(explicitToJson: true)
 class ApiValidatedPurchase {
-  ApiValidatedPurchase({
+  const ApiValidatedPurchase({
     this.productId,
     this.transactionId,
     this.store,
@@ -6627,8 +6630,8 @@ class ApiValidatedPurchase {
   @JsonKey(
     name: 'store',
     includeIfNull: true,
-    toJson: apiStoreProviderToJson,
-    fromJson: apiStoreProviderFromJson,
+    toJson: apiStoreProviderNullableToJson,
+    fromJson: apiStoreProviderNullableFromJson,
   )
   final enums.ApiStoreProvider? store;
   @JsonKey(name: 'purchaseTime', includeIfNull: true)
@@ -6642,8 +6645,8 @@ class ApiValidatedPurchase {
   @JsonKey(
     name: 'environment',
     includeIfNull: true,
-    toJson: apiStoreEnvironmentToJson,
-    fromJson: apiStoreEnvironmentFromJson,
+    toJson: apiStoreEnvironmentNullableToJson,
+    fromJson: apiStoreEnvironmentNullableFromJson,
   )
   final enums.ApiStoreEnvironment? environment;
   @JsonKey(name: 'seenBefore', includeIfNull: true)
@@ -6752,7 +6755,7 @@ extension $ApiValidatedPurchaseExtension on ApiValidatedPurchase {
 
 @JsonSerializable(explicitToJson: true)
 class ApiValidatedSubscription {
-  ApiValidatedSubscription({
+  const ApiValidatedSubscription({
     this.productId,
     this.originalTransactionId,
     this.store,
@@ -6777,8 +6780,8 @@ class ApiValidatedSubscription {
   @JsonKey(
     name: 'store',
     includeIfNull: true,
-    toJson: apiStoreProviderToJson,
-    fromJson: apiStoreProviderFromJson,
+    toJson: apiStoreProviderNullableToJson,
+    fromJson: apiStoreProviderNullableFromJson,
   )
   final enums.ApiStoreProvider? store;
   @JsonKey(name: 'purchaseTime', includeIfNull: true)
@@ -6790,8 +6793,8 @@ class ApiValidatedSubscription {
   @JsonKey(
     name: 'environment',
     includeIfNull: true,
-    toJson: apiStoreEnvironmentToJson,
-    fromJson: apiStoreEnvironmentFromJson,
+    toJson: apiStoreEnvironmentNullableToJson,
+    fromJson: apiStoreEnvironmentNullableFromJson,
   )
   final enums.ApiStoreEnvironment? environment;
   @JsonKey(name: 'expiryTime', includeIfNull: true)
@@ -6901,7 +6904,7 @@ extension $ApiValidatedSubscriptionExtension on ApiValidatedSubscription {
 
 @JsonSerializable(explicitToJson: true)
 class ApiWriteStorageObject {
-  ApiWriteStorageObject({
+  const ApiWriteStorageObject({
     this.collection,
     this.key,
     this.value,
@@ -7006,7 +7009,7 @@ extension $ApiWriteStorageObjectExtension on ApiWriteStorageObject {
 
 @JsonSerializable(explicitToJson: true)
 class ApiWriteStorageObjectsRequest {
-  ApiWriteStorageObjectsRequest({
+  const ApiWriteStorageObjectsRequest({
     this.objects,
   });
 
@@ -7055,7 +7058,7 @@ extension $ApiWriteStorageObjectsRequestExtension
 
 @JsonSerializable(explicitToJson: true)
 class ProtobufAny {
-  ProtobufAny({
+  const ProtobufAny({
     this.typeUrl,
     this.value,
   });
@@ -7109,7 +7112,7 @@ extension $ProtobufAnyExtension on ProtobufAny {
 
 @JsonSerializable(explicitToJson: true)
 class RpcStatus {
-  RpcStatus({
+  const RpcStatus({
     this.code,
     this.message,
     this.details,
@@ -7172,8 +7175,12 @@ extension $RpcStatusExtension on RpcStatus {
   }
 }
 
-String? apiOperatorToJson(enums.ApiOperator? apiOperator) {
+String? apiOperatorNullableToJson(enums.ApiOperator? apiOperator) {
   return apiOperator?.value;
+}
+
+String? apiOperatorToJson(enums.ApiOperator apiOperator) {
+  return apiOperator.value;
 }
 
 enums.ApiOperator apiOperatorFromJson(
@@ -7184,6 +7191,22 @@ enums.ApiOperator apiOperatorFromJson(
           .firstWhereOrNull((e) => e.value == apiOperator) ??
       defaultValue ??
       enums.ApiOperator.swaggerGeneratedUnknown;
+}
+
+enums.ApiOperator? apiOperatorNullableFromJson(
+  Object? apiOperator, [
+  enums.ApiOperator? defaultValue,
+]) {
+  if (apiOperator == null) {
+    return null;
+  }
+  return enums.ApiOperator.values
+          .firstWhereOrNull((e) => e.value == apiOperator) ??
+      defaultValue;
+}
+
+String apiOperatorExplodedListToJson(List<enums.ApiOperator>? apiOperator) {
+  return apiOperator?.map((e) => e.value!).join(',') ?? '';
 }
 
 List<String> apiOperatorListToJson(List<enums.ApiOperator>? apiOperator) {
@@ -7216,9 +7239,14 @@ List<enums.ApiOperator>? apiOperatorNullableListFromJson(
   return apiOperator.map((e) => apiOperatorFromJson(e.toString())).toList();
 }
 
-String? apiStoreEnvironmentToJson(
+String? apiStoreEnvironmentNullableToJson(
     enums.ApiStoreEnvironment? apiStoreEnvironment) {
   return apiStoreEnvironment?.value;
+}
+
+String? apiStoreEnvironmentToJson(
+    enums.ApiStoreEnvironment apiStoreEnvironment) {
+  return apiStoreEnvironment.value;
 }
 
 enums.ApiStoreEnvironment apiStoreEnvironmentFromJson(
@@ -7229,6 +7257,23 @@ enums.ApiStoreEnvironment apiStoreEnvironmentFromJson(
           .firstWhereOrNull((e) => e.value == apiStoreEnvironment) ??
       defaultValue ??
       enums.ApiStoreEnvironment.swaggerGeneratedUnknown;
+}
+
+enums.ApiStoreEnvironment? apiStoreEnvironmentNullableFromJson(
+  Object? apiStoreEnvironment, [
+  enums.ApiStoreEnvironment? defaultValue,
+]) {
+  if (apiStoreEnvironment == null) {
+    return null;
+  }
+  return enums.ApiStoreEnvironment.values
+          .firstWhereOrNull((e) => e.value == apiStoreEnvironment) ??
+      defaultValue;
+}
+
+String apiStoreEnvironmentExplodedListToJson(
+    List<enums.ApiStoreEnvironment>? apiStoreEnvironment) {
+  return apiStoreEnvironment?.map((e) => e.value!).join(',') ?? '';
 }
 
 List<String> apiStoreEnvironmentListToJson(
@@ -7266,8 +7311,13 @@ List<enums.ApiStoreEnvironment>? apiStoreEnvironmentNullableListFromJson(
       .toList();
 }
 
-String? apiStoreProviderToJson(enums.ApiStoreProvider? apiStoreProvider) {
+String? apiStoreProviderNullableToJson(
+    enums.ApiStoreProvider? apiStoreProvider) {
   return apiStoreProvider?.value;
+}
+
+String? apiStoreProviderToJson(enums.ApiStoreProvider apiStoreProvider) {
+  return apiStoreProvider.value;
 }
 
 enums.ApiStoreProvider apiStoreProviderFromJson(
@@ -7278,6 +7328,23 @@ enums.ApiStoreProvider apiStoreProviderFromJson(
           .firstWhereOrNull((e) => e.value == apiStoreProvider) ??
       defaultValue ??
       enums.ApiStoreProvider.swaggerGeneratedUnknown;
+}
+
+enums.ApiStoreProvider? apiStoreProviderNullableFromJson(
+  Object? apiStoreProvider, [
+  enums.ApiStoreProvider? defaultValue,
+]) {
+  if (apiStoreProvider == null) {
+    return null;
+  }
+  return enums.ApiStoreProvider.values
+          .firstWhereOrNull((e) => e.value == apiStoreProvider) ??
+      defaultValue;
+}
+
+String apiStoreProviderExplodedListToJson(
+    List<enums.ApiStoreProvider>? apiStoreProvider) {
+  return apiStoreProvider?.map((e) => e.value!).join(',') ?? '';
 }
 
 List<String> apiStoreProviderListToJson(
@@ -7367,6 +7434,16 @@ class $JsonSerializableConverter extends chopper.JsonConverter {
       // In rare cases, when let's say 204 (no content) is returned -
       // we cannot decode the missing json with the result type specified
       return chopper.Response(response.base, null, error: response.error);
+    }
+
+    if (ResultType == String) {
+      return response.copyWith();
+    }
+
+    if (ResultType == DateTime) {
+      return response.copyWith(
+          body: DateTime.parse((response.body as String).replaceAll('"', ''))
+              as ResultType);
     }
 
     final jsonRes = await super.convertResponse(response);

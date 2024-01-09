@@ -92,10 +92,11 @@ class _$PartyDataCopyWithImpl<$Res, $Val extends PartyData>
 }
 
 /// @nodoc
-abstract class _$$_PartyDataCopyWith<$Res> implements $PartyDataCopyWith<$Res> {
-  factory _$$_PartyDataCopyWith(
-          _$_PartyData value, $Res Function(_$_PartyData) then) =
-      __$$_PartyDataCopyWithImpl<$Res>;
+abstract class _$$PartyDataImplCopyWith<$Res>
+    implements $PartyDataCopyWith<$Res> {
+  factory _$$PartyDataImplCopyWith(
+          _$PartyDataImpl value, $Res Function(_$PartyDataImpl) then) =
+      __$$PartyDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -106,11 +107,11 @@ abstract class _$$_PartyDataCopyWith<$Res> implements $PartyDataCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PartyDataCopyWithImpl<$Res>
-    extends _$PartyDataCopyWithImpl<$Res, _$_PartyData>
-    implements _$$_PartyDataCopyWith<$Res> {
-  __$$_PartyDataCopyWithImpl(
-      _$_PartyData _value, $Res Function(_$_PartyData) _then)
+class __$$PartyDataImplCopyWithImpl<$Res>
+    extends _$PartyDataCopyWithImpl<$Res, _$PartyDataImpl>
+    implements _$$PartyDataImplCopyWith<$Res> {
+  __$$PartyDataImplCopyWithImpl(
+      _$PartyDataImpl _value, $Res Function(_$PartyDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -121,7 +122,7 @@ class __$$_PartyDataCopyWithImpl<$Res>
     Object? opCode = null,
     Object? data = null,
   }) {
-    return _then(_$_PartyData(
+    return _then(_$PartyDataImpl(
       partyId: null == partyId
           ? _value.partyId
           : partyId // ignore: cast_nullable_to_non_nullable
@@ -144,8 +145,8 @@ class __$$_PartyDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PartyData extends _PartyData {
-  const _$_PartyData(
+class _$PartyDataImpl extends _PartyData {
+  const _$PartyDataImpl(
       {required this.partyId,
       required this.presence,
       required this.opCode,
@@ -182,10 +183,10 @@ class _$_PartyData extends _PartyData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PartyData &&
+            other is _$PartyDataImpl &&
             (identical(other.partyId, partyId) || other.partyId == partyId) &&
             (identical(other.presence, presence) ||
                 other.presence == presence) &&
@@ -200,8 +201,8 @@ class _$_PartyData extends _PartyData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PartyDataCopyWith<_$_PartyData> get copyWith =>
-      __$$_PartyDataCopyWithImpl<_$_PartyData>(this, _$identity);
+  _$$PartyDataImplCopyWith<_$PartyDataImpl> get copyWith =>
+      __$$PartyDataImplCopyWithImpl<_$PartyDataImpl>(this, _$identity);
 }
 
 abstract class _PartyData extends PartyData {
@@ -209,7 +210,7 @@ abstract class _PartyData extends PartyData {
       {required final String partyId,
       required final UserPresence presence,
       required final int opCode,
-      required final List<int> data}) = _$_PartyData;
+      required final List<int> data}) = _$PartyDataImpl;
   const _PartyData._() : super._();
 
   @override
@@ -230,6 +231,6 @@ abstract class _PartyData extends PartyData {
   List<int> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_PartyDataCopyWith<_$_PartyData> get copyWith =>
+  _$$PartyDataImplCopyWith<_$PartyDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

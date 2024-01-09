@@ -113,10 +113,10 @@ class _$AccountCopyWithImpl<$Res, $Val extends Account>
 }
 
 /// @nodoc
-abstract class _$$_AccountCopyWith<$Res> implements $AccountCopyWith<$Res> {
-  factory _$$_AccountCopyWith(
-          _$_Account value, $Res Function(_$_Account) then) =
-      __$$_AccountCopyWithImpl<$Res>;
+abstract class _$$AccountImplCopyWith<$Res> implements $AccountCopyWith<$Res> {
+  factory _$$AccountImplCopyWith(
+          _$AccountImpl value, $Res Function(_$AccountImpl) then) =
+      __$$AccountImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -133,10 +133,11 @@ abstract class _$$_AccountCopyWith<$Res> implements $AccountCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AccountCopyWithImpl<$Res>
-    extends _$AccountCopyWithImpl<$Res, _$_Account>
-    implements _$$_AccountCopyWith<$Res> {
-  __$$_AccountCopyWithImpl(_$_Account _value, $Res Function(_$_Account) _then)
+class __$$AccountImplCopyWithImpl<$Res>
+    extends _$AccountCopyWithImpl<$Res, _$AccountImpl>
+    implements _$$AccountImplCopyWith<$Res> {
+  __$$AccountImplCopyWithImpl(
+      _$AccountImpl _value, $Res Function(_$AccountImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -150,7 +151,7 @@ class __$$_AccountCopyWithImpl<$Res>
     Object? disableTime = freezed,
     Object? user = null,
   }) {
-    return _then(_$_Account(
+    return _then(_$AccountImpl(
       wallet: freezed == wallet
           ? _value.wallet
           : wallet // ignore: cast_nullable_to_non_nullable
@@ -185,8 +186,8 @@ class __$$_AccountCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Account extends _Account {
-  const _$_Account(
+class _$AccountImpl extends _Account {
+  const _$AccountImpl(
       {this.wallet,
       this.email,
       final List<Device> devices = const [],
@@ -197,8 +198,8 @@ class _$_Account extends _Account {
       : _devices = devices,
         super._();
 
-  factory _$_Account.fromJson(Map<String, dynamic> json) =>
-      _$$_AccountFromJson(json);
+  factory _$AccountImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AccountImplFromJson(json);
 
   @override
   final String? wallet;
@@ -228,10 +229,10 @@ class _$_Account extends _Account {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Account &&
+            other is _$AccountImpl &&
             (identical(other.wallet, wallet) || other.wallet == wallet) &&
             (identical(other.email, email) || other.email == email) &&
             const DeepCollectionEquality().equals(other._devices, _devices) &&
@@ -259,12 +260,12 @@ class _$_Account extends _Account {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AccountCopyWith<_$_Account> get copyWith =>
-      __$$_AccountCopyWithImpl<_$_Account>(this, _$identity);
+  _$$AccountImplCopyWith<_$AccountImpl> get copyWith =>
+      __$$AccountImplCopyWithImpl<_$AccountImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AccountToJson(
+    return _$$AccountImplToJson(
       this,
     );
   }
@@ -278,10 +279,10 @@ abstract class _Account extends Account {
       final String? customId,
       final DateTime? verifyTime,
       final DateTime? disableTime,
-      required final User user}) = _$_Account;
+      required final User user}) = _$AccountImpl;
   const _Account._() : super._();
 
-  factory _Account.fromJson(Map<String, dynamic> json) = _$_Account.fromJson;
+  factory _Account.fromJson(Map<String, dynamic> json) = _$AccountImpl.fromJson;
 
   @override
   String? get wallet;
@@ -299,7 +300,7 @@ abstract class _Account extends Account {
   User get user;
   @override
   @JsonKey(ignore: true)
-  _$$_AccountCopyWith<_$_Account> get copyWith =>
+  _$$AccountImplCopyWith<_$AccountImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -355,19 +356,21 @@ class _$DeviceCopyWithImpl<$Res, $Val extends Device>
 }
 
 /// @nodoc
-abstract class _$$_DeviceCopyWith<$Res> implements $DeviceCopyWith<$Res> {
-  factory _$$_DeviceCopyWith(_$_Device value, $Res Function(_$_Device) then) =
-      __$$_DeviceCopyWithImpl<$Res>;
+abstract class _$$DeviceImplCopyWith<$Res> implements $DeviceCopyWith<$Res> {
+  factory _$$DeviceImplCopyWith(
+          _$DeviceImpl value, $Res Function(_$DeviceImpl) then) =
+      __$$DeviceImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, Map<String, dynamic> vars});
 }
 
 /// @nodoc
-class __$$_DeviceCopyWithImpl<$Res>
-    extends _$DeviceCopyWithImpl<$Res, _$_Device>
-    implements _$$_DeviceCopyWith<$Res> {
-  __$$_DeviceCopyWithImpl(_$_Device _value, $Res Function(_$_Device) _then)
+class __$$DeviceImplCopyWithImpl<$Res>
+    extends _$DeviceCopyWithImpl<$Res, _$DeviceImpl>
+    implements _$$DeviceImplCopyWith<$Res> {
+  __$$DeviceImplCopyWithImpl(
+      _$DeviceImpl _value, $Res Function(_$DeviceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -376,7 +379,7 @@ class __$$_DeviceCopyWithImpl<$Res>
     Object? id = null,
     Object? vars = null,
   }) {
-    return _then(_$_Device(
+    return _then(_$DeviceImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -391,14 +394,14 @@ class __$$_DeviceCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Device extends _Device {
-  const _$_Device(
+class _$DeviceImpl extends _Device {
+  const _$DeviceImpl(
       {required this.id, final Map<String, dynamic> vars = const {}})
       : _vars = vars,
         super._();
 
-  factory _$_Device.fromJson(Map<String, dynamic> json) =>
-      _$$_DeviceFromJson(json);
+  factory _$DeviceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DeviceImplFromJson(json);
 
   @override
   final String id;
@@ -417,10 +420,10 @@ class _$_Device extends _Device {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Device &&
+            other is _$DeviceImpl &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._vars, _vars));
   }
@@ -433,12 +436,12 @@ class _$_Device extends _Device {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DeviceCopyWith<_$_Device> get copyWith =>
-      __$$_DeviceCopyWithImpl<_$_Device>(this, _$identity);
+  _$$DeviceImplCopyWith<_$DeviceImpl> get copyWith =>
+      __$$DeviceImplCopyWithImpl<_$DeviceImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DeviceToJson(
+    return _$$DeviceImplToJson(
       this,
     );
   }
@@ -446,10 +449,11 @@ class _$_Device extends _Device {
 
 abstract class _Device extends Device {
   const factory _Device(
-      {required final String id, final Map<String, dynamic> vars}) = _$_Device;
+      {required final String id,
+      final Map<String, dynamic> vars}) = _$DeviceImpl;
   const _Device._() : super._();
 
-  factory _Device.fromJson(Map<String, dynamic> json) = _$_Device.fromJson;
+  factory _Device.fromJson(Map<String, dynamic> json) = _$DeviceImpl.fromJson;
 
   @override
   String get id;
@@ -457,7 +461,7 @@ abstract class _Device extends Device {
   Map<String, dynamic> get vars;
   @override
   @JsonKey(ignore: true)
-  _$$_DeviceCopyWith<_$_Device> get copyWith =>
+  _$$DeviceImplCopyWith<_$DeviceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -627,9 +631,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
 }
 
 /// @nodoc
-abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
-      __$$_UserCopyWithImpl<$Res>;
+abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
+  factory _$$UserImplCopyWith(
+          _$UserImpl value, $Res Function(_$UserImpl) then) =
+      __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -654,9 +659,10 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
-    implements _$$_UserCopyWith<$Res> {
-  __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
+class __$$UserImplCopyWithImpl<$Res>
+    extends _$UserCopyWithImpl<$Res, _$UserImpl>
+    implements _$$UserImplCopyWith<$Res> {
+  __$$UserImplCopyWithImpl(_$UserImpl _value, $Res Function(_$UserImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -681,7 +687,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? facebookInstantGameId = freezed,
     Object? appleId = freezed,
   }) {
-    return _then(_$_User(
+    return _then(_$UserImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -760,8 +766,8 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 
 /// @nodoc
 @JsonSerializable()
-class _$_User extends _User {
-  const _$_User(
+class _$UserImpl extends _User {
+  const _$UserImpl(
       {required this.id,
       this.username,
       this.displayName,
@@ -782,7 +788,8 @@ class _$_User extends _User {
       this.appleId})
       : super._();
 
-  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
+  factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserImplFromJson(json);
 
   @override
   final String id;
@@ -829,10 +836,10 @@ class _$_User extends _User {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_User &&
+            other is _$UserImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.username, username) ||
                 other.username == username) &&
@@ -892,12 +899,12 @@ class _$_User extends _User {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserCopyWith<_$_User> get copyWith =>
-      __$$_UserCopyWithImpl<_$_User>(this, _$identity);
+  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
+      __$$UserImplCopyWithImpl<_$UserImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserToJson(
+    return _$$UserImplToJson(
       this,
     );
   }
@@ -922,10 +929,10 @@ abstract class _User extends User {
       final DateTime? createTime,
       final DateTime? updateTime,
       final String? facebookInstantGameId,
-      final String? appleId}) = _$_User;
+      final String? appleId}) = _$UserImpl;
   const _User._() : super._();
 
-  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+  factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
   @override
   String get id;
@@ -965,5 +972,6 @@ abstract class _User extends User {
   String? get appleId;
   @override
   @JsonKey(ignore: true)
-  _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
+  _$$UserImplCopyWith<_$UserImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -6,8 +6,8 @@ part of 'notification.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Notification _$$_NotificationFromJson(Map<String, dynamic> json) =>
-    _$_Notification(
+_$NotificationImpl _$$NotificationImplFromJson(Map<String, dynamic> json) =>
+    _$NotificationImpl(
       id: json['id'] as String,
       subject: json['subject'] as String?,
       content: json['content'] as String?,
@@ -17,7 +17,7 @@ _$_Notification _$$_NotificationFromJson(Map<String, dynamic> json) =>
       persistent: json['persistent'] as bool,
     );
 
-Map<String, dynamic> _$$_NotificationToJson(_$_Notification instance) =>
+Map<String, dynamic> _$$NotificationImplToJson(_$NotificationImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'subject': instance.subject,
@@ -28,15 +28,17 @@ Map<String, dynamic> _$$_NotificationToJson(_$_Notification instance) =>
       'persistent': instance.persistent,
     };
 
-_$_NotificationList _$$_NotificationListFromJson(Map<String, dynamic> json) =>
-    _$_NotificationList(
-      cursor: json['cursor'] as String,
+_$NotificationListImpl _$$NotificationListImplFromJson(
+        Map<String, dynamic> json) =>
+    _$NotificationListImpl(
+      cursor: json['cursor'] as String?,
       notifications: (json['notifications'] as List<dynamic>)
           .map((e) => Notification.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_NotificationListToJson(_$_NotificationList instance) =>
+Map<String, dynamic> _$$NotificationListImplToJson(
+        _$NotificationListImpl instance) =>
     <String, dynamic>{
       'cursor': instance.cursor,
       'notifications': instance.notifications,

@@ -87,11 +87,12 @@ class _$LeaderboardRecordListCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_LeaderboardRecordListCopyWith<$Res>
+abstract class _$$LeaderboardRecordListImplCopyWith<$Res>
     implements $LeaderboardRecordListCopyWith<$Res> {
-  factory _$$_LeaderboardRecordListCopyWith(_$_LeaderboardRecordList value,
-          $Res Function(_$_LeaderboardRecordList) then) =
-      __$$_LeaderboardRecordListCopyWithImpl<$Res>;
+  factory _$$LeaderboardRecordListImplCopyWith(
+          _$LeaderboardRecordListImpl value,
+          $Res Function(_$LeaderboardRecordListImpl) then) =
+      __$$LeaderboardRecordListImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -102,11 +103,12 @@ abstract class _$$_LeaderboardRecordListCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LeaderboardRecordListCopyWithImpl<$Res>
-    extends _$LeaderboardRecordListCopyWithImpl<$Res, _$_LeaderboardRecordList>
-    implements _$$_LeaderboardRecordListCopyWith<$Res> {
-  __$$_LeaderboardRecordListCopyWithImpl(_$_LeaderboardRecordList _value,
-      $Res Function(_$_LeaderboardRecordList) _then)
+class __$$LeaderboardRecordListImplCopyWithImpl<$Res>
+    extends _$LeaderboardRecordListCopyWithImpl<$Res,
+        _$LeaderboardRecordListImpl>
+    implements _$$LeaderboardRecordListImplCopyWith<$Res> {
+  __$$LeaderboardRecordListImplCopyWithImpl(_$LeaderboardRecordListImpl _value,
+      $Res Function(_$LeaderboardRecordListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -117,7 +119,7 @@ class __$$_LeaderboardRecordListCopyWithImpl<$Res>
     Object? nextCursor = freezed,
     Object? prevCursor = freezed,
   }) {
-    return _then(_$_LeaderboardRecordList(
+    return _then(_$LeaderboardRecordListImpl(
       records: null == records
           ? _value._records
           : records // ignore: cast_nullable_to_non_nullable
@@ -140,8 +142,8 @@ class __$$_LeaderboardRecordListCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LeaderboardRecordList extends _LeaderboardRecordList {
-  const _$_LeaderboardRecordList(
+class _$LeaderboardRecordListImpl extends _LeaderboardRecordList {
+  const _$LeaderboardRecordListImpl(
       {required final List<LeaderboardRecord> records,
       required final List<LeaderboardRecord> ownerRecords,
       this.nextCursor,
@@ -150,8 +152,8 @@ class _$_LeaderboardRecordList extends _LeaderboardRecordList {
         _ownerRecords = ownerRecords,
         super._();
 
-  factory _$_LeaderboardRecordList.fromJson(Map<String, dynamic> json) =>
-      _$$_LeaderboardRecordListFromJson(json);
+  factory _$LeaderboardRecordListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LeaderboardRecordListImplFromJson(json);
 
   final List<LeaderboardRecord> _records;
   @override
@@ -180,10 +182,10 @@ class _$_LeaderboardRecordList extends _LeaderboardRecordList {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LeaderboardRecordList &&
+            other is _$LeaderboardRecordListImpl &&
             const DeepCollectionEquality().equals(other._records, _records) &&
             const DeepCollectionEquality()
                 .equals(other._ownerRecords, _ownerRecords) &&
@@ -205,13 +207,13 @@ class _$_LeaderboardRecordList extends _LeaderboardRecordList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LeaderboardRecordListCopyWith<_$_LeaderboardRecordList> get copyWith =>
-      __$$_LeaderboardRecordListCopyWithImpl<_$_LeaderboardRecordList>(
-          this, _$identity);
+  _$$LeaderboardRecordListImplCopyWith<_$LeaderboardRecordListImpl>
+      get copyWith => __$$LeaderboardRecordListImplCopyWithImpl<
+          _$LeaderboardRecordListImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LeaderboardRecordListToJson(
+    return _$$LeaderboardRecordListImplToJson(
       this,
     );
   }
@@ -222,11 +224,11 @@ abstract class _LeaderboardRecordList extends LeaderboardRecordList {
       {required final List<LeaderboardRecord> records,
       required final List<LeaderboardRecord> ownerRecords,
       final String? nextCursor,
-      final String? prevCursor}) = _$_LeaderboardRecordList;
+      final String? prevCursor}) = _$LeaderboardRecordListImpl;
   const _LeaderboardRecordList._() : super._();
 
   factory _LeaderboardRecordList.fromJson(Map<String, dynamic> json) =
-      _$_LeaderboardRecordList.fromJson;
+      _$LeaderboardRecordListImpl.fromJson;
 
   @override
   List<LeaderboardRecord> get records;
@@ -238,8 +240,8 @@ abstract class _LeaderboardRecordList extends LeaderboardRecordList {
   String? get prevCursor;
   @override
   @JsonKey(ignore: true)
-  _$$_LeaderboardRecordListCopyWith<_$_LeaderboardRecordList> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LeaderboardRecordListImplCopyWith<_$LeaderboardRecordListImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 LeaderboardRecord _$LeaderboardRecordFromJson(Map<String, dynamic> json) {
@@ -371,11 +373,11 @@ class _$LeaderboardRecordCopyWithImpl<$Res, $Val extends LeaderboardRecord>
 }
 
 /// @nodoc
-abstract class _$$_LeaderboardRecordCopyWith<$Res>
+abstract class _$$LeaderboardRecordImplCopyWith<$Res>
     implements $LeaderboardRecordCopyWith<$Res> {
-  factory _$$_LeaderboardRecordCopyWith(_$_LeaderboardRecord value,
-          $Res Function(_$_LeaderboardRecord) then) =
-      __$$_LeaderboardRecordCopyWithImpl<$Res>;
+  factory _$$LeaderboardRecordImplCopyWith(_$LeaderboardRecordImpl value,
+          $Res Function(_$LeaderboardRecordImpl) then) =
+      __$$LeaderboardRecordImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -394,11 +396,11 @@ abstract class _$$_LeaderboardRecordCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LeaderboardRecordCopyWithImpl<$Res>
-    extends _$LeaderboardRecordCopyWithImpl<$Res, _$_LeaderboardRecord>
-    implements _$$_LeaderboardRecordCopyWith<$Res> {
-  __$$_LeaderboardRecordCopyWithImpl(
-      _$_LeaderboardRecord _value, $Res Function(_$_LeaderboardRecord) _then)
+class __$$LeaderboardRecordImplCopyWithImpl<$Res>
+    extends _$LeaderboardRecordCopyWithImpl<$Res, _$LeaderboardRecordImpl>
+    implements _$$LeaderboardRecordImplCopyWith<$Res> {
+  __$$LeaderboardRecordImplCopyWithImpl(_$LeaderboardRecordImpl _value,
+      $Res Function(_$LeaderboardRecordImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -417,7 +419,7 @@ class __$$_LeaderboardRecordCopyWithImpl<$Res>
     Object? rank = freezed,
     Object? maxNumScore = null,
   }) {
-    return _then(_$_LeaderboardRecord(
+    return _then(_$LeaderboardRecordImpl(
       leaderboardId: freezed == leaderboardId
           ? _value.leaderboardId
           : leaderboardId // ignore: cast_nullable_to_non_nullable
@@ -472,8 +474,8 @@ class __$$_LeaderboardRecordCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LeaderboardRecord extends _LeaderboardRecord {
-  const _$_LeaderboardRecord(
+class _$LeaderboardRecordImpl extends _LeaderboardRecord {
+  const _$LeaderboardRecordImpl(
       {this.leaderboardId,
       this.ownerId,
       this.username,
@@ -488,8 +490,8 @@ class _$_LeaderboardRecord extends _LeaderboardRecord {
       this.maxNumScore = 0})
       : super._();
 
-  factory _$_LeaderboardRecord.fromJson(Map<String, dynamic> json) =>
-      _$$_LeaderboardRecordFromJson(json);
+  factory _$LeaderboardRecordImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LeaderboardRecordImplFromJson(json);
 
   @override
   final String? leaderboardId;
@@ -527,10 +529,10 @@ class _$_LeaderboardRecord extends _LeaderboardRecord {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LeaderboardRecord &&
+            other is _$LeaderboardRecordImpl &&
             (identical(other.leaderboardId, leaderboardId) ||
                 other.leaderboardId == leaderboardId) &&
             (identical(other.ownerId, ownerId) || other.ownerId == ownerId) &&
@@ -574,13 +576,13 @@ class _$_LeaderboardRecord extends _LeaderboardRecord {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LeaderboardRecordCopyWith<_$_LeaderboardRecord> get copyWith =>
-      __$$_LeaderboardRecordCopyWithImpl<_$_LeaderboardRecord>(
+  _$$LeaderboardRecordImplCopyWith<_$LeaderboardRecordImpl> get copyWith =>
+      __$$LeaderboardRecordImplCopyWithImpl<_$LeaderboardRecordImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LeaderboardRecordToJson(
+    return _$$LeaderboardRecordImplToJson(
       this,
     );
   }
@@ -599,11 +601,11 @@ abstract class _LeaderboardRecord extends LeaderboardRecord {
       final DateTime? updateTime,
       final DateTime? expiryTime,
       @JsonKey(fromJson: _stringToInt) final int? rank,
-      final int maxNumScore}) = _$_LeaderboardRecord;
+      final int maxNumScore}) = _$LeaderboardRecordImpl;
   const _LeaderboardRecord._() : super._();
 
   factory _LeaderboardRecord.fromJson(Map<String, dynamic> json) =
-      _$_LeaderboardRecord.fromJson;
+      _$LeaderboardRecordImpl.fromJson;
 
   @override
   String? get leaderboardId;
@@ -634,6 +636,6 @@ abstract class _LeaderboardRecord extends LeaderboardRecord {
   int get maxNumScore;
   @override
   @JsonKey(ignore: true)
-  _$$_LeaderboardRecordCopyWith<_$_LeaderboardRecord> get copyWith =>
+  _$$LeaderboardRecordImplCopyWith<_$LeaderboardRecordImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

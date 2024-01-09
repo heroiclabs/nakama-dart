@@ -147,11 +147,11 @@ class _$ChannelMessageCopyWithImpl<$Res, $Val extends ChannelMessage>
 }
 
 /// @nodoc
-abstract class _$$_ChannelMessageCopyWith<$Res>
+abstract class _$$ChannelMessageImplCopyWith<$Res>
     implements $ChannelMessageCopyWith<$Res> {
-  factory _$$_ChannelMessageCopyWith(
-          _$_ChannelMessage value, $Res Function(_$_ChannelMessage) then) =
-      __$$_ChannelMessageCopyWithImpl<$Res>;
+  factory _$$ChannelMessageImplCopyWith(_$ChannelMessageImpl value,
+          $Res Function(_$ChannelMessageImpl) then) =
+      __$$ChannelMessageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -171,11 +171,11 @@ abstract class _$$_ChannelMessageCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChannelMessageCopyWithImpl<$Res>
-    extends _$ChannelMessageCopyWithImpl<$Res, _$_ChannelMessage>
-    implements _$$_ChannelMessageCopyWith<$Res> {
-  __$$_ChannelMessageCopyWithImpl(
-      _$_ChannelMessage _value, $Res Function(_$_ChannelMessage) _then)
+class __$$ChannelMessageImplCopyWithImpl<$Res>
+    extends _$ChannelMessageCopyWithImpl<$Res, _$ChannelMessageImpl>
+    implements _$$ChannelMessageImplCopyWith<$Res> {
+  __$$ChannelMessageImplCopyWithImpl(
+      _$ChannelMessageImpl _value, $Res Function(_$ChannelMessageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -195,7 +195,7 @@ class __$$_ChannelMessageCopyWithImpl<$Res>
     Object? userIdOne = null,
     Object? userIdTwo = null,
   }) {
-    return _then(_$_ChannelMessage(
+    return _then(_$ChannelMessageImpl(
       channelId: null == channelId
           ? _value.channelId
           : channelId // ignore: cast_nullable_to_non_nullable
@@ -254,8 +254,8 @@ class __$$_ChannelMessageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChannelMessage extends _ChannelMessage {
-  const _$_ChannelMessage(
+class _$ChannelMessageImpl extends _ChannelMessage {
+  const _$ChannelMessageImpl(
       {required this.channelId,
       required this.messageId,
       required this.code,
@@ -271,8 +271,8 @@ class _$_ChannelMessage extends _ChannelMessage {
       required this.userIdTwo})
       : super._();
 
-  factory _$_ChannelMessage.fromJson(Map<String, dynamic> json) =>
-      _$$_ChannelMessageFromJson(json);
+  factory _$ChannelMessageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChannelMessageImplFromJson(json);
 
   @override
   final String channelId;
@@ -307,10 +307,10 @@ class _$_ChannelMessage extends _ChannelMessage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChannelMessage &&
+            other is _$ChannelMessageImpl &&
             (identical(other.channelId, channelId) ||
                 other.channelId == channelId) &&
             (identical(other.messageId, messageId) ||
@@ -357,12 +357,13 @@ class _$_ChannelMessage extends _ChannelMessage {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChannelMessageCopyWith<_$_ChannelMessage> get copyWith =>
-      __$$_ChannelMessageCopyWithImpl<_$_ChannelMessage>(this, _$identity);
+  _$$ChannelMessageImplCopyWith<_$ChannelMessageImpl> get copyWith =>
+      __$$ChannelMessageImplCopyWithImpl<_$ChannelMessageImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChannelMessageToJson(
+    return _$$ChannelMessageImplToJson(
       this,
     );
   }
@@ -382,11 +383,11 @@ abstract class _ChannelMessage extends ChannelMessage {
       required final String roomName,
       required final String groupId,
       required final String userIdOne,
-      required final String userIdTwo}) = _$_ChannelMessage;
+      required final String userIdTwo}) = _$ChannelMessageImpl;
   const _ChannelMessage._() : super._();
 
   factory _ChannelMessage.fromJson(Map<String, dynamic> json) =
-      _$_ChannelMessage.fromJson;
+      _$ChannelMessageImpl.fromJson;
 
   @override
   String get channelId;
@@ -416,7 +417,7 @@ abstract class _ChannelMessage extends ChannelMessage {
   String get userIdTwo;
   @override
   @JsonKey(ignore: true)
-  _$$_ChannelMessageCopyWith<_$_ChannelMessage> get copyWith =>
+  _$$ChannelMessageImplCopyWith<_$ChannelMessageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -490,11 +491,11 @@ class _$ChannelMessageListCopyWithImpl<$Res, $Val extends ChannelMessageList>
 }
 
 /// @nodoc
-abstract class _$$_ChannelMessageListCopyWith<$Res>
+abstract class _$$ChannelMessageListImplCopyWith<$Res>
     implements $ChannelMessageListCopyWith<$Res> {
-  factory _$$_ChannelMessageListCopyWith(_$_ChannelMessageList value,
-          $Res Function(_$_ChannelMessageList) then) =
-      __$$_ChannelMessageListCopyWithImpl<$Res>;
+  factory _$$ChannelMessageListImplCopyWith(_$ChannelMessageListImpl value,
+          $Res Function(_$ChannelMessageListImpl) then) =
+      __$$ChannelMessageListImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -505,11 +506,11 @@ abstract class _$$_ChannelMessageListCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ChannelMessageListCopyWithImpl<$Res>
-    extends _$ChannelMessageListCopyWithImpl<$Res, _$_ChannelMessageList>
-    implements _$$_ChannelMessageListCopyWith<$Res> {
-  __$$_ChannelMessageListCopyWithImpl(
-      _$_ChannelMessageList _value, $Res Function(_$_ChannelMessageList) _then)
+class __$$ChannelMessageListImplCopyWithImpl<$Res>
+    extends _$ChannelMessageListCopyWithImpl<$Res, _$ChannelMessageListImpl>
+    implements _$$ChannelMessageListImplCopyWith<$Res> {
+  __$$ChannelMessageListImplCopyWithImpl(_$ChannelMessageListImpl _value,
+      $Res Function(_$ChannelMessageListImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -520,7 +521,7 @@ class __$$_ChannelMessageListCopyWithImpl<$Res>
     Object? prevCursor = null,
     Object? cacheableCursor = null,
   }) {
-    return _then(_$_ChannelMessageList(
+    return _then(_$ChannelMessageListImpl(
       messages: null == messages
           ? _value._messages
           : messages // ignore: cast_nullable_to_non_nullable
@@ -543,8 +544,8 @@ class __$$_ChannelMessageListCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ChannelMessageList extends _ChannelMessageList {
-  const _$_ChannelMessageList(
+class _$ChannelMessageListImpl extends _ChannelMessageList {
+  const _$ChannelMessageListImpl(
       {required final List<ChannelMessage> messages,
       required this.nextCursor,
       required this.prevCursor,
@@ -552,8 +553,8 @@ class _$_ChannelMessageList extends _ChannelMessageList {
       : _messages = messages,
         super._();
 
-  factory _$_ChannelMessageList.fromJson(Map<String, dynamic> json) =>
-      _$$_ChannelMessageListFromJson(json);
+  factory _$ChannelMessageListImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChannelMessageListImplFromJson(json);
 
   final List<ChannelMessage> _messages;
   @override
@@ -576,10 +577,10 @@ class _$_ChannelMessageList extends _ChannelMessageList {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChannelMessageList &&
+            other is _$ChannelMessageListImpl &&
             const DeepCollectionEquality().equals(other._messages, _messages) &&
             (identical(other.nextCursor, nextCursor) ||
                 other.nextCursor == nextCursor) &&
@@ -601,13 +602,13 @@ class _$_ChannelMessageList extends _ChannelMessageList {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChannelMessageListCopyWith<_$_ChannelMessageList> get copyWith =>
-      __$$_ChannelMessageListCopyWithImpl<_$_ChannelMessageList>(
+  _$$ChannelMessageListImplCopyWith<_$ChannelMessageListImpl> get copyWith =>
+      __$$ChannelMessageListImplCopyWithImpl<_$ChannelMessageListImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ChannelMessageListToJson(
+    return _$$ChannelMessageListImplToJson(
       this,
     );
   }
@@ -618,11 +619,11 @@ abstract class _ChannelMessageList extends ChannelMessageList {
       {required final List<ChannelMessage> messages,
       required final String nextCursor,
       required final String prevCursor,
-      required final String cacheableCursor}) = _$_ChannelMessageList;
+      required final String cacheableCursor}) = _$ChannelMessageListImpl;
   const _ChannelMessageList._() : super._();
 
   factory _ChannelMessageList.fromJson(Map<String, dynamic> json) =
-      _$_ChannelMessageList.fromJson;
+      _$ChannelMessageListImpl.fromJson;
 
   @override
   List<ChannelMessage> get messages;
@@ -634,6 +635,6 @@ abstract class _ChannelMessageList extends ChannelMessageList {
   String get cacheableCursor;
   @override
   @JsonKey(ignore: true)
-  _$$_ChannelMessageListCopyWith<_$_ChannelMessageList> get copyWith =>
+  _$$ChannelMessageListImplCopyWith<_$ChannelMessageListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

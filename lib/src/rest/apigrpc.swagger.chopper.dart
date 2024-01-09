@@ -6,7 +6,7 @@ part of 'apigrpc.swagger.dart';
 // ChopperGenerator
 // **************************************************************************
 
-// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
+// ignore_for_file: type=lint
 final class _$Apigrpc extends Apigrpc {
   _$Apigrpc([ChopperClient? client]) {
     if (client == null) return;

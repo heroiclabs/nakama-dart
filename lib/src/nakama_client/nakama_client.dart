@@ -462,11 +462,18 @@ abstract class NakamaBaseClient {
 
   /// # Listing and filtering groups
   ///
-  /// Groups can be listed like other Nakama resources and also filtered with a
-  /// wildcard group name.
+  /// Groups can be listed using a number of optional filters: name, lang_tag,
+  /// open and (number of) members. If all filters are omitted, the operation
+  /// will list all existing groups.
   ///
   /// Players use group listing and filtering to search for existing groups to
   /// join.
+  ///
+  /// The `name` filter is case insensitive and mutually exclusive to the
+  /// remainder filters. It can be useful to help the user look for a specific
+  /// group by name, and it supports the % wildcard for partial matches as a
+  /// suffix. As an example, looking for a group that is prefixed with the
+  /// “Persian” word would be written as persian% name filter.
   Future<model.GroupList> listGroups({
     required model.Session session,
     String? name,

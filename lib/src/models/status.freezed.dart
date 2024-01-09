@@ -102,11 +102,11 @@ class _$UserPresenceCopyWithImpl<$Res, $Val extends UserPresence>
 }
 
 /// @nodoc
-abstract class _$$_UserPresenceCopyWith<$Res>
+abstract class _$$UserPresenceImplCopyWith<$Res>
     implements $UserPresenceCopyWith<$Res> {
-  factory _$$_UserPresenceCopyWith(
-          _$_UserPresence value, $Res Function(_$_UserPresence) then) =
-      __$$_UserPresenceCopyWithImpl<$Res>;
+  factory _$$UserPresenceImplCopyWith(
+          _$UserPresenceImpl value, $Res Function(_$UserPresenceImpl) then) =
+      __$$UserPresenceImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -118,11 +118,11 @@ abstract class _$$_UserPresenceCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UserPresenceCopyWithImpl<$Res>
-    extends _$UserPresenceCopyWithImpl<$Res, _$_UserPresence>
-    implements _$$_UserPresenceCopyWith<$Res> {
-  __$$_UserPresenceCopyWithImpl(
-      _$_UserPresence _value, $Res Function(_$_UserPresence) _then)
+class __$$UserPresenceImplCopyWithImpl<$Res>
+    extends _$UserPresenceCopyWithImpl<$Res, _$UserPresenceImpl>
+    implements _$$UserPresenceImplCopyWith<$Res> {
+  __$$UserPresenceImplCopyWithImpl(
+      _$UserPresenceImpl _value, $Res Function(_$UserPresenceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -134,7 +134,7 @@ class __$$_UserPresenceCopyWithImpl<$Res>
     Object? persistence = null,
     Object? status = freezed,
   }) {
-    return _then(_$_UserPresence(
+    return _then(_$UserPresenceImpl(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -161,8 +161,8 @@ class __$$_UserPresenceCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserPresence extends _UserPresence {
-  const _$_UserPresence(
+class _$UserPresenceImpl extends _UserPresence {
+  const _$UserPresenceImpl(
       {required this.userId,
       required this.sessionId,
       required this.username,
@@ -170,8 +170,8 @@ class _$_UserPresence extends _UserPresence {
       this.status})
       : super._();
 
-  factory _$_UserPresence.fromJson(Map<String, dynamic> json) =>
-      _$$_UserPresenceFromJson(json);
+  factory _$UserPresenceImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserPresenceImplFromJson(json);
 
   /// The user this presence belongs to.
   @override
@@ -201,10 +201,10 @@ class _$_UserPresence extends _UserPresence {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserPresence &&
+            other is _$UserPresenceImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.sessionId, sessionId) ||
                 other.sessionId == sessionId) &&
@@ -223,12 +223,12 @@ class _$_UserPresence extends _UserPresence {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserPresenceCopyWith<_$_UserPresence> get copyWith =>
-      __$$_UserPresenceCopyWithImpl<_$_UserPresence>(this, _$identity);
+  _$$UserPresenceImplCopyWith<_$UserPresenceImpl> get copyWith =>
+      __$$UserPresenceImplCopyWithImpl<_$UserPresenceImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserPresenceToJson(
+    return _$$UserPresenceImplToJson(
       this,
     );
   }
@@ -240,11 +240,11 @@ abstract class _UserPresence extends UserPresence {
       required final String sessionId,
       required final String username,
       required final bool persistence,
-      final String? status}) = _$_UserPresence;
+      final String? status}) = _$UserPresenceImpl;
   const _UserPresence._() : super._();
 
   factory _UserPresence.fromJson(Map<String, dynamic> json) =
-      _$_UserPresence.fromJson;
+      _$UserPresenceImpl.fromJson;
 
   @override
 
@@ -270,7 +270,7 @@ abstract class _UserPresence extends UserPresence {
   String? get status;
   @override
   @JsonKey(ignore: true)
-  _$$_UserPresenceCopyWith<_$_UserPresence> get copyWith =>
+  _$$UserPresenceImplCopyWith<_$UserPresenceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -326,22 +326,22 @@ class _$StatusPresenceEventCopyWithImpl<$Res, $Val extends StatusPresenceEvent>
 }
 
 /// @nodoc
-abstract class _$$_StatusPresenceEventCopyWith<$Res>
+abstract class _$$StatusPresenceEventImplCopyWith<$Res>
     implements $StatusPresenceEventCopyWith<$Res> {
-  factory _$$_StatusPresenceEventCopyWith(_$_StatusPresenceEvent value,
-          $Res Function(_$_StatusPresenceEvent) then) =
-      __$$_StatusPresenceEventCopyWithImpl<$Res>;
+  factory _$$StatusPresenceEventImplCopyWith(_$StatusPresenceEventImpl value,
+          $Res Function(_$StatusPresenceEventImpl) then) =
+      __$$StatusPresenceEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<UserPresence> joins, List<UserPresence> leaves});
 }
 
 /// @nodoc
-class __$$_StatusPresenceEventCopyWithImpl<$Res>
-    extends _$StatusPresenceEventCopyWithImpl<$Res, _$_StatusPresenceEvent>
-    implements _$$_StatusPresenceEventCopyWith<$Res> {
-  __$$_StatusPresenceEventCopyWithImpl(_$_StatusPresenceEvent _value,
-      $Res Function(_$_StatusPresenceEvent) _then)
+class __$$StatusPresenceEventImplCopyWithImpl<$Res>
+    extends _$StatusPresenceEventCopyWithImpl<$Res, _$StatusPresenceEventImpl>
+    implements _$$StatusPresenceEventImplCopyWith<$Res> {
+  __$$StatusPresenceEventImplCopyWithImpl(_$StatusPresenceEventImpl _value,
+      $Res Function(_$StatusPresenceEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -350,7 +350,7 @@ class __$$_StatusPresenceEventCopyWithImpl<$Res>
     Object? joins = null,
     Object? leaves = null,
   }) {
-    return _then(_$_StatusPresenceEvent(
+    return _then(_$StatusPresenceEventImpl(
       joins: null == joins
           ? _value._joins
           : joins // ignore: cast_nullable_to_non_nullable
@@ -365,8 +365,8 @@ class __$$_StatusPresenceEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_StatusPresenceEvent extends _StatusPresenceEvent {
-  const _$_StatusPresenceEvent(
+class _$StatusPresenceEventImpl extends _StatusPresenceEvent {
+  const _$StatusPresenceEventImpl(
       {required final List<UserPresence> joins,
       required final List<UserPresence> leaves})
       : _joins = joins,
@@ -401,10 +401,10 @@ class _$_StatusPresenceEvent extends _StatusPresenceEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StatusPresenceEvent &&
+            other is _$StatusPresenceEventImpl &&
             const DeepCollectionEquality().equals(other._joins, _joins) &&
             const DeepCollectionEquality().equals(other._leaves, _leaves));
   }
@@ -418,15 +418,15 @@ class _$_StatusPresenceEvent extends _StatusPresenceEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StatusPresenceEventCopyWith<_$_StatusPresenceEvent> get copyWith =>
-      __$$_StatusPresenceEventCopyWithImpl<_$_StatusPresenceEvent>(
+  _$$StatusPresenceEventImplCopyWith<_$StatusPresenceEventImpl> get copyWith =>
+      __$$StatusPresenceEventImplCopyWithImpl<_$StatusPresenceEventImpl>(
           this, _$identity);
 }
 
 abstract class _StatusPresenceEvent extends StatusPresenceEvent {
   const factory _StatusPresenceEvent(
       {required final List<UserPresence> joins,
-      required final List<UserPresence> leaves}) = _$_StatusPresenceEvent;
+      required final List<UserPresence> leaves}) = _$StatusPresenceEventImpl;
   const _StatusPresenceEvent._() : super._();
 
   @override
@@ -439,7 +439,7 @@ abstract class _StatusPresenceEvent extends StatusPresenceEvent {
   List<UserPresence> get leaves;
   @override
   @JsonKey(ignore: true)
-  _$$_StatusPresenceEventCopyWith<_$_StatusPresenceEvent> get copyWith =>
+  _$$StatusPresenceEventImplCopyWith<_$StatusPresenceEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -511,22 +511,22 @@ class _$RealtimeStreamCopyWithImpl<$Res, $Val extends RealtimeStream>
 }
 
 /// @nodoc
-abstract class _$$_RealtimeStreamCopyWith<$Res>
+abstract class _$$RealtimeStreamImplCopyWith<$Res>
     implements $RealtimeStreamCopyWith<$Res> {
-  factory _$$_RealtimeStreamCopyWith(
-          _$_RealtimeStream value, $Res Function(_$_RealtimeStream) then) =
-      __$$_RealtimeStreamCopyWithImpl<$Res>;
+  factory _$$RealtimeStreamImplCopyWith(_$RealtimeStreamImpl value,
+          $Res Function(_$RealtimeStreamImpl) then) =
+      __$$RealtimeStreamImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int mode, String subject, String subcontext, String label});
 }
 
 /// @nodoc
-class __$$_RealtimeStreamCopyWithImpl<$Res>
-    extends _$RealtimeStreamCopyWithImpl<$Res, _$_RealtimeStream>
-    implements _$$_RealtimeStreamCopyWith<$Res> {
-  __$$_RealtimeStreamCopyWithImpl(
-      _$_RealtimeStream _value, $Res Function(_$_RealtimeStream) _then)
+class __$$RealtimeStreamImplCopyWithImpl<$Res>
+    extends _$RealtimeStreamCopyWithImpl<$Res, _$RealtimeStreamImpl>
+    implements _$$RealtimeStreamImplCopyWith<$Res> {
+  __$$RealtimeStreamImplCopyWithImpl(
+      _$RealtimeStreamImpl _value, $Res Function(_$RealtimeStreamImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -537,7 +537,7 @@ class __$$_RealtimeStreamCopyWithImpl<$Res>
     Object? subcontext = null,
     Object? label = null,
   }) {
-    return _then(_$_RealtimeStream(
+    return _then(_$RealtimeStreamImpl(
       mode: null == mode
           ? _value.mode
           : mode // ignore: cast_nullable_to_non_nullable
@@ -560,8 +560,8 @@ class __$$_RealtimeStreamCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RealtimeStream extends _RealtimeStream {
-  const _$_RealtimeStream(
+class _$RealtimeStreamImpl extends _RealtimeStream {
+  const _$RealtimeStreamImpl(
       {required this.mode,
       required this.subject,
       required this.subcontext,
@@ -590,10 +590,10 @@ class _$_RealtimeStream extends _RealtimeStream {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RealtimeStream &&
+            other is _$RealtimeStreamImpl &&
             (identical(other.mode, mode) || other.mode == mode) &&
             (identical(other.subject, subject) || other.subject == subject) &&
             (identical(other.subcontext, subcontext) ||
@@ -608,8 +608,9 @@ class _$_RealtimeStream extends _RealtimeStream {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RealtimeStreamCopyWith<_$_RealtimeStream> get copyWith =>
-      __$$_RealtimeStreamCopyWithImpl<_$_RealtimeStream>(this, _$identity);
+  _$$RealtimeStreamImplCopyWith<_$RealtimeStreamImpl> get copyWith =>
+      __$$RealtimeStreamImplCopyWithImpl<_$RealtimeStreamImpl>(
+          this, _$identity);
 }
 
 abstract class _RealtimeStream extends RealtimeStream {
@@ -617,7 +618,7 @@ abstract class _RealtimeStream extends RealtimeStream {
       {required final int mode,
       required final String subject,
       required final String subcontext,
-      required final String label}) = _$_RealtimeStream;
+      required final String label}) = _$RealtimeStreamImpl;
   const _RealtimeStream._() : super._();
 
   @override
@@ -638,7 +639,7 @@ abstract class _RealtimeStream extends RealtimeStream {
   String get label;
   @override
   @JsonKey(ignore: true)
-  _$$_RealtimeStreamCopyWith<_$_RealtimeStream> get copyWith =>
+  _$$RealtimeStreamImplCopyWith<_$RealtimeStreamImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -730,11 +731,11 @@ class _$RealtimeStreamDataCopyWithImpl<$Res, $Val extends RealtimeStreamData>
 }
 
 /// @nodoc
-abstract class _$$_RealtimeStreamDataCopyWith<$Res>
+abstract class _$$RealtimeStreamDataImplCopyWith<$Res>
     implements $RealtimeStreamDataCopyWith<$Res> {
-  factory _$$_RealtimeStreamDataCopyWith(_$_RealtimeStreamData value,
-          $Res Function(_$_RealtimeStreamData) then) =
-      __$$_RealtimeStreamDataCopyWithImpl<$Res>;
+  factory _$$RealtimeStreamDataImplCopyWith(_$RealtimeStreamDataImpl value,
+          $Res Function(_$RealtimeStreamDataImpl) then) =
+      __$$RealtimeStreamDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -747,11 +748,11 @@ abstract class _$$_RealtimeStreamDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_RealtimeStreamDataCopyWithImpl<$Res>
-    extends _$RealtimeStreamDataCopyWithImpl<$Res, _$_RealtimeStreamData>
-    implements _$$_RealtimeStreamDataCopyWith<$Res> {
-  __$$_RealtimeStreamDataCopyWithImpl(
-      _$_RealtimeStreamData _value, $Res Function(_$_RealtimeStreamData) _then)
+class __$$RealtimeStreamDataImplCopyWithImpl<$Res>
+    extends _$RealtimeStreamDataCopyWithImpl<$Res, _$RealtimeStreamDataImpl>
+    implements _$$RealtimeStreamDataImplCopyWith<$Res> {
+  __$$RealtimeStreamDataImplCopyWithImpl(_$RealtimeStreamDataImpl _value,
+      $Res Function(_$RealtimeStreamDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -762,7 +763,7 @@ class __$$_RealtimeStreamDataCopyWithImpl<$Res>
     Object? data = null,
     Object? reliable = null,
   }) {
-    return _then(_$_RealtimeStreamData(
+    return _then(_$RealtimeStreamDataImpl(
       stream: null == stream
           ? _value.stream
           : stream // ignore: cast_nullable_to_non_nullable
@@ -785,8 +786,8 @@ class __$$_RealtimeStreamDataCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RealtimeStreamData extends _RealtimeStreamData {
-  const _$_RealtimeStreamData(
+class _$RealtimeStreamDataImpl extends _RealtimeStreamData {
+  const _$RealtimeStreamDataImpl(
       {required this.stream,
       required this.sender,
       required this.data,
@@ -815,10 +816,10 @@ class _$_RealtimeStreamData extends _RealtimeStreamData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RealtimeStreamData &&
+            other is _$RealtimeStreamDataImpl &&
             (identical(other.stream, stream) || other.stream == stream) &&
             (identical(other.sender, sender) || other.sender == sender) &&
             (identical(other.data, data) || other.data == data) &&
@@ -832,8 +833,8 @@ class _$_RealtimeStreamData extends _RealtimeStreamData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RealtimeStreamDataCopyWith<_$_RealtimeStreamData> get copyWith =>
-      __$$_RealtimeStreamDataCopyWithImpl<_$_RealtimeStreamData>(
+  _$$RealtimeStreamDataImplCopyWith<_$RealtimeStreamDataImpl> get copyWith =>
+      __$$RealtimeStreamDataImplCopyWithImpl<_$RealtimeStreamDataImpl>(
           this, _$identity);
 }
 
@@ -842,7 +843,7 @@ abstract class _RealtimeStreamData extends RealtimeStreamData {
       {required final RealtimeStream stream,
       required final UserPresence sender,
       required final String data,
-      required final bool reliable}) = _$_RealtimeStreamData;
+      required final bool reliable}) = _$RealtimeStreamDataImpl;
   const _RealtimeStreamData._() : super._();
 
   @override
@@ -863,7 +864,7 @@ abstract class _RealtimeStreamData extends RealtimeStreamData {
   bool get reliable;
   @override
   @JsonKey(ignore: true)
-  _$$_RealtimeStreamDataCopyWith<_$_RealtimeStreamData> get copyWith =>
+  _$$RealtimeStreamDataImplCopyWith<_$RealtimeStreamDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -940,11 +941,11 @@ class _$StreamPresenceEventCopyWithImpl<$Res, $Val extends StreamPresenceEvent>
 }
 
 /// @nodoc
-abstract class _$$_StreamPresenceEventCopyWith<$Res>
+abstract class _$$StreamPresenceEventImplCopyWith<$Res>
     implements $StreamPresenceEventCopyWith<$Res> {
-  factory _$$_StreamPresenceEventCopyWith(_$_StreamPresenceEvent value,
-          $Res Function(_$_StreamPresenceEvent) then) =
-      __$$_StreamPresenceEventCopyWithImpl<$Res>;
+  factory _$$StreamPresenceEventImplCopyWith(_$StreamPresenceEventImpl value,
+          $Res Function(_$StreamPresenceEventImpl) then) =
+      __$$StreamPresenceEventImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -957,11 +958,11 @@ abstract class _$$_StreamPresenceEventCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_StreamPresenceEventCopyWithImpl<$Res>
-    extends _$StreamPresenceEventCopyWithImpl<$Res, _$_StreamPresenceEvent>
-    implements _$$_StreamPresenceEventCopyWith<$Res> {
-  __$$_StreamPresenceEventCopyWithImpl(_$_StreamPresenceEvent _value,
-      $Res Function(_$_StreamPresenceEvent) _then)
+class __$$StreamPresenceEventImplCopyWithImpl<$Res>
+    extends _$StreamPresenceEventCopyWithImpl<$Res, _$StreamPresenceEventImpl>
+    implements _$$StreamPresenceEventImplCopyWith<$Res> {
+  __$$StreamPresenceEventImplCopyWithImpl(_$StreamPresenceEventImpl _value,
+      $Res Function(_$StreamPresenceEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -971,7 +972,7 @@ class __$$_StreamPresenceEventCopyWithImpl<$Res>
     Object? joins = null,
     Object? leaves = null,
   }) {
-    return _then(_$_StreamPresenceEvent(
+    return _then(_$StreamPresenceEventImpl(
       stream: null == stream
           ? _value.stream
           : stream // ignore: cast_nullable_to_non_nullable
@@ -990,8 +991,8 @@ class __$$_StreamPresenceEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_StreamPresenceEvent extends _StreamPresenceEvent {
-  const _$_StreamPresenceEvent(
+class _$StreamPresenceEventImpl extends _StreamPresenceEvent {
+  const _$StreamPresenceEventImpl(
       {required this.stream,
       required final List<UserPresence> joins,
       required final List<UserPresence> leaves})
@@ -1031,10 +1032,10 @@ class _$_StreamPresenceEvent extends _StreamPresenceEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StreamPresenceEvent &&
+            other is _$StreamPresenceEventImpl &&
             (identical(other.stream, stream) || other.stream == stream) &&
             const DeepCollectionEquality().equals(other._joins, _joins) &&
             const DeepCollectionEquality().equals(other._leaves, _leaves));
@@ -1050,8 +1051,8 @@ class _$_StreamPresenceEvent extends _StreamPresenceEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StreamPresenceEventCopyWith<_$_StreamPresenceEvent> get copyWith =>
-      __$$_StreamPresenceEventCopyWithImpl<_$_StreamPresenceEvent>(
+  _$$StreamPresenceEventImplCopyWith<_$StreamPresenceEventImpl> get copyWith =>
+      __$$StreamPresenceEventImplCopyWithImpl<_$StreamPresenceEventImpl>(
           this, _$identity);
 }
 
@@ -1059,7 +1060,7 @@ abstract class _StreamPresenceEvent extends StreamPresenceEvent {
   const factory _StreamPresenceEvent(
       {required final RealtimeStream stream,
       required final List<UserPresence> joins,
-      required final List<UserPresence> leaves}) = _$_StreamPresenceEvent;
+      required final List<UserPresence> leaves}) = _$StreamPresenceEventImpl;
   const _StreamPresenceEvent._() : super._();
 
   @override
@@ -1076,6 +1077,6 @@ abstract class _StreamPresenceEvent extends StreamPresenceEvent {
   List<UserPresence> get leaves;
   @override
   @JsonKey(ignore: true)
-  _$$_StreamPresenceEventCopyWith<_$_StreamPresenceEvent> get copyWith =>
+  _$$StreamPresenceEventImplCopyWith<_$StreamPresenceEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

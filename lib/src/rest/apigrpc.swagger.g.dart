@@ -45,7 +45,7 @@ WriteLeaderboardRecordRequestLeaderboardRecordWrite
           score: json['score'] as String?,
           subscore: json['subscore'] as String?,
           metadata: json['metadata'] as String?,
-          $operator: apiOperatorFromJson(json['operator']),
+          $operator: apiOperatorNullableFromJson(json['operator']),
         );
 
 Map<String, dynamic>
@@ -55,7 +55,7 @@ Map<String, dynamic>
           'score': instance.score,
           'subscore': instance.subscore,
           'metadata': instance.metadata,
-          'operator': apiOperatorToJson(instance.$operator),
+          'operator': apiOperatorNullableToJson(instance.$operator),
         };
 
 WriteTournamentRecordRequestTournamentRecordWrite
@@ -65,7 +65,7 @@ WriteTournamentRecordRequestTournamentRecordWrite
           score: json['score'] as String?,
           subscore: json['subscore'] as String?,
           metadata: json['metadata'] as String?,
-          $operator: apiOperatorFromJson(json['operator']),
+          $operator: apiOperatorNullableFromJson(json['operator']),
         );
 
 Map<String, dynamic> _$WriteTournamentRecordRequestTournamentRecordWriteToJson(
@@ -74,7 +74,7 @@ Map<String, dynamic> _$WriteTournamentRecordRequestTournamentRecordWriteToJson(
       'score': instance.score,
       'subscore': instance.subscore,
       'metadata': instance.metadata,
-      'operator': apiOperatorToJson(instance.$operator),
+      'operator': apiOperatorNullableToJson(instance.$operator),
     };
 
 ApiAccount _$ApiAccountFromJson(Map<String, dynamic> json) => ApiAccount(
@@ -845,7 +845,7 @@ ApiTournament _$ApiTournamentFromJson(Map<String, dynamic> json) =>
       duration: json['duration'] as int?,
       startActive: json['startActive'] as int?,
       prevReset: json['prevReset'] as int?,
-      $operator: apiOperatorFromJson(json['operator']),
+      $operator: apiOperatorNullableFromJson(json['operator']),
     );
 
 Map<String, dynamic> _$ApiTournamentToJson(ApiTournament instance) =>
@@ -868,7 +868,7 @@ Map<String, dynamic> _$ApiTournamentToJson(ApiTournament instance) =>
       'duration': instance.duration,
       'startActive': instance.startActive,
       'prevReset': instance.prevReset,
-      'operator': apiOperatorToJson(instance.$operator),
+      'operator': apiOperatorNullableToJson(instance.$operator),
     };
 
 ApiTournamentList _$ApiTournamentListFromJson(Map<String, dynamic> json) =>
@@ -1138,7 +1138,7 @@ ApiValidatedPurchase _$ApiValidatedPurchaseFromJson(
     ApiValidatedPurchase(
       productId: json['productId'] as String?,
       transactionId: json['transactionId'] as String?,
-      store: apiStoreProviderFromJson(json['store']),
+      store: apiStoreProviderNullableFromJson(json['store']),
       purchaseTime: json['purchaseTime'] == null
           ? null
           : DateTime.parse(json['purchaseTime'] as String),
@@ -1149,7 +1149,7 @@ ApiValidatedPurchase _$ApiValidatedPurchaseFromJson(
           ? null
           : DateTime.parse(json['updateTime'] as String),
       providerResponse: json['providerResponse'] as String?,
-      environment: apiStoreEnvironmentFromJson(json['environment']),
+      environment: apiStoreEnvironmentNullableFromJson(json['environment']),
       seenBefore: json['seenBefore'] as bool?,
     );
 
@@ -1158,12 +1158,12 @@ Map<String, dynamic> _$ApiValidatedPurchaseToJson(
     <String, dynamic>{
       'productId': instance.productId,
       'transactionId': instance.transactionId,
-      'store': apiStoreProviderToJson(instance.store),
+      'store': apiStoreProviderNullableToJson(instance.store),
       'purchaseTime': instance.purchaseTime?.toIso8601String(),
       'createTime': instance.createTime?.toIso8601String(),
       'updateTime': instance.updateTime?.toIso8601String(),
       'providerResponse': instance.providerResponse,
-      'environment': apiStoreEnvironmentToJson(instance.environment),
+      'environment': apiStoreEnvironmentNullableToJson(instance.environment),
       'seenBefore': instance.seenBefore,
     };
 
@@ -1172,7 +1172,7 @@ ApiValidatedSubscription _$ApiValidatedSubscriptionFromJson(
     ApiValidatedSubscription(
       productId: json['productId'] as String?,
       originalTransactionId: json['originalTransactionId'] as String?,
-      store: apiStoreProviderFromJson(json['store']),
+      store: apiStoreProviderNullableFromJson(json['store']),
       purchaseTime: json['purchaseTime'] == null
           ? null
           : DateTime.parse(json['purchaseTime'] as String),
@@ -1182,7 +1182,7 @@ ApiValidatedSubscription _$ApiValidatedSubscriptionFromJson(
       updateTime: json['updateTime'] == null
           ? null
           : DateTime.parse(json['updateTime'] as String),
-      environment: apiStoreEnvironmentFromJson(json['environment']),
+      environment: apiStoreEnvironmentNullableFromJson(json['environment']),
       expiryTime: json['expiryTime'] == null
           ? null
           : DateTime.parse(json['expiryTime'] as String),
@@ -1194,11 +1194,11 @@ Map<String, dynamic> _$ApiValidatedSubscriptionToJson(
     <String, dynamic>{
       'productId': instance.productId,
       'originalTransactionId': instance.originalTransactionId,
-      'store': apiStoreProviderToJson(instance.store),
+      'store': apiStoreProviderNullableToJson(instance.store),
       'purchaseTime': instance.purchaseTime?.toIso8601String(),
       'createTime': instance.createTime?.toIso8601String(),
       'updateTime': instance.updateTime?.toIso8601String(),
-      'environment': apiStoreEnvironmentToJson(instance.environment),
+      'environment': apiStoreEnvironmentNullableToJson(instance.environment),
       'expiryTime': instance.expiryTime?.toIso8601String(),
       'active': instance.active,
     };

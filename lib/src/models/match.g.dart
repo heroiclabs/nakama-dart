@@ -6,7 +6,7 @@ part of 'match.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Match _$$_MatchFromJson(Map<String, dynamic> json) => _$_Match(
+_$MatchImpl _$$MatchImplFromJson(Map<String, dynamic> json) => _$MatchImpl(
       matchId: json['matchId'] as String,
       authoritative: json['authoritative'] as bool,
       label: json['label'] as String,
@@ -16,7 +16,8 @@ _$_Match _$$_MatchFromJson(Map<String, dynamic> json) => _$_Match(
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$_MatchToJson(_$_Match instance) => <String, dynamic>{
+Map<String, dynamic> _$$MatchImplToJson(_$MatchImpl instance) =>
+    <String, dynamic>{
       'matchId': instance.matchId,
       'authoritative': instance.authoritative,
       'label': instance.label,
@@ -26,8 +27,8 @@ Map<String, dynamic> _$$_MatchToJson(_$_Match instance) => <String, dynamic>{
       'runtimeType': instance.$type,
     };
 
-_$RealtimeMatch _$$RealtimeMatchFromJson(Map<String, dynamic> json) =>
-    _$RealtimeMatch(
+_$RealtimeMatchImpl _$$RealtimeMatchImplFromJson(Map<String, dynamic> json) =>
+    _$RealtimeMatchImpl(
       matchId: json['matchId'] as String,
       authoritative: json['authoritative'] as bool,
       label: json['label'] as String,
@@ -40,7 +41,7 @@ _$RealtimeMatch _$$RealtimeMatchFromJson(Map<String, dynamic> json) =>
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$RealtimeMatchToJson(_$RealtimeMatch instance) =>
+Map<String, dynamic> _$$RealtimeMatchImplToJson(_$RealtimeMatchImpl instance) =>
     <String, dynamic>{
       'matchId': instance.matchId,
       'authoritative': instance.authoritative,

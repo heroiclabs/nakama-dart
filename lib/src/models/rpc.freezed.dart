@@ -54,18 +54,18 @@ class _$RpcCopyWithImpl<$Res, $Val extends Rpc> implements $RpcCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_RpcCopyWith<$Res> implements $RpcCopyWith<$Res> {
-  factory _$$_RpcCopyWith(_$_Rpc value, $Res Function(_$_Rpc) then) =
-      __$$_RpcCopyWithImpl<$Res>;
+abstract class _$$RpcImplCopyWith<$Res> implements $RpcCopyWith<$Res> {
+  factory _$$RpcImplCopyWith(_$RpcImpl value, $Res Function(_$RpcImpl) then) =
+      __$$RpcImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String payload});
 }
 
 /// @nodoc
-class __$$_RpcCopyWithImpl<$Res> extends _$RpcCopyWithImpl<$Res, _$_Rpc>
-    implements _$$_RpcCopyWith<$Res> {
-  __$$_RpcCopyWithImpl(_$_Rpc _value, $Res Function(_$_Rpc) _then)
+class __$$RpcImplCopyWithImpl<$Res> extends _$RpcCopyWithImpl<$Res, _$RpcImpl>
+    implements _$$RpcImplCopyWith<$Res> {
+  __$$RpcImplCopyWithImpl(_$RpcImpl _value, $Res Function(_$RpcImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -73,7 +73,7 @@ class __$$_RpcCopyWithImpl<$Res> extends _$RpcCopyWithImpl<$Res, _$_Rpc>
   $Res call({
     Object? payload = null,
   }) {
-    return _then(_$_Rpc(
+    return _then(_$RpcImpl(
       payload: null == payload
           ? _value.payload
           : payload // ignore: cast_nullable_to_non_nullable
@@ -84,8 +84,8 @@ class __$$_RpcCopyWithImpl<$Res> extends _$RpcCopyWithImpl<$Res, _$_Rpc>
 
 /// @nodoc
 
-class _$_Rpc extends _Rpc {
-  const _$_Rpc({required this.payload}) : super._();
+class _$RpcImpl extends _Rpc {
+  const _$RpcImpl({required this.payload}) : super._();
 
   @override
   final String payload;
@@ -96,10 +96,10 @@ class _$_Rpc extends _Rpc {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Rpc &&
+            other is _$RpcImpl &&
             (identical(other.payload, payload) || other.payload == payload));
   }
 
@@ -109,17 +109,18 @@ class _$_Rpc extends _Rpc {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RpcCopyWith<_$_Rpc> get copyWith =>
-      __$$_RpcCopyWithImpl<_$_Rpc>(this, _$identity);
+  _$$RpcImplCopyWith<_$RpcImpl> get copyWith =>
+      __$$RpcImplCopyWithImpl<_$RpcImpl>(this, _$identity);
 }
 
 abstract class _Rpc extends Rpc {
-  const factory _Rpc({required final String payload}) = _$_Rpc;
+  const factory _Rpc({required final String payload}) = _$RpcImpl;
   const _Rpc._() : super._();
 
   @override
   String get payload;
   @override
   @JsonKey(ignore: true)
-  _$$_RpcCopyWith<_$_Rpc> get copyWith => throw _privateConstructorUsedError;
+  _$$RpcImplCopyWith<_$RpcImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
