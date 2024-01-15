@@ -21,12 +21,17 @@ void main() {
     });
 
     test('list leaderboard records', () async {
+      await client.writeLeaderboardRecord(
+          session: session, leaderboardName: 'test', score: 10);
+
       final result = await client.listLeaderboardRecords(
         session: session,
         leaderboardName: 'test',
       );
 
       expect(result, isA<LeaderboardRecordList>());
+      expect(result.records.first.score, isNotNull);
+      expect(result.records.first.score!.toInt(), equals(10));
     });
 
     test('write leaderboard record', () async {
@@ -36,6 +41,21 @@ void main() {
       expect(result, isA<LeaderboardRecord>());
       expect(result.score, isNotNull);
       expect(result.score!.toInt(), equals(10));
+    });
+
+    test('list leaderboard records around user', () async {
+      await client.writeLeaderboardRecord(
+          session: session, leaderboardName: 'test', score: 10);
+
+      final result = await client.listLeaderboardRecordsAroundOwner(
+        session: session,
+        leaderboardName: 'test',
+        ownerId: session.userId,
+      );
+
+      expect(result, isA<LeaderboardRecordList>());
+      expect(result.records.first.score, isNotNull);
+      expect(result.records.first.score!.toInt(), equals(10));
     });
   });
 }

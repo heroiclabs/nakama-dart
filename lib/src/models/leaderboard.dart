@@ -24,8 +24,7 @@ class LeaderboardRecordList with _$LeaderboardRecordList {
 
   factory LeaderboardRecordList.fromDto(api.LeaderboardRecordList dto) =>
       LeaderboardRecordList(
-        records:
-            dto.ownerRecords.map((e) => LeaderboardRecord.fromDto(e)).toList(),
+        records: dto.records.map((e) => LeaderboardRecord.fromDto(e)).toList(),
         ownerRecords:
             dto.ownerRecords.map((e) => LeaderboardRecord.fromDto(e)).toList(),
         nextCursor: dto.nextCursor,
