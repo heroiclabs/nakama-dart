@@ -18,6 +18,7 @@ export './src/nakama_client/stub/nakama_client_stub.dart'
 export './src/nakama_websocket_client.dart';
 // Public models
 export 'src/models/account.dart';
+export 'src/models/channel_message.dart';
 export 'src/models/chat.dart';
 export 'src/models/friends.dart';
 export 'src/models/group.dart';
