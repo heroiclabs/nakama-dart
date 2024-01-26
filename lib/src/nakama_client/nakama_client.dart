@@ -511,10 +511,10 @@ abstract class NakamaBaseClient {
   /// Players can list groups they are a member of.
   Future<model.UserGroupList> listUserGroups({
     required model.Session session,
+    required String userId,
     String? cursor,
     int limit = defaultLimit,
     GroupMembershipState? state,
-    String? userId,
   });
 
   /// # Listing the user’s groups

@@ -1063,10 +1063,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
   @override
   Future<model.UserGroupList> listUserGroups({
     required model.Session session,
+    required String userId,
     String? cursor,
     int limit = defaultLimit,
     GroupMembershipState? state,
-    String? userId,
   }) async {
     _session = session;
 
