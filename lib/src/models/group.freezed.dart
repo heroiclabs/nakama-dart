@@ -562,6 +562,7 @@ UserGroupList _$UserGroupListFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserGroupList {
   String? get cursor => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_groups')
   List<UserGroup> get userGroups => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -576,7 +577,9 @@ abstract class $UserGroupListCopyWith<$Res> {
           UserGroupList value, $Res Function(UserGroupList) then) =
       _$UserGroupListCopyWithImpl<$Res, UserGroupList>;
   @useResult
-  $Res call({String? cursor, List<UserGroup> userGroups});
+  $Res call(
+      {String? cursor,
+      @JsonKey(name: 'user_groups') List<UserGroup> userGroups});
 }
 
 /// @nodoc
@@ -616,7 +619,9 @@ abstract class _$$UserGroupListImplCopyWith<$Res>
       __$$UserGroupListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? cursor, List<UserGroup> userGroups});
+  $Res call(
+      {String? cursor,
+      @JsonKey(name: 'user_groups') List<UserGroup> userGroups});
 }
 
 /// @nodoc
@@ -650,7 +655,8 @@ class __$$UserGroupListImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserGroupListImpl extends _UserGroupList {
   const _$UserGroupListImpl(
-      {this.cursor, required final List<UserGroup> userGroups})
+      {this.cursor,
+      @JsonKey(name: 'user_groups') required final List<UserGroup> userGroups})
       : _userGroups = userGroups,
         super._();
 
@@ -661,6 +667,7 @@ class _$UserGroupListImpl extends _UserGroupList {
   final String? cursor;
   final List<UserGroup> _userGroups;
   @override
+  @JsonKey(name: 'user_groups')
   List<UserGroup> get userGroups {
     if (_userGroups is EqualUnmodifiableListView) return _userGroups;
     // ignore: implicit_dynamic_type
@@ -704,6 +711,7 @@ class _$UserGroupListImpl extends _UserGroupList {
 abstract class _UserGroupList extends UserGroupList {
   const factory _UserGroupList(
       {final String? cursor,
+      @JsonKey(name: 'user_groups')
       required final List<UserGroup> userGroups}) = _$UserGroupListImpl;
   const _UserGroupList._() : super._();
 
@@ -713,6 +721,7 @@ abstract class _UserGroupList extends UserGroupList {
   @override
   String? get cursor;
   @override
+  @JsonKey(name: 'user_groups')
   List<UserGroup> get userGroups;
   @override
   @JsonKey(ignore: true)

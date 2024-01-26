@@ -6,6 +6,8 @@ analyzer:
     - lib/src/**/*.freezed.dart
     - lib/src/api/proto/**/*.dart
     - lib/**/*.swagger*dart
+  errors:
+      invalid_annotation_target: false
 
 linter:
   rules:

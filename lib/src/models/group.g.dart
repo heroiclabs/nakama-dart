@@ -58,7 +58,7 @@ Map<String, dynamic> _$$GroupListImplToJson(_$GroupListImpl instance) =>
 _$UserGroupListImpl _$$UserGroupListImplFromJson(Map<String, dynamic> json) =>
     _$UserGroupListImpl(
       cursor: json['cursor'] as String?,
-      userGroups: (json['userGroups'] as List<dynamic>)
+      userGroups: (json['user_groups'] as List<dynamic>)
           .map((e) => UserGroup.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -66,7 +66,7 @@ _$UserGroupListImpl _$$UserGroupListImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$UserGroupListImplToJson(_$UserGroupListImpl instance) =>
     <String, dynamic>{
       'cursor': instance.cursor,
-      'userGroups': instance.userGroups,
+      'user_groups': instance.userGroups,
     };
 
 _$UserGroupImpl _$$UserGroupImplFromJson(Map<String, dynamic> json) =>

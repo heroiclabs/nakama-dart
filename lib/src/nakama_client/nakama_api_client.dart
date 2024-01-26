@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
 import 'package:nakama/nakama.dart';
+import 'package:http/http.dart' as http;
 import 'package:nakama/src/models/account.dart' as model;
 import 'package:nakama/src/models/channel_message.dart' as model;
 import 'package:nakama/src/models/friends.dart' as model;
@@ -27,6 +28,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
   /// The key used to authenticate with the server without a session.
   /// Defaults to "defaultkey".
   late final String serverKey;
+
+  late final Uri _apiBaseUrl;
 
   /// Temporarily holds the current valid session to use in the Chopper
   /// interceptor for JWT auth.
@@ -67,8 +70,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required int port,
     required bool ssl,
   }) {
+    _apiBaseUrl = Uri(host: host, scheme: ssl ? 'https' : 'http', port: port);
     _api = Apigrpc.create(
-      baseUrl: Uri(host: host, scheme: ssl ? 'https' : 'http', port: port),
+      baseUrl: _apiBaseUrl,
       interceptors: [
         // Auth Interceptor
         (Request request) async {
@@ -1070,9 +1074,16 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     _session = session;
 
-    final res = await _api.v2UserUserIdGroupGet(userId: userId);
+    final res = await http.get(
+      _apiBaseUrl.replace(path: '/v2/user/$userId/group', queryParameters: {
+        'limit': '$limit',
+        if (cursor != null) 'cursor': cursor,
+        if (state != null) 'state': '${state.index}',
+      }),
+      headers: {'Authorization': 'Bearer ${session.token}'},
+    );
 
-    return model.UserGroupList.fromJson(res.body!.toJson());
+    return UserGroupList.fromJson(jsonDecode((res.body)));
   }
 
   @override
@@ -1085,7 +1096,12 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     _session = session;
 
-    final res = await _api.v2GroupGroupIdUserGet(groupId: groupId);
+    final res = await _api.v2GroupGroupIdUserGet(
+      groupId: groupId,
+      cursor: cursor,
+      limit: limit,
+      state: state?.index,
+    );
 
     return model.GroupUserList.fromJson(res.body!.toJson());
   }
