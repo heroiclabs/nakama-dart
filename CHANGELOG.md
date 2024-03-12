@@ -1,6 +1,8 @@
-## [unreleased]
+## 1.0.6
 
 * Fixed: `userId` is a required parameter in `listUserGroups`
+* Fixed: LeaderboardRecordList parsing issue [#52](https://github.com/heroiclabs/nakama-dart/issues/52)
+* Added: Module now exports channel_messages [#85](https://github.com/heroiclabs/nakama-dart/pull/85)
 
 ## 1.0.5
 
