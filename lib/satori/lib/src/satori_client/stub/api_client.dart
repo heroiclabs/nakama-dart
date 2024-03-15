@@ -1,5 +1,5 @@
-import 'package:nakama/src/satori_client/satori_api_client.dart';
-import 'package:nakama/src/satori_client/satori_client.dart';
+import 'package:satori/src/satori_client/satori_api_client.dart';
+import 'package:satori/src/satori_client/satori_client.dart';
 
 SatoriBaseClient getSatoriClient({
   String host = '127.0.0.1',

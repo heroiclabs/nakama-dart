@@ -1,16 +1,17 @@
 import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
-import 'package:nakama/satori.dart';
-import 'package:nakama/src/models/satori/satori_session.dart' as model;
-import 'package:nakama/src/rest/satori.swagger.dart';
+import 'package:satori/src/models/event.dart';
+import 'package:satori/src/models/session.dart';
+import 'package:satori/src/rest/satori.swagger.dart';
+import 'package:satori/src/satori_client/satori_client.dart';
 
 /// A REST client to interact with the API in Satori.
 class SatoriRestApiClient extends SatoriBaseClient {
   late final Satori _api;
 
   // Used to send token with requests in the interceptor
-  model.SatoriSession? _session;
+  SatoriSession? _session;
 
   factory SatoriRestApiClient.init({
     String host = '127.0.0.1',
@@ -57,7 +58,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
   }
 
   @override
-  Future<model.SatoriSession> authenticate({
+  Future<SatoriSession> authenticate({
     String? id,
     Map<String, String>? defaultProperties,
     Map<String, String>? customProperties,
@@ -77,12 +78,12 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
     final apiSession = response.body!;
 
-    return model.SatoriSession.fromApi(apiSession);
+    return SatoriSession.fromApi(apiSession);
   }
 
   @override
   Future<void> authenticateLogout({
-    required model.SatoriSession session,
+    required SatoriSession session,
   }) async {
     _session = session; // Pass session data in request
 
@@ -96,8 +97,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
   }
 
   @override
-  Future<model.SatoriSession> sessionRefresh({
-    required model.SatoriSession session,
+  Future<SatoriSession> sessionRefresh({
+    required SatoriSession session,
   }) async {
     _session = null; // Clear session data
 
@@ -112,12 +113,12 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
     final apiSession = response.body!;
 
-    return model.SatoriSession.fromApi(apiSession);
+    return SatoriSession.fromApi(apiSession);
   }
 
   @override
   Future<void> deleteIdentity({
-    required model.SatoriSession session,
+    required SatoriSession session,
   }) async {
     _session = session; // Pass session data in request
 
@@ -130,8 +131,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
   @override
   Future<void> event({
-    required model.SatoriSession session,
-    required SatoriEvent event,
+    required SatoriSession session,
+    required Event event,
   }) async {
     _session = session; // Pass session data in request
 
@@ -147,8 +148,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
   @override
   Future<void> events({
-    required model.SatoriSession session,
-    required List<SatoriEvent> events,
+    required SatoriSession session,
+    required List<Event> events,
   }) async {
     _session = session; // Pass session data in request
 
@@ -164,7 +165,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
   @override
   Future<ApiExperimentList> getAllExperiments({
-    required model.SatoriSession session,
+    required SatoriSession session,
   }) async {
     _session = session; // Pass session data in request
 
@@ -179,7 +180,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
   @override
   Future<ApiExperimentList> getExperiments({
-    required model.SatoriSession session,
+    required SatoriSession session,
     required List<String> names,
   }) async {
     _session = session; // Pass session data in request
@@ -195,7 +196,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
   @override
   Future<ApiFlag> getFlag({
-    required model.SatoriSession session,
+    required SatoriSession session,
     required String name,
     String? defaultValue,
   }) async {
@@ -213,13 +214,13 @@ class SatoriRestApiClient extends SatoriBaseClient {
         ? flags.firstWhere((flag) => flag.name == name)
         : ApiFlag(
             name: name,
-            value: defaultValue,
+            $value: defaultValue,
           );
   }
 
   @override
   Future<ApiFlagList> getFlags({
-    required model.SatoriSession session,
+    required SatoriSession session,
     required List<String> names,
   }) async {
     _session = session; // Pass session data in request
@@ -235,7 +236,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
   @override
   Future<ApiLiveEventList> getLiveEvents({
-    required model.SatoriSession session,
+    required SatoriSession session,
     List<String>? names,
   }) async {
     _session = session; // Pass session data in request
@@ -250,8 +251,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
   }
 
   @override
-  Future<model.SatoriSession> identify({
-    required model.SatoriSession session,
+  Future<SatoriSession> identify({
+    required SatoriSession session,
     required String id,
     required Map<String, String> defaultProperties,
     required Map<String, String> customProperties,
@@ -271,12 +272,12 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
     final apiSession = response.body!;
 
-    return model.SatoriSession.fromApi(apiSession);
+    return SatoriSession.fromApi(apiSession);
   }
 
   @override
   Future<ApiProperties> listProperties({
-    required model.SatoriSession session,
+    required SatoriSession session,
   }) async {
     _session = session; // Pass session data in request
 
@@ -291,7 +292,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
   @override
   Future<void> updateProperties({
-    required model.SatoriSession session,
+    required SatoriSession session,
     required Map<String, String> defaultProperties,
     required Map<String, String> customProperties,
     bool? recompute = false,

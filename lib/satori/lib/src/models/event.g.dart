@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'satori_event.dart';
+part of 'event.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

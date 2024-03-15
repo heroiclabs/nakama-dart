@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:nakama/src/rest/satori.swagger.dart';
+import 'package:satori/src/rest/satori.swagger.dart';
 
-part 'satori_session.freezed.dart';
+part 'session.freezed.dart';
 
 /// A session authenticated for a user with Satori server.
 @freezed

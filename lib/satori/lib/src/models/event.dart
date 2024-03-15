@@ -1,15 +1,15 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nakama/src/rest/satori.swagger.dart';
+import 'package:satori/src/rest/satori.swagger.dart';
 
-part 'satori_event.freezed.dart';
-part 'satori_event.g.dart';
+part 'event.freezed.dart';
+part 'event.g.dart';
 
 /// An event to be published to the server.
 @freezed
-class SatoriEvent with _$SatoriEvent {
-  const SatoriEvent._();
+class Event with _$Event {
+  const Event._();
 
-  const factory SatoriEvent({
+  const factory Event({
     /// The name of the event.
     String? name,
 
@@ -27,14 +27,14 @@ class SatoriEvent with _$SatoriEvent {
     String? id,
   }) = _SatoriEvent;
 
-  factory SatoriEvent.fromJson(Map<String, dynamic> json) => _$SatoriEventFromJson(json);
+  factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);
 
-  factory SatoriEvent.fromDto(ApiEvent dto) => SatoriEvent(
+  factory Event.fromDto(ApiEvent dto) => Event(
         name: dto.name,
         id: dto.id,
         metadata: dto.metadata,
         timestamp: dto.timestamp,
-        value: dto.value,
+        value: dto.$value,
       );
 
   ApiEvent toApiEvent() => ApiEvent(
@@ -42,6 +42,6 @@ class SatoriEvent with _$SatoriEvent {
         id: id,
         metadata: metadata,
         timestamp: timestamp?.toUtc(),
-        value: value,
+        $value: value,
       );
 }

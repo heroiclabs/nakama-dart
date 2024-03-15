@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'satori_event.dart';
+part of 'event.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-SatoriEvent _$SatoriEventFromJson(Map<String, dynamic> json) {
+Event _$EventFromJson(Map<String, dynamic> json) {
   return _SatoriEvent.fromJson(json);
 }
 
 /// @nodoc
-mixin _$SatoriEvent {
+mixin _$Event {
   /// The name of the event.
   String? get name => throw _privateConstructorUsedError;
 
@@ -38,15 +38,13 @@ mixin _$SatoriEvent {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SatoriEventCopyWith<SatoriEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  $EventCopyWith<Event> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SatoriEventCopyWith<$Res> {
-  factory $SatoriEventCopyWith(
-          SatoriEvent value, $Res Function(SatoriEvent) then) =
-      _$SatoriEventCopyWithImpl<$Res, SatoriEvent>;
+abstract class $EventCopyWith<$Res> {
+  factory $EventCopyWith(Event value, $Res Function(Event) then) =
+      _$EventCopyWithImpl<$Res, Event>;
   @useResult
   $Res call(
       {String? name,
@@ -57,9 +55,9 @@ abstract class $SatoriEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SatoriEventCopyWithImpl<$Res, $Val extends SatoriEvent>
-    implements $SatoriEventCopyWith<$Res> {
-  _$SatoriEventCopyWithImpl(this._value, this._then);
+class _$EventCopyWithImpl<$Res, $Val extends Event>
+    implements $EventCopyWith<$Res> {
+  _$EventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -102,7 +100,7 @@ class _$SatoriEventCopyWithImpl<$Res, $Val extends SatoriEvent>
 
 /// @nodoc
 abstract class _$$SatoriEventImplCopyWith<$Res>
-    implements $SatoriEventCopyWith<$Res> {
+    implements $EventCopyWith<$Res> {
   factory _$$SatoriEventImplCopyWith(
           _$SatoriEventImpl value, $Res Function(_$SatoriEventImpl) then) =
       __$$SatoriEventImplCopyWithImpl<$Res>;
@@ -118,7 +116,7 @@ abstract class _$$SatoriEventImplCopyWith<$Res>
 
 /// @nodoc
 class __$$SatoriEventImplCopyWithImpl<$Res>
-    extends _$SatoriEventCopyWithImpl<$Res, _$SatoriEventImpl>
+    extends _$EventCopyWithImpl<$Res, _$SatoriEventImpl>
     implements _$$SatoriEventImplCopyWith<$Res> {
   __$$SatoriEventImplCopyWithImpl(
       _$SatoriEventImpl _value, $Res Function(_$SatoriEventImpl) _then)
@@ -205,7 +203,7 @@ class _$SatoriEventImpl extends _SatoriEvent {
 
   @override
   String toString() {
-    return 'SatoriEvent(name: $name, timestamp: $timestamp, value: $value, metadata: $metadata, id: $id)';
+    return 'Event(name: $name, timestamp: $timestamp, value: $value, metadata: $metadata, id: $id)';
   }
 
   @override
@@ -240,7 +238,7 @@ class _$SatoriEventImpl extends _SatoriEvent {
   }
 }
 
-abstract class _SatoriEvent extends SatoriEvent {
+abstract class _SatoriEvent extends Event {
   const factory _SatoriEvent(
       {final String? name,
       final DateTime? timestamp,
