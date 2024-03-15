@@ -6,6 +6,7 @@ part of 'satori.swagger.dart';
 // ChopperGenerator
 // **************************************************************************
 
+// coverage:ignore-file
 // ignore_for_file: type=lint
 final class _$Satori extends Satori {
   _$Satori([ChopperClient? client]) {
@@ -14,7 +15,7 @@ final class _$Satori extends Satori {
   }
 
   @override
-  final definitionType = Satori;
+  final Type definitionType = Satori;
 
   @override
   Future<Response<Object>> _healthcheckGet() {

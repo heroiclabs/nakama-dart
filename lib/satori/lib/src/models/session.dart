@@ -6,10 +6,10 @@ part 'session.freezed.dart';
 
 /// A session authenticated for a user with Satori server.
 @freezed
-class SatoriSession with _$SatoriSession {
-  const SatoriSession._();
+class Session with _$Session {
+  const Session._();
 
-  factory SatoriSession({
+  factory Session({
     /// The authorization token used to construct this session.
     required String token,
 
@@ -24,15 +24,15 @@ class SatoriSession with _$SatoriSession {
 
     /// The time when the refresh token expires.
     required DateTime refreshExpiresAt,
-  }) = _SatoriSession;
+  }) = _Session;
 
-  factory SatoriSession.fromApi(ApiSession session) {
+  factory Session.fromApi(ApiSession session) {
     final token = JwtDecoder.decode(session.token!);
     assert(token.containsKey('iid'));
 
     final refreshToken = JwtDecoder.decode(session.refreshToken!);
 
-    return SatoriSession(
+    return Session(
       token: session.token!,
       refreshToken: session.refreshToken ?? '',
       identityId: token['iid'] as String,

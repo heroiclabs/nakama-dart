@@ -2,6 +2,10 @@ import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
 import 'package:satori/src/models/event.dart';
+import 'package:satori/src/models/experiment.dart';
+import 'package:satori/src/models/flag.dart';
+import 'package:satori/src/models/live_event.dart';
+import 'package:satori/src/models/properties.dart';
 import 'package:satori/src/models/session.dart';
 import 'package:satori/src/rest/satori.swagger.dart';
 import 'package:satori/src/satori_client/satori_client.dart';
@@ -11,7 +15,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
   late final Satori _api;
 
   // Used to send token with requests in the interceptor
-  SatoriSession? _session;
+  Session? _session;
 
   factory SatoriRestApiClient.init({
     String host = '127.0.0.1',
@@ -58,7 +62,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
   }
 
   @override
-  Future<SatoriSession> authenticate({
+  Future<Session> authenticate({
     String? id,
     Map<String, String>? defaultProperties,
     Map<String, String>? customProperties,
@@ -76,14 +80,12 @@ class SatoriRestApiClient extends SatoriBaseClient {
       throw Exception('Failed to authenticate with Satori: ${response.error}');
     }
 
-    final apiSession = response.body!;
-
-    return SatoriSession.fromApi(apiSession);
+    return Session.fromApi(response.body!);
   }
 
   @override
   Future<void> authenticateLogout({
-    required SatoriSession session,
+    required Session session,
   }) async {
     _session = session; // Pass session data in request
 
@@ -97,8 +99,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
   }
 
   @override
-  Future<SatoriSession> sessionRefresh({
-    required SatoriSession session,
+  Future<Session> sessionRefresh({
+    required Session session,
   }) async {
     _session = null; // Clear session data
 
@@ -111,14 +113,12 @@ class SatoriRestApiClient extends SatoriBaseClient {
       throw Exception('Failed to refresh session with Satori: ${response.error}');
     }
 
-    final apiSession = response.body!;
-
-    return SatoriSession.fromApi(apiSession);
+    return Session.fromApi(response.body!);
   }
 
   @override
   Future<void> deleteIdentity({
-    required SatoriSession session,
+    required Session session,
   }) async {
     _session = session; // Pass session data in request
 
@@ -131,7 +131,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
   @override
   Future<void> event({
-    required SatoriSession session,
+    required Session session,
     required Event event,
   }) async {
     _session = session; // Pass session data in request
@@ -148,7 +148,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
   @override
   Future<void> events({
-    required SatoriSession session,
+    required Session session,
     required List<Event> events,
   }) async {
     _session = session; // Pass session data in request
@@ -164,8 +164,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
   }
 
   @override
-  Future<ApiExperimentList> getAllExperiments({
-    required SatoriSession session,
+  Future<ExperimentList> getAllExperiments({
+    required Session session,
   }) async {
     _session = session; // Pass session data in request
 
@@ -175,12 +175,12 @@ class SatoriRestApiClient extends SatoriBaseClient {
       throw Exception('Failed to get all experiments from Satori: ${response.error}');
     }
 
-    return response.body!;
+    return ExperimentList.fromJson(response.body!.toJson());
   }
 
   @override
-  Future<ApiExperimentList> getExperiments({
-    required SatoriSession session,
+  Future<ExperimentList> getExperiments({
+    required Session session,
     required List<String> names,
   }) async {
     _session = session; // Pass session data in request
@@ -191,12 +191,12 @@ class SatoriRestApiClient extends SatoriBaseClient {
       throw Exception('Failed to get experiments from Satori: ${response.error}');
     }
 
-    return response.body!;
+    return ExperimentList.fromJson(response.body!.toJson());
   }
 
   @override
-  Future<ApiFlag> getFlag({
-    required SatoriSession session,
+  Future<Flag> getFlag({
+    required Session session,
     required String name,
     String? defaultValue,
   }) async {
@@ -208,19 +208,19 @@ class SatoriRestApiClient extends SatoriBaseClient {
       throw Exception('Failed to get flag from Satori: ${response.error}');
     }
 
-    final flags = response.body!.flags ?? [];
+    final flags = FlagList.fromJson(response.body!.toJson()).flags;
 
     return flags.isNotEmpty
         ? flags.firstWhere((flag) => flag.name == name)
-        : ApiFlag(
+        : Flag(
             name: name,
-            $value: defaultValue,
+            value: defaultValue,
           );
   }
 
   @override
-  Future<ApiFlagList> getFlags({
-    required SatoriSession session,
+  Future<FlagList> getFlags({
+    required Session session,
     required List<String> names,
   }) async {
     _session = session; // Pass session data in request
@@ -231,12 +231,12 @@ class SatoriRestApiClient extends SatoriBaseClient {
       throw Exception('Failed to get flags from Satori: ${response.error}');
     }
 
-    return response.body!;
+    return FlagList.fromJson(response.body!.toJson());
   }
 
   @override
-  Future<ApiLiveEventList> getLiveEvents({
-    required SatoriSession session,
+  Future<LiveEventList> getLiveEvents({
+    required Session session,
     List<String>? names,
   }) async {
     _session = session; // Pass session data in request
@@ -247,12 +247,12 @@ class SatoriRestApiClient extends SatoriBaseClient {
       throw Exception('Failed to get live events from Satori: ${response.error}');
     }
 
-    return response.body!;
+    return LiveEventList.fromJson(response.body!.toJson());
   }
 
   @override
-  Future<SatoriSession> identify({
-    required SatoriSession session,
+  Future<Session> identify({
+    required Session session,
     required String id,
     required Map<String, String> defaultProperties,
     required Map<String, String> customProperties,
@@ -270,14 +270,12 @@ class SatoriRestApiClient extends SatoriBaseClient {
       throw Exception('Failed to identify with Satori: ${response.error}');
     }
 
-    final apiSession = response.body!;
-
-    return SatoriSession.fromApi(apiSession);
+    return Session.fromApi(response.body!);
   }
 
   @override
-  Future<ApiProperties> listProperties({
-    required SatoriSession session,
+  Future<Properties> listProperties({
+    required Session session,
   }) async {
     _session = session; // Pass session data in request
 
@@ -287,12 +285,12 @@ class SatoriRestApiClient extends SatoriBaseClient {
       throw Exception('Failed to list properties from Satori: ${response.error}');
     }
 
-    return response.body!;
+    return Properties.fromDto(response.body!);
   }
 
   @override
   Future<void> updateProperties({
-    required SatoriSession session,
+    required Session session,
     required Map<String, String> defaultProperties,
     required Map<String, String> customProperties,
     bool? recompute = false,
