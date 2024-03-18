@@ -132,7 +132,7 @@ import 'package:nakama/satori/lib/satori.dart' as satori;
 
 and then you can access satori client using `satori.` prefix.
 
-Now to start using Satori, create a client object that accepts the API you were given as a Satori customer.
+Now to start using Satori, create a client object that accepts the API key you were given as a Satori customer.
 
 ```dart
 final client = getSatoriClient(
