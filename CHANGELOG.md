@@ -1,6 +1,6 @@
-## 1.0.6
+## 1.1.0
+- Satori: Adds the Satori SDK for Dart. Satori is our liveops server for game studios. Read more about it in the [documentation](https://heroiclabs.com/docs/satori/concepts/introduction/).
 
-* Fixed: `userId` is a required parameter in `listUserGroups`
 * Fixed: LeaderboardRecordList parsing issue [#52](https://github.com/heroiclabs/nakama-dart/issues/52)
 * Added: Module now exports channel_messages [#85](https://github.com/heroiclabs/nakama-dart/pull/85)
 
@@ -63,7 +63,7 @@
 * **Breaking:** Refactored the SDK to use own models instead of returning the underlaying Protobuf objects
 * Most of the functionality added to achieve a stable release:
   * Authentication (Session refresh, missing drivers, linking and unlinking)
-  * Leaderboard 
+  * Leaderboard
   * Friends & Groups
   * Notifications
   * Tournaments

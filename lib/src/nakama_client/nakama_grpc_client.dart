@@ -1091,10 +1091,10 @@ class NakamaGrpcClient extends NakamaBaseClient {
   @override
   Future<model.UserGroupList> listUserGroups({
     required model.Session session,
-    required String userId,
     String? cursor,
     int limit = defaultLimit,
     GroupMembershipState? state,
+    String? userId,
   }) async {
     final res = await _client.listUserGroups(
       api.ListUserGroupsRequest(
