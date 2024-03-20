@@ -1,8 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-
-import '../api/api.dart' as dto;
-import '../rest/apigrpc.swagger.dart';
+import 'package:nakama/src/api/api.dart' as dto;
+import 'package:nakama/src/rest/apigrpc.swagger.dart';
 
 part 'session.freezed.dart';
 

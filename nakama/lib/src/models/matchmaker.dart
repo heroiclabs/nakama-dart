@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../nakama.dart';
-import '../api/rtapi.dart' as rtpb;
+import 'package:nakama/nakama.dart';
+import 'package:nakama/src/api/rtapi.dart' as rtpb;
 
 part 'matchmaker.freezed.dart';
 

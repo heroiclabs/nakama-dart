@@ -2,11 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:logging/logging.dart';
+import 'package:nakama/nakama.dart';
+import 'package:nakama/src/api/api.dart' as api;
+import 'package:nakama/src/api/rtapi.dart' as rtpb;
 import 'package:web_socket_channel/web_socket_channel.dart';
-
-import '../nakama.dart';
-import 'api/api.dart' as api;
-import 'api/rtapi.dart' as rtpb;
 
 class NakamaWebsocketClient {
   static final _log = Logger('NakamaWebsocketClient');

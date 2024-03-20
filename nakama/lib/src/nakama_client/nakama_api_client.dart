@@ -1,19 +1,18 @@
 import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
-
-import '../../nakama.dart';
-import '../models/account.dart' as model;
-import '../models/channel_message.dart' as model;
-import '../models/friends.dart' as model;
-import '../models/group.dart' as model;
-import '../models/leaderboard.dart' as model;
-import '../models/match.dart' as model;
-import '../models/notification.dart' as model;
-import '../models/session.dart' as model;
-import '../models/storage.dart' as model;
-import '../models/tournament.dart' as model;
-import '../rest/apigrpc.swagger.dart';
+import 'package:nakama/nakama.dart';
+import 'package:nakama/src/models/account.dart' as model;
+import 'package:nakama/src/models/channel_message.dart' as model;
+import 'package:nakama/src/models/friends.dart' as model;
+import 'package:nakama/src/models/group.dart' as model;
+import 'package:nakama/src/models/leaderboard.dart' as model;
+import 'package:nakama/src/models/match.dart' as model;
+import 'package:nakama/src/models/notification.dart' as model;
+import 'package:nakama/src/models/session.dart' as model;
+import 'package:nakama/src/models/storage.dart' as model;
+import 'package:nakama/src/models/tournament.dart' as model;
+import 'package:nakama/src/rest/apigrpc.swagger.dart';
 
 const _kDefaultAppKey = 'default';
 

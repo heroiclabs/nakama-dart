@@ -1,7 +1,6 @@
+import 'package:nakama/src/enum/friendship_state.dart';
+import 'package:nakama/src/enum/group_membership_states.dart';
 import 'package:test/test.dart';
-
-import '../lib/src/enum/friendship_state.dart';
-import '../lib/src/enum/group_membership_states.dart';
 
 void main() {
   group('Enum integrity', () {

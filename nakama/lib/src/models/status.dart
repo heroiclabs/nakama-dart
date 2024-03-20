@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../api/rtapi.dart' as rtpb;
+import 'package:nakama/src/api/rtapi.dart' as rtpb;
 
 part 'status.freezed.dart';
 part 'status.g.dart';

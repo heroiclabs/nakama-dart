@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../api/api.dart' as api;
+import 'package:nakama/src/api/api.dart' as api;
 
 part 'channel_message.freezed.dart';
 part 'channel_message.g.dart';
