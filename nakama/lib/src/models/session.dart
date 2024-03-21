@@ -32,10 +32,10 @@ class Session with _$Session {
       vars: token.containsKey('vars') ? token['vars'] as Map<String, String>? : {},
       userId: token['uid'] as String,
       expiresAt: DateTime.fromMillisecondsSinceEpoch(
-        token['exp'] as int,
+        (token['exp'] as int) * 1000,
       ),
       refreshExpiresAt: DateTime.fromMillisecondsSinceEpoch(
-        refreshToken['exp'] as int,
+        (refreshToken['exp'] as int) * 1000,
       ),
     );
   }

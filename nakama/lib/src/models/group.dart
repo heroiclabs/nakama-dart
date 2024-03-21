@@ -66,7 +66,7 @@ class UserGroupList with _$UserGroupList {
 
   const factory UserGroupList({
     String? cursor,
-    required List<UserGroup> userGroups,
+    @JsonKey(name: 'user_groups') required List<UserGroup> userGroups,
   }) = _UserGroupList;
 
   factory UserGroupList.fromJson(Map<String, Object?> json) => _$UserGroupListFromJson(json);

@@ -51,5 +51,23 @@ void main() {
       expect(groups, isA<GroupList>());
       expect(groups.groups, hasLength(1));
     });
+
+    test('Correctly lists user\'s groups', () async {
+      // Create 3 groups
+      await Future.wait([
+        client.createGroup(session: session, name: faker.company.name()),
+        client.createGroup(session: session, name: faker.company.name()),
+        client.createGroup(session: session, name: faker.company.name()),
+      ]);
+
+      // list my groups
+      final myGroups = await client.listUserGroups(
+        session: session,
+        userId: session.userId,
+      );
+
+      expect(myGroups, isA<UserGroupList>());
+      expect(myGroups.userGroups, hasLength(3));
+    });
   });
 }
