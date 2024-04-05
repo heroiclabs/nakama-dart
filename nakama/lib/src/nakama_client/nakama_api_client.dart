@@ -98,12 +98,12 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
   @override
   Future<model.Session> sessionRefresh({
-    required model.Session session,
+    required String refreshToken,
     Map<String, String>? vars,
   }) async {
     final res = await _api.v2AccountSessionRefreshPost(
       body: ApiSessionRefreshRequest(
-        token: session.refreshToken,
+        token: refreshToken,
         vars: vars,
       ),
     );

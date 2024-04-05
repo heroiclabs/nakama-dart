@@ -30,9 +30,10 @@ abstract class NakamaBaseClient {
   NakamaBaseClient();
 
   Future<model.Session> sessionRefresh({
-    required model.Session session,
+    required String refreshToken,
     Map<String, String>? vars,
   });
+
 
   /// Log out a session, invalidate a refresh token, or log out all
   /// sessions/refresh tokens for a user.

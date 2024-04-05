@@ -103,11 +103,11 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<model.Session> sessionRefresh({
-    required model.Session session,
+    required String refreshToken,
     Map<String, String>? vars,
   }) async {
     final res = await _client.sessionRefresh(
-      api.SessionRefreshRequest(token: session.refreshToken, vars: vars),
+      api.SessionRefreshRequest(token: refreshToken, vars: vars),
     );
 
     return model.Session.fromDto(res);
