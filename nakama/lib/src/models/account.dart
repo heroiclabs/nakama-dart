@@ -25,8 +25,8 @@ class Account with _$Account {
         email: dto.email,
         devices: dto.devices.map((e) => Device.fromDto(e)).toList(growable: false),
         customId: dto.customId,
-        verifyTime: dto.verifyTime.hasNanos() ? dto.verifyTime.toDateTime() : null,
-        disableTime: dto.disableTime.hasNanos() ? dto.disableTime.toDateTime() : null,
+        verifyTime: dto.verifyTime.hasSeconds() ? dto.verifyTime.toDateTime() : null,
+        disableTime: dto.disableTime.hasSeconds() ? dto.disableTime.toDateTime() : null,
         user: User.fromDto(dto.user),
       );
 }
