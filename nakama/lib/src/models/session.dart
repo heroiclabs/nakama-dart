@@ -61,7 +61,7 @@ class Session with _$Session {
     );
   }
 
-  static Session restore({required String sessionToken,String? refreshToken}) {
+  factory Session.restore({required String sessionToken,String? refreshToken}) {
      final token = JwtDecoder.decode(sessionToken);
      assert(token.containsKey('uid'));
 
