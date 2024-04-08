@@ -61,6 +61,31 @@ class Session with _$Session {
     );
   }
 
+  static Session restore({required String sessionToken,String? refreshToken}) {
+     final token = JwtDecoder.decode(sessionToken);
+     assert(token.containsKey('uid'));
+
+     int refreshExpireTime = 0;
+     if(refreshToken != null) {
+       final refreshTokenMap = JwtDecoder.decode(refreshToken!);
+       refreshExpireTime = refreshTokenMap['exp'] as int;
+     }
+
+    return Session(
+      token: sessionToken,
+      refreshToken: refreshToken,
+      created: false,
+      vars: token.containsKey('vars') ? token['vars'] as Map<String, String>? : {},
+      userId: token['uid'] as String,
+      expiresAt: DateTime.fromMillisecondsSinceEpoch(
+        (token['exp'] as int) * 1000,
+      ),
+      refreshExpiresAt: DateTime.fromMillisecondsSinceEpoch(
+        (refreshExpireTime) * 1000,
+      ),
+    );
+  }
+
   bool hasExpired(DateTime time) => expiresAt.isBefore(time);
   bool get isExpired => hasExpired(DateTime.now());
 
