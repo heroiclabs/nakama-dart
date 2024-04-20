@@ -121,22 +121,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
-  chopper:
-    dependency: "direct main"
-    description:
-      name: chopper
-      sha256: eac1e6ddfdf50df266943a5f6838f5490e4f6818b48476a68427b89ecc97e07d
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.2.0"
-  chopper_generator:
-    dependency: "direct dev"
-    description:
-      name: chopper_generator
-      sha256: fa03549c15e2c1d7bf122b2afa05c5367fa2d34fd1cbd013298beaff83f94b67
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.2.0"
   clock:
     dependency: transitive
     description:
@@ -154,7 +138,7 @@ packages:
     source: hosted
     version: "4.10.0"
   collection:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: collection
       sha256: ee67cb0715911d28db6bf4af1026078bd6f0128b07a5f66fb2ed94ec6783c09a
@@ -193,14 +177,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.6"
-  equatable:
-    dependency: transitive
-    description:
-      name: equatable
-      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.5"
   faker:
     dependency: "direct dev"
     description:
@@ -218,7 +194,7 @@ packages:
     source: hosted
     version: "7.0.0"
   fixnum:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: fixnum
       sha256: "25517a4deb0c03aa0f32fd12db525856438902d9c16536311e76cdc57b31d7d1"
@@ -298,7 +274,7 @@ packages:
     source: hosted
     version: "3.2.4"
   http:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: http
       sha256: "761a297c042deedc1ffbb156d6e2af13886bb305c2a343a4d972504cd67dd938"
@@ -385,14 +361,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  markdown:
-    dependency: transitive
-    description:
-      name: markdown
-      sha256: ef2a1298144e3f985cc736b22e0ccdaf188b5b3970648f2d9dc13efd1d9df051
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.2.2"
   matcher:
     dependency: transitive
     description:
@@ -481,14 +449,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
-  recase:
-    dependency: transitive
-    description:
-      name: recase
-      sha256: e4eb4ec2dcdee52dcf99cb4ceabaffc631d7424ee55e56f280bc039737f89213
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.1.0"
   shelf:
     dependency: transitive
     description:
@@ -593,14 +553,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  swagger_dart_code_generator:
-    dependency: "direct dev"
-    description:
-      name: swagger_dart_code_generator
-      sha256: "73dedc94da13ee4c7259cb60411ccf699789eeceb842a493e025afbca808bb99"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.15.2"
   term_glyph:
     dependency: transitive
     description:
@@ -649,14 +601,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.2"
-  universal_io:
-    dependency: transitive
-    description:
-      name: universal_io
-      sha256: "1722b2dcc462b4b2f3ee7d188dad008b6eb4c40bbd03a3de451d82c78bba9aad"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.2"
   vm_service:
     dependency: transitive
     description:

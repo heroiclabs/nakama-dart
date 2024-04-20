@@ -9,12 +9,8 @@ environment:
   sdk: ">=3.1.0 <4.0.0"
 
 dependencies:
-  chopper: ^7.0.5
-  collection: ^1.16.0
-  fixnum: ^1.0.0
   freezed_annotation: ^2.2.0
   grpc: ^3.1.0
-  http: ^1.1.2
   json_annotation: ^4.7.0
   jwt_decoder: ^2.0.1
   logging: ^1.1.0
@@ -24,10 +20,8 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.3.2
-  chopper_generator: ^7.0.2
   faker: ^2.0.0
   flutter_lints: ^3.0.1
   freezed: ^2.2.1
   json_serializable: ^6.5.4
-  swagger_dart_code_generator: ^2.8.5
   test: ^1.22.0
