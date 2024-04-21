@@ -9,12 +9,12 @@ class Account with _$Account {
   const Account._();
 
   const factory Account({
-    String? wallet,
-    String? email,
-    @Default([]) List<Device> devices,
-    String? customId,
-    DateTime? verifyTime,
-    DateTime? disableTime,
+    @JsonKey(name: 'wallet') String? wallet,
+    @JsonKey(name: 'email') String? email,
+    @JsonKey(name: 'devices') @Default([]) List<Device> devices,
+    @JsonKey(name: 'custom_id') String? customId,
+    @JsonKey(name: 'verify_time') DateTime? verifyTime,
+    @JsonKey(name: 'disable_time') DateTime? disableTime,
     required User user,
   }) = _Account;
 
@@ -53,24 +53,24 @@ class User with _$User {
   const User._();
 
   const factory User({
-    required String id,
-    String? username,
-    String? displayName,
-    String? avatarUrl,
-    String? langTag,
-    String? location,
-    String? timezone,
-    String? metadata,
-    String? facebookId,
-    String? googleId,
-    String? gamecenterId,
-    String? steamId,
-    @Default(false) bool online,
-    @Default(0) int edgeCount,
-    DateTime? createTime,
-    DateTime? updateTime,
-    String? facebookInstantGameId,
-    String? appleId,
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'username') String? username,
+    @JsonKey(name: 'display_name') String? displayName,
+    @JsonKey(name: 'avatar_url') String? avatarUrl,
+    @JsonKey(name: 'lang_tag') String? langTag,
+    @JsonKey(name: 'location') String? location,
+    @JsonKey(name: 'timezone') String? timezone,
+    @JsonKey(name: 'metadata') String? metadata,
+    @JsonKey(name: 'facebook_id') String? facebookId,
+    @JsonKey(name: 'google_id') String? googleId,
+    @JsonKey(name: 'gamecenter_id') String? gamecenterId,
+    @JsonKey(name: 'steam_id') String? steamId,
+    @JsonKey(name: 'online') @Default(false) bool online,
+    @JsonKey(name: 'edge_count') @Default(0) int edgeCount,
+    @JsonKey(name: 'create_time') DateTime? createTime,
+    @JsonKey(name: 'update_time') DateTime? updateTime,
+    @JsonKey(name: 'facebook_instant_game_id') String? facebookInstantGameId,
+    @JsonKey(name: 'apple_id') String? appleId,
   }) = _User;
 
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);

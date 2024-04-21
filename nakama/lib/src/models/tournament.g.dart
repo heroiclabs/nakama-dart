@@ -12,26 +12,26 @@ _$TournamentImpl _$$TournamentImplFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String?,
       description: json['description'] as String?,
       category: json['category'] as int?,
-      sortOrder: json['sortOrder'] as int?,
+      sortOrder: json['sort_order'] as int?,
       size: json['size'] as int?,
-      maxSize: json['maxSize'] as int?,
-      maxNumScore: json['maxNumScore'] as int?,
-      canEnter: json['canEnter'] as bool?,
-      endActive: json['endActive'] as int?,
-      nextReset: json['nextReset'] as int?,
+      maxSize: json['max_size'] as int?,
+      maxNumScore: json['max_num_score'] as int?,
+      canEnter: json['can_enter'] as bool?,
+      endActive: json['end_active'] as int?,
+      nextReset: json['next_reset'] as int?,
       metadata: json['metadata'] as String?,
-      createTime: json['createTime'] == null
+      createTime: json['create_time'] == null
           ? null
-          : DateTime.parse(json['createTime'] as String),
-      startTime: json['startTime'] == null
+          : DateTime.parse(json['create_time'] as String),
+      startTime: json['start_time'] == null
           ? null
-          : DateTime.parse(json['startTime'] as String),
-      endTime: json['endTime'] == null
+          : DateTime.parse(json['start_time'] as String),
+      endTime: json['end_time'] == null
           ? null
-          : DateTime.parse(json['endTime'] as String),
+          : DateTime.parse(json['end_time'] as String),
       duration: json['duration'] as int?,
-      startActive: json['startActive'] as int?,
-      prevReset: json['prevReset'] as int?,
+      startActive: json['start_active'] as int?,
+      prevReset: json['prev_reset'] as int?,
     );
 
 Map<String, dynamic> _$$TournamentImplToJson(_$TournamentImpl instance) =>
@@ -40,20 +40,20 @@ Map<String, dynamic> _$$TournamentImplToJson(_$TournamentImpl instance) =>
       'title': instance.title,
       'description': instance.description,
       'category': instance.category,
-      'sortOrder': instance.sortOrder,
+      'sort_order': instance.sortOrder,
       'size': instance.size,
-      'maxSize': instance.maxSize,
-      'maxNumScore': instance.maxNumScore,
-      'canEnter': instance.canEnter,
-      'endActive': instance.endActive,
-      'nextReset': instance.nextReset,
+      'max_size': instance.maxSize,
+      'max_num_score': instance.maxNumScore,
+      'can_enter': instance.canEnter,
+      'end_active': instance.endActive,
+      'next_reset': instance.nextReset,
       'metadata': instance.metadata,
-      'createTime': instance.createTime?.toIso8601String(),
-      'startTime': instance.startTime?.toIso8601String(),
-      'endTime': instance.endTime?.toIso8601String(),
+      'create_time': instance.createTime?.toIso8601String(),
+      'start_time': instance.startTime?.toIso8601String(),
+      'end_time': instance.endTime?.toIso8601String(),
       'duration': instance.duration,
-      'startActive': instance.startActive,
-      'prevReset': instance.prevReset,
+      'start_active': instance.startActive,
+      'prev_reset': instance.prevReset,
     };
 
 _$TournamentListImpl _$$TournamentListImplFromJson(Map<String, dynamic> json) =>
@@ -77,18 +77,18 @@ _$TournamentRecordListImpl _$$TournamentRecordListImplFromJson(
       records: (json['records'] as List<dynamic>)
           .map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
-      ownerRecords: (json['ownerRecords'] as List<dynamic>)
+      ownerRecords: (json['owner_records'] as List<dynamic>)
           .map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
-      nextCursor: json['nextCursor'] as String?,
-      previousCursor: json['previousCursor'] as String?,
+      nextCursor: json['next_cursor'] as String?,
+      previousCursor: json['previous_cursor'] as String?,
     );
 
 Map<String, dynamic> _$$TournamentRecordListImplToJson(
         _$TournamentRecordListImpl instance) =>
     <String, dynamic>{
       'records': instance.records,
-      'ownerRecords': instance.ownerRecords,
-      'nextCursor': instance.nextCursor,
-      'previousCursor': instance.previousCursor,
+      'owner_records': instance.ownerRecords,
+      'next_cursor': instance.nextCursor,
+      'previous_cursor': instance.previousCursor,
     };

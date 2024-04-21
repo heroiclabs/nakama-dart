@@ -12,20 +12,24 @@ part of 'party.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PartyData {
   /// The party unique ID.
+  @JsonKey(name: 'party_id')
   String get partyId => throw _privateConstructorUsedError;
 
   /// A reference to the user presence that sent this data, if any.
+  @JsonKey(name: 'presence')
   UserPresence get presence => throw _privateConstructorUsedError;
 
   /// Op code value.
+  @JsonKey(name: 'op_code')
   int get opCode => throw _privateConstructorUsedError;
 
   /// Data payload, if any.
+  @JsonKey(name: 'data')
   List<int> get data => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -39,7 +43,10 @@ abstract class $PartyDataCopyWith<$Res> {
       _$PartyDataCopyWithImpl<$Res, PartyData>;
   @useResult
   $Res call(
-      {String partyId, UserPresence presence, int opCode, List<int> data});
+      {@JsonKey(name: 'party_id') String partyId,
+      @JsonKey(name: 'presence') UserPresence presence,
+      @JsonKey(name: 'op_code') int opCode,
+      @JsonKey(name: 'data') List<int> data});
 
   $UserPresenceCopyWith<$Res> get presence;
 }
@@ -100,7 +107,10 @@ abstract class _$$PartyDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String partyId, UserPresence presence, int opCode, List<int> data});
+      {@JsonKey(name: 'party_id') String partyId,
+      @JsonKey(name: 'presence') UserPresence presence,
+      @JsonKey(name: 'op_code') int opCode,
+      @JsonKey(name: 'data') List<int> data});
 
   @override
   $UserPresenceCopyWith<$Res> get presence;
@@ -147,23 +157,26 @@ class __$$PartyDataImplCopyWithImpl<$Res>
 
 class _$PartyDataImpl extends _PartyData {
   const _$PartyDataImpl(
-      {required this.partyId,
-      required this.presence,
-      required this.opCode,
-      required final List<int> data})
+      {@JsonKey(name: 'party_id') required this.partyId,
+      @JsonKey(name: 'presence') required this.presence,
+      @JsonKey(name: 'op_code') required this.opCode,
+      @JsonKey(name: 'data') required final List<int> data})
       : _data = data,
         super._();
 
   /// The party unique ID.
   @override
+  @JsonKey(name: 'party_id')
   final String partyId;
 
   /// A reference to the user presence that sent this data, if any.
   @override
+  @JsonKey(name: 'presence')
   final UserPresence presence;
 
   /// Op code value.
   @override
+  @JsonKey(name: 'op_code')
   final int opCode;
 
   /// Data payload, if any.
@@ -171,6 +184,7 @@ class _$PartyDataImpl extends _PartyData {
 
   /// Data payload, if any.
   @override
+  @JsonKey(name: 'data')
   List<int> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
@@ -207,27 +221,31 @@ class _$PartyDataImpl extends _PartyData {
 
 abstract class _PartyData extends PartyData {
   const factory _PartyData(
-      {required final String partyId,
-      required final UserPresence presence,
-      required final int opCode,
-      required final List<int> data}) = _$PartyDataImpl;
+      {@JsonKey(name: 'party_id') required final String partyId,
+      @JsonKey(name: 'presence') required final UserPresence presence,
+      @JsonKey(name: 'op_code') required final int opCode,
+      @JsonKey(name: 'data') required final List<int> data}) = _$PartyDataImpl;
   const _PartyData._() : super._();
 
   @override
 
   /// The party unique ID.
+  @JsonKey(name: 'party_id')
   String get partyId;
   @override
 
   /// A reference to the user presence that sent this data, if any.
+  @JsonKey(name: 'presence')
   UserPresence get presence;
   @override
 
   /// Op code value.
+  @JsonKey(name: 'op_code')
   int get opCode;
   @override
 
   /// Data payload, if any.
+  @JsonKey(name: 'data')
   List<int> get data;
   @override
   @JsonKey(ignore: true)

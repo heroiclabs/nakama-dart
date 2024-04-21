@@ -12,7 +12,7 @@ part of 'channel_message.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ChannelMessage _$ChannelMessageFromJson(Map<String, dynamic> json) {
   return _ChannelMessage.fromJson(json);
@@ -20,18 +20,31 @@ ChannelMessage _$ChannelMessageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChannelMessage {
+  @JsonKey(name: 'channel_id')
   String get channelId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'message_id')
   String get messageId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'code')
   int get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sender_id')
   String get senderId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'username')
   String get username => throw _privateConstructorUsedError;
+  @JsonKey(name: 'content')
   String get content => throw _privateConstructorUsedError;
+  @JsonKey(name: 'create_time')
   DateTime get createTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'update_time')
   DateTime get updateTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'persistent')
   bool get persistent => throw _privateConstructorUsedError;
+  @JsonKey(name: 'room_name')
   String get roomName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'group_id')
   String get groupId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id_one')
   String get userIdOne => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id_two')
   String get userIdTwo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,19 +60,19 @@ abstract class $ChannelMessageCopyWith<$Res> {
       _$ChannelMessageCopyWithImpl<$Res, ChannelMessage>;
   @useResult
   $Res call(
-      {String channelId,
-      String messageId,
-      int code,
-      String senderId,
-      String username,
-      String content,
-      DateTime createTime,
-      DateTime updateTime,
-      bool persistent,
-      String roomName,
-      String groupId,
-      String userIdOne,
-      String userIdTwo});
+      {@JsonKey(name: 'channel_id') String channelId,
+      @JsonKey(name: 'message_id') String messageId,
+      @JsonKey(name: 'code') int code,
+      @JsonKey(name: 'sender_id') String senderId,
+      @JsonKey(name: 'username') String username,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'create_time') DateTime createTime,
+      @JsonKey(name: 'update_time') DateTime updateTime,
+      @JsonKey(name: 'persistent') bool persistent,
+      @JsonKey(name: 'room_name') String roomName,
+      @JsonKey(name: 'group_id') String groupId,
+      @JsonKey(name: 'user_id_one') String userIdOne,
+      @JsonKey(name: 'user_id_two') String userIdTwo});
 }
 
 /// @nodoc
@@ -155,19 +168,19 @@ abstract class _$$ChannelMessageImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String channelId,
-      String messageId,
-      int code,
-      String senderId,
-      String username,
-      String content,
-      DateTime createTime,
-      DateTime updateTime,
-      bool persistent,
-      String roomName,
-      String groupId,
-      String userIdOne,
-      String userIdTwo});
+      {@JsonKey(name: 'channel_id') String channelId,
+      @JsonKey(name: 'message_id') String messageId,
+      @JsonKey(name: 'code') int code,
+      @JsonKey(name: 'sender_id') String senderId,
+      @JsonKey(name: 'username') String username,
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'create_time') DateTime createTime,
+      @JsonKey(name: 'update_time') DateTime updateTime,
+      @JsonKey(name: 'persistent') bool persistent,
+      @JsonKey(name: 'room_name') String roomName,
+      @JsonKey(name: 'group_id') String groupId,
+      @JsonKey(name: 'user_id_one') String userIdOne,
+      @JsonKey(name: 'user_id_two') String userIdTwo});
 }
 
 /// @nodoc
@@ -256,49 +269,62 @@ class __$$ChannelMessageImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChannelMessageImpl extends _ChannelMessage {
   const _$ChannelMessageImpl(
-      {required this.channelId,
-      required this.messageId,
-      required this.code,
-      required this.senderId,
-      required this.username,
-      required this.content,
-      required this.createTime,
-      required this.updateTime,
-      required this.persistent,
-      required this.roomName,
-      required this.groupId,
-      required this.userIdOne,
-      required this.userIdTwo})
+      {@JsonKey(name: 'channel_id') required this.channelId,
+      @JsonKey(name: 'message_id') required this.messageId,
+      @JsonKey(name: 'code') required this.code,
+      @JsonKey(name: 'sender_id') required this.senderId,
+      @JsonKey(name: 'username') required this.username,
+      @JsonKey(name: 'content') required this.content,
+      @JsonKey(name: 'create_time') required this.createTime,
+      @JsonKey(name: 'update_time') required this.updateTime,
+      @JsonKey(name: 'persistent') required this.persistent,
+      @JsonKey(name: 'room_name') required this.roomName,
+      @JsonKey(name: 'group_id') required this.groupId,
+      @JsonKey(name: 'user_id_one') required this.userIdOne,
+      @JsonKey(name: 'user_id_two') required this.userIdTwo})
       : super._();
 
   factory _$ChannelMessageImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChannelMessageImplFromJson(json);
 
   @override
+  @JsonKey(name: 'channel_id')
   final String channelId;
   @override
+  @JsonKey(name: 'message_id')
   final String messageId;
   @override
+  @JsonKey(name: 'code')
   final int code;
   @override
+  @JsonKey(name: 'sender_id')
   final String senderId;
   @override
+  @JsonKey(name: 'username')
   final String username;
   @override
+  @JsonKey(name: 'content')
   final String content;
   @override
+  @JsonKey(name: 'create_time')
   final DateTime createTime;
   @override
+  @JsonKey(name: 'update_time')
   final DateTime updateTime;
   @override
+  @JsonKey(name: 'persistent')
   final bool persistent;
   @override
+  @JsonKey(name: 'room_name')
   final String roomName;
   @override
+  @JsonKey(name: 'group_id')
   final String groupId;
   @override
+  @JsonKey(name: 'user_id_one')
   final String userIdOne;
   @override
+  @JsonKey(name: 'user_id_two')
   final String userIdTwo;
 
   @override
@@ -371,49 +397,63 @@ class _$ChannelMessageImpl extends _ChannelMessage {
 
 abstract class _ChannelMessage extends ChannelMessage {
   const factory _ChannelMessage(
-      {required final String channelId,
-      required final String messageId,
-      required final int code,
-      required final String senderId,
-      required final String username,
-      required final String content,
-      required final DateTime createTime,
-      required final DateTime updateTime,
-      required final bool persistent,
-      required final String roomName,
-      required final String groupId,
-      required final String userIdOne,
-      required final String userIdTwo}) = _$ChannelMessageImpl;
+          {@JsonKey(name: 'channel_id') required final String channelId,
+          @JsonKey(name: 'message_id') required final String messageId,
+          @JsonKey(name: 'code') required final int code,
+          @JsonKey(name: 'sender_id') required final String senderId,
+          @JsonKey(name: 'username') required final String username,
+          @JsonKey(name: 'content') required final String content,
+          @JsonKey(name: 'create_time') required final DateTime createTime,
+          @JsonKey(name: 'update_time') required final DateTime updateTime,
+          @JsonKey(name: 'persistent') required final bool persistent,
+          @JsonKey(name: 'room_name') required final String roomName,
+          @JsonKey(name: 'group_id') required final String groupId,
+          @JsonKey(name: 'user_id_one') required final String userIdOne,
+          @JsonKey(name: 'user_id_two') required final String userIdTwo}) =
+      _$ChannelMessageImpl;
   const _ChannelMessage._() : super._();
 
   factory _ChannelMessage.fromJson(Map<String, dynamic> json) =
       _$ChannelMessageImpl.fromJson;
 
   @override
+  @JsonKey(name: 'channel_id')
   String get channelId;
   @override
+  @JsonKey(name: 'message_id')
   String get messageId;
   @override
+  @JsonKey(name: 'code')
   int get code;
   @override
+  @JsonKey(name: 'sender_id')
   String get senderId;
   @override
+  @JsonKey(name: 'username')
   String get username;
   @override
+  @JsonKey(name: 'content')
   String get content;
   @override
+  @JsonKey(name: 'create_time')
   DateTime get createTime;
   @override
+  @JsonKey(name: 'update_time')
   DateTime get updateTime;
   @override
+  @JsonKey(name: 'persistent')
   bool get persistent;
   @override
+  @JsonKey(name: 'room_name')
   String get roomName;
   @override
+  @JsonKey(name: 'group_id')
   String get groupId;
   @override
+  @JsonKey(name: 'user_id_one')
   String get userIdOne;
   @override
+  @JsonKey(name: 'user_id_two')
   String get userIdTwo;
   @override
   @JsonKey(ignore: true)
@@ -427,9 +467,13 @@ ChannelMessageList _$ChannelMessageListFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChannelMessageList {
+  @JsonKey(name: 'messages')
   List<ChannelMessage> get messages => throw _privateConstructorUsedError;
+  @JsonKey(name: 'next_cursor')
   String get nextCursor => throw _privateConstructorUsedError;
+  @JsonKey(name: 'prev_cursor')
   String get prevCursor => throw _privateConstructorUsedError;
+  @JsonKey(name: 'cacheable_cursor')
   String get cacheableCursor => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -445,10 +489,10 @@ abstract class $ChannelMessageListCopyWith<$Res> {
       _$ChannelMessageListCopyWithImpl<$Res, ChannelMessageList>;
   @useResult
   $Res call(
-      {List<ChannelMessage> messages,
-      String nextCursor,
-      String prevCursor,
-      String cacheableCursor});
+      {@JsonKey(name: 'messages') List<ChannelMessage> messages,
+      @JsonKey(name: 'next_cursor') String nextCursor,
+      @JsonKey(name: 'prev_cursor') String prevCursor,
+      @JsonKey(name: 'cacheable_cursor') String cacheableCursor});
 }
 
 /// @nodoc
@@ -499,10 +543,10 @@ abstract class _$$ChannelMessageListImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<ChannelMessage> messages,
-      String nextCursor,
-      String prevCursor,
-      String cacheableCursor});
+      {@JsonKey(name: 'messages') List<ChannelMessage> messages,
+      @JsonKey(name: 'next_cursor') String nextCursor,
+      @JsonKey(name: 'prev_cursor') String prevCursor,
+      @JsonKey(name: 'cacheable_cursor') String cacheableCursor});
 }
 
 /// @nodoc
@@ -546,10 +590,10 @@ class __$$ChannelMessageListImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChannelMessageListImpl extends _ChannelMessageList {
   const _$ChannelMessageListImpl(
-      {required final List<ChannelMessage> messages,
-      required this.nextCursor,
-      required this.prevCursor,
-      required this.cacheableCursor})
+      {@JsonKey(name: 'messages') required final List<ChannelMessage> messages,
+      @JsonKey(name: 'next_cursor') required this.nextCursor,
+      @JsonKey(name: 'prev_cursor') required this.prevCursor,
+      @JsonKey(name: 'cacheable_cursor') required this.cacheableCursor})
       : _messages = messages,
         super._();
 
@@ -558,6 +602,7 @@ class _$ChannelMessageListImpl extends _ChannelMessageList {
 
   final List<ChannelMessage> _messages;
   @override
+  @JsonKey(name: 'messages')
   List<ChannelMessage> get messages {
     if (_messages is EqualUnmodifiableListView) return _messages;
     // ignore: implicit_dynamic_type
@@ -565,10 +610,13 @@ class _$ChannelMessageListImpl extends _ChannelMessageList {
   }
 
   @override
+  @JsonKey(name: 'next_cursor')
   final String nextCursor;
   @override
+  @JsonKey(name: 'prev_cursor')
   final String prevCursor;
   @override
+  @JsonKey(name: 'cacheable_cursor')
   final String cacheableCursor;
 
   @override
@@ -616,9 +664,10 @@ class _$ChannelMessageListImpl extends _ChannelMessageList {
 
 abstract class _ChannelMessageList extends ChannelMessageList {
   const factory _ChannelMessageList(
-      {required final List<ChannelMessage> messages,
-      required final String nextCursor,
-      required final String prevCursor,
+      {@JsonKey(name: 'messages') required final List<ChannelMessage> messages,
+      @JsonKey(name: 'next_cursor') required final String nextCursor,
+      @JsonKey(name: 'prev_cursor') required final String prevCursor,
+      @JsonKey(name: 'cacheable_cursor')
       required final String cacheableCursor}) = _$ChannelMessageListImpl;
   const _ChannelMessageList._() : super._();
 
@@ -626,12 +675,16 @@ abstract class _ChannelMessageList extends ChannelMessageList {
       _$ChannelMessageListImpl.fromJson;
 
   @override
+  @JsonKey(name: 'messages')
   List<ChannelMessage> get messages;
   @override
+  @JsonKey(name: 'next_cursor')
   String get nextCursor;
   @override
+  @JsonKey(name: 'prev_cursor')
   String get prevCursor;
   @override
+  @JsonKey(name: 'cacheable_cursor')
   String get cacheableCursor;
   @override
   @JsonKey(ignore: true)

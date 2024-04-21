@@ -5,6 +5,7 @@ import 'package:grpc/grpc_connection_interface.dart';
 import 'package:logging/logging.dart';
 import 'package:nakama/nakama.dart';
 import 'package:nakama/src/api/api.dart' as api;
+import 'package:nakama/src/api/proto/api/api.pb.dart';
 import 'package:nakama/src/api/proto/apigrpc/apigrpc.pbgrpc.dart';
 import 'package:nakama/src/models/account.dart' as model;
 import 'package:nakama/src/models/channel_message.dart' as model;
@@ -719,56 +720,6 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<void> writeStorageObject({
-    required model.Session session,
-    String? collection,
-    String? key,
-    String? value,
-    String? version,
-    StorageWritePermission? writePermission,
-    StorageReadPermission? readPermission,
-  }) {
-    return _client.writeStorageObjects(
-      api.WriteStorageObjectsRequest(
-        objects: [
-          api.WriteStorageObject(
-            collection: collection,
-            key: key,
-            value: value,
-            version: version,
-            permissionWrite: writePermission != null ? api.Int32Value(value: writePermission.index) : null,
-            permissionRead: readPermission != null ? api.Int32Value(value: readPermission.index) : null,
-          ),
-        ],
-      ),
-      options: _getSessionCallOptions(session),
-    );
-  }
-
-  @override
-  Future<model.StorageObject?> readStorageObject({
-    required model.Session session,
-    String? collection,
-    String? key,
-    String? userId,
-  }) async {
-    final res = await _client.readStorageObjects(
-      api.ReadStorageObjectsRequest(
-        objectIds: [
-          api.ReadStorageObjectId(
-            collection: collection,
-            key: key,
-            userId: userId,
-          ),
-        ],
-      ),
-      options: _getSessionCallOptions(session),
-    );
-
-    return res.objects.isEmpty ? null : model.StorageObject.fromDto(res.objects.first);
-  }
-
-  @override
   Future<model.StorageObjectList> listStorageObjects({
     required model.Session session,
     String? collection,
@@ -787,23 +738,6 @@ class NakamaGrpcClient extends NakamaBaseClient {
     );
 
     return model.StorageObjectList.fromDto(res);
-  }
-
-  @override
-  Future<void> deleteStorageObject({
-    required model.Session session,
-    required Iterable<model.StorageObjectId> objectIds,
-  }) async {
-    await _client.deleteStorageObjects(
-      api.DeleteStorageObjectsRequest(
-        objectIds: objectIds.map((e) => api.DeleteStorageObjectId(
-              collection: e.collection,
-              key: e.key,
-              version: e.version,
-            )),
-      ),
-      options: _getSessionCallOptions(session),
-    );
   }
 
   @override
@@ -881,17 +815,19 @@ class NakamaGrpcClient extends NakamaBaseClient {
   Future<model.LeaderboardRecord> writeLeaderboardRecord({
     required model.Session session,
     required String leaderboardName,
-    int? score,
+    required int score,
     int? subscore,
     String? metadata,
+    LeaderboardOperator? operator,
   }) async {
     final res = await _client.writeLeaderboardRecord(
       api.WriteLeaderboardRecordRequest(
         leaderboardId: leaderboardName,
         record: api.WriteLeaderboardRecordRequest_LeaderboardRecordWrite(
-          score: score == null ? null : Int64(score),
+          score: Int64(score),
           subscore: subscore == null ? null : Int64(subscore),
           metadata: metadata,
+          operator: Operator.valueOf(operator?.index ?? 0),
         ),
       ),
       options: _getSessionCallOptions(session),
@@ -1354,22 +1290,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
         tournamentId: tournamentId,
         record: api.WriteTournamentRecordRequest_TournamentRecordWrite(
           metadata: metadata,
-          operator: () {
-            switch (operator) {
-              case LeaderboardOperator.best:
-                return api.Operator.BEST;
-              case LeaderboardOperator.decrement:
-                return api.Operator.DECREMENT;
-              case LeaderboardOperator.increment:
-                return api.Operator.INCREMENT;
-              case LeaderboardOperator.noOverride:
-                return api.Operator.NO_OVERRIDE;
-              case LeaderboardOperator.set:
-                return api.Operator.SET;
-              default:
-                return null;
-            }
-          }(),
+          operator: Operator.valueOf(operator?.index ?? 0),
           score: score != null ? Int64(score) : null,
           subscore: subscore != null ? Int64(subscore) : null,
         ),
@@ -1395,5 +1316,58 @@ class NakamaGrpcClient extends NakamaBaseClient {
     );
 
     return res.payload;
+  }
+
+  @override
+  Future<void> deleteStorageObjects({
+    required model.Session session,
+    required Iterable<StorageObjectId> objectIds,
+  }) async {
+    await _client.deleteStorageObjects(
+      api.DeleteStorageObjectsRequest(
+        objectIds: objectIds
+            .map((e) => api.DeleteStorageObjectId(
+                  collection: e.collection,
+                  key: e.key,
+                  version: e.version,
+                ))
+            .toList(),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
+
+  @override
+  Future<List<model.StorageObject>> readStorageObjects({
+    required model.Session session,
+    required Iterable<StorageObjectId> objectIds,
+  }) async {
+    final res = await _client.readStorageObjects(
+      api.ReadStorageObjectsRequest(
+        objectIds: objectIds
+            .map((e) => api.ReadStorageObjectId(
+                  collection: e.collection,
+                  key: e.key,
+                  userId: e.userId,
+                ))
+            .toList(),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+
+    return res.objects.map((e) => model.StorageObject.fromDto(e)).toList(growable: false);
+  }
+
+  @override
+  Future<void> writeStorageObjects({
+    required model.Session session,
+    required Iterable<StorageObjectWrite> objects,
+  }) async {
+    await _client.writeStorageObjects(
+      api.WriteStorageObjectsRequest(
+        objects: objects.map((e) => e.toDto()).toList(),
+      ),
+      options: _getSessionCallOptions(session),
+    );
   }
 }

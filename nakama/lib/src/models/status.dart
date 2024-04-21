@@ -10,21 +10,21 @@ class UserPresence with _$UserPresence {
 
   const factory UserPresence({
     /// The user this presence belongs to.
-    required String userId,
+    @JsonKey(name: 'user_id') required String userId,
 
     /// A unique session ID identifying the particular connection, because the
     /// user may have many.
-    required String sessionId,
+    @JsonKey(name: 'session_id') required String sessionId,
 
     /// The username for display purposes.
-    required String username,
+    @JsonKey(name: 'username') required String username,
 
     /// Whether this presence generates persistent data/messages, if applicable
     /// for the stream type.
-    required bool persistence,
+    @JsonKey(name: 'persistence') required bool persistence,
 
     /// A user-set status message for this stream, if applicable.
-    String? status,
+    @JsonKey(name: 'status') String? status,
   }) = _UserPresence;
 
   factory UserPresence.fromDto(rtpb.UserPresence dto) => UserPresence(

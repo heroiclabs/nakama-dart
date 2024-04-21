@@ -22,14 +22,14 @@ Map<String, dynamic> _$$FriendsListImplToJson(_$FriendsListImpl instance) =>
 
 _$FriendImpl _$$FriendImplFromJson(Map<String, dynamic> json) => _$FriendImpl(
       state: $enumDecode(_$FriendshipStateEnumMap, json['state']),
-      updateTime: DateTime.parse(json['updateTime'] as String),
+      updateTime: DateTime.parse(json['update_time'] as String),
       user: User.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$FriendImplToJson(_$FriendImpl instance) =>
     <String, dynamic>{
       'state': _$FriendshipStateEnumMap[instance.state]!,
-      'updateTime': instance.updateTime.toIso8601String(),
+      'update_time': instance.updateTime.toIso8601String(),
       'user': instance.user,
     };
 

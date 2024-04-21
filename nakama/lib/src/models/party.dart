@@ -10,16 +10,16 @@ class PartyData with _$PartyData {
 
   const factory PartyData({
     /// The party unique ID.
-    required String partyId,
+    @JsonKey(name: 'party_id') required String partyId,
 
     /// A reference to the user presence that sent this data, if any.
-    required UserPresence presence,
+    @JsonKey(name: 'presence') required UserPresence presence,
 
     /// Op code value.
-    required int opCode,
+    @JsonKey(name: 'op_code') required int opCode,
 
     /// Data payload, if any.
-    required List<int> data,
+    @JsonKey(name: 'data') required List<int> data,
   }) = _PartyData;
 
   factory PartyData.fromDto(rtpb.PartyData dto) => PartyData(

@@ -12,7 +12,7 @@ part of 'match.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Match _$MatchFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
@@ -29,16 +29,27 @@ Match _$MatchFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Match {
+  @JsonKey(name: 'match_id')
   String get matchId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'authoritative')
   bool get authoritative => throw _privateConstructorUsedError;
+  @JsonKey(name: 'label')
   String get label => throw _privateConstructorUsedError;
+  @JsonKey(name: 'size')
   int get size => throw _privateConstructorUsedError;
+  @JsonKey(name: 'tick_rate')
   int? get tickRate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'handler_name')
   String? get handlerName => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String matchId, bool authoritative, String label, int size,
-            int? tickRate, String? handlerName)
+    TResult Function(
+            @JsonKey(name: 'match_id') String matchId,
+            @JsonKey(name: 'authoritative') bool authoritative,
+            @JsonKey(name: 'label') String label,
+            @JsonKey(name: 'size') int size,
+            @JsonKey(name: 'tick_rate') int? tickRate,
+            @JsonKey(name: 'handler_name') String? handlerName)
         $default, {
     required TResult Function(
             String matchId,
@@ -53,8 +64,13 @@ mixin _$Match {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String matchId, bool authoritative, String label,
-            int size, int? tickRate, String? handlerName)?
+    TResult? Function(
+            @JsonKey(name: 'match_id') String matchId,
+            @JsonKey(name: 'authoritative') bool authoritative,
+            @JsonKey(name: 'label') String label,
+            @JsonKey(name: 'size') int size,
+            @JsonKey(name: 'tick_rate') int? tickRate,
+            @JsonKey(name: 'handler_name') String? handlerName)?
         $default, {
     TResult? Function(
             String matchId,
@@ -69,8 +85,13 @@ mixin _$Match {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String matchId, bool authoritative, String label, int size,
-            int? tickRate, String? handlerName)?
+    TResult Function(
+            @JsonKey(name: 'match_id') String matchId,
+            @JsonKey(name: 'authoritative') bool authoritative,
+            @JsonKey(name: 'label') String label,
+            @JsonKey(name: 'size') int size,
+            @JsonKey(name: 'tick_rate') int? tickRate,
+            @JsonKey(name: 'handler_name') String? handlerName)?
         $default, {
     TResult Function(String matchId, bool authoritative, String label, int size,
             int? tickRate, String? handlerName, List<UserPresence> presences)?
@@ -108,12 +129,12 @@ abstract class $MatchCopyWith<$Res> {
       _$MatchCopyWithImpl<$Res, Match>;
   @useResult
   $Res call(
-      {String matchId,
-      bool authoritative,
-      String label,
-      int size,
-      int? tickRate,
-      String? handlerName});
+      {@JsonKey(name: 'match_id') String matchId,
+      @JsonKey(name: 'authoritative') bool authoritative,
+      @JsonKey(name: 'label') String label,
+      @JsonKey(name: 'size') int size,
+      @JsonKey(name: 'tick_rate') int? tickRate,
+      @JsonKey(name: 'handler_name') String? handlerName});
 }
 
 /// @nodoc
@@ -173,12 +194,12 @@ abstract class _$$MatchImplCopyWith<$Res> implements $MatchCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String matchId,
-      bool authoritative,
-      String label,
-      int size,
-      int? tickRate,
-      String? handlerName});
+      {@JsonKey(name: 'match_id') String matchId,
+      @JsonKey(name: 'authoritative') bool authoritative,
+      @JsonKey(name: 'label') String label,
+      @JsonKey(name: 'size') int size,
+      @JsonKey(name: 'tick_rate') int? tickRate,
+      @JsonKey(name: 'handler_name') String? handlerName});
 }
 
 /// @nodoc
@@ -232,12 +253,12 @@ class __$$MatchImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MatchImpl extends _Match {
   const _$MatchImpl(
-      {required this.matchId,
-      required this.authoritative,
-      required this.label,
-      required this.size,
-      this.tickRate,
-      this.handlerName,
+      {@JsonKey(name: 'match_id') required this.matchId,
+      @JsonKey(name: 'authoritative') required this.authoritative,
+      @JsonKey(name: 'label') required this.label,
+      @JsonKey(name: 'size') required this.size,
+      @JsonKey(name: 'tick_rate') this.tickRate,
+      @JsonKey(name: 'handler_name') this.handlerName,
       final String? $type})
       : $type = $type ?? 'default',
         super._();
@@ -246,16 +267,22 @@ class _$MatchImpl extends _Match {
       _$$MatchImplFromJson(json);
 
   @override
+  @JsonKey(name: 'match_id')
   final String matchId;
   @override
+  @JsonKey(name: 'authoritative')
   final bool authoritative;
   @override
+  @JsonKey(name: 'label')
   final String label;
   @override
+  @JsonKey(name: 'size')
   final int size;
   @override
+  @JsonKey(name: 'tick_rate')
   final int? tickRate;
   @override
+  @JsonKey(name: 'handler_name')
   final String? handlerName;
 
   @JsonKey(name: 'runtimeType')
@@ -296,8 +323,13 @@ class _$MatchImpl extends _Match {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String matchId, bool authoritative, String label, int size,
-            int? tickRate, String? handlerName)
+    TResult Function(
+            @JsonKey(name: 'match_id') String matchId,
+            @JsonKey(name: 'authoritative') bool authoritative,
+            @JsonKey(name: 'label') String label,
+            @JsonKey(name: 'size') int size,
+            @JsonKey(name: 'tick_rate') int? tickRate,
+            @JsonKey(name: 'handler_name') String? handlerName)
         $default, {
     required TResult Function(
             String matchId,
@@ -315,8 +347,13 @@ class _$MatchImpl extends _Match {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String matchId, bool authoritative, String label,
-            int size, int? tickRate, String? handlerName)?
+    TResult? Function(
+            @JsonKey(name: 'match_id') String matchId,
+            @JsonKey(name: 'authoritative') bool authoritative,
+            @JsonKey(name: 'label') String label,
+            @JsonKey(name: 'size') int size,
+            @JsonKey(name: 'tick_rate') int? tickRate,
+            @JsonKey(name: 'handler_name') String? handlerName)?
         $default, {
     TResult? Function(
             String matchId,
@@ -335,8 +372,13 @@ class _$MatchImpl extends _Match {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String matchId, bool authoritative, String label, int size,
-            int? tickRate, String? handlerName)?
+    TResult Function(
+            @JsonKey(name: 'match_id') String matchId,
+            @JsonKey(name: 'authoritative') bool authoritative,
+            @JsonKey(name: 'label') String label,
+            @JsonKey(name: 'size') int size,
+            @JsonKey(name: 'tick_rate') int? tickRate,
+            @JsonKey(name: 'handler_name') String? handlerName)?
         $default, {
     TResult Function(String matchId, bool authoritative, String label, int size,
             int? tickRate, String? handlerName, List<UserPresence> presences)?
@@ -391,27 +433,33 @@ class _$MatchImpl extends _Match {
 
 abstract class _Match extends Match {
   const factory _Match(
-      {required final String matchId,
-      required final bool authoritative,
-      required final String label,
-      required final int size,
-      final int? tickRate,
-      final String? handlerName}) = _$MatchImpl;
+      {@JsonKey(name: 'match_id') required final String matchId,
+      @JsonKey(name: 'authoritative') required final bool authoritative,
+      @JsonKey(name: 'label') required final String label,
+      @JsonKey(name: 'size') required final int size,
+      @JsonKey(name: 'tick_rate') final int? tickRate,
+      @JsonKey(name: 'handler_name') final String? handlerName}) = _$MatchImpl;
   const _Match._() : super._();
 
   factory _Match.fromJson(Map<String, dynamic> json) = _$MatchImpl.fromJson;
 
   @override
+  @JsonKey(name: 'match_id')
   String get matchId;
   @override
+  @JsonKey(name: 'authoritative')
   bool get authoritative;
   @override
+  @JsonKey(name: 'label')
   String get label;
   @override
+  @JsonKey(name: 'size')
   int get size;
   @override
+  @JsonKey(name: 'tick_rate')
   int? get tickRate;
   @override
+  @JsonKey(name: 'handler_name')
   String? get handlerName;
   @override
   @JsonKey(ignore: true)
@@ -575,8 +623,13 @@ class _$RealtimeMatchImpl extends RealtimeMatch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String matchId, bool authoritative, String label, int size,
-            int? tickRate, String? handlerName)
+    TResult Function(
+            @JsonKey(name: 'match_id') String matchId,
+            @JsonKey(name: 'authoritative') bool authoritative,
+            @JsonKey(name: 'label') String label,
+            @JsonKey(name: 'size') int size,
+            @JsonKey(name: 'tick_rate') int? tickRate,
+            @JsonKey(name: 'handler_name') String? handlerName)
         $default, {
     required TResult Function(
             String matchId,
@@ -595,8 +648,13 @@ class _$RealtimeMatchImpl extends RealtimeMatch {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String matchId, bool authoritative, String label,
-            int size, int? tickRate, String? handlerName)?
+    TResult? Function(
+            @JsonKey(name: 'match_id') String matchId,
+            @JsonKey(name: 'authoritative') bool authoritative,
+            @JsonKey(name: 'label') String label,
+            @JsonKey(name: 'size') int size,
+            @JsonKey(name: 'tick_rate') int? tickRate,
+            @JsonKey(name: 'handler_name') String? handlerName)?
         $default, {
     TResult? Function(
             String matchId,
@@ -615,8 +673,13 @@ class _$RealtimeMatchImpl extends RealtimeMatch {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String matchId, bool authoritative, String label, int size,
-            int? tickRate, String? handlerName)?
+    TResult Function(
+            @JsonKey(name: 'match_id') String matchId,
+            @JsonKey(name: 'authoritative') bool authoritative,
+            @JsonKey(name: 'label') String label,
+            @JsonKey(name: 'size') int size,
+            @JsonKey(name: 'tick_rate') int? tickRate,
+            @JsonKey(name: 'handler_name') String? handlerName)?
         $default, {
     TResult Function(String matchId, bool authoritative, String label, int size,
             int? tickRate, String? handlerName, List<UserPresence> presences)?
@@ -705,21 +768,27 @@ abstract class RealtimeMatch extends Match {
 /// @nodoc
 mixin _$Party {
   /// Unique party identifier.
+  @JsonKey(name: 'party_id')
   String get partyId => throw _privateConstructorUsedError;
 
   /// Open flag.
+  @JsonKey(name: 'open')
   bool get open => throw _privateConstructorUsedError;
 
   /// Maximum number of party members.
+  @JsonKey(name: 'max_size')
   int get maxSize => throw _privateConstructorUsedError;
 
   /// Self.
+  @JsonKey(name: 'self')
   UserPresence get self => throw _privateConstructorUsedError;
 
   /// Leader.
+  @JsonKey(name: 'leader')
   UserPresence get leader => throw _privateConstructorUsedError;
 
   /// All current party members.
+  @JsonKey(name: 'presences')
   List<UserPresence> get presences => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -732,12 +801,12 @@ abstract class $PartyCopyWith<$Res> {
       _$PartyCopyWithImpl<$Res, Party>;
   @useResult
   $Res call(
-      {String partyId,
-      bool open,
-      int maxSize,
-      UserPresence self,
-      UserPresence leader,
-      List<UserPresence> presences});
+      {@JsonKey(name: 'party_id') String partyId,
+      @JsonKey(name: 'open') bool open,
+      @JsonKey(name: 'max_size') int maxSize,
+      @JsonKey(name: 'self') UserPresence self,
+      @JsonKey(name: 'leader') UserPresence leader,
+      @JsonKey(name: 'presences') List<UserPresence> presences});
 
   $UserPresenceCopyWith<$Res> get self;
   $UserPresenceCopyWith<$Res> get leader;
@@ -816,12 +885,12 @@ abstract class _$$PartyImplCopyWith<$Res> implements $PartyCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String partyId,
-      bool open,
-      int maxSize,
-      UserPresence self,
-      UserPresence leader,
-      List<UserPresence> presences});
+      {@JsonKey(name: 'party_id') String partyId,
+      @JsonKey(name: 'open') bool open,
+      @JsonKey(name: 'max_size') int maxSize,
+      @JsonKey(name: 'self') UserPresence self,
+      @JsonKey(name: 'leader') UserPresence leader,
+      @JsonKey(name: 'presences') List<UserPresence> presences});
 
   @override
   $UserPresenceCopyWith<$Res> get self;
@@ -880,33 +949,38 @@ class __$$PartyImplCopyWithImpl<$Res>
 
 class _$PartyImpl extends _Party {
   const _$PartyImpl(
-      {required this.partyId,
-      required this.open,
-      required this.maxSize,
-      required this.self,
-      required this.leader,
-      required final List<UserPresence> presences})
+      {@JsonKey(name: 'party_id') required this.partyId,
+      @JsonKey(name: 'open') required this.open,
+      @JsonKey(name: 'max_size') required this.maxSize,
+      @JsonKey(name: 'self') required this.self,
+      @JsonKey(name: 'leader') required this.leader,
+      @JsonKey(name: 'presences') required final List<UserPresence> presences})
       : _presences = presences,
         super._();
 
   /// Unique party identifier.
   @override
+  @JsonKey(name: 'party_id')
   final String partyId;
 
   /// Open flag.
   @override
+  @JsonKey(name: 'open')
   final bool open;
 
   /// Maximum number of party members.
   @override
+  @JsonKey(name: 'max_size')
   final int maxSize;
 
   /// Self.
   @override
+  @JsonKey(name: 'self')
   final UserPresence self;
 
   /// Leader.
   @override
+  @JsonKey(name: 'leader')
   final UserPresence leader;
 
   /// All current party members.
@@ -914,6 +988,7 @@ class _$PartyImpl extends _Party {
 
   /// All current party members.
   @override
+  @JsonKey(name: 'presences')
   List<UserPresence> get presences {
     if (_presences is EqualUnmodifiableListView) return _presences;
     // ignore: implicit_dynamic_type
@@ -952,37 +1027,44 @@ class _$PartyImpl extends _Party {
 
 abstract class _Party extends Party {
   const factory _Party(
-      {required final String partyId,
-      required final bool open,
-      required final int maxSize,
-      required final UserPresence self,
-      required final UserPresence leader,
+      {@JsonKey(name: 'party_id') required final String partyId,
+      @JsonKey(name: 'open') required final bool open,
+      @JsonKey(name: 'max_size') required final int maxSize,
+      @JsonKey(name: 'self') required final UserPresence self,
+      @JsonKey(name: 'leader') required final UserPresence leader,
+      @JsonKey(name: 'presences')
       required final List<UserPresence> presences}) = _$PartyImpl;
   const _Party._() : super._();
 
   @override
 
   /// Unique party identifier.
+  @JsonKey(name: 'party_id')
   String get partyId;
   @override
 
   /// Open flag.
+  @JsonKey(name: 'open')
   bool get open;
   @override
 
   /// Maximum number of party members.
+  @JsonKey(name: 'max_size')
   int get maxSize;
   @override
 
   /// Self.
+  @JsonKey(name: 'self')
   UserPresence get self;
   @override
 
   /// Leader.
+  @JsonKey(name: 'leader')
   UserPresence get leader;
   @override
 
   /// All current party members.
+  @JsonKey(name: 'presences')
   List<UserPresence> get presences;
   @override
   @JsonKey(ignore: true)

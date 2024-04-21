@@ -10,29 +10,29 @@ class Channel with _$Channel {
 
   const factory Channel({
     /// The ID of the channel.
-    required String id,
+    @JsonKey(name: 'id') required String id,
 
     /// The users currently in the channel.
-    required List<UserPresence> presences,
+    @JsonKey(name: 'presences') required List<UserPresence> presences,
 
     /// A reference to the current user's presence in the channel.
-    required UserPresence self,
+    @JsonKey(name: 'self') required UserPresence self,
 
     /// The name of the chat room, or an empty string if this message was not
     /// sent through a chat room.
-    required String roomName,
+    @JsonKey(name: 'room_name') required String roomName,
 
     /// The ID of the group, or an empty string if this message was not sent
     /// through a group channel.
-    required String groupId,
+    @JsonKey(name: 'group_id') required String groupId,
 
     /// The ID of the first DM user, or an empty string if this message was not
     /// sent through a DM chat.
-    required String userIdOne,
+    @JsonKey(name: 'user_id_one') required String userIdOne,
 
     /// The ID of the second DM user, or an empty string if this message was not
     /// sent through a DM chat.
-    required String userIdTwo,
+    @JsonKey(name: 'user_id_two') required String userIdTwo,
   }) = _Channel;
 
   factory Channel.fromDto(rtpb.Channel dto) => Channel(
@@ -54,37 +54,37 @@ class ChannelMessageAck with _$ChannelMessageAck {
 
   const factory ChannelMessageAck({
     /// The channel the message was sent to.
-    required String channelId,
+    @JsonKey(name: 'channel_id') required String channelId,
 
     /// The unique ID assigned to the message.
-    required String messageId,
+    @JsonKey(name: 'message_id') required String messageId,
 
     /// The code representing a message type or category.
-    required int code,
+    @JsonKey(name: 'code') required int code,
 
     /// Username of the message sender.
-    required String username,
+    @JsonKey(name: 'username') required String username,
 
     /// The UNIX time when the message was created.
-    required DateTime created,
+    @JsonKey(name: 'created') required DateTime created,
 
     /// The UNIX time when the message was last updated.
-    required DateTime updated,
+    @JsonKey(name: 'updated') required DateTime updated,
 
     /// True if the message was persisted to the channel's history, false otherwise.
-    required bool persistent,
+    @JsonKey(name: 'persistent') required bool persistent,
 
     /// The name of the chat room, or an empty string if this message was not sent through a chat room.
-    required String roomName,
+    @JsonKey(name: 'room_name') required String roomName,
 
     /// The ID of the group, or an empty string if this message was not sent through a group channel.
-    required String groupId,
+    @JsonKey(name: 'group_id') required String groupId,
 
     /// The ID of the first DM user, or an empty string if this message was not sent through a DM chat.
-    required String userIdOne,
+    @JsonKey(name: 'user_id_one') required String userIdOne,
 
     /// The ID of the second DM user, or an empty string if this message was not sent through a DM chat.
-    required String userIdTwo,
+    @JsonKey(name: 'user_id_two') required String userIdTwo,
   }) = _ChannelMessageAck;
 
   factory ChannelMessageAck.fromDto(rtpb.ChannelMessageAck dto) => ChannelMessageAck(

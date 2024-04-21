@@ -12,7 +12,7 @@ part of 'storage.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 StorageObject _$StorageObjectFromJson(Map<String, dynamic> json) {
   return _StorageObject.fromJson(json);
@@ -20,14 +20,25 @@ StorageObject _$StorageObjectFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StorageObject {
+  @JsonKey(name: 'collection')
   String get collection => throw _privateConstructorUsedError;
+  @JsonKey(name: 'key')
   String get key => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
   String? get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'value')
   String get value => throw _privateConstructorUsedError;
+  @JsonKey(name: 'version')
   String get version => throw _privateConstructorUsedError;
-  int? get permissionRead => throw _privateConstructorUsedError;
-  int? get permissionWrite => throw _privateConstructorUsedError;
+  @JsonKey(name: 'permission_read')
+  StorageReadPermission? get permissionRead =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'permission_write')
+  StorageWritePermission? get permissionWrite =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'create_time')
   DateTime? get createTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'update_time')
   DateTime? get updateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,15 +54,16 @@ abstract class $StorageObjectCopyWith<$Res> {
       _$StorageObjectCopyWithImpl<$Res, StorageObject>;
   @useResult
   $Res call(
-      {String collection,
-      String key,
-      String? userId,
-      String value,
-      String version,
-      int? permissionRead,
-      int? permissionWrite,
-      DateTime? createTime,
-      DateTime? updateTime});
+      {@JsonKey(name: 'collection') String collection,
+      @JsonKey(name: 'key') String key,
+      @JsonKey(name: 'user_id') String? userId,
+      @JsonKey(name: 'value') String value,
+      @JsonKey(name: 'version') String version,
+      @JsonKey(name: 'permission_read') StorageReadPermission? permissionRead,
+      @JsonKey(name: 'permission_write')
+      StorageWritePermission? permissionWrite,
+      @JsonKey(name: 'create_time') DateTime? createTime,
+      @JsonKey(name: 'update_time') DateTime? updateTime});
 }
 
 /// @nodoc
@@ -101,11 +113,11 @@ class _$StorageObjectCopyWithImpl<$Res, $Val extends StorageObject>
       permissionRead: freezed == permissionRead
           ? _value.permissionRead
           : permissionRead // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as StorageReadPermission?,
       permissionWrite: freezed == permissionWrite
           ? _value.permissionWrite
           : permissionWrite // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as StorageWritePermission?,
       createTime: freezed == createTime
           ? _value.createTime
           : createTime // ignore: cast_nullable_to_non_nullable
@@ -127,15 +139,16 @@ abstract class _$$StorageObjectImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String collection,
-      String key,
-      String? userId,
-      String value,
-      String version,
-      int? permissionRead,
-      int? permissionWrite,
-      DateTime? createTime,
-      DateTime? updateTime});
+      {@JsonKey(name: 'collection') String collection,
+      @JsonKey(name: 'key') String key,
+      @JsonKey(name: 'user_id') String? userId,
+      @JsonKey(name: 'value') String value,
+      @JsonKey(name: 'version') String version,
+      @JsonKey(name: 'permission_read') StorageReadPermission? permissionRead,
+      @JsonKey(name: 'permission_write')
+      StorageWritePermission? permissionWrite,
+      @JsonKey(name: 'create_time') DateTime? createTime,
+      @JsonKey(name: 'update_time') DateTime? updateTime});
 }
 
 /// @nodoc
@@ -183,11 +196,11 @@ class __$$StorageObjectImplCopyWithImpl<$Res>
       permissionRead: freezed == permissionRead
           ? _value.permissionRead
           : permissionRead // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as StorageReadPermission?,
       permissionWrite: freezed == permissionWrite
           ? _value.permissionWrite
           : permissionWrite // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as StorageWritePermission?,
       createTime: freezed == createTime
           ? _value.createTime
           : createTime // ignore: cast_nullable_to_non_nullable
@@ -204,37 +217,46 @@ class __$$StorageObjectImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StorageObjectImpl extends _StorageObject {
   const _$StorageObjectImpl(
-      {required this.collection,
-      required this.key,
-      this.userId,
-      required this.value,
-      required this.version,
-      this.permissionRead,
-      this.permissionWrite,
-      this.createTime,
-      this.updateTime})
+      {@JsonKey(name: 'collection') required this.collection,
+      @JsonKey(name: 'key') required this.key,
+      @JsonKey(name: 'user_id') this.userId,
+      @JsonKey(name: 'value') required this.value,
+      @JsonKey(name: 'version') required this.version,
+      @JsonKey(name: 'permission_read') this.permissionRead,
+      @JsonKey(name: 'permission_write') this.permissionWrite,
+      @JsonKey(name: 'create_time') this.createTime,
+      @JsonKey(name: 'update_time') this.updateTime})
       : super._();
 
   factory _$StorageObjectImpl.fromJson(Map<String, dynamic> json) =>
       _$$StorageObjectImplFromJson(json);
 
   @override
+  @JsonKey(name: 'collection')
   final String collection;
   @override
+  @JsonKey(name: 'key')
   final String key;
   @override
+  @JsonKey(name: 'user_id')
   final String? userId;
   @override
+  @JsonKey(name: 'value')
   final String value;
   @override
+  @JsonKey(name: 'version')
   final String version;
   @override
-  final int? permissionRead;
+  @JsonKey(name: 'permission_read')
+  final StorageReadPermission? permissionRead;
   @override
-  final int? permissionWrite;
+  @JsonKey(name: 'permission_write')
+  final StorageWritePermission? permissionWrite;
   @override
+  @JsonKey(name: 'create_time')
   final DateTime? createTime;
   @override
+  @JsonKey(name: 'update_time')
   final DateTime? updateTime;
 
   @override
@@ -284,37 +306,49 @@ class _$StorageObjectImpl extends _StorageObject {
 
 abstract class _StorageObject extends StorageObject {
   const factory _StorageObject(
-      {required final String collection,
-      required final String key,
-      final String? userId,
-      required final String value,
-      required final String version,
-      final int? permissionRead,
-      final int? permissionWrite,
-      final DateTime? createTime,
-      final DateTime? updateTime}) = _$StorageObjectImpl;
+          {@JsonKey(name: 'collection') required final String collection,
+          @JsonKey(name: 'key') required final String key,
+          @JsonKey(name: 'user_id') final String? userId,
+          @JsonKey(name: 'value') required final String value,
+          @JsonKey(name: 'version') required final String version,
+          @JsonKey(name: 'permission_read')
+          final StorageReadPermission? permissionRead,
+          @JsonKey(name: 'permission_write')
+          final StorageWritePermission? permissionWrite,
+          @JsonKey(name: 'create_time') final DateTime? createTime,
+          @JsonKey(name: 'update_time') final DateTime? updateTime}) =
+      _$StorageObjectImpl;
   const _StorageObject._() : super._();
 
   factory _StorageObject.fromJson(Map<String, dynamic> json) =
       _$StorageObjectImpl.fromJson;
 
   @override
+  @JsonKey(name: 'collection')
   String get collection;
   @override
+  @JsonKey(name: 'key')
   String get key;
   @override
+  @JsonKey(name: 'user_id')
   String? get userId;
   @override
+  @JsonKey(name: 'value')
   String get value;
   @override
+  @JsonKey(name: 'version')
   String get version;
   @override
-  int? get permissionRead;
+  @JsonKey(name: 'permission_read')
+  StorageReadPermission? get permissionRead;
   @override
-  int? get permissionWrite;
+  @JsonKey(name: 'permission_write')
+  StorageWritePermission? get permissionWrite;
   @override
+  @JsonKey(name: 'create_time')
   DateTime? get createTime;
   @override
+  @JsonKey(name: 'update_time')
   DateTime? get updateTime;
   @override
   @JsonKey(ignore: true)
@@ -493,8 +527,13 @@ StorageObjectId _$StorageObjectIdFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$StorageObjectId {
+  @JsonKey(name: 'collection')
   String get collection => throw _privateConstructorUsedError;
+  @JsonKey(name: 'key')
   String get key => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
+  String? get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'version')
   String? get version => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -509,7 +548,11 @@ abstract class $StorageObjectIdCopyWith<$Res> {
           StorageObjectId value, $Res Function(StorageObjectId) then) =
       _$StorageObjectIdCopyWithImpl<$Res, StorageObjectId>;
   @useResult
-  $Res call({String collection, String key, String? version});
+  $Res call(
+      {@JsonKey(name: 'collection') String collection,
+      @JsonKey(name: 'key') String key,
+      @JsonKey(name: 'user_id') String? userId,
+      @JsonKey(name: 'version') String? version});
 }
 
 /// @nodoc
@@ -527,6 +570,7 @@ class _$StorageObjectIdCopyWithImpl<$Res, $Val extends StorageObjectId>
   $Res call({
     Object? collection = null,
     Object? key = null,
+    Object? userId = freezed,
     Object? version = freezed,
   }) {
     return _then(_value.copyWith(
@@ -538,6 +582,10 @@ class _$StorageObjectIdCopyWithImpl<$Res, $Val extends StorageObjectId>
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
       version: freezed == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
@@ -554,7 +602,11 @@ abstract class _$$StorageObjectIdImplCopyWith<$Res>
       __$$StorageObjectIdImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String collection, String key, String? version});
+  $Res call(
+      {@JsonKey(name: 'collection') String collection,
+      @JsonKey(name: 'key') String key,
+      @JsonKey(name: 'user_id') String? userId,
+      @JsonKey(name: 'version') String? version});
 }
 
 /// @nodoc
@@ -570,6 +622,7 @@ class __$$StorageObjectIdImplCopyWithImpl<$Res>
   $Res call({
     Object? collection = null,
     Object? key = null,
+    Object? userId = freezed,
     Object? version = freezed,
   }) {
     return _then(_$StorageObjectIdImpl(
@@ -581,6 +634,10 @@ class __$$StorageObjectIdImplCopyWithImpl<$Res>
           ? _value.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
       version: freezed == version
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
@@ -593,22 +650,31 @@ class __$$StorageObjectIdImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$StorageObjectIdImpl extends _StorageObjectId {
   const _$StorageObjectIdImpl(
-      {required this.collection, required this.key, this.version})
+      {@JsonKey(name: 'collection') required this.collection,
+      @JsonKey(name: 'key') required this.key,
+      @JsonKey(name: 'user_id') this.userId,
+      @JsonKey(name: 'version') this.version})
       : super._();
 
   factory _$StorageObjectIdImpl.fromJson(Map<String, dynamic> json) =>
       _$$StorageObjectIdImplFromJson(json);
 
   @override
+  @JsonKey(name: 'collection')
   final String collection;
   @override
+  @JsonKey(name: 'key')
   final String key;
   @override
+  @JsonKey(name: 'user_id')
+  final String? userId;
+  @override
+  @JsonKey(name: 'version')
   final String? version;
 
   @override
   String toString() {
-    return 'StorageObjectId(collection: $collection, key: $key, version: $version)';
+    return 'StorageObjectId(collection: $collection, key: $key, userId: $userId, version: $version)';
   }
 
   @override
@@ -619,12 +685,14 @@ class _$StorageObjectIdImpl extends _StorageObjectId {
             (identical(other.collection, collection) ||
                 other.collection == collection) &&
             (identical(other.key, key) || other.key == key) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.version, version) || other.version == version));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, collection, key, version);
+  int get hashCode =>
+      Object.hash(runtimeType, collection, key, userId, version);
 
   @JsonKey(ignore: true)
   @override
@@ -643,22 +711,301 @@ class _$StorageObjectIdImpl extends _StorageObjectId {
 
 abstract class _StorageObjectId extends StorageObjectId {
   const factory _StorageObjectId(
-      {required final String collection,
-      required final String key,
-      final String? version}) = _$StorageObjectIdImpl;
+      {@JsonKey(name: 'collection') required final String collection,
+      @JsonKey(name: 'key') required final String key,
+      @JsonKey(name: 'user_id') final String? userId,
+      @JsonKey(name: 'version') final String? version}) = _$StorageObjectIdImpl;
   const _StorageObjectId._() : super._();
 
   factory _StorageObjectId.fromJson(Map<String, dynamic> json) =
       _$StorageObjectIdImpl.fromJson;
 
   @override
+  @JsonKey(name: 'collection')
   String get collection;
   @override
+  @JsonKey(name: 'key')
   String get key;
   @override
+  @JsonKey(name: 'user_id')
+  String? get userId;
+  @override
+  @JsonKey(name: 'version')
   String? get version;
   @override
   @JsonKey(ignore: true)
   _$$StorageObjectIdImplCopyWith<_$StorageObjectIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+StorageObjectWrite _$StorageObjectWriteFromJson(Map<String, dynamic> json) {
+  return _StorageObjectWrite.fromJson(json);
+}
+
+/// @nodoc
+mixin _$StorageObjectWrite {
+  @JsonKey(name: 'collection')
+  String get collection => throw _privateConstructorUsedError;
+  @JsonKey(name: 'key')
+  String get key => throw _privateConstructorUsedError;
+  @JsonKey(name: 'value')
+  String get value => throw _privateConstructorUsedError;
+  @JsonKey(name: 'version')
+  String? get version => throw _privateConstructorUsedError;
+  @JsonKey(name: 'permission_read')
+  StorageReadPermission? get permissionRead =>
+      throw _privateConstructorUsedError;
+  @JsonKey(name: 'permission_write')
+  StorageWritePermission? get permissionWrite =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StorageObjectWriteCopyWith<StorageObjectWrite> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StorageObjectWriteCopyWith<$Res> {
+  factory $StorageObjectWriteCopyWith(
+          StorageObjectWrite value, $Res Function(StorageObjectWrite) then) =
+      _$StorageObjectWriteCopyWithImpl<$Res, StorageObjectWrite>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'collection') String collection,
+      @JsonKey(name: 'key') String key,
+      @JsonKey(name: 'value') String value,
+      @JsonKey(name: 'version') String? version,
+      @JsonKey(name: 'permission_read') StorageReadPermission? permissionRead,
+      @JsonKey(name: 'permission_write')
+      StorageWritePermission? permissionWrite});
+}
+
+/// @nodoc
+class _$StorageObjectWriteCopyWithImpl<$Res, $Val extends StorageObjectWrite>
+    implements $StorageObjectWriteCopyWith<$Res> {
+  _$StorageObjectWriteCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? collection = null,
+    Object? key = null,
+    Object? value = null,
+    Object? version = freezed,
+    Object? permissionRead = freezed,
+    Object? permissionWrite = freezed,
+  }) {
+    return _then(_value.copyWith(
+      collection: null == collection
+          ? _value.collection
+          : collection // ignore: cast_nullable_to_non_nullable
+              as String,
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+      version: freezed == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as String?,
+      permissionRead: freezed == permissionRead
+          ? _value.permissionRead
+          : permissionRead // ignore: cast_nullable_to_non_nullable
+              as StorageReadPermission?,
+      permissionWrite: freezed == permissionWrite
+          ? _value.permissionWrite
+          : permissionWrite // ignore: cast_nullable_to_non_nullable
+              as StorageWritePermission?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$StorageObjectWriteImplCopyWith<$Res>
+    implements $StorageObjectWriteCopyWith<$Res> {
+  factory _$$StorageObjectWriteImplCopyWith(_$StorageObjectWriteImpl value,
+          $Res Function(_$StorageObjectWriteImpl) then) =
+      __$$StorageObjectWriteImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'collection') String collection,
+      @JsonKey(name: 'key') String key,
+      @JsonKey(name: 'value') String value,
+      @JsonKey(name: 'version') String? version,
+      @JsonKey(name: 'permission_read') StorageReadPermission? permissionRead,
+      @JsonKey(name: 'permission_write')
+      StorageWritePermission? permissionWrite});
+}
+
+/// @nodoc
+class __$$StorageObjectWriteImplCopyWithImpl<$Res>
+    extends _$StorageObjectWriteCopyWithImpl<$Res, _$StorageObjectWriteImpl>
+    implements _$$StorageObjectWriteImplCopyWith<$Res> {
+  __$$StorageObjectWriteImplCopyWithImpl(_$StorageObjectWriteImpl _value,
+      $Res Function(_$StorageObjectWriteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? collection = null,
+    Object? key = null,
+    Object? value = null,
+    Object? version = freezed,
+    Object? permissionRead = freezed,
+    Object? permissionWrite = freezed,
+  }) {
+    return _then(_$StorageObjectWriteImpl(
+      collection: null == collection
+          ? _value.collection
+          : collection // ignore: cast_nullable_to_non_nullable
+              as String,
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+      version: freezed == version
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as String?,
+      permissionRead: freezed == permissionRead
+          ? _value.permissionRead
+          : permissionRead // ignore: cast_nullable_to_non_nullable
+              as StorageReadPermission?,
+      permissionWrite: freezed == permissionWrite
+          ? _value.permissionWrite
+          : permissionWrite // ignore: cast_nullable_to_non_nullable
+              as StorageWritePermission?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$StorageObjectWriteImpl extends _StorageObjectWrite {
+  const _$StorageObjectWriteImpl(
+      {@JsonKey(name: 'collection') required this.collection,
+      @JsonKey(name: 'key') required this.key,
+      @JsonKey(name: 'value') required this.value,
+      @JsonKey(name: 'version') this.version,
+      @JsonKey(name: 'permission_read') this.permissionRead,
+      @JsonKey(name: 'permission_write') this.permissionWrite})
+      : super._();
+
+  factory _$StorageObjectWriteImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StorageObjectWriteImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'collection')
+  final String collection;
+  @override
+  @JsonKey(name: 'key')
+  final String key;
+  @override
+  @JsonKey(name: 'value')
+  final String value;
+  @override
+  @JsonKey(name: 'version')
+  final String? version;
+  @override
+  @JsonKey(name: 'permission_read')
+  final StorageReadPermission? permissionRead;
+  @override
+  @JsonKey(name: 'permission_write')
+  final StorageWritePermission? permissionWrite;
+
+  @override
+  String toString() {
+    return 'StorageObjectWrite(collection: $collection, key: $key, value: $value, version: $version, permissionRead: $permissionRead, permissionWrite: $permissionWrite)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$StorageObjectWriteImpl &&
+            (identical(other.collection, collection) ||
+                other.collection == collection) &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.value, value) || other.value == value) &&
+            (identical(other.version, version) || other.version == version) &&
+            (identical(other.permissionRead, permissionRead) ||
+                other.permissionRead == permissionRead) &&
+            (identical(other.permissionWrite, permissionWrite) ||
+                other.permissionWrite == permissionWrite));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, collection, key, value, version,
+      permissionRead, permissionWrite);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$StorageObjectWriteImplCopyWith<_$StorageObjectWriteImpl> get copyWith =>
+      __$$StorageObjectWriteImplCopyWithImpl<_$StorageObjectWriteImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$StorageObjectWriteImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _StorageObjectWrite extends StorageObjectWrite {
+  const factory _StorageObjectWrite(
+          {@JsonKey(name: 'collection') required final String collection,
+          @JsonKey(name: 'key') required final String key,
+          @JsonKey(name: 'value') required final String value,
+          @JsonKey(name: 'version') final String? version,
+          @JsonKey(name: 'permission_read')
+          final StorageReadPermission? permissionRead,
+          @JsonKey(name: 'permission_write')
+          final StorageWritePermission? permissionWrite}) =
+      _$StorageObjectWriteImpl;
+  const _StorageObjectWrite._() : super._();
+
+  factory _StorageObjectWrite.fromJson(Map<String, dynamic> json) =
+      _$StorageObjectWriteImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'collection')
+  String get collection;
+  @override
+  @JsonKey(name: 'key')
+  String get key;
+  @override
+  @JsonKey(name: 'value')
+  String get value;
+  @override
+  @JsonKey(name: 'version')
+  String? get version;
+  @override
+  @JsonKey(name: 'permission_read')
+  StorageReadPermission? get permissionRead;
+  @override
+  @JsonKey(name: 'permission_write')
+  StorageWritePermission? get permissionWrite;
+  @override
+  @JsonKey(ignore: true)
+  _$$StorageObjectWriteImplCopyWith<_$StorageObjectWriteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

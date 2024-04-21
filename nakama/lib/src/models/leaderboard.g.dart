@@ -9,61 +9,61 @@ part of 'leaderboard.dart';
 _$LeaderboardRecordListImpl _$$LeaderboardRecordListImplFromJson(
         Map<String, dynamic> json) =>
     _$LeaderboardRecordListImpl(
-      records: (json['records'] as List<dynamic>)
-          .map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
+      records: (json['records'] as List<dynamic>?)
+          ?.map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
-      ownerRecords: (json['ownerRecords'] as List<dynamic>)
-          .map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
+      ownerRecords: (json['owner_records'] as List<dynamic>?)
+          ?.map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
-      nextCursor: json['nextCursor'] as String?,
-      prevCursor: json['prevCursor'] as String?,
+      nextCursor: json['next_cursor'] as String?,
+      prevCursor: json['prev_cursor'] as String?,
     );
 
 Map<String, dynamic> _$$LeaderboardRecordListImplToJson(
         _$LeaderboardRecordListImpl instance) =>
     <String, dynamic>{
       'records': instance.records,
-      'ownerRecords': instance.ownerRecords,
-      'nextCursor': instance.nextCursor,
-      'prevCursor': instance.prevCursor,
+      'owner_records': instance.ownerRecords,
+      'next_cursor': instance.nextCursor,
+      'prev_cursor': instance.prevCursor,
     };
 
 _$LeaderboardRecordImpl _$$LeaderboardRecordImplFromJson(
         Map<String, dynamic> json) =>
     _$LeaderboardRecordImpl(
-      leaderboardId: json['leaderboardId'] as String?,
-      ownerId: json['ownerId'] as String?,
+      leaderboardId: json['leaderboard_id'] as String?,
+      ownerId: json['owner_id'] as String?,
       username: json['username'] as String?,
-      score: _stringToInt(json['score'] as String?),
-      subscore: _stringToInt(json['subscore'] as String?),
-      numScore: json['numScore'] as int? ?? 0,
+      score: json['score'] as String?,
+      subscore: json['subscore'] as int?,
+      numScore: json['num_score'] as int?,
       metadata: json['metadata'] as String?,
-      createTime: json['createTime'] == null
+      createTime: json['create_time'] == null
           ? null
-          : DateTime.parse(json['createTime'] as String),
-      updateTime: json['updateTime'] == null
+          : DateTime.parse(json['create_time'] as String),
+      updateTime: json['update_time'] == null
           ? null
-          : DateTime.parse(json['updateTime'] as String),
-      expiryTime: json['expiryTime'] == null
+          : DateTime.parse(json['update_time'] as String),
+      expiryTime: json['expiry_time'] == null
           ? null
-          : DateTime.parse(json['expiryTime'] as String),
-      rank: _stringToInt(json['rank'] as String?),
-      maxNumScore: json['maxNumScore'] as int? ?? 0,
+          : DateTime.parse(json['expiry_time'] as String),
+      rank: json['rank'] as String?,
+      maxNumScore: json['max_num_score'] as int?,
     );
 
 Map<String, dynamic> _$$LeaderboardRecordImplToJson(
         _$LeaderboardRecordImpl instance) =>
     <String, dynamic>{
-      'leaderboardId': instance.leaderboardId,
-      'ownerId': instance.ownerId,
+      'leaderboard_id': instance.leaderboardId,
+      'owner_id': instance.ownerId,
       'username': instance.username,
       'score': instance.score,
       'subscore': instance.subscore,
-      'numScore': instance.numScore,
+      'num_score': instance.numScore,
       'metadata': instance.metadata,
-      'createTime': instance.createTime?.toIso8601String(),
-      'updateTime': instance.updateTime?.toIso8601String(),
-      'expiryTime': instance.expiryTime?.toIso8601String(),
+      'create_time': instance.createTime?.toIso8601String(),
+      'update_time': instance.updateTime?.toIso8601String(),
+      'expiry_time': instance.expiryTime?.toIso8601String(),
       'rank': instance.rank,
-      'maxNumScore': instance.maxNumScore,
+      'max_num_score': instance.maxNumScore,
     };

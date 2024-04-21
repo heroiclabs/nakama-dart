@@ -12,7 +12,7 @@ part of 'leaderboard.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 LeaderboardRecordList _$LeaderboardRecordListFromJson(
     Map<String, dynamic> json) {
@@ -21,10 +21,14 @@ LeaderboardRecordList _$LeaderboardRecordListFromJson(
 
 /// @nodoc
 mixin _$LeaderboardRecordList {
-  List<LeaderboardRecord> get records => throw _privateConstructorUsedError;
-  List<LeaderboardRecord> get ownerRecords =>
+  @JsonKey(name: 'records')
+  List<LeaderboardRecord>? get records => throw _privateConstructorUsedError;
+  @JsonKey(name: 'owner_records')
+  List<LeaderboardRecord>? get ownerRecords =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'next_cursor')
   String? get nextCursor => throw _privateConstructorUsedError;
+  @JsonKey(name: 'prev_cursor')
   String? get prevCursor => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,10 +44,10 @@ abstract class $LeaderboardRecordListCopyWith<$Res> {
       _$LeaderboardRecordListCopyWithImpl<$Res, LeaderboardRecordList>;
   @useResult
   $Res call(
-      {List<LeaderboardRecord> records,
-      List<LeaderboardRecord> ownerRecords,
-      String? nextCursor,
-      String? prevCursor});
+      {@JsonKey(name: 'records') List<LeaderboardRecord>? records,
+      @JsonKey(name: 'owner_records') List<LeaderboardRecord>? ownerRecords,
+      @JsonKey(name: 'next_cursor') String? nextCursor,
+      @JsonKey(name: 'prev_cursor') String? prevCursor});
 }
 
 /// @nodoc
@@ -60,20 +64,20 @@ class _$LeaderboardRecordListCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? records = null,
-    Object? ownerRecords = null,
+    Object? records = freezed,
+    Object? ownerRecords = freezed,
     Object? nextCursor = freezed,
     Object? prevCursor = freezed,
   }) {
     return _then(_value.copyWith(
-      records: null == records
+      records: freezed == records
           ? _value.records
           : records // ignore: cast_nullable_to_non_nullable
-              as List<LeaderboardRecord>,
-      ownerRecords: null == ownerRecords
+              as List<LeaderboardRecord>?,
+      ownerRecords: freezed == ownerRecords
           ? _value.ownerRecords
           : ownerRecords // ignore: cast_nullable_to_non_nullable
-              as List<LeaderboardRecord>,
+              as List<LeaderboardRecord>?,
       nextCursor: freezed == nextCursor
           ? _value.nextCursor
           : nextCursor // ignore: cast_nullable_to_non_nullable
@@ -96,10 +100,10 @@ abstract class _$$LeaderboardRecordListImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<LeaderboardRecord> records,
-      List<LeaderboardRecord> ownerRecords,
-      String? nextCursor,
-      String? prevCursor});
+      {@JsonKey(name: 'records') List<LeaderboardRecord>? records,
+      @JsonKey(name: 'owner_records') List<LeaderboardRecord>? ownerRecords,
+      @JsonKey(name: 'next_cursor') String? nextCursor,
+      @JsonKey(name: 'prev_cursor') String? prevCursor});
 }
 
 /// @nodoc
@@ -114,20 +118,20 @@ class __$$LeaderboardRecordListImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? records = null,
-    Object? ownerRecords = null,
+    Object? records = freezed,
+    Object? ownerRecords = freezed,
     Object? nextCursor = freezed,
     Object? prevCursor = freezed,
   }) {
     return _then(_$LeaderboardRecordListImpl(
-      records: null == records
+      records: freezed == records
           ? _value._records
           : records // ignore: cast_nullable_to_non_nullable
-              as List<LeaderboardRecord>,
-      ownerRecords: null == ownerRecords
+              as List<LeaderboardRecord>?,
+      ownerRecords: freezed == ownerRecords
           ? _value._ownerRecords
           : ownerRecords // ignore: cast_nullable_to_non_nullable
-              as List<LeaderboardRecord>,
+              as List<LeaderboardRecord>?,
       nextCursor: freezed == nextCursor
           ? _value.nextCursor
           : nextCursor // ignore: cast_nullable_to_non_nullable
@@ -144,10 +148,12 @@ class __$$LeaderboardRecordListImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LeaderboardRecordListImpl extends _LeaderboardRecordList {
   const _$LeaderboardRecordListImpl(
-      {required final List<LeaderboardRecord> records,
-      required final List<LeaderboardRecord> ownerRecords,
-      this.nextCursor,
-      this.prevCursor})
+      {@JsonKey(name: 'records')
+      required final List<LeaderboardRecord>? records,
+      @JsonKey(name: 'owner_records')
+      required final List<LeaderboardRecord>? ownerRecords,
+      @JsonKey(name: 'next_cursor') this.nextCursor,
+      @JsonKey(name: 'prev_cursor') this.prevCursor})
       : _records = records,
         _ownerRecords = ownerRecords,
         super._();
@@ -155,25 +161,33 @@ class _$LeaderboardRecordListImpl extends _LeaderboardRecordList {
   factory _$LeaderboardRecordListImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeaderboardRecordListImplFromJson(json);
 
-  final List<LeaderboardRecord> _records;
+  final List<LeaderboardRecord>? _records;
   @override
-  List<LeaderboardRecord> get records {
+  @JsonKey(name: 'records')
+  List<LeaderboardRecord>? get records {
+    final value = _records;
+    if (value == null) return null;
     if (_records is EqualUnmodifiableListView) return _records;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_records);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<LeaderboardRecord> _ownerRecords;
+  final List<LeaderboardRecord>? _ownerRecords;
   @override
-  List<LeaderboardRecord> get ownerRecords {
+  @JsonKey(name: 'owner_records')
+  List<LeaderboardRecord>? get ownerRecords {
+    final value = _ownerRecords;
+    if (value == null) return null;
     if (_ownerRecords is EqualUnmodifiableListView) return _ownerRecords;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_ownerRecords);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
+  @JsonKey(name: 'next_cursor')
   final String? nextCursor;
   @override
+  @JsonKey(name: 'prev_cursor')
   final String? prevCursor;
 
   @override
@@ -221,22 +235,29 @@ class _$LeaderboardRecordListImpl extends _LeaderboardRecordList {
 
 abstract class _LeaderboardRecordList extends LeaderboardRecordList {
   const factory _LeaderboardRecordList(
-      {required final List<LeaderboardRecord> records,
-      required final List<LeaderboardRecord> ownerRecords,
-      final String? nextCursor,
-      final String? prevCursor}) = _$LeaderboardRecordListImpl;
+          {@JsonKey(name: 'records')
+          required final List<LeaderboardRecord>? records,
+          @JsonKey(name: 'owner_records')
+          required final List<LeaderboardRecord>? ownerRecords,
+          @JsonKey(name: 'next_cursor') final String? nextCursor,
+          @JsonKey(name: 'prev_cursor') final String? prevCursor}) =
+      _$LeaderboardRecordListImpl;
   const _LeaderboardRecordList._() : super._();
 
   factory _LeaderboardRecordList.fromJson(Map<String, dynamic> json) =
       _$LeaderboardRecordListImpl.fromJson;
 
   @override
-  List<LeaderboardRecord> get records;
+  @JsonKey(name: 'records')
+  List<LeaderboardRecord>? get records;
   @override
-  List<LeaderboardRecord> get ownerRecords;
+  @JsonKey(name: 'owner_records')
+  List<LeaderboardRecord>? get ownerRecords;
   @override
+  @JsonKey(name: 'next_cursor')
   String? get nextCursor;
   @override
+  @JsonKey(name: 'prev_cursor')
   String? get prevCursor;
   @override
   @JsonKey(ignore: true)
@@ -250,21 +271,30 @@ LeaderboardRecord _$LeaderboardRecordFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LeaderboardRecord {
+  @JsonKey(name: 'leaderboard_id')
   String? get leaderboardId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'owner_id')
   String? get ownerId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'username')
   String? get username => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _stringToInt)
-  int? get score => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _stringToInt)
+  @JsonKey(name: 'score')
+  String? get score => throw _privateConstructorUsedError;
+  @JsonKey(name: 'subscore')
   int? get subscore => throw _privateConstructorUsedError;
-  int get numScore => throw _privateConstructorUsedError;
+  @JsonKey(name: 'num_score')
+  int? get numScore => throw _privateConstructorUsedError;
+  @JsonKey(name: 'metadata')
   String? get metadata => throw _privateConstructorUsedError;
+  @JsonKey(name: 'create_time')
   DateTime? get createTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'update_time')
   DateTime? get updateTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'expiry_time')
   DateTime? get expiryTime => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: _stringToInt)
-  int? get rank => throw _privateConstructorUsedError;
-  int get maxNumScore => throw _privateConstructorUsedError;
+  @JsonKey(name: 'rank')
+  String? get rank => throw _privateConstructorUsedError;
+  @JsonKey(name: 'max_num_score')
+  int? get maxNumScore => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -279,18 +309,18 @@ abstract class $LeaderboardRecordCopyWith<$Res> {
       _$LeaderboardRecordCopyWithImpl<$Res, LeaderboardRecord>;
   @useResult
   $Res call(
-      {String? leaderboardId,
-      String? ownerId,
-      String? username,
-      @JsonKey(fromJson: _stringToInt) int? score,
-      @JsonKey(fromJson: _stringToInt) int? subscore,
-      int numScore,
-      String? metadata,
-      DateTime? createTime,
-      DateTime? updateTime,
-      DateTime? expiryTime,
-      @JsonKey(fromJson: _stringToInt) int? rank,
-      int maxNumScore});
+      {@JsonKey(name: 'leaderboard_id') String? leaderboardId,
+      @JsonKey(name: 'owner_id') String? ownerId,
+      @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'score') String? score,
+      @JsonKey(name: 'subscore') int? subscore,
+      @JsonKey(name: 'num_score') int? numScore,
+      @JsonKey(name: 'metadata') String? metadata,
+      @JsonKey(name: 'create_time') DateTime? createTime,
+      @JsonKey(name: 'update_time') DateTime? updateTime,
+      @JsonKey(name: 'expiry_time') DateTime? expiryTime,
+      @JsonKey(name: 'rank') String? rank,
+      @JsonKey(name: 'max_num_score') int? maxNumScore});
 }
 
 /// @nodoc
@@ -311,13 +341,13 @@ class _$LeaderboardRecordCopyWithImpl<$Res, $Val extends LeaderboardRecord>
     Object? username = freezed,
     Object? score = freezed,
     Object? subscore = freezed,
-    Object? numScore = null,
+    Object? numScore = freezed,
     Object? metadata = freezed,
     Object? createTime = freezed,
     Object? updateTime = freezed,
     Object? expiryTime = freezed,
     Object? rank = freezed,
-    Object? maxNumScore = null,
+    Object? maxNumScore = freezed,
   }) {
     return _then(_value.copyWith(
       leaderboardId: freezed == leaderboardId
@@ -335,15 +365,15 @@ class _$LeaderboardRecordCopyWithImpl<$Res, $Val extends LeaderboardRecord>
       score: freezed == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       subscore: freezed == subscore
           ? _value.subscore
           : subscore // ignore: cast_nullable_to_non_nullable
               as int?,
-      numScore: null == numScore
+      numScore: freezed == numScore
           ? _value.numScore
           : numScore // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       metadata: freezed == metadata
           ? _value.metadata
           : metadata // ignore: cast_nullable_to_non_nullable
@@ -363,11 +393,11 @@ class _$LeaderboardRecordCopyWithImpl<$Res, $Val extends LeaderboardRecord>
       rank: freezed == rank
           ? _value.rank
           : rank // ignore: cast_nullable_to_non_nullable
-              as int?,
-      maxNumScore: null == maxNumScore
+              as String?,
+      maxNumScore: freezed == maxNumScore
           ? _value.maxNumScore
           : maxNumScore // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -381,18 +411,18 @@ abstract class _$$LeaderboardRecordImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? leaderboardId,
-      String? ownerId,
-      String? username,
-      @JsonKey(fromJson: _stringToInt) int? score,
-      @JsonKey(fromJson: _stringToInt) int? subscore,
-      int numScore,
-      String? metadata,
-      DateTime? createTime,
-      DateTime? updateTime,
-      DateTime? expiryTime,
-      @JsonKey(fromJson: _stringToInt) int? rank,
-      int maxNumScore});
+      {@JsonKey(name: 'leaderboard_id') String? leaderboardId,
+      @JsonKey(name: 'owner_id') String? ownerId,
+      @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'score') String? score,
+      @JsonKey(name: 'subscore') int? subscore,
+      @JsonKey(name: 'num_score') int? numScore,
+      @JsonKey(name: 'metadata') String? metadata,
+      @JsonKey(name: 'create_time') DateTime? createTime,
+      @JsonKey(name: 'update_time') DateTime? updateTime,
+      @JsonKey(name: 'expiry_time') DateTime? expiryTime,
+      @JsonKey(name: 'rank') String? rank,
+      @JsonKey(name: 'max_num_score') int? maxNumScore});
 }
 
 /// @nodoc
@@ -411,13 +441,13 @@ class __$$LeaderboardRecordImplCopyWithImpl<$Res>
     Object? username = freezed,
     Object? score = freezed,
     Object? subscore = freezed,
-    Object? numScore = null,
+    Object? numScore = freezed,
     Object? metadata = freezed,
     Object? createTime = freezed,
     Object? updateTime = freezed,
     Object? expiryTime = freezed,
     Object? rank = freezed,
-    Object? maxNumScore = null,
+    Object? maxNumScore = freezed,
   }) {
     return _then(_$LeaderboardRecordImpl(
       leaderboardId: freezed == leaderboardId
@@ -435,15 +465,15 @@ class __$$LeaderboardRecordImplCopyWithImpl<$Res>
       score: freezed == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       subscore: freezed == subscore
           ? _value.subscore
           : subscore // ignore: cast_nullable_to_non_nullable
               as int?,
-      numScore: null == numScore
+      numScore: freezed == numScore
           ? _value.numScore
           : numScore // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       metadata: freezed == metadata
           ? _value.metadata
           : metadata // ignore: cast_nullable_to_non_nullable
@@ -463,11 +493,11 @@ class __$$LeaderboardRecordImplCopyWithImpl<$Res>
       rank: freezed == rank
           ? _value.rank
           : rank // ignore: cast_nullable_to_non_nullable
-              as int?,
-      maxNumScore: null == maxNumScore
+              as String?,
+      maxNumScore: freezed == maxNumScore
           ? _value.maxNumScore
           : maxNumScore // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -476,52 +506,59 @@ class __$$LeaderboardRecordImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LeaderboardRecordImpl extends _LeaderboardRecord {
   const _$LeaderboardRecordImpl(
-      {this.leaderboardId,
-      this.ownerId,
-      this.username,
-      @JsonKey(fromJson: _stringToInt) this.score,
-      @JsonKey(fromJson: _stringToInt) this.subscore,
-      this.numScore = 0,
-      this.metadata,
-      this.createTime,
-      this.updateTime,
-      this.expiryTime,
-      @JsonKey(fromJson: _stringToInt) this.rank,
-      this.maxNumScore = 0})
+      {@JsonKey(name: 'leaderboard_id') this.leaderboardId,
+      @JsonKey(name: 'owner_id') this.ownerId,
+      @JsonKey(name: 'username') this.username,
+      @JsonKey(name: 'score') this.score,
+      @JsonKey(name: 'subscore') this.subscore,
+      @JsonKey(name: 'num_score') this.numScore,
+      @JsonKey(name: 'metadata') this.metadata,
+      @JsonKey(name: 'create_time') this.createTime,
+      @JsonKey(name: 'update_time') this.updateTime,
+      @JsonKey(name: 'expiry_time') this.expiryTime,
+      @JsonKey(name: 'rank') this.rank,
+      @JsonKey(name: 'max_num_score') this.maxNumScore})
       : super._();
 
   factory _$LeaderboardRecordImpl.fromJson(Map<String, dynamic> json) =>
       _$$LeaderboardRecordImplFromJson(json);
 
   @override
+  @JsonKey(name: 'leaderboard_id')
   final String? leaderboardId;
   @override
+  @JsonKey(name: 'owner_id')
   final String? ownerId;
   @override
+  @JsonKey(name: 'username')
   final String? username;
   @override
-  @JsonKey(fromJson: _stringToInt)
-  final int? score;
+  @JsonKey(name: 'score')
+  final String? score;
   @override
-  @JsonKey(fromJson: _stringToInt)
+  @JsonKey(name: 'subscore')
   final int? subscore;
   @override
-  @JsonKey()
-  final int numScore;
+  @JsonKey(name: 'num_score')
+  final int? numScore;
   @override
+  @JsonKey(name: 'metadata')
   final String? metadata;
   @override
+  @JsonKey(name: 'create_time')
   final DateTime? createTime;
   @override
+  @JsonKey(name: 'update_time')
   final DateTime? updateTime;
   @override
+  @JsonKey(name: 'expiry_time')
   final DateTime? expiryTime;
   @override
-  @JsonKey(fromJson: _stringToInt)
-  final int? rank;
+  @JsonKey(name: 'rank')
+  final String? rank;
   @override
-  @JsonKey()
-  final int maxNumScore;
+  @JsonKey(name: 'max_num_score')
+  final int? maxNumScore;
 
   @override
   String toString() {
@@ -590,50 +627,60 @@ class _$LeaderboardRecordImpl extends _LeaderboardRecord {
 
 abstract class _LeaderboardRecord extends LeaderboardRecord {
   const factory _LeaderboardRecord(
-      {final String? leaderboardId,
-      final String? ownerId,
-      final String? username,
-      @JsonKey(fromJson: _stringToInt) final int? score,
-      @JsonKey(fromJson: _stringToInt) final int? subscore,
-      final int numScore,
-      final String? metadata,
-      final DateTime? createTime,
-      final DateTime? updateTime,
-      final DateTime? expiryTime,
-      @JsonKey(fromJson: _stringToInt) final int? rank,
-      final int maxNumScore}) = _$LeaderboardRecordImpl;
+          {@JsonKey(name: 'leaderboard_id') final String? leaderboardId,
+          @JsonKey(name: 'owner_id') final String? ownerId,
+          @JsonKey(name: 'username') final String? username,
+          @JsonKey(name: 'score') final String? score,
+          @JsonKey(name: 'subscore') final int? subscore,
+          @JsonKey(name: 'num_score') final int? numScore,
+          @JsonKey(name: 'metadata') final String? metadata,
+          @JsonKey(name: 'create_time') final DateTime? createTime,
+          @JsonKey(name: 'update_time') final DateTime? updateTime,
+          @JsonKey(name: 'expiry_time') final DateTime? expiryTime,
+          @JsonKey(name: 'rank') final String? rank,
+          @JsonKey(name: 'max_num_score') final int? maxNumScore}) =
+      _$LeaderboardRecordImpl;
   const _LeaderboardRecord._() : super._();
 
   factory _LeaderboardRecord.fromJson(Map<String, dynamic> json) =
       _$LeaderboardRecordImpl.fromJson;
 
   @override
+  @JsonKey(name: 'leaderboard_id')
   String? get leaderboardId;
   @override
+  @JsonKey(name: 'owner_id')
   String? get ownerId;
   @override
+  @JsonKey(name: 'username')
   String? get username;
   @override
-  @JsonKey(fromJson: _stringToInt)
-  int? get score;
+  @JsonKey(name: 'score')
+  String? get score;
   @override
-  @JsonKey(fromJson: _stringToInt)
+  @JsonKey(name: 'subscore')
   int? get subscore;
   @override
-  int get numScore;
+  @JsonKey(name: 'num_score')
+  int? get numScore;
   @override
+  @JsonKey(name: 'metadata')
   String? get metadata;
   @override
+  @JsonKey(name: 'create_time')
   DateTime? get createTime;
   @override
+  @JsonKey(name: 'update_time')
   DateTime? get updateTime;
   @override
+  @JsonKey(name: 'expiry_time')
   DateTime? get expiryTime;
   @override
-  @JsonKey(fromJson: _stringToInt)
-  int? get rank;
+  @JsonKey(name: 'rank')
+  String? get rank;
   @override
-  int get maxNumScore;
+  @JsonKey(name: 'max_num_score')
+  int? get maxNumScore;
   @override
   @JsonKey(ignore: true)
   _$$LeaderboardRecordImplCopyWith<_$LeaderboardRecordImpl> get copyWith =>

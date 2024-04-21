@@ -289,8 +289,8 @@ abstract class NakamaBaseClient {
   /// profiles from their ids or usernames.
   Future<List<model.User>> getUsers({
     required model.Session session,
+    required List<String> ids,
     List<String>? facebookIds,
-    List<String>? ids,
     List<String>? usernames,
   });
 
@@ -302,14 +302,10 @@ abstract class NakamaBaseClient {
   /// Consider what adverse effects a malicious user can have on your game and
   /// economy when deciding where to put your write logic, for example data that
   /// should only be written authoritatively (i.e. game unlocks or progress).
-  Future<void> writeStorageObject({
+
+  Future<void> writeStorageObjects({
     required model.Session session,
-    String? collection,
-    String? key,
-    String? value,
-    String? version,
-    StorageWritePermission? writePermission,
-    StorageReadPermission? readPermission,
+    required Iterable<model.StorageObjectWrite> objects,
   });
 
   /// # Listing storage objects
@@ -318,13 +314,13 @@ abstract class NakamaBaseClient {
   /// all the storage objects the player has access to in a collection.
   Future<model.StorageObjectList> listStorageObjects({
     required model.Session session,
-    String? collection,
+    required String collection,
     String? cursor,
     String? userId,
     int? limit,
   });
 
-  Future<void> deleteStorageObject({
+  Future<void> deleteStorageObjects({
     required model.Session session,
     required Iterable<model.StorageObjectId> objectIds,
   });
@@ -334,11 +330,9 @@ abstract class NakamaBaseClient {
   /// Define a class that describes the storage object and create a new storage
   /// object id with the collection name, key and user id. Finally, read the
   /// storage objects and parse the JSON data:
-  Future<model.StorageObject?> readStorageObject({
+  Future<List<model.StorageObject>> readStorageObjects({
     required model.Session session,
-    String? collection,
-    String? key,
-    String? userId,
+    required Iterable<model.StorageObjectId> objectIds,
   });
 
   /// #Listing message history
@@ -380,9 +374,10 @@ abstract class NakamaBaseClient {
   Future<model.LeaderboardRecord> writeLeaderboardRecord({
     required model.Session session,
     required String leaderboardName,
-    int? score,
+    required int score,
     int? subscore,
     String? metadata,
+    LeaderboardOperator? operator,
   });
 
   /// # Deleting records
@@ -398,8 +393,8 @@ abstract class NakamaBaseClient {
   /// they will need to accept.
   Future<void> addFriends({
     required model.Session session,
+    required List<String> ids,
     List<String>? usernames,
-    List<String>? ids,
   });
 
   /// # Listing friends
@@ -418,16 +413,16 @@ abstract class NakamaBaseClient {
   /// Players can remove friends by their username or user id.
   Future<void> deleteFriends({
     required model.Session session,
+    required List<String> ids,
     List<String>? usernames,
-    List<String>? ids,
   });
 
   /// # Blocking users
   /// Players can block others by their username or user id.
   Future<void> blockFriends({
     required model.Session session,
+    required List<String> ids,
     List<String>? usernames,
-    List<String>? ids,
   });
 
   /// # Creating groups
@@ -452,12 +447,12 @@ abstract class NakamaBaseClient {
   Future<void> updateGroup({
     required model.Session session,
     required String groupId,
+    required bool open,
     String? name,
     String? avatarUrl,
     String? description,
     String? langTag,
     int? maxCount,
-    bool? open,
   });
 
   /// # Listing and filtering groups
@@ -654,7 +649,7 @@ abstract class NakamaBaseClient {
   Future<model.TournamentRecordList> listTournamentRecords({
     required model.Session session,
     required String tournamentId,
-    Iterable<String>? ownerIds,
+    required Iterable<String> ownerIds,
     int? expiry,
     int limit = defaultLimit,
     String? cursor,
@@ -678,10 +673,10 @@ abstract class NakamaBaseClient {
   Future<model.LeaderboardRecord> writeTournamentRecord({
     required model.Session session,
     required String tournamentId,
+    required int score,
+    int? subscore,
     String? metadata,
     LeaderboardOperator? operator,
-    int? score,
-    int? subscore,
   });
 
   Future<String?> rpc({

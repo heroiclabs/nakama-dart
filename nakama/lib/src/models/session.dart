@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:nakama/src/api/api.dart' as dto;
-import 'package:nakama/src/rest/apigrpc.swagger.dart';
+import 'package:nakama/src/rest/api_client.gen.dart';
 
 part 'session.freezed.dart';
 
@@ -44,7 +44,7 @@ class Session with _$Session {
     final token = JwtDecoder.decode(session.token!);
     assert(token.containsKey('uid'));
 
-    final refreshToken = JwtDecoder.decode(session.refreshToken!);
+    final refreshToken = JwtDecoder.decode(session.refreshToken ?? '');
 
     return Session(
       token: session.token!,
@@ -66,4 +66,31 @@ class Session with _$Session {
 
   bool hasRefreshExpired(DateTime time) => refreshExpiresAt.isBefore(time);
   bool get isRefreshExpired => hasRefreshExpired(DateTime.now());
+
+  static Session restore({
+    required String token,
+    required String refreshToken,
+  }) {
+    final tokenDict = JwtDecoder.decode(token);
+    final refreshTokenDict = JwtDecoder.decode(refreshToken);
+
+    final created = tokenDict.containsKey('iat');
+    final userId = tokenDict['uid'] as String;
+    final expiresAt = DateTime.fromMillisecondsSinceEpoch(
+      (tokenDict['exp'] as int) * 1000,
+    );
+    final refreshExpiresAt = DateTime.fromMillisecondsSinceEpoch(
+      (refreshTokenDict['exp'] as int) * 1000,
+    );
+
+    return Session(
+      token: token,
+      refreshToken: refreshToken,
+      created: created,
+      vars: {},
+      userId: userId,
+      expiresAt: expiresAt,
+      refreshExpiresAt: refreshExpiresAt,
+    );
+  }
 }

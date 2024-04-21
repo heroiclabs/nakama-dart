@@ -12,7 +12,7 @@ part of 'account.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Account _$AccountFromJson(Map<String, dynamic> json) {
   return _Account.fromJson(json);
@@ -20,11 +20,17 @@ Account _$AccountFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Account {
+  @JsonKey(name: 'wallet')
   String? get wallet => throw _privateConstructorUsedError;
+  @JsonKey(name: 'email')
   String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: 'devices')
   List<Device> get devices => throw _privateConstructorUsedError;
+  @JsonKey(name: 'custom_id')
   String? get customId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'verify_time')
   DateTime? get verifyTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'disable_time')
   DateTime? get disableTime => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
 
@@ -39,12 +45,12 @@ abstract class $AccountCopyWith<$Res> {
       _$AccountCopyWithImpl<$Res, Account>;
   @useResult
   $Res call(
-      {String? wallet,
-      String? email,
-      List<Device> devices,
-      String? customId,
-      DateTime? verifyTime,
-      DateTime? disableTime,
+      {@JsonKey(name: 'wallet') String? wallet,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'devices') List<Device> devices,
+      @JsonKey(name: 'custom_id') String? customId,
+      @JsonKey(name: 'verify_time') DateTime? verifyTime,
+      @JsonKey(name: 'disable_time') DateTime? disableTime,
       User user});
 
   $UserCopyWith<$Res> get user;
@@ -120,12 +126,12 @@ abstract class _$$AccountImplCopyWith<$Res> implements $AccountCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String? wallet,
-      String? email,
-      List<Device> devices,
-      String? customId,
-      DateTime? verifyTime,
-      DateTime? disableTime,
+      {@JsonKey(name: 'wallet') String? wallet,
+      @JsonKey(name: 'email') String? email,
+      @JsonKey(name: 'devices') List<Device> devices,
+      @JsonKey(name: 'custom_id') String? customId,
+      @JsonKey(name: 'verify_time') DateTime? verifyTime,
+      @JsonKey(name: 'disable_time') DateTime? disableTime,
       User user});
 
   @override
@@ -188,12 +194,12 @@ class __$$AccountImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AccountImpl extends _Account {
   const _$AccountImpl(
-      {this.wallet,
-      this.email,
-      final List<Device> devices = const [],
-      this.customId,
-      this.verifyTime,
-      this.disableTime,
+      {@JsonKey(name: 'wallet') this.wallet,
+      @JsonKey(name: 'email') this.email,
+      @JsonKey(name: 'devices') final List<Device> devices = const [],
+      @JsonKey(name: 'custom_id') this.customId,
+      @JsonKey(name: 'verify_time') this.verifyTime,
+      @JsonKey(name: 'disable_time') this.disableTime,
       required this.user})
       : _devices = devices,
         super._();
@@ -202,12 +208,14 @@ class _$AccountImpl extends _Account {
       _$$AccountImplFromJson(json);
 
   @override
+  @JsonKey(name: 'wallet')
   final String? wallet;
   @override
+  @JsonKey(name: 'email')
   final String? email;
   final List<Device> _devices;
   @override
-  @JsonKey()
+  @JsonKey(name: 'devices')
   List<Device> get devices {
     if (_devices is EqualUnmodifiableListView) return _devices;
     // ignore: implicit_dynamic_type
@@ -215,10 +223,13 @@ class _$AccountImpl extends _Account {
   }
 
   @override
+  @JsonKey(name: 'custom_id')
   final String? customId;
   @override
+  @JsonKey(name: 'verify_time')
   final DateTime? verifyTime;
   @override
+  @JsonKey(name: 'disable_time')
   final DateTime? disableTime;
   @override
   final User user;
@@ -273,28 +284,34 @@ class _$AccountImpl extends _Account {
 
 abstract class _Account extends Account {
   const factory _Account(
-      {final String? wallet,
-      final String? email,
-      final List<Device> devices,
-      final String? customId,
-      final DateTime? verifyTime,
-      final DateTime? disableTime,
+      {@JsonKey(name: 'wallet') final String? wallet,
+      @JsonKey(name: 'email') final String? email,
+      @JsonKey(name: 'devices') final List<Device> devices,
+      @JsonKey(name: 'custom_id') final String? customId,
+      @JsonKey(name: 'verify_time') final DateTime? verifyTime,
+      @JsonKey(name: 'disable_time') final DateTime? disableTime,
       required final User user}) = _$AccountImpl;
   const _Account._() : super._();
 
   factory _Account.fromJson(Map<String, dynamic> json) = _$AccountImpl.fromJson;
 
   @override
+  @JsonKey(name: 'wallet')
   String? get wallet;
   @override
+  @JsonKey(name: 'email')
   String? get email;
   @override
+  @JsonKey(name: 'devices')
   List<Device> get devices;
   @override
+  @JsonKey(name: 'custom_id')
   String? get customId;
   @override
+  @JsonKey(name: 'verify_time')
   DateTime? get verifyTime;
   @override
+  @JsonKey(name: 'disable_time')
   DateTime? get disableTime;
   @override
   User get user;
@@ -471,23 +488,41 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'username')
   String? get username => throw _privateConstructorUsedError;
+  @JsonKey(name: 'display_name')
   String? get displayName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'avatar_url')
   String? get avatarUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'lang_tag')
   String? get langTag => throw _privateConstructorUsedError;
+  @JsonKey(name: 'location')
   String? get location => throw _privateConstructorUsedError;
+  @JsonKey(name: 'timezone')
   String? get timezone => throw _privateConstructorUsedError;
+  @JsonKey(name: 'metadata')
   String? get metadata => throw _privateConstructorUsedError;
+  @JsonKey(name: 'facebook_id')
   String? get facebookId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'google_id')
   String? get googleId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gamecenter_id')
   String? get gamecenterId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'steam_id')
   String? get steamId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'online')
   bool get online => throw _privateConstructorUsedError;
+  @JsonKey(name: 'edge_count')
   int get edgeCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'create_time')
   DateTime? get createTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'update_time')
   DateTime? get updateTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'facebook_instant_game_id')
   String? get facebookInstantGameId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'apple_id')
   String? get appleId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -501,24 +536,24 @@ abstract class $UserCopyWith<$Res> {
       _$UserCopyWithImpl<$Res, User>;
   @useResult
   $Res call(
-      {String id,
-      String? username,
-      String? displayName,
-      String? avatarUrl,
-      String? langTag,
-      String? location,
-      String? timezone,
-      String? metadata,
-      String? facebookId,
-      String? googleId,
-      String? gamecenterId,
-      String? steamId,
-      bool online,
-      int edgeCount,
-      DateTime? createTime,
-      DateTime? updateTime,
-      String? facebookInstantGameId,
-      String? appleId});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'display_name') String? displayName,
+      @JsonKey(name: 'avatar_url') String? avatarUrl,
+      @JsonKey(name: 'lang_tag') String? langTag,
+      @JsonKey(name: 'location') String? location,
+      @JsonKey(name: 'timezone') String? timezone,
+      @JsonKey(name: 'metadata') String? metadata,
+      @JsonKey(name: 'facebook_id') String? facebookId,
+      @JsonKey(name: 'google_id') String? googleId,
+      @JsonKey(name: 'gamecenter_id') String? gamecenterId,
+      @JsonKey(name: 'steam_id') String? steamId,
+      @JsonKey(name: 'online') bool online,
+      @JsonKey(name: 'edge_count') int edgeCount,
+      @JsonKey(name: 'create_time') DateTime? createTime,
+      @JsonKey(name: 'update_time') DateTime? updateTime,
+      @JsonKey(name: 'facebook_instant_game_id') String? facebookInstantGameId,
+      @JsonKey(name: 'apple_id') String? appleId});
 }
 
 /// @nodoc
@@ -638,24 +673,24 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      String? username,
-      String? displayName,
-      String? avatarUrl,
-      String? langTag,
-      String? location,
-      String? timezone,
-      String? metadata,
-      String? facebookId,
-      String? googleId,
-      String? gamecenterId,
-      String? steamId,
-      bool online,
-      int edgeCount,
-      DateTime? createTime,
-      DateTime? updateTime,
-      String? facebookInstantGameId,
-      String? appleId});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'display_name') String? displayName,
+      @JsonKey(name: 'avatar_url') String? avatarUrl,
+      @JsonKey(name: 'lang_tag') String? langTag,
+      @JsonKey(name: 'location') String? location,
+      @JsonKey(name: 'timezone') String? timezone,
+      @JsonKey(name: 'metadata') String? metadata,
+      @JsonKey(name: 'facebook_id') String? facebookId,
+      @JsonKey(name: 'google_id') String? googleId,
+      @JsonKey(name: 'gamecenter_id') String? gamecenterId,
+      @JsonKey(name: 'steam_id') String? steamId,
+      @JsonKey(name: 'online') bool online,
+      @JsonKey(name: 'edge_count') int edgeCount,
+      @JsonKey(name: 'create_time') DateTime? createTime,
+      @JsonKey(name: 'update_time') DateTime? updateTime,
+      @JsonKey(name: 'facebook_instant_game_id') String? facebookInstantGameId,
+      @JsonKey(name: 'apple_id') String? appleId});
 }
 
 /// @nodoc
@@ -768,66 +803,82 @@ class __$$UserImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserImpl extends _User {
   const _$UserImpl(
-      {required this.id,
-      this.username,
-      this.displayName,
-      this.avatarUrl,
-      this.langTag,
-      this.location,
-      this.timezone,
-      this.metadata,
-      this.facebookId,
-      this.googleId,
-      this.gamecenterId,
-      this.steamId,
-      this.online = false,
-      this.edgeCount = 0,
-      this.createTime,
-      this.updateTime,
-      this.facebookInstantGameId,
-      this.appleId})
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'username') this.username,
+      @JsonKey(name: 'display_name') this.displayName,
+      @JsonKey(name: 'avatar_url') this.avatarUrl,
+      @JsonKey(name: 'lang_tag') this.langTag,
+      @JsonKey(name: 'location') this.location,
+      @JsonKey(name: 'timezone') this.timezone,
+      @JsonKey(name: 'metadata') this.metadata,
+      @JsonKey(name: 'facebook_id') this.facebookId,
+      @JsonKey(name: 'google_id') this.googleId,
+      @JsonKey(name: 'gamecenter_id') this.gamecenterId,
+      @JsonKey(name: 'steam_id') this.steamId,
+      @JsonKey(name: 'online') this.online = false,
+      @JsonKey(name: 'edge_count') this.edgeCount = 0,
+      @JsonKey(name: 'create_time') this.createTime,
+      @JsonKey(name: 'update_time') this.updateTime,
+      @JsonKey(name: 'facebook_instant_game_id') this.facebookInstantGameId,
+      @JsonKey(name: 'apple_id') this.appleId})
       : super._();
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
 
   @override
+  @JsonKey(name: 'id')
   final String id;
   @override
+  @JsonKey(name: 'username')
   final String? username;
   @override
+  @JsonKey(name: 'display_name')
   final String? displayName;
   @override
+  @JsonKey(name: 'avatar_url')
   final String? avatarUrl;
   @override
+  @JsonKey(name: 'lang_tag')
   final String? langTag;
   @override
+  @JsonKey(name: 'location')
   final String? location;
   @override
+  @JsonKey(name: 'timezone')
   final String? timezone;
   @override
+  @JsonKey(name: 'metadata')
   final String? metadata;
   @override
+  @JsonKey(name: 'facebook_id')
   final String? facebookId;
   @override
+  @JsonKey(name: 'google_id')
   final String? googleId;
   @override
+  @JsonKey(name: 'gamecenter_id')
   final String? gamecenterId;
   @override
+  @JsonKey(name: 'steam_id')
   final String? steamId;
   @override
-  @JsonKey()
+  @JsonKey(name: 'online')
   final bool online;
   @override
-  @JsonKey()
+  @JsonKey(name: 'edge_count')
   final int edgeCount;
   @override
+  @JsonKey(name: 'create_time')
   final DateTime? createTime;
   @override
+  @JsonKey(name: 'update_time')
   final DateTime? updateTime;
   @override
+  @JsonKey(name: 'facebook_instant_game_id')
   final String? facebookInstantGameId;
   @override
+  @JsonKey(name: 'apple_id')
   final String? appleId;
 
   @override
@@ -912,63 +963,82 @@ class _$UserImpl extends _User {
 
 abstract class _User extends User {
   const factory _User(
-      {required final String id,
-      final String? username,
-      final String? displayName,
-      final String? avatarUrl,
-      final String? langTag,
-      final String? location,
-      final String? timezone,
-      final String? metadata,
-      final String? facebookId,
-      final String? googleId,
-      final String? gamecenterId,
-      final String? steamId,
-      final bool online,
-      final int edgeCount,
-      final DateTime? createTime,
-      final DateTime? updateTime,
+      {@JsonKey(name: 'id') required final String id,
+      @JsonKey(name: 'username') final String? username,
+      @JsonKey(name: 'display_name') final String? displayName,
+      @JsonKey(name: 'avatar_url') final String? avatarUrl,
+      @JsonKey(name: 'lang_tag') final String? langTag,
+      @JsonKey(name: 'location') final String? location,
+      @JsonKey(name: 'timezone') final String? timezone,
+      @JsonKey(name: 'metadata') final String? metadata,
+      @JsonKey(name: 'facebook_id') final String? facebookId,
+      @JsonKey(name: 'google_id') final String? googleId,
+      @JsonKey(name: 'gamecenter_id') final String? gamecenterId,
+      @JsonKey(name: 'steam_id') final String? steamId,
+      @JsonKey(name: 'online') final bool online,
+      @JsonKey(name: 'edge_count') final int edgeCount,
+      @JsonKey(name: 'create_time') final DateTime? createTime,
+      @JsonKey(name: 'update_time') final DateTime? updateTime,
+      @JsonKey(name: 'facebook_instant_game_id')
       final String? facebookInstantGameId,
-      final String? appleId}) = _$UserImpl;
+      @JsonKey(name: 'apple_id') final String? appleId}) = _$UserImpl;
   const _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
   @override
+  @JsonKey(name: 'id')
   String get id;
   @override
+  @JsonKey(name: 'username')
   String? get username;
   @override
+  @JsonKey(name: 'display_name')
   String? get displayName;
   @override
+  @JsonKey(name: 'avatar_url')
   String? get avatarUrl;
   @override
+  @JsonKey(name: 'lang_tag')
   String? get langTag;
   @override
+  @JsonKey(name: 'location')
   String? get location;
   @override
+  @JsonKey(name: 'timezone')
   String? get timezone;
   @override
+  @JsonKey(name: 'metadata')
   String? get metadata;
   @override
+  @JsonKey(name: 'facebook_id')
   String? get facebookId;
   @override
+  @JsonKey(name: 'google_id')
   String? get googleId;
   @override
+  @JsonKey(name: 'gamecenter_id')
   String? get gamecenterId;
   @override
+  @JsonKey(name: 'steam_id')
   String? get steamId;
   @override
+  @JsonKey(name: 'online')
   bool get online;
   @override
+  @JsonKey(name: 'edge_count')
   int get edgeCount;
   @override
+  @JsonKey(name: 'create_time')
   DateTime? get createTime;
   @override
+  @JsonKey(name: 'update_time')
   DateTime? get updateTime;
   @override
+  @JsonKey(name: 'facebook_instant_game_id')
   String? get facebookInstantGameId;
   @override
+  @JsonKey(name: 'apple_id')
   String? get appleId;
   @override
   @JsonKey(ignore: true)
