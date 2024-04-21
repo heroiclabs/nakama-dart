@@ -369,7 +369,8 @@ class NakamaWebsocketClient {
     return res.presences.map(UserPresence.fromDto).toList();
   }
 
-  Future<List<UserPresence>> unfollowUsers({
+  Future<List<UserPresence>> unfollowUsers(
+    List<String> list, {
     List<String>? userIds,
   }) async {
     final res = await _send<rtpb.Status>(rtpb.Envelope(
