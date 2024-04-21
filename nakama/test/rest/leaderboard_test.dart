@@ -33,7 +33,7 @@ void main() {
 
       expect(result, isA<LeaderboardRecord>());
       expect(result.score, isNotNull);
-      expect(result.score!.toInt(), equals(10));
+      expect(result.score, equals('10'));
     });
   });
 }
