@@ -199,9 +199,11 @@ abstract class ApiClient
         {{- if eq $parameter.Schema.Type "string" }}
         {{ if $parameter.Required }}required{{- end}} String{{- if not $parameter.Required }}?{{- end }} {{ $parameter.Name }},
         {{- else }}
-        {{ if $parameter.Required}}required {{ end }}{{ $parameter.Schema.Ref | cleanRef }}{{- if not $parameter.Required }}?{{- end }} {{ $parameter.Name }},
+        @Body() {{ if $parameter.Required}}required {{ end }}{{ $parameter.Schema.Ref | cleanRef }}{{- if not $parameter.Required }}?{{- end }} {{ $parameter.Name }},
         {{- end }}
-    {{- else if eq $parameter.Type "array"}}
+	{{- else if eq $parameter.In "query" }}
+		@Query('{{ $parameter.Name }}')
+    {{- if eq $parameter.Type "array"}}
     		required List<{{ $parameter.Items.Type | camelToPascal }}> {{ $parameter.Name | snakeToCamel }},
     {{- else if eq $parameter.Type "object"}},
         {{- if eq $parameter.AdditionalProperties.Type "string"}}
@@ -222,6 +224,7 @@ abstract class ApiClient
     {{- else }}
         {{ if $parameter.Required }}required{{ end }} {{ $parameter.Type }}{{- if not $parameter.Required }}?{{- end }} {{ $parameter.Name }},
     {{- end }}
+	{{- end }}
 	{{- end }}
 	  });
     {{- end }}
