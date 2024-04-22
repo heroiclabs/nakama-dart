@@ -2397,7 +2397,7 @@ abstract class ApiClient {
     String? basicAuthPassword,
     String? bearerToken,
     @Path('id') required String id,
-    required String body,
+    @Body() required String body,
     @Query('httpKey') String? httpKey,
   });
 

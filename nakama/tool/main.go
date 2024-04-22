@@ -197,9 +197,9 @@ abstract class ApiClient
         @Path('{{ $parameter.Name }}'){{ if $parameter.Required }}required{{- end}} {{ $parameter.Type | camelToPascal }}{{- if not $parameter.Required }}?{{- end }} {{ $parameter.Name }},
     {{- else if eq $parameter.In "body" }}
         {{- if eq $parameter.Schema.Type "string" }}
-        {{ if $parameter.Required }}required{{- end}} String{{- if not $parameter.Required }}?{{- end }} {{ $parameter.Name }},
+        @Body() {{ if $parameter.Required }}required{{- end}} String{{- if not $parameter.Required }}?{{- end }} {{ $parameter.Name }},
         {{- else }}
-        @Body() {{ if $parameter.Required}}required {{ end }}{{ $parameter.Schema.Ref | cleanRef }}{{- if not $parameter.Required }}?{{- end }} {{ $parameter.Name }},
+        @Body() {{ if $parameter.Required }}required {{ end }}{{ $parameter.Schema.Ref | cleanRef }}{{- if not $parameter.Required }}?{{- end }} {{ $parameter.Name }},
         {{- end }}
 	{{- else if eq $parameter.In "query" }}
 		@Query('{{ $parameter.Name }}')

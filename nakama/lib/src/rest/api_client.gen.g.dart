@@ -3173,7 +3173,7 @@ class _ApiClient implements ApiClient {
     final queryParameters = <String, dynamic>{r'httpKey': httpKey};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = body;
     final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiRpc>(Options(
       method: 'POST',
       headers: _headers,
