@@ -9,6 +9,7 @@ export 'src/enum/group_membership_states.dart';
 export 'src/enum/storage_permission.dart';
 // Public models
 export 'src/models/account.dart';
+export 'src/models/channel_message.dart';
 export 'src/models/chat.dart';
 export 'src/models/friends.dart';
 export 'src/models/group.dart';
