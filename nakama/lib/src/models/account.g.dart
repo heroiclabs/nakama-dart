@@ -11,9 +11,8 @@ _$AccountImpl _$$AccountImplFromJson(Map<String, dynamic> json) =>
       wallet: json['wallet'] as String?,
       email: json['email'] as String?,
       devices: (json['devices'] as List<dynamic>?)
-              ?.map((e) => Device.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+          ?.map((e) => Device.fromJson(e as Map<String, dynamic>))
+          .toList(),
       customId: json['custom_id'] as String?,
       verifyTime: json['verify_time'] == null
           ? null
@@ -37,7 +36,7 @@ Map<String, dynamic> _$$AccountImplToJson(_$AccountImpl instance) =>
 
 _$DeviceImpl _$$DeviceImplFromJson(Map<String, dynamic> json) => _$DeviceImpl(
       id: json['id'] as String,
-      vars: json['vars'] as Map<String, dynamic>? ?? const {},
+      vars: json['vars'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$$DeviceImplToJson(_$DeviceImpl instance) =>

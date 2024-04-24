@@ -25,7 +25,7 @@ mixin _$Account {
   @JsonKey(name: 'email')
   String? get email => throw _privateConstructorUsedError;
   @JsonKey(name: 'devices')
-  List<Device> get devices => throw _privateConstructorUsedError;
+  List<Device>? get devices => throw _privateConstructorUsedError;
   @JsonKey(name: 'custom_id')
   String? get customId => throw _privateConstructorUsedError;
   @JsonKey(name: 'verify_time')
@@ -47,7 +47,7 @@ abstract class $AccountCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'wallet') String? wallet,
       @JsonKey(name: 'email') String? email,
-      @JsonKey(name: 'devices') List<Device> devices,
+      @JsonKey(name: 'devices') List<Device>? devices,
       @JsonKey(name: 'custom_id') String? customId,
       @JsonKey(name: 'verify_time') DateTime? verifyTime,
       @JsonKey(name: 'disable_time') DateTime? disableTime,
@@ -71,7 +71,7 @@ class _$AccountCopyWithImpl<$Res, $Val extends Account>
   $Res call({
     Object? wallet = freezed,
     Object? email = freezed,
-    Object? devices = null,
+    Object? devices = freezed,
     Object? customId = freezed,
     Object? verifyTime = freezed,
     Object? disableTime = freezed,
@@ -86,10 +86,10 @@ class _$AccountCopyWithImpl<$Res, $Val extends Account>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      devices: null == devices
+      devices: freezed == devices
           ? _value.devices
           : devices // ignore: cast_nullable_to_non_nullable
-              as List<Device>,
+              as List<Device>?,
       customId: freezed == customId
           ? _value.customId
           : customId // ignore: cast_nullable_to_non_nullable
@@ -128,7 +128,7 @@ abstract class _$$AccountImplCopyWith<$Res> implements $AccountCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'wallet') String? wallet,
       @JsonKey(name: 'email') String? email,
-      @JsonKey(name: 'devices') List<Device> devices,
+      @JsonKey(name: 'devices') List<Device>? devices,
       @JsonKey(name: 'custom_id') String? customId,
       @JsonKey(name: 'verify_time') DateTime? verifyTime,
       @JsonKey(name: 'disable_time') DateTime? disableTime,
@@ -151,7 +151,7 @@ class __$$AccountImplCopyWithImpl<$Res>
   $Res call({
     Object? wallet = freezed,
     Object? email = freezed,
-    Object? devices = null,
+    Object? devices = freezed,
     Object? customId = freezed,
     Object? verifyTime = freezed,
     Object? disableTime = freezed,
@@ -166,10 +166,10 @@ class __$$AccountImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      devices: null == devices
+      devices: freezed == devices
           ? _value._devices
           : devices // ignore: cast_nullable_to_non_nullable
-              as List<Device>,
+              as List<Device>?,
       customId: freezed == customId
           ? _value.customId
           : customId // ignore: cast_nullable_to_non_nullable
@@ -196,7 +196,7 @@ class _$AccountImpl extends _Account {
   const _$AccountImpl(
       {@JsonKey(name: 'wallet') this.wallet,
       @JsonKey(name: 'email') this.email,
-      @JsonKey(name: 'devices') final List<Device> devices = const [],
+      @JsonKey(name: 'devices') final List<Device>? devices,
       @JsonKey(name: 'custom_id') this.customId,
       @JsonKey(name: 'verify_time') this.verifyTime,
       @JsonKey(name: 'disable_time') this.disableTime,
@@ -213,13 +213,15 @@ class _$AccountImpl extends _Account {
   @override
   @JsonKey(name: 'email')
   final String? email;
-  final List<Device> _devices;
+  final List<Device>? _devices;
   @override
   @JsonKey(name: 'devices')
-  List<Device> get devices {
+  List<Device>? get devices {
+    final value = _devices;
+    if (value == null) return null;
     if (_devices is EqualUnmodifiableListView) return _devices;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_devices);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -286,7 +288,7 @@ abstract class _Account extends Account {
   const factory _Account(
       {@JsonKey(name: 'wallet') final String? wallet,
       @JsonKey(name: 'email') final String? email,
-      @JsonKey(name: 'devices') final List<Device> devices,
+      @JsonKey(name: 'devices') final List<Device>? devices,
       @JsonKey(name: 'custom_id') final String? customId,
       @JsonKey(name: 'verify_time') final DateTime? verifyTime,
       @JsonKey(name: 'disable_time') final DateTime? disableTime,
@@ -303,7 +305,7 @@ abstract class _Account extends Account {
   String? get email;
   @override
   @JsonKey(name: 'devices')
-  List<Device> get devices;
+  List<Device>? get devices;
   @override
   @JsonKey(name: 'custom_id')
   String? get customId;
@@ -328,7 +330,7 @@ Device _$DeviceFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Device {
   String get id => throw _privateConstructorUsedError;
-  Map<String, dynamic> get vars => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get vars => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -340,7 +342,7 @@ abstract class $DeviceCopyWith<$Res> {
   factory $DeviceCopyWith(Device value, $Res Function(Device) then) =
       _$DeviceCopyWithImpl<$Res, Device>;
   @useResult
-  $Res call({String id, Map<String, dynamic> vars});
+  $Res call({String id, Map<String, dynamic>? vars});
 }
 
 /// @nodoc
@@ -357,17 +359,17 @@ class _$DeviceCopyWithImpl<$Res, $Val extends Device>
   @override
   $Res call({
     Object? id = null,
-    Object? vars = null,
+    Object? vars = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      vars: null == vars
+      vars: freezed == vars
           ? _value.vars
           : vars // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as Map<String, dynamic>?,
     ) as $Val);
   }
 }
@@ -379,7 +381,7 @@ abstract class _$$DeviceImplCopyWith<$Res> implements $DeviceCopyWith<$Res> {
       __$$DeviceImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, Map<String, dynamic> vars});
+  $Res call({String id, Map<String, dynamic>? vars});
 }
 
 /// @nodoc
@@ -394,17 +396,17 @@ class __$$DeviceImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? vars = null,
+    Object? vars = freezed,
   }) {
     return _then(_$DeviceImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      vars: null == vars
+      vars: freezed == vars
           ? _value._vars
           : vars // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -412,8 +414,7 @@ class __$$DeviceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DeviceImpl extends _Device {
-  const _$DeviceImpl(
-      {required this.id, final Map<String, dynamic> vars = const {}})
+  const _$DeviceImpl({required this.id, final Map<String, dynamic>? vars})
       : _vars = vars,
         super._();
 
@@ -422,13 +423,14 @@ class _$DeviceImpl extends _Device {
 
   @override
   final String id;
-  final Map<String, dynamic> _vars;
+  final Map<String, dynamic>? _vars;
   @override
-  @JsonKey()
-  Map<String, dynamic> get vars {
+  Map<String, dynamic>? get vars {
+    final value = _vars;
+    if (value == null) return null;
     if (_vars is EqualUnmodifiableMapView) return _vars;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_vars);
+    return EqualUnmodifiableMapView(value);
   }
 
   @override
@@ -467,7 +469,7 @@ class _$DeviceImpl extends _Device {
 abstract class _Device extends Device {
   const factory _Device(
       {required final String id,
-      final Map<String, dynamic> vars}) = _$DeviceImpl;
+      final Map<String, dynamic>? vars}) = _$DeviceImpl;
   const _Device._() : super._();
 
   factory _Device.fromJson(Map<String, dynamic> json) = _$DeviceImpl.fromJson;
@@ -475,7 +477,7 @@ abstract class _Device extends Device {
   @override
   String get id;
   @override
-  Map<String, dynamic> get vars;
+  Map<String, dynamic>? get vars;
   @override
   @JsonKey(ignore: true)
   _$$DeviceImplCopyWith<_$DeviceImpl> get copyWith =>

@@ -22,7 +22,7 @@ mixin _$PartyData {
 
   /// A reference to the user presence that sent this data, if any.
   @JsonKey(name: 'presence')
-  UserPresence get presence => throw _privateConstructorUsedError;
+  UserPresence? get presence => throw _privateConstructorUsedError;
 
   /// Op code value.
   @JsonKey(name: 'op_code')
@@ -30,7 +30,7 @@ mixin _$PartyData {
 
   /// Data payload, if any.
   @JsonKey(name: 'data')
-  List<int> get data => throw _privateConstructorUsedError;
+  List<int>? get data => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PartyDataCopyWith<PartyData> get copyWith =>
@@ -44,11 +44,11 @@ abstract class $PartyDataCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'party_id') String partyId,
-      @JsonKey(name: 'presence') UserPresence presence,
+      @JsonKey(name: 'presence') UserPresence? presence,
       @JsonKey(name: 'op_code') int opCode,
-      @JsonKey(name: 'data') List<int> data});
+      @JsonKey(name: 'data') List<int>? data});
 
-  $UserPresenceCopyWith<$Res> get presence;
+  $UserPresenceCopyWith<$Res>? get presence;
 }
 
 /// @nodoc
@@ -65,34 +65,38 @@ class _$PartyDataCopyWithImpl<$Res, $Val extends PartyData>
   @override
   $Res call({
     Object? partyId = null,
-    Object? presence = null,
+    Object? presence = freezed,
     Object? opCode = null,
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       partyId: null == partyId
           ? _value.partyId
           : partyId // ignore: cast_nullable_to_non_nullable
               as String,
-      presence: null == presence
+      presence: freezed == presence
           ? _value.presence
           : presence // ignore: cast_nullable_to_non_nullable
-              as UserPresence,
+              as UserPresence?,
       opCode: null == opCode
           ? _value.opCode
           : opCode // ignore: cast_nullable_to_non_nullable
               as int,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<int>?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserPresenceCopyWith<$Res> get presence {
-    return $UserPresenceCopyWith<$Res>(_value.presence, (value) {
+  $UserPresenceCopyWith<$Res>? get presence {
+    if (_value.presence == null) {
+      return null;
+    }
+
+    return $UserPresenceCopyWith<$Res>(_value.presence!, (value) {
       return _then(_value.copyWith(presence: value) as $Val);
     });
   }
@@ -108,12 +112,12 @@ abstract class _$$PartyDataImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'party_id') String partyId,
-      @JsonKey(name: 'presence') UserPresence presence,
+      @JsonKey(name: 'presence') UserPresence? presence,
       @JsonKey(name: 'op_code') int opCode,
-      @JsonKey(name: 'data') List<int> data});
+      @JsonKey(name: 'data') List<int>? data});
 
   @override
-  $UserPresenceCopyWith<$Res> get presence;
+  $UserPresenceCopyWith<$Res>? get presence;
 }
 
 /// @nodoc
@@ -128,27 +132,27 @@ class __$$PartyDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? partyId = null,
-    Object? presence = null,
+    Object? presence = freezed,
     Object? opCode = null,
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_$PartyDataImpl(
       partyId: null == partyId
           ? _value.partyId
           : partyId // ignore: cast_nullable_to_non_nullable
               as String,
-      presence: null == presence
+      presence: freezed == presence
           ? _value.presence
           : presence // ignore: cast_nullable_to_non_nullable
-              as UserPresence,
+              as UserPresence?,
       opCode: null == opCode
           ? _value.opCode
           : opCode // ignore: cast_nullable_to_non_nullable
               as int,
-      data: null == data
+      data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<int>?,
     ));
   }
 }
@@ -158,9 +162,9 @@ class __$$PartyDataImplCopyWithImpl<$Res>
 class _$PartyDataImpl extends _PartyData {
   const _$PartyDataImpl(
       {@JsonKey(name: 'party_id') required this.partyId,
-      @JsonKey(name: 'presence') required this.presence,
+      @JsonKey(name: 'presence') this.presence,
       @JsonKey(name: 'op_code') required this.opCode,
-      @JsonKey(name: 'data') required final List<int> data})
+      @JsonKey(name: 'data') final List<int>? data})
       : _data = data,
         super._();
 
@@ -172,7 +176,7 @@ class _$PartyDataImpl extends _PartyData {
   /// A reference to the user presence that sent this data, if any.
   @override
   @JsonKey(name: 'presence')
-  final UserPresence presence;
+  final UserPresence? presence;
 
   /// Op code value.
   @override
@@ -180,15 +184,17 @@ class _$PartyDataImpl extends _PartyData {
   final int opCode;
 
   /// Data payload, if any.
-  final List<int> _data;
+  final List<int>? _data;
 
   /// Data payload, if any.
   @override
   @JsonKey(name: 'data')
-  List<int> get data {
+  List<int>? get data {
+    final value = _data;
+    if (value == null) return null;
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -222,9 +228,9 @@ class _$PartyDataImpl extends _PartyData {
 abstract class _PartyData extends PartyData {
   const factory _PartyData(
       {@JsonKey(name: 'party_id') required final String partyId,
-      @JsonKey(name: 'presence') required final UserPresence presence,
+      @JsonKey(name: 'presence') final UserPresence? presence,
       @JsonKey(name: 'op_code') required final int opCode,
-      @JsonKey(name: 'data') required final List<int> data}) = _$PartyDataImpl;
+      @JsonKey(name: 'data') final List<int>? data}) = _$PartyDataImpl;
   const _PartyData._() : super._();
 
   @override
@@ -236,7 +242,7 @@ abstract class _PartyData extends PartyData {
 
   /// A reference to the user presence that sent this data, if any.
   @JsonKey(name: 'presence')
-  UserPresence get presence;
+  UserPresence? get presence;
   @override
 
   /// Op code value.
@@ -246,7 +252,7 @@ abstract class _PartyData extends PartyData {
 
   /// Data payload, if any.
   @JsonKey(name: 'data')
-  List<int> get data;
+  List<int>? get data;
   @override
   @JsonKey(ignore: true)
   _$$PartyDataImplCopyWith<_$PartyDataImpl> get copyWith =>

@@ -18,10 +18,10 @@ class ChannelMessage with _$ChannelMessage {
     @JsonKey(name: 'create_time') required DateTime createTime,
     @JsonKey(name: 'update_time') required DateTime updateTime,
     @JsonKey(name: 'persistent') required bool persistent,
-    @JsonKey(name: 'room_name') required String roomName,
+    @JsonKey(name: 'room_name') required String? roomName,
     @JsonKey(name: 'group_id') required String groupId,
-    @JsonKey(name: 'user_id_one') required String userIdOne,
-    @JsonKey(name: 'user_id_two') required String userIdTwo,
+    @JsonKey(name: 'user_id_one') required String? userIdOne,
+    @JsonKey(name: 'user_id_two') required String? userIdTwo,
   }) = _ChannelMessage;
 
   factory ChannelMessage.fromJson(Map<String, Object?> json) => _$ChannelMessageFromJson(json);
@@ -48,10 +48,10 @@ class ChannelMessageList with _$ChannelMessageList {
   const ChannelMessageList._();
 
   const factory ChannelMessageList({
-    @JsonKey(name: 'messages') required List<ChannelMessage> messages,
-    @JsonKey(name: 'next_cursor') required String nextCursor,
-    @JsonKey(name: 'prev_cursor') required String prevCursor,
-    @JsonKey(name: 'cacheable_cursor') required String cacheableCursor,
+    @JsonKey(name: 'messages') required List<ChannelMessage>? messages,
+    @JsonKey(name: 'next_cursor') required String? nextCursor,
+    @JsonKey(name: 'prev_cursor') required String? prevCursor,
+    @JsonKey(name: 'cacheable_cursor') required String? cacheableCursor,
   }) = _ChannelMessageList;
 
   factory ChannelMessageList.fromJson(Map<String, Object?> json) => _$ChannelMessageListFromJson(json);

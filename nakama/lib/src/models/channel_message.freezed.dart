@@ -39,13 +39,13 @@ mixin _$ChannelMessage {
   @JsonKey(name: 'persistent')
   bool get persistent => throw _privateConstructorUsedError;
   @JsonKey(name: 'room_name')
-  String get roomName => throw _privateConstructorUsedError;
+  String? get roomName => throw _privateConstructorUsedError;
   @JsonKey(name: 'group_id')
   String get groupId => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_id_one')
-  String get userIdOne => throw _privateConstructorUsedError;
+  String? get userIdOne => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_id_two')
-  String get userIdTwo => throw _privateConstructorUsedError;
+  String? get userIdTwo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -69,10 +69,10 @@ abstract class $ChannelMessageCopyWith<$Res> {
       @JsonKey(name: 'create_time') DateTime createTime,
       @JsonKey(name: 'update_time') DateTime updateTime,
       @JsonKey(name: 'persistent') bool persistent,
-      @JsonKey(name: 'room_name') String roomName,
+      @JsonKey(name: 'room_name') String? roomName,
       @JsonKey(name: 'group_id') String groupId,
-      @JsonKey(name: 'user_id_one') String userIdOne,
-      @JsonKey(name: 'user_id_two') String userIdTwo});
+      @JsonKey(name: 'user_id_one') String? userIdOne,
+      @JsonKey(name: 'user_id_two') String? userIdTwo});
 }
 
 /// @nodoc
@@ -97,10 +97,10 @@ class _$ChannelMessageCopyWithImpl<$Res, $Val extends ChannelMessage>
     Object? createTime = null,
     Object? updateTime = null,
     Object? persistent = null,
-    Object? roomName = null,
+    Object? roomName = freezed,
     Object? groupId = null,
-    Object? userIdOne = null,
-    Object? userIdTwo = null,
+    Object? userIdOne = freezed,
+    Object? userIdTwo = freezed,
   }) {
     return _then(_value.copyWith(
       channelId: null == channelId
@@ -139,22 +139,22 @@ class _$ChannelMessageCopyWithImpl<$Res, $Val extends ChannelMessage>
           ? _value.persistent
           : persistent // ignore: cast_nullable_to_non_nullable
               as bool,
-      roomName: null == roomName
+      roomName: freezed == roomName
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       groupId: null == groupId
           ? _value.groupId
           : groupId // ignore: cast_nullable_to_non_nullable
               as String,
-      userIdOne: null == userIdOne
+      userIdOne: freezed == userIdOne
           ? _value.userIdOne
           : userIdOne // ignore: cast_nullable_to_non_nullable
-              as String,
-      userIdTwo: null == userIdTwo
+              as String?,
+      userIdTwo: freezed == userIdTwo
           ? _value.userIdTwo
           : userIdTwo // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -177,10 +177,10 @@ abstract class _$$ChannelMessageImplCopyWith<$Res>
       @JsonKey(name: 'create_time') DateTime createTime,
       @JsonKey(name: 'update_time') DateTime updateTime,
       @JsonKey(name: 'persistent') bool persistent,
-      @JsonKey(name: 'room_name') String roomName,
+      @JsonKey(name: 'room_name') String? roomName,
       @JsonKey(name: 'group_id') String groupId,
-      @JsonKey(name: 'user_id_one') String userIdOne,
-      @JsonKey(name: 'user_id_two') String userIdTwo});
+      @JsonKey(name: 'user_id_one') String? userIdOne,
+      @JsonKey(name: 'user_id_two') String? userIdTwo});
 }
 
 /// @nodoc
@@ -203,10 +203,10 @@ class __$$ChannelMessageImplCopyWithImpl<$Res>
     Object? createTime = null,
     Object? updateTime = null,
     Object? persistent = null,
-    Object? roomName = null,
+    Object? roomName = freezed,
     Object? groupId = null,
-    Object? userIdOne = null,
-    Object? userIdTwo = null,
+    Object? userIdOne = freezed,
+    Object? userIdTwo = freezed,
   }) {
     return _then(_$ChannelMessageImpl(
       channelId: null == channelId
@@ -245,22 +245,22 @@ class __$$ChannelMessageImplCopyWithImpl<$Res>
           ? _value.persistent
           : persistent // ignore: cast_nullable_to_non_nullable
               as bool,
-      roomName: null == roomName
+      roomName: freezed == roomName
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       groupId: null == groupId
           ? _value.groupId
           : groupId // ignore: cast_nullable_to_non_nullable
               as String,
-      userIdOne: null == userIdOne
+      userIdOne: freezed == userIdOne
           ? _value.userIdOne
           : userIdOne // ignore: cast_nullable_to_non_nullable
-              as String,
-      userIdTwo: null == userIdTwo
+              as String?,
+      userIdTwo: freezed == userIdTwo
           ? _value.userIdTwo
           : userIdTwo // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -316,16 +316,16 @@ class _$ChannelMessageImpl extends _ChannelMessage {
   final bool persistent;
   @override
   @JsonKey(name: 'room_name')
-  final String roomName;
+  final String? roomName;
   @override
   @JsonKey(name: 'group_id')
   final String groupId;
   @override
   @JsonKey(name: 'user_id_one')
-  final String userIdOne;
+  final String? userIdOne;
   @override
   @JsonKey(name: 'user_id_two')
-  final String userIdTwo;
+  final String? userIdTwo;
 
   @override
   String toString() {
@@ -406,10 +406,10 @@ abstract class _ChannelMessage extends ChannelMessage {
           @JsonKey(name: 'create_time') required final DateTime createTime,
           @JsonKey(name: 'update_time') required final DateTime updateTime,
           @JsonKey(name: 'persistent') required final bool persistent,
-          @JsonKey(name: 'room_name') required final String roomName,
+          @JsonKey(name: 'room_name') required final String? roomName,
           @JsonKey(name: 'group_id') required final String groupId,
-          @JsonKey(name: 'user_id_one') required final String userIdOne,
-          @JsonKey(name: 'user_id_two') required final String userIdTwo}) =
+          @JsonKey(name: 'user_id_one') required final String? userIdOne,
+          @JsonKey(name: 'user_id_two') required final String? userIdTwo}) =
       _$ChannelMessageImpl;
   const _ChannelMessage._() : super._();
 
@@ -445,16 +445,16 @@ abstract class _ChannelMessage extends ChannelMessage {
   bool get persistent;
   @override
   @JsonKey(name: 'room_name')
-  String get roomName;
+  String? get roomName;
   @override
   @JsonKey(name: 'group_id')
   String get groupId;
   @override
   @JsonKey(name: 'user_id_one')
-  String get userIdOne;
+  String? get userIdOne;
   @override
   @JsonKey(name: 'user_id_two')
-  String get userIdTwo;
+  String? get userIdTwo;
   @override
   @JsonKey(ignore: true)
   _$$ChannelMessageImplCopyWith<_$ChannelMessageImpl> get copyWith =>
@@ -468,13 +468,13 @@ ChannelMessageList _$ChannelMessageListFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ChannelMessageList {
   @JsonKey(name: 'messages')
-  List<ChannelMessage> get messages => throw _privateConstructorUsedError;
+  List<ChannelMessage>? get messages => throw _privateConstructorUsedError;
   @JsonKey(name: 'next_cursor')
-  String get nextCursor => throw _privateConstructorUsedError;
+  String? get nextCursor => throw _privateConstructorUsedError;
   @JsonKey(name: 'prev_cursor')
-  String get prevCursor => throw _privateConstructorUsedError;
+  String? get prevCursor => throw _privateConstructorUsedError;
   @JsonKey(name: 'cacheable_cursor')
-  String get cacheableCursor => throw _privateConstructorUsedError;
+  String? get cacheableCursor => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -489,10 +489,10 @@ abstract class $ChannelMessageListCopyWith<$Res> {
       _$ChannelMessageListCopyWithImpl<$Res, ChannelMessageList>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'messages') List<ChannelMessage> messages,
-      @JsonKey(name: 'next_cursor') String nextCursor,
-      @JsonKey(name: 'prev_cursor') String prevCursor,
-      @JsonKey(name: 'cacheable_cursor') String cacheableCursor});
+      {@JsonKey(name: 'messages') List<ChannelMessage>? messages,
+      @JsonKey(name: 'next_cursor') String? nextCursor,
+      @JsonKey(name: 'prev_cursor') String? prevCursor,
+      @JsonKey(name: 'cacheable_cursor') String? cacheableCursor});
 }
 
 /// @nodoc
@@ -508,28 +508,28 @@ class _$ChannelMessageListCopyWithImpl<$Res, $Val extends ChannelMessageList>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? messages = null,
-    Object? nextCursor = null,
-    Object? prevCursor = null,
-    Object? cacheableCursor = null,
+    Object? messages = freezed,
+    Object? nextCursor = freezed,
+    Object? prevCursor = freezed,
+    Object? cacheableCursor = freezed,
   }) {
     return _then(_value.copyWith(
-      messages: null == messages
+      messages: freezed == messages
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
-              as List<ChannelMessage>,
-      nextCursor: null == nextCursor
+              as List<ChannelMessage>?,
+      nextCursor: freezed == nextCursor
           ? _value.nextCursor
           : nextCursor // ignore: cast_nullable_to_non_nullable
-              as String,
-      prevCursor: null == prevCursor
+              as String?,
+      prevCursor: freezed == prevCursor
           ? _value.prevCursor
           : prevCursor // ignore: cast_nullable_to_non_nullable
-              as String,
-      cacheableCursor: null == cacheableCursor
+              as String?,
+      cacheableCursor: freezed == cacheableCursor
           ? _value.cacheableCursor
           : cacheableCursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -543,10 +543,10 @@ abstract class _$$ChannelMessageListImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'messages') List<ChannelMessage> messages,
-      @JsonKey(name: 'next_cursor') String nextCursor,
-      @JsonKey(name: 'prev_cursor') String prevCursor,
-      @JsonKey(name: 'cacheable_cursor') String cacheableCursor});
+      {@JsonKey(name: 'messages') List<ChannelMessage>? messages,
+      @JsonKey(name: 'next_cursor') String? nextCursor,
+      @JsonKey(name: 'prev_cursor') String? prevCursor,
+      @JsonKey(name: 'cacheable_cursor') String? cacheableCursor});
 }
 
 /// @nodoc
@@ -560,28 +560,28 @@ class __$$ChannelMessageListImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? messages = null,
-    Object? nextCursor = null,
-    Object? prevCursor = null,
-    Object? cacheableCursor = null,
+    Object? messages = freezed,
+    Object? nextCursor = freezed,
+    Object? prevCursor = freezed,
+    Object? cacheableCursor = freezed,
   }) {
     return _then(_$ChannelMessageListImpl(
-      messages: null == messages
+      messages: freezed == messages
           ? _value._messages
           : messages // ignore: cast_nullable_to_non_nullable
-              as List<ChannelMessage>,
-      nextCursor: null == nextCursor
+              as List<ChannelMessage>?,
+      nextCursor: freezed == nextCursor
           ? _value.nextCursor
           : nextCursor // ignore: cast_nullable_to_non_nullable
-              as String,
-      prevCursor: null == prevCursor
+              as String?,
+      prevCursor: freezed == prevCursor
           ? _value.prevCursor
           : prevCursor // ignore: cast_nullable_to_non_nullable
-              as String,
-      cacheableCursor: null == cacheableCursor
+              as String?,
+      cacheableCursor: freezed == cacheableCursor
           ? _value.cacheableCursor
           : cacheableCursor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -590,7 +590,7 @@ class __$$ChannelMessageListImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChannelMessageListImpl extends _ChannelMessageList {
   const _$ChannelMessageListImpl(
-      {@JsonKey(name: 'messages') required final List<ChannelMessage> messages,
+      {@JsonKey(name: 'messages') required final List<ChannelMessage>? messages,
       @JsonKey(name: 'next_cursor') required this.nextCursor,
       @JsonKey(name: 'prev_cursor') required this.prevCursor,
       @JsonKey(name: 'cacheable_cursor') required this.cacheableCursor})
@@ -600,24 +600,26 @@ class _$ChannelMessageListImpl extends _ChannelMessageList {
   factory _$ChannelMessageListImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChannelMessageListImplFromJson(json);
 
-  final List<ChannelMessage> _messages;
+  final List<ChannelMessage>? _messages;
   @override
   @JsonKey(name: 'messages')
-  List<ChannelMessage> get messages {
+  List<ChannelMessage>? get messages {
+    final value = _messages;
+    if (value == null) return null;
     if (_messages is EqualUnmodifiableListView) return _messages;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_messages);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   @JsonKey(name: 'next_cursor')
-  final String nextCursor;
+  final String? nextCursor;
   @override
   @JsonKey(name: 'prev_cursor')
-  final String prevCursor;
+  final String? prevCursor;
   @override
   @JsonKey(name: 'cacheable_cursor')
-  final String cacheableCursor;
+  final String? cacheableCursor;
 
   @override
   String toString() {
@@ -664,11 +666,11 @@ class _$ChannelMessageListImpl extends _ChannelMessageList {
 
 abstract class _ChannelMessageList extends ChannelMessageList {
   const factory _ChannelMessageList(
-      {@JsonKey(name: 'messages') required final List<ChannelMessage> messages,
-      @JsonKey(name: 'next_cursor') required final String nextCursor,
-      @JsonKey(name: 'prev_cursor') required final String prevCursor,
+      {@JsonKey(name: 'messages') required final List<ChannelMessage>? messages,
+      @JsonKey(name: 'next_cursor') required final String? nextCursor,
+      @JsonKey(name: 'prev_cursor') required final String? prevCursor,
       @JsonKey(name: 'cacheable_cursor')
-      required final String cacheableCursor}) = _$ChannelMessageListImpl;
+      required final String? cacheableCursor}) = _$ChannelMessageListImpl;
   const _ChannelMessageList._() : super._();
 
   factory _ChannelMessageList.fromJson(Map<String, dynamic> json) =
@@ -676,16 +678,16 @@ abstract class _ChannelMessageList extends ChannelMessageList {
 
   @override
   @JsonKey(name: 'messages')
-  List<ChannelMessage> get messages;
+  List<ChannelMessage>? get messages;
   @override
   @JsonKey(name: 'next_cursor')
-  String get nextCursor;
+  String? get nextCursor;
   @override
   @JsonKey(name: 'prev_cursor')
-  String get prevCursor;
+  String? get prevCursor;
   @override
   @JsonKey(name: 'cacheable_cursor')
-  String get cacheableCursor;
+  String? get cacheableCursor;
   @override
   @JsonKey(ignore: true)
   _$$ChannelMessageListImplCopyWith<_$ChannelMessageListImpl> get copyWith =>

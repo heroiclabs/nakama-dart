@@ -45,18 +45,18 @@ class ChannelPresenceEvent with _$ChannelPresenceEvent {
     @JsonKey(name: 'channel_id') required String channelId,
 
     /// Presences joining the channel as part of this event, if any.
-    @JsonKey(name: 'room_name') required String roomName,
+    @JsonKey(name: 'room_name') String? roomName,
 
     /// Presences leaving the channel as part of this event, if any.
-    @JsonKey(name: 'group_id') required String groupId,
+    @JsonKey(name: 'group_id') String? groupId,
 
     /// The name of the chat room, or an empty string if this message was not
     /// sent through a chat room.
-    @JsonKey(name: 'joins') required Iterable<UserPresence> joins,
+    @JsonKey(name: 'joins') Iterable<UserPresence>? joins,
 
     /// The ID of the group, or an empty string if this message was not sent
     /// through a group channel.
-    @JsonKey(name: 'leaves') required Iterable<UserPresence> leaves,
+    @JsonKey(name: 'leaves') Iterable<UserPresence>? leaves,
 
     /// The ID of the first DM user, or an empty string if this message was not
     /// sent through a DM chat.
@@ -143,13 +143,13 @@ class MatchData with _$MatchData {
     @JsonKey(name: 'match_id') required String matchId,
 
     /// A reference to the user presence that sent this data, if any.
-    @JsonKey(name: 'presence') required UserPresence presence,
+    @JsonKey(name: 'presence') UserPresence? presence,
 
     /// Op code value.
     @JsonKey(name: 'op_code') required int opCode,
 
     /// Data payload, if any.
-    @JsonKey(name: 'data') required List<int> data,
+    @JsonKey(name: 'data') List<int>? data,
 
     /// True if this data was delivered reliably, false otherwise.
     @JsonKey(name: 'reliable') required bool reliable,

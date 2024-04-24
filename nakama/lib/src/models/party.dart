@@ -13,13 +13,13 @@ class PartyData with _$PartyData {
     @JsonKey(name: 'party_id') required String partyId,
 
     /// A reference to the user presence that sent this data, if any.
-    @JsonKey(name: 'presence') required UserPresence presence,
+    @JsonKey(name: 'presence') UserPresence? presence,
 
     /// Op code value.
     @JsonKey(name: 'op_code') required int opCode,
 
     /// Data payload, if any.
-    @JsonKey(name: 'data') required List<int> data,
+    @JsonKey(name: 'data') List<int>? data,
   }) = _PartyData;
 
   factory PartyData.fromDto(rtpb.PartyData dto) => PartyData(

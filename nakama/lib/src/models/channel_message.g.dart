@@ -17,10 +17,10 @@ _$ChannelMessageImpl _$$ChannelMessageImplFromJson(Map<String, dynamic> json) =>
       createTime: DateTime.parse(json['create_time'] as String),
       updateTime: DateTime.parse(json['update_time'] as String),
       persistent: json['persistent'] as bool,
-      roomName: json['room_name'] as String,
+      roomName: json['room_name'] as String?,
       groupId: json['group_id'] as String,
-      userIdOne: json['user_id_one'] as String,
-      userIdTwo: json['user_id_two'] as String,
+      userIdOne: json['user_id_one'] as String?,
+      userIdTwo: json['user_id_two'] as String?,
     );
 
 Map<String, dynamic> _$$ChannelMessageImplToJson(
@@ -44,12 +44,12 @@ Map<String, dynamic> _$$ChannelMessageImplToJson(
 _$ChannelMessageListImpl _$$ChannelMessageListImplFromJson(
         Map<String, dynamic> json) =>
     _$ChannelMessageListImpl(
-      messages: (json['messages'] as List<dynamic>)
-          .map((e) => ChannelMessage.fromJson(e as Map<String, dynamic>))
+      messages: (json['messages'] as List<dynamic>?)
+          ?.map((e) => ChannelMessage.fromJson(e as Map<String, dynamic>))
           .toList(),
-      nextCursor: json['next_cursor'] as String,
-      prevCursor: json['prev_cursor'] as String,
-      cacheableCursor: json['cacheable_cursor'] as String,
+      nextCursor: json['next_cursor'] as String?,
+      prevCursor: json['prev_cursor'] as String?,
+      cacheableCursor: json['cacheable_cursor'] as String?,
     );
 
 Map<String, dynamic> _$$ChannelMessageListImplToJson(

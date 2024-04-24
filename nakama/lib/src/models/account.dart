@@ -11,7 +11,7 @@ class Account with _$Account {
   const factory Account({
     @JsonKey(name: 'wallet') String? wallet,
     @JsonKey(name: 'email') String? email,
-    @JsonKey(name: 'devices') @Default([]) List<Device> devices,
+    @JsonKey(name: 'devices') List<Device>? devices,
     @JsonKey(name: 'custom_id') String? customId,
     @JsonKey(name: 'verify_time') DateTime? verifyTime,
     @JsonKey(name: 'disable_time') DateTime? disableTime,
@@ -37,7 +37,7 @@ class Device with _$Device {
 
   const factory Device({
     required String id,
-    @Default({}) Map<String, dynamic> vars,
+    Map<String, dynamic>? vars,
   }) = _Device;
 
   factory Device.fromJson(Map<String, Object?> json) => _$DeviceFromJson(json);

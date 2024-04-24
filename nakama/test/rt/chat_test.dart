@@ -347,7 +347,7 @@ void main() {
       );
       b.onChannelPresence.listen(expectAsync1((presence) {
         expect(presence.joins, hasLength(1));
-        expect(presence.joins.first.userId, equals(sessionA.userId));
+        expect(presence.joins?.first.userId, equals(sessionA.userId));
       }));
 
       // A comes online
@@ -407,7 +407,7 @@ void main() {
       // B receives presence event
       b.onChannelPresence.listen(expectAsync1((presence) {
         expect(presence.leaves, hasLength(1));
-        expect(presence.leaves.first.userId, equals(sessionA.userId));
+        expect(presence.leaves?.first.userId, equals(sessionA.userId));
       }));
 
       // A leaves

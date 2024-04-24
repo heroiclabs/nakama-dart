@@ -101,7 +101,7 @@ void main() {
       // B starts listening for match data, A sends some data after B joined
       b.onMatchData.listen(expectAsync1((matchData) {
         expect(matchData, isNotNull);
-        expect(matchData.presence.userId, equals(sessionA.userId));
+        expect(matchData.presence?.userId, equals(sessionA.userId));
         expect(matchData.data, equals(realtimeData));
       }, count: 1));
 
