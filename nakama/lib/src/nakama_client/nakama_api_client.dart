@@ -684,6 +684,47 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> importFacebookFriends({
+    required model.Session session,
+    required String token,
+    bool reset = false,
+    Map<String, String>? vars,
+  }) async {
+    _session = session;
+
+    try {
+      await _api.importFacebookFriends(
+        body: ApiAccountFacebook(
+          token: token,
+          vars: vars,
+        ),
+        reset: reset,
+      );
+    } on Exception catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  @override
+  Future<void> importSteamFriends({
+    required model.Session session,
+    required String token,
+    bool reset = false,
+    Map<String, String>? vars,
+  }) async {
+    _session = session;
+
+    try {
+      await _api.importSteamFriends(
+        body: ApiAccountSteam(token: token, vars: vars),
+        reset: reset,
+      );
+    } on Exception catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  @override
   Future<model.Account> getAccount(model.Session session) async {
     _session = session;
 

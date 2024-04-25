@@ -264,9 +264,38 @@ abstract class NakamaBaseClient {
   });
 
   /// # Get the user account
+  /// Import Facebook friends and add them to the user's account.
+  /// The server will import friends when the user authenticates with Facebook.
+  /// This function can be used to be explicit with the import operation.
+  ///
+  /// - [session] The session of the user.
+  /// - [token] An OAuth access token from the Facebook SDK.
+  /// - [reset] If the Facebook friend import for the user should be reset.
+  /// - [vars] Extra information that will be bundled in the session token.
+  Future<void> importFacebookFriends({
+    required model.Session session,
+    required String token,
+    bool reset = false,
+    Map<String, String>? vars,
+  });
+
+  /// Import Steam friends and add them to the user's account.
+  /// The server will import friends when the user authenticates with Steam.
+  /// This function can be used to be explicit with the import operation.
   ///
   /// Many of Nakama’s features are accessible with an authenticated session,
   /// like fetching a user account.
+  /// explicit with the import operation.
+  /// - [session] The session of the user.
+  /// - [token] An access token from Steam.
+  /// - [reset] If the Steam friend import for the user should be reset.
+  /// - [vars] Extra information that will be bundled in the session token.
+  Future<void> importSteamFriends({
+    required model.Session session,
+    required String token,
+    bool reset = false,
+    Map<String, String>? vars,
+  });
   Future<model.Account> getAccount(model.Session session);
 
   /// # Update the user account

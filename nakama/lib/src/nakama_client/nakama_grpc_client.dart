@@ -1370,4 +1370,32 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
   }
+
+  @override
+  Future<void> importFacebookFriends(
+      {required model.Session session, required String token, bool reset = false, Map<String, String>? vars}) async {
+    await _client.importFacebookFriends(
+      api.ImportFacebookFriendsRequest(
+        account: AccountFacebook(token: token, vars: vars),
+        reset: api.BoolValue(value: reset),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
+
+  @override
+  Future<void> importSteamFriends({
+    required model.Session session,
+    required String token,
+    bool reset = false,
+    Map<String, String>? vars,
+  }) async {
+    await _client.importSteamFriends(
+      api.ImportSteamFriendsRequest(
+        account: AccountSteam(token: token, vars: vars),
+        reset: api.BoolValue(value: reset),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
 }
