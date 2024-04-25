@@ -193,7 +193,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     Map<String, String>? vars,
   }) async {
     try {
-      await _api.linkEmail(
+      await _api.unlinkEmail(
         body: ApiAccountEmail(
           email: email,
           password: password,
