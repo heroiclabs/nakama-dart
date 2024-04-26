@@ -109,7 +109,7 @@ void main() {
       await a.createMatch().then((value) => b.joinMatch(value.matchId)).then((value) {
         a.sendMatchData(
           matchId: value.matchId,
-          opCode: Int64(0),
+          opCode: 0,
           data: realtimeData,
         );
       });

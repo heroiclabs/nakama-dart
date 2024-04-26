@@ -387,14 +387,24 @@ class NakamaWebsocketClient {
 
   void sendMatchData({
     required String matchId,
-    required api.Int64 opCode,
+    required int opCode,
     required List<int> data,
+    Iterable<UserPresence>? presences,
   }) async {
     _send<void>(rtpb.Envelope(
         matchDataSend: rtpb.MatchDataSend(
       matchId: matchId,
-      opCode: opCode,
+      opCode: api.Int64(opCode),
       data: data,
+      presences: presences?.map((e) {
+        return rtpb.UserPresence(
+          userId: e.userId,
+          sessionId: e.sessionId,
+          username: e.username,
+          persistence: e.persistence,
+          status: api.StringValue(value: e.status),
+        );
+      }).toList(),
     )));
   }
 
