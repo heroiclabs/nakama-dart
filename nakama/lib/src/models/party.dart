@@ -51,3 +51,20 @@ class PartyPresenceEvent with _$PartyPresenceEvent {
       );
 }
 
+@freezed
+class PartyLeader with _$PartyLeader {
+  const PartyLeader._();
+
+  const factory PartyLeader({
+    /// The ID of the party to announce the new leader for.
+    @JsonKey(name: 'party_id') required String partyId,
+
+    /// The presence of the new party leader.
+    @JsonKey(name: 'presence') UserPresence? newLeader,
+  }) = _PartyLeader;
+
+  factory PartyLeader.fromDto(rtpb.PartyLeader dto) => PartyLeader(
+        partyId: dto.partyId,
+        newLeader: UserPresence.fromDto(dto.presence),
+      );
+}

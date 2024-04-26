@@ -285,12 +285,18 @@ class NakamaWebsocketClient {
 
   Future<void> promotePartyMember({
     required String partyId,
-    required rtpb.UserPresence newLeader,
+    required UserPresence newLeader,
   }) async {
     await _send(rtpb.Envelope(
         partyPromote: rtpb.PartyPromote(
       partyId: partyId,
-      presence: newLeader,
+      presence: rtpb.UserPresence(
+        userId: newLeader.userId,
+        sessionId: newLeader.sessionId,
+        username: newLeader.username,
+        persistence: newLeader.persistence,
+        status: api.StringValue(value: newLeader.status),
+      ),
     )));
   }
 

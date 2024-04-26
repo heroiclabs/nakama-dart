@@ -472,3 +472,180 @@ abstract class _PartyPresenceEvent extends PartyPresenceEvent {
       throw _privateConstructorUsedError;
 }
 
+/// @nodoc
+mixin _$PartyLeader {
+  /// The ID of the party to announce the new leader for.
+  @JsonKey(name: 'party_id')
+  String get partyId => throw _privateConstructorUsedError;
+
+  /// The presence of the new party leader.
+  @JsonKey(name: 'presence')
+  UserPresence? get newLeader => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PartyLeaderCopyWith<PartyLeader> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PartyLeaderCopyWith<$Res> {
+  factory $PartyLeaderCopyWith(
+          PartyLeader value, $Res Function(PartyLeader) then) =
+      _$PartyLeaderCopyWithImpl<$Res, PartyLeader>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'party_id') String partyId,
+      @JsonKey(name: 'presence') UserPresence? newLeader});
+
+  $UserPresenceCopyWith<$Res>? get newLeader;
+}
+
+/// @nodoc
+class _$PartyLeaderCopyWithImpl<$Res, $Val extends PartyLeader>
+    implements $PartyLeaderCopyWith<$Res> {
+  _$PartyLeaderCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? partyId = null,
+    Object? newLeader = freezed,
+  }) {
+    return _then(_value.copyWith(
+      partyId: null == partyId
+          ? _value.partyId
+          : partyId // ignore: cast_nullable_to_non_nullable
+              as String,
+      newLeader: freezed == newLeader
+          ? _value.newLeader
+          : newLeader // ignore: cast_nullable_to_non_nullable
+              as UserPresence?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserPresenceCopyWith<$Res>? get newLeader {
+    if (_value.newLeader == null) {
+      return null;
+    }
+
+    return $UserPresenceCopyWith<$Res>(_value.newLeader!, (value) {
+      return _then(_value.copyWith(newLeader: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$PartyLeaderImplCopyWith<$Res>
+    implements $PartyLeaderCopyWith<$Res> {
+  factory _$$PartyLeaderImplCopyWith(
+          _$PartyLeaderImpl value, $Res Function(_$PartyLeaderImpl) then) =
+      __$$PartyLeaderImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'party_id') String partyId,
+      @JsonKey(name: 'presence') UserPresence? newLeader});
+
+  @override
+  $UserPresenceCopyWith<$Res>? get newLeader;
+}
+
+/// @nodoc
+class __$$PartyLeaderImplCopyWithImpl<$Res>
+    extends _$PartyLeaderCopyWithImpl<$Res, _$PartyLeaderImpl>
+    implements _$$PartyLeaderImplCopyWith<$Res> {
+  __$$PartyLeaderImplCopyWithImpl(
+      _$PartyLeaderImpl _value, $Res Function(_$PartyLeaderImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? partyId = null,
+    Object? newLeader = freezed,
+  }) {
+    return _then(_$PartyLeaderImpl(
+      partyId: null == partyId
+          ? _value.partyId
+          : partyId // ignore: cast_nullable_to_non_nullable
+              as String,
+      newLeader: freezed == newLeader
+          ? _value.newLeader
+          : newLeader // ignore: cast_nullable_to_non_nullable
+              as UserPresence?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PartyLeaderImpl extends _PartyLeader {
+  const _$PartyLeaderImpl(
+      {@JsonKey(name: 'party_id') required this.partyId,
+      @JsonKey(name: 'presence') this.newLeader})
+      : super._();
+
+  /// The ID of the party to announce the new leader for.
+  @override
+  @JsonKey(name: 'party_id')
+  final String partyId;
+
+  /// The presence of the new party leader.
+  @override
+  @JsonKey(name: 'presence')
+  final UserPresence? newLeader;
+
+  @override
+  String toString() {
+    return 'PartyLeader(partyId: $partyId, newLeader: $newLeader)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PartyLeaderImpl &&
+            (identical(other.partyId, partyId) || other.partyId == partyId) &&
+            (identical(other.newLeader, newLeader) ||
+                other.newLeader == newLeader));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, partyId, newLeader);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PartyLeaderImplCopyWith<_$PartyLeaderImpl> get copyWith =>
+      __$$PartyLeaderImplCopyWithImpl<_$PartyLeaderImpl>(this, _$identity);
+}
+
+abstract class _PartyLeader extends PartyLeader {
+  const factory _PartyLeader(
+          {@JsonKey(name: 'party_id') required final String partyId,
+          @JsonKey(name: 'presence') final UserPresence? newLeader}) =
+      _$PartyLeaderImpl;
+  const _PartyLeader._() : super._();
+
+  @override
+
+  /// The ID of the party to announce the new leader for.
+  @JsonKey(name: 'party_id')
+  String get partyId;
+  @override
+
+  /// The presence of the new party leader.
+  @JsonKey(name: 'presence')
+  UserPresence? get newLeader;
+  @override
+  @JsonKey(ignore: true)
+  _$$PartyLeaderImplCopyWith<_$PartyLeaderImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
