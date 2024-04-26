@@ -29,3 +29,25 @@ class PartyData with _$PartyData {
         data: dto.data,
       );
 }
+@freezed
+class PartyPresenceEvent with _$PartyPresenceEvent {
+  const PartyPresenceEvent._();
+
+  const factory PartyPresenceEvent({
+    /// The party unique ID.
+    @JsonKey(name: 'party_id') required String partyId,
+
+    /// Presences that have joined the party.
+    @JsonKey(name: 'joins') List<UserPresence>? joins,
+
+    /// Presences that have left the party.
+    @JsonKey(name: 'leaves') List<UserPresence>? leaves,
+  }) = _PartyPresenceEvent;
+
+  factory PartyPresenceEvent.fromDto(rtpb.PartyPresenceEvent dto) => PartyPresenceEvent(
+        partyId: dto.partyId,
+        joins: dto.joins.map((e) => UserPresence.fromDto(e)).toList(),
+        leaves: dto.leaves.map((e) => UserPresence.fromDto(e)).toList(),
+      );
+}
+

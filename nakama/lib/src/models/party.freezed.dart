@@ -258,3 +258,217 @@ abstract class _PartyData extends PartyData {
   _$$PartyDataImplCopyWith<_$PartyDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+/// @nodoc
+mixin _$PartyPresenceEvent {
+  /// The party unique ID.
+  @JsonKey(name: 'party_id')
+  String get partyId => throw _privateConstructorUsedError;
+
+  /// Presences that have joined the party.
+  @JsonKey(name: 'joins')
+  List<UserPresence>? get joins => throw _privateConstructorUsedError;
+
+  /// Presences that have left the party.
+  @JsonKey(name: 'leaves')
+  List<UserPresence>? get leaves => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $PartyPresenceEventCopyWith<PartyPresenceEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PartyPresenceEventCopyWith<$Res> {
+  factory $PartyPresenceEventCopyWith(
+          PartyPresenceEvent value, $Res Function(PartyPresenceEvent) then) =
+      _$PartyPresenceEventCopyWithImpl<$Res, PartyPresenceEvent>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'party_id') String partyId,
+      @JsonKey(name: 'joins') List<UserPresence>? joins,
+      @JsonKey(name: 'leaves') List<UserPresence>? leaves});
+}
+
+/// @nodoc
+class _$PartyPresenceEventCopyWithImpl<$Res, $Val extends PartyPresenceEvent>
+    implements $PartyPresenceEventCopyWith<$Res> {
+  _$PartyPresenceEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? partyId = null,
+    Object? joins = freezed,
+    Object? leaves = freezed,
+  }) {
+    return _then(_value.copyWith(
+      partyId: null == partyId
+          ? _value.partyId
+          : partyId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joins: freezed == joins
+          ? _value.joins
+          : joins // ignore: cast_nullable_to_non_nullable
+              as List<UserPresence>?,
+      leaves: freezed == leaves
+          ? _value.leaves
+          : leaves // ignore: cast_nullable_to_non_nullable
+              as List<UserPresence>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$PartyPresenceEventImplCopyWith<$Res>
+    implements $PartyPresenceEventCopyWith<$Res> {
+  factory _$$PartyPresenceEventImplCopyWith(_$PartyPresenceEventImpl value,
+          $Res Function(_$PartyPresenceEventImpl) then) =
+      __$$PartyPresenceEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'party_id') String partyId,
+      @JsonKey(name: 'joins') List<UserPresence>? joins,
+      @JsonKey(name: 'leaves') List<UserPresence>? leaves});
+}
+
+/// @nodoc
+class __$$PartyPresenceEventImplCopyWithImpl<$Res>
+    extends _$PartyPresenceEventCopyWithImpl<$Res, _$PartyPresenceEventImpl>
+    implements _$$PartyPresenceEventImplCopyWith<$Res> {
+  __$$PartyPresenceEventImplCopyWithImpl(_$PartyPresenceEventImpl _value,
+      $Res Function(_$PartyPresenceEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? partyId = null,
+    Object? joins = freezed,
+    Object? leaves = freezed,
+  }) {
+    return _then(_$PartyPresenceEventImpl(
+      partyId: null == partyId
+          ? _value.partyId
+          : partyId // ignore: cast_nullable_to_non_nullable
+              as String,
+      joins: freezed == joins
+          ? _value._joins
+          : joins // ignore: cast_nullable_to_non_nullable
+              as List<UserPresence>?,
+      leaves: freezed == leaves
+          ? _value._leaves
+          : leaves // ignore: cast_nullable_to_non_nullable
+              as List<UserPresence>?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PartyPresenceEventImpl extends _PartyPresenceEvent {
+  const _$PartyPresenceEventImpl(
+      {@JsonKey(name: 'party_id') required this.partyId,
+      @JsonKey(name: 'joins') final List<UserPresence>? joins,
+      @JsonKey(name: 'leaves') final List<UserPresence>? leaves})
+      : _joins = joins,
+        _leaves = leaves,
+        super._();
+
+  /// The party unique ID.
+  @override
+  @JsonKey(name: 'party_id')
+  final String partyId;
+
+  /// Presences that have joined the party.
+  final List<UserPresence>? _joins;
+
+  /// Presences that have joined the party.
+  @override
+  @JsonKey(name: 'joins')
+  List<UserPresence>? get joins {
+    final value = _joins;
+    if (value == null) return null;
+    if (_joins is EqualUnmodifiableListView) return _joins;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  /// Presences that have left the party.
+  final List<UserPresence>? _leaves;
+
+  /// Presences that have left the party.
+  @override
+  @JsonKey(name: 'leaves')
+  List<UserPresence>? get leaves {
+    final value = _leaves;
+    if (value == null) return null;
+    if (_leaves is EqualUnmodifiableListView) return _leaves;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'PartyPresenceEvent(partyId: $partyId, joins: $joins, leaves: $leaves)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PartyPresenceEventImpl &&
+            (identical(other.partyId, partyId) || other.partyId == partyId) &&
+            const DeepCollectionEquality().equals(other._joins, _joins) &&
+            const DeepCollectionEquality().equals(other._leaves, _leaves));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      partyId,
+      const DeepCollectionEquality().hash(_joins),
+      const DeepCollectionEquality().hash(_leaves));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PartyPresenceEventImplCopyWith<_$PartyPresenceEventImpl> get copyWith =>
+      __$$PartyPresenceEventImplCopyWithImpl<_$PartyPresenceEventImpl>(
+          this, _$identity);
+}
+
+abstract class _PartyPresenceEvent extends PartyPresenceEvent {
+  const factory _PartyPresenceEvent(
+          {@JsonKey(name: 'party_id') required final String partyId,
+          @JsonKey(name: 'joins') final List<UserPresence>? joins,
+          @JsonKey(name: 'leaves') final List<UserPresence>? leaves}) =
+      _$PartyPresenceEventImpl;
+  const _PartyPresenceEvent._() : super._();
+
+  @override
+
+  /// The party unique ID.
+  @JsonKey(name: 'party_id')
+  String get partyId;
+  @override
+
+  /// Presences that have joined the party.
+  @JsonKey(name: 'joins')
+  List<UserPresence>? get joins;
+  @override
+
+  /// Presences that have left the party.
+  @JsonKey(name: 'leaves')
+  List<UserPresence>? get leaves;
+  @override
+  @JsonKey(ignore: true)
+  _$$PartyPresenceEventImplCopyWith<_$PartyPresenceEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
