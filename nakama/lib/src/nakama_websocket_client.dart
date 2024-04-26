@@ -410,13 +410,13 @@ class NakamaWebsocketClient {
 
   Future<List<UserPresence>> sendPartyData({
     required String partyId,
-    required api.Int64 opCode,
+    required int opCode,
     required List<int> data,
   }) async {
     final res = await _send<rtpb.Status>(rtpb.Envelope(
         partyDataSend: rtpb.PartyDataSend(
       partyId: partyId,
-      opCode: opCode,
+      opCode: api.Int64(opCode),
       data: data,
     )));
 
