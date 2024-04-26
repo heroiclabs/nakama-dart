@@ -195,7 +195,8 @@ class NakamaWebsocketClient {
         // map server messages
         switch (receivedEnvelope.whichMessage()) {
           case rtpb.Envelope_Message.channelPresenceEvent:
-            return _onChannelPresenceController.add(ChannelPresenceEvent.fromDto(receivedEnvelope.channelPresenceEvent));
+            return _onChannelPresenceController
+                .add(ChannelPresenceEvent.fromDto(receivedEnvelope.channelPresenceEvent));
           case rtpb.Envelope_Message.matchmakerMatched:
             return _onMatchmakerMatchedController.add(MatchmakerMatched.fromDto(receivedEnvelope.matchmakerMatched));
           case rtpb.Envelope_Message.matchData:
@@ -205,7 +206,9 @@ class NakamaWebsocketClient {
           case rtpb.Envelope_Message.matchPresenceEvent:
             return _onMatchPresenceController.add(MatchPresenceEvent.fromDto(receivedEnvelope.matchPresenceEvent));
           case rtpb.Envelope_Message.notifications:
-            receivedEnvelope.notifications.notifications.map((e) => Notification.fromDto(e)).forEach((element) => _onNotificationsController.add(element));
+            receivedEnvelope.notifications.notifications
+                .map((e) => Notification.fromDto(e))
+                .forEach((element) => _onNotificationsController.add(element));
             return;
           case rtpb.Envelope_Message.statusPresenceEvent:
             return _onStatusPresenceController.add(StatusPresenceEvent.fromDto(receivedEnvelope.statusPresenceEvent));
@@ -237,7 +240,8 @@ class NakamaWebsocketClient {
     return _futures.length - 1;
   }
 
-  Future updateStatus(String status) => _send<void>(rtpb.Envelope(statusUpdate: rtpb.StatusUpdate(status: api.StringValue(value: status))));
+  Future updateStatus(String status) =>
+      _send<void>(rtpb.Envelope(statusUpdate: rtpb.StatusUpdate(status: api.StringValue(value: status))));
 
   Future<Match> createMatch([String? name]) async {
     final res = await _send<rtpb.Match>(
