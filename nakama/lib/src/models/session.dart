@@ -67,10 +67,12 @@ class Session with _$Session {
   bool hasRefreshExpired(DateTime time) => refreshExpiresAt.isBefore(time);
   bool get isRefreshExpired => hasRefreshExpired(DateTime.now());
 
-  static Session restore({
+  static Session? restore({
     required String token,
     required String refreshToken,
   }) {
+    if (token.isEmpty || refreshToken.isEmpty) return null;
+
     final tokenDict = JwtDecoder.decode(token);
     final refreshTokenDict = JwtDecoder.decode(refreshToken);
 

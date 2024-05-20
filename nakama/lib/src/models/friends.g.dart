@@ -9,8 +9,8 @@ part of 'friends.dart';
 _$FriendsListImpl _$$FriendsListImplFromJson(Map<String, dynamic> json) =>
     _$FriendsListImpl(
       cursor: json['cursor'] as String?,
-      friends: (json['friends'] as List<dynamic>)
-          .map((e) => Friend.fromJson(e as Map<String, dynamic>))
+      friends: (json['friends'] as List<dynamic>?)
+          ?.map((e) => Friend.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

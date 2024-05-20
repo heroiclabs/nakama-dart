@@ -12,7 +12,7 @@ class FriendsList with _$FriendsList {
 
   const factory FriendsList({
     String? cursor,
-    required List<Friend> friends,
+    required List<Friend>? friends,
   }) = _FriendsList;
 
   factory FriendsList.fromJson(Map<String, Object?> json) => _$FriendsListFromJson(json);
