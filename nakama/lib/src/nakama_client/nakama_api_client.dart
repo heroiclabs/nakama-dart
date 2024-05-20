@@ -150,6 +150,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     assert(email != null || username != null);
     assert(create == false || email != null);
 
+    _session = null;
     try {
       final session = await _api.authenticateEmail(
         body: ApiAccountEmail(
@@ -212,6 +213,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
+    _session = null;
+
     try {
       final session = await _api.authenticateDevice(
         body: ApiAccountDevice(id: deviceId, vars: vars),
@@ -262,6 +265,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
     Map<String, String>? vars,
     bool import = false,
   }) async {
+    _session = null;
+
     try {
       final session = await _api.authenticateFacebook(
         body: ApiAccountFacebook(
@@ -323,6 +328,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
+    _session = null;
+
     try {
       final session = await _api.authenticateGoogle(
         body: ApiAccountGoogle(
@@ -381,6 +388,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
+    _session = null;
+
     try {
       final session = await _api.authenticateApple(
         body: ApiAccountApple(
@@ -439,6 +448,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
+    _session = null;
+
     try {
       final session = await _api.authenticateFacebookInstantGame(
         body: ApiAccountFacebookInstantGame(
@@ -502,6 +513,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
+    _session = null;
+
     try {
       final session = await _api.authenticateGameCenter(
         body: ApiAccountGameCenter(
@@ -586,6 +599,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
     Map<String, String>? vars,
     bool import = false,
   }) async {
+    _session = null;
+
     try {
       final session = await _api.authenticateSteam(
         body: ApiAccountSteam(token: token, vars: vars),
