@@ -147,9 +147,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool create = false,
     Map<String, String>? vars,
   }) async {
-    assert(email != null || username != null);
-    assert(create == false || email != null);
-
     _session = null;
     try {
       final session = await _api.authenticateEmail(
@@ -910,8 +907,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool? forward,
     String? cursor,
   }) async {
-    assert(limit > 0 && limit <= 100);
-
     _session = session;
 
     try {
@@ -937,8 +932,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? cursor,
     DateTime? expiry,
   }) async {
-    assert(limit > 0 && limit <= 100);
-
     _session = session;
 
     try {
@@ -964,8 +957,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int limit = defaultLimit,
     DateTime? expiry,
   }) async {
-    assert(limit > 0 && limit <= 100);
-
     _session = session;
 
     try {
@@ -1029,8 +1020,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required List<String> ids,
     List<String>? usernames,
   }) async {
-    assert(usernames != null);
-
     _session = session;
 
     try {
@@ -1070,8 +1059,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     _session = session;
 
-    assert(usernames != null);
-
     try {
       await _api.deleteFriends(
         ids: ids,
@@ -1089,8 +1076,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
     List<String>? usernames,
   }) async {
     _session = session;
-
-    assert(usernames != null);
 
     try {
       await _api.blockFriends(
