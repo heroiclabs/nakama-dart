@@ -45,6 +45,11 @@ void main() {
           ),
         ],
       );
+
+      // Cleanup written objects
+      await client.deleteStorageObjects(session: session, objectIds: [
+        const StorageObjectId(collection: 'stats', key: 'scores'),
+      ]);
     });
 
     test('read storage object', () async {

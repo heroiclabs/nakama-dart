@@ -47,6 +47,11 @@ void main() {
           ),
         ],
       );
+
+      // Cleanup created object
+      await client.deleteStorageObjects(session: session, objectIds: [
+        const StorageObjectId(collection: 'stats', key: 'scores'),
+      ]);
     });
 
     test('read storage object', () async {
@@ -137,7 +142,7 @@ void main() {
         ],
       );
 
-      expect(res, isA<StorageObject>());
+      expect(res, isA<List<StorageObject>>());
       expect(res.first.value, equals('{"skill": 100}'));
 
       // Delete object
@@ -156,7 +161,7 @@ void main() {
         ],
       );
 
-      expect(afterRes, isNull);
+      expect(afterRes, isEmpty);
     });
   });
 }

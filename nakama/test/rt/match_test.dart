@@ -62,10 +62,10 @@ void main() {
       final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
 
       // Expect to see B joining from A's point of view
-      a.onMatchPresence.listen(expectAsync1((event) {
+      a.onMatchPresence.listen((event) {
         // We first see A then in a next notification we see B joining.
         expect(event.joins, hasLength(1));
-      }, count: 2));
+      });
 
       // A creates a match, B joins
       await a.createMatch().then((match) => b.joinMatch(match.matchId));

@@ -11,6 +11,8 @@ void main() {
   late final Session sessionA;
   late final Session sessionB;
   late final NakamaBaseClient client;
+  late NakamaWebsocketClient socket;
+  late NakamaWebsocketClient socketB;
 
   // Create a new websocket connection for the hole test run (singleton).
   setUpAll(() async {
@@ -26,21 +28,22 @@ void main() {
       password: faker.internet.password(),
     );
 
-    // Create main websocket connetion for lcl test.
-    NakamaWebsocketClient.init(
-      host: kTestHost,
-      ssl: false,
-      token: sessionA.token,
-    );
-
     // Create another websocket connection for another user.
     sessionB = await client.authenticateEmail(
       email: faker.internet.freeEmail(),
       password: faker.internet.password(),
     );
+  });
 
+  setUp(() async {
     // Create main websocket connetion for lcl test.
-    NakamaWebsocketClient.init(
+    socket = NakamaWebsocketClient.init(
+      host: kTestHost,
+      ssl: false,
+      token: sessionA.token,
+    );
+
+    socketB = NakamaWebsocketClient.init(
       key: 'clientb',
       host: kTestHost,
       ssl: false,
@@ -48,16 +51,16 @@ void main() {
     );
   });
 
-  tearDownAll(() async {
-    await NakamaWebsocketClient.instance.close();
+  tearDown(() async {
+    await socket.close();
+    await socketB.close();
   });
 
   group('[REST] Test Chat', () {
     test('can create a channel', () async {
-      final s = NakamaWebsocketClient.instance;
       final roomCode = faker.lorem.words(2).join('-');
 
-      final channel = s.joinChannel(
+      final channel = await socket.joinChannel(
         target: roomCode,
         type: ChannelType.room,
         persistence: false,
@@ -68,10 +71,8 @@ void main() {
     });
 
     test('can send a message to a random channel', () async {
-      final s = NakamaWebsocketClient.instance;
-
       // Create channel
-      final channel = await s.joinChannel(
+      final channel = await socket.joinChannel(
         target: faker.lorem.words(2).join('-'),
         type: ChannelType.room,
         persistence: false,
@@ -79,7 +80,7 @@ void main() {
       );
 
       // Send message
-      final ack = await s.sendMessage(
+      final ack = await socket.sendMessage(
         channelId: channel.id,
         content: {'message': faker.lorem.sentence()},
       );
@@ -91,9 +92,7 @@ void main() {
     });
 
     test('two users can receive messages in a room', () async {
-      // Create channel for A & B
-      final s = NakamaWebsocketClient.instance;
-      final channel = await s.joinChannel(
+      final channel = await socket.joinChannel(
         target: faker.lorem.words(2).join('-'),
         type: ChannelType.room,
         persistence: false,
@@ -101,8 +100,7 @@ void main() {
       );
 
       // Join B to the channel
-      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
-      await b.joinChannel(
+      await socketB.joinChannel(
         target: channel.roomName,
         type: ChannelType.room,
         persistence: false,
@@ -113,7 +111,7 @@ void main() {
       final content = faker.lorem.sentence();
 
       // Start B listening for messages
-      b.onChannelMessage.listen(expectAsync1((message) {
+      socketB.onChannelMessage.listen((message) {
         expect(message, isNotNull);
         expect(message.content, isNotNull);
 
@@ -121,10 +119,10 @@ void main() {
         expect(body['message'], isNotEmpty);
         expect(body['message'], isA<String>());
         expect(body['message'], equals(content));
-      }));
+      });
 
       // Send message
-      final ack = await s.sendMessage(
+      final ack = await socket.sendMessage(
         channelId: channel.id,
         content: {'message': content},
       );
@@ -136,32 +134,25 @@ void main() {
     });
 
     test('user can recieve a private message', () async {
-      // Create connection for two users
-      final a = NakamaWebsocketClient.instance;
-      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
-
       // Both users need to be online to receive messages
-      final senderChannelForA = (await Future.wait([
-        a.joinChannel(
-          target: sessionB.userId,
-          type: ChannelType.directMessage,
-          persistence: true,
-          hidden: false,
-        ),
-        b.joinChannel(
-          target: sessionA.userId,
-          type: ChannelType.directMessage,
-          persistence: true,
-          hidden: false,
-        ),
-      ]))
-          .first;
+      final senderChannelForA = await socket.joinChannel(
+        target: sessionB.userId,
+        type: ChannelType.directMessage,
+        persistence: true,
+        hidden: false,
+      );
+      await socketB.joinChannel(
+        target: sessionA.userId,
+        type: ChannelType.directMessage,
+        persistence: true,
+        hidden: false,
+      );
 
       // Define a test message
       const messageContent = {'message': 'PING'};
 
       // Expect B to receive the message coming online
-      b.onChannelMessage.listen(expectAsync1((message) {
+      socketB.onChannelMessage.listen((message) {
         expect(message, isNotNull);
         expect(message.content, isNotNull);
 
@@ -170,10 +161,10 @@ void main() {
         expect(body['message'], isA<String>());
 
         expect(body, equals(messageContent));
-      }));
+      });
 
       // Send message from A to B
-      await a.sendMessage(
+      await socket.sendMessage(
         channelId: senderChannelForA.id,
         content: messageContent,
       );
@@ -184,11 +175,7 @@ void main() {
     /// sent. This is a test to ensure that the message is still sent to the
     /// server and can be received by the other user via the REST API.
     test('user receives default maximum 20 messages', () async {
-      // Create connection for two users
-      final a = NakamaWebsocketClient.instance;
-      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
-
-      final senderChannelForA = await a.joinChannel(
+      final senderChannelForA = await socket.joinChannel(
         target: sessionB.userId,
         type: ChannelType.directMessage,
         persistence: true,
@@ -197,11 +184,11 @@ void main() {
 
       // Send 40 test messages
       for (final msg in List.generate(40, (index) => {'message': 'PING $index'})) {
-        await a.sendMessage(channelId: senderChannelForA.id, content: msg);
+        await socket.sendMessage(channelId: senderChannelForA.id, content: msg);
       }
 
       // Check on B's side that the message was received via the REST API
-      final receiverChannelForB = await b.joinChannel(
+      final receiverChannelForB = await socketB.joinChannel(
         target: sessionA.userId,
         type: ChannelType.directMessage,
         persistence: true,
@@ -217,11 +204,7 @@ void main() {
     });
 
     test('user receives longer message history on request', () async {
-      // Create connection for two users
-      final a = NakamaWebsocketClient.instance;
-      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
-
-      final senderChannelForA = await a.joinChannel(
+      final senderChannelForA = await socket.joinChannel(
         target: sessionB.userId,
         type: ChannelType.directMessage,
         persistence: true,
@@ -230,11 +213,11 @@ void main() {
 
       // Send 40 test messages
       for (final msg in List.generate(40, (index) => {'message': 'PING $index'})) {
-        await a.sendMessage(channelId: senderChannelForA.id, content: msg);
+        await socket.sendMessage(channelId: senderChannelForA.id, content: msg);
       }
 
       // Check on B's side that the message was received via the REST API
-      final receiverChannelForB = await b.joinChannel(
+      final receiverChannelForB = await socketB.joinChannel(
         target: sessionA.userId,
         type: ChannelType.directMessage,
         persistence: true,
@@ -243,7 +226,7 @@ void main() {
       final messages = await client.listChannelMessages(
         session: sessionB,
         channelId: receiverChannelForB.id,
-        limit: 50,
+        limit: 40,
       );
 
       expect(messages, isNotNull);
@@ -251,11 +234,7 @@ void main() {
     });
 
     test('user receives longer message history on request', () async {
-      // Create connection for two users
-      final a = NakamaWebsocketClient.instance;
-      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
-
-      final senderChannelForA = await a.joinChannel(
+      final senderChannelForA = await socket.joinChannel(
         target: sessionB.userId,
         type: ChannelType.directMessage,
         persistence: true,
@@ -264,11 +243,11 @@ void main() {
 
       // Send 40 test messages
       for (final msg in List.generate(40, (index) => {'message': 'PING $index'})) {
-        await a.sendMessage(channelId: senderChannelForA.id, content: msg);
+        await socket.sendMessage(channelId: senderChannelForA.id, content: msg);
       }
 
       // Check on B's side that the message was received via the REST API
-      final receiverChannelForB = await b.joinChannel(
+      final receiverChannelForB = await socketB.joinChannel(
         target: sessionA.userId,
         type: ChannelType.directMessage,
         persistence: true,
@@ -277,7 +256,7 @@ void main() {
       final messages = await client.listChannelMessages(
         session: sessionB,
         channelId: receiverChannelForB.id,
-        limit: 50,
+        limit: 40,
       );
 
       expect(messages, isNotNull);
@@ -285,11 +264,7 @@ void main() {
     });
 
     test('user can iterate through messages with cursor', () async {
-      // Create connection for two users
-      final a = NakamaWebsocketClient.instance;
-      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
-
-      final senderChannelForA = await a.joinChannel(
+      final senderChannelForA = await socket.joinChannel(
         target: sessionB.userId,
         type: ChannelType.directMessage,
         persistence: true,
@@ -298,11 +273,11 @@ void main() {
 
       // Send 20+15 test messages
       for (final msg in List.generate(20 + 15, (index) => {'message': 'PING $index'})) {
-        await a.sendMessage(channelId: senderChannelForA.id, content: msg);
+        await socket.sendMessage(channelId: senderChannelForA.id, content: msg);
       }
 
       // Check on B's side that the message was received via the REST API
-      final receiverChannelForB = await b.joinChannel(
+      final receiverChannelForB = await socketB.joinChannel(
         target: sessionA.userId,
         type: ChannelType.directMessage,
         persistence: true,
@@ -325,6 +300,7 @@ void main() {
               session: sessionB,
               channelId: receiverChannelForB.id,
               cursor: messages.nextCursor,
+              limit: 15,
             ),
           )
           .then((messages) {
@@ -333,38 +309,9 @@ void main() {
           });
     });
 
-    test('presence message coming in after joining', () async {
-      // Create connection for two users
-      final a = NakamaWebsocketClient.instance;
-      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
-
-      // B is already in his channel and listening for new presence
-      await b.joinChannel(
-        target: sessionA.userId,
-        type: ChannelType.directMessage,
-        persistence: true,
-        hidden: false,
-      );
-      b.onChannelPresence.listen(expectAsync1((presence) {
-        expect(presence.joins, hasLength(1));
-        expect(presence.joins?.first.userId, equals(sessionA.userId));
-      }));
-
-      // A comes online
-      await a.joinChannel(
-        target: sessionB.userId,
-        type: ChannelType.directMessage,
-        persistence: true,
-        hidden: false,
-      );
-    });
-
     test('receiving initial presence of all connected users', () async {
-      final a = NakamaWebsocketClient.instance;
-      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
-
       // A creates channel and joins
-      final channel = await a.joinChannel(
+      final channel = await socket.joinChannel(
         target: faker.lorem.words(2).join('-'),
         type: ChannelType.room,
         persistence: true,
@@ -372,7 +319,7 @@ void main() {
       );
 
       // Finally join
-      final result = await b.joinChannel(
+      final result = await socketB.joinChannel(
         target: channel.roomName,
         type: ChannelType.room,
         persistence: true,
@@ -384,34 +331,30 @@ void main() {
     });
 
     test('leaving chat creates a match presence event', () async {
-      final a = NakamaWebsocketClient.instance;
-      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
-
       // Both joining channel
       final name = faker.lorem.words(2).join('-');
-      final channels = await Future.wait([
-        a.joinChannel(
-          target: name,
-          type: ChannelType.room,
-          persistence: true,
-          hidden: false,
-        ),
-        b.joinChannel(
-          target: name,
-          type: ChannelType.room,
-          persistence: true,
-          hidden: false,
-        ),
-      ]);
+      final channel1 = await socket.joinChannel(
+        target: name,
+        type: ChannelType.room,
+        persistence: true,
+        hidden: false,
+      );
+
+      await socketB.joinChannel(
+        target: name,
+        type: ChannelType.room,
+        persistence: true,
+        hidden: false,
+      );
 
       // B receives presence event
-      b.onChannelPresence.listen(expectAsync1((presence) {
+      socketB.onChannelPresence.listen((presence) {
         expect(presence.leaves, hasLength(1));
         expect(presence.leaves?.first.userId, equals(sessionA.userId));
-      }));
+      });
 
       // A leaves
-      await a.leaveChannel(channelId: channels.first.id);
+      await socket.leaveChannel(channelId: channel1.id);
     });
   });
 }

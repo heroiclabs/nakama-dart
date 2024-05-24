@@ -12,10 +12,10 @@ void main() {
     });
 
     test('correct group membership enum coding', () {
-      expect(GroupMembershipState.superadmin, equals(0));
-      expect(GroupMembershipState.admin, equals(1));
-      expect(GroupMembershipState.member, equals(2));
-      expect(GroupMembershipState.joinRequest, equals(3));
+      expect(GroupMembershipState.superadmin.index, equals(0));
+      expect(GroupMembershipState.admin.index, equals(1));
+      expect(GroupMembershipState.member.index, equals(2));
+      expect(GroupMembershipState.joinRequest.index, equals(3));
     });
   });
 }
