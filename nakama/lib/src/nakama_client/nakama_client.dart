@@ -48,13 +48,13 @@ abstract class NakamaBaseClient {
   /// - [email] The email address of the user.
   /// - [username] A username used to create the user.
   /// - [password] The password for the user.
-  /// - [create] If the user should be created when authenticated.
+  /// - [create] If the user should be created when authenticated (true by default).
   /// - [vars] Extra information that will be bundled in the session token.
   Future<model.Session> authenticateEmail({
     String? email,
     String? username,
     required String password,
-    bool create = false,
+    bool create = true,
     Map<String, String>? vars,
   });
 
@@ -87,12 +87,12 @@ abstract class NakamaBaseClient {
   /// Authenticate a user with a device id.
   ///
   /// - [deviceId] A device identifier usually obtained from a platform API.
-  /// - [create] If the user should be created when authenticated.
+  /// - [create] If the user should be created when authenticated (true by default).
   /// - [username] A username used to create the user.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<model.Session> authenticateDevice({
     required String deviceId,
-    bool create = false,
+    bool create = true,
     String? username,
     Map<String, String>? vars,
   });

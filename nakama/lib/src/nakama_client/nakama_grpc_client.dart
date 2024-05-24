@@ -127,7 +127,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
     String? email,
     String? username,
     required String password,
-    bool create = false,
+    bool create = true,
     Map<String, String>? vars,
   }) async {
     assert(email != null || username != null);

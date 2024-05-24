@@ -144,7 +144,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? email,
     String? username,
     required String password,
-    bool create = false,
+    bool create = true,
     Map<String, String>? vars,
   }) async {
     _session = null;
