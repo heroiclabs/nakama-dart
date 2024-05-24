@@ -12,7 +12,7 @@ part of 'status.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 UserPresence _$UserPresenceFromJson(Map<String, dynamic> json) {
   return _UserPresence.fromJson(json);
@@ -21,20 +21,25 @@ UserPresence _$UserPresenceFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserPresence {
   /// The user this presence belongs to.
+  @JsonKey(name: 'user_id')
   String get userId => throw _privateConstructorUsedError;
 
   /// A unique session ID identifying the particular connection, because the
   /// user may have many.
+  @JsonKey(name: 'session_id')
   String get sessionId => throw _privateConstructorUsedError;
 
   /// The username for display purposes.
+  @JsonKey(name: 'username')
   String get username => throw _privateConstructorUsedError;
 
   /// Whether this presence generates persistent data/messages, if applicable
   /// for the stream type.
+  @JsonKey(name: 'persistence')
   bool get persistence => throw _privateConstructorUsedError;
 
   /// A user-set status message for this stream, if applicable.
+  @JsonKey(name: 'status')
   String? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,11 +55,11 @@ abstract class $UserPresenceCopyWith<$Res> {
       _$UserPresenceCopyWithImpl<$Res, UserPresence>;
   @useResult
   $Res call(
-      {String userId,
-      String sessionId,
-      String username,
-      bool persistence,
-      String? status});
+      {@JsonKey(name: 'user_id') String userId,
+      @JsonKey(name: 'session_id') String sessionId,
+      @JsonKey(name: 'username') String username,
+      @JsonKey(name: 'persistence') bool persistence,
+      @JsonKey(name: 'status') String? status});
 }
 
 /// @nodoc
@@ -110,11 +115,11 @@ abstract class _$$UserPresenceImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String userId,
-      String sessionId,
-      String username,
-      bool persistence,
-      String? status});
+      {@JsonKey(name: 'user_id') String userId,
+      @JsonKey(name: 'session_id') String sessionId,
+      @JsonKey(name: 'username') String username,
+      @JsonKey(name: 'persistence') bool persistence,
+      @JsonKey(name: 'status') String? status});
 }
 
 /// @nodoc
@@ -163,11 +168,11 @@ class __$$UserPresenceImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserPresenceImpl extends _UserPresence {
   const _$UserPresenceImpl(
-      {required this.userId,
-      required this.sessionId,
-      required this.username,
-      required this.persistence,
-      this.status})
+      {@JsonKey(name: 'user_id') required this.userId,
+      @JsonKey(name: 'session_id') required this.sessionId,
+      @JsonKey(name: 'username') required this.username,
+      @JsonKey(name: 'persistence') required this.persistence,
+      @JsonKey(name: 'status') this.status})
       : super._();
 
   factory _$UserPresenceImpl.fromJson(Map<String, dynamic> json) =>
@@ -175,24 +180,29 @@ class _$UserPresenceImpl extends _UserPresence {
 
   /// The user this presence belongs to.
   @override
+  @JsonKey(name: 'user_id')
   final String userId;
 
   /// A unique session ID identifying the particular connection, because the
   /// user may have many.
   @override
+  @JsonKey(name: 'session_id')
   final String sessionId;
 
   /// The username for display purposes.
   @override
+  @JsonKey(name: 'username')
   final String username;
 
   /// Whether this presence generates persistent data/messages, if applicable
   /// for the stream type.
   @override
+  @JsonKey(name: 'persistence')
   final bool persistence;
 
   /// A user-set status message for this stream, if applicable.
   @override
+  @JsonKey(name: 'status')
   final String? status;
 
   @override
@@ -236,11 +246,11 @@ class _$UserPresenceImpl extends _UserPresence {
 
 abstract class _UserPresence extends UserPresence {
   const factory _UserPresence(
-      {required final String userId,
-      required final String sessionId,
-      required final String username,
-      required final bool persistence,
-      final String? status}) = _$UserPresenceImpl;
+      {@JsonKey(name: 'user_id') required final String userId,
+      @JsonKey(name: 'session_id') required final String sessionId,
+      @JsonKey(name: 'username') required final String username,
+      @JsonKey(name: 'persistence') required final bool persistence,
+      @JsonKey(name: 'status') final String? status}) = _$UserPresenceImpl;
   const _UserPresence._() : super._();
 
   factory _UserPresence.fromJson(Map<String, dynamic> json) =
@@ -249,24 +259,29 @@ abstract class _UserPresence extends UserPresence {
   @override
 
   /// The user this presence belongs to.
+  @JsonKey(name: 'user_id')
   String get userId;
   @override
 
   /// A unique session ID identifying the particular connection, because the
   /// user may have many.
+  @JsonKey(name: 'session_id')
   String get sessionId;
   @override
 
   /// The username for display purposes.
+  @JsonKey(name: 'username')
   String get username;
   @override
 
   /// Whether this presence generates persistent data/messages, if applicable
   /// for the stream type.
+  @JsonKey(name: 'persistence')
   bool get persistence;
   @override
 
   /// A user-set status message for this stream, if applicable.
+  @JsonKey(name: 'status')
   String? get status;
   @override
   @JsonKey(ignore: true)

@@ -12,7 +12,7 @@ class FriendsList with _$FriendsList {
 
   const factory FriendsList({
     String? cursor,
-    required List<Friend> friends,
+    required List<Friend>? friends,
   }) = _FriendsList;
 
   factory FriendsList.fromJson(Map<String, Object?> json) => _$FriendsListFromJson(json);
@@ -35,7 +35,7 @@ class Friend with _$Friend {
 
   const factory Friend({
     required FriendshipState state,
-    required DateTime updateTime,
+    @JsonKey(name: 'update_time') required DateTime updateTime,
     required User user,
   }) = _Friend;
 

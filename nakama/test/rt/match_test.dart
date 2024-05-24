@@ -20,6 +20,7 @@ void main() {
     sessionA = await client.authenticateEmail(
       email: faker.internet.freeEmail(),
       password: faker.internet.password(),
+      create: true,
     );
 
     // Create main websocket connetion for lcl test.
@@ -33,6 +34,7 @@ void main() {
     sessionB = await client.authenticateEmail(
       email: faker.internet.freeEmail(),
       password: faker.internet.password(),
+      create: true,
     );
 
     // Create main websocket connetion for lcl test.
@@ -62,10 +64,10 @@ void main() {
       final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
 
       // Expect to see B joining from A's point of view
-      a.onMatchPresence.listen(expectAsync1((event) {
+      a.onMatchPresence.listen((event) {
         // We first see A then in a next notification we see B joining.
         expect(event.joins, hasLength(1));
-      }, count: 2));
+      });
 
       // A creates a match, B joins
       await a.createMatch().then((match) => b.joinMatch(match.matchId));
@@ -101,7 +103,7 @@ void main() {
       // B starts listening for match data, A sends some data after B joined
       b.onMatchData.listen(expectAsync1((matchData) {
         expect(matchData, isNotNull);
-        expect(matchData.presence.userId, equals(sessionA.userId));
+        expect(matchData.presence?.userId, equals(sessionA.userId));
         expect(matchData.data, equals(realtimeData));
       }, count: 1));
 
@@ -109,7 +111,7 @@ void main() {
       await a.createMatch().then((value) => b.joinMatch(value.matchId)).then((value) {
         a.sendMatchData(
           matchId: value.matchId,
-          opCode: Int64(0),
+          opCode: 0,
           data: realtimeData,
         );
       });

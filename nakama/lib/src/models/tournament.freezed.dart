@@ -12,7 +12,7 @@ part of 'tournament.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Tournament _$TournamentFromJson(Map<String, dynamic> json) {
   return _Tournament.fromJson(json);
@@ -20,23 +20,41 @@ Tournament _$TournamentFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Tournament {
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
+  @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'category')
   int? get category => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sort_order')
   int? get sortOrder => throw _privateConstructorUsedError;
+  @JsonKey(name: 'size')
   int? get size => throw _privateConstructorUsedError;
+  @JsonKey(name: 'max_size')
   int? get maxSize => throw _privateConstructorUsedError;
+  @JsonKey(name: 'max_num_score')
   int? get maxNumScore => throw _privateConstructorUsedError;
+  @JsonKey(name: 'can_enter')
   bool? get canEnter => throw _privateConstructorUsedError;
+  @JsonKey(name: 'end_active')
   int? get endActive => throw _privateConstructorUsedError;
+  @JsonKey(name: 'next_reset')
   int? get nextReset => throw _privateConstructorUsedError;
+  @JsonKey(name: 'metadata')
   String? get metadata => throw _privateConstructorUsedError;
+  @JsonKey(name: 'create_time')
   DateTime? get createTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'start_time')
   DateTime? get startTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'end_time')
   DateTime? get endTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'duration')
   int? get duration => throw _privateConstructorUsedError;
+  @JsonKey(name: 'start_active')
   int? get startActive => throw _privateConstructorUsedError;
+  @JsonKey(name: 'prev_reset')
   int? get prevReset => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,24 +70,24 @@ abstract class $TournamentCopyWith<$Res> {
       _$TournamentCopyWithImpl<$Res, Tournament>;
   @useResult
   $Res call(
-      {String id,
-      String? title,
-      String? description,
-      int? category,
-      int? sortOrder,
-      int? size,
-      int? maxSize,
-      int? maxNumScore,
-      bool? canEnter,
-      int? endActive,
-      int? nextReset,
-      String? metadata,
-      DateTime? createTime,
-      DateTime? startTime,
-      DateTime? endTime,
-      int? duration,
-      int? startActive,
-      int? prevReset});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'category') int? category,
+      @JsonKey(name: 'sort_order') int? sortOrder,
+      @JsonKey(name: 'size') int? size,
+      @JsonKey(name: 'max_size') int? maxSize,
+      @JsonKey(name: 'max_num_score') int? maxNumScore,
+      @JsonKey(name: 'can_enter') bool? canEnter,
+      @JsonKey(name: 'end_active') int? endActive,
+      @JsonKey(name: 'next_reset') int? nextReset,
+      @JsonKey(name: 'metadata') String? metadata,
+      @JsonKey(name: 'create_time') DateTime? createTime,
+      @JsonKey(name: 'start_time') DateTime? startTime,
+      @JsonKey(name: 'end_time') DateTime? endTime,
+      @JsonKey(name: 'duration') int? duration,
+      @JsonKey(name: 'start_active') int? startActive,
+      @JsonKey(name: 'prev_reset') int? prevReset});
 }
 
 /// @nodoc
@@ -190,24 +208,24 @@ abstract class _$$TournamentImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String? title,
-      String? description,
-      int? category,
-      int? sortOrder,
-      int? size,
-      int? maxSize,
-      int? maxNumScore,
-      bool? canEnter,
-      int? endActive,
-      int? nextReset,
-      String? metadata,
-      DateTime? createTime,
-      DateTime? startTime,
-      DateTime? endTime,
-      int? duration,
-      int? startActive,
-      int? prevReset});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'title') String? title,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'category') int? category,
+      @JsonKey(name: 'sort_order') int? sortOrder,
+      @JsonKey(name: 'size') int? size,
+      @JsonKey(name: 'max_size') int? maxSize,
+      @JsonKey(name: 'max_num_score') int? maxNumScore,
+      @JsonKey(name: 'can_enter') bool? canEnter,
+      @JsonKey(name: 'end_active') int? endActive,
+      @JsonKey(name: 'next_reset') int? nextReset,
+      @JsonKey(name: 'metadata') String? metadata,
+      @JsonKey(name: 'create_time') DateTime? createTime,
+      @JsonKey(name: 'start_time') DateTime? startTime,
+      @JsonKey(name: 'end_time') DateTime? endTime,
+      @JsonKey(name: 'duration') int? duration,
+      @JsonKey(name: 'start_active') int? startActive,
+      @JsonKey(name: 'prev_reset') int? prevReset});
 }
 
 /// @nodoc
@@ -321,64 +339,82 @@ class __$$TournamentImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TournamentImpl extends _Tournament {
   const _$TournamentImpl(
-      {required this.id,
-      this.title,
-      this.description,
-      this.category,
-      this.sortOrder,
-      this.size,
-      this.maxSize,
-      this.maxNumScore,
-      this.canEnter,
-      this.endActive,
-      this.nextReset,
-      this.metadata,
-      this.createTime,
-      this.startTime,
-      this.endTime,
-      this.duration,
-      this.startActive,
-      this.prevReset})
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'title') this.title,
+      @JsonKey(name: 'description') this.description,
+      @JsonKey(name: 'category') this.category,
+      @JsonKey(name: 'sort_order') this.sortOrder,
+      @JsonKey(name: 'size') this.size,
+      @JsonKey(name: 'max_size') this.maxSize,
+      @JsonKey(name: 'max_num_score') this.maxNumScore,
+      @JsonKey(name: 'can_enter') this.canEnter,
+      @JsonKey(name: 'end_active') this.endActive,
+      @JsonKey(name: 'next_reset') this.nextReset,
+      @JsonKey(name: 'metadata') this.metadata,
+      @JsonKey(name: 'create_time') this.createTime,
+      @JsonKey(name: 'start_time') this.startTime,
+      @JsonKey(name: 'end_time') this.endTime,
+      @JsonKey(name: 'duration') this.duration,
+      @JsonKey(name: 'start_active') this.startActive,
+      @JsonKey(name: 'prev_reset') this.prevReset})
       : super._();
 
   factory _$TournamentImpl.fromJson(Map<String, dynamic> json) =>
       _$$TournamentImplFromJson(json);
 
   @override
+  @JsonKey(name: 'id')
   final String id;
   @override
+  @JsonKey(name: 'title')
   final String? title;
   @override
+  @JsonKey(name: 'description')
   final String? description;
   @override
+  @JsonKey(name: 'category')
   final int? category;
   @override
+  @JsonKey(name: 'sort_order')
   final int? sortOrder;
   @override
+  @JsonKey(name: 'size')
   final int? size;
   @override
+  @JsonKey(name: 'max_size')
   final int? maxSize;
   @override
+  @JsonKey(name: 'max_num_score')
   final int? maxNumScore;
   @override
+  @JsonKey(name: 'can_enter')
   final bool? canEnter;
   @override
+  @JsonKey(name: 'end_active')
   final int? endActive;
   @override
+  @JsonKey(name: 'next_reset')
   final int? nextReset;
   @override
+  @JsonKey(name: 'metadata')
   final String? metadata;
   @override
+  @JsonKey(name: 'create_time')
   final DateTime? createTime;
   @override
+  @JsonKey(name: 'start_time')
   final DateTime? startTime;
   @override
+  @JsonKey(name: 'end_time')
   final DateTime? endTime;
   @override
+  @JsonKey(name: 'duration')
   final int? duration;
   @override
+  @JsonKey(name: 'start_active')
   final int? startActive;
   @override
+  @JsonKey(name: 'prev_reset')
   final int? prevReset;
 
   @override
@@ -463,64 +499,82 @@ class _$TournamentImpl extends _Tournament {
 
 abstract class _Tournament extends Tournament {
   const factory _Tournament(
-      {required final String id,
-      final String? title,
-      final String? description,
-      final int? category,
-      final int? sortOrder,
-      final int? size,
-      final int? maxSize,
-      final int? maxNumScore,
-      final bool? canEnter,
-      final int? endActive,
-      final int? nextReset,
-      final String? metadata,
-      final DateTime? createTime,
-      final DateTime? startTime,
-      final DateTime? endTime,
-      final int? duration,
-      final int? startActive,
-      final int? prevReset}) = _$TournamentImpl;
+      {@JsonKey(name: 'id') required final String id,
+      @JsonKey(name: 'title') final String? title,
+      @JsonKey(name: 'description') final String? description,
+      @JsonKey(name: 'category') final int? category,
+      @JsonKey(name: 'sort_order') final int? sortOrder,
+      @JsonKey(name: 'size') final int? size,
+      @JsonKey(name: 'max_size') final int? maxSize,
+      @JsonKey(name: 'max_num_score') final int? maxNumScore,
+      @JsonKey(name: 'can_enter') final bool? canEnter,
+      @JsonKey(name: 'end_active') final int? endActive,
+      @JsonKey(name: 'next_reset') final int? nextReset,
+      @JsonKey(name: 'metadata') final String? metadata,
+      @JsonKey(name: 'create_time') final DateTime? createTime,
+      @JsonKey(name: 'start_time') final DateTime? startTime,
+      @JsonKey(name: 'end_time') final DateTime? endTime,
+      @JsonKey(name: 'duration') final int? duration,
+      @JsonKey(name: 'start_active') final int? startActive,
+      @JsonKey(name: 'prev_reset') final int? prevReset}) = _$TournamentImpl;
   const _Tournament._() : super._();
 
   factory _Tournament.fromJson(Map<String, dynamic> json) =
       _$TournamentImpl.fromJson;
 
   @override
+  @JsonKey(name: 'id')
   String get id;
   @override
+  @JsonKey(name: 'title')
   String? get title;
   @override
+  @JsonKey(name: 'description')
   String? get description;
   @override
+  @JsonKey(name: 'category')
   int? get category;
   @override
+  @JsonKey(name: 'sort_order')
   int? get sortOrder;
   @override
+  @JsonKey(name: 'size')
   int? get size;
   @override
+  @JsonKey(name: 'max_size')
   int? get maxSize;
   @override
+  @JsonKey(name: 'max_num_score')
   int? get maxNumScore;
   @override
+  @JsonKey(name: 'can_enter')
   bool? get canEnter;
   @override
+  @JsonKey(name: 'end_active')
   int? get endActive;
   @override
+  @JsonKey(name: 'next_reset')
   int? get nextReset;
   @override
+  @JsonKey(name: 'metadata')
   String? get metadata;
   @override
+  @JsonKey(name: 'create_time')
   DateTime? get createTime;
   @override
+  @JsonKey(name: 'start_time')
   DateTime? get startTime;
   @override
+  @JsonKey(name: 'end_time')
   DateTime? get endTime;
   @override
+  @JsonKey(name: 'duration')
   int? get duration;
   @override
+  @JsonKey(name: 'start_active')
   int? get startActive;
   @override
+  @JsonKey(name: 'prev_reset')
   int? get prevReset;
   @override
   @JsonKey(ignore: true)
@@ -700,10 +754,14 @@ TournamentRecordList _$TournamentRecordListFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TournamentRecordList {
+  @JsonKey(name: 'records')
   List<LeaderboardRecord> get records => throw _privateConstructorUsedError;
+  @JsonKey(name: 'owner_records')
   List<LeaderboardRecord> get ownerRecords =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'next_cursor')
   String? get nextCursor => throw _privateConstructorUsedError;
+  @JsonKey(name: 'previous_cursor')
   String? get previousCursor => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -719,10 +777,10 @@ abstract class $TournamentRecordListCopyWith<$Res> {
       _$TournamentRecordListCopyWithImpl<$Res, TournamentRecordList>;
   @useResult
   $Res call(
-      {List<LeaderboardRecord> records,
-      List<LeaderboardRecord> ownerRecords,
-      String? nextCursor,
-      String? previousCursor});
+      {@JsonKey(name: 'records') List<LeaderboardRecord> records,
+      @JsonKey(name: 'owner_records') List<LeaderboardRecord> ownerRecords,
+      @JsonKey(name: 'next_cursor') String? nextCursor,
+      @JsonKey(name: 'previous_cursor') String? previousCursor});
 }
 
 /// @nodoc
@@ -774,10 +832,10 @@ abstract class _$$TournamentRecordListImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<LeaderboardRecord> records,
-      List<LeaderboardRecord> ownerRecords,
-      String? nextCursor,
-      String? previousCursor});
+      {@JsonKey(name: 'records') List<LeaderboardRecord> records,
+      @JsonKey(name: 'owner_records') List<LeaderboardRecord> ownerRecords,
+      @JsonKey(name: 'next_cursor') String? nextCursor,
+      @JsonKey(name: 'previous_cursor') String? previousCursor});
 }
 
 /// @nodoc
@@ -821,10 +879,11 @@ class __$$TournamentRecordListImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TournamentRecordListImpl extends _TournamentRecordList {
   const _$TournamentRecordListImpl(
-      {required final List<LeaderboardRecord> records,
+      {@JsonKey(name: 'records') required final List<LeaderboardRecord> records,
+      @JsonKey(name: 'owner_records')
       required final List<LeaderboardRecord> ownerRecords,
-      this.nextCursor,
-      this.previousCursor})
+      @JsonKey(name: 'next_cursor') this.nextCursor,
+      @JsonKey(name: 'previous_cursor') this.previousCursor})
       : _records = records,
         _ownerRecords = ownerRecords,
         super._();
@@ -834,6 +893,7 @@ class _$TournamentRecordListImpl extends _TournamentRecordList {
 
   final List<LeaderboardRecord> _records;
   @override
+  @JsonKey(name: 'records')
   List<LeaderboardRecord> get records {
     if (_records is EqualUnmodifiableListView) return _records;
     // ignore: implicit_dynamic_type
@@ -842,6 +902,7 @@ class _$TournamentRecordListImpl extends _TournamentRecordList {
 
   final List<LeaderboardRecord> _ownerRecords;
   @override
+  @JsonKey(name: 'owner_records')
   List<LeaderboardRecord> get ownerRecords {
     if (_ownerRecords is EqualUnmodifiableListView) return _ownerRecords;
     // ignore: implicit_dynamic_type
@@ -849,8 +910,10 @@ class _$TournamentRecordListImpl extends _TournamentRecordList {
   }
 
   @override
+  @JsonKey(name: 'next_cursor')
   final String? nextCursor;
   @override
+  @JsonKey(name: 'previous_cursor')
   final String? previousCursor;
 
   @override
@@ -899,9 +962,11 @@ class _$TournamentRecordListImpl extends _TournamentRecordList {
 
 abstract class _TournamentRecordList extends TournamentRecordList {
   const factory _TournamentRecordList(
-      {required final List<LeaderboardRecord> records,
+      {@JsonKey(name: 'records') required final List<LeaderboardRecord> records,
+      @JsonKey(name: 'owner_records')
       required final List<LeaderboardRecord> ownerRecords,
-      final String? nextCursor,
+      @JsonKey(name: 'next_cursor') final String? nextCursor,
+      @JsonKey(name: 'previous_cursor')
       final String? previousCursor}) = _$TournamentRecordListImpl;
   const _TournamentRecordList._() : super._();
 
@@ -909,12 +974,16 @@ abstract class _TournamentRecordList extends TournamentRecordList {
       _$TournamentRecordListImpl.fromJson;
 
   @override
+  @JsonKey(name: 'records')
   List<LeaderboardRecord> get records;
   @override
+  @JsonKey(name: 'owner_records')
   List<LeaderboardRecord> get ownerRecords;
   @override
+  @JsonKey(name: 'next_cursor')
   String? get nextCursor;
   @override
+  @JsonKey(name: 'previous_cursor')
   String? get previousCursor;
   @override
   @JsonKey(ignore: true)

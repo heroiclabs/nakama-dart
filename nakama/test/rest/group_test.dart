@@ -20,29 +20,41 @@ void main() {
     });
 
     test('can create group', () async {
-      final name = faker.company.name();
+      final gid = faker.guid.guid();
       final result = await client.createGroup(
         session: session,
-        name: name,
+        name: gid,
       );
 
       expect(result, isA<Group>());
-      expect(result.name, equals(name));
+      expect(result.name, equals(gid));
+
+      // Cleanup created group
+      await client.deleteGroup(
+        session: session,
+        groupId: result.id,
+      );
     });
 
     test('it can list groups', () async {
-      await client.createGroup(
+      final group = await client.createGroup(
         session: session,
-        name: faker.company.name(),
+        name: faker.guid.guid(),
       );
 
       final groups = await client.listGroups(session: session);
       expect(groups, isA<GroupList>());
+
+      // Cleanup created group
+      await client.deleteGroup(
+        session: session,
+        groupId: group.id,
+      );
     });
 
     test('it can search group by name', () async {
-      final name = faker.company.name();
-      await client.createGroup(
+      final name = faker.guid.guid();
+      final group = await client.createGroup(
         session: session,
         name: name,
       );
@@ -50,15 +62,22 @@ void main() {
       final groups = await client.listGroups(session: session, name: name);
       expect(groups, isA<GroupList>());
       expect(groups.groups, hasLength(1));
+
+      // Cleanup created group
+      await client.deleteGroup(
+        session: session,
+        groupId: group.id,
+      );
     });
 
     test('Correctly lists user\'s groups', () async {
       // Create 3 groups
-      await Future.wait([
-        client.createGroup(session: session, name: faker.company.name()),
-        client.createGroup(session: session, name: faker.company.name()),
-        client.createGroup(session: session, name: faker.company.name()),
-      ]);
+      for (var i = 0; i < 3; i++) {
+        await client.createGroup(
+          session: session,
+          name: faker.guid.guid(),
+        );
+      }
 
       // list my groups
       final myGroups = await client.listUserGroups(

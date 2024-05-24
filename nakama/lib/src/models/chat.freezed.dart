@@ -12,33 +12,40 @@ part of 'chat.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Channel {
   /// The ID of the channel.
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   /// The users currently in the channel.
+  @JsonKey(name: 'presences')
   List<UserPresence> get presences => throw _privateConstructorUsedError;
 
   /// A reference to the current user's presence in the channel.
+  @JsonKey(name: 'self')
   UserPresence get self => throw _privateConstructorUsedError;
 
   /// The name of the chat room, or an empty string if this message was not
   /// sent through a chat room.
+  @JsonKey(name: 'room_name')
   String get roomName => throw _privateConstructorUsedError;
 
   /// The ID of the group, or an empty string if this message was not sent
   /// through a group channel.
+  @JsonKey(name: 'group_id')
   String get groupId => throw _privateConstructorUsedError;
 
   /// The ID of the first DM user, or an empty string if this message was not
   /// sent through a DM chat.
+  @JsonKey(name: 'user_id_one')
   String get userIdOne => throw _privateConstructorUsedError;
 
   /// The ID of the second DM user, or an empty string if this message was not
   /// sent through a DM chat.
+  @JsonKey(name: 'user_id_two')
   String get userIdTwo => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -51,13 +58,13 @@ abstract class $ChannelCopyWith<$Res> {
       _$ChannelCopyWithImpl<$Res, Channel>;
   @useResult
   $Res call(
-      {String id,
-      List<UserPresence> presences,
-      UserPresence self,
-      String roomName,
-      String groupId,
-      String userIdOne,
-      String userIdTwo});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'presences') List<UserPresence> presences,
+      @JsonKey(name: 'self') UserPresence self,
+      @JsonKey(name: 'room_name') String roomName,
+      @JsonKey(name: 'group_id') String groupId,
+      @JsonKey(name: 'user_id_one') String userIdOne,
+      @JsonKey(name: 'user_id_two') String userIdTwo});
 
   $UserPresenceCopyWith<$Res> get self;
 }
@@ -132,13 +139,13 @@ abstract class _$$ChannelImplCopyWith<$Res> implements $ChannelCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      List<UserPresence> presences,
-      UserPresence self,
-      String roomName,
-      String groupId,
-      String userIdOne,
-      String userIdTwo});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'presences') List<UserPresence> presences,
+      @JsonKey(name: 'self') UserPresence self,
+      @JsonKey(name: 'room_name') String roomName,
+      @JsonKey(name: 'group_id') String groupId,
+      @JsonKey(name: 'user_id_one') String userIdOne,
+      @JsonKey(name: 'user_id_two') String userIdTwo});
 
   @override
   $UserPresenceCopyWith<$Res> get self;
@@ -200,18 +207,19 @@ class __$$ChannelImplCopyWithImpl<$Res>
 
 class _$ChannelImpl extends _Channel {
   const _$ChannelImpl(
-      {required this.id,
-      required final List<UserPresence> presences,
-      required this.self,
-      required this.roomName,
-      required this.groupId,
-      required this.userIdOne,
-      required this.userIdTwo})
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'presences') required final List<UserPresence> presences,
+      @JsonKey(name: 'self') required this.self,
+      @JsonKey(name: 'room_name') required this.roomName,
+      @JsonKey(name: 'group_id') required this.groupId,
+      @JsonKey(name: 'user_id_one') required this.userIdOne,
+      @JsonKey(name: 'user_id_two') required this.userIdTwo})
       : _presences = presences,
         super._();
 
   /// The ID of the channel.
   @override
+  @JsonKey(name: 'id')
   final String id;
 
   /// The users currently in the channel.
@@ -219,6 +227,7 @@ class _$ChannelImpl extends _Channel {
 
   /// The users currently in the channel.
   @override
+  @JsonKey(name: 'presences')
   List<UserPresence> get presences {
     if (_presences is EqualUnmodifiableListView) return _presences;
     // ignore: implicit_dynamic_type
@@ -227,26 +236,31 @@ class _$ChannelImpl extends _Channel {
 
   /// A reference to the current user's presence in the channel.
   @override
+  @JsonKey(name: 'self')
   final UserPresence self;
 
   /// The name of the chat room, or an empty string if this message was not
   /// sent through a chat room.
   @override
+  @JsonKey(name: 'room_name')
   final String roomName;
 
   /// The ID of the group, or an empty string if this message was not sent
   /// through a group channel.
   @override
+  @JsonKey(name: 'group_id')
   final String groupId;
 
   /// The ID of the first DM user, or an empty string if this message was not
   /// sent through a DM chat.
   @override
+  @JsonKey(name: 'user_id_one')
   final String userIdOne;
 
   /// The ID of the second DM user, or an empty string if this message was not
   /// sent through a DM chat.
   @override
+  @JsonKey(name: 'user_id_two')
   final String userIdTwo;
 
   @override
@@ -292,46 +306,54 @@ class _$ChannelImpl extends _Channel {
 
 abstract class _Channel extends Channel {
   const factory _Channel(
-      {required final String id,
-      required final List<UserPresence> presences,
-      required final UserPresence self,
-      required final String roomName,
-      required final String groupId,
-      required final String userIdOne,
+      {@JsonKey(name: 'id') required final String id,
+      @JsonKey(name: 'presences') required final List<UserPresence> presences,
+      @JsonKey(name: 'self') required final UserPresence self,
+      @JsonKey(name: 'room_name') required final String roomName,
+      @JsonKey(name: 'group_id') required final String groupId,
+      @JsonKey(name: 'user_id_one') required final String userIdOne,
+      @JsonKey(name: 'user_id_two')
       required final String userIdTwo}) = _$ChannelImpl;
   const _Channel._() : super._();
 
   @override
 
   /// The ID of the channel.
+  @JsonKey(name: 'id')
   String get id;
   @override
 
   /// The users currently in the channel.
+  @JsonKey(name: 'presences')
   List<UserPresence> get presences;
   @override
 
   /// A reference to the current user's presence in the channel.
+  @JsonKey(name: 'self')
   UserPresence get self;
   @override
 
   /// The name of the chat room, or an empty string if this message was not
   /// sent through a chat room.
+  @JsonKey(name: 'room_name')
   String get roomName;
   @override
 
   /// The ID of the group, or an empty string if this message was not sent
   /// through a group channel.
+  @JsonKey(name: 'group_id')
   String get groupId;
   @override
 
   /// The ID of the first DM user, or an empty string if this message was not
   /// sent through a DM chat.
+  @JsonKey(name: 'user_id_one')
   String get userIdOne;
   @override
 
   /// The ID of the second DM user, or an empty string if this message was not
   /// sent through a DM chat.
+  @JsonKey(name: 'user_id_two')
   String get userIdTwo;
   @override
   @JsonKey(ignore: true)
@@ -342,36 +364,47 @@ abstract class _Channel extends Channel {
 /// @nodoc
 mixin _$ChannelMessageAck {
   /// The channel the message was sent to.
+  @JsonKey(name: 'channel_id')
   String get channelId => throw _privateConstructorUsedError;
 
   /// The unique ID assigned to the message.
+  @JsonKey(name: 'message_id')
   String get messageId => throw _privateConstructorUsedError;
 
   /// The code representing a message type or category.
+  @JsonKey(name: 'code')
   int get code => throw _privateConstructorUsedError;
 
   /// Username of the message sender.
+  @JsonKey(name: 'username')
   String get username => throw _privateConstructorUsedError;
 
   /// The UNIX time when the message was created.
+  @JsonKey(name: 'created')
   DateTime get created => throw _privateConstructorUsedError;
 
   /// The UNIX time when the message was last updated.
+  @JsonKey(name: 'updated')
   DateTime get updated => throw _privateConstructorUsedError;
 
   /// True if the message was persisted to the channel's history, false otherwise.
+  @JsonKey(name: 'persistent')
   bool get persistent => throw _privateConstructorUsedError;
 
   /// The name of the chat room, or an empty string if this message was not sent through a chat room.
+  @JsonKey(name: 'room_name')
   String get roomName => throw _privateConstructorUsedError;
 
   /// The ID of the group, or an empty string if this message was not sent through a group channel.
+  @JsonKey(name: 'group_id')
   String get groupId => throw _privateConstructorUsedError;
 
   /// The ID of the first DM user, or an empty string if this message was not sent through a DM chat.
+  @JsonKey(name: 'user_id_one')
   String get userIdOne => throw _privateConstructorUsedError;
 
   /// The ID of the second DM user, or an empty string if this message was not sent through a DM chat.
+  @JsonKey(name: 'user_id_two')
   String get userIdTwo => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -386,17 +419,17 @@ abstract class $ChannelMessageAckCopyWith<$Res> {
       _$ChannelMessageAckCopyWithImpl<$Res, ChannelMessageAck>;
   @useResult
   $Res call(
-      {String channelId,
-      String messageId,
-      int code,
-      String username,
-      DateTime created,
-      DateTime updated,
-      bool persistent,
-      String roomName,
-      String groupId,
-      String userIdOne,
-      String userIdTwo});
+      {@JsonKey(name: 'channel_id') String channelId,
+      @JsonKey(name: 'message_id') String messageId,
+      @JsonKey(name: 'code') int code,
+      @JsonKey(name: 'username') String username,
+      @JsonKey(name: 'created') DateTime created,
+      @JsonKey(name: 'updated') DateTime updated,
+      @JsonKey(name: 'persistent') bool persistent,
+      @JsonKey(name: 'room_name') String roomName,
+      @JsonKey(name: 'group_id') String groupId,
+      @JsonKey(name: 'user_id_one') String userIdOne,
+      @JsonKey(name: 'user_id_two') String userIdTwo});
 }
 
 /// @nodoc
@@ -482,17 +515,17 @@ abstract class _$$ChannelMessageAckImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String channelId,
-      String messageId,
-      int code,
-      String username,
-      DateTime created,
-      DateTime updated,
-      bool persistent,
-      String roomName,
-      String groupId,
-      String userIdOne,
-      String userIdTwo});
+      {@JsonKey(name: 'channel_id') String channelId,
+      @JsonKey(name: 'message_id') String messageId,
+      @JsonKey(name: 'code') int code,
+      @JsonKey(name: 'username') String username,
+      @JsonKey(name: 'created') DateTime created,
+      @JsonKey(name: 'updated') DateTime updated,
+      @JsonKey(name: 'persistent') bool persistent,
+      @JsonKey(name: 'room_name') String roomName,
+      @JsonKey(name: 'group_id') String groupId,
+      @JsonKey(name: 'user_id_one') String userIdOne,
+      @JsonKey(name: 'user_id_two') String userIdTwo});
 }
 
 /// @nodoc
@@ -571,61 +604,72 @@ class __$$ChannelMessageAckImplCopyWithImpl<$Res>
 
 class _$ChannelMessageAckImpl extends _ChannelMessageAck {
   const _$ChannelMessageAckImpl(
-      {required this.channelId,
-      required this.messageId,
-      required this.code,
-      required this.username,
-      required this.created,
-      required this.updated,
-      required this.persistent,
-      required this.roomName,
-      required this.groupId,
-      required this.userIdOne,
-      required this.userIdTwo})
+      {@JsonKey(name: 'channel_id') required this.channelId,
+      @JsonKey(name: 'message_id') required this.messageId,
+      @JsonKey(name: 'code') required this.code,
+      @JsonKey(name: 'username') required this.username,
+      @JsonKey(name: 'created') required this.created,
+      @JsonKey(name: 'updated') required this.updated,
+      @JsonKey(name: 'persistent') required this.persistent,
+      @JsonKey(name: 'room_name') required this.roomName,
+      @JsonKey(name: 'group_id') required this.groupId,
+      @JsonKey(name: 'user_id_one') required this.userIdOne,
+      @JsonKey(name: 'user_id_two') required this.userIdTwo})
       : super._();
 
   /// The channel the message was sent to.
   @override
+  @JsonKey(name: 'channel_id')
   final String channelId;
 
   /// The unique ID assigned to the message.
   @override
+  @JsonKey(name: 'message_id')
   final String messageId;
 
   /// The code representing a message type or category.
   @override
+  @JsonKey(name: 'code')
   final int code;
 
   /// Username of the message sender.
   @override
+  @JsonKey(name: 'username')
   final String username;
 
   /// The UNIX time when the message was created.
   @override
+  @JsonKey(name: 'created')
   final DateTime created;
 
   /// The UNIX time when the message was last updated.
   @override
+  @JsonKey(name: 'updated')
   final DateTime updated;
 
   /// True if the message was persisted to the channel's history, false otherwise.
   @override
+  @JsonKey(name: 'persistent')
   final bool persistent;
 
   /// The name of the chat room, or an empty string if this message was not sent through a chat room.
   @override
+  @JsonKey(name: 'room_name')
   final String roomName;
 
   /// The ID of the group, or an empty string if this message was not sent through a group channel.
   @override
+  @JsonKey(name: 'group_id')
   final String groupId;
 
   /// The ID of the first DM user, or an empty string if this message was not sent through a DM chat.
   @override
+  @JsonKey(name: 'user_id_one')
   final String userIdOne;
 
   /// The ID of the second DM user, or an empty string if this message was not sent through a DM chat.
   @override
+  @JsonKey(name: 'user_id_two')
   final String userIdTwo;
 
   @override
@@ -683,62 +727,74 @@ class _$ChannelMessageAckImpl extends _ChannelMessageAck {
 
 abstract class _ChannelMessageAck extends ChannelMessageAck {
   const factory _ChannelMessageAck(
-      {required final String channelId,
-      required final String messageId,
-      required final int code,
-      required final String username,
-      required final DateTime created,
-      required final DateTime updated,
-      required final bool persistent,
-      required final String roomName,
-      required final String groupId,
-      required final String userIdOne,
-      required final String userIdTwo}) = _$ChannelMessageAckImpl;
+          {@JsonKey(name: 'channel_id') required final String channelId,
+          @JsonKey(name: 'message_id') required final String messageId,
+          @JsonKey(name: 'code') required final int code,
+          @JsonKey(name: 'username') required final String username,
+          @JsonKey(name: 'created') required final DateTime created,
+          @JsonKey(name: 'updated') required final DateTime updated,
+          @JsonKey(name: 'persistent') required final bool persistent,
+          @JsonKey(name: 'room_name') required final String roomName,
+          @JsonKey(name: 'group_id') required final String groupId,
+          @JsonKey(name: 'user_id_one') required final String userIdOne,
+          @JsonKey(name: 'user_id_two') required final String userIdTwo}) =
+      _$ChannelMessageAckImpl;
   const _ChannelMessageAck._() : super._();
 
   @override
 
   /// The channel the message was sent to.
+  @JsonKey(name: 'channel_id')
   String get channelId;
   @override
 
   /// The unique ID assigned to the message.
+  @JsonKey(name: 'message_id')
   String get messageId;
   @override
 
   /// The code representing a message type or category.
+  @JsonKey(name: 'code')
   int get code;
   @override
 
   /// Username of the message sender.
+  @JsonKey(name: 'username')
   String get username;
   @override
 
   /// The UNIX time when the message was created.
+  @JsonKey(name: 'created')
   DateTime get created;
   @override
 
   /// The UNIX time when the message was last updated.
+  @JsonKey(name: 'updated')
   DateTime get updated;
   @override
 
   /// True if the message was persisted to the channel's history, false otherwise.
+  @JsonKey(name: 'persistent')
   bool get persistent;
   @override
 
   /// The name of the chat room, or an empty string if this message was not sent through a chat room.
+  @JsonKey(name: 'room_name')
   String get roomName;
   @override
 
   /// The ID of the group, or an empty string if this message was not sent through a group channel.
+  @JsonKey(name: 'group_id')
   String get groupId;
   @override
 
   /// The ID of the first DM user, or an empty string if this message was not sent through a DM chat.
+  @JsonKey(name: 'user_id_one')
   String get userIdOne;
   @override
 
   /// The ID of the second DM user, or an empty string if this message was not sent through a DM chat.
+  @JsonKey(name: 'user_id_two')
   String get userIdTwo;
   @override
   @JsonKey(ignore: true)

@@ -12,7 +12,7 @@ part of 'matchmaker.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MatchmakerTicket {
@@ -141,9 +141,11 @@ abstract class _MatchmakerTicket extends MatchmakerTicket {
 /// @nodoc
 mixin _$PartyMatchmakerTicket {
   /// Party ID.
+  @JsonKey(name: 'party_id')
   String get partyId => throw _privateConstructorUsedError;
 
   /// The ticket that can be used to cancel matchmaking.
+  @JsonKey(name: 'ticket')
   String get ticket => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -157,7 +159,9 @@ abstract class $PartyMatchmakerTicketCopyWith<$Res> {
           $Res Function(PartyMatchmakerTicket) then) =
       _$PartyMatchmakerTicketCopyWithImpl<$Res, PartyMatchmakerTicket>;
   @useResult
-  $Res call({String partyId, String ticket});
+  $Res call(
+      {@JsonKey(name: 'party_id') String partyId,
+      @JsonKey(name: 'ticket') String ticket});
 }
 
 /// @nodoc
@@ -199,7 +203,9 @@ abstract class _$$PartyMatchmakerTicketImplCopyWith<$Res>
       __$$PartyMatchmakerTicketImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String partyId, String ticket});
+  $Res call(
+      {@JsonKey(name: 'party_id') String partyId,
+      @JsonKey(name: 'ticket') String ticket});
 }
 
 /// @nodoc
@@ -234,15 +240,18 @@ class __$$PartyMatchmakerTicketImplCopyWithImpl<$Res>
 
 class _$PartyMatchmakerTicketImpl extends _PartyMatchmakerTicket {
   const _$PartyMatchmakerTicketImpl(
-      {required this.partyId, required this.ticket})
+      {@JsonKey(name: 'party_id') required this.partyId,
+      @JsonKey(name: 'ticket') required this.ticket})
       : super._();
 
   /// Party ID.
   @override
+  @JsonKey(name: 'party_id')
   final String partyId;
 
   /// The ticket that can be used to cancel matchmaking.
   @override
+  @JsonKey(name: 'ticket')
   final String ticket;
 
   @override
@@ -272,17 +281,20 @@ class _$PartyMatchmakerTicketImpl extends _PartyMatchmakerTicket {
 
 abstract class _PartyMatchmakerTicket extends PartyMatchmakerTicket {
   const factory _PartyMatchmakerTicket(
-      {required final String partyId,
-      required final String ticket}) = _$PartyMatchmakerTicketImpl;
+          {@JsonKey(name: 'party_id') required final String partyId,
+          @JsonKey(name: 'ticket') required final String ticket}) =
+      _$PartyMatchmakerTicketImpl;
   const _PartyMatchmakerTicket._() : super._();
 
   @override
 
   /// Party ID.
+  @JsonKey(name: 'party_id')
   String get partyId;
   @override
 
   /// The ticket that can be used to cancel matchmaking.
+  @JsonKey(name: 'ticket')
   String get ticket;
   @override
   @JsonKey(ignore: true)
@@ -293,28 +305,35 @@ abstract class _PartyMatchmakerTicket extends PartyMatchmakerTicket {
 /// @nodoc
 mixin _$ChannelPresenceEvent {
   /// The channel identifier this event is for.
+  @JsonKey(name: 'channel_id')
   String get channelId => throw _privateConstructorUsedError;
 
   /// Presences joining the channel as part of this event, if any.
-  String get roomName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'room_name')
+  String? get roomName => throw _privateConstructorUsedError;
 
   /// Presences leaving the channel as part of this event, if any.
-  String get groupId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'group_id')
+  String? get groupId => throw _privateConstructorUsedError;
 
   /// The name of the chat room, or an empty string if this message was not
   /// sent through a chat room.
-  Iterable<UserPresence> get joins => throw _privateConstructorUsedError;
+  @JsonKey(name: 'joins')
+  Iterable<UserPresence>? get joins => throw _privateConstructorUsedError;
 
   /// The ID of the group, or an empty string if this message was not sent
   /// through a group channel.
-  Iterable<UserPresence> get leaves => throw _privateConstructorUsedError;
+  @JsonKey(name: 'leaves')
+  Iterable<UserPresence>? get leaves => throw _privateConstructorUsedError;
 
   /// The ID of the first DM user, or an empty string if this message was not
   /// sent through a DM chat.
+  @JsonKey(name: 'user_id_one')
   String? get userIdOne => throw _privateConstructorUsedError;
 
   /// The ID of the second DM user, or an empty string if this message was not
   /// sent through a DM chat.
+  @JsonKey(name: 'user_id_two')
   String? get userIdTwo => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -329,13 +348,13 @@ abstract class $ChannelPresenceEventCopyWith<$Res> {
       _$ChannelPresenceEventCopyWithImpl<$Res, ChannelPresenceEvent>;
   @useResult
   $Res call(
-      {String channelId,
-      String roomName,
-      String groupId,
-      Iterable<UserPresence> joins,
-      Iterable<UserPresence> leaves,
-      String? userIdOne,
-      String? userIdTwo});
+      {@JsonKey(name: 'channel_id') String channelId,
+      @JsonKey(name: 'room_name') String? roomName,
+      @JsonKey(name: 'group_id') String? groupId,
+      @JsonKey(name: 'joins') Iterable<UserPresence>? joins,
+      @JsonKey(name: 'leaves') Iterable<UserPresence>? leaves,
+      @JsonKey(name: 'user_id_one') String? userIdOne,
+      @JsonKey(name: 'user_id_two') String? userIdTwo});
 }
 
 /// @nodoc
@@ -353,10 +372,10 @@ class _$ChannelPresenceEventCopyWithImpl<$Res,
   @override
   $Res call({
     Object? channelId = null,
-    Object? roomName = null,
-    Object? groupId = null,
-    Object? joins = null,
-    Object? leaves = null,
+    Object? roomName = freezed,
+    Object? groupId = freezed,
+    Object? joins = freezed,
+    Object? leaves = freezed,
     Object? userIdOne = freezed,
     Object? userIdTwo = freezed,
   }) {
@@ -365,22 +384,22 @@ class _$ChannelPresenceEventCopyWithImpl<$Res,
           ? _value.channelId
           : channelId // ignore: cast_nullable_to_non_nullable
               as String,
-      roomName: null == roomName
+      roomName: freezed == roomName
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
-              as String,
-      groupId: null == groupId
+              as String?,
+      groupId: freezed == groupId
           ? _value.groupId
           : groupId // ignore: cast_nullable_to_non_nullable
-              as String,
-      joins: null == joins
+              as String?,
+      joins: freezed == joins
           ? _value.joins
           : joins // ignore: cast_nullable_to_non_nullable
-              as Iterable<UserPresence>,
-      leaves: null == leaves
+              as Iterable<UserPresence>?,
+      leaves: freezed == leaves
           ? _value.leaves
           : leaves // ignore: cast_nullable_to_non_nullable
-              as Iterable<UserPresence>,
+              as Iterable<UserPresence>?,
       userIdOne: freezed == userIdOne
           ? _value.userIdOne
           : userIdOne // ignore: cast_nullable_to_non_nullable
@@ -402,13 +421,13 @@ abstract class _$$ChannelPresenceEventImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String channelId,
-      String roomName,
-      String groupId,
-      Iterable<UserPresence> joins,
-      Iterable<UserPresence> leaves,
-      String? userIdOne,
-      String? userIdTwo});
+      {@JsonKey(name: 'channel_id') String channelId,
+      @JsonKey(name: 'room_name') String? roomName,
+      @JsonKey(name: 'group_id') String? groupId,
+      @JsonKey(name: 'joins') Iterable<UserPresence>? joins,
+      @JsonKey(name: 'leaves') Iterable<UserPresence>? leaves,
+      @JsonKey(name: 'user_id_one') String? userIdOne,
+      @JsonKey(name: 'user_id_two') String? userIdTwo});
 }
 
 /// @nodoc
@@ -423,10 +442,10 @@ class __$$ChannelPresenceEventImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? channelId = null,
-    Object? roomName = null,
-    Object? groupId = null,
-    Object? joins = null,
-    Object? leaves = null,
+    Object? roomName = freezed,
+    Object? groupId = freezed,
+    Object? joins = freezed,
+    Object? leaves = freezed,
     Object? userIdOne = freezed,
     Object? userIdTwo = freezed,
   }) {
@@ -435,22 +454,22 @@ class __$$ChannelPresenceEventImplCopyWithImpl<$Res>
           ? _value.channelId
           : channelId // ignore: cast_nullable_to_non_nullable
               as String,
-      roomName: null == roomName
+      roomName: freezed == roomName
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
-              as String,
-      groupId: null == groupId
+              as String?,
+      groupId: freezed == groupId
           ? _value.groupId
           : groupId // ignore: cast_nullable_to_non_nullable
-              as String,
-      joins: null == joins
+              as String?,
+      joins: freezed == joins
           ? _value.joins
           : joins // ignore: cast_nullable_to_non_nullable
-              as Iterable<UserPresence>,
-      leaves: null == leaves
+              as Iterable<UserPresence>?,
+      leaves: freezed == leaves
           ? _value.leaves
           : leaves // ignore: cast_nullable_to_non_nullable
-              as Iterable<UserPresence>,
+              as Iterable<UserPresence>?,
       userIdOne: freezed == userIdOne
           ? _value.userIdOne
           : userIdOne // ignore: cast_nullable_to_non_nullable
@@ -467,45 +486,52 @@ class __$$ChannelPresenceEventImplCopyWithImpl<$Res>
 
 class _$ChannelPresenceEventImpl extends _ChannelPresenceEvent {
   const _$ChannelPresenceEventImpl(
-      {required this.channelId,
-      required this.roomName,
-      required this.groupId,
-      required this.joins,
-      required this.leaves,
-      this.userIdOne,
-      this.userIdTwo})
+      {@JsonKey(name: 'channel_id') required this.channelId,
+      @JsonKey(name: 'room_name') this.roomName,
+      @JsonKey(name: 'group_id') this.groupId,
+      @JsonKey(name: 'joins') this.joins,
+      @JsonKey(name: 'leaves') this.leaves,
+      @JsonKey(name: 'user_id_one') this.userIdOne,
+      @JsonKey(name: 'user_id_two') this.userIdTwo})
       : super._();
 
   /// The channel identifier this event is for.
   @override
+  @JsonKey(name: 'channel_id')
   final String channelId;
 
   /// Presences joining the channel as part of this event, if any.
   @override
-  final String roomName;
+  @JsonKey(name: 'room_name')
+  final String? roomName;
 
   /// Presences leaving the channel as part of this event, if any.
   @override
-  final String groupId;
+  @JsonKey(name: 'group_id')
+  final String? groupId;
 
   /// The name of the chat room, or an empty string if this message was not
   /// sent through a chat room.
   @override
-  final Iterable<UserPresence> joins;
+  @JsonKey(name: 'joins')
+  final Iterable<UserPresence>? joins;
 
   /// The ID of the group, or an empty string if this message was not sent
   /// through a group channel.
   @override
-  final Iterable<UserPresence> leaves;
+  @JsonKey(name: 'leaves')
+  final Iterable<UserPresence>? leaves;
 
   /// The ID of the first DM user, or an empty string if this message was not
   /// sent through a DM chat.
   @override
+  @JsonKey(name: 'user_id_one')
   final String? userIdOne;
 
   /// The ID of the second DM user, or an empty string if this message was not
   /// sent through a DM chat.
   @override
+  @JsonKey(name: 'user_id_two')
   final String? userIdTwo;
 
   @override
@@ -553,46 +579,54 @@ class _$ChannelPresenceEventImpl extends _ChannelPresenceEvent {
 
 abstract class _ChannelPresenceEvent extends ChannelPresenceEvent {
   const factory _ChannelPresenceEvent(
-      {required final String channelId,
-      required final String roomName,
-      required final String groupId,
-      required final Iterable<UserPresence> joins,
-      required final Iterable<UserPresence> leaves,
-      final String? userIdOne,
-      final String? userIdTwo}) = _$ChannelPresenceEventImpl;
+          {@JsonKey(name: 'channel_id') required final String channelId,
+          @JsonKey(name: 'room_name') final String? roomName,
+          @JsonKey(name: 'group_id') final String? groupId,
+          @JsonKey(name: 'joins') final Iterable<UserPresence>? joins,
+          @JsonKey(name: 'leaves') final Iterable<UserPresence>? leaves,
+          @JsonKey(name: 'user_id_one') final String? userIdOne,
+          @JsonKey(name: 'user_id_two') final String? userIdTwo}) =
+      _$ChannelPresenceEventImpl;
   const _ChannelPresenceEvent._() : super._();
 
   @override
 
   /// The channel identifier this event is for.
+  @JsonKey(name: 'channel_id')
   String get channelId;
   @override
 
   /// Presences joining the channel as part of this event, if any.
-  String get roomName;
+  @JsonKey(name: 'room_name')
+  String? get roomName;
   @override
 
   /// Presences leaving the channel as part of this event, if any.
-  String get groupId;
+  @JsonKey(name: 'group_id')
+  String? get groupId;
   @override
 
   /// The name of the chat room, or an empty string if this message was not
   /// sent through a chat room.
-  Iterable<UserPresence> get joins;
+  @JsonKey(name: 'joins')
+  Iterable<UserPresence>? get joins;
   @override
 
   /// The ID of the group, or an empty string if this message was not sent
   /// through a group channel.
-  Iterable<UserPresence> get leaves;
+  @JsonKey(name: 'leaves')
+  Iterable<UserPresence>? get leaves;
   @override
 
   /// The ID of the first DM user, or an empty string if this message was not
   /// sent through a DM chat.
+  @JsonKey(name: 'user_id_one')
   String? get userIdOne;
   @override
 
   /// The ID of the second DM user, or an empty string if this message was not
   /// sent through a DM chat.
+  @JsonKey(name: 'user_id_two')
   String? get userIdTwo;
   @override
   @JsonKey(ignore: true)
@@ -603,16 +637,20 @@ abstract class _ChannelPresenceEvent extends ChannelPresenceEvent {
 /// @nodoc
 mixin _$MatchmakerUser {
   /// User info.
+  @JsonKey(name: 'presence')
   UserPresence get presence => throw _privateConstructorUsedError;
 
   /// Party identifier, if this user was matched as a party member.
+  @JsonKey(name: 'party_id')
   String get partyId => throw _privateConstructorUsedError;
 
   /// String properties.
+  @JsonKey(name: 'string_properties')
   Map<String, String> get stringProperties =>
       throw _privateConstructorUsedError;
 
   /// Numeric properties.
+  @JsonKey(name: 'numeric_properties')
   Map<String, double> get numericProperties =>
       throw _privateConstructorUsedError;
 
@@ -628,9 +666,10 @@ abstract class $MatchmakerUserCopyWith<$Res> {
       _$MatchmakerUserCopyWithImpl<$Res, MatchmakerUser>;
   @useResult
   $Res call(
-      {UserPresence presence,
-      String partyId,
-      Map<String, String> stringProperties,
+      {@JsonKey(name: 'presence') UserPresence presence,
+      @JsonKey(name: 'party_id') String partyId,
+      @JsonKey(name: 'string_properties') Map<String, String> stringProperties,
+      @JsonKey(name: 'numeric_properties')
       Map<String, double> numericProperties});
 
   $UserPresenceCopyWith<$Res> get presence;
@@ -692,9 +731,10 @@ abstract class _$$MatchmakerUserImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {UserPresence presence,
-      String partyId,
-      Map<String, String> stringProperties,
+      {@JsonKey(name: 'presence') UserPresence presence,
+      @JsonKey(name: 'party_id') String partyId,
+      @JsonKey(name: 'string_properties') Map<String, String> stringProperties,
+      @JsonKey(name: 'numeric_properties')
       Map<String, double> numericProperties});
 
   @override
@@ -742,9 +782,11 @@ class __$$MatchmakerUserImplCopyWithImpl<$Res>
 
 class _$MatchmakerUserImpl extends _MatchmakerUser {
   const _$MatchmakerUserImpl(
-      {required this.presence,
-      required this.partyId,
+      {@JsonKey(name: 'presence') required this.presence,
+      @JsonKey(name: 'party_id') required this.partyId,
+      @JsonKey(name: 'string_properties')
       required final Map<String, String> stringProperties,
+      @JsonKey(name: 'numeric_properties')
       required final Map<String, double> numericProperties})
       : _stringProperties = stringProperties,
         _numericProperties = numericProperties,
@@ -752,10 +794,12 @@ class _$MatchmakerUserImpl extends _MatchmakerUser {
 
   /// User info.
   @override
+  @JsonKey(name: 'presence')
   final UserPresence presence;
 
   /// Party identifier, if this user was matched as a party member.
   @override
+  @JsonKey(name: 'party_id')
   final String partyId;
 
   /// String properties.
@@ -763,6 +807,7 @@ class _$MatchmakerUserImpl extends _MatchmakerUser {
 
   /// String properties.
   @override
+  @JsonKey(name: 'string_properties')
   Map<String, String> get stringProperties {
     if (_stringProperties is EqualUnmodifiableMapView) return _stringProperties;
     // ignore: implicit_dynamic_type
@@ -774,6 +819,7 @@ class _$MatchmakerUserImpl extends _MatchmakerUser {
 
   /// Numeric properties.
   @override
+  @JsonKey(name: 'numeric_properties')
   Map<String, double> get numericProperties {
     if (_numericProperties is EqualUnmodifiableMapView)
       return _numericProperties;
@@ -818,9 +864,11 @@ class _$MatchmakerUserImpl extends _MatchmakerUser {
 
 abstract class _MatchmakerUser extends MatchmakerUser {
   const factory _MatchmakerUser(
-          {required final UserPresence presence,
-          required final String partyId,
+          {@JsonKey(name: 'presence') required final UserPresence presence,
+          @JsonKey(name: 'party_id') required final String partyId,
+          @JsonKey(name: 'string_properties')
           required final Map<String, String> stringProperties,
+          @JsonKey(name: 'numeric_properties')
           required final Map<String, double> numericProperties}) =
       _$MatchmakerUserImpl;
   const _MatchmakerUser._() : super._();
@@ -828,18 +876,22 @@ abstract class _MatchmakerUser extends MatchmakerUser {
   @override
 
   /// User info.
+  @JsonKey(name: 'presence')
   UserPresence get presence;
   @override
 
   /// Party identifier, if this user was matched as a party member.
+  @JsonKey(name: 'party_id')
   String get partyId;
   @override
 
   /// String properties.
+  @JsonKey(name: 'string_properties')
   Map<String, String> get stringProperties;
   @override
 
   /// Numeric properties.
+  @JsonKey(name: 'numeric_properties')
   Map<String, double> get numericProperties;
   @override
   @JsonKey(ignore: true)
@@ -850,18 +902,23 @@ abstract class _MatchmakerUser extends MatchmakerUser {
 /// @nodoc
 mixin _$MatchmakerMatched {
   /// The matchmaking ticket that has completed.
+  @JsonKey(name: 'ticket')
   String get ticket => throw _privateConstructorUsedError;
 
   /// Match ID.
+  @JsonKey(name: 'match_id')
   String? get matchId => throw _privateConstructorUsedError;
 
   /// Match ID.
+  @JsonKey(name: 'token')
   String? get token => throw _privateConstructorUsedError;
 
   /// The users that have been matched together, and information about their matchmaking data.
+  @JsonKey(name: 'users')
   Iterable<MatchmakerUser> get users => throw _privateConstructorUsedError;
 
   /// A reference to the current user and their properties.
+  @JsonKey(name: 'self')
   MatchmakerUser get self => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -876,11 +933,11 @@ abstract class $MatchmakerMatchedCopyWith<$Res> {
       _$MatchmakerMatchedCopyWithImpl<$Res, MatchmakerMatched>;
   @useResult
   $Res call(
-      {String ticket,
-      String? matchId,
-      String? token,
-      Iterable<MatchmakerUser> users,
-      MatchmakerUser self});
+      {@JsonKey(name: 'ticket') String ticket,
+      @JsonKey(name: 'match_id') String? matchId,
+      @JsonKey(name: 'token') String? token,
+      @JsonKey(name: 'users') Iterable<MatchmakerUser> users,
+      @JsonKey(name: 'self') MatchmakerUser self});
 
   $MatchmakerUserCopyWith<$Res> get self;
 }
@@ -946,11 +1003,11 @@ abstract class _$$MatchmakerMatchedImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String ticket,
-      String? matchId,
-      String? token,
-      Iterable<MatchmakerUser> users,
-      MatchmakerUser self});
+      {@JsonKey(name: 'ticket') String ticket,
+      @JsonKey(name: 'match_id') String? matchId,
+      @JsonKey(name: 'token') String? token,
+      @JsonKey(name: 'users') Iterable<MatchmakerUser> users,
+      @JsonKey(name: 'self') MatchmakerUser self});
 
   @override
   $MatchmakerUserCopyWith<$Res> get self;
@@ -1002,31 +1059,36 @@ class __$$MatchmakerMatchedImplCopyWithImpl<$Res>
 
 class _$MatchmakerMatchedImpl extends _MatchmakerMatched {
   const _$MatchmakerMatchedImpl(
-      {required this.ticket,
-      this.matchId,
-      this.token,
-      required this.users,
-      required this.self})
+      {@JsonKey(name: 'ticket') required this.ticket,
+      @JsonKey(name: 'match_id') this.matchId,
+      @JsonKey(name: 'token') this.token,
+      @JsonKey(name: 'users') required this.users,
+      @JsonKey(name: 'self') required this.self})
       : super._();
 
   /// The matchmaking ticket that has completed.
   @override
+  @JsonKey(name: 'ticket')
   final String ticket;
 
   /// Match ID.
   @override
+  @JsonKey(name: 'match_id')
   final String? matchId;
 
   /// Match ID.
   @override
+  @JsonKey(name: 'token')
   final String? token;
 
   /// The users that have been matched together, and information about their matchmaking data.
   @override
+  @JsonKey(name: 'users')
   final Iterable<MatchmakerUser> users;
 
   /// A reference to the current user and their properties.
   @override
+  @JsonKey(name: 'self')
   final MatchmakerUser self;
 
   @override
@@ -1060,32 +1122,38 @@ class _$MatchmakerMatchedImpl extends _MatchmakerMatched {
 
 abstract class _MatchmakerMatched extends MatchmakerMatched {
   const factory _MatchmakerMatched(
-      {required final String ticket,
-      final String? matchId,
-      final String? token,
-      required final Iterable<MatchmakerUser> users,
-      required final MatchmakerUser self}) = _$MatchmakerMatchedImpl;
+          {@JsonKey(name: 'ticket') required final String ticket,
+          @JsonKey(name: 'match_id') final String? matchId,
+          @JsonKey(name: 'token') final String? token,
+          @JsonKey(name: 'users') required final Iterable<MatchmakerUser> users,
+          @JsonKey(name: 'self') required final MatchmakerUser self}) =
+      _$MatchmakerMatchedImpl;
   const _MatchmakerMatched._() : super._();
 
   @override
 
   /// The matchmaking ticket that has completed.
+  @JsonKey(name: 'ticket')
   String get ticket;
   @override
 
   /// Match ID.
+  @JsonKey(name: 'match_id')
   String? get matchId;
   @override
 
   /// Match ID.
+  @JsonKey(name: 'token')
   String? get token;
   @override
 
   /// The users that have been matched together, and information about their matchmaking data.
+  @JsonKey(name: 'users')
   Iterable<MatchmakerUser> get users;
   @override
 
   /// A reference to the current user and their properties.
+  @JsonKey(name: 'self')
   MatchmakerUser get self;
   @override
   @JsonKey(ignore: true)
@@ -1096,18 +1164,23 @@ abstract class _MatchmakerMatched extends MatchmakerMatched {
 /// @nodoc
 mixin _$MatchData {
   /// The match unique ID.
+  @JsonKey(name: 'match_id')
   String get matchId => throw _privateConstructorUsedError;
 
   /// A reference to the user presence that sent this data, if any.
-  UserPresence get presence => throw _privateConstructorUsedError;
+  @JsonKey(name: 'presence')
+  UserPresence? get presence => throw _privateConstructorUsedError;
 
   /// Op code value.
+  @JsonKey(name: 'op_code')
   int get opCode => throw _privateConstructorUsedError;
 
   /// Data payload, if any.
-  List<int> get data => throw _privateConstructorUsedError;
+  @JsonKey(name: 'data')
+  List<int>? get data => throw _privateConstructorUsedError;
 
   /// True if this data was delivered reliably, false otherwise.
+  @JsonKey(name: 'reliable')
   bool get reliable => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -1121,13 +1194,13 @@ abstract class $MatchDataCopyWith<$Res> {
       _$MatchDataCopyWithImpl<$Res, MatchData>;
   @useResult
   $Res call(
-      {String matchId,
-      UserPresence presence,
-      int opCode,
-      List<int> data,
-      bool reliable});
+      {@JsonKey(name: 'match_id') String matchId,
+      @JsonKey(name: 'presence') UserPresence? presence,
+      @JsonKey(name: 'op_code') int opCode,
+      @JsonKey(name: 'data') List<int>? data,
+      @JsonKey(name: 'reliable') bool reliable});
 
-  $UserPresenceCopyWith<$Res> get presence;
+  $UserPresenceCopyWith<$Res>? get presence;
 }
 
 /// @nodoc
@@ -1144,9 +1217,9 @@ class _$MatchDataCopyWithImpl<$Res, $Val extends MatchData>
   @override
   $Res call({
     Object? matchId = null,
-    Object? presence = null,
+    Object? presence = freezed,
     Object? opCode = null,
-    Object? data = null,
+    Object? data = freezed,
     Object? reliable = null,
   }) {
     return _then(_value.copyWith(
@@ -1154,18 +1227,18 @@ class _$MatchDataCopyWithImpl<$Res, $Val extends MatchData>
           ? _value.matchId
           : matchId // ignore: cast_nullable_to_non_nullable
               as String,
-      presence: null == presence
+      presence: freezed == presence
           ? _value.presence
           : presence // ignore: cast_nullable_to_non_nullable
-              as UserPresence,
+              as UserPresence?,
       opCode: null == opCode
           ? _value.opCode
           : opCode // ignore: cast_nullable_to_non_nullable
               as int,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<int>?,
       reliable: null == reliable
           ? _value.reliable
           : reliable // ignore: cast_nullable_to_non_nullable
@@ -1175,8 +1248,12 @@ class _$MatchDataCopyWithImpl<$Res, $Val extends MatchData>
 
   @override
   @pragma('vm:prefer-inline')
-  $UserPresenceCopyWith<$Res> get presence {
-    return $UserPresenceCopyWith<$Res>(_value.presence, (value) {
+  $UserPresenceCopyWith<$Res>? get presence {
+    if (_value.presence == null) {
+      return null;
+    }
+
+    return $UserPresenceCopyWith<$Res>(_value.presence!, (value) {
       return _then(_value.copyWith(presence: value) as $Val);
     });
   }
@@ -1191,14 +1268,14 @@ abstract class _$$MatchDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String matchId,
-      UserPresence presence,
-      int opCode,
-      List<int> data,
-      bool reliable});
+      {@JsonKey(name: 'match_id') String matchId,
+      @JsonKey(name: 'presence') UserPresence? presence,
+      @JsonKey(name: 'op_code') int opCode,
+      @JsonKey(name: 'data') List<int>? data,
+      @JsonKey(name: 'reliable') bool reliable});
 
   @override
-  $UserPresenceCopyWith<$Res> get presence;
+  $UserPresenceCopyWith<$Res>? get presence;
 }
 
 /// @nodoc
@@ -1213,9 +1290,9 @@ class __$$MatchDataImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? matchId = null,
-    Object? presence = null,
+    Object? presence = freezed,
     Object? opCode = null,
-    Object? data = null,
+    Object? data = freezed,
     Object? reliable = null,
   }) {
     return _then(_$MatchDataImpl(
@@ -1223,18 +1300,18 @@ class __$$MatchDataImplCopyWithImpl<$Res>
           ? _value.matchId
           : matchId // ignore: cast_nullable_to_non_nullable
               as String,
-      presence: null == presence
+      presence: freezed == presence
           ? _value.presence
           : presence // ignore: cast_nullable_to_non_nullable
-              as UserPresence,
+              as UserPresence?,
       opCode: null == opCode
           ? _value.opCode
           : opCode // ignore: cast_nullable_to_non_nullable
               as int,
-      data: null == data
+      data: freezed == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<int>?,
       reliable: null == reliable
           ? _value.reliable
           : reliable // ignore: cast_nullable_to_non_nullable
@@ -1247,39 +1324,46 @@ class __$$MatchDataImplCopyWithImpl<$Res>
 
 class _$MatchDataImpl extends _MatchData {
   const _$MatchDataImpl(
-      {required this.matchId,
-      required this.presence,
-      required this.opCode,
-      required final List<int> data,
-      required this.reliable})
+      {@JsonKey(name: 'match_id') required this.matchId,
+      @JsonKey(name: 'presence') this.presence,
+      @JsonKey(name: 'op_code') required this.opCode,
+      @JsonKey(name: 'data') final List<int>? data,
+      @JsonKey(name: 'reliable') required this.reliable})
       : _data = data,
         super._();
 
   /// The match unique ID.
   @override
+  @JsonKey(name: 'match_id')
   final String matchId;
 
   /// A reference to the user presence that sent this data, if any.
   @override
-  final UserPresence presence;
+  @JsonKey(name: 'presence')
+  final UserPresence? presence;
 
   /// Op code value.
   @override
+  @JsonKey(name: 'op_code')
   final int opCode;
 
   /// Data payload, if any.
-  final List<int> _data;
+  final List<int>? _data;
 
   /// Data payload, if any.
   @override
-  List<int> get data {
+  @JsonKey(name: 'data')
+  List<int>? get data {
+    final value = _data;
+    if (value == null) return null;
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
+    return EqualUnmodifiableListView(value);
   }
 
   /// True if this data was delivered reliably, false otherwise.
   @override
+  @JsonKey(name: 'reliable')
   final bool reliable;
 
   @override
@@ -1314,32 +1398,38 @@ class _$MatchDataImpl extends _MatchData {
 
 abstract class _MatchData extends MatchData {
   const factory _MatchData(
-      {required final String matchId,
-      required final UserPresence presence,
-      required final int opCode,
-      required final List<int> data,
-      required final bool reliable}) = _$MatchDataImpl;
+          {@JsonKey(name: 'match_id') required final String matchId,
+          @JsonKey(name: 'presence') final UserPresence? presence,
+          @JsonKey(name: 'op_code') required final int opCode,
+          @JsonKey(name: 'data') final List<int>? data,
+          @JsonKey(name: 'reliable') required final bool reliable}) =
+      _$MatchDataImpl;
   const _MatchData._() : super._();
 
   @override
 
   /// The match unique ID.
+  @JsonKey(name: 'match_id')
   String get matchId;
   @override
 
   /// A reference to the user presence that sent this data, if any.
-  UserPresence get presence;
+  @JsonKey(name: 'presence')
+  UserPresence? get presence;
   @override
 
   /// Op code value.
+  @JsonKey(name: 'op_code')
   int get opCode;
   @override
 
   /// Data payload, if any.
-  List<int> get data;
+  @JsonKey(name: 'data')
+  List<int>? get data;
   @override
 
   /// True if this data was delivered reliably, false otherwise.
+  @JsonKey(name: 'reliable')
   bool get reliable;
   @override
   @JsonKey(ignore: true)
@@ -1350,12 +1440,15 @@ abstract class _MatchData extends MatchData {
 /// @nodoc
 mixin _$MatchPresenceEvent {
   /// The match unique ID.
+  @JsonKey(name: 'match_id')
   String get matchId => throw _privateConstructorUsedError;
 
   /// The user presence that joined the match.
+  @JsonKey(name: 'joins')
   List<UserPresence> get joins => throw _privateConstructorUsedError;
 
   /// The user presence that left the match.
+  @JsonKey(name: 'leaves')
   List<UserPresence> get leaves => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -1370,7 +1463,9 @@ abstract class $MatchPresenceEventCopyWith<$Res> {
       _$MatchPresenceEventCopyWithImpl<$Res, MatchPresenceEvent>;
   @useResult
   $Res call(
-      {String matchId, List<UserPresence> joins, List<UserPresence> leaves});
+      {@JsonKey(name: 'match_id') String matchId,
+      @JsonKey(name: 'joins') List<UserPresence> joins,
+      @JsonKey(name: 'leaves') List<UserPresence> leaves});
 }
 
 /// @nodoc
@@ -1416,7 +1511,9 @@ abstract class _$$MatchPresenceEventImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String matchId, List<UserPresence> joins, List<UserPresence> leaves});
+      {@JsonKey(name: 'match_id') String matchId,
+      @JsonKey(name: 'joins') List<UserPresence> joins,
+      @JsonKey(name: 'leaves') List<UserPresence> leaves});
 }
 
 /// @nodoc
@@ -1455,15 +1552,16 @@ class __$$MatchPresenceEventImplCopyWithImpl<$Res>
 
 class _$MatchPresenceEventImpl extends _MatchPresenceEvent {
   const _$MatchPresenceEventImpl(
-      {required this.matchId,
-      required final List<UserPresence> joins,
-      required final List<UserPresence> leaves})
+      {@JsonKey(name: 'match_id') required this.matchId,
+      @JsonKey(name: 'joins') required final List<UserPresence> joins,
+      @JsonKey(name: 'leaves') required final List<UserPresence> leaves})
       : _joins = joins,
         _leaves = leaves,
         super._();
 
   /// The match unique ID.
   @override
+  @JsonKey(name: 'match_id')
   final String matchId;
 
   /// The user presence that joined the match.
@@ -1471,6 +1569,7 @@ class _$MatchPresenceEventImpl extends _MatchPresenceEvent {
 
   /// The user presence that joined the match.
   @override
+  @JsonKey(name: 'joins')
   List<UserPresence> get joins {
     if (_joins is EqualUnmodifiableListView) return _joins;
     // ignore: implicit_dynamic_type
@@ -1482,6 +1581,7 @@ class _$MatchPresenceEventImpl extends _MatchPresenceEvent {
 
   /// The user presence that left the match.
   @override
+  @JsonKey(name: 'leaves')
   List<UserPresence> get leaves {
     if (_leaves is EqualUnmodifiableListView) return _leaves;
     // ignore: implicit_dynamic_type
@@ -1520,22 +1620,26 @@ class _$MatchPresenceEventImpl extends _MatchPresenceEvent {
 
 abstract class _MatchPresenceEvent extends MatchPresenceEvent {
   const factory _MatchPresenceEvent(
-      {required final String matchId,
-      required final List<UserPresence> joins,
-      required final List<UserPresence> leaves}) = _$MatchPresenceEventImpl;
+          {@JsonKey(name: 'match_id') required final String matchId,
+          @JsonKey(name: 'joins') required final List<UserPresence> joins,
+          @JsonKey(name: 'leaves') required final List<UserPresence> leaves}) =
+      _$MatchPresenceEventImpl;
   const _MatchPresenceEvent._() : super._();
 
   @override
 
   /// The match unique ID.
+  @JsonKey(name: 'match_id')
   String get matchId;
   @override
 
   /// The user presence that joined the match.
+  @JsonKey(name: 'joins')
   List<UserPresence> get joins;
   @override
 
   /// The user presence that left the match.
+  @JsonKey(name: 'leaves')
   List<UserPresence> get leaves;
   @override
   @JsonKey(ignore: true)

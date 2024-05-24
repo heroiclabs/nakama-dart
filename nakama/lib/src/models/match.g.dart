@@ -7,34 +7,34 @@ part of 'match.dart';
 // **************************************************************************
 
 _$MatchImpl _$$MatchImplFromJson(Map<String, dynamic> json) => _$MatchImpl(
-      matchId: json['matchId'] as String,
+      matchId: json['match_id'] as String,
       authoritative: json['authoritative'] as bool,
       label: json['label'] as String,
       size: json['size'] as int,
-      tickRate: json['tickRate'] as int?,
-      handlerName: json['handlerName'] as String?,
+      tickRate: json['tick_rate'] as int?,
+      handlerName: json['handler_name'] as String?,
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$$MatchImplToJson(_$MatchImpl instance) =>
     <String, dynamic>{
-      'matchId': instance.matchId,
+      'match_id': instance.matchId,
       'authoritative': instance.authoritative,
       'label': instance.label,
       'size': instance.size,
-      'tickRate': instance.tickRate,
-      'handlerName': instance.handlerName,
+      'tick_rate': instance.tickRate,
+      'handler_name': instance.handlerName,
       'runtimeType': instance.$type,
     };
 
 _$RealtimeMatchImpl _$$RealtimeMatchImplFromJson(Map<String, dynamic> json) =>
     _$RealtimeMatchImpl(
-      matchId: json['matchId'] as String,
+      matchId: json['match_id'] as String,
       authoritative: json['authoritative'] as bool,
       label: json['label'] as String,
       size: json['size'] as int,
-      tickRate: json['tickRate'] as int?,
-      handlerName: json['handlerName'] as String?,
+      tickRate: json['tick_rate'] as int?,
+      handlerName: json['handler_name'] as String?,
       presences: (json['presences'] as List<dynamic>)
           .map((e) => UserPresence.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -43,12 +43,12 @@ _$RealtimeMatchImpl _$$RealtimeMatchImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$RealtimeMatchImplToJson(_$RealtimeMatchImpl instance) =>
     <String, dynamic>{
-      'matchId': instance.matchId,
+      'match_id': instance.matchId,
       'authoritative': instance.authoritative,
       'label': instance.label,
       'size': instance.size,
-      'tickRate': instance.tickRate,
-      'handlerName': instance.handlerName,
+      'tick_rate': instance.tickRate,
+      'handler_name': instance.handlerName,
       'presences': instance.presences,
       'runtimeType': instance.$type,
     };

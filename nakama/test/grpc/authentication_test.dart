@@ -41,6 +41,7 @@ void main() {
       final session = await client.authenticateEmail(
         password: password,
         username: username,
+        create: false,
       );
 
       expect(session, isNotNull);
@@ -58,6 +59,7 @@ void main() {
       final session = await client.authenticateEmail(
         email: faker.internet.email(),
         password: faker.internet.password(),
+        create: true,
       );
 
       final account = await client.getAccount(session);

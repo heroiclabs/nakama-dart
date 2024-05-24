@@ -12,17 +12,17 @@ class Group with _$Group {
 
   const factory Group({
     required String id,
-    String? creatorId,
-    String? name,
-    String? description,
-    String? langTag,
-    String? metadata,
-    String? avatarUrl,
-    bool? open,
-    int? edgeCount,
-    int? maxCount,
-    DateTime? createTime,
-    DateTime? updateTime,
+    @JsonKey(name: 'creator_id') String? creatorId,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'lang_tag') String? langTag,
+    @JsonKey(name: 'metadata') String? metadata,
+    @JsonKey(name: 'avatar_url') String? avatarUrl,
+    @JsonKey(name: 'open') bool? open,
+    @JsonKey(name: 'edge_count') int? edgeCount,
+    @JsonKey(name: 'max_count') int? maxCount,
+    @JsonKey(name: 'create_time') DateTime? createTime,
+    @JsonKey(name: 'update_time') DateTime? updateTime,
   }) = _Group;
 
   factory Group.fromJson(Map<String, Object?> json) => _$GroupFromJson(json);
@@ -49,7 +49,7 @@ class GroupList with _$GroupList {
 
   const factory GroupList({
     String? cursor,
-    required List<Group> groups,
+    required List<Group>? groups,
   }) = _GroupList;
 
   factory GroupList.fromJson(Map<String, Object?> json) => _$GroupListFromJson(json);
@@ -66,7 +66,7 @@ class UserGroupList with _$UserGroupList {
 
   const factory UserGroupList({
     String? cursor,
-    @JsonKey(name: 'user_groups') required List<UserGroup> userGroups,
+    @JsonKey(name: 'user_groups') required List<UserGroup>? userGroups,
   }) = _UserGroupList;
 
   factory UserGroupList.fromJson(Map<String, Object?> json) => _$UserGroupListFromJson(json);
@@ -100,7 +100,7 @@ class GroupUserList with _$GroupUserList {
 
   const factory GroupUserList({
     String? cursor,
-    required List<GroupUser> groupUsers,
+    @JsonKey(name: 'group_users') required List<GroupUser> groupUsers,
   }) = _GroupUserList;
 
   factory GroupUserList.fromJson(Map<String, Object?> json) => _$GroupUserListFromJson(json);

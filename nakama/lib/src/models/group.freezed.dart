@@ -12,7 +12,7 @@ part of 'group.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Group _$GroupFromJson(Map<String, dynamic> json) {
   return _Group.fromJson(json);
@@ -21,16 +21,27 @@ Group _$GroupFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Group {
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'creator_id')
   String? get creatorId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'description')
   String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'lang_tag')
   String? get langTag => throw _privateConstructorUsedError;
+  @JsonKey(name: 'metadata')
   String? get metadata => throw _privateConstructorUsedError;
+  @JsonKey(name: 'avatar_url')
   String? get avatarUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'open')
   bool? get open => throw _privateConstructorUsedError;
+  @JsonKey(name: 'edge_count')
   int? get edgeCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'max_count')
   int? get maxCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'create_time')
   DateTime? get createTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'update_time')
   DateTime? get updateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,17 +56,17 @@ abstract class $GroupCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String? creatorId,
-      String? name,
-      String? description,
-      String? langTag,
-      String? metadata,
-      String? avatarUrl,
-      bool? open,
-      int? edgeCount,
-      int? maxCount,
-      DateTime? createTime,
-      DateTime? updateTime});
+      @JsonKey(name: 'creator_id') String? creatorId,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'lang_tag') String? langTag,
+      @JsonKey(name: 'metadata') String? metadata,
+      @JsonKey(name: 'avatar_url') String? avatarUrl,
+      @JsonKey(name: 'open') bool? open,
+      @JsonKey(name: 'edge_count') int? edgeCount,
+      @JsonKey(name: 'max_count') int? maxCount,
+      @JsonKey(name: 'create_time') DateTime? createTime,
+      @JsonKey(name: 'update_time') DateTime? updateTime});
 }
 
 /// @nodoc
@@ -146,17 +157,17 @@ abstract class _$$GroupImplCopyWith<$Res> implements $GroupCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String? creatorId,
-      String? name,
-      String? description,
-      String? langTag,
-      String? metadata,
-      String? avatarUrl,
-      bool? open,
-      int? edgeCount,
-      int? maxCount,
-      DateTime? createTime,
-      DateTime? updateTime});
+      @JsonKey(name: 'creator_id') String? creatorId,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'description') String? description,
+      @JsonKey(name: 'lang_tag') String? langTag,
+      @JsonKey(name: 'metadata') String? metadata,
+      @JsonKey(name: 'avatar_url') String? avatarUrl,
+      @JsonKey(name: 'open') bool? open,
+      @JsonKey(name: 'edge_count') int? edgeCount,
+      @JsonKey(name: 'max_count') int? maxCount,
+      @JsonKey(name: 'create_time') DateTime? createTime,
+      @JsonKey(name: 'update_time') DateTime? updateTime});
 }
 
 /// @nodoc
@@ -241,17 +252,17 @@ class __$$GroupImplCopyWithImpl<$Res>
 class _$GroupImpl extends _Group {
   const _$GroupImpl(
       {required this.id,
-      this.creatorId,
-      this.name,
-      this.description,
-      this.langTag,
-      this.metadata,
-      this.avatarUrl,
-      this.open,
-      this.edgeCount,
-      this.maxCount,
-      this.createTime,
-      this.updateTime})
+      @JsonKey(name: 'creator_id') this.creatorId,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'description') this.description,
+      @JsonKey(name: 'lang_tag') this.langTag,
+      @JsonKey(name: 'metadata') this.metadata,
+      @JsonKey(name: 'avatar_url') this.avatarUrl,
+      @JsonKey(name: 'open') this.open,
+      @JsonKey(name: 'edge_count') this.edgeCount,
+      @JsonKey(name: 'max_count') this.maxCount,
+      @JsonKey(name: 'create_time') this.createTime,
+      @JsonKey(name: 'update_time') this.updateTime})
       : super._();
 
   factory _$GroupImpl.fromJson(Map<String, dynamic> json) =>
@@ -260,26 +271,37 @@ class _$GroupImpl extends _Group {
   @override
   final String id;
   @override
+  @JsonKey(name: 'creator_id')
   final String? creatorId;
   @override
+  @JsonKey(name: 'name')
   final String? name;
   @override
+  @JsonKey(name: 'description')
   final String? description;
   @override
+  @JsonKey(name: 'lang_tag')
   final String? langTag;
   @override
+  @JsonKey(name: 'metadata')
   final String? metadata;
   @override
+  @JsonKey(name: 'avatar_url')
   final String? avatarUrl;
   @override
+  @JsonKey(name: 'open')
   final bool? open;
   @override
+  @JsonKey(name: 'edge_count')
   final int? edgeCount;
   @override
+  @JsonKey(name: 'max_count')
   final int? maxCount;
   @override
+  @JsonKey(name: 'create_time')
   final DateTime? createTime;
   @override
+  @JsonKey(name: 'update_time')
   final DateTime? updateTime;
 
   @override
@@ -348,17 +370,17 @@ class _$GroupImpl extends _Group {
 abstract class _Group extends Group {
   const factory _Group(
       {required final String id,
-      final String? creatorId,
-      final String? name,
-      final String? description,
-      final String? langTag,
-      final String? metadata,
-      final String? avatarUrl,
-      final bool? open,
-      final int? edgeCount,
-      final int? maxCount,
-      final DateTime? createTime,
-      final DateTime? updateTime}) = _$GroupImpl;
+      @JsonKey(name: 'creator_id') final String? creatorId,
+      @JsonKey(name: 'name') final String? name,
+      @JsonKey(name: 'description') final String? description,
+      @JsonKey(name: 'lang_tag') final String? langTag,
+      @JsonKey(name: 'metadata') final String? metadata,
+      @JsonKey(name: 'avatar_url') final String? avatarUrl,
+      @JsonKey(name: 'open') final bool? open,
+      @JsonKey(name: 'edge_count') final int? edgeCount,
+      @JsonKey(name: 'max_count') final int? maxCount,
+      @JsonKey(name: 'create_time') final DateTime? createTime,
+      @JsonKey(name: 'update_time') final DateTime? updateTime}) = _$GroupImpl;
   const _Group._() : super._();
 
   factory _Group.fromJson(Map<String, dynamic> json) = _$GroupImpl.fromJson;
@@ -366,26 +388,37 @@ abstract class _Group extends Group {
   @override
   String get id;
   @override
+  @JsonKey(name: 'creator_id')
   String? get creatorId;
   @override
+  @JsonKey(name: 'name')
   String? get name;
   @override
+  @JsonKey(name: 'description')
   String? get description;
   @override
+  @JsonKey(name: 'lang_tag')
   String? get langTag;
   @override
+  @JsonKey(name: 'metadata')
   String? get metadata;
   @override
+  @JsonKey(name: 'avatar_url')
   String? get avatarUrl;
   @override
+  @JsonKey(name: 'open')
   bool? get open;
   @override
+  @JsonKey(name: 'edge_count')
   int? get edgeCount;
   @override
+  @JsonKey(name: 'max_count')
   int? get maxCount;
   @override
+  @JsonKey(name: 'create_time')
   DateTime? get createTime;
   @override
+  @JsonKey(name: 'update_time')
   DateTime? get updateTime;
   @override
   @JsonKey(ignore: true)
@@ -400,7 +433,7 @@ GroupList _$GroupListFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GroupList {
   String? get cursor => throw _privateConstructorUsedError;
-  List<Group> get groups => throw _privateConstructorUsedError;
+  List<Group>? get groups => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -413,7 +446,7 @@ abstract class $GroupListCopyWith<$Res> {
   factory $GroupListCopyWith(GroupList value, $Res Function(GroupList) then) =
       _$GroupListCopyWithImpl<$Res, GroupList>;
   @useResult
-  $Res call({String? cursor, List<Group> groups});
+  $Res call({String? cursor, List<Group>? groups});
 }
 
 /// @nodoc
@@ -430,17 +463,17 @@ class _$GroupListCopyWithImpl<$Res, $Val extends GroupList>
   @override
   $Res call({
     Object? cursor = freezed,
-    Object? groups = null,
+    Object? groups = freezed,
   }) {
     return _then(_value.copyWith(
       cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
               as String?,
-      groups: null == groups
+      groups: freezed == groups
           ? _value.groups
           : groups // ignore: cast_nullable_to_non_nullable
-              as List<Group>,
+              as List<Group>?,
     ) as $Val);
   }
 }
@@ -453,7 +486,7 @@ abstract class _$$GroupListImplCopyWith<$Res>
       __$$GroupListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? cursor, List<Group> groups});
+  $Res call({String? cursor, List<Group>? groups});
 }
 
 /// @nodoc
@@ -468,17 +501,17 @@ class __$$GroupListImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? cursor = freezed,
-    Object? groups = null,
+    Object? groups = freezed,
   }) {
     return _then(_$GroupListImpl(
       cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
               as String?,
-      groups: null == groups
+      groups: freezed == groups
           ? _value._groups
           : groups // ignore: cast_nullable_to_non_nullable
-              as List<Group>,
+              as List<Group>?,
     ));
   }
 }
@@ -486,7 +519,7 @@ class __$$GroupListImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$GroupListImpl extends _GroupList {
-  const _$GroupListImpl({this.cursor, required final List<Group> groups})
+  const _$GroupListImpl({this.cursor, required final List<Group>? groups})
       : _groups = groups,
         super._();
 
@@ -495,12 +528,14 @@ class _$GroupListImpl extends _GroupList {
 
   @override
   final String? cursor;
-  final List<Group> _groups;
+  final List<Group>? _groups;
   @override
-  List<Group> get groups {
+  List<Group>? get groups {
+    final value = _groups;
+    if (value == null) return null;
     if (_groups is EqualUnmodifiableListView) return _groups;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_groups);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -539,7 +574,7 @@ class _$GroupListImpl extends _GroupList {
 abstract class _GroupList extends GroupList {
   const factory _GroupList(
       {final String? cursor,
-      required final List<Group> groups}) = _$GroupListImpl;
+      required final List<Group>? groups}) = _$GroupListImpl;
   const _GroupList._() : super._();
 
   factory _GroupList.fromJson(Map<String, dynamic> json) =
@@ -548,7 +583,7 @@ abstract class _GroupList extends GroupList {
   @override
   String? get cursor;
   @override
-  List<Group> get groups;
+  List<Group>? get groups;
   @override
   @JsonKey(ignore: true)
   _$$GroupListImplCopyWith<_$GroupListImpl> get copyWith =>
@@ -563,7 +598,7 @@ UserGroupList _$UserGroupListFromJson(Map<String, dynamic> json) {
 mixin _$UserGroupList {
   String? get cursor => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_groups')
-  List<UserGroup> get userGroups => throw _privateConstructorUsedError;
+  List<UserGroup>? get userGroups => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -579,7 +614,7 @@ abstract class $UserGroupListCopyWith<$Res> {
   @useResult
   $Res call(
       {String? cursor,
-      @JsonKey(name: 'user_groups') List<UserGroup> userGroups});
+      @JsonKey(name: 'user_groups') List<UserGroup>? userGroups});
 }
 
 /// @nodoc
@@ -596,17 +631,17 @@ class _$UserGroupListCopyWithImpl<$Res, $Val extends UserGroupList>
   @override
   $Res call({
     Object? cursor = freezed,
-    Object? userGroups = null,
+    Object? userGroups = freezed,
   }) {
     return _then(_value.copyWith(
       cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
               as String?,
-      userGroups: null == userGroups
+      userGroups: freezed == userGroups
           ? _value.userGroups
           : userGroups // ignore: cast_nullable_to_non_nullable
-              as List<UserGroup>,
+              as List<UserGroup>?,
     ) as $Val);
   }
 }
@@ -621,7 +656,7 @@ abstract class _$$UserGroupListImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? cursor,
-      @JsonKey(name: 'user_groups') List<UserGroup> userGroups});
+      @JsonKey(name: 'user_groups') List<UserGroup>? userGroups});
 }
 
 /// @nodoc
@@ -636,17 +671,17 @@ class __$$UserGroupListImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? cursor = freezed,
-    Object? userGroups = null,
+    Object? userGroups = freezed,
   }) {
     return _then(_$UserGroupListImpl(
       cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
               as String?,
-      userGroups: null == userGroups
+      userGroups: freezed == userGroups
           ? _value._userGroups
           : userGroups // ignore: cast_nullable_to_non_nullable
-              as List<UserGroup>,
+              as List<UserGroup>?,
     ));
   }
 }
@@ -656,7 +691,7 @@ class __$$UserGroupListImplCopyWithImpl<$Res>
 class _$UserGroupListImpl extends _UserGroupList {
   const _$UserGroupListImpl(
       {this.cursor,
-      @JsonKey(name: 'user_groups') required final List<UserGroup> userGroups})
+      @JsonKey(name: 'user_groups') required final List<UserGroup>? userGroups})
       : _userGroups = userGroups,
         super._();
 
@@ -665,13 +700,15 @@ class _$UserGroupListImpl extends _UserGroupList {
 
   @override
   final String? cursor;
-  final List<UserGroup> _userGroups;
+  final List<UserGroup>? _userGroups;
   @override
   @JsonKey(name: 'user_groups')
-  List<UserGroup> get userGroups {
+  List<UserGroup>? get userGroups {
+    final value = _userGroups;
+    if (value == null) return null;
     if (_userGroups is EqualUnmodifiableListView) return _userGroups;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_userGroups);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -712,7 +749,7 @@ abstract class _UserGroupList extends UserGroupList {
   const factory _UserGroupList(
       {final String? cursor,
       @JsonKey(name: 'user_groups')
-      required final List<UserGroup> userGroups}) = _$UserGroupListImpl;
+      required final List<UserGroup>? userGroups}) = _$UserGroupListImpl;
   const _UserGroupList._() : super._();
 
   factory _UserGroupList.fromJson(Map<String, dynamic> json) =
@@ -722,7 +759,7 @@ abstract class _UserGroupList extends UserGroupList {
   String? get cursor;
   @override
   @JsonKey(name: 'user_groups')
-  List<UserGroup> get userGroups;
+  List<UserGroup>? get userGroups;
   @override
   @JsonKey(ignore: true)
   _$$UserGroupListImplCopyWith<_$UserGroupListImpl> get copyWith =>
@@ -903,6 +940,7 @@ GroupUserList _$GroupUserListFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GroupUserList {
   String? get cursor => throw _privateConstructorUsedError;
+  @JsonKey(name: 'group_users')
   List<GroupUser> get groupUsers => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -917,7 +955,9 @@ abstract class $GroupUserListCopyWith<$Res> {
           GroupUserList value, $Res Function(GroupUserList) then) =
       _$GroupUserListCopyWithImpl<$Res, GroupUserList>;
   @useResult
-  $Res call({String? cursor, List<GroupUser> groupUsers});
+  $Res call(
+      {String? cursor,
+      @JsonKey(name: 'group_users') List<GroupUser> groupUsers});
 }
 
 /// @nodoc
@@ -957,7 +997,9 @@ abstract class _$$GroupUserListImplCopyWith<$Res>
       __$$GroupUserListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? cursor, List<GroupUser> groupUsers});
+  $Res call(
+      {String? cursor,
+      @JsonKey(name: 'group_users') List<GroupUser> groupUsers});
 }
 
 /// @nodoc
@@ -991,7 +1033,8 @@ class __$$GroupUserListImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GroupUserListImpl extends _GroupUserList {
   const _$GroupUserListImpl(
-      {this.cursor, required final List<GroupUser> groupUsers})
+      {this.cursor,
+      @JsonKey(name: 'group_users') required final List<GroupUser> groupUsers})
       : _groupUsers = groupUsers,
         super._();
 
@@ -1002,6 +1045,7 @@ class _$GroupUserListImpl extends _GroupUserList {
   final String? cursor;
   final List<GroupUser> _groupUsers;
   @override
+  @JsonKey(name: 'group_users')
   List<GroupUser> get groupUsers {
     if (_groupUsers is EqualUnmodifiableListView) return _groupUsers;
     // ignore: implicit_dynamic_type
@@ -1045,6 +1089,7 @@ class _$GroupUserListImpl extends _GroupUserList {
 abstract class _GroupUserList extends GroupUserList {
   const factory _GroupUserList(
       {final String? cursor,
+      @JsonKey(name: 'group_users')
       required final List<GroupUser> groupUsers}) = _$GroupUserListImpl;
   const _GroupUserList._() : super._();
 
@@ -1054,6 +1099,7 @@ abstract class _GroupUserList extends GroupUserList {
   @override
   String? get cursor;
   @override
+  @JsonKey(name: 'group_users')
   List<GroupUser> get groupUsers;
   @override
   @JsonKey(ignore: true)

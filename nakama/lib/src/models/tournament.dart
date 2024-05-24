@@ -10,24 +10,24 @@ class Tournament with _$Tournament {
   const Tournament._();
 
   const factory Tournament({
-    required String id,
-    String? title,
-    String? description,
-    int? category,
-    int? sortOrder,
-    int? size,
-    int? maxSize,
-    int? maxNumScore,
-    bool? canEnter,
-    int? endActive,
-    int? nextReset,
-    String? metadata,
-    DateTime? createTime,
-    DateTime? startTime,
-    DateTime? endTime,
-    int? duration,
-    int? startActive,
-    int? prevReset,
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'title') String? title,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'category') int? category,
+    @JsonKey(name: 'sort_order') int? sortOrder,
+    @JsonKey(name: 'size') int? size,
+    @JsonKey(name: 'max_size') int? maxSize,
+    @JsonKey(name: 'max_num_score') int? maxNumScore,
+    @JsonKey(name: 'can_enter') bool? canEnter,
+    @JsonKey(name: 'end_active') int? endActive,
+    @JsonKey(name: 'next_reset') int? nextReset,
+    @JsonKey(name: 'metadata') String? metadata,
+    @JsonKey(name: 'create_time') DateTime? createTime,
+    @JsonKey(name: 'start_time') DateTime? startTime,
+    @JsonKey(name: 'end_time') DateTime? endTime,
+    @JsonKey(name: 'duration') int? duration,
+    @JsonKey(name: 'start_active') int? startActive,
+    @JsonKey(name: 'prev_reset') int? prevReset,
   }) = _Tournament;
 
   factory Tournament.fromJson(Map<String, Object?> json) => _$TournamentFromJson(json);
@@ -76,10 +76,10 @@ class TournamentRecordList with _$TournamentRecordList {
   const TournamentRecordList._();
 
   const factory TournamentRecordList({
-    required List<LeaderboardRecord> records,
-    required List<LeaderboardRecord> ownerRecords,
-    String? nextCursor,
-    String? previousCursor,
+    @JsonKey(name: 'records') required List<LeaderboardRecord> records,
+    @JsonKey(name: 'owner_records') required List<LeaderboardRecord> ownerRecords,
+    @JsonKey(name: 'next_cursor') String? nextCursor,
+    @JsonKey(name: 'previous_cursor') String? previousCursor,
   }) = _TournamentRecordList;
 
   factory TournamentRecordList.fromJson(Map<String, Object?> json) => _$TournamentRecordListFromJson(json);

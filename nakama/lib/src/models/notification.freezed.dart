@@ -12,7 +12,7 @@ part of 'notification.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Notification _$NotificationFromJson(Map<String, dynamic> json) {
   return _Notification.fromJson(json);
@@ -20,12 +20,19 @@ Notification _$NotificationFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Notification {
+  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'subject')
   String? get subject => throw _privateConstructorUsedError;
+  @JsonKey(name: 'content')
   String? get content => throw _privateConstructorUsedError;
+  @JsonKey(name: 'code')
   int get code => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sender_id')
   String get senderId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'create_time')
   DateTime get createTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'persistent')
   bool get persistent => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,13 +48,13 @@ abstract class $NotificationCopyWith<$Res> {
       _$NotificationCopyWithImpl<$Res, Notification>;
   @useResult
   $Res call(
-      {String id,
-      String? subject,
-      String? content,
-      int code,
-      String senderId,
-      DateTime createTime,
-      bool persistent});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'subject') String? subject,
+      @JsonKey(name: 'content') String? content,
+      @JsonKey(name: 'code') int code,
+      @JsonKey(name: 'sender_id') String senderId,
+      @JsonKey(name: 'create_time') DateTime createTime,
+      @JsonKey(name: 'persistent') bool persistent});
 }
 
 /// @nodoc
@@ -113,13 +120,13 @@ abstract class _$$NotificationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String? subject,
-      String? content,
-      int code,
-      String senderId,
-      DateTime createTime,
-      bool persistent});
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'subject') String? subject,
+      @JsonKey(name: 'content') String? content,
+      @JsonKey(name: 'code') int code,
+      @JsonKey(name: 'sender_id') String senderId,
+      @JsonKey(name: 'create_time') DateTime createTime,
+      @JsonKey(name: 'persistent') bool persistent});
 }
 
 /// @nodoc
@@ -178,31 +185,38 @@ class __$$NotificationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NotificationImpl extends _Notification {
   const _$NotificationImpl(
-      {required this.id,
-      this.subject,
-      this.content,
-      required this.code,
-      required this.senderId,
-      required this.createTime,
-      required this.persistent})
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'subject') this.subject,
+      @JsonKey(name: 'content') this.content,
+      @JsonKey(name: 'code') required this.code,
+      @JsonKey(name: 'sender_id') required this.senderId,
+      @JsonKey(name: 'create_time') required this.createTime,
+      @JsonKey(name: 'persistent') required this.persistent})
       : super._();
 
   factory _$NotificationImpl.fromJson(Map<String, dynamic> json) =>
       _$$NotificationImplFromJson(json);
 
   @override
+  @JsonKey(name: 'id')
   final String id;
   @override
+  @JsonKey(name: 'subject')
   final String? subject;
   @override
+  @JsonKey(name: 'content')
   final String? content;
   @override
+  @JsonKey(name: 'code')
   final int code;
   @override
+  @JsonKey(name: 'sender_id')
   final String senderId;
   @override
+  @JsonKey(name: 'create_time')
   final DateTime createTime;
   @override
+  @JsonKey(name: 'persistent')
   final bool persistent;
 
   @override
@@ -248,31 +262,39 @@ class _$NotificationImpl extends _Notification {
 
 abstract class _Notification extends Notification {
   const factory _Notification(
-      {required final String id,
-      final String? subject,
-      final String? content,
-      required final int code,
-      required final String senderId,
-      required final DateTime createTime,
-      required final bool persistent}) = _$NotificationImpl;
+          {@JsonKey(name: 'id') required final String id,
+          @JsonKey(name: 'subject') final String? subject,
+          @JsonKey(name: 'content') final String? content,
+          @JsonKey(name: 'code') required final int code,
+          @JsonKey(name: 'sender_id') required final String senderId,
+          @JsonKey(name: 'create_time') required final DateTime createTime,
+          @JsonKey(name: 'persistent') required final bool persistent}) =
+      _$NotificationImpl;
   const _Notification._() : super._();
 
   factory _Notification.fromJson(Map<String, dynamic> json) =
       _$NotificationImpl.fromJson;
 
   @override
+  @JsonKey(name: 'id')
   String get id;
   @override
+  @JsonKey(name: 'subject')
   String? get subject;
   @override
+  @JsonKey(name: 'content')
   String? get content;
   @override
+  @JsonKey(name: 'code')
   int get code;
   @override
+  @JsonKey(name: 'sender_id')
   String get senderId;
   @override
+  @JsonKey(name: 'create_time')
   DateTime get createTime;
   @override
+  @JsonKey(name: 'persistent')
   bool get persistent;
   @override
   @JsonKey(ignore: true)
@@ -286,7 +308,9 @@ NotificationList _$NotificationListFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NotificationList {
+  @JsonKey(name: 'cacheable_cursor')
   String? get cursor => throw _privateConstructorUsedError;
+  @JsonKey(name: 'notifications')
   List<Notification> get notifications => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -301,7 +325,9 @@ abstract class $NotificationListCopyWith<$Res> {
           NotificationList value, $Res Function(NotificationList) then) =
       _$NotificationListCopyWithImpl<$Res, NotificationList>;
   @useResult
-  $Res call({String? cursor, List<Notification> notifications});
+  $Res call(
+      {@JsonKey(name: 'cacheable_cursor') String? cursor,
+      @JsonKey(name: 'notifications') List<Notification> notifications});
 }
 
 /// @nodoc
@@ -341,7 +367,9 @@ abstract class _$$NotificationListImplCopyWith<$Res>
       __$$NotificationListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? cursor, List<Notification> notifications});
+  $Res call(
+      {@JsonKey(name: 'cacheable_cursor') String? cursor,
+      @JsonKey(name: 'notifications') List<Notification> notifications});
 }
 
 /// @nodoc
@@ -375,7 +403,9 @@ class __$$NotificationListImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NotificationListImpl extends _NotificationList {
   const _$NotificationListImpl(
-      {this.cursor, required final List<Notification> notifications})
+      {@JsonKey(name: 'cacheable_cursor') this.cursor,
+      @JsonKey(name: 'notifications')
+      required final List<Notification> notifications})
       : _notifications = notifications,
         super._();
 
@@ -383,9 +413,11 @@ class _$NotificationListImpl extends _NotificationList {
       _$$NotificationListImplFromJson(json);
 
   @override
+  @JsonKey(name: 'cacheable_cursor')
   final String? cursor;
   final List<Notification> _notifications;
   @override
+  @JsonKey(name: 'notifications')
   List<Notification> get notifications {
     if (_notifications is EqualUnmodifiableListView) return _notifications;
     // ignore: implicit_dynamic_type
@@ -429,7 +461,8 @@ class _$NotificationListImpl extends _NotificationList {
 
 abstract class _NotificationList extends NotificationList {
   const factory _NotificationList(
-          {final String? cursor,
+          {@JsonKey(name: 'cacheable_cursor') final String? cursor,
+          @JsonKey(name: 'notifications')
           required final List<Notification> notifications}) =
       _$NotificationListImpl;
   const _NotificationList._() : super._();
@@ -438,8 +471,10 @@ abstract class _NotificationList extends NotificationList {
       _$NotificationListImpl.fromJson;
 
   @override
+  @JsonKey(name: 'cacheable_cursor')
   String? get cursor;
   @override
+  @JsonKey(name: 'notifications')
   List<Notification> get notifications;
   @override
   @JsonKey(ignore: true)

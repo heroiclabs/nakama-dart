@@ -20,66 +20,88 @@ void main() {
     });
 
     test('write storage object', () async {
-      await client.writeStorageObject(
+      await client.writeStorageObjects(
         session: session,
-        collection: 'stats',
-        key: 'skills',
-        value: '{"skill":25}',
+        objects: [
+          const StorageObjectWrite(
+            collection: 'stats',
+            key: 'skills',
+            value: '{"skill": 25}',
+          ),
+        ],
       );
     });
 
     test('write storage object with permissions', () async {
-      await client.writeStorageObject(
+      await client.writeStorageObjects(
         session: session,
-        collection: 'stats',
-        key: 'scores',
-        value: '{"skill":25}',
-        writePermission: StorageWritePermission.ownerWrite,
-        readPermission: StorageReadPermission.publicRead,
+        objects: [
+          const StorageObjectWrite(
+            collection: 'stats',
+            key: 'scores',
+            value: '{"skill": 25}',
+            permissionWrite: StorageWritePermission.ownerWrite,
+            permissionRead: StorageReadPermission.publicRead,
+          ),
+        ],
       );
+
+      // Cleanup written objects
+      await client.deleteStorageObjects(session: session, objectIds: [
+        const StorageObjectId(collection: 'stats', key: 'scores'),
+      ]);
     });
 
     test('read storage object', () async {
-      await client.writeStorageObject(
+      await client.writeStorageObjects(
         session: session,
-        collection: 'stats',
-        key: 'skills',
-        value: '{"skill": 100}',
-        writePermission: StorageWritePermission.ownerWrite,
-        readPermission: StorageReadPermission.publicRead,
+        objects: [
+          const StorageObjectWrite(
+            collection: 'stats',
+            key: 'skills',
+            value: '{"skill": 100}',
+            permissionRead: StorageReadPermission.publicRead,
+            permissionWrite: StorageWritePermission.ownerWrite,
+          ),
+        ],
       );
 
-      final res = await client.readStorageObject(
+      final res = await client.readStorageObjects(
         session: session,
-        collection: 'stats',
-        key: 'skills',
-        userId: session.userId,
+        objectIds: [
+          StorageObjectId(
+            collection: 'stats',
+            key: 'skills',
+            userId: session.userId,
+          ),
+        ],
       );
 
-      expect(res, isA<StorageObject>());
-      expect(res!.value, equals('{"skill": 100}'));
+      expect(res, isA<List<StorageObject>>());
+      expect(res.first.value, equals('{"skill": 100}'));
     });
 
     test('list storage objects', () async {
       // Write two objects
-      await Future.wait([
-        client.writeStorageObject(
-          session: session,
-          collection: 'stats',
-          key: 'skills',
-          value: '{"skill": 100}',
-          writePermission: StorageWritePermission.ownerWrite,
-          readPermission: StorageReadPermission.publicRead,
-        ),
-        client.writeStorageObject(
-          session: session,
-          collection: 'stats',
-          key: 'achievements',
-          value: '{"hero": 20}',
-          writePermission: StorageWritePermission.ownerWrite,
-          readPermission: StorageReadPermission.publicRead,
-        ),
-      ]);
+      await client.writeStorageObjects(
+        session: session,
+        objects: [
+          const StorageObjectWrite(
+            collection: 'stats',
+            key: 'skills',
+            value: '{"skill": 100}',
+            permissionRead: StorageReadPermission.publicRead,
+            permissionWrite: StorageWritePermission.ownerWrite,
+          ),
+          const StorageObjectWrite(
+            collection: 'stats',
+            key: 'achievements',
+            value: '{"hero": 20}',
+            permissionWrite: StorageWritePermission.ownerWrite,
+            permissionRead: StorageReadPermission.publicRead,
+          ),
+        ],
+      );
 
       final res = await client.listStorageObjects(
         session: session,
@@ -93,39 +115,51 @@ void main() {
     });
 
     test('delete storage object', () async {
-      await client.writeStorageObject(
+      await client.writeStorageObjects(
         session: session,
-        collection: 'stats',
-        key: 'skills',
-        value: '{"skill": 100}',
-        writePermission: StorageWritePermission.ownerWrite,
-        readPermission: StorageReadPermission.publicRead,
+        objects: [
+          const StorageObjectWrite(
+            collection: 'stats',
+            key: 'skills',
+            value: '{"skill": 100}',
+            permissionRead: StorageReadPermission.publicRead,
+            permissionWrite: StorageWritePermission.ownerWrite,
+          ),
+        ],
       );
 
       // Be sure we get a result
-      final res = await client.readStorageObject(
+      final res = await client.readStorageObjects(
         session: session,
-        collection: 'stats',
-        key: 'skills',
-        userId: session.userId,
+        objectIds: [
+          StorageObjectId(
+            collection: 'stats',
+            key: 'skills',
+            userId: session.userId,
+          ),
+        ],
       );
 
-      expect(res, isA<StorageObject>());
-      expect(res!.value, equals('{"skill": 100}'));
+      expect(res, isA<List<StorageObject>>());
+      expect(res.first.value, equals('{"skill": 100}'));
 
       // Delete object
-      await client.deleteStorageObject(session: session, objectIds: [
+      await client.deleteStorageObjects(session: session, objectIds: [
         const StorageObjectId(collection: 'stats', key: 'skills'),
       ]);
 
-      final afterRes = await client.readStorageObject(
+      final afterRes = await client.readStorageObjects(
         session: session,
-        collection: 'stats',
-        key: 'skills',
-        userId: session.userId,
+        objectIds: [
+          StorageObjectId(
+            collection: 'stats',
+            key: 'skills',
+            userId: session.userId,
+          ),
+        ],
       );
 
-      expect(afterRes, isNull);
+      expect(afterRes, isEmpty);
     });
   });
 }

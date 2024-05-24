@@ -9,13 +9,13 @@ class Notification with _$Notification {
   const Notification._();
 
   const factory Notification({
-    required String id,
-    String? subject,
-    String? content,
-    required int code,
-    required String senderId,
-    required DateTime createTime,
-    required bool persistent,
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'subject') String? subject,
+    @JsonKey(name: 'content') String? content,
+    @JsonKey(name: 'code') required int code,
+    @JsonKey(name: 'sender_id') required String senderId,
+    @JsonKey(name: 'create_time') required DateTime createTime,
+    @JsonKey(name: 'persistent') required bool persistent,
   }) = _Notification;
 
   factory Notification.fromJson(Map<String, Object?> json) => _$NotificationFromJson(json);
@@ -36,8 +36,8 @@ class NotificationList with _$NotificationList {
   const NotificationList._();
 
   const factory NotificationList({
-    String? cursor,
-    required List<Notification> notifications,
+    @JsonKey(name: 'cacheable_cursor') String? cursor,
+    @JsonKey(name: 'notifications') required List<Notification> notifications,
   }) = _NotificationList;
 
   factory NotificationList.fromJson(Map<String, Object?> json) => _$NotificationListFromJson(json);

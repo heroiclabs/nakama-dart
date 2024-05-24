@@ -11,12 +11,12 @@ class Match with _$Match {
   const Match._();
 
   const factory Match({
-    required String matchId,
-    required bool authoritative,
-    required String label,
-    required int size,
-    int? tickRate,
-    String? handlerName,
+    @JsonKey(name: 'match_id') required String matchId,
+    @JsonKey(name: 'authoritative') required bool authoritative,
+    @JsonKey(name: 'label') required String label,
+    @JsonKey(name: 'size') required int size,
+    @JsonKey(name: 'tick_rate') int? tickRate,
+    @JsonKey(name: 'handler_name') String? handlerName,
   }) = _Match;
 
   factory Match.realtime({
@@ -56,22 +56,22 @@ class Party with _$Party {
 
   const factory Party({
     /// Unique party identifier.
-    required String partyId,
+    @JsonKey(name: 'party_id') required String partyId,
 
     /// Open flag.
-    required bool open,
+    @JsonKey(name: 'open') required bool open,
 
     /// Maximum number of party members.
-    required int maxSize,
+    @JsonKey(name: 'max_size') required int maxSize,
 
     /// Self.
-    required UserPresence self,
+    @JsonKey(name: 'self') required UserPresence self,
 
     /// Leader.
-    required UserPresence leader,
+    @JsonKey(name: 'leader') required UserPresence leader,
 
     /// All current party members.
-    required List<UserPresence> presences,
+    @JsonKey(name: 'presences') required List<UserPresence> presences,
   }) = _Party;
 
   factory Party.fromDto(rtpb.Party dto) => Party(

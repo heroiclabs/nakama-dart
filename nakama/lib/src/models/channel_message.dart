@@ -9,19 +9,19 @@ class ChannelMessage with _$ChannelMessage {
   const ChannelMessage._();
 
   const factory ChannelMessage({
-    required String channelId,
-    required String messageId,
-    required int code,
-    required String senderId,
-    required String username,
-    required String content,
-    required DateTime createTime,
-    required DateTime updateTime,
-    required bool persistent,
-    required String roomName,
-    required String groupId,
-    required String userIdOne,
-    required String userIdTwo,
+    @JsonKey(name: 'channel_id') required String channelId,
+    @JsonKey(name: 'message_id') required String messageId,
+    @JsonKey(name: 'code') required int code,
+    @JsonKey(name: 'sender_id') required String senderId,
+    @JsonKey(name: 'username') required String username,
+    @JsonKey(name: 'content') required String content,
+    @JsonKey(name: 'create_time') required DateTime createTime,
+    @JsonKey(name: 'update_time') required DateTime updateTime,
+    @JsonKey(name: 'persistent') required bool persistent,
+    @JsonKey(name: 'room_name') required String? roomName,
+    @JsonKey(name: 'group_id') required String groupId,
+    @JsonKey(name: 'user_id_one') required String? userIdOne,
+    @JsonKey(name: 'user_id_two') required String? userIdTwo,
   }) = _ChannelMessage;
 
   factory ChannelMessage.fromJson(Map<String, Object?> json) => _$ChannelMessageFromJson(json);
@@ -48,10 +48,10 @@ class ChannelMessageList with _$ChannelMessageList {
   const ChannelMessageList._();
 
   const factory ChannelMessageList({
-    required List<ChannelMessage> messages,
-    required String nextCursor,
-    required String prevCursor,
-    required String cacheableCursor,
+    @JsonKey(name: 'messages') required List<ChannelMessage>? messages,
+    @JsonKey(name: 'next_cursor') required String? nextCursor,
+    @JsonKey(name: 'prev_cursor') required String? prevCursor,
+    @JsonKey(name: 'cacheable_cursor') required String? cacheableCursor,
   }) = _ChannelMessageList;
 
   factory ChannelMessageList.fromJson(Map<String, Object?> json) => _$ChannelMessageListFromJson(json);

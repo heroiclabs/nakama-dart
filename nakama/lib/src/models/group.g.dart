@@ -8,44 +8,44 @@ part of 'group.dart';
 
 _$GroupImpl _$$GroupImplFromJson(Map<String, dynamic> json) => _$GroupImpl(
       id: json['id'] as String,
-      creatorId: json['creatorId'] as String?,
+      creatorId: json['creator_id'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
-      langTag: json['langTag'] as String?,
+      langTag: json['lang_tag'] as String?,
       metadata: json['metadata'] as String?,
-      avatarUrl: json['avatarUrl'] as String?,
+      avatarUrl: json['avatar_url'] as String?,
       open: json['open'] as bool?,
-      edgeCount: json['edgeCount'] as int?,
-      maxCount: json['maxCount'] as int?,
-      createTime: json['createTime'] == null
+      edgeCount: json['edge_count'] as int?,
+      maxCount: json['max_count'] as int?,
+      createTime: json['create_time'] == null
           ? null
-          : DateTime.parse(json['createTime'] as String),
-      updateTime: json['updateTime'] == null
+          : DateTime.parse(json['create_time'] as String),
+      updateTime: json['update_time'] == null
           ? null
-          : DateTime.parse(json['updateTime'] as String),
+          : DateTime.parse(json['update_time'] as String),
     );
 
 Map<String, dynamic> _$$GroupImplToJson(_$GroupImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'creatorId': instance.creatorId,
+      'creator_id': instance.creatorId,
       'name': instance.name,
       'description': instance.description,
-      'langTag': instance.langTag,
+      'lang_tag': instance.langTag,
       'metadata': instance.metadata,
-      'avatarUrl': instance.avatarUrl,
+      'avatar_url': instance.avatarUrl,
       'open': instance.open,
-      'edgeCount': instance.edgeCount,
-      'maxCount': instance.maxCount,
-      'createTime': instance.createTime?.toIso8601String(),
-      'updateTime': instance.updateTime?.toIso8601String(),
+      'edge_count': instance.edgeCount,
+      'max_count': instance.maxCount,
+      'create_time': instance.createTime?.toIso8601String(),
+      'update_time': instance.updateTime?.toIso8601String(),
     };
 
 _$GroupListImpl _$$GroupListImplFromJson(Map<String, dynamic> json) =>
     _$GroupListImpl(
       cursor: json['cursor'] as String?,
-      groups: (json['groups'] as List<dynamic>)
-          .map((e) => Group.fromJson(e as Map<String, dynamic>))
+      groups: (json['groups'] as List<dynamic>?)
+          ?.map((e) => Group.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -58,8 +58,8 @@ Map<String, dynamic> _$$GroupListImplToJson(_$GroupListImpl instance) =>
 _$UserGroupListImpl _$$UserGroupListImplFromJson(Map<String, dynamic> json) =>
     _$UserGroupListImpl(
       cursor: json['cursor'] as String?,
-      userGroups: (json['user_groups'] as List<dynamic>)
-          .map((e) => UserGroup.fromJson(e as Map<String, dynamic>))
+      userGroups: (json['user_groups'] as List<dynamic>?)
+          ?.map((e) => UserGroup.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -91,7 +91,7 @@ const _$GroupMembershipStateEnumMap = {
 _$GroupUserListImpl _$$GroupUserListImplFromJson(Map<String, dynamic> json) =>
     _$GroupUserListImpl(
       cursor: json['cursor'] as String?,
-      groupUsers: (json['groupUsers'] as List<dynamic>)
+      groupUsers: (json['group_users'] as List<dynamic>)
           .map((e) => GroupUser.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -99,7 +99,7 @@ _$GroupUserListImpl _$$GroupUserListImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$GroupUserListImplToJson(_$GroupUserListImpl instance) =>
     <String, dynamic>{
       'cursor': instance.cursor,
-      'groupUsers': instance.groupUsers,
+      'group_users': instance.groupUsers,
     };
 
 _$GroupUserImpl _$$GroupUserImplFromJson(Map<String, dynamic> json) =>

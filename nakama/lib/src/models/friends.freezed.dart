@@ -12,7 +12,7 @@ part of 'friends.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 FriendsList _$FriendsListFromJson(Map<String, dynamic> json) {
   return _FriendsList.fromJson(json);
@@ -21,7 +21,7 @@ FriendsList _$FriendsListFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$FriendsList {
   String? get cursor => throw _privateConstructorUsedError;
-  List<Friend> get friends => throw _privateConstructorUsedError;
+  List<Friend>? get friends => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $FriendsListCopyWith<$Res> {
           FriendsList value, $Res Function(FriendsList) then) =
       _$FriendsListCopyWithImpl<$Res, FriendsList>;
   @useResult
-  $Res call({String? cursor, List<Friend> friends});
+  $Res call({String? cursor, List<Friend>? friends});
 }
 
 /// @nodoc
@@ -52,17 +52,17 @@ class _$FriendsListCopyWithImpl<$Res, $Val extends FriendsList>
   @override
   $Res call({
     Object? cursor = freezed,
-    Object? friends = null,
+    Object? friends = freezed,
   }) {
     return _then(_value.copyWith(
       cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
               as String?,
-      friends: null == friends
+      friends: freezed == friends
           ? _value.friends
           : friends // ignore: cast_nullable_to_non_nullable
-              as List<Friend>,
+              as List<Friend>?,
     ) as $Val);
   }
 }
@@ -75,7 +75,7 @@ abstract class _$$FriendsListImplCopyWith<$Res>
       __$$FriendsListImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? cursor, List<Friend> friends});
+  $Res call({String? cursor, List<Friend>? friends});
 }
 
 /// @nodoc
@@ -90,17 +90,17 @@ class __$$FriendsListImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? cursor = freezed,
-    Object? friends = null,
+    Object? friends = freezed,
   }) {
     return _then(_$FriendsListImpl(
       cursor: freezed == cursor
           ? _value.cursor
           : cursor // ignore: cast_nullable_to_non_nullable
               as String?,
-      friends: null == friends
+      friends: freezed == friends
           ? _value._friends
           : friends // ignore: cast_nullable_to_non_nullable
-              as List<Friend>,
+              as List<Friend>?,
     ));
   }
 }
@@ -108,7 +108,7 @@ class __$$FriendsListImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$FriendsListImpl extends _FriendsList {
-  const _$FriendsListImpl({this.cursor, required final List<Friend> friends})
+  const _$FriendsListImpl({this.cursor, required final List<Friend>? friends})
       : _friends = friends,
         super._();
 
@@ -117,12 +117,14 @@ class _$FriendsListImpl extends _FriendsList {
 
   @override
   final String? cursor;
-  final List<Friend> _friends;
+  final List<Friend>? _friends;
   @override
-  List<Friend> get friends {
+  List<Friend>? get friends {
+    final value = _friends;
+    if (value == null) return null;
     if (_friends is EqualUnmodifiableListView) return _friends;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_friends);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -161,7 +163,7 @@ class _$FriendsListImpl extends _FriendsList {
 abstract class _FriendsList extends FriendsList {
   const factory _FriendsList(
       {final String? cursor,
-      required final List<Friend> friends}) = _$FriendsListImpl;
+      required final List<Friend>? friends}) = _$FriendsListImpl;
   const _FriendsList._() : super._();
 
   factory _FriendsList.fromJson(Map<String, dynamic> json) =
@@ -170,7 +172,7 @@ abstract class _FriendsList extends FriendsList {
   @override
   String? get cursor;
   @override
-  List<Friend> get friends;
+  List<Friend>? get friends;
   @override
   @JsonKey(ignore: true)
   _$$FriendsListImplCopyWith<_$FriendsListImpl> get copyWith =>
@@ -184,6 +186,7 @@ Friend _$FriendFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Friend {
   FriendshipState get state => throw _privateConstructorUsedError;
+  @JsonKey(name: 'update_time')
   DateTime get updateTime => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
 
@@ -197,7 +200,10 @@ abstract class $FriendCopyWith<$Res> {
   factory $FriendCopyWith(Friend value, $Res Function(Friend) then) =
       _$FriendCopyWithImpl<$Res, Friend>;
   @useResult
-  $Res call({FriendshipState state, DateTime updateTime, User user});
+  $Res call(
+      {FriendshipState state,
+      @JsonKey(name: 'update_time') DateTime updateTime,
+      User user});
 
   $UserCopyWith<$Res> get user;
 }
@@ -251,7 +257,10 @@ abstract class _$$FriendImplCopyWith<$Res> implements $FriendCopyWith<$Res> {
       __$$FriendImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FriendshipState state, DateTime updateTime, User user});
+  $Res call(
+      {FriendshipState state,
+      @JsonKey(name: 'update_time') DateTime updateTime,
+      User user});
 
   @override
   $UserCopyWith<$Res> get user;
@@ -293,7 +302,9 @@ class __$$FriendImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FriendImpl extends _Friend {
   const _$FriendImpl(
-      {required this.state, required this.updateTime, required this.user})
+      {required this.state,
+      @JsonKey(name: 'update_time') required this.updateTime,
+      required this.user})
       : super._();
 
   factory _$FriendImpl.fromJson(Map<String, dynamic> json) =>
@@ -302,6 +313,7 @@ class _$FriendImpl extends _Friend {
   @override
   final FriendshipState state;
   @override
+  @JsonKey(name: 'update_time')
   final DateTime updateTime;
   @override
   final User user;
@@ -343,7 +355,7 @@ class _$FriendImpl extends _Friend {
 abstract class _Friend extends Friend {
   const factory _Friend(
       {required final FriendshipState state,
-      required final DateTime updateTime,
+      @JsonKey(name: 'update_time') required final DateTime updateTime,
       required final User user}) = _$FriendImpl;
   const _Friend._() : super._();
 
@@ -352,6 +364,7 @@ abstract class _Friend extends Friend {
   @override
   FriendshipState get state;
   @override
+  @JsonKey(name: 'update_time')
   DateTime get updateTime;
   @override
   User get user;
