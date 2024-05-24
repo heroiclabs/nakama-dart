@@ -26,12 +26,14 @@ void main() {
     sessionA = await client.authenticateEmail(
       email: faker.internet.freeEmail(),
       password: faker.internet.password(),
+      create: true,
     );
 
     // Create another websocket connection for another user.
     sessionB = await client.authenticateEmail(
       email: faker.internet.freeEmail(),
       password: faker.internet.password(),
+      create: true,
     );
   });
 

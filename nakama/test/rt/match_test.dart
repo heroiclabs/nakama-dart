@@ -20,6 +20,7 @@ void main() {
     sessionA = await client.authenticateEmail(
       email: faker.internet.freeEmail(),
       password: faker.internet.password(),
+      create: true,
     );
 
     // Create main websocket connetion for lcl test.
@@ -33,6 +34,7 @@ void main() {
     sessionB = await client.authenticateEmail(
       email: faker.internet.freeEmail(),
       password: faker.internet.password(),
+      create: true,
     );
 
     // Create main websocket connetion for lcl test.
