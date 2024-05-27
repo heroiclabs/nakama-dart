@@ -126,4 +126,4 @@ NakamaWebsocketClient.instance.close();
 
 # Special Thanks
 
-Thanks to Oliver Brunsmann (@obrunsmann) for his excellent contribution and maintenance of this library.
+Thanks to Oliver Brunsmann (@obrunsmann), Faiad Sufyan (@fsufyan) for their excellent contribution and maintenance of this library.
