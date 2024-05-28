@@ -258,6 +258,7 @@ abstract class _PartyData extends PartyData {
   _$$PartyDataImplCopyWith<_$PartyDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
 /// @nodoc
 mixin _$PartyPresenceEvent {
   /// The party unique ID.

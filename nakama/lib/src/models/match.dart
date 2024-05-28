@@ -17,6 +17,7 @@ class Match with _$Match {
     @JsonKey(name: 'size') required int size,
     @JsonKey(name: 'tick_rate') int? tickRate,
     @JsonKey(name: 'handler_name') String? handlerName,
+    @JsonKey(name: 'presences') required List<UserPresence> presences,
   }) = _Match;
 
   factory Match.realtime({

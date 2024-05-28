@@ -13,6 +13,9 @@ _$MatchImpl _$$MatchImplFromJson(Map<String, dynamic> json) => _$MatchImpl(
       size: json['size'] as int,
       tickRate: json['tick_rate'] as int?,
       handlerName: json['handler_name'] as String?,
+      presences: (json['presences'] as List<dynamic>)
+          .map((e) => UserPresence.fromJson(e as Map<String, dynamic>))
+          .toList(),
       $type: json['runtimeType'] as String?,
     );
 
@@ -24,6 +27,7 @@ Map<String, dynamic> _$$MatchImplToJson(_$MatchImpl instance) =>
       'size': instance.size,
       'tick_rate': instance.tickRate,
       'handler_name': instance.handlerName,
+      'presences': instance.presences,
       'runtimeType': instance.$type,
     };
 
