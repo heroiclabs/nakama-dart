@@ -875,7 +875,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
       api.ListFriendsRequest(
         cursor: cursor,
         limit: api.Int32Value(value: limit),
-        state: api.Int32Value(value: friendshipState?.index),
+        state: friendshipState == null ? null : api.Int32Value(value: friendshipState.index),
       ),
       options: _getSessionCallOptions(session),
     );
