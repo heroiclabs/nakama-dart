@@ -116,10 +116,13 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> sessionLogout({required model.Session session}) async {
-    await _client.sessionLogout(api.SessionLogoutRequest(
-      refreshToken: session.refreshToken,
-      token: session.token,
-    ));
+    await _client.sessionLogout(
+      api.SessionLogoutRequest(
+        refreshToken: session.refreshToken,
+        token: session.token,
+      ),
+      options: _getSessionCallOptions(session),
+    );
   }
 
   @override
