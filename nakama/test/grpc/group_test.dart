@@ -72,7 +72,7 @@ void main() {
       );
     });
 
-    test('Correctly lists user\'s groups', () async {
+    test('correctly lists user\'s groups', () async {
       final List<Group> groups = List.empty(growable: true);
       // Create 3 groups
       for (var i = 0; i < 3; i++) {
@@ -83,6 +83,19 @@ void main() {
         groups.add(g);
       }
 
+      // Create group where user is a member
+      final otherUserSession =
+          await client.authenticateDevice(deviceId: faker.guid.guid());
+      final memberGroup = await client.createGroup(
+        session: otherUserSession,
+        name: faker.guid.guid(),
+      );
+      await client.addGroupUsers(
+        session: otherUserSession,
+        groupId: memberGroup.id,
+        userIds: [session.userId],
+      );
+
       // list my groups
       final myGroups = await client.listUserGroups(
         session: session,
@@ -90,7 +103,7 @@ void main() {
       );
 
       expect(myGroups, isA<UserGroupList>());
-      expect(myGroups.userGroups, hasLength(3));
+      expect(myGroups.userGroups, hasLength(4));
 
       // Cleanup created groups
       for (final group in groups) {
@@ -99,6 +112,10 @@ void main() {
           groupId: group.id,
         );
       }
+      await client.deleteGroup(
+        session: otherUserSession,
+        groupId: memberGroup.id,
+      );
     });
   });
 }

@@ -1021,7 +1021,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
       api.ListUserGroupsRequest(
         cursor: cursor,
         limit: api.Int32Value(value: limit),
-        state: api.Int32Value(value: state?.index),
+        state: state == null ? null : api.Int32Value(value: state.index),
         userId: userId,
       ),
       options: _getSessionCallOptions(session),
