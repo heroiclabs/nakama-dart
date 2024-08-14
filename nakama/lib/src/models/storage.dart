@@ -89,11 +89,15 @@ class StorageObjectWrite with _$StorageObjectWrite {
 
   factory StorageObjectWrite.fromJson(Map<String, Object?> json) => _$StorageObjectWriteFromJson(json);
 
-  api.WriteStorageObject toDto() => api.WriteStorageObject(
-        collection: collection,
-        key: key,
-        value: value,
-        permissionRead: Int32Value(value: permissionRead?.index ?? 1),
-        permissionWrite: Int32Value(value: permissionWrite?.index ?? 1),
-      );
+  api.WriteStorageObject toDto() {
+    final permissionRead = this.permissionRead ?? StorageReadPermission.ownerRead;
+    final permissionWrite = this.permissionWrite ?? StorageWritePermission.ownerWrite;
+    return api.WriteStorageObject(
+      collection: collection,
+      key: key,
+      value: value,
+      permissionRead: Int32Value(value: permissionRead.index),
+      permissionWrite: Int32Value(value: permissionWrite.index),
+    );
+  }
 }
