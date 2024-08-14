@@ -117,5 +117,35 @@ void main() {
         groupId: memberGroup.id,
       );
     });
+
+    test('correctly lists users of a group', () async {
+      final group = await client.createGroup(
+        session: session,
+        name: faker.guid.guid(),
+      );
+
+      final otherUserSession =
+          await client.authenticateDevice(deviceId: faker.guid.guid());
+
+      await client.addGroupUsers(
+        session: session,
+        groupId: group.id,
+        userIds: [otherUserSession.userId],
+      );
+
+      final result = await client.listGroupUsers(
+        session: session,
+        groupId: group.id,
+      );
+
+      expect(result, isA<GroupUserList>());
+      expect(result.groupUsers, hasLength(2));
+
+      // Cleanup created group
+      await client.deleteGroup(
+        session: session,
+        groupId: group.id,
+      );
+    });
   });
 }

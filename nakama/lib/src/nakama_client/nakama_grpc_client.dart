@@ -1043,7 +1043,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
         groupId: groupId,
         cursor: cursor,
         limit: api.Int32Value(value: limit),
-        state: api.Int32Value(value: state?.index),
+        state: state == null ? null : api.Int32Value(value: state.index),
       ),
       options: _getSessionCallOptions(session),
     );
