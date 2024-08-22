@@ -18,7 +18,8 @@ class Notification with _$Notification {
     @JsonKey(name: 'persistent') required bool persistent,
   }) = _Notification;
 
-  factory Notification.fromJson(Map<String, Object?> json) => _$NotificationFromJson(json);
+  factory Notification.fromJson(Map<String, Object?> json) =>
+      _$NotificationFromJson(json);
 
   factory Notification.fromDto(api.Notification dto) => Notification(
         id: dto.id,
@@ -40,10 +41,14 @@ class NotificationList with _$NotificationList {
     @JsonKey(name: 'notifications') required List<Notification> notifications,
   }) = _NotificationList;
 
-  factory NotificationList.fromJson(Map<String, Object?> json) => _$NotificationListFromJson(json);
+  factory NotificationList.fromJson(Map<String, Object?> json) =>
+      _$NotificationListFromJson(json);
 
-  factory NotificationList.fromDto(api.NotificationList dto) => NotificationList(
+  factory NotificationList.fromDto(api.NotificationList dto) =>
+      NotificationList(
         cursor: dto.cacheableCursor,
-        notifications: dto.notifications.map((e) => Notification.fromDto(e)).toList(growable: false),
+        notifications: dto.notifications
+            .map((e) => Notification.fromDto(e))
+            .toList(growable: false),
       );
 }

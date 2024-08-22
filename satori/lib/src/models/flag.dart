@@ -13,7 +13,8 @@ class FlagList with _$FlagList {
     required List<Flag> flags,
   }) = _FlagList;
 
-  factory FlagList.fromJson(Map<String, dynamic> json) => _$FlagListFromJson(json);
+  factory FlagList.fromJson(Map<String, dynamic> json) =>
+      _$FlagListFromJson(json);
 
   factory FlagList.fromDto(ApiFlagList dto) => FlagList(
         flags: dto.flags!.map((e) => Flag.fromDto(e)).toList(),

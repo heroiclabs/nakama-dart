@@ -6,43 +6,57 @@ part of 'api_client.gen.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-GroupUserListGroupUser _$GroupUserListGroupUserFromJson(Map<String, dynamic> json) => GroupUserListGroupUser(
+GroupUserListGroupUser _$GroupUserListGroupUserFromJson(
+        Map<String, dynamic> json) =>
+    GroupUserListGroupUser(
       state: json['state'] as int?,
-      user: json['user'] == null ? null : ApiUser.fromJson(json['user'] as Map<String, dynamic>),
+      user: json['user'] == null
+          ? null
+          : ApiUser.fromJson(json['user'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$GroupUserListGroupUserToJson(GroupUserListGroupUser instance) => <String, dynamic>{
+Map<String, dynamic> _$GroupUserListGroupUserToJson(
+        GroupUserListGroupUser instance) =>
+    <String, dynamic>{
       'state': instance.state,
       'user': instance.user?.toJson(),
     };
 
-UserGroupListUserGroup _$UserGroupListUserGroupFromJson(Map<String, dynamic> json) => UserGroupListUserGroup(
-      group: json['group'] == null ? null : ApiGroup.fromJson(json['group'] as Map<String, dynamic>),
+UserGroupListUserGroup _$UserGroupListUserGroupFromJson(
+        Map<String, dynamic> json) =>
+    UserGroupListUserGroup(
+      group: json['group'] == null
+          ? null
+          : ApiGroup.fromJson(json['group'] as Map<String, dynamic>),
       state: json['state'] as int?,
     );
 
-Map<String, dynamic> _$UserGroupListUserGroupToJson(UserGroupListUserGroup instance) => <String, dynamic>{
+Map<String, dynamic> _$UserGroupListUserGroupToJson(
+        UserGroupListUserGroup instance) =>
+    <String, dynamic>{
       'group': instance.group?.toJson(),
       'state': instance.state,
     };
 
-WriteLeaderboardRecordRequestLeaderboardRecordWrite _$WriteLeaderboardRecordRequestLeaderboardRecordWriteFromJson(
-        Map<String, dynamic> json) =>
-    WriteLeaderboardRecordRequestLeaderboardRecordWrite(
-      metadata: json['metadata'] as String?,
-      operator: $enumDecodeNullable(_$ApiOperatorEnumMap, json['operator']),
-      score: json['score'] as String?,
-      subscore: json['subscore'] as String?,
-    );
+WriteLeaderboardRecordRequestLeaderboardRecordWrite
+    _$WriteLeaderboardRecordRequestLeaderboardRecordWriteFromJson(
+            Map<String, dynamic> json) =>
+        WriteLeaderboardRecordRequestLeaderboardRecordWrite(
+          metadata: json['metadata'] as String?,
+          operator: $enumDecodeNullable(_$ApiOperatorEnumMap, json['operator']),
+          score: json['score'] as String?,
+          subscore: json['subscore'] as String?,
+        );
 
-Map<String, dynamic> _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson(
-        WriteLeaderboardRecordRequestLeaderboardRecordWrite instance) =>
-    <String, dynamic>{
-      'metadata': instance.metadata,
-      'operator': _$ApiOperatorEnumMap[instance.operator],
-      'score': instance.score,
-      'subscore': instance.subscore,
-    };
+Map<String, dynamic>
+    _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson(
+            WriteLeaderboardRecordRequestLeaderboardRecordWrite instance) =>
+        <String, dynamic>{
+          'metadata': instance.metadata,
+          'operator': _$ApiOperatorEnumMap[instance.operator],
+          'score': instance.score,
+          'subscore': instance.subscore,
+        };
 
 const _$ApiOperatorEnumMap = {
   ApiOperator.noOverride: 'NO_OVERRIDE',
@@ -52,14 +66,15 @@ const _$ApiOperatorEnumMap = {
   ApiOperator.decrement: 'DECREMENT',
 };
 
-WriteTournamentRecordRequestTournamentRecordWrite _$WriteTournamentRecordRequestTournamentRecordWriteFromJson(
-        Map<String, dynamic> json) =>
-    WriteTournamentRecordRequestTournamentRecordWrite(
-      metadata: json['metadata'] as String?,
-      operator: $enumDecodeNullable(_$ApiOperatorEnumMap, json['operator']),
-      score: json['score'] as String?,
-      subscore: json['subscore'] as String?,
-    );
+WriteTournamentRecordRequestTournamentRecordWrite
+    _$WriteTournamentRecordRequestTournamentRecordWriteFromJson(
+            Map<String, dynamic> json) =>
+        WriteTournamentRecordRequestTournamentRecordWrite(
+          metadata: json['metadata'] as String?,
+          operator: $enumDecodeNullable(_$ApiOperatorEnumMap, json['operator']),
+          score: json['score'] as String?,
+          subscore: json['subscore'] as String?,
+        );
 
 Map<String, dynamic> _$WriteTournamentRecordRequestTournamentRecordWriteToJson(
         WriteTournamentRecordRequestTournamentRecordWrite instance) =>
@@ -77,12 +92,15 @@ ApiAccount _$ApiAccountFromJson(Map<String, dynamic> json) => ApiAccount(
           .toList(),
       disableTime: json['disable_time'] as String?,
       email: json['email'] as String?,
-      user: json['user'] == null ? null : ApiUser.fromJson(json['user'] as Map<String, dynamic>),
+      user: json['user'] == null
+          ? null
+          : ApiUser.fromJson(json['user'] as Map<String, dynamic>),
       verifyTime: json['verify_time'] as String?,
       wallet: json['wallet'] as String?,
     );
 
-Map<String, dynamic> _$ApiAccountToJson(ApiAccount instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiAccountToJson(ApiAccount instance) =>
+    <String, dynamic>{
       'custom_id': instance.customId,
       'devices': instance.devices?.map((e) => e.toJson()).toList(),
       'disable_time': instance.disableTime,
@@ -92,43 +110,50 @@ Map<String, dynamic> _$ApiAccountToJson(ApiAccount instance) => <String, dynamic
       'wallet': instance.wallet,
     };
 
-ApiAccountApple _$ApiAccountAppleFromJson(Map<String, dynamic> json) => ApiAccountApple(
+ApiAccountApple _$ApiAccountAppleFromJson(Map<String, dynamic> json) =>
+    ApiAccountApple(
       token: json['token'] as String?,
       vars: (json['vars'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
     );
 
-Map<String, dynamic> _$ApiAccountAppleToJson(ApiAccountApple instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiAccountAppleToJson(ApiAccountApple instance) =>
+    <String, dynamic>{
       'token': instance.token,
       'vars': instance.vars,
     };
 
-ApiAccountCustom _$ApiAccountCustomFromJson(Map<String, dynamic> json) => ApiAccountCustom(
+ApiAccountCustom _$ApiAccountCustomFromJson(Map<String, dynamic> json) =>
+    ApiAccountCustom(
       id: json['id'] as String?,
       vars: (json['vars'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
     );
 
-Map<String, dynamic> _$ApiAccountCustomToJson(ApiAccountCustom instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiAccountCustomToJson(ApiAccountCustom instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'vars': instance.vars,
     };
 
-ApiAccountDevice _$ApiAccountDeviceFromJson(Map<String, dynamic> json) => ApiAccountDevice(
+ApiAccountDevice _$ApiAccountDeviceFromJson(Map<String, dynamic> json) =>
+    ApiAccountDevice(
       id: json['id'] as String?,
       vars: (json['vars'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
     );
 
-Map<String, dynamic> _$ApiAccountDeviceToJson(ApiAccountDevice instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiAccountDeviceToJson(ApiAccountDevice instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'vars': instance.vars,
     };
 
-ApiAccountEmail _$ApiAccountEmailFromJson(Map<String, dynamic> json) => ApiAccountEmail(
+ApiAccountEmail _$ApiAccountEmailFromJson(Map<String, dynamic> json) =>
+    ApiAccountEmail(
       email: json['email'] as String?,
       password: json['password'] as String?,
       vars: (json['vars'] as Map<String, dynamic>?)?.map(
@@ -136,25 +161,29 @@ ApiAccountEmail _$ApiAccountEmailFromJson(Map<String, dynamic> json) => ApiAccou
       ),
     );
 
-Map<String, dynamic> _$ApiAccountEmailToJson(ApiAccountEmail instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiAccountEmailToJson(ApiAccountEmail instance) =>
+    <String, dynamic>{
       'email': instance.email,
       'password': instance.password,
       'vars': instance.vars,
     };
 
-ApiAccountFacebook _$ApiAccountFacebookFromJson(Map<String, dynamic> json) => ApiAccountFacebook(
+ApiAccountFacebook _$ApiAccountFacebookFromJson(Map<String, dynamic> json) =>
+    ApiAccountFacebook(
       token: json['token'] as String?,
       vars: (json['vars'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
     );
 
-Map<String, dynamic> _$ApiAccountFacebookToJson(ApiAccountFacebook instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiAccountFacebookToJson(ApiAccountFacebook instance) =>
+    <String, dynamic>{
       'token': instance.token,
       'vars': instance.vars,
     };
 
-ApiAccountFacebookInstantGame _$ApiAccountFacebookInstantGameFromJson(Map<String, dynamic> json) =>
+ApiAccountFacebookInstantGame _$ApiAccountFacebookInstantGameFromJson(
+        Map<String, dynamic> json) =>
     ApiAccountFacebookInstantGame(
       signedPlayerInfo: json['signed_player_info'] as String?,
       vars: (json['vars'] as Map<String, dynamic>?)?.map(
@@ -162,12 +191,16 @@ ApiAccountFacebookInstantGame _$ApiAccountFacebookInstantGameFromJson(Map<String
       ),
     );
 
-Map<String, dynamic> _$ApiAccountFacebookInstantGameToJson(ApiAccountFacebookInstantGame instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiAccountFacebookInstantGameToJson(
+        ApiAccountFacebookInstantGame instance) =>
+    <String, dynamic>{
       'signed_player_info': instance.signedPlayerInfo,
       'vars': instance.vars,
     };
 
-ApiAccountGameCenter _$ApiAccountGameCenterFromJson(Map<String, dynamic> json) => ApiAccountGameCenter(
+ApiAccountGameCenter _$ApiAccountGameCenterFromJson(
+        Map<String, dynamic> json) =>
+    ApiAccountGameCenter(
       bundleId: json['bundle_id'] as String?,
       playerId: json['player_id'] as String?,
       publicKeyUrl: json['public_key_url'] as String?,
@@ -179,7 +212,9 @@ ApiAccountGameCenter _$ApiAccountGameCenterFromJson(Map<String, dynamic> json) =
       ),
     );
 
-Map<String, dynamic> _$ApiAccountGameCenterToJson(ApiAccountGameCenter instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiAccountGameCenterToJson(
+        ApiAccountGameCenter instance) =>
+    <String, dynamic>{
       'bundle_id': instance.bundleId,
       'player_id': instance.playerId,
       'public_key_url': instance.publicKeyUrl,
@@ -189,31 +224,36 @@ Map<String, dynamic> _$ApiAccountGameCenterToJson(ApiAccountGameCenter instance)
       'vars': instance.vars,
     };
 
-ApiAccountGoogle _$ApiAccountGoogleFromJson(Map<String, dynamic> json) => ApiAccountGoogle(
+ApiAccountGoogle _$ApiAccountGoogleFromJson(Map<String, dynamic> json) =>
+    ApiAccountGoogle(
       token: json['token'] as String?,
       vars: (json['vars'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
     );
 
-Map<String, dynamic> _$ApiAccountGoogleToJson(ApiAccountGoogle instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiAccountGoogleToJson(ApiAccountGoogle instance) =>
+    <String, dynamic>{
       'token': instance.token,
       'vars': instance.vars,
     };
 
-ApiAccountSteam _$ApiAccountSteamFromJson(Map<String, dynamic> json) => ApiAccountSteam(
+ApiAccountSteam _$ApiAccountSteamFromJson(Map<String, dynamic> json) =>
+    ApiAccountSteam(
       token: json['token'] as String?,
       vars: (json['vars'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
     );
 
-Map<String, dynamic> _$ApiAccountSteamToJson(ApiAccountSteam instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiAccountSteamToJson(ApiAccountSteam instance) =>
+    <String, dynamic>{
       'token': instance.token,
       'vars': instance.vars,
     };
 
-ApiChannelMessage _$ApiChannelMessageFromJson(Map<String, dynamic> json) => ApiChannelMessage(
+ApiChannelMessage _$ApiChannelMessageFromJson(Map<String, dynamic> json) =>
+    ApiChannelMessage(
       channelId: json['channel_id'] as String?,
       code: json['code'] as int?,
       content: json['content'] as String?,
@@ -229,7 +269,8 @@ ApiChannelMessage _$ApiChannelMessageFromJson(Map<String, dynamic> json) => ApiC
       username: json['username'] as String?,
     );
 
-Map<String, dynamic> _$ApiChannelMessageToJson(ApiChannelMessage instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiChannelMessageToJson(ApiChannelMessage instance) =>
+    <String, dynamic>{
       'channel_id': instance.channelId,
       'code': instance.code,
       'content': instance.content,
@@ -245,7 +286,9 @@ Map<String, dynamic> _$ApiChannelMessageToJson(ApiChannelMessage instance) => <S
       'username': instance.username,
     };
 
-ApiChannelMessageList _$ApiChannelMessageListFromJson(Map<String, dynamic> json) => ApiChannelMessageList(
+ApiChannelMessageList _$ApiChannelMessageListFromJson(
+        Map<String, dynamic> json) =>
+    ApiChannelMessageList(
       cacheableCursor: json['cacheable_cursor'] as String?,
       messages: (json['messages'] as List<dynamic>?)
           ?.map((e) => ApiChannelMessage.fromJson(e as Map<String, dynamic>))
@@ -254,14 +297,18 @@ ApiChannelMessageList _$ApiChannelMessageListFromJson(Map<String, dynamic> json)
       prevCursor: json['prev_cursor'] as String?,
     );
 
-Map<String, dynamic> _$ApiChannelMessageListToJson(ApiChannelMessageList instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiChannelMessageListToJson(
+        ApiChannelMessageList instance) =>
+    <String, dynamic>{
       'cacheable_cursor': instance.cacheableCursor,
       'messages': instance.messages?.map((e) => e.toJson()).toList(),
       'next_cursor': instance.nextCursor,
       'prev_cursor': instance.prevCursor,
     };
 
-ApiCreateGroupRequest _$ApiCreateGroupRequestFromJson(Map<String, dynamic> json) => ApiCreateGroupRequest(
+ApiCreateGroupRequest _$ApiCreateGroupRequestFromJson(
+        Map<String, dynamic> json) =>
+    ApiCreateGroupRequest(
       avatarUrl: json['avatar_url'] as String?,
       description: json['description'] as String?,
       langTag: json['lang_tag'] as String?,
@@ -270,7 +317,9 @@ ApiCreateGroupRequest _$ApiCreateGroupRequestFromJson(Map<String, dynamic> json)
       open: json['open'] as bool?,
     );
 
-Map<String, dynamic> _$ApiCreateGroupRequestToJson(ApiCreateGroupRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiCreateGroupRequestToJson(
+        ApiCreateGroupRequest instance) =>
+    <String, dynamic>{
       'avatar_url': instance.avatarUrl,
       'description': instance.description,
       'lang_tag': instance.langTag,
@@ -279,26 +328,33 @@ Map<String, dynamic> _$ApiCreateGroupRequestToJson(ApiCreateGroupRequest instanc
       'open': instance.open,
     };
 
-ApiDeleteStorageObjectId _$ApiDeleteStorageObjectIdFromJson(Map<String, dynamic> json) => ApiDeleteStorageObjectId(
+ApiDeleteStorageObjectId _$ApiDeleteStorageObjectIdFromJson(
+        Map<String, dynamic> json) =>
+    ApiDeleteStorageObjectId(
       collection: json['collection'] as String?,
       key: json['key'] as String?,
       version: json['version'] as String?,
     );
 
-Map<String, dynamic> _$ApiDeleteStorageObjectIdToJson(ApiDeleteStorageObjectId instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiDeleteStorageObjectIdToJson(
+        ApiDeleteStorageObjectId instance) =>
+    <String, dynamic>{
       'collection': instance.collection,
       'key': instance.key,
       'version': instance.version,
     };
 
-ApiDeleteStorageObjectsRequest _$ApiDeleteStorageObjectsRequestFromJson(Map<String, dynamic> json) =>
+ApiDeleteStorageObjectsRequest _$ApiDeleteStorageObjectsRequestFromJson(
+        Map<String, dynamic> json) =>
     ApiDeleteStorageObjectsRequest(
       objectIds: (json['object_ids'] as List<dynamic>?)
-          ?.map((e) => ApiDeleteStorageObjectId.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              ApiDeleteStorageObjectId.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$ApiDeleteStorageObjectsRequestToJson(ApiDeleteStorageObjectsRequest instance) =>
+Map<String, dynamic> _$ApiDeleteStorageObjectsRequestToJson(
+        ApiDeleteStorageObjectsRequest instance) =>
     <String, dynamic>{
       'object_ids': instance.objectIds?.map((e) => e.toJson()).toList(),
     };
@@ -322,7 +378,9 @@ Map<String, dynamic> _$ApiEventToJson(ApiEvent instance) => <String, dynamic>{
 ApiFriend _$ApiFriendFromJson(Map<String, dynamic> json) => ApiFriend(
       state: json['state'] as int?,
       updateTime: json['update_time'] as String?,
-      user: json['user'] == null ? null : ApiUser.fromJson(json['user'] as Map<String, dynamic>),
+      user: json['user'] == null
+          ? null
+          : ApiUser.fromJson(json['user'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ApiFriendToJson(ApiFriend instance) => <String, dynamic>{
@@ -331,12 +389,16 @@ Map<String, dynamic> _$ApiFriendToJson(ApiFriend instance) => <String, dynamic>{
       'user': instance.user?.toJson(),
     };
 
-ApiFriendList _$ApiFriendListFromJson(Map<String, dynamic> json) => ApiFriendList(
+ApiFriendList _$ApiFriendListFromJson(Map<String, dynamic> json) =>
+    ApiFriendList(
       cursor: json['cursor'] as String?,
-      friends: (json['friends'] as List<dynamic>?)?.map((e) => ApiFriend.fromJson(e as Map<String, dynamic>)).toList(),
+      friends: (json['friends'] as List<dynamic>?)
+          ?.map((e) => ApiFriend.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$ApiFriendListToJson(ApiFriendList instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiFriendListToJson(ApiFriendList instance) =>
+    <String, dynamic>{
       'cursor': instance.cursor,
       'friends': instance.friends?.map((e) => e.toJson()).toList(),
     };
@@ -373,27 +435,35 @@ Map<String, dynamic> _$ApiGroupToJson(ApiGroup instance) => <String, dynamic>{
 
 ApiGroupList _$ApiGroupListFromJson(Map<String, dynamic> json) => ApiGroupList(
       cursor: json['cursor'] as String?,
-      groups: (json['groups'] as List<dynamic>?)?.map((e) => ApiGroup.fromJson(e as Map<String, dynamic>)).toList(),
+      groups: (json['groups'] as List<dynamic>?)
+          ?.map((e) => ApiGroup.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$ApiGroupListToJson(ApiGroupList instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiGroupListToJson(ApiGroupList instance) =>
+    <String, dynamic>{
       'cursor': instance.cursor,
       'groups': instance.groups?.map((e) => e.toJson()).toList(),
     };
 
-ApiGroupUserList _$ApiGroupUserListFromJson(Map<String, dynamic> json) => ApiGroupUserList(
+ApiGroupUserList _$ApiGroupUserListFromJson(Map<String, dynamic> json) =>
+    ApiGroupUserList(
       cursor: json['cursor'] as String?,
       groupUsers: (json['group_users'] as List<dynamic>?)
-          ?.map((e) => GroupUserListGroupUser.fromJson(e as Map<String, dynamic>))
+          ?.map(
+              (e) => GroupUserListGroupUser.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$ApiGroupUserListToJson(ApiGroupUserList instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiGroupUserListToJson(ApiGroupUserList instance) =>
+    <String, dynamic>{
       'cursor': instance.cursor,
       'group_users': instance.groupUsers?.map((e) => e.toJson()).toList(),
     };
 
-ApiLeaderboardRecord _$ApiLeaderboardRecordFromJson(Map<String, dynamic> json) => ApiLeaderboardRecord(
+ApiLeaderboardRecord _$ApiLeaderboardRecordFromJson(
+        Map<String, dynamic> json) =>
+    ApiLeaderboardRecord(
       createTime: json['create_time'] as String?,
       expiryTime: json['expiry_time'] as String?,
       leaderboardId: json['leaderboard_id'] as String?,
@@ -408,7 +478,9 @@ ApiLeaderboardRecord _$ApiLeaderboardRecordFromJson(Map<String, dynamic> json) =
       username: json['username'] as String?,
     );
 
-Map<String, dynamic> _$ApiLeaderboardRecordToJson(ApiLeaderboardRecord instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiLeaderboardRecordToJson(
+        ApiLeaderboardRecord instance) =>
+    <String, dynamic>{
       'create_time': instance.createTime,
       'expiry_time': instance.expiryTime,
       'leaderboard_id': instance.leaderboardId,
@@ -423,7 +495,9 @@ Map<String, dynamic> _$ApiLeaderboardRecordToJson(ApiLeaderboardRecord instance)
       'username': instance.username,
     };
 
-ApiLeaderboardRecordList _$ApiLeaderboardRecordListFromJson(Map<String, dynamic> json) => ApiLeaderboardRecordList(
+ApiLeaderboardRecordList _$ApiLeaderboardRecordListFromJson(
+        Map<String, dynamic> json) =>
+    ApiLeaderboardRecordList(
       nextCursor: json['next_cursor'] as String?,
       ownerRecords: (json['owner_records'] as List<dynamic>?)
           ?.map((e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
@@ -434,30 +508,40 @@ ApiLeaderboardRecordList _$ApiLeaderboardRecordListFromJson(Map<String, dynamic>
           .toList(),
     );
 
-Map<String, dynamic> _$ApiLeaderboardRecordListToJson(ApiLeaderboardRecordList instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiLeaderboardRecordListToJson(
+        ApiLeaderboardRecordList instance) =>
+    <String, dynamic>{
       'next_cursor': instance.nextCursor,
       'owner_records': instance.ownerRecords?.map((e) => e.toJson()).toList(),
       'prev_cursor': instance.prevCursor,
       'records': instance.records?.map((e) => e.toJson()).toList(),
     };
 
-ApiLinkSteamRequest _$ApiLinkSteamRequestFromJson(Map<String, dynamic> json) => ApiLinkSteamRequest(
-      account: json['account'] == null ? null : ApiAccountSteam.fromJson(json['account'] as Map<String, dynamic>),
+ApiLinkSteamRequest _$ApiLinkSteamRequestFromJson(Map<String, dynamic> json) =>
+    ApiLinkSteamRequest(
+      account: json['account'] == null
+          ? null
+          : ApiAccountSteam.fromJson(json['account'] as Map<String, dynamic>),
       sync: json['sync'] as bool?,
     );
 
-Map<String, dynamic> _$ApiLinkSteamRequestToJson(ApiLinkSteamRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiLinkSteamRequestToJson(
+        ApiLinkSteamRequest instance) =>
+    <String, dynamic>{
       'account': instance.account?.toJson(),
       'sync': instance.sync,
     };
 
-ApiListSubscriptionsRequest _$ApiListSubscriptionsRequestFromJson(Map<String, dynamic> json) =>
+ApiListSubscriptionsRequest _$ApiListSubscriptionsRequestFromJson(
+        Map<String, dynamic> json) =>
     ApiListSubscriptionsRequest(
       cursor: json['cursor'] as String?,
       limit: json['limit'] as int?,
     );
 
-Map<String, dynamic> _$ApiListSubscriptionsRequestToJson(ApiListSubscriptionsRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiListSubscriptionsRequestToJson(
+        ApiListSubscriptionsRequest instance) =>
+    <String, dynamic>{
       'cursor': instance.cursor,
       'limit': instance.limit,
     };
@@ -481,14 +565,18 @@ Map<String, dynamic> _$ApiMatchToJson(ApiMatch instance) => <String, dynamic>{
     };
 
 ApiMatchList _$ApiMatchListFromJson(Map<String, dynamic> json) => ApiMatchList(
-      matches: (json['matches'] as List<dynamic>?)?.map((e) => ApiMatch.fromJson(e as Map<String, dynamic>)).toList(),
+      matches: (json['matches'] as List<dynamic>?)
+          ?.map((e) => ApiMatch.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$ApiMatchListToJson(ApiMatchList instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiMatchListToJson(ApiMatchList instance) =>
+    <String, dynamic>{
       'matches': instance.matches?.map((e) => e.toJson()).toList(),
     };
 
-ApiNotification _$ApiNotificationFromJson(Map<String, dynamic> json) => ApiNotification(
+ApiNotification _$ApiNotificationFromJson(Map<String, dynamic> json) =>
+    ApiNotification(
       code: json['code'] as int?,
       content: json['content'] as String?,
       createTime: json['create_time'] as String?,
@@ -498,7 +586,8 @@ ApiNotification _$ApiNotificationFromJson(Map<String, dynamic> json) => ApiNotif
       subject: json['subject'] as String?,
     );
 
-Map<String, dynamic> _$ApiNotificationToJson(ApiNotification instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiNotificationToJson(ApiNotification instance) =>
+    <String, dynamic>{
       'code': instance.code,
       'content': instance.content,
       'create_time': instance.createTime,
@@ -508,38 +597,49 @@ Map<String, dynamic> _$ApiNotificationToJson(ApiNotification instance) => <Strin
       'subject': instance.subject,
     };
 
-ApiNotificationList _$ApiNotificationListFromJson(Map<String, dynamic> json) => ApiNotificationList(
+ApiNotificationList _$ApiNotificationListFromJson(Map<String, dynamic> json) =>
+    ApiNotificationList(
       cacheableCursor: json['cacheable_cursor'] as String?,
       notifications: (json['notifications'] as List<dynamic>?)
           ?.map((e) => ApiNotification.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$ApiNotificationListToJson(ApiNotificationList instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiNotificationListToJson(
+        ApiNotificationList instance) =>
+    <String, dynamic>{
       'cacheable_cursor': instance.cacheableCursor,
       'notifications': instance.notifications?.map((e) => e.toJson()).toList(),
     };
 
-ApiReadStorageObjectId _$ApiReadStorageObjectIdFromJson(Map<String, dynamic> json) => ApiReadStorageObjectId(
+ApiReadStorageObjectId _$ApiReadStorageObjectIdFromJson(
+        Map<String, dynamic> json) =>
+    ApiReadStorageObjectId(
       collection: json['collection'] as String?,
       key: json['key'] as String?,
       userId: json['user_id'] as String?,
     );
 
-Map<String, dynamic> _$ApiReadStorageObjectIdToJson(ApiReadStorageObjectId instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiReadStorageObjectIdToJson(
+        ApiReadStorageObjectId instance) =>
+    <String, dynamic>{
       'collection': instance.collection,
       'key': instance.key,
       'user_id': instance.userId,
     };
 
-ApiReadStorageObjectsRequest _$ApiReadStorageObjectsRequestFromJson(Map<String, dynamic> json) =>
+ApiReadStorageObjectsRequest _$ApiReadStorageObjectsRequestFromJson(
+        Map<String, dynamic> json) =>
     ApiReadStorageObjectsRequest(
       objectIds: (json['object_ids'] as List<dynamic>?)
-          ?.map((e) => ApiReadStorageObjectId.fromJson(e as Map<String, dynamic>))
+          ?.map(
+              (e) => ApiReadStorageObjectId.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$ApiReadStorageObjectsRequestToJson(ApiReadStorageObjectsRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiReadStorageObjectsRequestToJson(
+        ApiReadStorageObjectsRequest instance) =>
+    <String, dynamic>{
       'object_ids': instance.objectIds?.map((e) => e.toJson()).toList(),
     };
 
@@ -561,35 +661,45 @@ ApiSession _$ApiSessionFromJson(Map<String, dynamic> json) => ApiSession(
       token: json['token'] as String?,
     );
 
-Map<String, dynamic> _$ApiSessionToJson(ApiSession instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiSessionToJson(ApiSession instance) =>
+    <String, dynamic>{
       'created': instance.created,
       'refresh_token': instance.refreshToken,
       'token': instance.token,
     };
 
-ApiSessionLogoutRequest _$ApiSessionLogoutRequestFromJson(Map<String, dynamic> json) => ApiSessionLogoutRequest(
+ApiSessionLogoutRequest _$ApiSessionLogoutRequestFromJson(
+        Map<String, dynamic> json) =>
+    ApiSessionLogoutRequest(
       refreshToken: json['refresh_token'] as String?,
       token: json['token'] as String?,
     );
 
-Map<String, dynamic> _$ApiSessionLogoutRequestToJson(ApiSessionLogoutRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiSessionLogoutRequestToJson(
+        ApiSessionLogoutRequest instance) =>
+    <String, dynamic>{
       'refresh_token': instance.refreshToken,
       'token': instance.token,
     };
 
-ApiSessionRefreshRequest _$ApiSessionRefreshRequestFromJson(Map<String, dynamic> json) => ApiSessionRefreshRequest(
+ApiSessionRefreshRequest _$ApiSessionRefreshRequestFromJson(
+        Map<String, dynamic> json) =>
+    ApiSessionRefreshRequest(
       token: json['token'] as String?,
       vars: (json['vars'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
     );
 
-Map<String, dynamic> _$ApiSessionRefreshRequestToJson(ApiSessionRefreshRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiSessionRefreshRequestToJson(
+        ApiSessionRefreshRequest instance) =>
+    <String, dynamic>{
       'token': instance.token,
       'vars': instance.vars,
     };
 
-ApiStorageObject _$ApiStorageObjectFromJson(Map<String, dynamic> json) => ApiStorageObject(
+ApiStorageObject _$ApiStorageObjectFromJson(Map<String, dynamic> json) =>
+    ApiStorageObject(
       collection: json['collection'] as String?,
       createTime: json['create_time'] as String?,
       key: json['key'] as String?,
@@ -601,7 +711,8 @@ ApiStorageObject _$ApiStorageObjectFromJson(Map<String, dynamic> json) => ApiSto
       version: json['version'] as String?,
     );
 
-Map<String, dynamic> _$ApiStorageObjectToJson(ApiStorageObject instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiStorageObjectToJson(ApiStorageObject instance) =>
+    <String, dynamic>{
       'collection': instance.collection,
       'create_time': instance.createTime,
       'key': instance.key,
@@ -613,67 +724,87 @@ Map<String, dynamic> _$ApiStorageObjectToJson(ApiStorageObject instance) => <Str
       'version': instance.version,
     };
 
-ApiStorageObjectAck _$ApiStorageObjectAckFromJson(Map<String, dynamic> json) => ApiStorageObjectAck(
+ApiStorageObjectAck _$ApiStorageObjectAckFromJson(Map<String, dynamic> json) =>
+    ApiStorageObjectAck(
       collection: json['collection'] as String?,
       key: json['key'] as String?,
       userId: json['user_id'] as String?,
       version: json['version'] as String?,
     );
 
-Map<String, dynamic> _$ApiStorageObjectAckToJson(ApiStorageObjectAck instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiStorageObjectAckToJson(
+        ApiStorageObjectAck instance) =>
+    <String, dynamic>{
       'collection': instance.collection,
       'key': instance.key,
       'user_id': instance.userId,
       'version': instance.version,
     };
 
-ApiStorageObjectAcks _$ApiStorageObjectAcksFromJson(Map<String, dynamic> json) => ApiStorageObjectAcks(
+ApiStorageObjectAcks _$ApiStorageObjectAcksFromJson(
+        Map<String, dynamic> json) =>
+    ApiStorageObjectAcks(
       acks: (json['acks'] as List<dynamic>?)
           ?.map((e) => ApiStorageObjectAck.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$ApiStorageObjectAcksToJson(ApiStorageObjectAcks instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiStorageObjectAcksToJson(
+        ApiStorageObjectAcks instance) =>
+    <String, dynamic>{
       'acks': instance.acks?.map((e) => e.toJson()).toList(),
     };
 
-ApiStorageObjectList _$ApiStorageObjectListFromJson(Map<String, dynamic> json) => ApiStorageObjectList(
+ApiStorageObjectList _$ApiStorageObjectListFromJson(
+        Map<String, dynamic> json) =>
+    ApiStorageObjectList(
       cursor: json['cursor'] as String?,
       objects: (json['objects'] as List<dynamic>?)
           ?.map((e) => ApiStorageObject.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$ApiStorageObjectListToJson(ApiStorageObjectList instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiStorageObjectListToJson(
+        ApiStorageObjectList instance) =>
+    <String, dynamic>{
       'cursor': instance.cursor,
       'objects': instance.objects?.map((e) => e.toJson()).toList(),
     };
 
-ApiStorageObjects _$ApiStorageObjectsFromJson(Map<String, dynamic> json) => ApiStorageObjects(
+ApiStorageObjects _$ApiStorageObjectsFromJson(Map<String, dynamic> json) =>
+    ApiStorageObjects(
       objects: (json['objects'] as List<dynamic>?)
           ?.map((e) => ApiStorageObject.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$ApiStorageObjectsToJson(ApiStorageObjects instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiStorageObjectsToJson(ApiStorageObjects instance) =>
+    <String, dynamic>{
       'objects': instance.objects?.map((e) => e.toJson()).toList(),
     };
 
-ApiSubscriptionList _$ApiSubscriptionListFromJson(Map<String, dynamic> json) => ApiSubscriptionList(
+ApiSubscriptionList _$ApiSubscriptionListFromJson(Map<String, dynamic> json) =>
+    ApiSubscriptionList(
       cursor: json['cursor'] as String?,
       prevCursor: json['prev_cursor'] as String?,
-      validatedSubscriptions: (json['validated_subscriptions'] as List<dynamic>?)
-          ?.map((e) => ApiValidatedSubscription.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      validatedSubscriptions:
+          (json['validated_subscriptions'] as List<dynamic>?)
+              ?.map((e) =>
+                  ApiValidatedSubscription.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );
 
-Map<String, dynamic> _$ApiSubscriptionListToJson(ApiSubscriptionList instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiSubscriptionListToJson(
+        ApiSubscriptionList instance) =>
+    <String, dynamic>{
       'cursor': instance.cursor,
       'prev_cursor': instance.prevCursor,
-      'validated_subscriptions': instance.validatedSubscriptions?.map((e) => e.toJson()).toList(),
+      'validated_subscriptions':
+          instance.validatedSubscriptions?.map((e) => e.toJson()).toList(),
     };
 
-ApiTournament _$ApiTournamentFromJson(Map<String, dynamic> json) => ApiTournament(
+ApiTournament _$ApiTournamentFromJson(Map<String, dynamic> json) =>
+    ApiTournament(
       canEnter: json['can_enter'] as bool?,
       category: json['category'] as int?,
       createTime: json['create_time'] as String?,
@@ -695,7 +826,8 @@ ApiTournament _$ApiTournamentFromJson(Map<String, dynamic> json) => ApiTournamen
       title: json['title'] as String?,
     );
 
-Map<String, dynamic> _$ApiTournamentToJson(ApiTournament instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiTournamentToJson(ApiTournament instance) =>
+    <String, dynamic>{
       'can_enter': instance.canEnter,
       'category': instance.category,
       'create_time': instance.createTime,
@@ -717,19 +849,23 @@ Map<String, dynamic> _$ApiTournamentToJson(ApiTournament instance) => <String, d
       'title': instance.title,
     };
 
-ApiTournamentList _$ApiTournamentListFromJson(Map<String, dynamic> json) => ApiTournamentList(
+ApiTournamentList _$ApiTournamentListFromJson(Map<String, dynamic> json) =>
+    ApiTournamentList(
       cursor: json['cursor'] as String?,
       tournaments: (json['tournaments'] as List<dynamic>?)
           ?.map((e) => ApiTournament.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$ApiTournamentListToJson(ApiTournamentList instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiTournamentListToJson(ApiTournamentList instance) =>
+    <String, dynamic>{
       'cursor': instance.cursor,
       'tournaments': instance.tournaments?.map((e) => e.toJson()).toList(),
     };
 
-ApiTournamentRecordList _$ApiTournamentRecordListFromJson(Map<String, dynamic> json) => ApiTournamentRecordList(
+ApiTournamentRecordList _$ApiTournamentRecordListFromJson(
+        Map<String, dynamic> json) =>
+    ApiTournamentRecordList(
       nextCursor: json['next_cursor'] as String?,
       ownerRecords: (json['owner_records'] as List<dynamic>?)
           ?.map((e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
@@ -740,14 +876,18 @@ ApiTournamentRecordList _$ApiTournamentRecordListFromJson(Map<String, dynamic> j
           .toList(),
     );
 
-Map<String, dynamic> _$ApiTournamentRecordListToJson(ApiTournamentRecordList instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiTournamentRecordListToJson(
+        ApiTournamentRecordList instance) =>
+    <String, dynamic>{
       'next_cursor': instance.nextCursor,
       'owner_records': instance.ownerRecords?.map((e) => e.toJson()).toList(),
       'prev_cursor': instance.prevCursor,
       'records': instance.records?.map((e) => e.toJson()).toList(),
     };
 
-ApiUpdateAccountRequest _$ApiUpdateAccountRequestFromJson(Map<String, dynamic> json) => ApiUpdateAccountRequest(
+ApiUpdateAccountRequest _$ApiUpdateAccountRequestFromJson(
+        Map<String, dynamic> json) =>
+    ApiUpdateAccountRequest(
       avatarUrl: json['avatar_url'] as String?,
       displayName: json['display_name'] as String?,
       langTag: json['lang_tag'] as String?,
@@ -756,7 +896,9 @@ ApiUpdateAccountRequest _$ApiUpdateAccountRequestFromJson(Map<String, dynamic> j
       username: json['username'] as String?,
     );
 
-Map<String, dynamic> _$ApiUpdateAccountRequestToJson(ApiUpdateAccountRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiUpdateAccountRequestToJson(
+        ApiUpdateAccountRequest instance) =>
+    <String, dynamic>{
       'avatar_url': instance.avatarUrl,
       'display_name': instance.displayName,
       'lang_tag': instance.langTag,
@@ -765,7 +907,9 @@ Map<String, dynamic> _$ApiUpdateAccountRequestToJson(ApiUpdateAccountRequest ins
       'username': instance.username,
     };
 
-ApiUpdateGroupRequest _$ApiUpdateGroupRequestFromJson(Map<String, dynamic> json) => ApiUpdateGroupRequest(
+ApiUpdateGroupRequest _$ApiUpdateGroupRequestFromJson(
+        Map<String, dynamic> json) =>
+    ApiUpdateGroupRequest(
       avatarUrl: json['avatar_url'] as String?,
       description: json['description'] as String?,
       groupId: json['group_id'] as String?,
@@ -774,7 +918,9 @@ ApiUpdateGroupRequest _$ApiUpdateGroupRequestFromJson(Map<String, dynamic> json)
       open: json['open'] as bool?,
     );
 
-Map<String, dynamic> _$ApiUpdateGroupRequestToJson(ApiUpdateGroupRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiUpdateGroupRequestToJson(
+        ApiUpdateGroupRequest instance) =>
+    <String, dynamic>{
       'avatar_url': instance.avatarUrl,
       'description': instance.description,
       'group_id': instance.groupId,
@@ -825,114 +971,139 @@ Map<String, dynamic> _$ApiUserToJson(ApiUser instance) => <String, dynamic>{
       'username': instance.username,
     };
 
-ApiUserGroupList _$ApiUserGroupListFromJson(Map<String, dynamic> json) => ApiUserGroupList(
+ApiUserGroupList _$ApiUserGroupListFromJson(Map<String, dynamic> json) =>
+    ApiUserGroupList(
       cursor: json['cursor'] as String?,
       userGroups: (json['user_groups'] as List<dynamic>?)
-          ?.map((e) => UserGroupListUserGroup.fromJson(e as Map<String, dynamic>))
+          ?.map(
+              (e) => UserGroupListUserGroup.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$ApiUserGroupListToJson(ApiUserGroupList instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiUserGroupListToJson(ApiUserGroupList instance) =>
+    <String, dynamic>{
       'cursor': instance.cursor,
       'user_groups': instance.userGroups?.map((e) => e.toJson()).toList(),
     };
 
 ApiUsers _$ApiUsersFromJson(Map<String, dynamic> json) => ApiUsers(
-      users: (json['users'] as List<dynamic>?)?.map((e) => ApiUser.fromJson(e as Map<String, dynamic>)).toList(),
+      users: (json['users'] as List<dynamic>?)
+          ?.map((e) => ApiUser.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$ApiUsersToJson(ApiUsers instance) => <String, dynamic>{
       'users': instance.users?.map((e) => e.toJson()).toList(),
     };
 
-ApiValidatePurchaseAppleRequest _$ApiValidatePurchaseAppleRequestFromJson(Map<String, dynamic> json) =>
+ApiValidatePurchaseAppleRequest _$ApiValidatePurchaseAppleRequestFromJson(
+        Map<String, dynamic> json) =>
     ApiValidatePurchaseAppleRequest(
       persist: json['persist'] as bool?,
       receipt: json['receipt'] as String?,
     );
 
-Map<String, dynamic> _$ApiValidatePurchaseAppleRequestToJson(ApiValidatePurchaseAppleRequest instance) =>
+Map<String, dynamic> _$ApiValidatePurchaseAppleRequestToJson(
+        ApiValidatePurchaseAppleRequest instance) =>
     <String, dynamic>{
       'persist': instance.persist,
       'receipt': instance.receipt,
     };
 
-ApiValidatePurchaseGoogleRequest _$ApiValidatePurchaseGoogleRequestFromJson(Map<String, dynamic> json) =>
+ApiValidatePurchaseGoogleRequest _$ApiValidatePurchaseGoogleRequestFromJson(
+        Map<String, dynamic> json) =>
     ApiValidatePurchaseGoogleRequest(
       persist: json['persist'] as bool?,
       purchase: json['purchase'] as String?,
     );
 
-Map<String, dynamic> _$ApiValidatePurchaseGoogleRequestToJson(ApiValidatePurchaseGoogleRequest instance) =>
+Map<String, dynamic> _$ApiValidatePurchaseGoogleRequestToJson(
+        ApiValidatePurchaseGoogleRequest instance) =>
     <String, dynamic>{
       'persist': instance.persist,
       'purchase': instance.purchase,
     };
 
-ApiValidatePurchaseHuaweiRequest _$ApiValidatePurchaseHuaweiRequestFromJson(Map<String, dynamic> json) =>
+ApiValidatePurchaseHuaweiRequest _$ApiValidatePurchaseHuaweiRequestFromJson(
+        Map<String, dynamic> json) =>
     ApiValidatePurchaseHuaweiRequest(
       persist: json['persist'] as bool?,
       purchase: json['purchase'] as String?,
       signature: json['signature'] as String?,
     );
 
-Map<String, dynamic> _$ApiValidatePurchaseHuaweiRequestToJson(ApiValidatePurchaseHuaweiRequest instance) =>
+Map<String, dynamic> _$ApiValidatePurchaseHuaweiRequestToJson(
+        ApiValidatePurchaseHuaweiRequest instance) =>
     <String, dynamic>{
       'persist': instance.persist,
       'purchase': instance.purchase,
       'signature': instance.signature,
     };
 
-ApiValidatePurchaseResponse _$ApiValidatePurchaseResponseFromJson(Map<String, dynamic> json) =>
+ApiValidatePurchaseResponse _$ApiValidatePurchaseResponseFromJson(
+        Map<String, dynamic> json) =>
     ApiValidatePurchaseResponse(
       validatedPurchases: (json['validated_purchases'] as List<dynamic>?)
           ?.map((e) => ApiValidatedPurchase.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$ApiValidatePurchaseResponseToJson(ApiValidatePurchaseResponse instance) => <String, dynamic>{
-      'validated_purchases': instance.validatedPurchases?.map((e) => e.toJson()).toList(),
+Map<String, dynamic> _$ApiValidatePurchaseResponseToJson(
+        ApiValidatePurchaseResponse instance) =>
+    <String, dynamic>{
+      'validated_purchases':
+          instance.validatedPurchases?.map((e) => e.toJson()).toList(),
     };
 
-ApiValidateSubscriptionAppleRequest _$ApiValidateSubscriptionAppleRequestFromJson(Map<String, dynamic> json) =>
-    ApiValidateSubscriptionAppleRequest(
-      persist: json['persist'] as bool?,
-      receipt: json['receipt'] as String?,
-    );
+ApiValidateSubscriptionAppleRequest
+    _$ApiValidateSubscriptionAppleRequestFromJson(Map<String, dynamic> json) =>
+        ApiValidateSubscriptionAppleRequest(
+          persist: json['persist'] as bool?,
+          receipt: json['receipt'] as String?,
+        );
 
-Map<String, dynamic> _$ApiValidateSubscriptionAppleRequestToJson(ApiValidateSubscriptionAppleRequest instance) =>
+Map<String, dynamic> _$ApiValidateSubscriptionAppleRequestToJson(
+        ApiValidateSubscriptionAppleRequest instance) =>
     <String, dynamic>{
       'persist': instance.persist,
       'receipt': instance.receipt,
     };
 
-ApiValidateSubscriptionGoogleRequest _$ApiValidateSubscriptionGoogleRequestFromJson(Map<String, dynamic> json) =>
-    ApiValidateSubscriptionGoogleRequest(
-      persist: json['persist'] as bool?,
-      receipt: json['receipt'] as String?,
-    );
+ApiValidateSubscriptionGoogleRequest
+    _$ApiValidateSubscriptionGoogleRequestFromJson(Map<String, dynamic> json) =>
+        ApiValidateSubscriptionGoogleRequest(
+          persist: json['persist'] as bool?,
+          receipt: json['receipt'] as String?,
+        );
 
-Map<String, dynamic> _$ApiValidateSubscriptionGoogleRequestToJson(ApiValidateSubscriptionGoogleRequest instance) =>
+Map<String, dynamic> _$ApiValidateSubscriptionGoogleRequestToJson(
+        ApiValidateSubscriptionGoogleRequest instance) =>
     <String, dynamic>{
       'persist': instance.persist,
       'receipt': instance.receipt,
     };
 
-ApiValidateSubscriptionResponse _$ApiValidateSubscriptionResponseFromJson(Map<String, dynamic> json) =>
+ApiValidateSubscriptionResponse _$ApiValidateSubscriptionResponseFromJson(
+        Map<String, dynamic> json) =>
     ApiValidateSubscriptionResponse(
       validatedSubscription: json['validated_subscription'] == null
           ? null
-          : ApiValidatedSubscription.fromJson(json['validated_subscription'] as Map<String, dynamic>),
+          : ApiValidatedSubscription.fromJson(
+              json['validated_subscription'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ApiValidateSubscriptionResponseToJson(ApiValidateSubscriptionResponse instance) =>
+Map<String, dynamic> _$ApiValidateSubscriptionResponseToJson(
+        ApiValidateSubscriptionResponse instance) =>
     <String, dynamic>{
       'validated_subscription': instance.validatedSubscription?.toJson(),
     };
 
-ApiValidatedPurchase _$ApiValidatedPurchaseFromJson(Map<String, dynamic> json) => ApiValidatedPurchase(
+ApiValidatedPurchase _$ApiValidatedPurchaseFromJson(
+        Map<String, dynamic> json) =>
+    ApiValidatedPurchase(
       createTime: json['create_time'] as String?,
-      environment: $enumDecodeNullable(_$ApiStoreEnvironmentEnumMap, json['environment']),
+      environment: $enumDecodeNullable(
+          _$ApiStoreEnvironmentEnumMap, json['environment']),
       productId: json['product_id'] as String?,
       providerResponse: json['provider_response'] as String?,
       purchaseTime: json['purchase_time'] as String?,
@@ -942,7 +1113,9 @@ ApiValidatedPurchase _$ApiValidatedPurchaseFromJson(Map<String, dynamic> json) =
       updateTime: json['update_time'] as String?,
     );
 
-Map<String, dynamic> _$ApiValidatedPurchaseToJson(ApiValidatedPurchase instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiValidatedPurchaseToJson(
+        ApiValidatedPurchase instance) =>
+    <String, dynamic>{
       'create_time': instance.createTime,
       'environment': _$ApiStoreEnvironmentEnumMap[instance.environment],
       'product_id': instance.productId,
@@ -966,10 +1139,13 @@ const _$ApiStoreProviderEnumMap = {
   ApiStoreProvider.huaweiAppGallery: 'HUAWEI_APP_GALLERY',
 };
 
-ApiValidatedSubscription _$ApiValidatedSubscriptionFromJson(Map<String, dynamic> json) => ApiValidatedSubscription(
+ApiValidatedSubscription _$ApiValidatedSubscriptionFromJson(
+        Map<String, dynamic> json) =>
+    ApiValidatedSubscription(
       active: json['active'] as bool?,
       createTime: json['create_time'] as String?,
-      environment: $enumDecodeNullable(_$ApiStoreEnvironmentEnumMap, json['environment']),
+      environment: $enumDecodeNullable(
+          _$ApiStoreEnvironmentEnumMap, json['environment']),
       expiryTime: json['expiry_time'] as String?,
       originalTransactionId: json['original_transaction_id'] as String?,
       productId: json['product_id'] as String?,
@@ -978,7 +1154,9 @@ ApiValidatedSubscription _$ApiValidatedSubscriptionFromJson(Map<String, dynamic>
       updateTime: json['update_time'] as String?,
     );
 
-Map<String, dynamic> _$ApiValidatedSubscriptionToJson(ApiValidatedSubscription instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiValidatedSubscriptionToJson(
+        ApiValidatedSubscription instance) =>
+    <String, dynamic>{
       'active': instance.active,
       'create_time': instance.createTime,
       'environment': _$ApiStoreEnvironmentEnumMap[instance.environment],
@@ -990,7 +1168,9 @@ Map<String, dynamic> _$ApiValidatedSubscriptionToJson(ApiValidatedSubscription i
       'update_time': instance.updateTime,
     };
 
-ApiWriteStorageObject _$ApiWriteStorageObjectFromJson(Map<String, dynamic> json) => ApiWriteStorageObject(
+ApiWriteStorageObject _$ApiWriteStorageObjectFromJson(
+        Map<String, dynamic> json) =>
+    ApiWriteStorageObject(
       collection: json['collection'] as String?,
       key: json['key'] as String?,
       permissionRead: json['permission_read'] as int?,
@@ -999,7 +1179,9 @@ ApiWriteStorageObject _$ApiWriteStorageObjectFromJson(Map<String, dynamic> json)
       version: json['version'] as String?,
     );
 
-Map<String, dynamic> _$ApiWriteStorageObjectToJson(ApiWriteStorageObject instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiWriteStorageObjectToJson(
+        ApiWriteStorageObject instance) =>
+    <String, dynamic>{
       'collection': instance.collection,
       'key': instance.key,
       'permission_read': instance.permissionRead,
@@ -1008,14 +1190,18 @@ Map<String, dynamic> _$ApiWriteStorageObjectToJson(ApiWriteStorageObject instanc
       'version': instance.version,
     };
 
-ApiWriteStorageObjectsRequest _$ApiWriteStorageObjectsRequestFromJson(Map<String, dynamic> json) =>
+ApiWriteStorageObjectsRequest _$ApiWriteStorageObjectsRequestFromJson(
+        Map<String, dynamic> json) =>
     ApiWriteStorageObjectsRequest(
       objects: (json['objects'] as List<dynamic>?)
-          ?.map((e) => ApiWriteStorageObject.fromJson(e as Map<String, dynamic>))
+          ?.map(
+              (e) => ApiWriteStorageObject.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$ApiWriteStorageObjectsRequestToJson(ApiWriteStorageObjectsRequest instance) => <String, dynamic>{
+Map<String, dynamic> _$ApiWriteStorageObjectsRequestToJson(
+        ApiWriteStorageObjectsRequest instance) =>
+    <String, dynamic>{
       'objects': instance.objects?.map((e) => e.toJson()).toList(),
     };
 
@@ -1024,15 +1210,17 @@ ProtobufAny _$ProtobufAnyFromJson(Map<String, dynamic> json) => ProtobufAny(
       value: json['value'] as String?,
     );
 
-Map<String, dynamic> _$ProtobufAnyToJson(ProtobufAny instance) => <String, dynamic>{
+Map<String, dynamic> _$ProtobufAnyToJson(ProtobufAny instance) =>
+    <String, dynamic>{
       'type_url': instance.typeUrl,
       'value': instance.value,
     };
 
 RpcStatus _$RpcStatusFromJson(Map<String, dynamic> json) => RpcStatus(
       code: json['code'] as int?,
-      details:
-          (json['details'] as List<dynamic>?)?.map((e) => ProtobufAny.fromJson(e as Map<String, dynamic>)).toList(),
+      details: (json['details'] as List<dynamic>?)
+          ?.map((e) => ProtobufAny.fromJson(e as Map<String, dynamic>))
+          .toList(),
       message: json['message'] as String?,
     );
 
@@ -1090,22 +1278,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiAccount>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiAccount>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/account',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/account',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiAccount.fromJson(_result.data!);
     return value;
   }
@@ -1157,22 +1346,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/account/authenticate/apple',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/account/authenticate/apple',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiSession.fromJson(_result.data!);
     return value;
   }
@@ -1195,22 +1385,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/account/authenticate/custom',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/account/authenticate/custom',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiSession.fromJson(_result.data!);
     return value;
   }
@@ -1233,22 +1424,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/account/authenticate/device',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/account/authenticate/device',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiSession.fromJson(_result.data!);
     return value;
   }
@@ -1271,22 +1463,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/account/authenticate/email',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/account/authenticate/email',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiSession.fromJson(_result.data!);
     return value;
   }
@@ -1311,22 +1504,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/account/authenticate/facebook',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/account/authenticate/facebook',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiSession.fromJson(_result.data!);
     return value;
   }
@@ -1349,22 +1543,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/account/authenticate/facebookinstantgame',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/account/authenticate/facebookinstantgame',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiSession.fromJson(_result.data!);
     return value;
   }
@@ -1387,22 +1582,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/account/authenticate/gamecenter',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/account/authenticate/gamecenter',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiSession.fromJson(_result.data!);
     return value;
   }
@@ -1425,22 +1621,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/account/authenticate/google',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/account/authenticate/google',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiSession.fromJson(_result.data!);
     return value;
   }
@@ -1465,22 +1662,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/account/authenticate/steam',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/account/authenticate/steam',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiSession.fromJson(_result.data!);
     return value;
   }
@@ -1760,22 +1958,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/account/session/refresh',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/account/session/refresh',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiSession.fromJson(_result.data!);
     return value;
   }
@@ -2058,22 +2257,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiChannelMessageList>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiChannelMessageList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/channel/${channelId}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/channel/${channelId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiChannelMessageList.fromJson(_result.data!);
     return value;
   }
@@ -2155,22 +2355,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiFriendList>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiFriendList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/friend',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/friend',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiFriendList.fromJson(_result.data!);
     return value;
   }
@@ -2321,22 +2522,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiGroupList>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiGroupList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/group',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/group',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiGroupList.fromJson(_result.data!);
     return value;
   }
@@ -2352,22 +2554,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiGroup>(Options(
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiGroup>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/group',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/group',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiGroup.fromJson(_result.data!);
     return value;
   }
@@ -2648,22 +2851,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiGroupUserList>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiGroupUserList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/group/${groupId}/user',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/group/${groupId}/user',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiGroupUserList.fromJson(_result.data!);
     return value;
   }
@@ -2679,22 +2883,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiValidatePurchaseResponse>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiValidatePurchaseResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/iap/purchase/apple',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/iap/purchase/apple',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiValidatePurchaseResponse.fromJson(_result.data!);
     return value;
   }
@@ -2710,22 +2915,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiValidatePurchaseResponse>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiValidatePurchaseResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/iap/purchase/google',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/iap/purchase/google',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiValidatePurchaseResponse.fromJson(_result.data!);
     return value;
   }
@@ -2741,22 +2947,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiValidatePurchaseResponse>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiValidatePurchaseResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/iap/purchase/huawei',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/iap/purchase/huawei',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiValidatePurchaseResponse.fromJson(_result.data!);
     return value;
   }
@@ -2772,22 +2979,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiSubscriptionList>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiSubscriptionList>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/iap/subscription',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/iap/subscription',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiSubscriptionList.fromJson(_result.data!);
     return value;
   }
@@ -2803,22 +3011,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiValidateSubscriptionResponse>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiValidateSubscriptionResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/iap/subscription/apple',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/iap/subscription/apple',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiValidateSubscriptionResponse.fromJson(_result.data!);
     return value;
   }
@@ -2834,22 +3043,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiValidateSubscriptionResponse>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiValidateSubscriptionResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/iap/subscription/google',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/iap/subscription/google',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiValidateSubscriptionResponse.fromJson(_result.data!);
     return value;
   }
@@ -2864,22 +3074,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiValidatedSubscription>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiValidatedSubscription>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/iap/subscription/${productId}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/iap/subscription/${productId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiValidatedSubscription.fromJson(_result.data!);
     return value;
   }
@@ -2931,22 +3142,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiLeaderboardRecordList>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiLeaderboardRecordList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/leaderboard/${leaderboardId}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/leaderboard/${leaderboardId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiLeaderboardRecordList.fromJson(_result.data!);
     return value;
   }
@@ -2963,22 +3175,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiLeaderboardRecord>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiLeaderboardRecord>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/leaderboard/${leaderboardId}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/leaderboard/${leaderboardId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiLeaderboardRecord.fromJson(_result.data!);
     return value;
   }
@@ -2999,22 +3212,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiLeaderboardRecordList>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiLeaderboardRecordList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/leaderboard/${leaderboardId}/owner/${ownerId}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/leaderboard/${leaderboardId}/owner/${ownerId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiLeaderboardRecordList.fromJson(_result.data!);
     return value;
   }
@@ -3041,22 +3255,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiMatchList>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiMatchList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/match',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/match',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiMatchList.fromJson(_result.data!);
     return value;
   }
@@ -3103,22 +3318,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiNotificationList>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiNotificationList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/notification',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/notification',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiNotificationList.fromJson(_result.data!);
     return value;
   }
@@ -3140,22 +3356,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiRpc>(Options(
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiRpc>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/rpc/${id}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/rpc/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiRpc.fromJson(_result.data!);
     return value;
   }
@@ -3174,22 +3391,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = body;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiRpc>(Options(
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiRpc>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/rpc/${id}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/rpc/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiRpc.fromJson(_result.data!);
     return value;
   }
@@ -3234,22 +3452,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiStorageObjects>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiStorageObjects>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/storage',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/storage',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiStorageObjects.fromJson(_result.data!);
     return value;
   }
@@ -3265,22 +3484,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiStorageObjectAcks>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiStorageObjectAcks>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/storage',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/storage',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiStorageObjectAcks.fromJson(_result.data!);
     return value;
   }
@@ -3331,22 +3551,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiStorageObjectList>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiStorageObjectList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/storage/${collection}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/storage/${collection}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiStorageObjectList.fromJson(_result.data!);
     return value;
   }
@@ -3367,22 +3588,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiStorageObjectList>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiStorageObjectList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/storage/${collection}/${userId}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/storage/${collection}/${userId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiStorageObjectList.fromJson(_result.data!);
     return value;
   }
@@ -3409,22 +3631,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiTournamentList>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiTournamentList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/tournament',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/tournament',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiTournamentList.fromJson(_result.data!);
     return value;
   }
@@ -3448,22 +3671,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiTournamentRecordList>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiTournamentRecordList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/tournament/${tournamentId}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/tournament/${tournamentId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiTournamentRecordList.fromJson(_result.data!);
     return value;
   }
@@ -3480,22 +3704,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiLeaderboardRecord>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiLeaderboardRecord>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/tournament/${tournamentId}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/tournament/${tournamentId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiLeaderboardRecord.fromJson(_result.data!);
     return value;
   }
@@ -3512,22 +3737,23 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiLeaderboardRecord>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiLeaderboardRecord>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/tournament/${tournamentId}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/tournament/${tournamentId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiLeaderboardRecord.fromJson(_result.data!);
     return value;
   }
@@ -3576,22 +3802,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiTournamentRecordList>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<ApiTournamentRecordList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/tournament/${tournamentId}/owner/${ownerId}',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/tournament/${tournamentId}/owner/${ownerId}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiTournamentRecordList.fromJson(_result.data!);
     return value;
   }
@@ -3612,22 +3839,23 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiUsers>(Options(
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiUsers>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/user',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/user',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiUsers.fromJson(_result.data!);
     return value;
   }
@@ -3649,29 +3877,31 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiUserGroupList>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ApiUserGroupList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-        .compose(
-          _dio.options,
-          '/v2/user/${userId}/group',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        ))));
+            .compose(
+              _dio.options,
+              '/v2/user/${userId}/group',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
     final value = ApiUserGroupList.fromJson(_result.data!);
     return value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
-        !(requestOptions.responseType == ResponseType.bytes || requestOptions.responseType == ResponseType.stream)) {
+        !(requestOptions.responseType == ResponseType.bytes ||
+            requestOptions.responseType == ResponseType.stream)) {
       if (T == String) {
         requestOptions.responseType = ResponseType.plain;
       } else {

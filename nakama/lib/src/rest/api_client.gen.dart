@@ -22,7 +22,8 @@ class GroupUserListGroupUser {
     required this.user,
   });
 
-  factory GroupUserListGroupUser.fromJson(Map<String, dynamic> json) => _$GroupUserListGroupUserFromJson(json);
+  factory GroupUserListGroupUser.fromJson(Map<String, dynamic> json) =>
+      _$GroupUserListGroupUserFromJson(json);
 
   Map<String, dynamic> toJson() => _$GroupUserListGroupUserToJson(this);
 
@@ -43,7 +44,8 @@ class UserGroupListUserGroup {
     required this.state,
   });
 
-  factory UserGroupListUserGroup.fromJson(Map<String, dynamic> json) => _$UserGroupListUserGroupFromJson(json);
+  factory UserGroupListUserGroup.fromJson(Map<String, dynamic> json) =>
+      _$UserGroupListUserGroupFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserGroupListUserGroupToJson(this);
 
@@ -70,10 +72,13 @@ class WriteLeaderboardRecordRequestLeaderboardRecordWrite {
     required this.subscore,
   });
 
-  factory WriteLeaderboardRecordRequestLeaderboardRecordWrite.fromJson(Map<String, dynamic> json) =>
+  factory WriteLeaderboardRecordRequestLeaderboardRecordWrite.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       _$WriteLeaderboardRecordRequestLeaderboardRecordWriteFromJson(json);
 
-  Map<String, dynamic> toJson() => _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -98,10 +103,13 @@ class WriteTournamentRecordRequestTournamentRecordWrite {
     required this.subscore,
   });
 
-  factory WriteTournamentRecordRequestTournamentRecordWrite.fromJson(Map<String, dynamic> json) =>
+  factory WriteTournamentRecordRequestTournamentRecordWrite.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       _$WriteTournamentRecordRequestTournamentRecordWriteFromJson(json);
 
-  Map<String, dynamic> toJson() => _$WriteTournamentRecordRequestTournamentRecordWriteToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$WriteTournamentRecordRequestTournamentRecordWriteToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -135,7 +143,8 @@ class ApiAccount {
     required this.wallet,
   });
 
-  factory ApiAccount.fromJson(Map<String, dynamic> json) => _$ApiAccountFromJson(json);
+  factory ApiAccount.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiAccountToJson(this);
 
@@ -156,7 +165,8 @@ class ApiAccountApple {
     required this.vars,
   });
 
-  factory ApiAccountApple.fromJson(Map<String, dynamic> json) => _$ApiAccountAppleFromJson(json);
+  factory ApiAccountApple.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountAppleFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiAccountAppleToJson(this);
 
@@ -177,7 +187,8 @@ class ApiAccountCustom {
     required this.vars,
   });
 
-  factory ApiAccountCustom.fromJson(Map<String, dynamic> json) => _$ApiAccountCustomFromJson(json);
+  factory ApiAccountCustom.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountCustomFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiAccountCustomToJson(this);
 
@@ -198,7 +209,8 @@ class ApiAccountDevice {
     required this.vars,
   });
 
-  factory ApiAccountDevice.fromJson(Map<String, dynamic> json) => _$ApiAccountDeviceFromJson(json);
+  factory ApiAccountDevice.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountDeviceFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiAccountDeviceToJson(this);
 
@@ -222,7 +234,8 @@ class ApiAccountEmail {
     required this.vars,
   });
 
-  factory ApiAccountEmail.fromJson(Map<String, dynamic> json) => _$ApiAccountEmailFromJson(json);
+  factory ApiAccountEmail.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountEmailFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiAccountEmailToJson(this);
 
@@ -243,7 +256,8 @@ class ApiAccountFacebook {
     required this.vars,
   });
 
-  factory ApiAccountFacebook.fromJson(Map<String, dynamic> json) => _$ApiAccountFacebookFromJson(json);
+  factory ApiAccountFacebook.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountFacebookFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiAccountFacebookToJson(this);
 
@@ -301,7 +315,8 @@ class ApiAccountGameCenter {
     required this.vars,
   });
 
-  factory ApiAccountGameCenter.fromJson(Map<String, dynamic> json) => _$ApiAccountGameCenterFromJson(json);
+  factory ApiAccountGameCenter.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountGameCenterFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiAccountGameCenterToJson(this);
 
@@ -322,7 +337,8 @@ class ApiAccountGoogle {
     required this.vars,
   });
 
-  factory ApiAccountGoogle.fromJson(Map<String, dynamic> json) => _$ApiAccountGoogleFromJson(json);
+  factory ApiAccountGoogle.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountGoogleFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiAccountGoogleToJson(this);
 
@@ -343,7 +359,8 @@ class ApiAccountSteam {
     required this.vars,
   });
 
-  factory ApiAccountSteam.fromJson(Map<String, dynamic> json) => _$ApiAccountSteamFromJson(json);
+  factory ApiAccountSteam.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountSteamFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiAccountSteamToJson(this);
 
@@ -397,7 +414,8 @@ class ApiChannelMessage {
     required this.username,
   });
 
-  factory ApiChannelMessage.fromJson(Map<String, dynamic> json) => _$ApiChannelMessageFromJson(json);
+  factory ApiChannelMessage.fromJson(Map<String, dynamic> json) =>
+      _$ApiChannelMessageFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiChannelMessageToJson(this);
 
@@ -424,7 +442,8 @@ class ApiChannelMessageList {
     required this.prevCursor,
   });
 
-  factory ApiChannelMessageList.fromJson(Map<String, dynamic> json) => _$ApiChannelMessageListFromJson(json);
+  factory ApiChannelMessageList.fromJson(Map<String, dynamic> json) =>
+      _$ApiChannelMessageListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiChannelMessageListToJson(this);
 
@@ -457,7 +476,8 @@ class ApiCreateGroupRequest {
     required this.open,
   });
 
-  factory ApiCreateGroupRequest.fromJson(Map<String, dynamic> json) => _$ApiCreateGroupRequestFromJson(json);
+  factory ApiCreateGroupRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiCreateGroupRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiCreateGroupRequestToJson(this);
 
@@ -481,7 +501,8 @@ class ApiDeleteStorageObjectId {
     required this.version,
   });
 
-  factory ApiDeleteStorageObjectId.fromJson(Map<String, dynamic> json) => _$ApiDeleteStorageObjectIdFromJson(json);
+  factory ApiDeleteStorageObjectId.fromJson(Map<String, dynamic> json) =>
+      _$ApiDeleteStorageObjectIdFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiDeleteStorageObjectIdToJson(this);
 
@@ -527,7 +548,8 @@ class ApiEvent {
     required this.timestamp,
   });
 
-  factory ApiEvent.fromJson(Map<String, dynamic> json) => _$ApiEventFromJson(json);
+  factory ApiEvent.fromJson(Map<String, dynamic> json) =>
+      _$ApiEventFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiEventToJson(this);
 
@@ -551,7 +573,8 @@ class ApiFriend {
     required this.user,
   });
 
-  factory ApiFriend.fromJson(Map<String, dynamic> json) => _$ApiFriendFromJson(json);
+  factory ApiFriend.fromJson(Map<String, dynamic> json) =>
+      _$ApiFriendFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiFriendToJson(this);
 
@@ -572,7 +595,8 @@ class ApiFriendList {
     required this.friends,
   });
 
-  factory ApiFriendList.fromJson(Map<String, dynamic> json) => _$ApiFriendListFromJson(json);
+  factory ApiFriendList.fromJson(Map<String, dynamic> json) =>
+      _$ApiFriendListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiFriendListToJson(this);
 
@@ -623,7 +647,8 @@ class ApiGroup {
     required this.updateTime,
   });
 
-  factory ApiGroup.fromJson(Map<String, dynamic> json) => _$ApiGroupFromJson(json);
+  factory ApiGroup.fromJson(Map<String, dynamic> json) =>
+      _$ApiGroupFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiGroupToJson(this);
 
@@ -644,7 +669,8 @@ class ApiGroupList {
     required this.groups,
   });
 
-  factory ApiGroupList.fromJson(Map<String, dynamic> json) => _$ApiGroupListFromJson(json);
+  factory ApiGroupList.fromJson(Map<String, dynamic> json) =>
+      _$ApiGroupListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiGroupListToJson(this);
 
@@ -665,7 +691,8 @@ class ApiGroupUserList {
     required this.groupUsers,
   });
 
-  factory ApiGroupUserList.fromJson(Map<String, dynamic> json) => _$ApiGroupUserListFromJson(json);
+  factory ApiGroupUserList.fromJson(Map<String, dynamic> json) =>
+      _$ApiGroupUserListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiGroupUserListToJson(this);
 
@@ -716,7 +743,8 @@ class ApiLeaderboardRecord {
     required this.username,
   });
 
-  factory ApiLeaderboardRecord.fromJson(Map<String, dynamic> json) => _$ApiLeaderboardRecordFromJson(json);
+  factory ApiLeaderboardRecord.fromJson(Map<String, dynamic> json) =>
+      _$ApiLeaderboardRecordFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiLeaderboardRecordToJson(this);
 
@@ -743,7 +771,8 @@ class ApiLeaderboardRecordList {
     required this.records,
   });
 
-  factory ApiLeaderboardRecordList.fromJson(Map<String, dynamic> json) => _$ApiLeaderboardRecordListFromJson(json);
+  factory ApiLeaderboardRecordList.fromJson(Map<String, dynamic> json) =>
+      _$ApiLeaderboardRecordListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiLeaderboardRecordListToJson(this);
 
@@ -764,7 +793,8 @@ class ApiLinkSteamRequest {
     required this.sync,
   });
 
-  factory ApiLinkSteamRequest.fromJson(Map<String, dynamic> json) => _$ApiLinkSteamRequestFromJson(json);
+  factory ApiLinkSteamRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiLinkSteamRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiLinkSteamRequestToJson(this);
 
@@ -819,7 +849,8 @@ class ApiMatch {
     required this.tickRate,
   });
 
-  factory ApiMatch.fromJson(Map<String, dynamic> json) => _$ApiMatchFromJson(json);
+  factory ApiMatch.fromJson(Map<String, dynamic> json) =>
+      _$ApiMatchFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiMatchToJson(this);
 
@@ -837,7 +868,8 @@ class ApiMatchList {
     required this.matches,
   });
 
-  factory ApiMatchList.fromJson(Map<String, dynamic> json) => _$ApiMatchListFromJson(json);
+  factory ApiMatchList.fromJson(Map<String, dynamic> json) =>
+      _$ApiMatchListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiMatchListToJson(this);
 
@@ -873,7 +905,8 @@ class ApiNotification {
     required this.subject,
   });
 
-  factory ApiNotification.fromJson(Map<String, dynamic> json) => _$ApiNotificationFromJson(json);
+  factory ApiNotification.fromJson(Map<String, dynamic> json) =>
+      _$ApiNotificationFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiNotificationToJson(this);
 
@@ -894,7 +927,8 @@ class ApiNotificationList {
     required this.notifications,
   });
 
-  factory ApiNotificationList.fromJson(Map<String, dynamic> json) => _$ApiNotificationListFromJson(json);
+  factory ApiNotificationList.fromJson(Map<String, dynamic> json) =>
+      _$ApiNotificationListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiNotificationListToJson(this);
 
@@ -931,7 +965,8 @@ class ApiReadStorageObjectId {
     required this.userId,
   });
 
-  factory ApiReadStorageObjectId.fromJson(Map<String, dynamic> json) => _$ApiReadStorageObjectIdFromJson(json);
+  factory ApiReadStorageObjectId.fromJson(Map<String, dynamic> json) =>
+      _$ApiReadStorageObjectIdFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiReadStorageObjectIdToJson(this);
 
@@ -998,7 +1033,8 @@ class ApiSession {
     required this.token,
   });
 
-  factory ApiSession.fromJson(Map<String, dynamic> json) => _$ApiSessionFromJson(json);
+  factory ApiSession.fromJson(Map<String, dynamic> json) =>
+      _$ApiSessionFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiSessionToJson(this);
 
@@ -1019,7 +1055,8 @@ class ApiSessionLogoutRequest {
     required this.token,
   });
 
-  factory ApiSessionLogoutRequest.fromJson(Map<String, dynamic> json) => _$ApiSessionLogoutRequestFromJson(json);
+  factory ApiSessionLogoutRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiSessionLogoutRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiSessionLogoutRequestToJson(this);
 
@@ -1040,7 +1077,8 @@ class ApiSessionRefreshRequest {
     required this.vars,
   });
 
-  factory ApiSessionRefreshRequest.fromJson(Map<String, dynamic> json) => _$ApiSessionRefreshRequestFromJson(json);
+  factory ApiSessionRefreshRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiSessionRefreshRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiSessionRefreshRequestToJson(this);
 
@@ -1082,7 +1120,8 @@ class ApiStorageObject {
     required this.version,
   });
 
-  factory ApiStorageObject.fromJson(Map<String, dynamic> json) => _$ApiStorageObjectFromJson(json);
+  factory ApiStorageObject.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiStorageObjectToJson(this);
 
@@ -1109,7 +1148,8 @@ class ApiStorageObjectAck {
     required this.version,
   });
 
-  factory ApiStorageObjectAck.fromJson(Map<String, dynamic> json) => _$ApiStorageObjectAckFromJson(json);
+  factory ApiStorageObjectAck.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectAckFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiStorageObjectAckToJson(this);
 
@@ -1127,7 +1167,8 @@ class ApiStorageObjectAcks {
     required this.acks,
   });
 
-  factory ApiStorageObjectAcks.fromJson(Map<String, dynamic> json) => _$ApiStorageObjectAcksFromJson(json);
+  factory ApiStorageObjectAcks.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectAcksFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiStorageObjectAcksToJson(this);
 
@@ -1148,7 +1189,8 @@ class ApiStorageObjectList {
     required this.objects,
   });
 
-  factory ApiStorageObjectList.fromJson(Map<String, dynamic> json) => _$ApiStorageObjectListFromJson(json);
+  factory ApiStorageObjectList.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiStorageObjectListToJson(this);
 
@@ -1166,7 +1208,8 @@ class ApiStorageObjects {
     required this.objects,
   });
 
-  factory ApiStorageObjects.fromJson(Map<String, dynamic> json) => _$ApiStorageObjectsFromJson(json);
+  factory ApiStorageObjects.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectsFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiStorageObjectsToJson(this);
 
@@ -1208,7 +1251,8 @@ class ApiSubscriptionList {
     required this.validatedSubscriptions,
   });
 
-  factory ApiSubscriptionList.fromJson(Map<String, dynamic> json) => _$ApiSubscriptionListFromJson(json);
+  factory ApiSubscriptionList.fromJson(Map<String, dynamic> json) =>
+      _$ApiSubscriptionListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiSubscriptionListToJson(this);
 
@@ -1280,7 +1324,8 @@ class ApiTournament {
     required this.title,
   });
 
-  factory ApiTournament.fromJson(Map<String, dynamic> json) => _$ApiTournamentFromJson(json);
+  factory ApiTournament.fromJson(Map<String, dynamic> json) =>
+      _$ApiTournamentFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiTournamentToJson(this);
 
@@ -1301,7 +1346,8 @@ class ApiTournamentList {
     required this.tournaments,
   });
 
-  factory ApiTournamentList.fromJson(Map<String, dynamic> json) => _$ApiTournamentListFromJson(json);
+  factory ApiTournamentList.fromJson(Map<String, dynamic> json) =>
+      _$ApiTournamentListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiTournamentListToJson(this);
 
@@ -1328,7 +1374,8 @@ class ApiTournamentRecordList {
     required this.records,
   });
 
-  factory ApiTournamentRecordList.fromJson(Map<String, dynamic> json) => _$ApiTournamentRecordListFromJson(json);
+  factory ApiTournamentRecordList.fromJson(Map<String, dynamic> json) =>
+      _$ApiTournamentRecordListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiTournamentRecordListToJson(this);
 
@@ -1361,7 +1408,8 @@ class ApiUpdateAccountRequest {
     required this.username,
   });
 
-  factory ApiUpdateAccountRequest.fromJson(Map<String, dynamic> json) => _$ApiUpdateAccountRequestFromJson(json);
+  factory ApiUpdateAccountRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiUpdateAccountRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiUpdateAccountRequestToJson(this);
 
@@ -1394,7 +1442,8 @@ class ApiUpdateGroupRequest {
     required this.open,
   });
 
-  factory ApiUpdateGroupRequest.fromJson(Map<String, dynamic> json) => _$ApiUpdateGroupRequestFromJson(json);
+  factory ApiUpdateGroupRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiUpdateGroupRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiUpdateGroupRequestToJson(this);
 
@@ -1463,7 +1512,8 @@ class ApiUser {
     required this.username,
   });
 
-  factory ApiUser.fromJson(Map<String, dynamic> json) => _$ApiUserFromJson(json);
+  factory ApiUser.fromJson(Map<String, dynamic> json) =>
+      _$ApiUserFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiUserToJson(this);
 
@@ -1484,7 +1534,8 @@ class ApiUserGroupList {
     required this.userGroups,
   });
 
-  factory ApiUserGroupList.fromJson(Map<String, dynamic> json) => _$ApiUserGroupListFromJson(json);
+  factory ApiUserGroupList.fromJson(Map<String, dynamic> json) =>
+      _$ApiUserGroupListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiUserGroupListToJson(this);
 
@@ -1502,7 +1553,8 @@ class ApiUsers {
     required this.users,
   });
 
-  factory ApiUsers.fromJson(Map<String, dynamic> json) => _$ApiUsersFromJson(json);
+  factory ApiUsers.fromJson(Map<String, dynamic> json) =>
+      _$ApiUsersFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiUsersToJson(this);
 
@@ -1526,7 +1578,8 @@ class ApiValidatePurchaseAppleRequest {
   factory ApiValidatePurchaseAppleRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiValidatePurchaseAppleRequestFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ApiValidatePurchaseAppleRequestToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$ApiValidatePurchaseAppleRequestToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -1545,10 +1598,13 @@ class ApiValidatePurchaseGoogleRequest {
     required this.purchase,
   });
 
-  factory ApiValidatePurchaseGoogleRequest.fromJson(Map<String, dynamic> json) =>
+  factory ApiValidatePurchaseGoogleRequest.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       _$ApiValidatePurchaseGoogleRequestFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ApiValidatePurchaseGoogleRequestToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$ApiValidatePurchaseGoogleRequestToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -1570,10 +1626,13 @@ class ApiValidatePurchaseHuaweiRequest {
     required this.signature,
   });
 
-  factory ApiValidatePurchaseHuaweiRequest.fromJson(Map<String, dynamic> json) =>
+  factory ApiValidatePurchaseHuaweiRequest.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       _$ApiValidatePurchaseHuaweiRequestFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ApiValidatePurchaseHuaweiRequestToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$ApiValidatePurchaseHuaweiRequestToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -1611,10 +1670,13 @@ class ApiValidateSubscriptionAppleRequest {
     required this.receipt,
   });
 
-  factory ApiValidateSubscriptionAppleRequest.fromJson(Map<String, dynamic> json) =>
+  factory ApiValidateSubscriptionAppleRequest.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       _$ApiValidateSubscriptionAppleRequestFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ApiValidateSubscriptionAppleRequestToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$ApiValidateSubscriptionAppleRequestToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -1633,10 +1695,13 @@ class ApiValidateSubscriptionGoogleRequest {
     required this.receipt,
   });
 
-  factory ApiValidateSubscriptionGoogleRequest.fromJson(Map<String, dynamic> json) =>
+  factory ApiValidateSubscriptionGoogleRequest.fromJson(
+    Map<String, dynamic> json,
+  ) =>
       _$ApiValidateSubscriptionGoogleRequestFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ApiValidateSubscriptionGoogleRequestToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$ApiValidateSubscriptionGoogleRequestToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -1655,7 +1720,8 @@ class ApiValidateSubscriptionResponse {
   factory ApiValidateSubscriptionResponse.fromJson(Map<String, dynamic> json) =>
       _$ApiValidateSubscriptionResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ApiValidateSubscriptionResponseToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$ApiValidateSubscriptionResponseToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -1695,7 +1761,8 @@ class ApiValidatedPurchase {
     required this.updateTime,
   });
 
-  factory ApiValidatedPurchase.fromJson(Map<String, dynamic> json) => _$ApiValidatedPurchaseFromJson(json);
+  factory ApiValidatedPurchase.fromJson(Map<String, dynamic> json) =>
+      _$ApiValidatedPurchaseFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiValidatedPurchaseToJson(this);
 
@@ -1737,7 +1804,8 @@ class ApiValidatedSubscription {
     required this.updateTime,
   });
 
-  factory ApiValidatedSubscription.fromJson(Map<String, dynamic> json) => _$ApiValidatedSubscriptionFromJson(json);
+  factory ApiValidatedSubscription.fromJson(Map<String, dynamic> json) =>
+      _$ApiValidatedSubscriptionFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiValidatedSubscriptionToJson(this);
 
@@ -1770,7 +1838,8 @@ class ApiWriteStorageObject {
     required this.version,
   });
 
-  factory ApiWriteStorageObject.fromJson(Map<String, dynamic> json) => _$ApiWriteStorageObjectFromJson(json);
+  factory ApiWriteStorageObject.fromJson(Map<String, dynamic> json) =>
+      _$ApiWriteStorageObjectFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiWriteStorageObjectToJson(this);
 
@@ -1810,7 +1879,8 @@ class ProtobufAny {
     required this.value,
   });
 
-  factory ProtobufAny.fromJson(Map<String, dynamic> json) => _$ProtobufAnyFromJson(json);
+  factory ProtobufAny.fromJson(Map<String, dynamic> json) =>
+      _$ProtobufAnyFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProtobufAnyToJson(this);
 
@@ -1834,7 +1904,8 @@ class RpcStatus {
     required this.message,
   });
 
-  factory RpcStatus.fromJson(Map<String, dynamic> json) => _$RpcStatusFromJson(json);
+  factory RpcStatus.fromJson(Map<String, dynamic> json) =>
+      _$RpcStatusFromJson(json);
 
   Map<String, dynamic> toJson() => _$RpcStatusToJson(this);
 

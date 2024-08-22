@@ -13,10 +13,12 @@ class ExperimentList with _$ExperimentList {
     required List<Experiment> experiments,
   }) = _ExperimentList;
 
-  factory ExperimentList.fromJson(Map<String, dynamic> json) => _$ExperimentListFromJson(json);
+  factory ExperimentList.fromJson(Map<String, dynamic> json) =>
+      _$ExperimentListFromJson(json);
 
   factory ExperimentList.fromDto(ApiExperimentList dto) => ExperimentList(
-        experiments: dto.experiments!.map((e) => Experiment.fromDto(e)).toList(),
+        experiments:
+            dto.experiments!.map((e) => Experiment.fromDto(e)).toList(),
       );
 }
 
@@ -33,7 +35,8 @@ class Experiment with _$Experiment {
     String? value,
   }) = _Experiment;
 
-  factory Experiment.fromJson(Map<String, dynamic> json) => _$ExperimentFromJson(json);
+  factory Experiment.fromJson(Map<String, dynamic> json) =>
+      _$ExperimentFromJson(json);
 
   factory Experiment.fromDto(ApiExperiment dto) => Experiment(
         name: dto.name,

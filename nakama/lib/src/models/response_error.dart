@@ -12,7 +12,8 @@ class ResponseError implements Exception {
   final int? code;
   final String? message;
 
-  factory ResponseError.fromJson(Map<String, dynamic> json) => _$ResponseErrorFromJson(json);
+  factory ResponseError.fromJson(Map<String, dynamic> json) =>
+      _$ResponseErrorFromJson(json);
 
   Map<String, dynamic> toJson() => _$ResponseErrorToJson(this);
 

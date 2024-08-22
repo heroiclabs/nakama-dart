@@ -73,14 +73,25 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String path,
     required bool ssl,
   }) {
-    apiBaseUrl = Uri(host: host, scheme: ssl ? 'https' : 'http', port: port, path: path);
+    apiBaseUrl = Uri(
+      host: host,
+      scheme: ssl ? 'https' : 'http',
+      port: port,
+      path: path,
+    );
     final dio = Dio(BaseOptions(baseUrl: apiBaseUrl.toString()));
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
         if (_session != null) {
-          options.headers.putIfAbsent('Authorization', () => 'Bearer ${_session!.token}');
+          options.headers.putIfAbsent(
+            'Authorization',
+            () => 'Bearer ${_session!.token}',
+          );
         } else {
-          options.headers.putIfAbsent('Authorization', () => 'Basic ${base64Encode('$serverKey:'.codeUnits)}');
+          options.headers.putIfAbsent(
+            'Authorization',
+            () => 'Basic ${base64Encode('$serverKey:'.codeUnits)}',
+          );
         }
 
         handler.next(options);
@@ -792,7 +803,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
         facebookIds: facebookIds ?? [],
       );
 
-      return users.users?.map((e) => model.User.fromJson(e.toJson())).toList(growable: false) ?? [];
+      return users.users
+              ?.map((e) => model.User.fromJson(e.toJson()))
+              .toList(growable: false) ??
+          [];
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -869,7 +883,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
         ),
       );
 
-      return objects.objects?.map((e) => model.StorageObject.fromJson(e.toJson())).toList(growable: false) ?? [];
+      return objects.objects
+              ?.map((e) => model.StorageObject.fromJson(e.toJson()))
+              .toList(growable: false) ??
+          [];
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -940,7 +957,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
         ownerIds: ownerIds ?? [],
         limit: limit,
         cursor: cursor,
-        expiry: expiry == null ? null : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
+        expiry: expiry == null
+            ? null
+            : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
       );
 
       return model.LeaderboardRecordList.fromJson(res.toJson());
@@ -964,7 +983,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
         leaderboardId: leaderboardName,
         ownerId: ownerId,
         limit: limit,
-        expiry: expiry == null ? null : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
+        expiry: expiry == null
+            ? null
+            : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
       );
 
       return model.LeaderboardRecordList.fromJson(res.toJson());
@@ -1413,7 +1434,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
         query: query,
       );
 
-      return res.matches?.map((e) => model.Match.fromJson(e.toJson())).toList(growable: false) ?? [];
+      return res.matches
+              ?.map((e) => model.Match.fromJson(e.toJson()))
+              .toList(growable: false) ??
+          [];
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -1450,8 +1474,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
         categoryStart: categoryStart,
         categoryEnd: categoryEnd,
         cursor: cursor,
-        startTime: startTime != null ? startTime.millisecondsSinceEpoch ~/ 1000 : null,
-        endTime: endTime != null ? endTime.millisecondsSinceEpoch ~/ 1000 : null,
+        startTime:
+            startTime != null ? startTime.millisecondsSinceEpoch ~/ 1000 : null,
+        endTime:
+            endTime != null ? endTime.millisecondsSinceEpoch ~/ 1000 : null,
         limit: limit,
       );
 

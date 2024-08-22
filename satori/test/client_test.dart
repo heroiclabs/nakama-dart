@@ -16,17 +16,22 @@ void main() {
 
     test('authenticate and logout', () async {
       // Authenticate
-      final session = await client.authenticate(id: '285fb548-1c23-42c2-84b5-cd18c22d7053');
+      final session =
+          await client.authenticate(id: '285fb548-1c23-42c2-84b5-cd18c22d7053');
 
       expect(session, isA<Session>());
 
       // Logout
       await client.authenticateLogout(session: session);
-      expect(() async => await client.getExperiments(session: session, names: []), throwsA(isA<Exception>()));
+      expect(
+        () async => await client.getExperiments(session: session, names: []),
+        throwsA(isA<Exception>()),
+      );
     });
 
     test('get experiments', () async {
-      final session = await client.authenticate(id: '285fb548-1c23-42c2-84b5-cd18c22d7053');
+      final session =
+          await client.authenticate(id: '285fb548-1c23-42c2-84b5-cd18c22d7053');
       final experiments = await client.getAllExperiments(session: session);
 
       expect(experiments, isA<ExperimentList>());
@@ -35,7 +40,8 @@ void main() {
     });
 
     test('get flags', () async {
-      final session = await client.authenticate(id: '285fb548-1c23-42c2-84b5-cd18c22d7053');
+      final session =
+          await client.authenticate(id: '285fb548-1c23-42c2-84b5-cd18c22d7053');
       final flags = await client.getFlags(session: session, names: []);
 
       expect(flags, isA<FlagList>());
@@ -44,7 +50,8 @@ void main() {
     });
 
     test('test send events', () async {
-      final session = await client.authenticate(id: '285fb548-1c23-42c2-84b5-cd18c22d7053');
+      final session =
+          await client.authenticate(id: '285fb548-1c23-42c2-84b5-cd18c22d7053');
       await client.event(
         session: session,
         event: Event(
@@ -64,7 +71,8 @@ void main() {
     });
 
     test('test get live events', () async {
-      final session = await client.authenticate(id: '285fb548-1c23-42c2-84b5-cd18c22d7053');
+      final session =
+          await client.authenticate(id: '285fb548-1c23-42c2-84b5-cd18c22d7053');
       final liveEvents = await client.getLiveEvents(session: session);
 
       // Should not receive any live events because not in the targeted audience

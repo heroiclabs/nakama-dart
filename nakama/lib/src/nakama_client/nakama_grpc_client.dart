@@ -83,7 +83,9 @@ class NakamaGrpcClient extends NakamaBaseClient {
       host,
       port: port,
       options: ChannelOptions(
-        credentials: ssl == true ? const ChannelCredentials.secure() : const ChannelCredentials.insecure(),
+        credentials: ssl == true
+            ? const ChannelCredentials.secure()
+            : const ChannelCredentials.insecure(),
       ),
     );
 
@@ -690,7 +692,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
     await _client.updateAccount(
       api.UpdateAccountRequest(
         username: username == null ? null : api.StringValue(value: username),
-        displayName: displayName == null ? null : api.StringValue(value: displayName),
+        displayName:
+            displayName == null ? null : api.StringValue(value: displayName),
         avatarUrl: avatarUrl == null ? null : api.StringValue(value: avatarUrl),
         langTag: langTag == null ? null : api.StringValue(value: langTag),
         location: location == null ? null : api.StringValue(value: location),
@@ -780,7 +783,10 @@ class NakamaGrpcClient extends NakamaBaseClient {
         ownerIds: ownerIds,
         limit: api.Int32Value(value: limit),
         cursor: cursor,
-        expiry: expiry == null ? null : api.Int64Value(value: Int64(expiry.millisecondsSinceEpoch ~/ 1000)),
+        expiry: expiry == null
+            ? null
+            : api.Int64Value(
+                value: Int64(expiry.millisecondsSinceEpoch ~/ 1000)),
       ),
       options: _getSessionCallOptions(session),
     );
@@ -803,7 +809,10 @@ class NakamaGrpcClient extends NakamaBaseClient {
         leaderboardId: leaderboardName,
         ownerId: ownerId,
         limit: api.UInt32Value(value: limit),
-        expiry: expiry == null ? null : api.Int64Value(value: Int64(expiry.millisecondsSinceEpoch ~/ 1000)),
+        expiry: expiry == null
+            ? null
+            : api.Int64Value(
+                value: Int64(expiry.millisecondsSinceEpoch ~/ 1000)),
       ),
       options: _getSessionCallOptions(session),
     );
@@ -1191,7 +1200,9 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return res.matches.map((e) => model.Match.fromDto(e)).toList(growable: false);
+    return res.matches
+        .map((e) => model.Match.fromDto(e))
+        .toList(growable: false);
   }
 
   @override
@@ -1222,8 +1233,14 @@ class NakamaGrpcClient extends NakamaBaseClient {
         categoryEnd: api.UInt32Value(value: categoryEnd),
         categoryStart: api.UInt32Value(value: categoryStart),
         cursor: cursor,
-        startTime: api.UInt32Value(value: startTime != null ? startTime.millisecondsSinceEpoch ~/ 1000 : null),
-        endTime: api.UInt32Value(value: endTime != null ? endTime.millisecondsSinceEpoch ~/ 1000 : null),
+        startTime: api.UInt32Value(
+            value: startTime != null
+                ? startTime.millisecondsSinceEpoch ~/ 1000
+                : null),
+        endTime: api.UInt32Value(
+            value: endTime != null
+                ? endTime.millisecondsSinceEpoch ~/ 1000
+                : null),
         limit: api.Int32Value(value: limit),
       ),
       options: _getSessionCallOptions(session),
@@ -1355,7 +1372,9 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return res.objects.map((e) => model.StorageObject.fromDto(e)).toList(growable: false);
+    return res.objects
+        .map((e) => model.StorageObject.fromDto(e))
+        .toList(growable: false);
   }
 
   @override
@@ -1372,8 +1391,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<void> importFacebookFriends(
-      {required model.Session session, required String token, bool reset = false, Map<String, String>? vars}) async {
+  Future<void> importFacebookFriends({
+    required model.Session session,
+    required String token,
+    bool reset = false,
+    Map<String, String>? vars,
+  }) async {
     await _client.importFacebookFriends(
       api.ImportFacebookFriendsRequest(
         account: AccountFacebook(token: token, vars: vars),

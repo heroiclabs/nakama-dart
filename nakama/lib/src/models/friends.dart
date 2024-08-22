@@ -15,7 +15,8 @@ class FriendsList with _$FriendsList {
     required List<Friend>? friends,
   }) = _FriendsList;
 
-  factory FriendsList.fromJson(Map<String, Object?> json) => _$FriendsListFromJson(json);
+  factory FriendsList.fromJson(Map<String, Object?> json) =>
+      _$FriendsListFromJson(json);
 
   factory FriendsList.fromDto(api.FriendList dto) => FriendsList(
         cursor: dto.cursor,

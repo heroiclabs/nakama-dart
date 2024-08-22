@@ -26,13 +26,17 @@ class NakamaWebsocketClient {
 
   late final WebSocketChannel _channel;
 
-  final _onChannelPresenceController = StreamController<ChannelPresenceEvent>.broadcast();
+  final _onChannelPresenceController =
+      StreamController<ChannelPresenceEvent>.broadcast();
 
-  Stream<ChannelPresenceEvent> get onChannelPresence => _onChannelPresenceController.stream;
+  Stream<ChannelPresenceEvent> get onChannelPresence =>
+      _onChannelPresenceController.stream;
 
-  final _onMatchmakerMatchedController = StreamController<MatchmakerMatched>.broadcast();
+  final _onMatchmakerMatchedController =
+      StreamController<MatchmakerMatched>.broadcast();
 
-  Stream<MatchmakerMatched> get onMatchmakerMatched => _onMatchmakerMatchedController.stream;
+  Stream<MatchmakerMatched> get onMatchmakerMatched =>
+      _onMatchmakerMatchedController.stream;
 
   final _onMatchDataController = StreamController<MatchData>.broadcast();
 
@@ -40,37 +44,48 @@ class NakamaWebsocketClient {
 
   final _onPartyDataController = StreamController<PartyData>.broadcast();
 
-  final _onPartyPresenceController = StreamController<PartyPresenceEvent>.broadcast();
-  Stream<PartyPresenceEvent> get onPartyPresence => _onPartyPresenceController.stream;
+  final _onPartyPresenceController =
+      StreamController<PartyPresenceEvent>.broadcast();
+  Stream<PartyPresenceEvent> get onPartyPresence =>
+      _onPartyPresenceController.stream;
 
   final _onPartyLeaderController = StreamController<PartyLeader>.broadcast();
   Stream<PartyLeader> get onPartyLeader => _onPartyLeaderController.stream;
 
   Stream<PartyData> get onPartyData => _onPartyDataController.stream;
 
-  final _onMatchPresenceController = StreamController<MatchPresenceEvent>.broadcast();
+  final _onMatchPresenceController =
+      StreamController<MatchPresenceEvent>.broadcast();
 
-  Stream<MatchPresenceEvent> get onMatchPresence => _onMatchPresenceController.stream;
+  Stream<MatchPresenceEvent> get onMatchPresence =>
+      _onMatchPresenceController.stream;
 
   final _onNotificationsController = StreamController<Notification>.broadcast();
 
   Stream<Notification> get onNotifications => _onNotificationsController.stream;
 
-  final _onStatusPresenceController = StreamController<StatusPresenceEvent>.broadcast();
+  final _onStatusPresenceController =
+      StreamController<StatusPresenceEvent>.broadcast();
 
-  Stream<StatusPresenceEvent> get onStatusPresence => _onStatusPresenceController.stream;
+  Stream<StatusPresenceEvent> get onStatusPresence =>
+      _onStatusPresenceController.stream;
 
-  final _onStreamPresenceController = StreamController<StreamPresenceEvent>.broadcast();
+  final _onStreamPresenceController =
+      StreamController<StreamPresenceEvent>.broadcast();
 
-  Stream<StreamPresenceEvent> get onStreamPresence => _onStreamPresenceController.stream;
+  Stream<StreamPresenceEvent> get onStreamPresence =>
+      _onStreamPresenceController.stream;
 
-  final _onStreamDataController = StreamController<RealtimeStreamData>.broadcast();
+  final _onStreamDataController =
+      StreamController<RealtimeStreamData>.broadcast();
 
   Stream<RealtimeStreamData> get onStreamData => _onStreamDataController.stream;
 
-  final _onChannelMessageController = StreamController<api.ChannelMessage>.broadcast();
+  final _onChannelMessageController =
+      StreamController<api.ChannelMessage>.broadcast();
 
-  Stream<api.ChannelMessage> get onChannelMessage => _onChannelMessageController.stream;
+  Stream<api.ChannelMessage> get onChannelMessage =>
+      _onChannelMessageController.stream;
 
   final List<Completer> _futures = [];
 
@@ -203,33 +218,51 @@ class NakamaWebsocketClient {
         // map server messages
         switch (receivedEnvelope.whichMessage()) {
           case rtpb.Envelope_Message.channelPresenceEvent:
-            return _onChannelPresenceController
-                .add(ChannelPresenceEvent.fromDto(receivedEnvelope.channelPresenceEvent));
+            return _onChannelPresenceController.add(
+              ChannelPresenceEvent.fromDto(
+                receivedEnvelope.channelPresenceEvent,
+              ),
+            );
           case rtpb.Envelope_Message.matchmakerMatched:
-            return _onMatchmakerMatchedController.add(MatchmakerMatched.fromDto(receivedEnvelope.matchmakerMatched));
+            return _onMatchmakerMatchedController.add(
+              MatchmakerMatched.fromDto(receivedEnvelope.matchmakerMatched),
+            );
           case rtpb.Envelope_Message.matchData:
-            return _onMatchDataController.add(MatchData.fromDto(receivedEnvelope.matchData));
+            return _onMatchDataController
+                .add(MatchData.fromDto(receivedEnvelope.matchData));
           case rtpb.Envelope_Message.partyData:
-            return _onPartyDataController.add(PartyData.fromDto(receivedEnvelope.partyData));
+            return _onPartyDataController
+                .add(PartyData.fromDto(receivedEnvelope.partyData));
           case rtpb.Envelope_Message.partyPresenceEvent:
-            return _onPartyPresenceController.add(PartyPresenceEvent.fromDto(receivedEnvelope.partyPresenceEvent));
+            return _onPartyPresenceController.add(
+              PartyPresenceEvent.fromDto(receivedEnvelope.partyPresenceEvent),
+            );
           case rtpb.Envelope_Message.partyLeader:
-            return _onPartyLeaderController.add(PartyLeader.fromDto(receivedEnvelope.partyLeader));
+            return _onPartyLeaderController
+                .add(PartyLeader.fromDto(receivedEnvelope.partyLeader));
           case rtpb.Envelope_Message.matchPresenceEvent:
-            return _onMatchPresenceController.add(MatchPresenceEvent.fromDto(receivedEnvelope.matchPresenceEvent));
+            return _onMatchPresenceController.add(
+              MatchPresenceEvent.fromDto(receivedEnvelope.matchPresenceEvent),
+            );
           case rtpb.Envelope_Message.notifications:
             receivedEnvelope.notifications.notifications
                 .map((e) => Notification.fromDto(e))
                 .forEach((element) => _onNotificationsController.add(element));
             return;
           case rtpb.Envelope_Message.statusPresenceEvent:
-            return _onStatusPresenceController.add(StatusPresenceEvent.fromDto(receivedEnvelope.statusPresenceEvent));
+            return _onStatusPresenceController.add(
+              StatusPresenceEvent.fromDto(receivedEnvelope.statusPresenceEvent),
+            );
           case rtpb.Envelope_Message.streamPresenceEvent:
-            return _onStreamPresenceController.add(StreamPresenceEvent.fromDto(receivedEnvelope.streamPresenceEvent));
+            return _onStreamPresenceController.add(
+              StreamPresenceEvent.fromDto(receivedEnvelope.streamPresenceEvent),
+            );
           case rtpb.Envelope_Message.streamData:
-            return _onStreamDataController.add(RealtimeStreamData.fromDto(receivedEnvelope.streamData));
+            return _onStreamDataController
+                .add(RealtimeStreamData.fromDto(receivedEnvelope.streamData));
           case rtpb.Envelope_Message.channelMessage:
-            return _onChannelMessageController.add(receivedEnvelope.channelMessage);
+            return _onChannelMessageController
+                .add(receivedEnvelope.channelMessage);
           default:
             return _log.warning('Not implemented');
         }
@@ -252,8 +285,12 @@ class NakamaWebsocketClient {
     return _futures.length - 1;
   }
 
-  Future updateStatus(String status) =>
-      _send<void>(rtpb.Envelope(statusUpdate: rtpb.StatusUpdate(status: api.StringValue(value: status))));
+  Future updateStatus(String status) => _send<void>(
+        rtpb.Envelope(
+          statusUpdate:
+              rtpb.StatusUpdate(status: api.StringValue(value: status)),
+        ),
+      );
 
   Future<Match> createMatch([String? name]) async {
     final res = await _send<rtpb.Match>(
@@ -278,7 +315,11 @@ class NakamaWebsocketClient {
   }
 
   Future<Party> joinParty(String partyId) async {
-    final res = await _send<rtpb.Party>(rtpb.Envelope(partyJoin: rtpb.PartyJoin(partyId: partyId)));
+    final res = await _send<rtpb.Party>(
+      rtpb.Envelope(
+        partyJoin: rtpb.PartyJoin(partyId: partyId),
+      ),
+    );
 
     return Party.fromDto(res);
   }
@@ -367,7 +408,11 @@ class NakamaWebsocketClient {
     String matchId, {
     String? token,
   }) async {
-    final res = await _send<rtpb.Match>(rtpb.Envelope(matchJoin: rtpb.MatchJoin(matchId: matchId, token: token)));
+    final res = await _send<rtpb.Match>(
+      rtpb.Envelope(
+        matchJoin: rtpb.MatchJoin(matchId: matchId, token: token),
+      ),
+    );
 
     return Match.fromRtpb(res);
   }

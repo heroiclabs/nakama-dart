@@ -22,7 +22,9 @@ class MatchAreaState extends State<MatchArea> {
     super.initState();
 
     NakamaWebsocketClient.instance.onMatchData.listen((event) {
-      print('received match data: ${event.data} from ${event.presence?.username}');
+      print(
+        'received match data: ${event.data} from ${event.presence?.username}',
+      );
       // Sent the match content field to received data.
       matchDataController.text = String.fromCharCodes(event.data ?? []);
     });
@@ -64,7 +66,9 @@ class MatchAreaState extends State<MatchArea> {
                   maxLines: null,
                   onChanged: sendMatchData,
                   decoration: const InputDecoration(
-                    hintText: 'Write some match data, which is then synchronized across all participants in real time.',
+                    hintText:
+                        'Write some match data, which is then synchronized '
+                        'across all participants in real time.',
                   ),
                 ),
               ],

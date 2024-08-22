@@ -35,7 +35,8 @@ class UserPresence with _$UserPresence {
         status: dto.status.value.isNotEmpty ? dto.status.value : null,
       );
 
-  factory UserPresence.fromJson(Map<String, Object?> json) => _$UserPresenceFromJson(json);
+  factory UserPresence.fromJson(Map<String, Object?> json) =>
+      _$UserPresenceFromJson(json);
 }
 
 @freezed
@@ -50,9 +51,14 @@ class StatusPresenceEvent with _$StatusPresenceEvent {
     required List<UserPresence> leaves,
   }) = _StatusPresenceEvent;
 
-  factory StatusPresenceEvent.fromDto(rtpb.StatusPresenceEvent dto) => StatusPresenceEvent(
-        joins: dto.joins.map((e) => UserPresence.fromDto(e)).toList(growable: false),
-        leaves: dto.leaves.map((e) => UserPresence.fromDto(e)).toList(growable: false),
+  factory StatusPresenceEvent.fromDto(rtpb.StatusPresenceEvent dto) =>
+      StatusPresenceEvent(
+        joins: dto.joins
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
+        leaves: dto.leaves
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
       );
 }
 
@@ -123,9 +129,14 @@ class StreamPresenceEvent with _$StreamPresenceEvent {
     required List<UserPresence> leaves,
   }) = _StreamPresenceEvent;
 
-  factory StreamPresenceEvent.fromDto(rtpb.StreamPresenceEvent dto) => StreamPresenceEvent(
+  factory StreamPresenceEvent.fromDto(rtpb.StreamPresenceEvent dto) =>
+      StreamPresenceEvent(
         stream: RealtimeStream.fromDto(dto.stream),
-        joins: dto.joins.map((e) => UserPresence.fromDto(e)).toList(growable: false),
-        leaves: dto.leaves.map((e) => UserPresence.fromDto(e)).toList(growable: false),
+        joins: dto.joins
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
+        leaves: dto.leaves
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
       );
 }

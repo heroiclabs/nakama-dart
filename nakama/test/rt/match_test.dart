@@ -108,7 +108,10 @@ void main() {
       }, count: 1));
 
       // A creates match, B joins
-      await a.createMatch().then((value) => b.joinMatch(value.matchId)).then((value) {
+      await a
+          .createMatch()
+          .then((value) => b.joinMatch(value.matchId))
+          .then((value) {
         a.sendMatchData(
           matchId: value.matchId,
           opCode: 0,

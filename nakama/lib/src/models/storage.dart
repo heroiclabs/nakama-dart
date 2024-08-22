@@ -22,7 +22,8 @@ class StorageObject with _$StorageObject {
     @JsonKey(name: 'update_time') DateTime? updateTime,
   }) = _StorageObject;
 
-  factory StorageObject.fromJson(Map<String, Object?> json) => _$StorageObjectFromJson(json);
+  factory StorageObject.fromJson(Map<String, Object?> json) =>
+      _$StorageObjectFromJson(json);
 
   factory StorageObject.fromDto(api.StorageObject dto) => StorageObject(
         collection: dto.collection,
@@ -46,11 +47,15 @@ class StorageObjectList with _$StorageObjectList {
     required List<StorageObject> objects,
   }) = _StorageObjectList;
 
-  factory StorageObjectList.fromJson(Map<String, Object?> json) => _$StorageObjectListFromJson(json);
+  factory StorageObjectList.fromJson(Map<String, Object?> json) =>
+      _$StorageObjectListFromJson(json);
 
-  factory StorageObjectList.fromDto(api.StorageObjectList dto) => StorageObjectList(
+  factory StorageObjectList.fromDto(api.StorageObjectList dto) =>
+      StorageObjectList(
         cursor: dto.cursor,
-        objects: dto.objects.map((e) => StorageObject.fromDto(e)).toList(growable: false),
+        objects: dto.objects
+            .map((e) => StorageObject.fromDto(e))
+            .toList(growable: false),
       );
 }
 
@@ -65,9 +70,11 @@ class StorageObjectId with _$StorageObjectId {
     @JsonKey(name: 'version') String? version,
   }) = _StorageObjectId;
 
-  factory StorageObjectId.fromJson(Map<String, Object?> json) => _$StorageObjectIdFromJson(json);
+  factory StorageObjectId.fromJson(Map<String, Object?> json) =>
+      _$StorageObjectIdFromJson(json);
 
-  factory StorageObjectId.fromDto(api.DeleteStorageObjectId dto) => StorageObjectId(
+  factory StorageObjectId.fromDto(api.DeleteStorageObjectId dto) =>
+      StorageObjectId(
         collection: dto.collection,
         key: dto.key,
         version: dto.version,
@@ -87,7 +94,8 @@ class StorageObjectWrite with _$StorageObjectWrite {
     @JsonKey(name: 'permission_write') StorageWritePermission? permissionWrite,
   }) = _StorageObjectWrite;
 
-  factory StorageObjectWrite.fromJson(Map<String, Object?> json) => _$StorageObjectWriteFromJson(json);
+  factory StorageObjectWrite.fromJson(Map<String, Object?> json) =>
+      _$StorageObjectWriteFromJson(json);
 
   api.WriteStorageObject toDto() => api.WriteStorageObject(
         collection: collection,

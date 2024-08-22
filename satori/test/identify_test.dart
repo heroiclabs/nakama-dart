@@ -10,7 +10,8 @@ void main() {
     });
 
     test('identify tests', () async {
-      final session1 = await client.authenticate(id: '11111111-1111-0000-0000-000000000000');
+      final session1 =
+          await client.authenticate(id: '11111111-1111-0000-0000-000000000000');
 
       final props1 = {'email': 'a@b.com', 'pushTokenIos': 'foo'};
       final customProps1 = {'earlyAccess': 'true'};
@@ -30,7 +31,8 @@ void main() {
       // Sleep for 2 seconds
       await Future.delayed(const Duration(seconds: 2));
 
-      final session2 = await client.authenticate(id: '22222222-2222-0000-0000-000000000000');
+      final session2 =
+          await client.authenticate(id: '22222222-2222-0000-0000-000000000000');
 
       final props2 = {'email': 'a@b.com', 'pushTokenAndroid': 'bar'};
       final customProps2 = {'earlyAccess': 'false'};

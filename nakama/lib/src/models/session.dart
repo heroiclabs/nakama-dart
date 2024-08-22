@@ -29,7 +29,9 @@ class Session with _$Session {
       token: session.token,
       refreshToken: session.refreshToken,
       created: session.created,
-      vars: token.containsKey('vars') ? token['vars'] as Map<String, String>? : {},
+      vars: token.containsKey('vars')
+          ? token['vars'] as Map<String, String>?
+          : {},
       userId: token['uid'] as String,
       expiresAt: DateTime.fromMillisecondsSinceEpoch(
         (token['exp'] as int) * 1000,
@@ -50,7 +52,9 @@ class Session with _$Session {
       token: session.token!,
       refreshToken: session.refreshToken,
       created: session.created ?? false,
-      vars: token.containsKey('vars') ? token['vars'] as Map<String, String>? : {},
+      vars: token.containsKey('vars')
+          ? token['vars'] as Map<String, String>?
+          : {},
       userId: token['uid'] as String,
       expiresAt: DateTime.fromMillisecondsSinceEpoch(
         (token['exp'] as int) * 1000,

@@ -24,7 +24,8 @@ class ChannelMessage with _$ChannelMessage {
     @JsonKey(name: 'user_id_two') required String? userIdTwo,
   }) = _ChannelMessage;
 
-  factory ChannelMessage.fromJson(Map<String, Object?> json) => _$ChannelMessageFromJson(json);
+  factory ChannelMessage.fromJson(Map<String, Object?> json) =>
+      _$ChannelMessageFromJson(json);
 
   factory ChannelMessage.fromDto(api.ChannelMessage dto) => ChannelMessage(
         channelId: dto.channelId,
@@ -54,10 +55,14 @@ class ChannelMessageList with _$ChannelMessageList {
     @JsonKey(name: 'cacheable_cursor') required String? cacheableCursor,
   }) = _ChannelMessageList;
 
-  factory ChannelMessageList.fromJson(Map<String, Object?> json) => _$ChannelMessageListFromJson(json);
+  factory ChannelMessageList.fromJson(Map<String, Object?> json) =>
+      _$ChannelMessageListFromJson(json);
 
-  factory ChannelMessageList.fromDto(api.ChannelMessageList dto) => ChannelMessageList(
-        messages: dto.messages.map((e) => ChannelMessage.fromDto(e)).toList(growable: false),
+  factory ChannelMessageList.fromDto(api.ChannelMessageList dto) =>
+      ChannelMessageList(
+        messages: dto.messages
+            .map((e) => ChannelMessage.fromDto(e))
+            .toList(growable: false),
         nextCursor: dto.nextCursor,
         prevCursor: dto.prevCursor,
         cacheableCursor: dto.cacheableCursor,

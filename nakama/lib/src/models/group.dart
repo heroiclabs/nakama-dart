@@ -52,7 +52,8 @@ class GroupList with _$GroupList {
     required List<Group>? groups,
   }) = _GroupList;
 
-  factory GroupList.fromJson(Map<String, Object?> json) => _$GroupListFromJson(json);
+  factory GroupList.fromJson(Map<String, Object?> json) =>
+      _$GroupListFromJson(json);
 
   factory GroupList.fromDto(api.GroupList dto) => GroupList(
         cursor: dto.cursor,
@@ -69,11 +70,14 @@ class UserGroupList with _$UserGroupList {
     @JsonKey(name: 'user_groups') required List<UserGroup>? userGroups,
   }) = _UserGroupList;
 
-  factory UserGroupList.fromJson(Map<String, Object?> json) => _$UserGroupListFromJson(json);
+  factory UserGroupList.fromJson(Map<String, Object?> json) =>
+      _$UserGroupListFromJson(json);
 
   factory UserGroupList.fromDto(api.UserGroupList dto) => UserGroupList(
         cursor: dto.cursor,
-        userGroups: dto.userGroups.map((e) => UserGroup.fromDto(e)).toList(growable: false),
+        userGroups: dto.userGroups
+            .map((e) => UserGroup.fromDto(e))
+            .toList(growable: false),
       );
 }
 
@@ -86,7 +90,8 @@ class UserGroup with _$UserGroup {
     required Group group,
   }) = _UserGroup;
 
-  factory UserGroup.fromJson(Map<String, Object?> json) => _$UserGroupFromJson(json);
+  factory UserGroup.fromJson(Map<String, Object?> json) =>
+      _$UserGroupFromJson(json);
 
   factory UserGroup.fromDto(api.UserGroupList_UserGroup dto) => UserGroup(
         group: Group.fromDto(dto.group),
@@ -103,11 +108,14 @@ class GroupUserList with _$GroupUserList {
     @JsonKey(name: 'group_users') required List<GroupUser> groupUsers,
   }) = _GroupUserList;
 
-  factory GroupUserList.fromJson(Map<String, Object?> json) => _$GroupUserListFromJson(json);
+  factory GroupUserList.fromJson(Map<String, Object?> json) =>
+      _$GroupUserListFromJson(json);
 
   factory GroupUserList.fromDto(api.GroupUserList dto) => GroupUserList(
         cursor: dto.cursor,
-        groupUsers: dto.groupUsers.map((e) => GroupUser.fromDto(e)).toList(growable: false),
+        groupUsers: dto.groupUsers
+            .map((e) => GroupUser.fromDto(e))
+            .toList(growable: false),
       );
 }
 
@@ -120,7 +128,8 @@ class GroupUser with _$GroupUser {
     required User user,
   }) = _GroupUser;
 
-  factory GroupUser.fromJson(Map<String, Object?> json) => _$GroupUserFromJson(json);
+  factory GroupUser.fromJson(Map<String, Object?> json) =>
+      _$GroupUserFromJson(json);
 
   factory GroupUser.fromDto(api.GroupUserList_GroupUser dto) => GroupUser(
         state: GroupMembershipState.values[dto.state.value],

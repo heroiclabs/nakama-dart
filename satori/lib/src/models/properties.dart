@@ -20,7 +20,8 @@ class Properties with _$Properties {
     Map<String, String>? computed,
   }) = _Properties;
 
-  factory Properties.fromJson(Map<String, dynamic> json) => _$PropertiesFromJson(json);
+  factory Properties.fromJson(Map<String, dynamic> json) =>
+      _$PropertiesFromJson(json);
 
   factory Properties.fromDto(ApiProperties dto) => Properties(
         $default: dto.$default?.cast<String, String>(),

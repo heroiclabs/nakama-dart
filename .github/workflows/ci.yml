@@ -24,3 +24,7 @@ jobs:
       - name: Install dependencies
         run: dart pub get
         working-directory: ${{ matrix.package }}
+
+      - name: Check formatting
+        run: dart format --set-exit-if-changed .
+        working-directory: ${{ matrix.package }}

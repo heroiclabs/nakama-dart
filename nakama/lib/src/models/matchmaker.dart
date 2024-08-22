@@ -13,7 +13,8 @@ class MatchmakerTicket with _$MatchmakerTicket {
     required String ticket,
   }) = _MatchmakerTicket;
 
-  factory MatchmakerTicket.fromDto(rtpb.MatchmakerTicket dto) => MatchmakerTicket(
+  factory MatchmakerTicket.fromDto(rtpb.MatchmakerTicket dto) =>
+      MatchmakerTicket(
         ticket: dto.ticket,
       );
 }
@@ -30,7 +31,8 @@ class PartyMatchmakerTicket with _$PartyMatchmakerTicket {
     @JsonKey(name: 'ticket') required String ticket,
   }) = _PartyMatchmakerTicket;
 
-  factory PartyMatchmakerTicket.fromDto(rtpb.PartyMatchmakerTicket dto) => PartyMatchmakerTicket(
+  factory PartyMatchmakerTicket.fromDto(rtpb.PartyMatchmakerTicket dto) =>
+      PartyMatchmakerTicket(
         partyId: dto.partyId,
         ticket: dto.ticket,
       );
@@ -67,12 +69,17 @@ class ChannelPresenceEvent with _$ChannelPresenceEvent {
     @JsonKey(name: 'user_id_two') String? userIdTwo,
   }) = _ChannelPresenceEvent;
 
-  factory ChannelPresenceEvent.fromDto(rtpb.ChannelPresenceEvent dto) => ChannelPresenceEvent(
+  factory ChannelPresenceEvent.fromDto(rtpb.ChannelPresenceEvent dto) =>
+      ChannelPresenceEvent(
         channelId: dto.channelId,
         roomName: dto.roomName,
         groupId: dto.groupId,
-        joins: dto.joins.map((e) => UserPresence.fromDto(e)).toList(growable: false),
-        leaves: dto.leaves.map((e) => UserPresence.fromDto(e)).toList(growable: false),
+        joins: dto.joins
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
+        leaves: dto.leaves
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
         userIdOne: dto.userIdOne,
         userIdTwo: dto.userIdTwo,
       );
@@ -90,13 +97,16 @@ class MatchmakerUser with _$MatchmakerUser {
     @JsonKey(name: 'party_id') required String partyId,
 
     /// String properties.
-    @JsonKey(name: 'string_properties') required Map<String, String> stringProperties,
+    @JsonKey(name: 'string_properties')
+    required Map<String, String> stringProperties,
 
     /// Numeric properties.
-    @JsonKey(name: 'numeric_properties') required Map<String, double> numericProperties,
+    @JsonKey(name: 'numeric_properties')
+    required Map<String, double> numericProperties,
   }) = _MatchmakerUser;
 
-  factory MatchmakerUser.fromDto(rtpb.MatchmakerMatched_MatchmakerUser dto) => MatchmakerUser(
+  factory MatchmakerUser.fromDto(rtpb.MatchmakerMatched_MatchmakerUser dto) =>
+      MatchmakerUser(
         presence: UserPresence.fromDto(dto.presence),
         partyId: dto.partyId,
         stringProperties: dto.stringProperties,
@@ -125,11 +135,14 @@ class MatchmakerMatched with _$MatchmakerMatched {
     @JsonKey(name: 'self') required MatchmakerUser self,
   }) = _MatchmakerMatched;
 
-  factory MatchmakerMatched.fromDto(rtpb.MatchmakerMatched dto) => MatchmakerMatched(
+  factory MatchmakerMatched.fromDto(rtpb.MatchmakerMatched dto) =>
+      MatchmakerMatched(
         ticket: dto.ticket,
         matchId: dto.matchId,
         token: dto.token,
-        users: dto.users.map((e) => MatchmakerUser.fromDto(e)).toList(growable: false),
+        users: dto.users
+            .map((e) => MatchmakerUser.fromDto(e))
+            .toList(growable: false),
         self: MatchmakerUser.fromDto(dto.self),
       );
 }
@@ -179,9 +192,14 @@ class MatchPresenceEvent with _$MatchPresenceEvent {
     @JsonKey(name: 'leaves') required List<UserPresence> leaves,
   }) = _MatchPresenceEvent;
 
-  factory MatchPresenceEvent.fromDto(rtpb.MatchPresenceEvent dto) => MatchPresenceEvent(
+  factory MatchPresenceEvent.fromDto(rtpb.MatchPresenceEvent dto) =>
+      MatchPresenceEvent(
         matchId: dto.matchId,
-        joins: dto.joins.map((e) => UserPresence.fromDto(e)).toList(growable: false),
-        leaves: dto.leaves.map((e) => UserPresence.fromDto(e)).toList(growable: false),
+        joins: dto.joins
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
+        leaves: dto.leaves
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
       );
 }

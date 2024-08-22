@@ -36,8 +36,10 @@ class Session with _$Session {
       token: session.token!,
       refreshToken: session.refreshToken ?? '',
       identityId: token['iid'] as String,
-      expiresAt: DateTime.fromMillisecondsSinceEpoch((token['exp'] as int) * 1000),
-      refreshExpiresAt: DateTime.fromMillisecondsSinceEpoch((refreshToken['exp'] as int) * 1000),
+      expiresAt:
+          DateTime.fromMillisecondsSinceEpoch((token['exp'] as int) * 1000),
+      refreshExpiresAt: DateTime.fromMillisecondsSinceEpoch(
+          (refreshToken['exp'] as int) * 1000),
     );
   }
 

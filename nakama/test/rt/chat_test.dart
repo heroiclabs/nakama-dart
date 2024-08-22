@@ -185,7 +185,8 @@ void main() {
       );
 
       // Send 40 test messages
-      for (final msg in List.generate(40, (index) => {'message': 'PING $index'})) {
+      for (final msg
+          in List.generate(40, (index) => {'message': 'PING $index'})) {
         await socket.sendMessage(channelId: senderChannelForA.id, content: msg);
       }
 
@@ -214,7 +215,8 @@ void main() {
       );
 
       // Send 40 test messages
-      for (final msg in List.generate(40, (index) => {'message': 'PING $index'})) {
+      for (final msg
+          in List.generate(40, (index) => {'message': 'PING $index'})) {
         await socket.sendMessage(channelId: senderChannelForA.id, content: msg);
       }
 
@@ -244,7 +246,8 @@ void main() {
       );
 
       // Send 40 test messages
-      for (final msg in List.generate(40, (index) => {'message': 'PING $index'})) {
+      for (final msg
+          in List.generate(40, (index) => {'message': 'PING $index'})) {
         await socket.sendMessage(channelId: senderChannelForA.id, content: msg);
       }
 
@@ -274,7 +277,8 @@ void main() {
       );
 
       // Send 20+15 test messages
-      for (final msg in List.generate(20 + 15, (index) => {'message': 'PING $index'})) {
+      for (final msg
+          in List.generate(20 + 15, (index) => {'message': 'PING $index'})) {
         await socket.sendMessage(channelId: senderChannelForA.id, content: msg);
       }
 

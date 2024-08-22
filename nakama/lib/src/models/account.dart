@@ -18,15 +18,19 @@ class Account with _$Account {
     required User user,
   }) = _Account;
 
-  factory Account.fromJson(Map<String, Object?> json) => _$AccountFromJson(json);
+  factory Account.fromJson(Map<String, Object?> json) =>
+      _$AccountFromJson(json);
 
   factory Account.fromDto(api.Account dto) => Account(
         wallet: dto.wallet,
         email: dto.email,
-        devices: dto.devices.map((e) => Device.fromDto(e)).toList(growable: false),
+        devices:
+            dto.devices.map((e) => Device.fromDto(e)).toList(growable: false),
         customId: dto.customId,
-        verifyTime: dto.verifyTime.hasSeconds() ? dto.verifyTime.toDateTime() : null,
-        disableTime: dto.disableTime.hasSeconds() ? dto.disableTime.toDateTime() : null,
+        verifyTime:
+            dto.verifyTime.hasSeconds() ? dto.verifyTime.toDateTime() : null,
+        disableTime:
+            dto.disableTime.hasSeconds() ? dto.disableTime.toDateTime() : null,
         user: User.fromDto(dto.user),
       );
 }

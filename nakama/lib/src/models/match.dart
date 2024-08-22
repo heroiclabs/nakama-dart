@@ -47,7 +47,9 @@ class Match with _$Match {
         authoritative: dto.authoritative,
         label: dto.label.value,
         size: dto.size,
-        presences: dto.presences.map((e) => UserPresence.fromDto(e)).toList(growable: false),
+        presences: dto.presences
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
       );
 }
 
@@ -81,6 +83,8 @@ class Party with _$Party {
         maxSize: dto.maxSize,
         self: UserPresence.fromDto(dto.self),
         leader: UserPresence.fromDto(dto.leader),
-        presences: dto.presences.map((e) => UserPresence.fromDto(e)).toList(growable: false),
+        presences: dto.presences
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
       );
 }
