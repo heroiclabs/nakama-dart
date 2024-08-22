@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
 import 'package:nakama/nakama.dart';
+
+final _logger = Logger('Matchmaker');
 
 class Matchmaker extends StatefulWidget {
   final Function(Match) onMatch;
@@ -25,7 +28,7 @@ class MatchmakerState extends State<Matchmaker> {
     // Listen for an incoming match
     onMatchmakerMatchedSubscription =
         ws.onMatchmakerMatched.listen((event) async {
-      print('Got an incoming match for TicketID: ${event.ticket}');
+      _logger.info('Got an incoming match for TicketID: ${event.ticket}');
       // We got a match -> Join
       // The match token is also used to prevent unwanted users from attempting
       // to join a match they were not matched into.
@@ -41,9 +44,8 @@ class MatchmakerState extends State<Matchmaker> {
           query: '*',
         )
         .then((value) => setState(() => matchmakerTicket = value))
-        .then(
-          (value) => print('Joined Matchmaker ${matchmakerTicket!.ticket}'),
-        );
+        .then((_) =>
+            _logger.info('Joined Matchmaker ${matchmakerTicket!.ticket}'));
   }
 
   @override
@@ -70,14 +72,14 @@ class MatchmakerState extends State<Matchmaker> {
       );
     }
 
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+    return const Padding(
+      padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
       child: Card(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: EdgeInsets.all(20),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               Text('Searching for a match...'),
               SizedBox(height: 20),
               LinearProgressIndicator(),

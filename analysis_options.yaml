@@ -2,10 +2,10 @@ include: package:flutter_lints/flutter.yaml
 
 analyzer:
   exclude:
-    - lib/src/**/*.g.dart
-    - lib/src/**/*.freezed.dart
-    - lib/src/api/proto/**/*.dart
-    - lib/**/*.swagger*dart
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+    - '**/*.swagger.dart'
+    - '**/api/proto/**/*.dart'
   errors:
       invalid_annotation_target: false
 

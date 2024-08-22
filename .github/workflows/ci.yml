@@ -28,3 +28,7 @@ jobs:
       - name: Check formatting
         run: dart format --set-exit-if-changed .
         working-directory: ${{ matrix.package }}
+
+      - name: Analyze
+        run: dart analyze --fatal-infos
+        working-directory: ${{ matrix.package }}
