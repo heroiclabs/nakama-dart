@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 import '../api/api.dart' as api;
-import '../rest/api_client.gen.dart';
+import '../api/rest.dart';
 
 part 'session.freezed.dart';
 

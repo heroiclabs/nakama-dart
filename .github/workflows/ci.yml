@@ -35,7 +35,7 @@ jobs:
 
       - name: Start test server
         run: docker compose up -d
-        working-directory: nakama/tool/nakama_server
+        working-directory: nakama/test/nakama_server
         if: matrix.package == 'nakama'
 
       - name: Run tests

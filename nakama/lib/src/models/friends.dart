@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../api/api.dart' as api;
-import '../enum/friendship_state.dart';
 import 'account.dart';
+import 'friendship_state.dart';
 
 part 'friends.freezed.dart';
 part 'friends.g.dart';

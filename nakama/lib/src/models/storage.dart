@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../api/api.dart' as api;
 import '../api/proto/google/protobuf/wrappers.pb.dart';
-import '../enum/storage_permission.dart';
+import 'storage_permission.dart';
 
 part 'storage.freezed.dart';
 part 'storage.g.dart';

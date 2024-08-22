@@ -6,7 +6,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'api/api.dart' as api;
 import 'api/rtapi.dart' as rtapi;
-import 'enum/channel_type.dart';
+import 'models/channel_type.dart';
 import 'models/chat.dart';
 import 'models/match.dart';
 import 'models/matchmaker.dart';
