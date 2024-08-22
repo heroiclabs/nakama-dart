@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../api/api.dart' as api;
-import '../enum/group_membership_states.dart';
 import 'account.dart';
+import 'group_membership_states.dart';
 
 part 'group.freezed.dart';
 part 'group.g.dart';

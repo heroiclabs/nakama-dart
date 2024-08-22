@@ -2,21 +2,21 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
-import '../enum/friendship_state.dart';
-import '../enum/group_membership_states.dart';
-import '../models/account.dart';
-import '../models/channel_message.dart';
-import '../models/friends.dart';
-import '../models/group.dart';
-import '../models/leaderboard.dart';
-import '../models/match.dart';
-import '../models/notification.dart';
-import '../models/response_error.dart';
-import '../models/session.dart';
-import '../models/storage.dart';
-import '../models/tournament.dart';
-import '../rest/api_client.gen.dart';
-import 'nakama_client.dart';
+import 'api/rest.dart';
+import 'client.dart';
+import 'models/account.dart';
+import 'models/channel_message.dart';
+import 'models/friends.dart';
+import 'models/friendship_state.dart';
+import 'models/group.dart';
+import 'models/group_membership_states.dart';
+import 'models/leaderboard.dart';
+import 'models/match.dart';
+import 'models/notification.dart';
+import 'models/response_error.dart';
+import 'models/session.dart';
+import 'models/storage.dart';
+import 'models/tournament.dart';
 
 const _kDefaultAppKey = 'default';
 

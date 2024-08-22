@@ -1,4 +1,4 @@
-import '../nakama_client.dart';
+import 'client.dart';
 
 const _kDefaultAppKey = 'default';
 

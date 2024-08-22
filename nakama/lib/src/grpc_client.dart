@@ -4,21 +4,21 @@ import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:logging/logging.dart';
 
-import '../api/api.dart' as api;
-import '../api/proto/apigrpc/apigrpc.pbgrpc.dart';
-import '../enum/friendship_state.dart';
-import '../enum/group_membership_states.dart';
-import '../models/account.dart';
-import '../models/channel_message.dart';
-import '../models/friends.dart';
-import '../models/group.dart';
-import '../models/leaderboard.dart';
-import '../models/match.dart';
-import '../models/notification.dart';
-import '../models/session.dart';
-import '../models/storage.dart';
-import '../models/tournament.dart';
-import 'nakama_client.dart';
+import 'api/api.dart' as api;
+import 'api/proto/apigrpc/apigrpc.pbgrpc.dart';
+import 'client.dart';
+import 'models/account.dart';
+import 'models/channel_message.dart';
+import 'models/friends.dart';
+import 'models/friendship_state.dart';
+import 'models/group.dart';
+import 'models/group_membership_states.dart';
+import 'models/leaderboard.dart';
+import 'models/match.dart';
+import 'models/notification.dart';
+import 'models/session.dart';
+import 'models/storage.dart';
+import 'models/tournament.dart';
 
 const _kDefaultAppKey = 'default';
 
