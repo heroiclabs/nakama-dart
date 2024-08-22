@@ -7,12 +7,14 @@ import 'package:nakama/nakama.dart';
 final _logger = Logger('Matchmaker');
 
 class Matchmaker extends StatefulWidget {
-  final Function(Match) onMatch;
-
   const Matchmaker({
-    required this.onMatch,
     super.key,
+    required this.socket,
+    required this.onMatch,
   });
+
+  final Socket socket;
+  final Function(Match) onMatch;
 
   @override
   MatchmakerState createState() => MatchmakerState();
@@ -22,9 +24,9 @@ class MatchmakerState extends State<Matchmaker> {
   MatchmakerTicket? matchmakerTicket;
   StreamSubscription? onMatchmakerMatchedSubscription;
 
-  void addMatchmaker() {
-    final socket = Socket.instance;
+  Socket get socket => widget.socket;
 
+  void addMatchmaker() {
     // Listen for an incoming match
     onMatchmakerMatchedSubscription =
         socket.onMatchmakerMatched.listen((event) async {
@@ -37,7 +39,7 @@ class MatchmakerState extends State<Matchmaker> {
     });
 
     // Start / Join the matchmaker
-    Socket.instance
+    socket
         .addMatchmaker(
           minCount: 2,
           maxCount: 4,
@@ -51,7 +53,7 @@ class MatchmakerState extends State<Matchmaker> {
   @override
   void dispose() async {
     if (matchmakerTicket != null) {
-      await Socket.instance.removeMatchmaker(matchmakerTicket!.ticket);
+      await socket.removeMatchmaker(matchmakerTicket!.ticket);
     }
 
     await onMatchmakerMatchedSubscription?.cancel();

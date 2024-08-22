@@ -3,10 +3,6 @@ library nakama;
 export 'package:fixnum/fixnum.dart' show Int64;
 
 export 'src/client.dart';
-export 'src/client_stub.dart'
-    if (dart.library.io) './src/client_io.dart'
-    if (dart.library.js) './src/client_web.dart';
-export 'src/grpc_client.dart';
 export 'src/models/account.dart';
 export 'src/models/channel_message.dart';
 export 'src/models/channel_type.dart';
@@ -26,5 +22,4 @@ export 'src/models/status.dart';
 export 'src/models/storage.dart';
 export 'src/models/storage_permission.dart';
 export 'src/models/tournament.dart';
-export 'src/rest_client.dart';
 export 'src/socket.dart';

@@ -7,9 +7,14 @@ import 'package:nakama/nakama.dart';
 final _logger = Logger('MatchArea');
 
 class MatchArea extends StatefulWidget {
-  final Match match;
+  const MatchArea({
+    super.key,
+    required this.socket,
+    required this.match,
+  });
 
-  const MatchArea(this.match, {super.key});
+  final Socket socket;
+  final Match match;
 
   @override
   MatchAreaState createState() => MatchAreaState();
@@ -20,11 +25,13 @@ class MatchAreaState extends State<MatchArea> {
   late final StreamSubscription onMatchDataSubscription;
   String matchData = '';
 
+  Socket get socket => widget.socket;
+
   @override
   void initState() {
     super.initState();
 
-    Socket.instance.onMatchData.listen((event) {
+    socket.onMatchData.listen((event) {
       _logger.fine(
         'received match data: ${event.data} from ${event.presence?.username}',
       );
@@ -42,7 +49,7 @@ class MatchAreaState extends State<MatchArea> {
 
   void sendMatchData(String data) {
     // Send dummy match data via Websocket
-    Socket.instance.sendMatchData(
+    socket.sendMatchData(
       matchId: widget.match.matchId,
       opCode: 0,
       data: data.codeUnits,

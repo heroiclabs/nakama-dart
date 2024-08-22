@@ -7,11 +7,13 @@ import '../config.dart';
 void main() {
   late final Session sessionA;
   late final Session sessionB;
+  late final Socket socketA;
+  late final Socket socketB;
 
   // Create a new websocket connection for the hole test run (singleton).
   setUpAll(() async {
     // Create nakama clients.
-    final client = getNakamaClient(
+    final client = Client(
       host: kTestHost,
       ssl: false,
       serverKey: kTestServerKey,
@@ -23,8 +25,8 @@ void main() {
       create: true,
     );
 
-    // Create main websocket connetion for lcl test.
-    Socket.init(
+    // Create main websocket connection for lcl test.
+    socketA = Socket(
       host: kTestHost,
       ssl: false,
       token: sessionA.token,
@@ -37,9 +39,8 @@ void main() {
       create: true,
     );
 
-    // Create main websocket connetion for lcl test.
-    Socket.init(
-      key: 'clientb',
+    // Create main websocket connection for lcl test.
+    socketB = Socket(
       host: kTestHost,
       ssl: false,
       token: sessionB.token,
@@ -47,34 +48,32 @@ void main() {
   });
 
   tearDownAll(() async {
-    await Socket.instance.close();
+    await socketA.close();
+    await socketB.close();
   });
 
   group('[RT] Match Test', () {
     test('can join a match', () async {
-      final s = Socket.instance;
-
-      final match = await s.createMatch();
+      final match = await socketA.createMatch();
       expect(match, isA<Match>());
       expect(match.matchId, isNotEmpty);
     });
 
     test('two clients can join a match', () async {
-      final a = Socket.instance;
-      final b = Socket.instanceFor(key: 'clientb');
-
       // Expect to see B joining from A's point of view
-      a.onMatchPresence.listen((event) {
+      socketA.onMatchPresence.listen((event) {
         // We first see A then in a next notification we see B joining.
         expect(event.joins, hasLength(1));
       });
 
       // A creates a match, B joins
-      await a.createMatch().then((match) => b.joinMatch(match.matchId));
+      await socketA
+          .createMatch()
+          .then((match) => socketB.joinMatch(match.matchId));
     });
 
     test('receives a ticket from matchmaker', () async {
-      final ticket = await Socket.instance.addMatchmaker(
+      final ticket = await socketA.addMatchmaker(
         maxCount: 4,
         minCount: 2,
       );
@@ -84,35 +83,32 @@ void main() {
 
     test('removing from matchmaker', () async {
       // Create a new ticket which we later remove again.
-      final ticket = await Socket.instance.addMatchmaker(
+      final ticket = await socketA.addMatchmaker(
         maxCount: 4,
         minCount: 2,
       );
 
       expect(ticket, isA<MatchmakerTicket>());
 
-      await Socket.instance.removeMatchmaker(ticket.ticket);
+      await socketA.removeMatchmaker(ticket.ticket);
     });
 
     test('receives sent match data', () async {
-      final a = Socket.instance;
-      final b = Socket.instanceFor(key: 'clientb');
-
       final realtimeData = 'test'.codeUnits;
 
       // B starts listening for match data, A sends some data after B joined
-      b.onMatchData.listen(expectAsync1((matchData) {
+      socketB.onMatchData.listen(expectAsync1((matchData) {
         expect(matchData, isNotNull);
         expect(matchData.presence?.userId, equals(sessionA.userId));
         expect(matchData.data, equals(realtimeData));
       }, count: 1));
 
       // A creates match, B joins
-      await a
+      await socketA
           .createMatch()
-          .then((value) => b.joinMatch(value.matchId))
+          .then((value) => socketB.joinMatch(value.matchId))
           .then((value) {
-        a.sendMatchData(
+        socketA.sendMatchData(
           matchId: value.matchId,
           opCode: 0,
           data: realtimeData,

@@ -9,7 +9,7 @@ void main() {
     late final Client client;
 
     setUpAll(() {
-      client = RestClient.init(
+      client = Client.rest(
         host: kTestHost,
         ssl: false,
         serverKey: kTestServerKey,

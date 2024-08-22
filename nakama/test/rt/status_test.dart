@@ -7,11 +7,13 @@ import '../config.dart';
 void main() {
   late final Session sessionA;
   late final Session sessionB;
+  late final Socket socketA;
+  late final Socket socketB;
 
   // Create a new websocket connection for the hole test run (singleton).
   setUpAll(() async {
     // Create nakama clients.
-    final client = getNakamaClient(
+    final client = Client(
       host: kTestHost,
       ssl: false,
       serverKey: kTestServerKey,
@@ -24,7 +26,7 @@ void main() {
     );
 
     // Create main websocket connetion for lcl test.
-    Socket.init(
+    socketA = Socket(
       host: kTestHost,
       ssl: false,
       token: sessionA.token,
@@ -38,8 +40,7 @@ void main() {
     );
 
     // Create main websocket connetion for lcl test.
-    Socket.init(
-      key: 'clientb',
+    socketB = Socket(
       host: kTestHost,
       ssl: false,
       token: sessionB.token,
@@ -47,25 +48,23 @@ void main() {
   });
 
   tearDownAll(() async {
-    await Socket.instance.close();
+    await socketA.close();
+    await socketB.close();
   });
 
   group('[RT] Status Test', () {
     test('can follow another user', () async {
-      final a = Socket.instance;
-      final b = Socket.instanceFor(key: 'clientb');
-
       // B follows A.
-      await b.followUsers(userIds: [sessionA.userId]);
+      await socketB.followUsers(userIds: [sessionA.userId]);
 
       // B now received updates over A's status changes
       const statusText = 'Running some tests...';
-      a.onStatusPresence.listen(expectAsync1((event) {
+      socketA.onStatusPresence.listen(expectAsync1((event) {
         expect(event.joins, hasLength(1));
         expect(event.joins.first.status, equals(statusText));
       }, count: 1));
 
-      await a.updateStatus(statusText);
+      await socketA.updateStatus(statusText);
     });
   });
 }

@@ -10,7 +10,7 @@ void main() {
     late final Session session;
 
     setUpAll(() async {
-      client = getNakamaClient(
+      client = Client.grpc(
         host: kTestHost,
         ssl: false,
         serverKey: kTestServerKey,

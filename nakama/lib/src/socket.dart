@@ -16,12 +16,47 @@ import 'models/party.dart';
 import 'models/rpc.dart';
 import 'models/status.dart';
 
-@Deprecated('This class has been renamed to [Socket].')
-typedef NakamaWebsocketClient = Socket;
-
 class Socket {
+  Socket({
+    required this.host,
+    this.port = defaultHttpPort,
+    this.ssl = defaultSsl,
+    required this.token,
+    this.onDone,
+    this.onError,
+  }) {
+    _log.info('Connecting ${ssl ? 'WSS' : 'WS'} to $host:$port');
+    _log.info('Using token $token');
+    final uri = Uri(
+      host: host,
+      port: port,
+      scheme: ssl ? 'wss' : 'ws',
+      path: '/ws',
+      queryParameters: {
+        'token': token,
+        'format': 'protobuf',
+      },
+    );
+    _channel = WebSocketChannel.connect(uri);
+    _log.info('connected');
+
+    _channel.stream.listen(
+      _onData,
+      onDone: () {
+        if (onDone != null) {
+          onDone!();
+        }
+      },
+      onError: (err) {
+        if (onError != null) {
+          onError!(err);
+        }
+      },
+      cancelOnError: false,
+    );
+  }
+
   static final _log = Logger('NakamaSocket');
-  static final Map<String, Socket> _clients = {};
 
   /// The host address of the server.
   final String host;
@@ -100,86 +135,6 @@ class Socket {
       _onChannelMessageController.stream;
 
   final List<Completer> _futures = [];
-
-  /// Returns the default instance.
-  static Socket get instance {
-    return Socket.instanceFor(key: 'default');
-  }
-
-  /// Returns the instance with given key.
-  static Socket instanceFor({required String key}) {
-    if (!_clients.containsKey(key)) {
-      throw Exception('$key has not yet been initialized');
-    }
-
-    return _clients[key]!;
-  }
-
-  factory Socket.init({
-    String key = defaultAppKey,
-    required String host,
-    int port = defaultHttpPort,
-    bool ssl = defaultSsl,
-    required String token,
-    Function()? onDone,
-    Function(dynamic error)? onError,
-  }) {
-    // Has the client already been initialized? Then return it.
-    if (_clients.containsKey(key)) {
-      return instanceFor(key: key);
-    }
-
-    // Create new and return instance of this.
-    return _clients[key] = Socket._(
-      host: host,
-      port: port,
-      ssl: ssl,
-      token: token,
-      onDone: onDone,
-      onError: onError,
-    );
-  }
-
-  Socket._({
-    required this.host,
-    this.port = defaultHttpPort,
-    required this.ssl,
-    required this.token,
-    this.onDone,
-    this.onError,
-  }) {
-    _log.info('Connecting ${ssl ? 'WSS' : 'WS'} to $host:$port');
-    _log.info('Using token $token');
-    final uri = Uri(
-      host: host,
-      port: port,
-      scheme: ssl ? 'wss' : 'ws',
-      path: '/ws',
-      queryParameters: {
-        'token': token,
-        'format': 'protobuf',
-      },
-    );
-    _channel = WebSocketChannel.connect(uri);
-    _log.info('connected');
-
-    _channel.stream.listen(
-      _onData,
-      onDone: () {
-        _clients.clear();
-
-        if (onDone != null) {
-          onDone!();
-        }
-      },
-      onError: (err) {
-        if (onError != null) {
-          onError!(err);
-        }
-      },
-      cancelOnError: false,
-    );
-  }
 
   Future<void> close() {
     return Future.wait([

@@ -10,7 +10,7 @@ void main() {
     late final Session session;
 
     setUpAll(() async {
-      client = RestClient.init(
+      client = Client.rest(
         host: kTestHost,
         ssl: false,
         serverKey: kTestServerKey,

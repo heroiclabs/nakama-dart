@@ -13,7 +13,7 @@ void main() {
     late final String leaderboardName;
 
     setUpAll(() async {
-      client = RestClient.init(
+      client = Client.rest(
         host: kTestHost,
         ssl: false,
         serverKey: kTestServerKey,

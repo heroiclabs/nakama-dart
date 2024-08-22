@@ -18,65 +18,17 @@ import 'models/session.dart';
 import 'models/storage.dart';
 import 'models/tournament.dart';
 
-@Deprecated('This class has been renamed to [RestClient].')
-typedef NakamaRestApiClient = RestClient;
-
 /// [Client] for communicating with Nakama via REST.
 ///
 /// [RestClient] abstracts the REST calls and handles authentication
 /// for you.
-class RestClient extends Client {
-  static final Map<String, RestClient> _clients = {};
-
-  late final ApiClient _api;
-
-  /// The key used to authenticate with the server without a session.
-  /// Defaults to "defaultkey".
-  late final String serverKey;
-
-  late final Uri apiBaseUrl;
-
-  /// Temporarily holds the current valid session to use in the Chopper
-  /// interceptor for JWT auth.
-  Session? _session;
-
-  /// Either inits and returns a new instance of [RestClient] or
-  /// returns a already initialized one.
-  factory RestClient.init({
-    String? host,
-    String? serverKey,
-    String key = defaultAppKey,
-    int port = defaultHttpPort,
-    String path = '',
-    bool ssl = defaultSsl,
-  }) {
-    if (_clients.containsKey(key)) {
-      return _clients[key]!;
-    }
-
-    // Not yet initialized -> check if we've got all parameters to do so
-    if (host == null || serverKey == null) {
-      throw Exception(
-        'Not yet initialized, need parameters [host] and [serverKey] to initialize.',
-      );
-    }
-
-    // Create a new instance of this with given parameters.
-    return _clients[key] = RestClient._(
-      host: host,
-      port: port,
-      path: path,
-      serverKey: serverKey,
-      ssl: ssl,
-    );
-  }
-
-  RestClient._({
+class RestClient implements Client {
+  RestClient({
     required String host,
+    int port = defaultHttpPort,
+    bool ssl = defaultSsl,
+    String path = '',
     required String serverKey,
-    required int port,
-    required String path,
-    required bool ssl,
   }) {
     apiBaseUrl = Uri(
       host: host,
@@ -84,8 +36,8 @@ class RestClient extends Client {
       port: port,
       path: path,
     );
-    final dio = Dio(BaseOptions(baseUrl: apiBaseUrl.toString()));
-    dio.interceptors.add(InterceptorsWrapper(
+    _dio = Dio(BaseOptions(baseUrl: apiBaseUrl.toString()));
+    _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
         if (_session != null) {
           options.headers.putIfAbsent(
@@ -103,10 +55,23 @@ class RestClient extends Client {
       },
     ));
     _api = ApiClient(
-      dio,
+      _dio,
       baseUrl: apiBaseUrl.toString(),
     );
   }
+
+  late final Dio _dio;
+  late final ApiClient _api;
+
+  /// The key used to authenticate with the server without a session.
+  /// Defaults to "defaultkey".
+  late final String serverKey;
+
+  late final Uri apiBaseUrl;
+
+  /// Temporarily holds the current valid session to use in the Chopper
+  /// interceptor for JWT auth.
+  Session? _session;
 
   /// Handles errors and returns a [ResponseError] if the error is a [DioException] and the response data is not null.
   /// Otherwise it returns the error as is.
@@ -117,6 +82,9 @@ class RestClient extends Client {
       return e;
     }
   }
+
+  @override
+  Future<void> close() async => _dio.close(force: true);
 
   @override
   Future<Session> sessionRefresh({

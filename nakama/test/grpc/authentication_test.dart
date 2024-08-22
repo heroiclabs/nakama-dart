@@ -9,7 +9,7 @@ void main() {
     late final Client client;
 
     setUpAll(() {
-      client = getNakamaClient(
+      client = Client.grpc(
         host: kTestHost,
         ssl: false,
         serverKey: kTestServerKey,

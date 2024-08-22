@@ -1,3 +1,7 @@
+import 'client_stub.dart'
+    if (dart.library.io) './client_io.dart'
+    if (dart.library.js) './client_web.dart';
+import 'grpc_client.dart';
 import 'models/account.dart';
 import 'models/channel_message.dart';
 import 'models/friends.dart';
@@ -10,31 +14,58 @@ import 'models/notification.dart';
 import 'models/session.dart';
 import 'models/storage.dart';
 import 'models/tournament.dart';
+import 'rest_client.dart';
 
 const defaultHttpPort = 7350;
 const defaultGrpcPort = 7349;
 const defaultSsl = false;
 const defaultLimit = 20;
-const defaultAppKey = 'default';
+const defaultServerKey = 'defaultkey';
 
-@Deprecated('This class has been renamed to [Client].')
-typedef NakamaBaseClient = Client;
-
-/// This defines the interface to communicate with Nakama API. It is a little
-/// tricky to support web (via REST) and io (via gRPC) with just one codebase
-/// so please don't use this directly but get your fitting instance with
-/// [getNakamaClient()].
+/// Client to communicate with the Nakama API.
 abstract class Client {
-  Client.init({
-    String? host,
-    String? serverKey,
-    String key = defaultAppKey,
+  factory Client({
+    required String host,
     int httpPort = defaultHttpPort,
     int grpcPort = defaultGrpcPort,
     bool ssl = defaultSsl,
-  });
+    String serverKey = defaultServerKey,
+  }) =>
+      createClient(
+        host: host,
+        httpPort: httpPort,
+        grpcPort: grpcPort,
+        ssl: ssl,
+        serverKey: serverKey,
+      );
 
-  Client();
+  factory Client.rest({
+    required String host,
+    int httpPort = defaultHttpPort,
+    bool ssl = defaultSsl,
+    String serverKey = defaultServerKey,
+  }) =>
+      RestClient(
+        host: host,
+        port: httpPort,
+        ssl: ssl,
+        serverKey: serverKey,
+      );
+
+  factory Client.grpc({
+    required String host,
+    int grpcPort = defaultGrpcPort,
+    bool ssl = defaultSsl,
+    String serverKey = defaultServerKey,
+  }) =>
+      GrpcClient(
+        host: host,
+        port: grpcPort,
+        ssl: ssl,
+        serverKey: serverKey,
+      );
+
+  Future<void> close();
 
   /// Refresh a user session and return the new session.
   ///

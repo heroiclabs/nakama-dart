@@ -1,18 +1,16 @@
 import 'client.dart';
 import 'grpc_client.dart';
 
-Client getNakamaClient({
-  String? host,
-  String? serverKey,
-  String key = defaultAppKey,
+Client createClient({
+  required String host,
   int httpPort = defaultHttpPort,
   int grpcPort = defaultGrpcPort,
-  bool ssl = false,
+  bool ssl = defaultSsl,
+  String serverKey = defaultServerKey,
 }) =>
-    GrpcClient.init(
+    GrpcClient(
       host: host,
-      key: key,
       port: grpcPort,
-      serverKey: serverKey,
       ssl: ssl,
+      serverKey: serverKey,
     );

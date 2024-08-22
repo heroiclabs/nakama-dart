@@ -13,7 +13,7 @@ void main() {
     late final String leaderboardName;
 
     setUpAll(() async {
-      client = getNakamaClient(
+      client = Client.grpc(
         host: kTestHost,
         ssl: false,
         serverKey: kTestServerKey,

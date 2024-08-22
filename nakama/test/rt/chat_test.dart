@@ -10,13 +10,13 @@ void main() {
   late final Session sessionA;
   late final Session sessionB;
   late final Client client;
-  late Socket socket;
+  late Socket socketA;
   late Socket socketB;
 
   // Create a new websocket connection for the hole test run (singleton).
   setUpAll(() async {
     // Create nakama clients.
-    client = getNakamaClient(
+    client = Client(
       host: kTestHost,
       ssl: false,
       serverKey: kTestServerKey,
@@ -37,15 +37,14 @@ void main() {
   });
 
   setUp(() async {
-    // Create main websocket connetion for lcl test.
-    socket = Socket.init(
+    // Create main websocket connection for lcl test.
+    socketA = Socket(
       host: kTestHost,
       ssl: false,
       token: sessionA.token,
     );
 
-    socketB = Socket.init(
-      key: 'clientb',
+    socketB = Socket(
       host: kTestHost,
       ssl: false,
       token: sessionB.token,
@@ -53,7 +52,7 @@ void main() {
   });
 
   tearDown(() async {
-    await socket.close();
+    await socketA.close();
     await socketB.close();
   });
 
@@ -61,7 +60,7 @@ void main() {
     test('can create a channel', () async {
       final roomCode = faker.lorem.words(2).join('-');
 
-      final channel = await socket.joinChannel(
+      final channel = await socketA.joinChannel(
         target: roomCode,
         type: ChannelType.room,
         persistence: false,
@@ -73,7 +72,7 @@ void main() {
 
     test('can send a message to a random channel', () async {
       // Create channel
-      final channel = await socket.joinChannel(
+      final channel = await socketA.joinChannel(
         target: faker.lorem.words(2).join('-'),
         type: ChannelType.room,
         persistence: false,
@@ -81,7 +80,7 @@ void main() {
       );
 
       // Send message
-      final ack = await socket.sendMessage(
+      final ack = await socketA.sendMessage(
         channelId: channel.id,
         content: {'message': faker.lorem.sentence()},
       );
@@ -93,7 +92,7 @@ void main() {
     });
 
     test('two users can receive messages in a room', () async {
-      final channel = await socket.joinChannel(
+      final channel = await socketA.joinChannel(
         target: faker.lorem.words(2).join('-'),
         type: ChannelType.room,
         persistence: false,
@@ -123,7 +122,7 @@ void main() {
       });
 
       // Send message
-      final ack = await socket.sendMessage(
+      final ack = await socketA.sendMessage(
         channelId: channel.id,
         content: {'message': content},
       );
@@ -136,7 +135,7 @@ void main() {
 
     test('user can recieve a private message', () async {
       // Both users need to be online to receive messages
-      final senderChannelForA = await socket.joinChannel(
+      final senderChannelForA = await socketA.joinChannel(
         target: sessionB.userId,
         type: ChannelType.directMessage,
         persistence: true,
@@ -165,7 +164,7 @@ void main() {
       });
 
       // Send message from A to B
-      await socket.sendMessage(
+      await socketA.sendMessage(
         channelId: senderChannelForA.id,
         content: messageContent,
       );
@@ -176,7 +175,7 @@ void main() {
     /// sent. This is a test to ensure that the message is still sent to the
     /// server and can be received by the other user via the REST API.
     test('user receives default maximum 20 messages', () async {
-      final senderChannelForA = await socket.joinChannel(
+      final senderChannelForA = await socketA.joinChannel(
         target: sessionB.userId,
         type: ChannelType.directMessage,
         persistence: true,
@@ -186,7 +185,10 @@ void main() {
       // Send 40 test messages
       for (final msg
           in List.generate(40, (index) => {'message': 'PING $index'})) {
-        await socket.sendMessage(channelId: senderChannelForA.id, content: msg);
+        await socketA.sendMessage(
+          channelId: senderChannelForA.id,
+          content: msg,
+        );
       }
 
       // Check on B's side that the message was received via the REST API
@@ -206,7 +208,7 @@ void main() {
     });
 
     test('user receives longer message history on request', () async {
-      final senderChannelForA = await socket.joinChannel(
+      final senderChannelForA = await socketA.joinChannel(
         target: sessionB.userId,
         type: ChannelType.directMessage,
         persistence: true,
@@ -216,7 +218,10 @@ void main() {
       // Send 40 test messages
       for (final msg
           in List.generate(40, (index) => {'message': 'PING $index'})) {
-        await socket.sendMessage(channelId: senderChannelForA.id, content: msg);
+        await socketA.sendMessage(
+          channelId: senderChannelForA.id,
+          content: msg,
+        );
       }
 
       // Check on B's side that the message was received via the REST API
@@ -237,7 +242,7 @@ void main() {
     });
 
     test('user receives longer message history on request', () async {
-      final senderChannelForA = await socket.joinChannel(
+      final senderChannelForA = await socketA.joinChannel(
         target: sessionB.userId,
         type: ChannelType.directMessage,
         persistence: true,
@@ -247,7 +252,10 @@ void main() {
       // Send 40 test messages
       for (final msg
           in List.generate(40, (index) => {'message': 'PING $index'})) {
-        await socket.sendMessage(channelId: senderChannelForA.id, content: msg);
+        await socketA.sendMessage(
+          channelId: senderChannelForA.id,
+          content: msg,
+        );
       }
 
       // Check on B's side that the message was received via the REST API
@@ -268,7 +276,7 @@ void main() {
     });
 
     test('user can iterate through messages with cursor', () async {
-      final senderChannelForA = await socket.joinChannel(
+      final senderChannelForA = await socketA.joinChannel(
         target: sessionB.userId,
         type: ChannelType.directMessage,
         persistence: true,
@@ -278,7 +286,10 @@ void main() {
       // Send 20+15 test messages
       for (final msg
           in List.generate(20 + 15, (index) => {'message': 'PING $index'})) {
-        await socket.sendMessage(channelId: senderChannelForA.id, content: msg);
+        await socketA.sendMessage(
+          channelId: senderChannelForA.id,
+          content: msg,
+        );
       }
 
       // Check on B's side that the message was received via the REST API
@@ -316,7 +327,7 @@ void main() {
 
     test('receiving initial presence of all connected users', () async {
       // A creates channel and joins
-      final channel = await socket.joinChannel(
+      final channel = await socketA.joinChannel(
         target: faker.lorem.words(2).join('-'),
         type: ChannelType.room,
         persistence: true,
@@ -341,7 +352,7 @@ void main() {
       () async {
         // Both joining channel
         final name = faker.lorem.words(2).join('-');
-        final channel1 = await socket.joinChannel(
+        final channel1 = await socketA.joinChannel(
           target: name,
           type: ChannelType.room,
           persistence: true,
@@ -362,7 +373,7 @@ void main() {
         });
 
         // A leaves
-        await socket.leaveChannel(channelId: channel1.id);
+        await socketA.leaveChannel(channelId: channel1.id);
       },
     );
   });

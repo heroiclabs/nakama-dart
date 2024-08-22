@@ -28,6 +28,7 @@ class _HomeScreen extends StatefulWidget {
 
 class __HomeScreenState extends State<_HomeScreen> {
   late final Client _client;
+  late final Socket _socket;
 
   bool signInError = false;
 
@@ -39,7 +40,7 @@ class __HomeScreenState extends State<_HomeScreen> {
   void initState() {
     super.initState();
 
-    _client = getNakamaClient(
+    _client = Client(
       host: '127.0.0.1',
       ssl: false,
       serverKey: 'defaultkey',
@@ -48,7 +49,8 @@ class __HomeScreenState extends State<_HomeScreen> {
 
   @override
   void dispose() {
-    Socket.instance.close();
+    _socket.close();
+    _client.close();
     super.dispose();
   }
 
@@ -72,7 +74,7 @@ class __HomeScreenState extends State<_HomeScreen> {
         _account = profile;
       });
 
-      Socket.init(
+      _socket = Socket(
         host: '127.0.0.1',
         ssl: false,
         token: _session!.token,
@@ -97,9 +99,14 @@ class __HomeScreenState extends State<_HomeScreen> {
                   Welcome(_account!),
                   if (_match == null)
                     Matchmaker(
+                      socket: _socket,
                       onMatch: (m) => setState(() => _match = m),
                     ),
-                  if (_match != null) MatchArea(_match!),
+                  if (_match != null)
+                    MatchArea(
+                      socket: _socket,
+                      match: _match!,
+                    ),
                 ],
               )
             : Column(

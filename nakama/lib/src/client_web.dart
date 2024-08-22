@@ -1,18 +1,16 @@
 import 'client.dart';
 import 'rest_client.dart';
 
-Client getNakamaClient({
-  String? host,
-  String? serverKey,
-  String key = defaultAppKey,
+Client createClient({
+  required String host,
   int httpPort = defaultHttpPort,
   int grpcPort = defaultGrpcPort,
   bool ssl = defaultSsl,
+  String serverKey = defaultServerKey,
 }) =>
-    RestClient.init(
+    RestClient(
       host: host,
-      key: key,
       port: httpPort,
-      serverKey: serverKey,
       ssl: ssl,
+      serverKey: serverKey,
     );

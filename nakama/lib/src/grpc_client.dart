@@ -20,65 +20,16 @@ import 'models/session.dart';
 import 'models/storage.dart';
 import 'models/tournament.dart';
 
-@Deprecated('This class has been renamed to [GrpcClient].')
-typedef NakamaGrpcClient = GrpcClient;
-
 /// [Client] for communicating with Nakama via gRPC.
 ///
 /// [GrpcClient] abstracts the gRPC calls and handles authentication
 /// for you.
-class GrpcClient extends Client {
-  static final _log = Logger('NakamaGrpcClient');
-  static final Map<String, GrpcClient> _clients = {};
-
-  /// The host address of the server.
-  final String host;
-
-  /// The port number of the server. Defaults to 7349
-  final int port;
-  final bool ssl;
-
-  late final ClientChannelBase _channel;
-  late final NakamaClient _client;
-
-  /// The key used to authenticate with the server without a session.
-  /// Defaults to "defaultkey".
-  late final String serverKey;
-
-  /// Either inits and returns a new instance of [GrpcClient] or
-  /// returns a already initialized one.
-  factory GrpcClient.init({
-    String? host,
-    String? serverKey,
-    String key = defaultAppKey,
-    int port = defaultGrpcPort,
-    bool ssl = defaultSsl,
-  }) {
-    if (_clients.containsKey(key)) {
-      return _clients[key]!;
-    }
-
-    // Not yet initialized -> check if we've got all parameters to do so
-    if (host == null || serverKey == null) {
-      throw Exception(
-        'Not yet initialized, need parameters [host] and [serverKey] to initialize.',
-      );
-    }
-
-    // Create a new instance of this with given parameters.
-    return _clients[key] = GrpcClient(
-      host: host,
-      port: port,
-      serverKey: serverKey,
-      ssl: ssl,
-    );
-  }
-
+class GrpcClient implements Client {
   GrpcClient({
     required this.host,
-    this.port = 7349,
-    required this.ssl,
-    required String serverKey,
+    this.port = defaultGrpcPort,
+    this.ssl = defaultSsl,
+    String serverKey = defaultServerKey,
   }) {
     this.serverKey = 'Basic ${base64Encode('$serverKey:'.codeUnits)}';
 
@@ -99,6 +50,22 @@ class GrpcClient extends Client {
     );
   }
 
+  static final _log = Logger('NakamaGrpcClient');
+
+  /// The host address of the server.
+  final String host;
+
+  /// The port number of the server. Defaults to 7349
+  final int port;
+  final bool ssl;
+
+  late final ClientChannelBase _channel;
+  late final NakamaClient _client;
+
+  /// The key used to authenticate with the server without a session.
+  /// Defaults to "defaultkey".
+  late final String serverKey;
+
   /// This method returns the original generated gPRC client, usually there
   /// might be no use case for direct access.
   /// Use with cation, API can change every time.
@@ -107,6 +74,9 @@ class GrpcClient extends Client {
   CallOptions _getSessionCallOptions(Session session) => CallOptions(
         metadata: {'authorization': 'Bearer ${session.token}'},
       );
+
+  @override
+  Future<void> close() => _channel.shutdown();
 
   @override
   Future<Session> sessionRefresh({
