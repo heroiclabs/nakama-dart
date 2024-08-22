@@ -32,3 +32,13 @@ jobs:
       - name: Analyze
         run: dart analyze --fatal-infos
         working-directory: ${{ matrix.package }}
+
+      - name: Start test server
+        run: docker compose up -d
+        working-directory: nakama/tool/nakama_server
+        if: matrix.package == 'nakama'
+
+      - name: Run tests
+        run: dart test
+        working-directory: ${{ matrix.package }}
+        if: matrix.package == 'nakama'

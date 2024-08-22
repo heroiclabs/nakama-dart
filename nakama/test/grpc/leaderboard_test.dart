@@ -8,7 +8,7 @@ import 'package:test/scaffolding.dart';
 import '../config.dart';
 
 void main() {
-  group('[gRPC] Test Leaderboard', () {
+  group('[gRPC] Test Leaderboard', skip: 'TODO: add missing RPC function', () {
     late final NakamaBaseClient client;
     late final Session session;
     late final String leaderboardName;
