@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
 import 'package:nakama/nakama.dart';
+
+final _logger = Logger('MatchArea');
 
 class MatchArea extends StatefulWidget {
   final Match match;
@@ -22,7 +25,7 @@ class MatchAreaState extends State<MatchArea> {
     super.initState();
 
     NakamaWebsocketClient.instance.onMatchData.listen((event) {
-      print(
+      _logger.fine(
         'received match data: ${event.data} from ${event.presence?.username}',
       );
       // Sent the match content field to received data.
@@ -44,7 +47,7 @@ class MatchAreaState extends State<MatchArea> {
       opCode: 0,
       data: data.codeUnits,
     );
-    print('Match Data changed: $data');
+    _logger.fine('Match Data changed: $data');
   }
 
   @override

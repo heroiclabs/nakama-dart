@@ -1,0 +1,8 @@
+name: nakama_dart
+publish_to: 'none'
+
+environment:
+  sdk: ^3.0.0
+
+dev_dependencies:
+  flutter_lints: ^4.0.0
