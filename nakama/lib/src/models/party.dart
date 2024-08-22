@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nakama/nakama.dart';
-import 'package:nakama/src/api/rtapi.dart' as rtpb;
+
+import '../api/rtapi.dart' as rtapi;
+import 'status.dart';
 
 part 'party.freezed.dart';
 
@@ -22,7 +23,7 @@ class PartyData with _$PartyData {
     @JsonKey(name: 'data') List<int>? data,
   }) = _PartyData;
 
-  factory PartyData.fromDto(rtpb.PartyData dto) => PartyData(
+  factory PartyData.fromDto(rtapi.PartyData dto) => PartyData(
         partyId: dto.partyId,
         presence: UserPresence.fromDto(dto.presence),
         opCode: dto.opCode.toInt(),
@@ -45,7 +46,7 @@ class PartyPresenceEvent with _$PartyPresenceEvent {
     @JsonKey(name: 'leaves') List<UserPresence>? leaves,
   }) = _PartyPresenceEvent;
 
-  factory PartyPresenceEvent.fromDto(rtpb.PartyPresenceEvent dto) =>
+  factory PartyPresenceEvent.fromDto(rtapi.PartyPresenceEvent dto) =>
       PartyPresenceEvent(
         partyId: dto.partyId,
         joins: dto.joins.map((e) => UserPresence.fromDto(e)).toList(),
@@ -65,7 +66,7 @@ class PartyLeader with _$PartyLeader {
     @JsonKey(name: 'presence') UserPresence? newLeader,
   }) = _PartyLeader;
 
-  factory PartyLeader.fromDto(rtpb.PartyLeader dto) => PartyLeader(
+  factory PartyLeader.fromDto(rtapi.PartyLeader dto) => PartyLeader(
         partyId: dto.partyId,
         newLeader: UserPresence.fromDto(dto.presence),
       );

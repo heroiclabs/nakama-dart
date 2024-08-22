@@ -1,4 +1,4 @@
-import 'package:satori/src/satori_client/satori_client.dart';
+import '../satori_client.dart';
 
 SatoriBaseClient getSatoriClient({
   String? host = '127.0.0.1',

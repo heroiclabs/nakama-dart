@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nakama/src/api/api.dart' as api;
-import 'package:nakama/src/enum/friendship_state.dart';
-import 'package:nakama/src/models/account.dart';
+
+import '../api/api.dart' as api;
+import '../enum/friendship_state.dart';
+import 'account.dart';
 
 part 'friends.freezed.dart';
 part 'friends.g.dart';

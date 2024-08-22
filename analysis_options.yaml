@@ -7,13 +7,13 @@ analyzer:
     - '**/*.swagger.dart'
     - '**/api/proto/**/*.dart'
   errors:
-      invalid_annotation_target: false
+    invalid_annotation_target: false
 
 linter:
   rules:
-    always_use_package_imports: true
     directives_ordering: true
-    prefer_interpolation_to_compose_strings: true
     prefer_final_in_for_each: true
     prefer_final_locals: true
+    prefer_interpolation_to_compose_strings: true
+    prefer_relative_imports: true
     prefer_single_quotes: true

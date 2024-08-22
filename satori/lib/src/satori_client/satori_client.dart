@@ -1,9 +1,9 @@
-import 'package:satori/src/models/event.dart';
-import 'package:satori/src/models/experiment.dart';
-import 'package:satori/src/models/flag.dart';
-import 'package:satori/src/models/live_event.dart';
-import 'package:satori/src/models/properties.dart';
-import 'package:satori/src/models/session.dart';
+import '../models/event.dart';
+import '../models/experiment.dart';
+import '../models/flag.dart';
+import '../models/live_event.dart';
+import '../models/properties.dart';
+import '../models/session.dart';
 
 /// An interface for the Satori client.
 abstract class SatoriBaseClient {

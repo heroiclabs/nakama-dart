@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
-import 'package:nakama/src/api/api.dart' as dto;
-import 'package:nakama/src/rest/api_client.gen.dart';
+
+import '../api/api.dart' as api;
+import '../rest/api_client.gen.dart';
 
 part 'session.freezed.dart';
 
@@ -19,7 +20,7 @@ class Session with _$Session {
     required DateTime refreshExpiresAt,
   }) = _Session;
 
-  factory Session.fromDto(dto.Session session) {
+  factory Session.fromDto(api.Session session) {
     final token = JwtDecoder.decode(session.token);
     assert(token.containsKey('uid'));
 

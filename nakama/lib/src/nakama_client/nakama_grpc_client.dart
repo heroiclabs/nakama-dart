@@ -3,20 +3,22 @@ import 'dart:convert';
 import 'package:grpc/grpc.dart';
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:logging/logging.dart';
-import 'package:nakama/nakama.dart';
-import 'package:nakama/src/api/api.dart' as api;
-import 'package:nakama/src/api/proto/api/api.pb.dart';
-import 'package:nakama/src/api/proto/apigrpc/apigrpc.pbgrpc.dart';
-import 'package:nakama/src/models/account.dart' as model;
-import 'package:nakama/src/models/channel_message.dart' as model;
-import 'package:nakama/src/models/friends.dart' as model;
-import 'package:nakama/src/models/group.dart' as model;
-import 'package:nakama/src/models/leaderboard.dart' as model;
-import 'package:nakama/src/models/match.dart' as model;
-import 'package:nakama/src/models/notification.dart' as model;
-import 'package:nakama/src/models/session.dart' as model;
-import 'package:nakama/src/models/storage.dart' as model;
-import 'package:nakama/src/models/tournament.dart' as model;
+
+import '../api/api.dart' as api;
+import '../api/proto/apigrpc/apigrpc.pbgrpc.dart';
+import '../enum/friendship_state.dart';
+import '../enum/group_membership_states.dart';
+import '../models/account.dart';
+import '../models/channel_message.dart';
+import '../models/friends.dart';
+import '../models/group.dart';
+import '../models/leaderboard.dart';
+import '../models/match.dart';
+import '../models/notification.dart';
+import '../models/session.dart';
+import '../models/storage.dart';
+import '../models/tournament.dart';
+import 'nakama_client.dart';
 
 const _kDefaultAppKey = 'default';
 
@@ -100,24 +102,24 @@ class NakamaGrpcClient extends NakamaBaseClient {
   /// Use with cation, API can change every time.
   NakamaClient get rawGrpcClient => _client;
 
-  CallOptions _getSessionCallOptions(model.Session session) => CallOptions(
+  CallOptions _getSessionCallOptions(Session session) => CallOptions(
         metadata: {'authorization': 'Bearer ${session.token}'},
       );
 
   @override
-  Future<model.Session> sessionRefresh({
-    required model.Session session,
+  Future<Session> sessionRefresh({
+    required Session session,
     Map<String, String>? vars,
   }) async {
     final res = await _client.sessionRefresh(
       api.SessionRefreshRequest(token: session.refreshToken, vars: vars),
     );
 
-    return model.Session.fromDto(res);
+    return Session.fromDto(res);
   }
 
   @override
-  Future<void> sessionLogout({required model.Session session}) async {
+  Future<void> sessionLogout({required Session session}) async {
     await _client.sessionLogout(api.SessionLogoutRequest(
       refreshToken: session.refreshToken,
       token: session.token,
@@ -125,7 +127,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.Session> authenticateEmail({
+  Future<Session> authenticateEmail({
     String? email,
     String? username,
     required String password,
@@ -155,12 +157,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateEmail(request);
 
-    return model.Session.fromDto(res);
+    return Session.fromDto(res);
   }
 
   @override
   Future<void> linkEmail({
-    required model.Session session,
+    required Session session,
     required String email,
     required String password,
     Map<String, String>? vars,
@@ -178,7 +180,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> unlinkEmail({
-    required model.Session session,
+    required Session session,
     required String email,
     required String password,
     Map<String, String>? vars,
@@ -195,7 +197,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.Session> authenticateDevice({
+  Future<Session> authenticateDevice({
     required String deviceId,
     bool create = true,
     String? username,
@@ -213,12 +215,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateDevice(request);
 
-    return model.Session.fromDto(res);
+    return Session.fromDto(res);
   }
 
   @override
   Future<void> linkDevice({
-    required model.Session session,
+    required Session session,
     required String deviceId,
     Map<String, String>? vars,
   }) async {
@@ -234,7 +236,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> unlinkDevice({
-    required model.Session session,
+    required Session session,
     required String deviceId,
     Map<String, String>? vars,
   }) async {
@@ -249,7 +251,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.Session> authenticateFacebook({
+  Future<Session> authenticateFacebook({
     required String token,
     bool create = true,
     String? username,
@@ -269,12 +271,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateFacebook(request);
 
-    return model.Session.fromDto(res);
+    return Session.fromDto(res);
   }
 
   @override
   Future<void> linkFacebook({
-    required model.Session session,
+    required Session session,
     required String token,
     bool import = false,
     Map<String, String>? vars,
@@ -293,7 +295,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> unlinkFacebook({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -308,7 +310,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.Session> authenticateApple({
+  Future<Session> authenticateApple({
     required String token,
     bool create = true,
     String? username,
@@ -326,12 +328,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateApple(request);
 
-    return model.Session.fromDto(res);
+    return Session.fromDto(res);
   }
 
   @override
   Future<void> linkApple({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -347,7 +349,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> unlinkApple({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -362,7 +364,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.Session> authenticateFacebookInstantGame({
+  Future<Session> authenticateFacebookInstantGame({
     required String signedPlayerInfo,
     bool create = true,
     String? username,
@@ -380,12 +382,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateFacebookInstantGame(request);
 
-    return model.Session.fromDto(res);
+    return Session.fromDto(res);
   }
 
   @override
   Future<void> linkFacebookInstantGame({
-    required model.Session session,
+    required Session session,
     required String signedPlayerInfo,
     Map<String, String>? vars,
   }) async {
@@ -401,7 +403,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> unlinkFacebookInstantGame({
-    required model.Session session,
+    required Session session,
     required String signedPlayerInfo,
     Map<String, String>? vars,
   }) async {
@@ -416,7 +418,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.Session> authenticateGoogle({
+  Future<Session> authenticateGoogle({
     required String token,
     bool create = true,
     String? username,
@@ -434,12 +436,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateGoogle(request);
 
-    return model.Session.fromDto(res);
+    return Session.fromDto(res);
   }
 
   @override
   Future<void> linkGoogle({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -455,7 +457,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> unlinkGoogle({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -470,7 +472,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.Session> authenticateGameCenter({
+  Future<Session> authenticateGameCenter({
     required String playerId,
     required String bundleId,
     required int timestampSeconds,
@@ -486,7 +488,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
       ..account = (api.AccountGameCenter()
         ..playerId = playerId
         ..bundleId = bundleId
-        ..timestampSeconds = Int64(timestampSeconds)
+        ..timestampSeconds = api.Int64(timestampSeconds)
         ..salt = salt
         ..signature = signature
         ..publicKeyUrl = publicKeyUrl
@@ -498,12 +500,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateGameCenter(request);
 
-    return model.Session.fromDto(res);
+    return Session.fromDto(res);
   }
 
   @override
   Future<void> linkGameCenter({
-    required model.Session session,
+    required Session session,
     required String playerId,
     required String bundleId,
     required int timestampSeconds,
@@ -515,7 +517,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
     final request = api.AccountGameCenter()
       ..playerId = playerId
       ..bundleId = bundleId
-      ..timestampSeconds = Int64(timestampSeconds)
+      ..timestampSeconds = api.Int64(timestampSeconds)
       ..salt = salt
       ..signature = signature
       ..publicKeyUrl = publicKeyUrl
@@ -529,7 +531,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> unlinkGameCenter({
-    required model.Session session,
+    required Session session,
     required String playerId,
     required String bundleId,
     required int timestampSeconds,
@@ -541,7 +543,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
     final request = api.AccountGameCenter()
       ..playerId = playerId
       ..bundleId = bundleId
-      ..timestampSeconds = Int64(timestampSeconds)
+      ..timestampSeconds = api.Int64(timestampSeconds)
       ..salt = salt
       ..signature = signature
       ..publicKeyUrl = publicKeyUrl
@@ -554,7 +556,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.Session> authenticateSteam({
+  Future<Session> authenticateSteam({
     required String token,
     bool create = true,
     String? username,
@@ -574,12 +576,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateSteam(request);
 
-    return model.Session.fromDto(res);
+    return Session.fromDto(res);
   }
 
   @override
   Future<void> linkSteam({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
     bool import = false,
@@ -598,7 +600,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> unlinkSteam({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
     bool import = false,
@@ -616,7 +618,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.Session> authenticateCustom({
+  Future<Session> authenticateCustom({
     required String id,
     bool create = true,
     String? username,
@@ -634,12 +636,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
     final res = await _client.authenticateCustom(request);
 
-    return model.Session.fromDto(res);
+    return Session.fromDto(res);
   }
 
   @override
   Future<void> linkCustom({
-    required model.Session session,
+    required Session session,
     required String id,
     Map<String, String>? vars,
   }) async {
@@ -655,7 +657,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> unlinkCustom({
-    required model.Session session,
+    required Session session,
     required String id,
     Map<String, String>? vars,
   }) async {
@@ -670,18 +672,18 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.Account> getAccount(model.Session session) async {
+  Future<Account> getAccount(Session session) async {
     final res = await _client.getAccount(
       api.Empty(),
       options: _getSessionCallOptions(session),
     );
 
-    return model.Account.fromDto(res);
+    return Account.fromDto(res);
   }
 
   @override
   Future<void> updateAccount({
-    required model.Session session,
+    required Session session,
     String? username,
     String? displayName,
     String? avatarUrl,
@@ -704,8 +706,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<List<model.User>> getUsers({
-    required model.Session session,
+  Future<List<User>> getUsers({
+    required Session session,
     List<String>? facebookIds,
     List<String>? ids,
     List<String>? usernames,
@@ -719,12 +721,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return res.users.map((e) => model.User.fromDto(e)).toList(growable: false);
+    return res.users.map((e) => User.fromDto(e)).toList(growable: false);
   }
 
   @override
-  Future<model.StorageObjectList> listStorageObjects({
-    required model.Session session,
+  Future<StorageObjectList> listStorageObjects({
+    required Session session,
     String? collection,
     String? cursor,
     String? userId,
@@ -740,12 +742,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return model.StorageObjectList.fromDto(res);
+    return StorageObjectList.fromDto(res);
   }
 
   @override
-  Future<model.ChannelMessageList> listChannelMessages({
-    required model.Session session,
+  Future<ChannelMessageList> listChannelMessages({
+    required Session session,
     required String channelId,
     int limit = 20,
     bool? forward,
@@ -763,12 +765,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return model.ChannelMessageList.fromDto(res);
+    return ChannelMessageList.fromDto(res);
   }
 
   @override
-  Future<model.LeaderboardRecordList> listLeaderboardRecords({
-    required model.Session session,
+  Future<LeaderboardRecordList> listLeaderboardRecords({
+    required Session session,
     required String leaderboardName,
     List<String>? ownerIds,
     int limit = 20,
@@ -786,17 +788,17 @@ class NakamaGrpcClient extends NakamaBaseClient {
         expiry: expiry == null
             ? null
             : api.Int64Value(
-                value: Int64(expiry.millisecondsSinceEpoch ~/ 1000)),
+                value: api.Int64(expiry.millisecondsSinceEpoch ~/ 1000)),
       ),
       options: _getSessionCallOptions(session),
     );
 
-    return model.LeaderboardRecordList.fromDto(res);
+    return LeaderboardRecordList.fromDto(res);
   }
 
   @override
-  Future<model.LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
-    required model.Session session,
+  Future<LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
+    required Session session,
     required String leaderboardName,
     required String ownerId,
     int limit = 20,
@@ -812,17 +814,17 @@ class NakamaGrpcClient extends NakamaBaseClient {
         expiry: expiry == null
             ? null
             : api.Int64Value(
-                value: Int64(expiry.millisecondsSinceEpoch ~/ 1000)),
+                value: api.Int64(expiry.millisecondsSinceEpoch ~/ 1000)),
       ),
       options: _getSessionCallOptions(session),
     );
 
-    return model.LeaderboardRecordList.fromDto(res);
+    return LeaderboardRecordList.fromDto(res);
   }
 
   @override
-  Future<model.LeaderboardRecord> writeLeaderboardRecord({
-    required model.Session session,
+  Future<LeaderboardRecord> writeLeaderboardRecord({
+    required Session session,
     required String leaderboardName,
     required int score,
     int? subscore,
@@ -833,21 +835,21 @@ class NakamaGrpcClient extends NakamaBaseClient {
       api.WriteLeaderboardRecordRequest(
         leaderboardId: leaderboardName,
         record: api.WriteLeaderboardRecordRequest_LeaderboardRecordWrite(
-          score: Int64(score),
-          subscore: subscore == null ? null : Int64(subscore),
+          score: api.Int64(score),
+          subscore: subscore == null ? null : api.Int64(subscore),
           metadata: metadata,
-          operator: Operator.valueOf(operator?.index ?? 0),
+          operator: api.Operator.valueOf(operator?.index ?? 0),
         ),
       ),
       options: _getSessionCallOptions(session),
     );
 
-    return model.LeaderboardRecord.fromDto(res);
+    return LeaderboardRecord.fromDto(res);
   }
 
   @override
   Future<void> deleteLeaderboardRecord({
-    required model.Session session,
+    required Session session,
     required String leaderboardName,
   }) async {
     await _client.deleteLeaderboardRecord(
@@ -860,7 +862,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> addFriends({
-    required model.Session session,
+    required Session session,
     List<String>? usernames,
     List<String>? ids,
   }) async {
@@ -874,8 +876,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.FriendsList> listFriends({
-    required model.Session session,
+  Future<FriendsList> listFriends({
+    required Session session,
     FriendshipState? friendshipState,
     int limit = defaultLimit,
     String? cursor,
@@ -889,12 +891,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return model.FriendsList.fromDto(res);
+    return FriendsList.fromDto(res);
   }
 
   @override
   Future<void> deleteFriends({
-    required model.Session session,
+    required Session session,
     List<String>? usernames,
     List<String>? ids,
   }) async {
@@ -909,7 +911,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> blockFriends({
-    required model.Session session,
+    required Session session,
     List<String>? usernames,
     List<String>? ids,
   }) async {
@@ -923,8 +925,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.Group> createGroup({
-    required model.Session session,
+  Future<Group> createGroup({
+    required Session session,
     required String name,
     String? avatarUrl,
     String? description,
@@ -944,12 +946,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return model.Group.fromDto(res);
+    return Group.fromDto(res);
   }
 
   @override
   Future<void> updateGroup({
-    required model.Session session,
+    required Session session,
     required String groupId,
     String? name,
     String? avatarUrl,
@@ -972,8 +974,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.GroupList> listGroups({
-    required model.Session session,
+  Future<GroupList> listGroups({
+    required Session session,
     String? name,
     String? cursor,
     String? langTag,
@@ -993,12 +995,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return model.GroupList.fromDto(res);
+    return GroupList.fromDto(res);
   }
 
   @override
   Future<void> deleteGroup({
-    required model.Session session,
+    required Session session,
     required String groupId,
   }) async {
     await _client.deleteGroup(
@@ -1009,7 +1011,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> joinGroup({
-    required model.Session session,
+    required Session session,
     required String groupId,
   }) async {
     await _client.joinGroup(
@@ -1019,8 +1021,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.UserGroupList> listUserGroups({
-    required model.Session session,
+  Future<UserGroupList> listUserGroups({
+    required Session session,
     String? cursor,
     int limit = defaultLimit,
     GroupMembershipState? state,
@@ -1036,12 +1038,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return model.UserGroupList.fromDto(res);
+    return UserGroupList.fromDto(res);
   }
 
   @override
-  Future<model.GroupUserList> listGroupUsers({
-    required model.Session session,
+  Future<GroupUserList> listGroupUsers({
+    required Session session,
     required String groupId,
     String? cursor,
     int limit = defaultLimit,
@@ -1057,12 +1059,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return model.GroupUserList.fromDto(res);
+    return GroupUserList.fromDto(res);
   }
 
   @override
   Future<void> addGroupUsers({
-    required model.Session session,
+    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   }) async {
@@ -1077,7 +1079,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> promoteGroupUsers({
-    required model.Session session,
+    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   }) async {
@@ -1092,7 +1094,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> demoteGroupUsers({
-    required model.Session session,
+    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   }) async {
@@ -1107,7 +1109,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> kickGroupUsers({
-    required model.Session session,
+    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   }) async {
@@ -1122,7 +1124,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> banGroupUsers({
-    required model.Session session,
+    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   }) async {
@@ -1137,7 +1139,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> leaveGroup({
-    required model.Session session,
+    required Session session,
     required String groupId,
   }) async {
     await _client.leaveGroup(
@@ -1149,8 +1151,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.NotificationList> listNotifications({
-    required model.Session session,
+  Future<NotificationList> listNotifications({
+    required Session session,
     int limit = defaultLimit,
     String? cursor,
   }) async {
@@ -1162,12 +1164,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return model.NotificationList.fromDto(res);
+    return NotificationList.fromDto(res);
   }
 
   @override
   Future<void> deleteNotifications({
-    required model.Session session,
+    required Session session,
     required Iterable<String> notificationIds,
   }) async {
     await _client.deleteNotifications(
@@ -1179,8 +1181,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<List<model.Match>> listMatches({
-    required model.Session session,
+  Future<List<Match>> listMatches({
+    required Session session,
     bool? authoritative,
     String? label,
     int limit = defaultLimit,
@@ -1200,14 +1202,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return res.matches
-        .map((e) => model.Match.fromDto(e))
-        .toList(growable: false);
+    return res.matches.map((e) => Match.fromDto(e)).toList(growable: false);
   }
 
   @override
   Future<void> joinTournament({
-    required model.Session session,
+    required Session session,
     required String tournamentId,
   }) async {
     await _client.joinTournament(
@@ -1219,8 +1219,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<model.TournamentList> listTournaments({
-    required model.Session session,
+  Future<TournamentList> listTournaments({
+    required Session session,
     int? categoryStart,
     int? categoryEnd,
     String? cursor,
@@ -1246,12 +1246,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return model.TournamentList.fromDto(res);
+    return TournamentList.fromDto(res);
   }
 
   @override
-  Future<model.TournamentRecordList> listTournamentRecords({
-    required model.Session session,
+  Future<TournamentRecordList> listTournamentRecords({
+    required Session session,
     required String tournamentId,
     Iterable<String>? ownerIds,
     int? expiry,
@@ -1261,7 +1261,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
     final res = await _client.listTournamentRecords(
       api.ListTournamentRecordsRequest(
         cursor: cursor,
-        expiry: expiry == null ? null : api.Int64Value(value: Int64(expiry)),
+        expiry:
+            expiry == null ? null : api.Int64Value(value: api.Int64(expiry)),
         limit: api.Int32Value(value: limit),
         ownerIds: ownerIds,
         tournamentId: tournamentId,
@@ -1269,12 +1270,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return model.TournamentRecordList.fromDto(res);
+    return TournamentRecordList.fromDto(res);
   }
 
   @override
-  Future<model.TournamentRecordList> listTournamentRecordsAroundOwner({
-    required model.Session session,
+  Future<TournamentRecordList> listTournamentRecordsAroundOwner({
+    required Session session,
     required String tournamentId,
     required String ownerId,
     int? expiry,
@@ -1282,7 +1283,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }) async {
     final res = await _client.listTournamentRecordsAroundOwner(
       api.ListTournamentRecordsAroundOwnerRequest(
-        expiry: expiry == null ? null : api.Int64Value(value: Int64(expiry)),
+        expiry:
+            expiry == null ? null : api.Int64Value(value: api.Int64(expiry)),
         limit: api.UInt32Value(value: limit),
         ownerId: ownerId,
         tournamentId: tournamentId,
@@ -1290,12 +1292,12 @@ class NakamaGrpcClient extends NakamaBaseClient {
       options: _getSessionCallOptions(session),
     );
 
-    return model.TournamentRecordList.fromDto(res);
+    return TournamentRecordList.fromDto(res);
   }
 
   @override
-  Future<model.LeaderboardRecord> writeTournamentRecord({
-    required model.Session session,
+  Future<LeaderboardRecord> writeTournamentRecord({
+    required Session session,
     required String tournamentId,
     String? metadata,
     LeaderboardOperator? operator,
@@ -1307,20 +1309,20 @@ class NakamaGrpcClient extends NakamaBaseClient {
         tournamentId: tournamentId,
         record: api.WriteTournamentRecordRequest_TournamentRecordWrite(
           metadata: metadata,
-          operator: Operator.valueOf(operator?.index ?? 0),
-          score: score != null ? Int64(score) : null,
-          subscore: subscore != null ? Int64(subscore) : null,
+          operator: api.Operator.valueOf(operator?.index ?? 0),
+          score: score != null ? api.Int64(score) : null,
+          subscore: subscore != null ? api.Int64(subscore) : null,
         ),
       ),
       options: _getSessionCallOptions(session),
     );
 
-    return model.LeaderboardRecord.fromDto(res);
+    return LeaderboardRecord.fromDto(res);
   }
 
   @override
   Future<String?> rpc({
-    required model.Session session,
+    required Session session,
     required String id,
     String? payload,
   }) async {
@@ -1337,7 +1339,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> deleteStorageObjects({
-    required model.Session session,
+    required Session session,
     required Iterable<StorageObjectId> objectIds,
   }) async {
     await _client.deleteStorageObjects(
@@ -1355,8 +1357,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
-  Future<List<model.StorageObject>> readStorageObjects({
-    required model.Session session,
+  Future<List<StorageObject>> readStorageObjects({
+    required Session session,
     required Iterable<StorageObjectId> objectIds,
   }) async {
     final res = await _client.readStorageObjects(
@@ -1373,13 +1375,13 @@ class NakamaGrpcClient extends NakamaBaseClient {
     );
 
     return res.objects
-        .map((e) => model.StorageObject.fromDto(e))
+        .map((e) => StorageObject.fromDto(e))
         .toList(growable: false);
   }
 
   @override
   Future<void> writeStorageObjects({
-    required model.Session session,
+    required Session session,
     required Iterable<StorageObjectWrite> objects,
   }) async {
     await _client.writeStorageObjects(
@@ -1392,14 +1394,14 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> importFacebookFriends({
-    required model.Session session,
+    required Session session,
     required String token,
     bool reset = false,
     Map<String, String>? vars,
   }) async {
     await _client.importFacebookFriends(
       api.ImportFacebookFriendsRequest(
-        account: AccountFacebook(token: token, vars: vars),
+        account: api.AccountFacebook(token: token, vars: vars),
         reset: api.BoolValue(value: reset),
       ),
       options: _getSessionCallOptions(session),
@@ -1408,14 +1410,14 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   @override
   Future<void> importSteamFriends({
-    required model.Session session,
+    required Session session,
     required String token,
     bool reset = false,
     Map<String, String>? vars,
   }) async {
     await _client.importSteamFriends(
       api.ImportSteamFriendsRequest(
-        account: AccountSteam(token: token, vars: vars),
+        account: api.AccountSteam(token: token, vars: vars),
         reset: api.BoolValue(value: reset),
       ),
       options: _getSessionCallOptions(session),

@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nakama/src/api/api.dart' as api;
+
+import '../api/api.dart' as api;
 
 part 'account.freezed.dart';
 part 'account.g.dart';

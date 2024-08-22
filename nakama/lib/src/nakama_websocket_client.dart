@@ -2,10 +2,18 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:logging/logging.dart';
-import 'package:nakama/nakama.dart';
-import 'package:nakama/src/api/api.dart' as api;
-import 'package:nakama/src/api/rtapi.dart' as rtpb;
 import 'package:web_socket_channel/web_socket_channel.dart';
+
+import 'api/api.dart' as api;
+import 'api/rtapi.dart' as rtapi;
+import 'enum/channel_type.dart';
+import 'models/chat.dart';
+import 'models/match.dart';
+import 'models/matchmaker.dart';
+import 'models/notification.dart';
+import 'models/party.dart';
+import 'models/rpc.dart';
+import 'models/status.dart';
 
 class NakamaWebsocketClient {
   static final _log = Logger('NakamaWebsocketClient');
@@ -189,7 +197,7 @@ class NakamaWebsocketClient {
 
   void _onData(msg) {
     try {
-      final receivedEnvelope = rtpb.Envelope.fromBuffer(msg);
+      final receivedEnvelope = rtapi.Envelope.fromBuffer(msg);
       _log.info('onData: $receivedEnvelope');
 
       if (receivedEnvelope.cid.isNotEmpty) {
@@ -197,19 +205,19 @@ class NakamaWebsocketClient {
         final waitingFuture = _futures[int.parse(receivedEnvelope.cid)];
 
         // ? Is there any chance to do this better with <T>?
-        if (waitingFuture is Completer<rtpb.Match>) {
+        if (waitingFuture is Completer<rtapi.Match>) {
           return waitingFuture.complete(receivedEnvelope.match);
-        } else if (waitingFuture is Completer<rtpb.MatchmakerTicket>) {
+        } else if (waitingFuture is Completer<rtapi.MatchmakerTicket>) {
           return waitingFuture.complete(receivedEnvelope.matchmakerTicket);
-        } else if (waitingFuture is Completer<rtpb.Status>) {
+        } else if (waitingFuture is Completer<rtapi.Status>) {
           return waitingFuture.complete(receivedEnvelope.status);
-        } else if (waitingFuture is Completer<rtpb.Channel>) {
+        } else if (waitingFuture is Completer<rtapi.Channel>) {
           return waitingFuture.complete(receivedEnvelope.channel);
-        } else if (waitingFuture is Completer<rtpb.ChannelMessageAck>) {
+        } else if (waitingFuture is Completer<rtapi.ChannelMessageAck>) {
           return waitingFuture.complete(receivedEnvelope.channelMessageAck);
-        } else if (waitingFuture is Completer<rtpb.Party>) {
+        } else if (waitingFuture is Completer<rtapi.Party>) {
           return waitingFuture.complete(receivedEnvelope.party);
-        } else if (waitingFuture is Completer<rtpb.PartyMatchmakerTicket>) {
+        } else if (waitingFuture is Completer<rtapi.PartyMatchmakerTicket>) {
           return waitingFuture.complete(receivedEnvelope.partyMatchmakerTicket);
         } else {
           return waitingFuture.complete();
@@ -217,50 +225,50 @@ class NakamaWebsocketClient {
       } else {
         // map server messages
         switch (receivedEnvelope.whichMessage()) {
-          case rtpb.Envelope_Message.channelPresenceEvent:
+          case rtapi.Envelope_Message.channelPresenceEvent:
             return _onChannelPresenceController.add(
               ChannelPresenceEvent.fromDto(
                 receivedEnvelope.channelPresenceEvent,
               ),
             );
-          case rtpb.Envelope_Message.matchmakerMatched:
+          case rtapi.Envelope_Message.matchmakerMatched:
             return _onMatchmakerMatchedController.add(
               MatchmakerMatched.fromDto(receivedEnvelope.matchmakerMatched),
             );
-          case rtpb.Envelope_Message.matchData:
+          case rtapi.Envelope_Message.matchData:
             return _onMatchDataController
                 .add(MatchData.fromDto(receivedEnvelope.matchData));
-          case rtpb.Envelope_Message.partyData:
+          case rtapi.Envelope_Message.partyData:
             return _onPartyDataController
                 .add(PartyData.fromDto(receivedEnvelope.partyData));
-          case rtpb.Envelope_Message.partyPresenceEvent:
+          case rtapi.Envelope_Message.partyPresenceEvent:
             return _onPartyPresenceController.add(
               PartyPresenceEvent.fromDto(receivedEnvelope.partyPresenceEvent),
             );
-          case rtpb.Envelope_Message.partyLeader:
+          case rtapi.Envelope_Message.partyLeader:
             return _onPartyLeaderController
                 .add(PartyLeader.fromDto(receivedEnvelope.partyLeader));
-          case rtpb.Envelope_Message.matchPresenceEvent:
+          case rtapi.Envelope_Message.matchPresenceEvent:
             return _onMatchPresenceController.add(
               MatchPresenceEvent.fromDto(receivedEnvelope.matchPresenceEvent),
             );
-          case rtpb.Envelope_Message.notifications:
+          case rtapi.Envelope_Message.notifications:
             receivedEnvelope.notifications.notifications
                 .map((e) => Notification.fromDto(e))
                 .forEach((element) => _onNotificationsController.add(element));
             return;
-          case rtpb.Envelope_Message.statusPresenceEvent:
+          case rtapi.Envelope_Message.statusPresenceEvent:
             return _onStatusPresenceController.add(
               StatusPresenceEvent.fromDto(receivedEnvelope.statusPresenceEvent),
             );
-          case rtpb.Envelope_Message.streamPresenceEvent:
+          case rtapi.Envelope_Message.streamPresenceEvent:
             return _onStreamPresenceController.add(
               StreamPresenceEvent.fromDto(receivedEnvelope.streamPresenceEvent),
             );
-          case rtpb.Envelope_Message.streamData:
+          case rtapi.Envelope_Message.streamData:
             return _onStreamDataController
                 .add(RealtimeStreamData.fromDto(receivedEnvelope.streamData));
-          case rtpb.Envelope_Message.channelMessage:
+          case rtapi.Envelope_Message.channelMessage:
             return _onChannelMessageController
                 .add(receivedEnvelope.channelMessage);
           default:
@@ -273,7 +281,7 @@ class NakamaWebsocketClient {
     }
   }
 
-  Future<T> _send<T>(rtpb.Envelope envelope) {
+  Future<T> _send<T>(rtapi.Envelope envelope) {
     final ticket = _createTicket<T>();
     _channel.sink.add((envelope..cid = ticket.toString()).writeToBuffer());
     return _futures[ticket].future as Future<T>;
@@ -286,18 +294,18 @@ class NakamaWebsocketClient {
   }
 
   Future updateStatus(String status) => _send<void>(
-        rtpb.Envelope(
+        rtapi.Envelope(
           statusUpdate:
-              rtpb.StatusUpdate(status: api.StringValue(value: status)),
+              rtapi.StatusUpdate(status: api.StringValue(value: status)),
         ),
       );
 
   Future<Match> createMatch([String? name]) async {
-    final res = await _send<rtpb.Match>(
-      rtpb.Envelope(matchCreate: rtpb.MatchCreate(name: name)),
+    final res = await _send<rtapi.Match>(
+      rtapi.Envelope(matchCreate: rtapi.MatchCreate(name: name)),
     );
 
-    return Match.fromRtpb(res);
+    return Match.fromRtDto(res);
   }
 
   /// # Creating parties
@@ -305,8 +313,8 @@ class NakamaWebsocketClient {
   /// maximum number of players and can be open to automatically accept players
   /// or closed so that the party leader can accept incoming join requests.
   Future<Party> createParty({int? maxSize, bool? open}) async {
-    final res = await _send<rtpb.Party>(rtpb.Envelope(
-        partyCreate: rtpb.PartyCreate(
+    final res = await _send<rtapi.Party>(rtapi.Envelope(
+        partyCreate: rtapi.PartyCreate(
       maxSize: maxSize,
       open: open,
     )));
@@ -315,9 +323,9 @@ class NakamaWebsocketClient {
   }
 
   Future<Party> joinParty(String partyId) async {
-    final res = await _send<rtpb.Party>(
-      rtpb.Envelope(
-        partyJoin: rtpb.PartyJoin(partyId: partyId),
+    final res = await _send<rtapi.Party>(
+      rtapi.Envelope(
+        partyJoin: rtapi.PartyJoin(partyId: partyId),
       ),
     );
 
@@ -328,10 +336,10 @@ class NakamaWebsocketClient {
     required String partyId,
     required UserPresence newLeader,
   }) async {
-    await _send(rtpb.Envelope(
-        partyPromote: rtpb.PartyPromote(
+    await _send(rtapi.Envelope(
+        partyPromote: rtapi.PartyPromote(
       partyId: partyId,
-      presence: rtpb.UserPresence(
+      presence: rtapi.UserPresence(
         userId: newLeader.userId,
         sessionId: newLeader.sessionId,
         username: newLeader.username,
@@ -342,16 +350,16 @@ class NakamaWebsocketClient {
   }
 
   Future<void> leaveParty(String partyId) async {
-    await _send<rtpb.Party>(rtpb.Envelope(
-      partyLeave: rtpb.PartyLeave(partyId: partyId),
+    await _send<rtapi.Party>(rtapi.Envelope(
+      partyLeave: rtapi.PartyLeave(partyId: partyId),
     ));
   }
 
   Future<void> acceptPartyMember(String partyId, UserPresence presence) async {
-    await _send<rtpb.Party>(rtpb.Envelope(
-      partyAccept: rtpb.PartyAccept(
+    await _send<rtapi.Party>(rtapi.Envelope(
+      partyAccept: rtapi.PartyAccept(
         partyId: partyId,
-        presence: rtpb.UserPresence(
+        presence: rtapi.UserPresence(
           userId: presence.userId,
           sessionId: presence.sessionId,
           username: presence.username,
@@ -363,10 +371,10 @@ class NakamaWebsocketClient {
   }
 
   Future<void> removePartyMember(String partyId, UserPresence presence) async {
-    await _send<void>(rtpb.Envelope(
-      partyRemove: rtpb.PartyRemove(
+    await _send<void>(rtapi.Envelope(
+      partyRemove: rtapi.PartyRemove(
         partyId: partyId,
-        presence: rtpb.UserPresence(
+        presence: rtapi.UserPresence(
           userId: presence.userId,
           sessionId: presence.sessionId,
           username: presence.username,
@@ -385,8 +393,8 @@ class NakamaWebsocketClient {
     Map<String, double>? numericProperties,
     Map<String, String>? stringProperties,
   }) async {
-    final res = await _send<rtpb.PartyMatchmakerTicket>(rtpb.Envelope(
-        partyMatchmakerAdd: rtpb.PartyMatchmakerAdd(
+    final res = await _send<rtapi.PartyMatchmakerTicket>(rtapi.Envelope(
+        partyMatchmakerAdd: rtapi.PartyMatchmakerAdd(
       partyId: partyId,
       minCount: minCount,
       maxCount: maxCount,
@@ -399,8 +407,8 @@ class NakamaWebsocketClient {
   }
 
   Future<void> closeParty(String partyId) async {
-    await _send<void>(rtpb.Envelope(
-      partyClose: rtpb.PartyClose(partyId: partyId),
+    await _send<void>(rtapi.Envelope(
+      partyClose: rtapi.PartyClose(partyId: partyId),
     ));
   }
 
@@ -408,18 +416,18 @@ class NakamaWebsocketClient {
     String matchId, {
     String? token,
   }) async {
-    final res = await _send<rtpb.Match>(
-      rtpb.Envelope(
-        matchJoin: rtpb.MatchJoin(matchId: matchId, token: token),
+    final res = await _send<rtapi.Match>(
+      rtapi.Envelope(
+        matchJoin: rtapi.MatchJoin(matchId: matchId, token: token),
       ),
     );
 
-    return Match.fromRtpb(res);
+    return Match.fromRtDto(res);
   }
 
   Future<void> leaveMatch(String matchId) async {
     await _send<void>(
-      rtpb.Envelope(matchLeave: rtpb.MatchLeave(matchId: matchId)),
+      rtapi.Envelope(matchLeave: rtapi.MatchLeave(matchId: matchId)),
     );
   }
 
@@ -433,8 +441,8 @@ class NakamaWebsocketClient {
     assert(minCount >= 2);
     assert(maxCount == null || maxCount >= minCount);
 
-    final ticket = await _send<rtpb.MatchmakerTicket>(rtpb.Envelope(
-        matchmakerAdd: rtpb.MatchmakerAdd(
+    final ticket = await _send<rtapi.MatchmakerTicket>(rtapi.Envelope(
+        matchmakerAdd: rtapi.MatchmakerAdd(
       maxCount: maxCount,
       minCount: minCount,
       numericProperties: numericProperties,
@@ -447,13 +455,13 @@ class NakamaWebsocketClient {
 
   Future<void> removeMatchmaker(String ticket) async {
     await _send(
-      rtpb.Envelope(matchmakerRemove: rtpb.MatchmakerRemove(ticket: ticket)),
+      rtapi.Envelope(matchmakerRemove: rtapi.MatchmakerRemove(ticket: ticket)),
     );
   }
 
   Future<Rpc> rpc({required String id, String? payload}) async {
     final res = await _send<api.Rpc>(
-      rtpb.Envelope(rpc: api.Rpc(id: id, payload: payload)),
+      rtapi.Envelope(rpc: api.Rpc(id: id, payload: payload)),
     );
 
     return Rpc.fromDto(res);
@@ -463,8 +471,8 @@ class NakamaWebsocketClient {
     List<String>? userIds,
     List<String>? usernames,
   }) async {
-    final res = await _send<rtpb.Status>(rtpb.Envelope(
-        statusFollow: rtpb.StatusFollow(
+    final res = await _send<rtapi.Status>(rtapi.Envelope(
+        statusFollow: rtapi.StatusFollow(
       userIds: userIds,
       usernames: usernames,
     )));
@@ -476,8 +484,8 @@ class NakamaWebsocketClient {
     List<String> list, {
     List<String>? userIds,
   }) async {
-    final res = await _send<rtpb.Status>(rtpb.Envelope(
-        statusUnfollow: rtpb.StatusUnfollow(
+    final res = await _send<rtapi.Status>(rtapi.Envelope(
+        statusUnfollow: rtapi.StatusUnfollow(
       userIds: userIds,
     )));
 
@@ -490,13 +498,13 @@ class NakamaWebsocketClient {
     required List<int> data,
     Iterable<UserPresence>? presences,
   }) async {
-    _send<void>(rtpb.Envelope(
-        matchDataSend: rtpb.MatchDataSend(
+    _send<void>(rtapi.Envelope(
+        matchDataSend: rtapi.MatchDataSend(
       matchId: matchId,
       opCode: api.Int64(opCode),
       data: data,
       presences: presences?.map((e) {
-        return rtpb.UserPresence(
+        return rtapi.UserPresence(
           userId: e.userId,
           sessionId: e.sessionId,
           username: e.username,
@@ -512,8 +520,8 @@ class NakamaWebsocketClient {
     required int opCode,
     required List<int> data,
   }) async {
-    final res = await _send<rtpb.Status>(rtpb.Envelope(
-        partyDataSend: rtpb.PartyDataSend(
+    final res = await _send<rtapi.Status>(rtapi.Envelope(
+        partyDataSend: rtapi.PartyDataSend(
       partyId: partyId,
       opCode: api.Int64(opCode),
       data: data,
@@ -528,19 +536,19 @@ class NakamaWebsocketClient {
     required bool persistence,
     required bool hidden,
   }) async {
-    final res = await _send<rtpb.Channel>(rtpb.Envelope(
-        channelJoin: rtpb.ChannelJoin(
+    final res = await _send<rtapi.Channel>(rtapi.Envelope(
+        channelJoin: rtapi.ChannelJoin(
       target: target,
       type: () {
         switch (type) {
           case ChannelType.room:
-            return rtpb.ChannelJoin_Type.ROOM;
+            return rtapi.ChannelJoin_Type.ROOM;
           case ChannelType.group:
-            return rtpb.ChannelJoin_Type.GROUP;
+            return rtapi.ChannelJoin_Type.GROUP;
           case ChannelType.directMessage:
-            return rtpb.ChannelJoin_Type.DIRECT_MESSAGE;
+            return rtapi.ChannelJoin_Type.DIRECT_MESSAGE;
           default:
-            return rtpb.ChannelJoin_Type.TYPE_UNSPECIFIED;
+            return rtapi.ChannelJoin_Type.TYPE_UNSPECIFIED;
         }
       }()
           .value,
@@ -555,7 +563,7 @@ class NakamaWebsocketClient {
     required String channelId,
   }) async {
     await _send(
-      rtpb.Envelope(channelLeave: rtpb.ChannelLeave(channelId: channelId)),
+      rtapi.Envelope(channelLeave: rtapi.ChannelLeave(channelId: channelId)),
     );
   }
 
@@ -563,8 +571,8 @@ class NakamaWebsocketClient {
     required String channelId,
     required Map<String, String> content,
   }) async {
-    final res = await _send<rtpb.ChannelMessageAck>(rtpb.Envelope(
-        channelMessageSend: rtpb.ChannelMessageSend(
+    final res = await _send<rtapi.ChannelMessageAck>(rtapi.Envelope(
+        channelMessageSend: rtapi.ChannelMessageSend(
       channelId: channelId,
       content: jsonEncode(content),
     )));
@@ -577,8 +585,8 @@ class NakamaWebsocketClient {
     required String messageId,
     required Map<String, String> content,
   }) async {
-    final res = await _send<rtpb.ChannelMessageAck>(rtpb.Envelope(
-        channelMessageUpdate: rtpb.ChannelMessageUpdate(
+    final res = await _send<rtapi.ChannelMessageAck>(rtapi.Envelope(
+        channelMessageUpdate: rtapi.ChannelMessageUpdate(
       channelId: channelId,
       messageId: messageId,
       content: jsonEncode(content),

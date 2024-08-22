@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nakama/src/api/rtapi.dart' as rtpb;
+
+import '../api/rtapi.dart' as rtapi;
 
 part 'status.freezed.dart';
 part 'status.g.dart';
@@ -27,7 +28,7 @@ class UserPresence with _$UserPresence {
     @JsonKey(name: 'status') String? status,
   }) = _UserPresence;
 
-  factory UserPresence.fromDto(rtpb.UserPresence dto) => UserPresence(
+  factory UserPresence.fromDto(rtapi.UserPresence dto) => UserPresence(
         userId: dto.userId,
         sessionId: dto.sessionId,
         username: dto.username,
@@ -51,7 +52,7 @@ class StatusPresenceEvent with _$StatusPresenceEvent {
     required List<UserPresence> leaves,
   }) = _StatusPresenceEvent;
 
-  factory StatusPresenceEvent.fromDto(rtpb.StatusPresenceEvent dto) =>
+  factory StatusPresenceEvent.fromDto(rtapi.StatusPresenceEvent dto) =>
       StatusPresenceEvent(
         joins: dto.joins
             .map((e) => UserPresence.fromDto(e))
@@ -80,7 +81,7 @@ class RealtimeStream with _$RealtimeStream {
     required String label,
   }) = _RealtimeStream;
 
-  factory RealtimeStream.fromDto(rtpb.Stream dto) => RealtimeStream(
+  factory RealtimeStream.fromDto(rtapi.Stream dto) => RealtimeStream(
         mode: dto.mode,
         subject: dto.subject,
         subcontext: dto.subcontext,
@@ -106,7 +107,8 @@ class RealtimeStreamData with _$RealtimeStreamData {
     required bool reliable,
   }) = _RealtimeStreamData;
 
-  factory RealtimeStreamData.fromDto(rtpb.StreamData dto) => RealtimeStreamData(
+  factory RealtimeStreamData.fromDto(rtapi.StreamData dto) =>
+      RealtimeStreamData(
         stream: RealtimeStream.fromDto(dto.stream),
         sender: UserPresence.fromDto(dto.sender),
         data: dto.data,
@@ -129,7 +131,7 @@ class StreamPresenceEvent with _$StreamPresenceEvent {
     required List<UserPresence> leaves,
   }) = _StreamPresenceEvent;
 
-  factory StreamPresenceEvent.fromDto(rtpb.StreamPresenceEvent dto) =>
+  factory StreamPresenceEvent.fromDto(rtapi.StreamPresenceEvent dto) =>
       StreamPresenceEvent(
         stream: RealtimeStream.fromDto(dto.stream),
         joins: dto.joins

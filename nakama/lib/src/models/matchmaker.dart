@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nakama/nakama.dart';
-import 'package:nakama/src/api/rtapi.dart' as rtpb;
+
+import '../api/rtapi.dart' as rtapi;
+import 'status.dart';
 
 part 'matchmaker.freezed.dart';
 
@@ -13,7 +14,7 @@ class MatchmakerTicket with _$MatchmakerTicket {
     required String ticket,
   }) = _MatchmakerTicket;
 
-  factory MatchmakerTicket.fromDto(rtpb.MatchmakerTicket dto) =>
+  factory MatchmakerTicket.fromDto(rtapi.MatchmakerTicket dto) =>
       MatchmakerTicket(
         ticket: dto.ticket,
       );
@@ -31,7 +32,7 @@ class PartyMatchmakerTicket with _$PartyMatchmakerTicket {
     @JsonKey(name: 'ticket') required String ticket,
   }) = _PartyMatchmakerTicket;
 
-  factory PartyMatchmakerTicket.fromDto(rtpb.PartyMatchmakerTicket dto) =>
+  factory PartyMatchmakerTicket.fromDto(rtapi.PartyMatchmakerTicket dto) =>
       PartyMatchmakerTicket(
         partyId: dto.partyId,
         ticket: dto.ticket,
@@ -69,7 +70,7 @@ class ChannelPresenceEvent with _$ChannelPresenceEvent {
     @JsonKey(name: 'user_id_two') String? userIdTwo,
   }) = _ChannelPresenceEvent;
 
-  factory ChannelPresenceEvent.fromDto(rtpb.ChannelPresenceEvent dto) =>
+  factory ChannelPresenceEvent.fromDto(rtapi.ChannelPresenceEvent dto) =>
       ChannelPresenceEvent(
         channelId: dto.channelId,
         roomName: dto.roomName,
@@ -105,7 +106,7 @@ class MatchmakerUser with _$MatchmakerUser {
     required Map<String, double> numericProperties,
   }) = _MatchmakerUser;
 
-  factory MatchmakerUser.fromDto(rtpb.MatchmakerMatched_MatchmakerUser dto) =>
+  factory MatchmakerUser.fromDto(rtapi.MatchmakerMatched_MatchmakerUser dto) =>
       MatchmakerUser(
         presence: UserPresence.fromDto(dto.presence),
         partyId: dto.partyId,
@@ -135,7 +136,7 @@ class MatchmakerMatched with _$MatchmakerMatched {
     @JsonKey(name: 'self') required MatchmakerUser self,
   }) = _MatchmakerMatched;
 
-  factory MatchmakerMatched.fromDto(rtpb.MatchmakerMatched dto) =>
+  factory MatchmakerMatched.fromDto(rtapi.MatchmakerMatched dto) =>
       MatchmakerMatched(
         ticket: dto.ticket,
         matchId: dto.matchId,
@@ -168,7 +169,7 @@ class MatchData with _$MatchData {
     @JsonKey(name: 'reliable') required bool reliable,
   }) = _MatchData;
 
-  factory MatchData.fromDto(rtpb.MatchData dto) => MatchData(
+  factory MatchData.fromDto(rtapi.MatchData dto) => MatchData(
         matchId: dto.matchId,
         presence: UserPresence.fromDto(dto.presence),
         opCode: dto.opCode.toInt(),
@@ -192,7 +193,7 @@ class MatchPresenceEvent with _$MatchPresenceEvent {
     @JsonKey(name: 'leaves') required List<UserPresence> leaves,
   }) = _MatchPresenceEvent;
 
-  factory MatchPresenceEvent.fromDto(rtpb.MatchPresenceEvent dto) =>
+  factory MatchPresenceEvent.fromDto(rtapi.MatchPresenceEvent dto) =>
       MatchPresenceEvent(
         matchId: dto.matchId,
         joins: dto.joins

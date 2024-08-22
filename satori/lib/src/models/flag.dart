@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:satori/src/rest/satori.swagger.dart';
+
+import '../rest/satori.swagger.dart';
 
 part 'flag.freezed.dart';
 part 'flag.g.dart';

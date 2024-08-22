@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nakama/nakama.dart';
-import 'package:nakama/src/api/rtapi.dart' as rtpb;
+
+import '../api/rtapi.dart' as rtapi;
+import 'status.dart';
 
 part 'chat.freezed.dart';
 
@@ -35,7 +36,7 @@ class Channel with _$Channel {
     @JsonKey(name: 'user_id_two') required String userIdTwo,
   }) = _Channel;
 
-  factory Channel.fromDto(rtpb.Channel dto) => Channel(
+  factory Channel.fromDto(rtapi.Channel dto) => Channel(
         id: dto.id,
         presences: dto.presences
             .map((e) => UserPresence.fromDto(e))
@@ -89,7 +90,7 @@ class ChannelMessageAck with _$ChannelMessageAck {
     @JsonKey(name: 'user_id_two') required String userIdTwo,
   }) = _ChannelMessageAck;
 
-  factory ChannelMessageAck.fromDto(rtpb.ChannelMessageAck dto) =>
+  factory ChannelMessageAck.fromDto(rtapi.ChannelMessageAck dto) =>
       ChannelMessageAck(
         channelId: dto.channelId,
         messageId: dto.messageId,

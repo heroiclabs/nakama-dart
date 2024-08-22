@@ -1,5 +1,4 @@
-import 'package:nakama/src/enum/friendship_state.dart';
-import 'package:nakama/src/enum/group_membership_states.dart';
+import 'package:nakama/nakama.dart';
 import 'package:test/test.dart';
 
 void main() {

@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:satori/src/rest/satori.swagger.dart';
+
+import '../rest/satori.swagger.dart';
 
 part 'live_event.freezed.dart';
 part 'live_event.g.dart';

@@ -1,7 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nakama/nakama.dart';
-import 'package:nakama/src/api/api.dart' as api;
-import 'package:nakama/src/api/rtapi.dart' as rtpb;
+
+import '../api/api.dart' as api;
+import '../api/rtapi.dart' as rtapi;
+import 'status.dart';
 
 part 'match.freezed.dart';
 part 'match.g.dart';
@@ -42,7 +43,7 @@ class Match with _$Match {
         presences: [],
       );
 
-  factory Match.fromRtpb(rtpb.Match dto) => Match.realtime(
+  factory Match.fromRtDto(rtapi.Match dto) => Match.realtime(
         matchId: dto.matchId,
         authoritative: dto.authoritative,
         label: dto.label.value,
@@ -77,7 +78,7 @@ class Party with _$Party {
     @JsonKey(name: 'presences') required List<UserPresence> presences,
   }) = _Party;
 
-  factory Party.fromDto(rtpb.Party dto) => Party(
+  factory Party.fromDto(rtapi.Party dto) => Party(
         partyId: dto.partyId,
         open: dto.open,
         maxSize: dto.maxSize,

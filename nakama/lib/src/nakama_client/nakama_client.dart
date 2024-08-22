@@ -1,14 +1,15 @@
-import 'package:nakama/nakama.dart';
-import 'package:nakama/src/models/account.dart' as model;
-import 'package:nakama/src/models/channel_message.dart' as model;
-import 'package:nakama/src/models/friends.dart' as model;
-import 'package:nakama/src/models/group.dart' as model;
-import 'package:nakama/src/models/leaderboard.dart' as model;
-import 'package:nakama/src/models/match.dart' as model;
-import 'package:nakama/src/models/notification.dart' as model;
-import 'package:nakama/src/models/session.dart' as model;
-import 'package:nakama/src/models/storage.dart' as model;
-import 'package:nakama/src/models/tournament.dart' as model;
+import '../enum/friendship_state.dart';
+import '../enum/group_membership_states.dart';
+import '../models/account.dart';
+import '../models/channel_message.dart';
+import '../models/friends.dart';
+import '../models/group.dart';
+import '../models/leaderboard.dart';
+import '../models/match.dart';
+import '../models/notification.dart';
+import '../models/session.dart';
+import '../models/storage.dart';
+import '../models/tournament.dart';
 
 const _kDefaultAppKey = 'default';
 const defaultLimit = 20;
@@ -33,15 +34,15 @@ abstract class NakamaBaseClient {
   ///
   /// - [session] Current session.
   /// - [vars] Extra information that will be bundled in the session token.
-  Future<model.Session> sessionRefresh({
-    required model.Session session,
+  Future<Session> sessionRefresh({
+    required Session session,
     Map<String, String>? vars,
   });
 
   /// Logout user session and invalidate refresh token.
   ///
   /// - [session] The session to log out.
-  Future<void> sessionLogout({required model.Session session});
+  Future<void> sessionLogout({required Session session});
 
   /// Authenticate a user with an email and password.
   ///
@@ -50,7 +51,7 @@ abstract class NakamaBaseClient {
   /// - [password] The password for the user.
   /// - [create] If the user should be created when authenticated.
   /// - [vars] Extra information that will be bundled in the session token.
-  Future<model.Session> authenticateEmail({
+  Future<Session> authenticateEmail({
     String? email,
     String? username,
     required String password,
@@ -65,7 +66,7 @@ abstract class NakamaBaseClient {
   /// - [password] The password for the user.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> linkEmail({
-    required model.Session session,
+    required Session session,
     required String email,
     required String password,
     Map<String, String>? vars,
@@ -78,7 +79,7 @@ abstract class NakamaBaseClient {
   /// - [password] The password for the user to remove.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkEmail({
-    required model.Session session,
+    required Session session,
     required String email,
     required String password,
     Map<String, String>? vars,
@@ -90,7 +91,7 @@ abstract class NakamaBaseClient {
   /// - [create] If the user should be created when authenticated.
   /// - [username] A username used to create the user.
   /// - [vars] Extra information that will be bundled in the session token.
-  Future<model.Session> authenticateDevice({
+  Future<Session> authenticateDevice({
     required String deviceId,
     bool create = false,
     String? username,
@@ -103,13 +104,13 @@ abstract class NakamaBaseClient {
   /// - [deviceId] A device identifier usually obtained from a platform API.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> linkDevice({
-    required model.Session session,
+    required Session session,
     required String deviceId,
     Map<String, String>? vars,
   });
 
   Future<void> unlinkDevice({
-    required model.Session session,
+    required Session session,
     required String deviceId,
     Map<String, String>? vars,
   });
@@ -121,7 +122,7 @@ abstract class NakamaBaseClient {
   /// - [username] A username used to create the user.
   /// - [vars] Extra information that will be bundled in the session token.
   /// - [import] If the Facebook friends should be imported.
-  Future<model.Session> authenticateFacebook({
+  Future<Session> authenticateFacebook({
     required String token,
     bool create = true,
     String? username,
@@ -136,7 +137,7 @@ abstract class NakamaBaseClient {
   /// [import] If the Facebook friends should be imported.
   /// [vars] Extra information that will be bundled in the session token.
   Future<void> linkFacebook({
-    required model.Session session,
+    required Session session,
     required String token,
     bool import = false,
     Map<String, String>? vars,
@@ -148,7 +149,7 @@ abstract class NakamaBaseClient {
   /// [token] An OAuth access token from the Facebook SDK.
   /// [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkFacebook({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
   });
@@ -159,7 +160,7 @@ abstract class NakamaBaseClient {
   /// - [create] If the user should be created when authenticated.
   /// - [username] A username used to create the user.
   /// - [vars] Extra information that will be bundled in the session token.
-  Future<model.Session> authenticateGoogle({
+  Future<Session> authenticateGoogle({
     required String token,
     bool create = true,
     String? username,
@@ -172,7 +173,7 @@ abstract class NakamaBaseClient {
   /// - [token] An OAuth access token from the Google SDK.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> linkGoogle({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
   });
@@ -183,7 +184,7 @@ abstract class NakamaBaseClient {
   /// - [token] An OAuth access token from the Google SDK.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkGoogle({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
   });
@@ -194,7 +195,7 @@ abstract class NakamaBaseClient {
   /// [create] If the user should be created when authenticated.
   /// [username] A username used to create the user.
   /// [vars] Extra information that will be bundled in the session token.
-  Future<model.Session> authenticateApple({
+  Future<Session> authenticateApple({
     required String token,
     bool create = true,
     String? username,
@@ -207,7 +208,7 @@ abstract class NakamaBaseClient {
   /// [token] An authentication token from the Apple network.
   /// [vars] Extra information that will be bundled in the session token.
   Future<void> linkApple({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
   });
@@ -218,12 +219,12 @@ abstract class NakamaBaseClient {
   /// [token] The ID token received from Apple to validate.
   /// [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkApple({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
   });
 
-  Future<model.Session> authenticateFacebookInstantGame({
+  Future<Session> authenticateFacebookInstantGame({
     required String signedPlayerInfo,
     bool create = true,
     String? username,
@@ -231,13 +232,13 @@ abstract class NakamaBaseClient {
   });
 
   Future<void> linkFacebookInstantGame({
-    required model.Session session,
+    required Session session,
     required String signedPlayerInfo,
     Map<String, String>? vars,
   });
 
   Future<void> unlinkFacebookInstantGame({
-    required model.Session session,
+    required Session session,
     required String signedPlayerInfo,
     Map<String, String>? vars,
   });
@@ -253,7 +254,7 @@ abstract class NakamaBaseClient {
   /// - [create] If the user should be created when authenticated.
   /// - [username] A username used to create the user.
   /// - [vars] Extra information that will be bundled in the session token.
-  Future<model.Session> authenticateGameCenter({
+  Future<Session> authenticateGameCenter({
     required String playerId,
     required String bundleId,
     required int timestampSeconds,
@@ -276,7 +277,7 @@ abstract class NakamaBaseClient {
   /// - [publicKeyUrl] The URL for the public encryption key.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> linkGameCenter({
-    required model.Session session,
+    required Session session,
     required String playerId,
     required String bundleId,
     required int timestampSeconds,
@@ -297,7 +298,7 @@ abstract class NakamaBaseClient {
   /// - [publicKeyUrl] The URL for the public encryption key.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkGameCenter({
-    required model.Session session,
+    required Session session,
     required String playerId,
     required String bundleId,
     required int timestampSeconds,
@@ -314,7 +315,7 @@ abstract class NakamaBaseClient {
   /// - [username] A username used to create the user.
   /// - [vars] Extra information that will be bundled in the session token.
   /// - [import] If the Steam friends should be imported.
-  Future<model.Session> authenticateSteam({
+  Future<Session> authenticateSteam({
     required String token,
     bool create = true,
     String? username,
@@ -329,7 +330,7 @@ abstract class NakamaBaseClient {
   /// - [vars] Extra information that will be bundled in the session token.
   /// - [import] If the Steam friends should be imported.
   Future<void> linkSteam({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
     bool import = false,
@@ -342,7 +343,7 @@ abstract class NakamaBaseClient {
   /// - [vars] Extra information that will be bundled in the session token.
   /// - [import] If the Steam friends should be imported.
   Future<void> unlinkSteam({
-    required model.Session session,
+    required Session session,
     required String token,
     Map<String, String>? vars,
     bool import = false,
@@ -354,7 +355,7 @@ abstract class NakamaBaseClient {
   /// - [create] If the user should be created when authenticated.
   /// - [username] A username used to create the user.
   /// - [vars] Extra information that will be bundled in the session token.
-  Future<model.Session> authenticateCustom({
+  Future<Session> authenticateCustom({
     required String id,
     bool create = true,
     String? username,
@@ -367,7 +368,7 @@ abstract class NakamaBaseClient {
   /// - [id] A custom identifier usually obtained from an external authentication service.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> linkCustom({
-    required model.Session session,
+    required Session session,
     required String id,
     Map<String, String>? vars,
   });
@@ -378,7 +379,7 @@ abstract class NakamaBaseClient {
   /// - [id] A custom identifier usually obtained from an external authentication service.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkCustom({
-    required model.Session session,
+    required Session session,
     required String id,
     Map<String, String>? vars,
   });
@@ -392,7 +393,7 @@ abstract class NakamaBaseClient {
   /// - [reset] If the Facebook friend import for the user should be reset.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> importFacebookFriends({
-    required model.Session session,
+    required Session session,
     required String token,
     bool reset = false,
     Map<String, String>? vars,
@@ -407,7 +408,7 @@ abstract class NakamaBaseClient {
   /// - [reset] If the Steam friend import for the user should be reset.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> importSteamFriends({
-    required model.Session session,
+    required Session session,
     required String token,
     bool reset = false,
     Map<String, String>? vars,
@@ -416,7 +417,7 @@ abstract class NakamaBaseClient {
   /// Fetch the user account owned by the session.
   ///
   /// [session] Current session.
-  Future<model.Account> getAccount(model.Session session);
+  Future<Account> getAccount(Session session);
 
   /// Update the current user's account on the server.
   ///
@@ -428,7 +429,7 @@ abstract class NakamaBaseClient {
   /// [location] A new location for the user.
   /// [timezone] New timezone information for the user.
   Future<void> updateAccount({
-    required model.Session session,
+    required Session session,
     String? username,
     String? displayName,
     String? avatarUrl,
@@ -443,8 +444,8 @@ abstract class NakamaBaseClient {
   /// - [ids] The IDs of the users to retrieve.
   /// - [usernames] The usernames of the users to retrieve.
   /// - [facebookIds] The Facebook IDs of the users to retrieve.
-  Future<List<model.User>> getUsers({
-    required model.Session session,
+  Future<List<User>> getUsers({
+    required Session session,
     required List<String> ids,
     List<String>? usernames,
     List<String>? facebookIds,
@@ -455,8 +456,8 @@ abstract class NakamaBaseClient {
   /// - [session] Current session.
   /// - [objects] The objects to write.
   Future<void> writeStorageObjects({
-    required model.Session session,
-    required Iterable<model.StorageObjectWrite> objects,
+    required Session session,
+    required Iterable<StorageObjectWrite> objects,
   });
 
   /// List storage objects in a collection which have public read access.
@@ -465,8 +466,8 @@ abstract class NakamaBaseClient {
   /// - [collection] The collection to list over.
   /// - [limit] The number of objects to list. Maximum is 100.
   /// - [cursor] A cursor to paginate over the collection. Can be null.
-  Future<model.StorageObjectList> listStorageObjects({
-    required model.Session session,
+  Future<StorageObjectList> listStorageObjects({
+    required Session session,
     required String collection,
     int? limit,
     String? cursor,
@@ -478,17 +479,17 @@ abstract class NakamaBaseClient {
   /// - [session] Current session.
   /// - [objectIds] The ids of the objects to delete.
   Future<void> deleteStorageObjects({
-    required model.Session session,
-    required Iterable<model.StorageObjectId> objectIds,
+    required Session session,
+    required Iterable<StorageObjectId> objectIds,
   });
 
   /// Read one or more objects from the storage engine.
   ///
   /// - [session] Current session.
   /// - [objectIds] The ids of the objects to read.
-  Future<List<model.StorageObject>> readStorageObjects({
-    required model.Session session,
-    required Iterable<model.StorageObjectId> objectIds,
+  Future<List<StorageObject>> readStorageObjects({
+    required Session session,
+    required Iterable<StorageObjectId> objectIds,
   });
 
   /// List messages from a chat channel.
@@ -498,8 +499,8 @@ abstract class NakamaBaseClient {
   /// - [limit] The number of chat messages to list.
   /// - [forward] Fetch messages forward from the current cursor or the start.
   /// - [cursor] A cursor for the current position in the messages history to list.
-  Future<model.ChannelMessageList> listChannelMessages({
-    required model.Session session,
+  Future<ChannelMessageList> listChannelMessages({
+    required Session session,
     required String channelId,
     int limit = defaultLimit,
     bool? forward,
@@ -514,8 +515,8 @@ abstract class NakamaBaseClient {
   /// - [expiry] Expiry in seconds (since epoch) to begin fetching records from. 0 means from current time.
   /// - [limit] The number of records to list.
   /// - [cursor] A cursor for the current position in the leaderboard records to list.
-  Future<model.LeaderboardRecordList> listLeaderboardRecords({
-    required model.Session session,
+  Future<LeaderboardRecordList> listLeaderboardRecords({
+    required Session session,
     required String leaderboardName,
     List<String>? ownerIds,
     int limit = defaultLimit,
@@ -530,8 +531,8 @@ abstract class NakamaBaseClient {
   /// - [ownerId] The ID of the user to list around.
   /// - [expiry] Expiry in seconds (since epoch) to begin fetching records from. 0 means from current time.
   /// - [limit] The number of records to list.
-  Future<model.LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
-    required model.Session session,
+  Future<LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
+    required Session session,
     required String leaderboardName,
     required String ownerId,
     int limit = defaultLimit,
@@ -542,8 +543,8 @@ abstract class NakamaBaseClient {
   ///
   /// - [session] Current session.
   /// - [leaderboardName] The name of the leaderboard with the record to be deleted.
-  Future<model.LeaderboardRecord> writeLeaderboardRecord({
-    required model.Session session,
+  Future<LeaderboardRecord> writeLeaderboardRecord({
+    required Session session,
     required String leaderboardName,
     required int score,
     int? subscore,
@@ -555,7 +556,7 @@ abstract class NakamaBaseClient {
   /// - [session] Current session.
   /// - [leaderboardName] The id of the leaderboard with the records to be deleted.
   Future<void> deleteLeaderboardRecord({
-    required model.Session session,
+    required Session session,
     required String leaderboardName,
   });
 
@@ -565,7 +566,7 @@ abstract class NakamaBaseClient {
   /// - [ids] The ids of the users to add or invite as friends.
   /// - [usernames] The usernames of the users to add as friends.
   Future<void> addFriends({
-    required model.Session session,
+    required Session session,
     required List<String> ids,
     List<String>? usernames,
   });
@@ -576,8 +577,8 @@ abstract class NakamaBaseClient {
   /// - [friendshipState] Filter by friendship state.
   /// - [limit] The number of friends to list.
   /// - [cursor] A cursor for the current position in the friends list.
-  Future<model.FriendsList> listFriends({
-    required model.Session session,
+  Future<FriendsList> listFriends({
+    required Session session,
     FriendshipState? friendshipState,
     int limit = defaultLimit,
     String? cursor,
@@ -589,7 +590,7 @@ abstract class NakamaBaseClient {
   /// - [ids] The user ids to remove as friends.
   /// - [usernames] The usernames to remove as friends.
   Future<void> deleteFriends({
-    required model.Session session,
+    required Session session,
     required List<String> ids,
     List<String>? usernames,
   });
@@ -600,7 +601,7 @@ abstract class NakamaBaseClient {
   /// - [ids] The user ids to block.
   /// - [usernames] The usernames to block.
   Future<void> blockFriends({
-    required model.Session session,
+    required Session session,
     required List<String> ids,
     List<String>? usernames,
   });
@@ -614,8 +615,8 @@ abstract class NakamaBaseClient {
   /// - [langTag] A language tag in BCP-47 format for the group.
   /// - [open] If the group should have open membership. Defaults to false (private).
   /// - [maxCount] The maximum number of members allowed.
-  Future<model.Group> createGroup({
-    required model.Session session,
+  Future<Group> createGroup({
+    required Session session,
     required String name,
     String? avatarUrl,
     String? description,
@@ -635,7 +636,7 @@ abstract class NakamaBaseClient {
   /// - [langTag] A new language tag in BCP-47 format for the group.
   /// - [maxCount] The maximum number of members allowed.
   Future<void> updateGroup({
-    required model.Session session,
+    required Session session,
     required String groupId,
     required bool open,
     String? name,
@@ -654,8 +655,8 @@ abstract class NakamaBaseClient {
   /// - [members] The number of group members filter to apply to the group list.
   /// - [open] The open/closed filter to apply to the group list.
   /// - [limit] The number of groups to list.
-  Future<model.GroupList> listGroups({
-    required model.Session session,
+  Future<GroupList> listGroups({
+    required Session session,
     String? name,
     String? cursor,
     String? langTag,
@@ -669,7 +670,7 @@ abstract class NakamaBaseClient {
   /// - [session] Current session.
   /// - [groupId] The group id to remove.
   Future<void> deleteGroup({
-    required model.Session session,
+    required Session session,
     required String groupId,
   });
 
@@ -678,7 +679,7 @@ abstract class NakamaBaseClient {
   /// - [session] Current session.
   /// - [groupId] The ID of the group to join.
   Future<void> joinGroup({
-    required model.Session session,
+    required Session session,
     required String groupId,
   });
 
@@ -689,8 +690,8 @@ abstract class NakamaBaseClient {
   /// - [state] Filter by group membership state.
   /// - [limit] The number of records to list.
   /// - [cursor] A cursor for the current position in the listing.
-  Future<model.UserGroupList> listUserGroups({
-    required model.Session session,
+  Future<UserGroupList> listUserGroups({
+    required Session session,
     String? userId,
     GroupMembershipState? state,
     int limit = defaultLimit,
@@ -704,8 +705,8 @@ abstract class NakamaBaseClient {
   /// - [state] Filter by group membership state.
   /// - [limit] The number of groups to list.
   /// - [cursor] A cursor for the current position in the group listing.
-  Future<model.GroupUserList> listGroupUsers({
-    required model.Session session,
+  Future<GroupUserList> listGroupUsers({
+    required Session session,
     required String groupId,
     String? cursor,
     int limit = defaultLimit,
@@ -718,7 +719,7 @@ abstract class NakamaBaseClient {
   /// - [groupId] The id of the group to add users into.
   /// - [userIds] The ids of the users to add or invite to the group.
   Future<void> addGroupUsers({
-    required model.Session session,
+    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
@@ -729,7 +730,7 @@ abstract class NakamaBaseClient {
   /// - [groupId] The ID of the group to promote users into.
   /// - [userIds] The IDs of the users to promote.
   Future<void> promoteGroupUsers({
-    required model.Session session,
+    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
@@ -740,7 +741,7 @@ abstract class NakamaBaseClient {
   /// - [groupId] The group to demote users in.
   /// - [userIds] The IDs of the users to demote.
   Future<void> demoteGroupUsers({
-    required model.Session session,
+    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
@@ -751,7 +752,7 @@ abstract class NakamaBaseClient {
   /// - [groupId] The ID of the group.
   /// - [userIds] The IDs of the users to kick.
   Future<void> kickGroupUsers({
-    required model.Session session,
+    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
@@ -762,7 +763,7 @@ abstract class NakamaBaseClient {
   /// - [groupId] The group to ban the users from.
   /// - [userIds] The IDs of the users to ban.
   Future<void> banGroupUsers({
-    required model.Session session,
+    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
@@ -772,7 +773,7 @@ abstract class NakamaBaseClient {
   /// - [session] Current session.
   /// - [groupId] The ID of the group to leave.
   Future<void> leaveGroup({
-    required model.Session session,
+    required Session session,
     required String groupId,
   });
 
@@ -781,8 +782,8 @@ abstract class NakamaBaseClient {
   /// - [session] The session of the user.
   /// - [limit] The number of notifications to list.
   /// - [cursor] A cursor for the current position in notifications to list.
-  Future<model.NotificationList> listNotifications({
-    required model.Session session,
+  Future<NotificationList> listNotifications({
+    required Session session,
     int limit = defaultLimit,
     String? cursor,
   });
@@ -792,7 +793,7 @@ abstract class NakamaBaseClient {
   /// - [session] The session of the user.
   /// - [notificationIds] The notification ids to remove.
   Future<void> deleteNotifications({
-    required model.Session session,
+    required Session session,
     required Iterable<String> notificationIds,
   });
 
@@ -805,8 +806,8 @@ abstract class NakamaBaseClient {
   /// - [maxSize] The maximum number of match participants.
   /// - [minSize] The minimum number of match participants.
   /// - [query] A query for the matches to filter.
-  Future<List<model.Match>> listMatches({
-    required model.Session session,
+  Future<List<Match>> listMatches({
+    required Session session,
     bool? authoritative,
     String? label,
     int limit = defaultLimit,
@@ -820,7 +821,7 @@ abstract class NakamaBaseClient {
   /// - [session] Current session.
   /// - [tournamentId] The ID of the tournament to join.
   Future<void> joinTournament({
-    required model.Session session,
+    required Session session,
     required String tournamentId,
   });
 
@@ -833,8 +834,8 @@ abstract class NakamaBaseClient {
   /// - [endTime] The end time of the tournaments. If null, tournaments will not be filtered by end time.
   /// - [limit] The number of tournaments to list.
   /// - [cursor] An optional cursor for the next page of tournaments.
-  Future<model.TournamentList> listTournaments({
-    required model.Session session,
+  Future<TournamentList> listTournaments({
+    required Session session,
     int? categoryStart,
     int? categoryEnd,
     String? cursor,
@@ -851,8 +852,8 @@ abstract class NakamaBaseClient {
   /// - [expiry] Expiry in seconds (since epoch) to begin fetching records from.
   /// - [limit] The number of records to list.
   /// - [cursor] An optional cursor for the next page of tournament records.
-  Future<model.TournamentRecordList> listTournamentRecords({
-    required model.Session session,
+  Future<TournamentRecordList> listTournamentRecords({
+    required Session session,
     required String tournamentId,
     required Iterable<String> ownerIds,
     int? expiry,
@@ -867,8 +868,8 @@ abstract class NakamaBaseClient {
   /// - [ownerId] The ID of the owner to pivot around.
   /// - [expiry] Expiry in seconds (since epoch) to begin fetching records from.
   /// - [limit] The number of records to list.
-  Future<model.TournamentRecordList> listTournamentRecordsAroundOwner({
-    required model.Session session,
+  Future<TournamentRecordList> listTournamentRecordsAroundOwner({
+    required Session session,
     required String tournamentId,
     required String ownerId,
     int? expiry,
@@ -883,8 +884,8 @@ abstract class NakamaBaseClient {
   /// - [subscore] The sub score for the tournament record.
   /// - [metadata] The metadata for the tournament record.
   /// - [operator] The operator for the record that can be used to override the one set in the tournament.
-  Future<model.LeaderboardRecord> writeTournamentRecord({
-    required model.Session session,
+  Future<LeaderboardRecord> writeTournamentRecord({
+    required Session session,
     required String tournamentId,
     required int score,
     int? subscore,
@@ -898,7 +899,7 @@ abstract class NakamaBaseClient {
   /// - [id] The ID of the function to execute.
   /// - [payload] The payload to send with the function call.
   Future<String?> rpc({
-    required model.Session session,
+    required Session session,
     required String id,
     String? payload,
   });

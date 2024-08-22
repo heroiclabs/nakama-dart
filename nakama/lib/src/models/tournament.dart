@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nakama/src/api/api.dart' as api;
-import 'package:nakama/src/models/leaderboard.dart';
+
+import '../api/api.dart' as api;
+import 'leaderboard.dart';
 
 part 'tournament.freezed.dart';
 part 'tournament.g.dart';
