@@ -23,21 +23,21 @@ class MatchmakerState extends State<Matchmaker> {
   StreamSubscription? onMatchmakerMatchedSubscription;
 
   void addMatchmaker() {
-    final ws = NakamaWebsocketClient.instance;
+    final socket = Socket.instance;
 
     // Listen for an incoming match
     onMatchmakerMatchedSubscription =
-        ws.onMatchmakerMatched.listen((event) async {
+        socket.onMatchmakerMatched.listen((event) async {
       _logger.info('Got an incoming match for TicketID: ${event.ticket}');
       // We got a match -> Join
       // The match token is also used to prevent unwanted users from attempting
       // to join a match they were not matched into.
-      final res = await ws.joinMatch(event.matchId!, token: event.token);
+      final res = await socket.joinMatch(event.matchId!, token: event.token);
       widget.onMatch.call(res);
     });
 
     // Start / Join the matchmaker
-    NakamaWebsocketClient.instance
+    Socket.instance
         .addMatchmaker(
           minCount: 2,
           maxCount: 4,
@@ -51,8 +51,7 @@ class MatchmakerState extends State<Matchmaker> {
   @override
   void dispose() async {
     if (matchmakerTicket != null) {
-      await NakamaWebsocketClient.instance
-          .removeMatchmaker(matchmakerTicket!.ticket);
+      await Socket.instance.removeMatchmaker(matchmakerTicket!.ticket);
     }
 
     await onMatchmakerMatchedSubscription?.cancel();

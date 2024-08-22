@@ -11,24 +11,30 @@ import 'models/session.dart';
 import 'models/storage.dart';
 import 'models/tournament.dart';
 
-const _kDefaultAppKey = 'default';
+const defaultHttpPort = 7350;
+const defaultGrpcPort = 7349;
+const defaultSsl = false;
 const defaultLimit = 20;
+const defaultAppKey = 'default';
+
+@Deprecated('This class has been renamed to [Client].')
+typedef NakamaBaseClient = Client;
 
 /// This defines the interface to communicate with Nakama API. It is a little
 /// tricky to support web (via REST) and io (via gRPC) with just one codebase
 /// so please don't use this directly but get your fitting instance with
 /// [getNakamaClient()].
-abstract class NakamaBaseClient {
-  NakamaBaseClient.init({
+abstract class Client {
+  Client.init({
     String? host,
     String? serverKey,
-    String key = _kDefaultAppKey,
-    int httpPort = 7350,
-    int grpcPort = 7349,
-    bool ssl = false,
+    String key = defaultAppKey,
+    int httpPort = defaultHttpPort,
+    int grpcPort = defaultGrpcPort,
+    bool ssl = defaultSsl,
   });
 
-  NakamaBaseClient();
+  Client();
 
   /// Refresh a user session and return the new session.
   ///

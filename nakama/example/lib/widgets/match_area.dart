@@ -24,7 +24,7 @@ class MatchAreaState extends State<MatchArea> {
   void initState() {
     super.initState();
 
-    NakamaWebsocketClient.instance.onMatchData.listen((event) {
+    Socket.instance.onMatchData.listen((event) {
       _logger.fine(
         'received match data: ${event.data} from ${event.presence?.username}',
       );
@@ -42,7 +42,7 @@ class MatchAreaState extends State<MatchArea> {
 
   void sendMatchData(String data) {
     // Send dummy match data via Websocket
-    NakamaWebsocketClient.instance.sendMatchData(
+    Socket.instance.sendMatchData(
       matchId: widget.match.matchId,
       opCode: 0,
       data: data.codeUnits,

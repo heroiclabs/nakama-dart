@@ -6,7 +6,7 @@ import '../config.dart';
 
 void main() {
   group('[gRPC] Group Test', () {
-    late final NakamaBaseClient client;
+    late final Client client;
     late final Session session;
 
     setUpAll(() async {

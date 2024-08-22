@@ -24,7 +24,7 @@ void main() {
     );
 
     // Create main websocket connetion for lcl test.
-    NakamaWebsocketClient.init(
+    Socket.init(
       host: kTestHost,
       ssl: false,
       token: sessionA.token,
@@ -38,7 +38,7 @@ void main() {
     );
 
     // Create main websocket connetion for lcl test.
-    NakamaWebsocketClient.init(
+    Socket.init(
       key: 'clientb',
       host: kTestHost,
       ssl: false,
@@ -47,12 +47,12 @@ void main() {
   });
 
   tearDownAll(() async {
-    await NakamaWebsocketClient.instance.close();
+    await Socket.instance.close();
   });
 
   group('[RT] Match Test', () {
     test('can join a match', () async {
-      final s = NakamaWebsocketClient.instance;
+      final s = Socket.instance;
 
       final match = await s.createMatch();
       expect(match, isA<Match>());
@@ -60,8 +60,8 @@ void main() {
     });
 
     test('two clients can join a match', () async {
-      final a = NakamaWebsocketClient.instance;
-      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
+      final a = Socket.instance;
+      final b = Socket.instanceFor(key: 'clientb');
 
       // Expect to see B joining from A's point of view
       a.onMatchPresence.listen((event) {
@@ -74,7 +74,7 @@ void main() {
     });
 
     test('receives a ticket from matchmaker', () async {
-      final ticket = await NakamaWebsocketClient.instance.addMatchmaker(
+      final ticket = await Socket.instance.addMatchmaker(
         maxCount: 4,
         minCount: 2,
       );
@@ -84,19 +84,19 @@ void main() {
 
     test('removing from matchmaker', () async {
       // Create a new ticket which we later remove again.
-      final ticket = await NakamaWebsocketClient.instance.addMatchmaker(
+      final ticket = await Socket.instance.addMatchmaker(
         maxCount: 4,
         minCount: 2,
       );
 
       expect(ticket, isA<MatchmakerTicket>());
 
-      await NakamaWebsocketClient.instance.removeMatchmaker(ticket.ticket);
+      await Socket.instance.removeMatchmaker(ticket.ticket);
     });
 
     test('receives sent match data', () async {
-      final a = NakamaWebsocketClient.instance;
-      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
+      final a = Socket.instance;
+      final b = Socket.instanceFor(key: 'clientb');
 
       final realtimeData = 'test'.codeUnits;
 

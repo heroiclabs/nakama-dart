@@ -6,6 +6,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'api/api.dart' as api;
 import 'api/rtapi.dart' as rtapi;
+import 'client.dart';
 import 'models/channel_type.dart';
 import 'models/chat.dart';
 import 'models/match.dart';
@@ -15,9 +16,12 @@ import 'models/party.dart';
 import 'models/rpc.dart';
 import 'models/status.dart';
 
-class NakamaWebsocketClient {
-  static final _log = Logger('NakamaWebsocketClient');
-  static final Map<String, NakamaWebsocketClient> _clients = {};
+@Deprecated('This class has been renamed to [Socket].')
+typedef NakamaWebsocketClient = Socket;
+
+class Socket {
+  static final _log = Logger('NakamaSocket');
+  static final Map<String, Socket> _clients = {};
 
   /// The host address of the server.
   final String host;
@@ -98,12 +102,12 @@ class NakamaWebsocketClient {
   final List<Completer> _futures = [];
 
   /// Returns the default instance.
-  static NakamaWebsocketClient get instance {
-    return NakamaWebsocketClient.instanceFor(key: 'default');
+  static Socket get instance {
+    return Socket.instanceFor(key: 'default');
   }
 
   /// Returns the instance with given key.
-  static NakamaWebsocketClient instanceFor({required String key}) {
+  static Socket instanceFor({required String key}) {
     if (!_clients.containsKey(key)) {
       throw Exception('$key has not yet been initialized');
     }
@@ -111,11 +115,11 @@ class NakamaWebsocketClient {
     return _clients[key]!;
   }
 
-  factory NakamaWebsocketClient.init({
-    String key = 'default',
+  factory Socket.init({
+    String key = defaultAppKey,
     required String host,
-    int port = 7350,
-    required bool ssl,
+    int port = defaultHttpPort,
+    bool ssl = defaultSsl,
     required String token,
     Function()? onDone,
     Function(dynamic error)? onError,
@@ -126,7 +130,7 @@ class NakamaWebsocketClient {
     }
 
     // Create new and return instance of this.
-    return _clients[key] = NakamaWebsocketClient._(
+    return _clients[key] = Socket._(
       host: host,
       port: port,
       ssl: ssl,
@@ -136,9 +140,9 @@ class NakamaWebsocketClient {
     );
   }
 
-  NakamaWebsocketClient._({
+  Socket._({
     required this.host,
-    this.port = 7350,
+    this.port = defaultHttpPort,
     required this.ssl,
     required this.token,
     this.onDone,

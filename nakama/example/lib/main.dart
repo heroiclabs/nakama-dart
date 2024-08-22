@@ -27,7 +27,7 @@ class _HomeScreen extends StatefulWidget {
 }
 
 class __HomeScreenState extends State<_HomeScreen> {
-  late final NakamaBaseClient _nakamaClient;
+  late final Client _client;
 
   bool signInError = false;
 
@@ -39,7 +39,7 @@ class __HomeScreenState extends State<_HomeScreen> {
   void initState() {
     super.initState();
 
-    _nakamaClient = getNakamaClient(
+    _client = getNakamaClient(
       host: '127.0.0.1',
       ssl: false,
       serverKey: 'defaultkey',
@@ -48,7 +48,7 @@ class __HomeScreenState extends State<_HomeScreen> {
 
   @override
   void dispose() {
-    NakamaWebsocketClient.instance.close();
+    Socket.instance.close();
     super.dispose();
   }
 
@@ -58,21 +58,21 @@ class __HomeScreenState extends State<_HomeScreen> {
     });
 
     try {
-      final session = await _nakamaClient.authenticateEmail(
+      final session = await _client.authenticateEmail(
         email: email,
         password: password,
         create: true,
       );
 
       // sign in was successful
-      final profile = await _nakamaClient.getAccount(session);
+      final profile = await _client.getAccount(session);
 
       setState(() {
         _session = session;
         _account = profile;
       });
 
-      NakamaWebsocketClient.init(
+      Socket.init(
         host: '127.0.0.1',
         ssl: false,
         token: _session!.token,

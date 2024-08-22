@@ -8,7 +8,7 @@ import '../config.dart';
 
 void main() {
   group('[gRPC] Test Leaderboard', skip: 'TODO: add missing RPC function', () {
-    late final NakamaBaseClient client;
+    late final Client client;
     late final Session session;
     late final String leaderboardName;
 

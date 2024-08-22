@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:grpc/grpc.dart';
+import 'package:grpc/grpc.dart' hide Client;
 import 'package:grpc/grpc_connection_interface.dart';
 import 'package:logging/logging.dart';
 
@@ -20,14 +20,16 @@ import 'models/session.dart';
 import 'models/storage.dart';
 import 'models/tournament.dart';
 
-const _kDefaultAppKey = 'default';
+@Deprecated('This class has been renamed to [GrpcClient].')
+typedef NakamaGrpcClient = GrpcClient;
 
-/// Base class for communicating with Nakama via gRPC.
-/// [NakamaGrpcClient] abstracts the gRPC calls and handles authentication
+/// [Client] for communicating with Nakama via gRPC.
+///
+/// [GrpcClient] abstracts the gRPC calls and handles authentication
 /// for you.
-class NakamaGrpcClient extends NakamaBaseClient {
+class GrpcClient extends Client {
   static final _log = Logger('NakamaGrpcClient');
-  static final Map<String, NakamaGrpcClient> _clients = {};
+  static final Map<String, GrpcClient> _clients = {};
 
   /// The host address of the server.
   final String host;
@@ -43,14 +45,14 @@ class NakamaGrpcClient extends NakamaBaseClient {
   /// Defaults to "defaultkey".
   late final String serverKey;
 
-  /// Either inits and returns a new instance of [NakamaGrpcClient] or
+  /// Either inits and returns a new instance of [GrpcClient] or
   /// returns a already initialized one.
-  factory NakamaGrpcClient.init({
+  factory GrpcClient.init({
     String? host,
     String? serverKey,
-    String key = _kDefaultAppKey,
-    int port = 7349,
-    bool ssl = false,
+    String key = defaultAppKey,
+    int port = defaultGrpcPort,
+    bool ssl = defaultSsl,
   }) {
     if (_clients.containsKey(key)) {
       return _clients[key]!;
@@ -64,7 +66,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
     }
 
     // Create a new instance of this with given parameters.
-    return _clients[key] = NakamaGrpcClient(
+    return _clients[key] = GrpcClient(
       host: host,
       port: port,
       serverKey: serverKey,
@@ -72,7 +74,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
     );
   }
 
-  NakamaGrpcClient({
+  GrpcClient({
     required this.host,
     this.port = 7349,
     required this.ssl,

@@ -1,17 +1,15 @@
 import 'client.dart';
 import 'rest_client.dart';
 
-const _kDefaultAppKey = 'default';
-
-NakamaBaseClient getNakamaClient({
+Client getNakamaClient({
   String? host,
   String? serverKey,
-  String key = _kDefaultAppKey,
-  int httpPort = 7350,
-  int grpcPort = 7349,
-  bool ssl = false,
+  String key = defaultAppKey,
+  int httpPort = defaultHttpPort,
+  int grpcPort = defaultGrpcPort,
+  bool ssl = defaultSsl,
 }) =>
-    NakamaRestApiClient.init(
+    RestClient.init(
       host: host,
       key: key,
       port: httpPort,

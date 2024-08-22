@@ -6,10 +6,10 @@ import '../config.dart';
 
 void main() {
   group('[REST] Test Authentication', () {
-    late final NakamaBaseClient client;
+    late final Client client;
 
     setUpAll(() {
-      client = NakamaRestApiClient.init(
+      client = RestClient.init(
         host: kTestHost,
         ssl: false,
         serverKey: kTestServerKey,

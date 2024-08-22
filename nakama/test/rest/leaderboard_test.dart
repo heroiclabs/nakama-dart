@@ -8,12 +8,12 @@ import '../config.dart';
 
 void main() {
   group('[REST] Test Leaderboard', skip: 'TODO: add missing RPC function', () {
-    late final NakamaBaseClient client;
+    late final Client client;
     late final Session session;
     late final String leaderboardName;
 
     setUpAll(() async {
-      client = NakamaRestApiClient.init(
+      client = RestClient.init(
         host: kTestHost,
         ssl: false,
         serverKey: kTestServerKey,

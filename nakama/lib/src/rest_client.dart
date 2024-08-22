@@ -18,13 +18,15 @@ import 'models/session.dart';
 import 'models/storage.dart';
 import 'models/tournament.dart';
 
-const _kDefaultAppKey = 'default';
+@Deprecated('This class has been renamed to [RestClient].')
+typedef NakamaRestApiClient = RestClient;
 
-/// Base class for communicating with Nakama via API.
-/// [NakamaGrpcClient] abstracts the API calls and handles authentication
+/// [Client] for communicating with Nakama via REST.
+///
+/// [RestClient] abstracts the REST calls and handles authentication
 /// for you.
-class NakamaRestApiClient extends NakamaBaseClient {
-  static final Map<String, NakamaRestApiClient> _clients = {};
+class RestClient extends Client {
+  static final Map<String, RestClient> _clients = {};
 
   late final ApiClient _api;
 
@@ -38,15 +40,15 @@ class NakamaRestApiClient extends NakamaBaseClient {
   /// interceptor for JWT auth.
   Session? _session;
 
-  /// Either inits and returns a new instance of [NakamaRestApiClient] or
+  /// Either inits and returns a new instance of [RestClient] or
   /// returns a already initialized one.
-  factory NakamaRestApiClient.init({
+  factory RestClient.init({
     String? host,
     String? serverKey,
-    String key = _kDefaultAppKey,
-    int port = 7350,
+    String key = defaultAppKey,
+    int port = defaultHttpPort,
     String path = '',
-    bool ssl = false,
+    bool ssl = defaultSsl,
   }) {
     if (_clients.containsKey(key)) {
       return _clients[key]!;
@@ -60,7 +62,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     }
 
     // Create a new instance of this with given parameters.
-    return _clients[key] = NakamaRestApiClient._(
+    return _clients[key] = RestClient._(
       host: host,
       port: port,
       path: path,
@@ -69,7 +71,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     );
   }
 
-  NakamaRestApiClient._({
+  RestClient._({
     required String host,
     required String serverKey,
     required int port,

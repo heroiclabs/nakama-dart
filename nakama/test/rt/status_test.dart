@@ -24,7 +24,7 @@ void main() {
     );
 
     // Create main websocket connetion for lcl test.
-    NakamaWebsocketClient.init(
+    Socket.init(
       host: kTestHost,
       ssl: false,
       token: sessionA.token,
@@ -38,7 +38,7 @@ void main() {
     );
 
     // Create main websocket connetion for lcl test.
-    NakamaWebsocketClient.init(
+    Socket.init(
       key: 'clientb',
       host: kTestHost,
       ssl: false,
@@ -47,13 +47,13 @@ void main() {
   });
 
   tearDownAll(() async {
-    await NakamaWebsocketClient.instance.close();
+    await Socket.instance.close();
   });
 
   group('[RT] Status Test', () {
     test('can follow another user', () async {
-      final a = NakamaWebsocketClient.instance;
-      final b = NakamaWebsocketClient.instanceFor(key: 'clientb');
+      final a = Socket.instance;
+      final b = Socket.instanceFor(key: 'clientb');
 
       // B follows A.
       await b.followUsers(userIds: [sessionA.userId]);

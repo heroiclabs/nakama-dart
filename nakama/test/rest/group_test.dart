@@ -6,11 +6,11 @@ import '../config.dart';
 
 void main() {
   group('[REST] Group Test', () {
-    late final NakamaBaseClient client;
+    late final Client client;
     late final Session session;
 
     setUpAll(() async {
-      client = NakamaRestApiClient.init(
+      client = RestClient.init(
         host: kTestHost,
         ssl: false,
         serverKey: kTestServerKey,
