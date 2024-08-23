@@ -51,12 +51,12 @@ class MatchmakerState extends State<Matchmaker> {
   }
 
   @override
-  void dispose() async {
+  void dispose() {
     if (matchmakerTicket != null) {
-      await socket.removeMatchmaker(matchmakerTicket!.ticket);
+      socket.removeMatchmaker(matchmakerTicket!.ticket);
     }
 
-    await onMatchmakerMatchedSubscription?.cancel();
+    onMatchmakerMatchedSubscription?.cancel();
 
     super.dispose();
   }

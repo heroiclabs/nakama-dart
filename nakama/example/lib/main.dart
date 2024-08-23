@@ -7,6 +7,8 @@ import 'widgets/matchmaker.dart';
 import 'widgets/sign_in_box.dart';
 import 'widgets/welcome.dart';
 
+const nakamaHost = 'localhost';
+
 void main() {
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((record) {
@@ -40,11 +42,7 @@ class __HomeScreenState extends State<_HomeScreen> {
   void initState() {
     super.initState();
 
-    _client = Client(
-      host: '127.0.0.1',
-      ssl: false,
-      serverKey: 'defaultkey',
-    );
+    _client = Client(host: nakamaHost);
   }
 
   @override
@@ -74,11 +72,7 @@ class __HomeScreenState extends State<_HomeScreen> {
         _account = profile;
       });
 
-      _socket = Socket(
-        host: '127.0.0.1',
-        ssl: false,
-        token: _session!.token,
-      );
+      _socket = Socket(host: nakamaHost, token: _session!.token);
     } catch (_) {
       // sign in failed
       setState(() {
