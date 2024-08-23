@@ -10,7 +10,8 @@ Client createClient({
 }) =>
     RestClient(
       host: host,
-      port: httpPort,
+      httpPort: httpPort,
+      grpcPort: grpcPort,
       ssl: ssl,
       serverKey: serverKey,
     );

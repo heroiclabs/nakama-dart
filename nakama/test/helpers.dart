@@ -20,9 +20,11 @@ class TestHelper {
 
   final ClientType clientType;
 
-  late final Client _client = createClient(tearDown: false);
-  late final Future<Session> _session =
-      _client.authenticateCustom(id: 'test-helper-000000000');
+  late final Future<Client> _client = Future(() async {
+    final client = createClient(tearDown: false);
+    await client.authenticateCustom(id: 'test-helper-000000000');
+    return client;
+  });
 
   Client createClient({bool tearDown = true}) {
     final client = switch (clientType) {
@@ -37,21 +39,22 @@ class TestHelper {
     return client;
   }
 
-  Socket createSocket(Session session) {
-    final socket = Socket(host: testHost, token: session.token);
+  Future<Socket> createSocket(Client client) async {
+    final socket = client.createSocket();
+    await socket.connect();
     addTearDown(socket.close);
     return socket;
   }
 
   Future<void> deleteAllGroups() async =>
-      await _client.deleteAllGroups(session: await _session);
+      await (await _client).deleteAllGroups();
 
-  Future<void> close() async => await _client.close();
+  Future<void> close() async => await (await _client).close();
 }
 
 extension on Client {
-  Future<void> deleteAllGroups({required Session session}) async =>
-      await rpc(session: session, id: 'testing.delete_all_groups');
+  Future<void> deleteAllGroups() async =>
+      await rpc(id: 'testing.delete_all_groups');
 }
 
 void withTestHelper(

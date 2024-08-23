@@ -16,17 +16,315 @@ import 'models/party.dart';
 import 'models/rpc.dart';
 import 'models/status.dart';
 
-class Socket {
-  Socket({
-    required this.host,
-    this.port = defaultHttpPort,
-    this.ssl = defaultSsl,
-    required this.token,
-    this.onDone,
-    this.onError,
-  }) {
+/// A socket for real-time communication with the Nakama server.
+///
+/// Use [Client.createSocket] to create a new instance.
+abstract class Socket {
+  Stream<ChannelPresenceEvent> get onChannelPresence;
+  Stream<MatchmakerMatched> get onMatchmakerMatched;
+  Stream<MatchData> get onMatchData;
+  Stream<PartyPresenceEvent> get onPartyPresence;
+  Stream<PartyLeader> get onPartyLeader;
+  Stream<PartyData> get onPartyData;
+  Stream<MatchPresenceEvent> get onMatchPresence;
+  Stream<Notification> get onNotifications;
+  Stream<StatusPresenceEvent> get onStatusPresence;
+  Stream<StreamPresenceEvent> get onStreamPresence;
+  Stream<RealtimeStreamData> get onStreamData;
+  Stream<api.ChannelMessage> get onChannelMessage;
+
+  /// Connects this socket to the server.
+  Future<void> connect();
+
+  /// Disconnects this socket from the server.
+  Future<void> disconnect();
+
+  /// Closes this socket and releases its resources.
+  Future<void> close();
+
+  Future updateStatus(String status);
+
+  Future<Match> createMatch([String? name]);
+
+  Future<Party> createParty({int? maxSize, bool? open});
+
+  Future<Party> joinParty(String partyId);
+
+  Future<void> promotePartyMember({
+    required String partyId,
+    required UserPresence newLeader,
+  });
+
+  Future<void> leaveParty(String partyId);
+
+  Future<void> acceptPartyMember(String partyId, UserPresence presence);
+
+  Future<void> removePartyMember(String partyId, UserPresence presence);
+
+  Future<PartyMatchmakerTicket> addMatchmakerParty({
+    required String partyId,
+    required int minCount,
+    int? maxCount,
+    String? query,
+    Map<String, double>? numericProperties,
+    Map<String, String>? stringProperties,
+  });
+
+  Future<void> closeParty(String partyId);
+
+  Future<Match> joinMatch(String matchId, {String? token});
+
+  Future<void> leaveMatch(String matchId);
+
+  Future<MatchmakerTicket> addMatchmaker({
+    required int minCount,
+    int? maxCount,
+    String? query,
+    Map<String, double>? numericProperties,
+    Map<String, String>? stringProperties,
+  });
+
+  Future<void> removeMatchmaker(String ticket);
+
+  Future<Rpc> rpc({required String id, String? payload});
+
+  Future<List<UserPresence>> followUsers({
+    List<String>? userIds,
+    List<String>? usernames,
+  });
+
+  Future<List<UserPresence>> unfollowUsers(
+    List<String> list, {
+    List<String>? userIds,
+  });
+
+  void sendMatchData({
+    required String matchId,
+    required int opCode,
+    required List<int> data,
+    Iterable<UserPresence>? presences,
+  });
+
+  Future<List<UserPresence>> sendPartyData({
+    required String partyId,
+    required int opCode,
+    required List<int> data,
+  });
+
+  Future<Channel> joinChannel({
+    required String target,
+    required ChannelType type,
+    required bool persistence,
+    required bool hidden,
+  });
+
+  Future<void> leaveChannel(String channelId);
+
+  Future<ChannelMessageAck> sendMessage({
+    required String channelId,
+    required Map<String, String> content,
+  });
+
+  Future<ChannelMessageAck> updateMessage({
+    required String channelId,
+    required String messageId,
+    required Map<String, String> content,
+  });
+}
+
+class SocketImpl implements Socket {
+  SocketImpl({
+    required Client client,
+    void Function()? onDisconnect,
+    void Function(Object error, StackTrace stackTrace)? onError,
+  })  : _onError = onError,
+        _onDisconnect = onDisconnect,
+        _client = client;
+
+  static final _log = Logger('NakamaSocket');
+
+  final Client _client;
+  final void Function()? _onDisconnect;
+  final void Function(Object error, StackTrace stackTrace)? _onError;
+  WebSocketChannel? _channel;
+  final _eventControllers = <Type, StreamController>{};
+  int _nextRequestId = 0;
+  final _requestCompleters = <int, Completer>{};
+
+  @override
+  Stream<ChannelPresenceEvent> get onChannelPresence => _getEventStream();
+
+  @override
+  Stream<MatchmakerMatched> get onMatchmakerMatched => _getEventStream();
+
+  @override
+  Stream<MatchData> get onMatchData => _getEventStream();
+
+  @override
+  Stream<PartyPresenceEvent> get onPartyPresence => _getEventStream();
+
+  @override
+  Stream<PartyLeader> get onPartyLeader => _getEventStream();
+
+  @override
+  Stream<PartyData> get onPartyData => _getEventStream();
+
+  @override
+  Stream<MatchPresenceEvent> get onMatchPresence => _getEventStream();
+
+  @override
+  Stream<Notification> get onNotifications => _getEventStream();
+
+  @override
+  Stream<StatusPresenceEvent> get onStatusPresence => _getEventStream();
+
+  @override
+  Stream<StreamPresenceEvent> get onStreamPresence => _getEventStream();
+
+  @override
+  Stream<RealtimeStreamData> get onStreamData => _getEventStream();
+
+  // TODO: Create model for channel message and use it here
+  @override
+  Stream<api.ChannelMessage> get onChannelMessage => _getEventStream();
+
+  StreamController<T> _getEventController<T>() {
+    return _eventControllers.putIfAbsent(
+      T,
+      () => StreamController<T>.broadcast(),
+    ) as StreamController<T>;
+  }
+
+  Stream<T> _getEventStream<T>() => _getEventController<T>().stream;
+
+  void _addToEventStream<T>(T value) => _getEventController<T>().add(value);
+
+  (int, Future<T>) _createPendingRequest<T>() {
+    @pragma('vm:awaiter-link')
+    final completer = Completer<T>();
+    final id = _nextRequestId++;
+    _requestCompleters[id] = completer;
+    return (id, completer.future);
+  }
+
+  Completer<Object?> _takePendingRequest(int id) {
+    // TODO: Handle unknown cid
+    return _requestCompleters.remove(id)!;
+  }
+
+  Future<T> _sendRequest<T>(rtapi.Envelope envelope) async {
+    final (id, future) = _createPendingRequest<T>();
+    envelope.cid = id.toString();
+    _channel!.sink.add(envelope.writeToBuffer());
+    return future;
+  }
+
+  void _onData(List<int> msg) {
+    try {
+      final envelope = rtapi.Envelope.fromBuffer(msg);
+      _log.info('onData: $envelope');
+
+      if (envelope.cid.isNotEmpty) {
+        _handleResponse(envelope);
+      } else {
+        _handleEvent(envelope);
+      }
+    } catch (e, s) {
+      _log.warning(e);
+      _log.warning(s);
+    }
+  }
+
+  void _handleResponse(rtapi.Envelope envelope) {
+    final completer = _takePendingRequest(int.parse(envelope.cid));
+    switch (completer) {
+      case Completer<rtapi.Match>():
+        completer.complete(envelope.match);
+      case Completer<rtapi.MatchmakerTicket>():
+        completer.complete(envelope.matchmakerTicket);
+      case Completer<rtapi.Status>():
+        completer.complete(envelope.status);
+      case Completer<rtapi.Channel>():
+        completer.complete(envelope.channel);
+      case Completer<rtapi.ChannelMessageAck>():
+        completer.complete(envelope.channelMessageAck);
+      case Completer<rtapi.Party>():
+        completer.complete(envelope.party);
+      case Completer<rtapi.PartyMatchmakerTicket>():
+        completer.complete(envelope.partyMatchmakerTicket);
+      default:
+        completer.complete();
+    }
+  }
+
+  void _handleEvent(rtapi.Envelope envelope) {
+    switch (envelope.whichMessage()) {
+      case rtapi.Envelope_Message.channelPresenceEvent:
+        _addToEventStream(
+          ChannelPresenceEvent.fromDto(envelope.channelPresenceEvent),
+        );
+      case rtapi.Envelope_Message.matchmakerMatched:
+        _addToEventStream(
+          MatchmakerMatched.fromDto(envelope.matchmakerMatched),
+        );
+      case rtapi.Envelope_Message.matchData:
+        _addToEventStream(MatchData.fromDto(envelope.matchData));
+      case rtapi.Envelope_Message.partyData:
+        _addToEventStream(PartyData.fromDto(envelope.partyData));
+      case rtapi.Envelope_Message.partyPresenceEvent:
+        _addToEventStream(
+          PartyPresenceEvent.fromDto(envelope.partyPresenceEvent),
+        );
+      case rtapi.Envelope_Message.partyLeader:
+        _addToEventStream(PartyLeader.fromDto(envelope.partyLeader));
+      case rtapi.Envelope_Message.matchPresenceEvent:
+        _addToEventStream(
+          MatchPresenceEvent.fromDto(envelope.matchPresenceEvent),
+        );
+      case rtapi.Envelope_Message.notifications:
+        envelope.notifications.notifications
+            .map((notification) => Notification.fromDto(notification))
+            .forEach(_addToEventStream);
+      case rtapi.Envelope_Message.statusPresenceEvent:
+        _addToEventStream(
+          StatusPresenceEvent.fromDto(envelope.statusPresenceEvent),
+        );
+      case rtapi.Envelope_Message.streamPresenceEvent:
+        _addToEventStream(
+          StreamPresenceEvent.fromDto(envelope.streamPresenceEvent),
+        );
+      case rtapi.Envelope_Message.streamData:
+        _addToEventStream(
+          RealtimeStreamData.fromDto(envelope.streamData),
+        );
+      case rtapi.Envelope_Message.channelMessage:
+        _addToEventStream(envelope.channelMessage);
+      default:
+        _log.warning('Not implemented');
+    }
+  }
+
+  @override
+  Future<void> connect() async {
+    final ssl = _client.ssl;
+    final host = _client.host;
+    final port = _client.httpPort;
+
+    final session = _client.session;
+    if (session == null) {
+      throw StateError(
+        'No session available. Make sure to authenticate first.',
+      );
+    }
+    if (session.isExpired) {
+      throw StateError('Session is expired. Make sure to refresh it first.');
+    }
+
+    final token = session.token;
+
     _log.info('Connecting ${ssl ? 'WSS' : 'WS'} to $host:$port');
     _log.info('Using token $token');
+
     final uri = Uri(
       host: host,
       port: port,
@@ -40,310 +338,152 @@ class Socket {
     _channel = WebSocketChannel.connect(uri);
     _log.info('connected');
 
-    _channel.stream.listen(
-      _onData,
+    _channel!.stream.listen(
+      (message) => _onData(message as List<int>),
       onDone: () {
-        if (onDone != null) {
-          onDone!();
+        if (_onDisconnect != null) {
+          _onDisconnect!();
         }
+        _channel = null;
       },
-      onError: (err) {
-        if (onError != null) {
-          onError!(err);
+      onError: (error, stackTrace) {
+        if (_onError != null) {
+          _onError!(error, stackTrace);
         }
       },
       cancelOnError: false,
     );
   }
 
-  static final _log = Logger('NakamaSocket');
+  @override
+  Future<void> disconnect() async {
+    // TODO: Handle uncompleted requests
+    final channel = _channel!;
+    _channel = null;
+    await channel.sink.close();
+  }
 
-  /// The host address of the server.
-  final String host;
-
-  /// The port number of the server. Defaults to 7349
-  final int port;
-  final bool ssl;
-
-  /// The user's access token.
-  final String token;
-
-  final void Function()? onDone;
-  final void Function(dynamic error)? onError;
-
-  late final WebSocketChannel _channel;
-
-  final _onChannelPresenceController =
-      StreamController<ChannelPresenceEvent>.broadcast();
-
-  Stream<ChannelPresenceEvent> get onChannelPresence =>
-      _onChannelPresenceController.stream;
-
-  final _onMatchmakerMatchedController =
-      StreamController<MatchmakerMatched>.broadcast();
-
-  Stream<MatchmakerMatched> get onMatchmakerMatched =>
-      _onMatchmakerMatchedController.stream;
-
-  final _onMatchDataController = StreamController<MatchData>.broadcast();
-
-  Stream<MatchData> get onMatchData => _onMatchDataController.stream;
-
-  final _onPartyDataController = StreamController<PartyData>.broadcast();
-
-  final _onPartyPresenceController =
-      StreamController<PartyPresenceEvent>.broadcast();
-  Stream<PartyPresenceEvent> get onPartyPresence =>
-      _onPartyPresenceController.stream;
-
-  final _onPartyLeaderController = StreamController<PartyLeader>.broadcast();
-  Stream<PartyLeader> get onPartyLeader => _onPartyLeaderController.stream;
-
-  Stream<PartyData> get onPartyData => _onPartyDataController.stream;
-
-  final _onMatchPresenceController =
-      StreamController<MatchPresenceEvent>.broadcast();
-
-  Stream<MatchPresenceEvent> get onMatchPresence =>
-      _onMatchPresenceController.stream;
-
-  final _onNotificationsController = StreamController<Notification>.broadcast();
-
-  Stream<Notification> get onNotifications => _onNotificationsController.stream;
-
-  final _onStatusPresenceController =
-      StreamController<StatusPresenceEvent>.broadcast();
-
-  Stream<StatusPresenceEvent> get onStatusPresence =>
-      _onStatusPresenceController.stream;
-
-  final _onStreamPresenceController =
-      StreamController<StreamPresenceEvent>.broadcast();
-
-  Stream<StreamPresenceEvent> get onStreamPresence =>
-      _onStreamPresenceController.stream;
-
-  final _onStreamDataController =
-      StreamController<RealtimeStreamData>.broadcast();
-
-  Stream<RealtimeStreamData> get onStreamData => _onStreamDataController.stream;
-
-  final _onChannelMessageController =
-      StreamController<api.ChannelMessage>.broadcast();
-
-  Stream<api.ChannelMessage> get onChannelMessage =>
-      _onChannelMessageController.stream;
-
-  final List<Completer> _futures = [];
-
-  Future<void> close() {
-    return Future.wait([
-      _onChannelPresenceController.close(),
-      _onMatchmakerMatchedController.close(),
-      _onMatchDataController.close(),
-      _onPartyPresenceController.close(),
-      _onPartyLeaderController.close(),
-      _onPartyDataController.close(),
-      _onMatchPresenceController.close(),
-      _onNotificationsController.close(),
-      _onStatusPresenceController.close(),
-      _onStreamPresenceController.close(),
-      _onStreamDataController.close(),
-      _onChannelMessageController.close(),
-      _channel.sink.close(),
+  @override
+  Future<void> close() async {
+    await Future.wait([
+      disconnect(),
+      for (final controller in _eventControllers.values) //
+        controller.close(),
     ]);
   }
 
-  void _onData(msg) {
-    try {
-      final receivedEnvelope = rtapi.Envelope.fromBuffer(msg);
-      _log.info('onData: $receivedEnvelope');
-
-      if (receivedEnvelope.cid.isNotEmpty) {
-        // get corresponding future to complete
-        final waitingFuture = _futures[int.parse(receivedEnvelope.cid)];
-
-        // ? Is there any chance to do this better with <T>?
-        if (waitingFuture is Completer<rtapi.Match>) {
-          return waitingFuture.complete(receivedEnvelope.match);
-        } else if (waitingFuture is Completer<rtapi.MatchmakerTicket>) {
-          return waitingFuture.complete(receivedEnvelope.matchmakerTicket);
-        } else if (waitingFuture is Completer<rtapi.Status>) {
-          return waitingFuture.complete(receivedEnvelope.status);
-        } else if (waitingFuture is Completer<rtapi.Channel>) {
-          return waitingFuture.complete(receivedEnvelope.channel);
-        } else if (waitingFuture is Completer<rtapi.ChannelMessageAck>) {
-          return waitingFuture.complete(receivedEnvelope.channelMessageAck);
-        } else if (waitingFuture is Completer<rtapi.Party>) {
-          return waitingFuture.complete(receivedEnvelope.party);
-        } else if (waitingFuture is Completer<rtapi.PartyMatchmakerTicket>) {
-          return waitingFuture.complete(receivedEnvelope.partyMatchmakerTicket);
-        } else {
-          return waitingFuture.complete();
-        }
-      } else {
-        // map server messages
-        switch (receivedEnvelope.whichMessage()) {
-          case rtapi.Envelope_Message.channelPresenceEvent:
-            return _onChannelPresenceController.add(
-              ChannelPresenceEvent.fromDto(
-                receivedEnvelope.channelPresenceEvent,
-              ),
-            );
-          case rtapi.Envelope_Message.matchmakerMatched:
-            return _onMatchmakerMatchedController.add(
-              MatchmakerMatched.fromDto(receivedEnvelope.matchmakerMatched),
-            );
-          case rtapi.Envelope_Message.matchData:
-            return _onMatchDataController
-                .add(MatchData.fromDto(receivedEnvelope.matchData));
-          case rtapi.Envelope_Message.partyData:
-            return _onPartyDataController
-                .add(PartyData.fromDto(receivedEnvelope.partyData));
-          case rtapi.Envelope_Message.partyPresenceEvent:
-            return _onPartyPresenceController.add(
-              PartyPresenceEvent.fromDto(receivedEnvelope.partyPresenceEvent),
-            );
-          case rtapi.Envelope_Message.partyLeader:
-            return _onPartyLeaderController
-                .add(PartyLeader.fromDto(receivedEnvelope.partyLeader));
-          case rtapi.Envelope_Message.matchPresenceEvent:
-            return _onMatchPresenceController.add(
-              MatchPresenceEvent.fromDto(receivedEnvelope.matchPresenceEvent),
-            );
-          case rtapi.Envelope_Message.notifications:
-            receivedEnvelope.notifications.notifications
-                .map((e) => Notification.fromDto(e))
-                .forEach((element) => _onNotificationsController.add(element));
-            return;
-          case rtapi.Envelope_Message.statusPresenceEvent:
-            return _onStatusPresenceController.add(
-              StatusPresenceEvent.fromDto(receivedEnvelope.statusPresenceEvent),
-            );
-          case rtapi.Envelope_Message.streamPresenceEvent:
-            return _onStreamPresenceController.add(
-              StreamPresenceEvent.fromDto(receivedEnvelope.streamPresenceEvent),
-            );
-          case rtapi.Envelope_Message.streamData:
-            return _onStreamDataController
-                .add(RealtimeStreamData.fromDto(receivedEnvelope.streamData));
-          case rtapi.Envelope_Message.channelMessage:
-            return _onChannelMessageController
-                .add(receivedEnvelope.channelMessage);
-          default:
-            return _log.warning('Not implemented');
-        }
-      }
-    } catch (e, s) {
-      _log.warning(e);
-      _log.warning(s);
-    }
-  }
-
-  Future<T> _send<T>(rtapi.Envelope envelope) {
-    final ticket = _createTicket<T>();
-    _channel.sink.add((envelope..cid = ticket.toString()).writeToBuffer());
-    return _futures[ticket].future as Future<T>;
-  }
-
-  int _createTicket<T>() {
-    final completer = Completer<T>();
-    _futures.add(completer);
-    return _futures.length - 1;
-  }
-
-  Future updateStatus(String status) => _send<void>(
-        rtapi.Envelope(
-          statusUpdate:
-              rtapi.StatusUpdate(status: api.StringValue(value: status)),
+  @override
+  Future updateStatus(String status) {
+    return _sendRequest<void>(
+      rtapi.Envelope(
+        statusUpdate: rtapi.StatusUpdate(
+          status: api.StringValue(value: status),
         ),
-      );
+      ),
+    );
+  }
 
+  @override
   Future<Match> createMatch([String? name]) async {
-    final res = await _send<rtapi.Match>(
+    final response = await _sendRequest<rtapi.Match>(
       rtapi.Envelope(matchCreate: rtapi.MatchCreate(name: name)),
     );
 
-    return Match.fromRtDto(res);
+    return Match.fromRtDto(response);
   }
 
-  /// # Creating parties
-  /// The player who creates the party is the party’s leader. Parties have
-  /// maximum number of players and can be open to automatically accept players
-  /// or closed so that the party leader can accept incoming join requests.
+  @override
   Future<Party> createParty({int? maxSize, bool? open}) async {
-    final res = await _send<rtapi.Party>(rtapi.Envelope(
+    final response = await _sendRequest<rtapi.Party>(
+      rtapi.Envelope(
         partyCreate: rtapi.PartyCreate(
-      maxSize: maxSize,
-      open: open,
-    )));
+          maxSize: maxSize,
+          open: open,
+        ),
+      ),
+    );
 
-    return Party.fromDto(res);
+    return Party.fromDto(response);
   }
 
+  @override
   Future<Party> joinParty(String partyId) async {
-    final res = await _send<rtapi.Party>(
+    final response = await _sendRequest<rtapi.Party>(
       rtapi.Envelope(
         partyJoin: rtapi.PartyJoin(partyId: partyId),
       ),
     );
 
-    return Party.fromDto(res);
+    return Party.fromDto(response);
   }
 
+  @override
   Future<void> promotePartyMember({
     required String partyId,
     required UserPresence newLeader,
   }) async {
-    await _send(rtapi.Envelope(
+    await _sendRequest(
+      rtapi.Envelope(
         partyPromote: rtapi.PartyPromote(
-      partyId: partyId,
-      presence: rtapi.UserPresence(
-        userId: newLeader.userId,
-        sessionId: newLeader.sessionId,
-        username: newLeader.username,
-        persistence: newLeader.persistence,
-        status: api.StringValue(value: newLeader.status),
+          partyId: partyId,
+          presence: rtapi.UserPresence(
+            userId: newLeader.userId,
+            sessionId: newLeader.sessionId,
+            username: newLeader.username,
+            persistence: newLeader.persistence,
+            status: api.StringValue(value: newLeader.status),
+          ),
+        ),
       ),
-    )));
+    );
   }
 
+  @override
   Future<void> leaveParty(String partyId) async {
-    await _send<rtapi.Party>(rtapi.Envelope(
-      partyLeave: rtapi.PartyLeave(partyId: partyId),
-    ));
+    await _sendRequest<rtapi.Party>(
+      rtapi.Envelope(
+        partyLeave: rtapi.PartyLeave(partyId: partyId),
+      ),
+    );
   }
 
+  @override
   Future<void> acceptPartyMember(String partyId, UserPresence presence) async {
-    await _send<rtapi.Party>(rtapi.Envelope(
-      partyAccept: rtapi.PartyAccept(
-        partyId: partyId,
-        presence: rtapi.UserPresence(
-          userId: presence.userId,
-          sessionId: presence.sessionId,
-          username: presence.username,
-          persistence: presence.persistence,
-          status: api.StringValue(value: presence.status),
+    await _sendRequest<rtapi.Party>(
+      rtapi.Envelope(
+        partyAccept: rtapi.PartyAccept(
+          partyId: partyId,
+          presence: rtapi.UserPresence(
+            userId: presence.userId,
+            sessionId: presence.sessionId,
+            username: presence.username,
+            persistence: presence.persistence,
+            status: api.StringValue(value: presence.status),
+          ),
         ),
       ),
-    ));
+    );
   }
 
+  @override
   Future<void> removePartyMember(String partyId, UserPresence presence) async {
-    await _send<void>(rtapi.Envelope(
-      partyRemove: rtapi.PartyRemove(
-        partyId: partyId,
-        presence: rtapi.UserPresence(
-          userId: presence.userId,
-          sessionId: presence.sessionId,
-          username: presence.username,
-          persistence: presence.persistence,
-          status: api.StringValue(value: presence.status),
+    await _sendRequest<void>(
+      rtapi.Envelope(
+        partyRemove: rtapi.PartyRemove(
+          partyId: partyId,
+          presence: rtapi.UserPresence(
+            userId: presence.userId,
+            sessionId: presence.sessionId,
+            username: presence.username,
+            persistence: presence.persistence,
+            status: api.StringValue(value: presence.status),
+          ),
         ),
       ),
-    ));
+    );
   }
 
+  @override
   Future<PartyMatchmakerTicket> addMatchmakerParty({
     required String partyId,
     required int minCount,
@@ -352,44 +492,53 @@ class Socket {
     Map<String, double>? numericProperties,
     Map<String, String>? stringProperties,
   }) async {
-    final res = await _send<rtapi.PartyMatchmakerTicket>(rtapi.Envelope(
+    final response = await _sendRequest<rtapi.PartyMatchmakerTicket>(
+      rtapi.Envelope(
         partyMatchmakerAdd: rtapi.PartyMatchmakerAdd(
-      partyId: partyId,
-      minCount: minCount,
-      maxCount: maxCount,
-      query: query,
-      numericProperties: numericProperties,
-      stringProperties: stringProperties,
-    )));
+          partyId: partyId,
+          minCount: minCount,
+          maxCount: maxCount,
+          query: query,
+          numericProperties: numericProperties,
+          stringProperties: stringProperties,
+        ),
+      ),
+    );
 
-    return PartyMatchmakerTicket.fromDto(res);
+    return PartyMatchmakerTicket.fromDto(response);
   }
 
+  @override
   Future<void> closeParty(String partyId) async {
-    await _send<void>(rtapi.Envelope(
-      partyClose: rtapi.PartyClose(partyId: partyId),
-    ));
+    await _sendRequest<void>(
+      rtapi.Envelope(
+        partyClose: rtapi.PartyClose(partyId: partyId),
+      ),
+    );
   }
 
+  @override
   Future<Match> joinMatch(
     String matchId, {
     String? token,
   }) async {
-    final res = await _send<rtapi.Match>(
+    final response = await _sendRequest<rtapi.Match>(
       rtapi.Envelope(
         matchJoin: rtapi.MatchJoin(matchId: matchId, token: token),
       ),
     );
 
-    return Match.fromRtDto(res);
+    return Match.fromRtDto(response);
   }
 
+  @override
   Future<void> leaveMatch(String matchId) async {
-    await _send<void>(
+    await _sendRequest<void>(
       rtapi.Envelope(matchLeave: rtapi.MatchLeave(matchId: matchId)),
     );
   }
 
+  @override
   Future<MatchmakerTicket> addMatchmaker({
     required int minCount,
     int? maxCount,
@@ -397,160 +546,186 @@ class Socket {
     Map<String, double>? numericProperties,
     Map<String, String>? stringProperties,
   }) async {
+    // TODO: Throw ArgumentError instead of asserts
     assert(minCount >= 2);
     assert(maxCount == null || maxCount >= minCount);
 
-    final ticket = await _send<rtapi.MatchmakerTicket>(rtapi.Envelope(
+    final response = await _sendRequest<rtapi.MatchmakerTicket>(
+      rtapi.Envelope(
         matchmakerAdd: rtapi.MatchmakerAdd(
-      maxCount: maxCount,
-      minCount: minCount,
-      numericProperties: numericProperties,
-      stringProperties: stringProperties,
-      query: query,
-    )));
+          maxCount: maxCount,
+          minCount: minCount,
+          numericProperties: numericProperties,
+          stringProperties: stringProperties,
+          query: query,
+        ),
+      ),
+    );
 
-    return MatchmakerTicket.fromDto(ticket);
+    return MatchmakerTicket.fromDto(response);
   }
 
+  @override
   Future<void> removeMatchmaker(String ticket) async {
-    await _send(
+    await _sendRequest(
       rtapi.Envelope(matchmakerRemove: rtapi.MatchmakerRemove(ticket: ticket)),
     );
   }
 
+  @override
   Future<Rpc> rpc({required String id, String? payload}) async {
-    final res = await _send<api.Rpc>(
+    final response = await _sendRequest<api.Rpc>(
       rtapi.Envelope(rpc: api.Rpc(id: id, payload: payload)),
     );
 
-    return Rpc.fromDto(res);
+    return Rpc.fromDto(response);
   }
 
+  @override
   Future<List<UserPresence>> followUsers({
     List<String>? userIds,
     List<String>? usernames,
   }) async {
-    final res = await _send<rtapi.Status>(rtapi.Envelope(
+    final response = await _sendRequest<rtapi.Status>(
+      rtapi.Envelope(
         statusFollow: rtapi.StatusFollow(
-      userIds: userIds,
-      usernames: usernames,
-    )));
+          userIds: userIds,
+          usernames: usernames,
+        ),
+      ),
+    );
 
-    return res.presences.map(UserPresence.fromDto).toList();
+    return response.presences.map(UserPresence.fromDto).toList();
   }
 
+  @override
   Future<List<UserPresence>> unfollowUsers(
     List<String> list, {
     List<String>? userIds,
   }) async {
-    final res = await _send<rtapi.Status>(rtapi.Envelope(
+    final response = await _sendRequest<rtapi.Status>(
+      rtapi.Envelope(
         statusUnfollow: rtapi.StatusUnfollow(
-      userIds: userIds,
-    )));
+          userIds: userIds,
+        ),
+      ),
+    );
 
-    return res.presences.map(UserPresence.fromDto).toList();
+    return response.presences.map(UserPresence.fromDto).toList();
   }
 
+  @override
   void sendMatchData({
     required String matchId,
     required int opCode,
     required List<int> data,
     Iterable<UserPresence>? presences,
   }) async {
-    _send<void>(rtapi.Envelope(
+    _sendRequest<void>(
+      rtapi.Envelope(
         matchDataSend: rtapi.MatchDataSend(
-      matchId: matchId,
-      opCode: api.Int64(opCode),
-      data: data,
-      presences: presences?.map((e) {
-        return rtapi.UserPresence(
-          userId: e.userId,
-          sessionId: e.sessionId,
-          username: e.username,
-          persistence: e.persistence,
-          status: api.StringValue(value: e.status),
-        );
-      }).toList(),
-    )));
+          matchId: matchId,
+          opCode: api.Int64(opCode),
+          data: data,
+          presences: presences?.map((e) {
+            return rtapi.UserPresence(
+              userId: e.userId,
+              sessionId: e.sessionId,
+              username: e.username,
+              persistence: e.persistence,
+              status: api.StringValue(value: e.status),
+            );
+          }).toList(),
+        ),
+      ),
+    );
   }
 
+  @override
   Future<List<UserPresence>> sendPartyData({
     required String partyId,
     required int opCode,
     required List<int> data,
   }) async {
-    final res = await _send<rtapi.Status>(rtapi.Envelope(
+    final response = await _sendRequest<rtapi.Status>(
+      rtapi.Envelope(
         partyDataSend: rtapi.PartyDataSend(
-      partyId: partyId,
-      opCode: api.Int64(opCode),
-      data: data,
-    )));
+          partyId: partyId,
+          opCode: api.Int64(opCode),
+          data: data,
+        ),
+      ),
+    );
 
-    return res.presences.map(UserPresence.fromDto).toList();
+    return response.presences.map(UserPresence.fromDto).toList();
   }
 
+  @override
   Future<Channel> joinChannel({
     required String target,
     required ChannelType type,
     required bool persistence,
     required bool hidden,
   }) async {
-    final res = await _send<rtapi.Channel>(rtapi.Envelope(
+    final response = await _sendRequest<rtapi.Channel>(
+      rtapi.Envelope(
         channelJoin: rtapi.ChannelJoin(
-      target: target,
-      type: () {
-        switch (type) {
-          case ChannelType.room:
-            return rtapi.ChannelJoin_Type.ROOM;
-          case ChannelType.group:
-            return rtapi.ChannelJoin_Type.GROUP;
-          case ChannelType.directMessage:
-            return rtapi.ChannelJoin_Type.DIRECT_MESSAGE;
-          default:
-            return rtapi.ChannelJoin_Type.TYPE_UNSPECIFIED;
-        }
-      }()
-          .value,
-      persistence: api.BoolValue(value: persistence),
-      hidden: api.BoolValue(value: hidden),
-    )));
+          target: target,
+          type: switch (type) {
+            ChannelType.room => rtapi.ChannelJoin_Type.ROOM,
+            ChannelType.group => rtapi.ChannelJoin_Type.GROUP,
+            ChannelType.directMessage => rtapi.ChannelJoin_Type.DIRECT_MESSAGE,
+          }
+              .value,
+          persistence: api.BoolValue(value: persistence),
+          hidden: api.BoolValue(value: hidden),
+        ),
+      ),
+    );
 
-    return Channel.fromDto(res);
+    return Channel.fromDto(response);
   }
 
-  Future<void> leaveChannel({
-    required String channelId,
-  }) async {
-    await _send(
+  @override
+  Future<void> leaveChannel(String channelId) async {
+    await _sendRequest(
       rtapi.Envelope(channelLeave: rtapi.ChannelLeave(channelId: channelId)),
     );
   }
 
+  @override
   Future<ChannelMessageAck> sendMessage({
     required String channelId,
     required Map<String, String> content,
   }) async {
-    final res = await _send<rtapi.ChannelMessageAck>(rtapi.Envelope(
+    final response = await _sendRequest<rtapi.ChannelMessageAck>(
+      rtapi.Envelope(
         channelMessageSend: rtapi.ChannelMessageSend(
-      channelId: channelId,
-      content: jsonEncode(content),
-    )));
+          channelId: channelId,
+          content: jsonEncode(content),
+        ),
+      ),
+    );
 
-    return ChannelMessageAck.fromDto(res);
+    return ChannelMessageAck.fromDto(response);
   }
 
+  @override
   Future<ChannelMessageAck> updateMessage({
     required String channelId,
     required String messageId,
     required Map<String, String> content,
   }) async {
-    final res = await _send<rtapi.ChannelMessageAck>(rtapi.Envelope(
+    final response = await _sendRequest<rtapi.ChannelMessageAck>(
+      rtapi.Envelope(
         channelMessageUpdate: rtapi.ChannelMessageUpdate(
-      channelId: channelId,
-      messageId: messageId,
-      content: jsonEncode(content),
-    )));
+          channelId: channelId,
+          messageId: messageId,
+          content: jsonEncode(content),
+        ),
+      ),
+    );
 
-    return ChannelMessageAck.fromDto(res);
+    return ChannelMessageAck.fromDto(response);
   }
 }

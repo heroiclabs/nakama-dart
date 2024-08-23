@@ -10,17 +10,15 @@ void main() {
   clientTests((helper) {
     group('Leaderboard', skip: 'TODO: add missing RPC function', () {
       late final Client client;
-      late final Session session;
       late final String leaderboardName;
 
       setUpAll(() async {
         client = helper.createClient();
 
-        session = await client.authenticateDevice(deviceId: faker.guid.guid());
+        await client.authenticateDevice(deviceId: faker.guid.guid());
 
         // Create leaderboard
         final result = await client.rpc(
-          session: session,
           id: 'clientrpc.create_leaderboard',
           payload: jsonEncode({'operator': 'best'}),
         );
@@ -31,13 +29,11 @@ void main() {
 
       clientTest('list records', () async {
         await client.writeLeaderboardRecord(
-          session: session,
           leaderboardName: leaderboardName,
           score: 10,
         );
 
         final result = await client.listLeaderboardRecords(
-          session: session,
           leaderboardName: leaderboardName,
         );
 
@@ -48,7 +44,6 @@ void main() {
 
       clientTest('write record', () async {
         final result = await client.writeLeaderboardRecord(
-          session: session,
           leaderboardName: leaderboardName,
           score: 10,
         );
@@ -60,15 +55,13 @@ void main() {
 
       clientTest('list records around user', () async {
         await client.writeLeaderboardRecord(
-          session: session,
           leaderboardName: leaderboardName,
           score: 10,
         );
 
         final result = await client.listLeaderboardRecordsAroundOwner(
-          session: session,
           leaderboardName: leaderboardName,
-          ownerId: session.userId,
+          ownerId: client.session!.userId,
         );
 
         expect(result, isA<LeaderboardRecordList>());

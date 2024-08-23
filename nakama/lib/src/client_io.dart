@@ -10,7 +10,8 @@ Client createClient({
 }) =>
     GrpcClient(
       host: host,
-      port: grpcPort,
+      httpPort: httpPort,
+      grpcPort: grpcPort,
       ssl: ssl,
       serverKey: serverKey,
     );

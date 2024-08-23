@@ -6,40 +6,37 @@ import '../helpers.dart';
 
 void main() {
   withTestHelper((helper) {
-    late final Session sessionA;
-    late final Session sessionB;
+    late final Client clientA;
+    late final Client clientB;
     late final Socket socketA;
     late final Socket socketB;
 
-    // Create a new websocket connection for the hole test run (singleton).
     setUpAll(() async {
-      // Create nakama clients.
-      final client = helper.createClient();
+      clientA = helper.createClient();
 
-      sessionA = await client.authenticateEmail(
+      await clientA.authenticateEmail(
         email: faker.internet.freeEmail(),
         password: faker.internet.password(),
         create: true,
       );
 
-      // Create main websocket connection for lcl test.
-      socketA = helper.createSocket(sessionA);
+      socketA = await helper.createSocket(clientA);
 
-      // Create another websocket connection for another user.
-      sessionB = await client.authenticateEmail(
+      clientB = helper.createClient();
+
+      await clientB.authenticateEmail(
         email: faker.internet.freeEmail(),
         password: faker.internet.password(),
         create: true,
       );
 
-      // Create main websocket connection for lcl test.
-      socketB = helper.createSocket(sessionB);
+      socketB = await helper.createSocket(clientB);
     });
 
     group('[Socket] Status', () {
       test('can follow another user', () async {
         // B follows A.
-        await socketB.followUsers(userIds: [sessionA.userId]);
+        await socketB.followUsers(userIds: [clientA.session!.userId]);
 
         // B now received updates over A's status changes
         const statusText = 'Running some tests...';

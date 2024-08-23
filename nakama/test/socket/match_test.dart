@@ -6,29 +6,31 @@ import '../helpers.dart';
 
 void main() {
   withTestHelper((helper) {
-    late final Session sessionA;
-    late final Session sessionB;
+    late final Client clientA;
+    late final Client clientB;
     late final Socket socketA;
     late final Socket socketB;
 
     setUpAll(() async {
-      final client = helper.createClient();
+      clientA = helper.createClient();
 
-      sessionA = await client.authenticateEmail(
+      await clientA.authenticateEmail(
         email: faker.internet.freeEmail(),
         password: faker.internet.password(),
         create: true,
       );
 
-      socketA = helper.createSocket(sessionA);
+      socketA = await helper.createSocket(clientA);
 
-      sessionB = await client.authenticateEmail(
+      clientB = helper.createClient();
+
+      await clientB.authenticateEmail(
         email: faker.internet.freeEmail(),
         password: faker.internet.password(),
         create: true,
       );
 
-      socketB = helper.createSocket(sessionB);
+      socketB = await helper.createSocket(clientB);
     });
 
     group('[Socket] Match', () {
@@ -78,7 +80,7 @@ void main() {
         // B starts listening for match data, A sends some data after B joined
         socketB.onMatchData.listen(expectAsync1((matchData) {
           expect(matchData, isNotNull);
-          expect(matchData.presence?.userId, equals(sessionA.userId));
+          expect(matchData.presence?.userId, equals(clientA.session!.userId));
           expect(matchData.data, equals(realtimeData));
         }, count: 1));
 

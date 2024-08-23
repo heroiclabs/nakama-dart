@@ -8,22 +8,23 @@ import '../helpers.dart';
 
 void main() {
   withTestHelper((helper) {
-    late final Session sessionA;
-    late final Session sessionB;
-    late final Client client;
+    late final Client clientA;
+    late final Client clientB;
     late Socket socketA;
     late Socket socketB;
 
     setUpAll(() async {
-      client = helper.createClient();
+      clientA = helper.createClient();
 
-      sessionA = await client.authenticateEmail(
+      await clientA.authenticateEmail(
         email: faker.internet.freeEmail(),
         password: faker.internet.password(),
         create: true,
       );
 
-      sessionB = await client.authenticateEmail(
+      clientB = helper.createClient();
+
+      await clientB.authenticateEmail(
         email: faker.internet.freeEmail(),
         password: faker.internet.password(),
         create: true,
@@ -31,8 +32,8 @@ void main() {
     });
 
     setUp(() async {
-      socketA = helper.createSocket(sessionA);
-      socketB = helper.createSocket(sessionB);
+      socketA = await helper.createSocket(clientA);
+      socketB = await helper.createSocket(clientB);
     });
 
     group('[Socket] Chat', () {
@@ -115,13 +116,13 @@ void main() {
       test('user can receive a private message', () async {
         // Both users need to be online to receive messages
         final senderChannelForA = await socketA.joinChannel(
-          target: sessionB.userId,
+          target: clientB.session!.userId,
           type: ChannelType.directMessage,
           persistence: true,
           hidden: false,
         );
         await socketB.joinChannel(
-          target: sessionA.userId,
+          target: clientA.session!.userId,
           type: ChannelType.directMessage,
           persistence: true,
           hidden: false,
@@ -155,7 +156,7 @@ void main() {
       /// server and can be received by the other user via the REST API.
       test('user receives default maximum 20 messages', () async {
         final senderChannelForA = await socketA.joinChannel(
-          target: sessionB.userId,
+          target: clientB.session!.userId,
           type: ChannelType.directMessage,
           persistence: true,
           hidden: false,
@@ -172,13 +173,12 @@ void main() {
 
         // Check on B's side that the message was received via the REST API
         final receiverChannelForB = await socketB.joinChannel(
-          target: sessionA.userId,
+          target: clientA.session!.userId,
           type: ChannelType.directMessage,
           persistence: true,
           hidden: false,
         );
-        final messages = await client.listChannelMessages(
-          session: sessionB,
+        final messages = await clientB.listChannelMessages(
           channelId: receiverChannelForB.id,
         );
 
@@ -188,7 +188,7 @@ void main() {
 
       test('user receives longer message history on request', () async {
         final senderChannelForA = await socketA.joinChannel(
-          target: sessionB.userId,
+          target: clientB.session!.userId,
           type: ChannelType.directMessage,
           persistence: true,
           hidden: false,
@@ -205,13 +205,12 @@ void main() {
 
         // Check on B's side that the message was received via the REST API
         final receiverChannelForB = await socketB.joinChannel(
-          target: sessionA.userId,
+          target: clientA.session!.userId,
           type: ChannelType.directMessage,
           persistence: true,
           hidden: false,
         );
-        final messages = await client.listChannelMessages(
-          session: sessionB,
+        final messages = await clientB.listChannelMessages(
           channelId: receiverChannelForB.id,
           limit: 40,
         );
@@ -222,7 +221,7 @@ void main() {
 
       test('user receives longer message history on request', () async {
         final senderChannelForA = await socketA.joinChannel(
-          target: sessionB.userId,
+          target: clientB.session!.userId,
           type: ChannelType.directMessage,
           persistence: true,
           hidden: false,
@@ -239,13 +238,12 @@ void main() {
 
         // Check on B's side that the message was received via the REST API
         final receiverChannelForB = await socketB.joinChannel(
-          target: sessionA.userId,
+          target: clientA.session!.userId,
           type: ChannelType.directMessage,
           persistence: true,
           hidden: false,
         );
-        final messages = await client.listChannelMessages(
-          session: sessionB,
+        final messages = await clientB.listChannelMessages(
           channelId: receiverChannelForB.id,
           limit: 40,
         );
@@ -256,7 +254,7 @@ void main() {
 
       test('user can iterate through messages with cursor', () async {
         final senderChannelForA = await socketA.joinChannel(
-          target: sessionB.userId,
+          target: clientB.session!.userId,
           type: ChannelType.directMessage,
           persistence: true,
           hidden: false,
@@ -273,26 +271,22 @@ void main() {
 
         // Check on B's side that the message was received via the REST API
         final receiverChannelForB = await socketB.joinChannel(
-          target: sessionA.userId,
+          target: clientA.session!.userId,
           type: ChannelType.directMessage,
           persistence: true,
           hidden: false,
         );
 
         // List first batch of 20 messages
-        await client
-            .listChannelMessages(
-              session: sessionB,
-              channelId: receiverChannelForB.id,
-            )
+        await clientB
+            .listChannelMessages(channelId: receiverChannelForB.id)
             .then(((messages) {
               expect(messages, isNotNull);
               expect(messages.messages, hasLength(20));
               return messages;
             }))
             .then(
-              (messages) => client.listChannelMessages(
-                session: sessionB,
+              (messages) => clientB.listChannelMessages(
                 channelId: receiverChannelForB.id,
                 cursor: messages.nextCursor,
                 limit: 15,
@@ -322,7 +316,7 @@ void main() {
         );
 
         expect(result.presences, hasLength(1));
-        expect(result.presences.first.userId, equals(sessionA.userId));
+        expect(result.presences.first.userId, clientA.session!.userId);
       });
 
       test(
@@ -348,11 +342,14 @@ void main() {
           // B receives presence event
           socketB.onChannelPresence.listen((presence) {
             expect(presence.leaves, hasLength(1));
-            expect(presence.leaves?.first.userId, equals(sessionA.userId));
+            expect(
+              presence.leaves?.first.userId,
+              clientA.session!.userId,
+            );
           });
 
           // A leaves
-          await socketA.leaveChannel(channelId: channel1.id);
+          await socketA.leaveChannel(channel1.id);
         },
       );
     });

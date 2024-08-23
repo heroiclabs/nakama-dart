@@ -52,13 +52,13 @@ void main() {
       });
 
       clientTest('sign up with email and get account', () async {
-        final session = await client.authenticateEmail(
+        await client.authenticateEmail(
           email: faker.internet.email(),
           password: faker.internet.password(),
           create: true,
         );
 
-        final account = await client.getAccount(session);
+        final account = await client.getAccount();
 
         expect(account, isNotNull);
       });

@@ -32,16 +32,13 @@ class __HomeScreenState extends State<_HomeScreen> {
   late final Client _client;
   late final Socket _socket;
 
-  bool signInError = false;
-
-  Session? _session;
+  bool _signInError = false;
   Account? _account;
   Match? _match;
 
   @override
   void initState() {
     super.initState();
-
     _client = Client(host: nakamaHost);
   }
 
@@ -53,31 +50,24 @@ class __HomeScreenState extends State<_HomeScreen> {
   }
 
   void _signIn(String email, String password) async {
-    setState(() {
-      signInError = false;
-    });
+    setState(() => _signInError = false);
 
     try {
-      final session = await _client.authenticateEmail(
+      await _client.authenticateEmail(
         email: email,
         password: password,
         create: true,
       );
 
       // sign in was successful
-      final profile = await _client.getAccount(session);
+      final account = await _client.getAccount();
+      setState(() => _account = account);
 
-      setState(() {
-        _session = session;
-        _account = profile;
-      });
-
-      _socket = Socket(host: nakamaHost, token: _session!.token);
+      _socket = _client.createSocket();
+      await _socket.connect();
     } catch (_) {
       // sign in failed
-      setState(() {
-        signInError = true;
-      });
+      setState(() => _signInError = true);
     }
   }
 
@@ -87,7 +77,7 @@ class __HomeScreenState extends State<_HomeScreen> {
       appBar: AppBar(title: const Text('Nakama Flutter Demo')),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: _session != null && _account != null
+        child: _account != null
             ? Column(
                 children: [
                   Welcome(_account!),
@@ -105,7 +95,7 @@ class __HomeScreenState extends State<_HomeScreen> {
               )
             : Column(
                 children: [
-                  if (signInError)
+                  if (_signInError)
                     const Text(
                       'Sign in failed. Please try again.',
                       style: TextStyle(color: Colors.red),

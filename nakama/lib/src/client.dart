@@ -15,6 +15,7 @@ import 'models/session.dart';
 import 'models/storage.dart';
 import 'models/tournament.dart';
 import 'rest_client.dart';
+import 'socket.dart';
 
 const defaultHttpPort = 7350;
 const defaultGrpcPort = 7349;
@@ -22,8 +23,17 @@ const defaultSsl = false;
 const defaultLimit = 20;
 const defaultServerKey = 'defaultkey';
 
-/// Client to communicate with the Nakama API.
-abstract class Client {
+/// Client to communicate with the Nakama server.
+///
+/// For real-time communication, create a socket with [createSocket].
+abstract interface class Client {
+  /// Creates a new client that uses the optimal protocol for the current
+  /// platform.
+  ///
+  /// On the Web platform, a client using REST will be created, since gRPC is not
+  /// supported.
+  ///
+  /// On native platforms, a gRPC client will be created.
   factory Client({
     required String host,
     int httpPort = defaultHttpPort,
@@ -39,47 +49,87 @@ abstract class Client {
         serverKey: serverKey,
       );
 
+  /// Creates a new client that uses the REST protocol.
+  ///
+  /// This is supported on all platforms.
   factory Client.rest({
     required String host,
     int httpPort = defaultHttpPort,
+    int grpcPort = defaultGrpcPort,
     bool ssl = defaultSsl,
     String serverKey = defaultServerKey,
   }) =>
       RestClient(
         host: host,
-        port: httpPort,
+        httpPort: httpPort,
+        grpcPort: grpcPort,
         ssl: ssl,
         serverKey: serverKey,
       );
 
+  /// Creates a new client that uses the gRPC protocol.
+  ///
+  /// This is supported on native platforms.
   factory Client.grpc({
     required String host,
+    int httpPort = defaultHttpPort,
     int grpcPort = defaultGrpcPort,
     bool ssl = defaultSsl,
     String serverKey = defaultServerKey,
   }) =>
       GrpcClient(
         host: host,
-        port: grpcPort,
+        httpPort: httpPort,
+        grpcPort: grpcPort,
         ssl: ssl,
         serverKey: serverKey,
       );
 
+  /// The host of the server.
+  String get host;
+
+  /// The HTTP port of the server.
+  int get httpPort;
+
+  /// The gRPC port of the server.
+  int get grpcPort;
+
+  /// Wether to use SSL when connecting to the server.
+  bool get ssl;
+
+  /// The key to use when making unauthenticated requests.
+  String get serverKey;
+
+  /// The current session, if this client is authenticated.
+  ///
+  /// This property can be used to set the session to use for authentication
+  /// with the server.
+  abstract Session? session;
+
+  /// Closes this client and release resources it is using (e.g. connections).
+  ///
+  /// After calling this method, the client is no longer usable.
   Future<void> close();
+
+  /// Creates a new socket for real-time communication with the server.
+  ///
+  /// After creating the socket, you must call [Socket.connect] to establish a
+  /// connection with the server.
+  Socket createSocket({
+    void Function()? onDisconnect,
+    void Function(Object error, StackTrace stackTrace)? onError,
+  });
 
   /// Refresh a user session and return the new session.
   ///
   /// - [session] Current session.
   /// - [vars] Extra information that will be bundled in the session token.
-  Future<Session> sessionRefresh({
-    required Session session,
-    Map<String, String>? vars,
-  });
+  Future<Session> sessionRefresh({Map<String, String>? vars});
 
   /// Logout user session and invalidate refresh token.
   ///
   /// - [session] The session to log out.
-  Future<void> sessionLogout({required Session session});
+  Future<void> sessionLogout();
 
   /// Authenticate a user with an email and password.
   ///
@@ -103,7 +153,6 @@ abstract class Client {
   /// - [password] The password for the user.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> linkEmail({
-    required Session session,
     required String email,
     required String password,
     Map<String, String>? vars,
@@ -116,7 +165,6 @@ abstract class Client {
   /// - [password] The password for the user to remove.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkEmail({
-    required Session session,
     required String email,
     required String password,
     Map<String, String>? vars,
@@ -141,13 +189,11 @@ abstract class Client {
   /// - [deviceId] A device identifier usually obtained from a platform API.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> linkDevice({
-    required Session session,
     required String deviceId,
     Map<String, String>? vars,
   });
 
   Future<void> unlinkDevice({
-    required Session session,
     required String deviceId,
     Map<String, String>? vars,
   });
@@ -174,7 +220,6 @@ abstract class Client {
   /// [import] If the Facebook friends should be imported.
   /// [vars] Extra information that will be bundled in the session token.
   Future<void> linkFacebook({
-    required Session session,
     required String token,
     bool import = false,
     Map<String, String>? vars,
@@ -186,7 +231,6 @@ abstract class Client {
   /// [token] An OAuth access token from the Facebook SDK.
   /// [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkFacebook({
-    required Session session,
     required String token,
     Map<String, String>? vars,
   });
@@ -210,7 +254,6 @@ abstract class Client {
   /// - [token] An OAuth access token from the Google SDK.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> linkGoogle({
-    required Session session,
     required String token,
     Map<String, String>? vars,
   });
@@ -221,7 +264,6 @@ abstract class Client {
   /// - [token] An OAuth access token from the Google SDK.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkGoogle({
-    required Session session,
     required String token,
     Map<String, String>? vars,
   });
@@ -245,7 +287,6 @@ abstract class Client {
   /// [token] An authentication token from the Apple network.
   /// [vars] Extra information that will be bundled in the session token.
   Future<void> linkApple({
-    required Session session,
     required String token,
     Map<String, String>? vars,
   });
@@ -256,7 +297,6 @@ abstract class Client {
   /// [token] The ID token received from Apple to validate.
   /// [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkApple({
-    required Session session,
     required String token,
     Map<String, String>? vars,
   });
@@ -269,13 +309,11 @@ abstract class Client {
   });
 
   Future<void> linkFacebookInstantGame({
-    required Session session,
     required String signedPlayerInfo,
     Map<String, String>? vars,
   });
 
   Future<void> unlinkFacebookInstantGame({
-    required Session session,
     required String signedPlayerInfo,
     Map<String, String>? vars,
   });
@@ -314,7 +352,6 @@ abstract class Client {
   /// - [publicKeyUrl] The URL for the public encryption key.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> linkGameCenter({
-    required Session session,
     required String playerId,
     required String bundleId,
     required int timestampSeconds,
@@ -335,7 +372,6 @@ abstract class Client {
   /// - [publicKeyUrl] The URL for the public encryption key.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkGameCenter({
-    required Session session,
     required String playerId,
     required String bundleId,
     required int timestampSeconds,
@@ -367,7 +403,6 @@ abstract class Client {
   /// - [vars] Extra information that will be bundled in the session token.
   /// - [import] If the Steam friends should be imported.
   Future<void> linkSteam({
-    required Session session,
     required String token,
     Map<String, String>? vars,
     bool import = false,
@@ -380,7 +415,6 @@ abstract class Client {
   /// - [vars] Extra information that will be bundled in the session token.
   /// - [import] If the Steam friends should be imported.
   Future<void> unlinkSteam({
-    required Session session,
     required String token,
     Map<String, String>? vars,
     bool import = false,
@@ -405,7 +439,6 @@ abstract class Client {
   /// - [id] A custom identifier usually obtained from an external authentication service.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> linkCustom({
-    required Session session,
     required String id,
     Map<String, String>? vars,
   });
@@ -416,7 +449,6 @@ abstract class Client {
   /// - [id] A custom identifier usually obtained from an external authentication service.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkCustom({
-    required Session session,
     required String id,
     Map<String, String>? vars,
   });
@@ -430,7 +462,6 @@ abstract class Client {
   /// - [reset] If the Facebook friend import for the user should be reset.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> importFacebookFriends({
-    required Session session,
     required String token,
     bool reset = false,
     Map<String, String>? vars,
@@ -445,7 +476,6 @@ abstract class Client {
   /// - [reset] If the Steam friend import for the user should be reset.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> importSteamFriends({
-    required Session session,
     required String token,
     bool reset = false,
     Map<String, String>? vars,
@@ -454,7 +484,7 @@ abstract class Client {
   /// Fetch the user account owned by the session.
   ///
   /// [session] Current session.
-  Future<Account> getAccount(Session session);
+  Future<Account> getAccount();
 
   /// Update the current user's account on the server.
   ///
@@ -466,7 +496,6 @@ abstract class Client {
   /// [location] A new location for the user.
   /// [timezone] New timezone information for the user.
   Future<void> updateAccount({
-    required Session session,
     String? username,
     String? displayName,
     String? avatarUrl,
@@ -482,7 +511,6 @@ abstract class Client {
   /// - [usernames] The usernames of the users to retrieve.
   /// - [facebookIds] The Facebook IDs of the users to retrieve.
   Future<List<User>> getUsers({
-    required Session session,
     required List<String> ids,
     List<String>? usernames,
     List<String>? facebookIds,
@@ -493,7 +521,6 @@ abstract class Client {
   /// - [session] Current session.
   /// - [objects] The objects to write.
   Future<void> writeStorageObjects({
-    required Session session,
     required Iterable<StorageObjectWrite> objects,
   });
 
@@ -504,7 +531,6 @@ abstract class Client {
   /// - [limit] The number of objects to list. Maximum is 100.
   /// - [cursor] A cursor to paginate over the collection. Can be null.
   Future<StorageObjectList> listStorageObjects({
-    required Session session,
     required String collection,
     int? limit,
     String? cursor,
@@ -516,7 +542,6 @@ abstract class Client {
   /// - [session] Current session.
   /// - [objectIds] The ids of the objects to delete.
   Future<void> deleteStorageObjects({
-    required Session session,
     required Iterable<StorageObjectId> objectIds,
   });
 
@@ -525,7 +550,6 @@ abstract class Client {
   /// - [session] Current session.
   /// - [objectIds] The ids of the objects to read.
   Future<List<StorageObject>> readStorageObjects({
-    required Session session,
     required Iterable<StorageObjectId> objectIds,
   });
 
@@ -537,7 +561,6 @@ abstract class Client {
   /// - [forward] Fetch messages forward from the current cursor or the start.
   /// - [cursor] A cursor for the current position in the messages history to list.
   Future<ChannelMessageList> listChannelMessages({
-    required Session session,
     required String channelId,
     int limit = defaultLimit,
     bool? forward,
@@ -553,7 +576,6 @@ abstract class Client {
   /// - [limit] The number of records to list.
   /// - [cursor] A cursor for the current position in the leaderboard records to list.
   Future<LeaderboardRecordList> listLeaderboardRecords({
-    required Session session,
     required String leaderboardName,
     List<String>? ownerIds,
     int limit = defaultLimit,
@@ -569,7 +591,6 @@ abstract class Client {
   /// - [expiry] Expiry in seconds (since epoch) to begin fetching records from. 0 means from current time.
   /// - [limit] The number of records to list.
   Future<LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
-    required Session session,
     required String leaderboardName,
     required String ownerId,
     int limit = defaultLimit,
@@ -581,7 +602,6 @@ abstract class Client {
   /// - [session] Current session.
   /// - [leaderboardName] The name of the leaderboard with the record to be deleted.
   Future<LeaderboardRecord> writeLeaderboardRecord({
-    required Session session,
     required String leaderboardName,
     required int score,
     int? subscore,
@@ -593,7 +613,6 @@ abstract class Client {
   /// - [session] Current session.
   /// - [leaderboardName] The id of the leaderboard with the records to be deleted.
   Future<void> deleteLeaderboardRecord({
-    required Session session,
     required String leaderboardName,
   });
 
@@ -603,7 +622,6 @@ abstract class Client {
   /// - [ids] The ids of the users to add or invite as friends.
   /// - [usernames] The usernames of the users to add as friends.
   Future<void> addFriends({
-    required Session session,
     required List<String> ids,
     List<String>? usernames,
   });
@@ -615,7 +633,6 @@ abstract class Client {
   /// - [limit] The number of friends to list.
   /// - [cursor] A cursor for the current position in the friends list.
   Future<FriendsList> listFriends({
-    required Session session,
     FriendshipState? friendshipState,
     int limit = defaultLimit,
     String? cursor,
@@ -627,7 +644,6 @@ abstract class Client {
   /// - [ids] The user ids to remove as friends.
   /// - [usernames] The usernames to remove as friends.
   Future<void> deleteFriends({
-    required Session session,
     required List<String> ids,
     List<String>? usernames,
   });
@@ -638,7 +654,6 @@ abstract class Client {
   /// - [ids] The user ids to block.
   /// - [usernames] The usernames to block.
   Future<void> blockFriends({
-    required Session session,
     required List<String> ids,
     List<String>? usernames,
   });
@@ -653,7 +668,6 @@ abstract class Client {
   /// - [open] If the group should have open membership. Defaults to false (private).
   /// - [maxCount] The maximum number of members allowed.
   Future<Group> createGroup({
-    required Session session,
     required String name,
     String? avatarUrl,
     String? description,
@@ -673,7 +687,6 @@ abstract class Client {
   /// - [langTag] A new language tag in BCP-47 format for the group.
   /// - [maxCount] The maximum number of members allowed.
   Future<void> updateGroup({
-    required Session session,
     required String groupId,
     required bool open,
     String? name,
@@ -693,7 +706,6 @@ abstract class Client {
   /// - [open] The open/closed filter to apply to the group list.
   /// - [limit] The number of groups to list.
   Future<GroupList> listGroups({
-    required Session session,
     String? name,
     String? cursor,
     String? langTag,
@@ -707,7 +719,6 @@ abstract class Client {
   /// - [session] Current session.
   /// - [groupId] The group id to remove.
   Future<void> deleteGroup({
-    required Session session,
     required String groupId,
   });
 
@@ -716,7 +727,6 @@ abstract class Client {
   /// - [session] Current session.
   /// - [groupId] The ID of the group to join.
   Future<void> joinGroup({
-    required Session session,
     required String groupId,
   });
 
@@ -728,7 +738,6 @@ abstract class Client {
   /// - [limit] The number of records to list.
   /// - [cursor] A cursor for the current position in the listing.
   Future<UserGroupList> listUserGroups({
-    required Session session,
     String? userId,
     GroupMembershipState? state,
     int limit = defaultLimit,
@@ -743,7 +752,6 @@ abstract class Client {
   /// - [limit] The number of groups to list.
   /// - [cursor] A cursor for the current position in the group listing.
   Future<GroupUserList> listGroupUsers({
-    required Session session,
     required String groupId,
     String? cursor,
     int limit = defaultLimit,
@@ -756,7 +764,6 @@ abstract class Client {
   /// - [groupId] The id of the group to add users into.
   /// - [userIds] The ids of the users to add or invite to the group.
   Future<void> addGroupUsers({
-    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
@@ -767,7 +774,6 @@ abstract class Client {
   /// - [groupId] The ID of the group to promote users into.
   /// - [userIds] The IDs of the users to promote.
   Future<void> promoteGroupUsers({
-    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
@@ -778,7 +784,6 @@ abstract class Client {
   /// - [groupId] The group to demote users in.
   /// - [userIds] The IDs of the users to demote.
   Future<void> demoteGroupUsers({
-    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
@@ -789,7 +794,6 @@ abstract class Client {
   /// - [groupId] The ID of the group.
   /// - [userIds] The IDs of the users to kick.
   Future<void> kickGroupUsers({
-    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
@@ -800,7 +804,6 @@ abstract class Client {
   /// - [groupId] The group to ban the users from.
   /// - [userIds] The IDs of the users to ban.
   Future<void> banGroupUsers({
-    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   });
@@ -810,7 +813,6 @@ abstract class Client {
   /// - [session] Current session.
   /// - [groupId] The ID of the group to leave.
   Future<void> leaveGroup({
-    required Session session,
     required String groupId,
   });
 
@@ -820,7 +822,6 @@ abstract class Client {
   /// - [limit] The number of notifications to list.
   /// - [cursor] A cursor for the current position in notifications to list.
   Future<NotificationList> listNotifications({
-    required Session session,
     int limit = defaultLimit,
     String? cursor,
   });
@@ -830,7 +831,6 @@ abstract class Client {
   /// - [session] The session of the user.
   /// - [notificationIds] The notification ids to remove.
   Future<void> deleteNotifications({
-    required Session session,
     required Iterable<String> notificationIds,
   });
 
@@ -844,7 +844,6 @@ abstract class Client {
   /// - [minSize] The minimum number of match participants.
   /// - [query] A query for the matches to filter.
   Future<List<Match>> listMatches({
-    required Session session,
     bool? authoritative,
     String? label,
     int limit = defaultLimit,
@@ -858,7 +857,6 @@ abstract class Client {
   /// - [session] Current session.
   /// - [tournamentId] The ID of the tournament to join.
   Future<void> joinTournament({
-    required Session session,
     required String tournamentId,
   });
 
@@ -872,7 +870,6 @@ abstract class Client {
   /// - [limit] The number of tournaments to list.
   /// - [cursor] An optional cursor for the next page of tournaments.
   Future<TournamentList> listTournaments({
-    required Session session,
     int? categoryStart,
     int? categoryEnd,
     String? cursor,
@@ -890,7 +887,6 @@ abstract class Client {
   /// - [limit] The number of records to list.
   /// - [cursor] An optional cursor for the next page of tournament records.
   Future<TournamentRecordList> listTournamentRecords({
-    required Session session,
     required String tournamentId,
     required Iterable<String> ownerIds,
     int? expiry,
@@ -906,7 +902,6 @@ abstract class Client {
   /// - [expiry] Expiry in seconds (since epoch) to begin fetching records from.
   /// - [limit] The number of records to list.
   Future<TournamentRecordList> listTournamentRecordsAroundOwner({
-    required Session session,
     required String tournamentId,
     required String ownerId,
     int? expiry,
@@ -922,7 +917,6 @@ abstract class Client {
   /// - [metadata] The metadata for the tournament record.
   /// - [operator] The operator for the record that can be used to override the one set in the tournament.
   Future<LeaderboardRecord> writeTournamentRecord({
-    required Session session,
     required String tournamentId,
     required int score,
     int? subscore,
@@ -936,7 +930,6 @@ abstract class Client {
   /// - [id] The ID of the function to execute.
   /// - [payload] The payload to send with the function call.
   Future<String?> rpc({
-    required Session session,
     required String id,
     String? payload,
   });

@@ -17,64 +17,82 @@ import 'models/response_error.dart';
 import 'models/session.dart';
 import 'models/storage.dart';
 import 'models/tournament.dart';
+import 'socket.dart';
 
 /// [Client] for communicating with Nakama via REST.
 ///
 /// [RestClient] abstracts the REST calls and handles authentication
 /// for you.
 class RestClient implements Client {
-  RestClient({
+  factory RestClient({
     required String host,
-    int port = defaultHttpPort,
-    bool ssl = defaultSsl,
-    String path = '',
+    required int httpPort,
+    required int grpcPort,
+    required bool ssl,
+    String? path,
     required String serverKey,
   }) {
-    apiBaseUrl = Uri(
+    final baseUrl = Uri(
       host: host,
       scheme: ssl ? 'https' : 'http',
-      port: port,
+      port: httpPort,
       path: path,
     );
-    _dio = Dio(BaseOptions(baseUrl: apiBaseUrl.toString()));
-    _dio.interceptors.add(InterceptorsWrapper(
+    final dio = Dio(BaseOptions(baseUrl: baseUrl.toString()));
+    final api = ApiClient(dio, baseUrl: baseUrl.toString());
+    return RestClient._(
+      host: host,
+      httpPort: httpPort,
+      grpcPort: grpcPort,
+      ssl: ssl,
+      serverKey: serverKey,
+      dio: dio,
+      api: api,
+    );
+  }
+
+  RestClient._({
+    required this.host,
+    required this.httpPort,
+    required this.grpcPort,
+    required this.ssl,
+    required this.serverKey,
+    required Dio dio,
+    required ApiClient api,
+  })  : _dio = dio,
+        _api = api {
+    dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
-        if (_session != null) {
-          options.headers.putIfAbsent(
-            'Authorization',
-            () => 'Bearer ${_session!.token}',
-          );
-        } else {
-          options.headers.putIfAbsent(
-            'Authorization',
-            () => 'Basic ${base64Encode('$serverKey:'.codeUnits)}',
-          );
-        }
+        options.headers.putIfAbsent(
+          'Authorization',
+          () => switch (session) {
+            final session? => 'Bearer ${session.token}',
+            _ => 'Basic ${base64Encode('$serverKey:'.codeUnits)}'
+          },
+        );
 
         handler.next(options);
       },
     ));
-    _api = ApiClient(
-      _dio,
-      baseUrl: apiBaseUrl.toString(),
-    );
   }
 
-  late final Dio _dio;
-  late final ApiClient _api;
+  @override
+  final String host;
+  @override
+  final int httpPort;
+  @override
+  final int grpcPort;
+  @override
+  final bool ssl;
+  @override
+  final String serverKey;
 
-  /// The key used to authenticate with the server without a session.
-  /// Defaults to "defaultkey".
-  late final String serverKey;
+  final Dio _dio;
+  final ApiClient _api;
 
-  late final Uri apiBaseUrl;
+  @override
+  Session? session;
 
-  /// Temporarily holds the current valid session to use in the Chopper
-  /// interceptor for JWT auth.
-  Session? _session;
-
-  /// Handles errors and returns a [ResponseError] if the error is a [DioException] and the response data is not null.
-  /// Otherwise it returns the error as is.
   Exception _handleError(Exception e) {
     if (e is DioException) {
       return e.response != null ? ResponseError.fromJson(e.response!.data) : e;
@@ -87,35 +105,44 @@ class RestClient implements Client {
   Future<void> close() async => _dio.close(force: true);
 
   @override
-  Future<Session> sessionRefresh({
-    required Session session,
-    Map<String, String>? vars,
-  }) async {
-    if (session.refreshToken == null) {
+  Socket createSocket({
+    void Function()? onDisconnect,
+    void Function(Object error, StackTrace stackTrace)? onError,
+  }) {
+    return SocketImpl(
+      client: this,
+      onDisconnect: onDisconnect,
+      onError: onError,
+    );
+  }
+
+  @override
+  Future<Session> sessionRefresh({Map<String, String>? vars}) async {
+    final refreshToken = session?.refreshToken;
+    if (refreshToken == null) {
       throw Exception('Session does not have a refresh token.');
     }
 
     try {
-      final newSession = await _api.sessionRefresh(
+      final session = await _api.sessionRefresh(
         body: ApiSessionRefreshRequest(
-          token: session.refreshToken!,
+          token: refreshToken,
           vars: vars,
         ),
       );
-      return Session.fromApi(newSession);
+      return this.session = Session.fromApi(session);
     } on Exception catch (e) {
       throw _handleError(e);
     }
   }
 
   @override
-  Future<void> sessionLogout({required Session session}) async {
-    _session = session;
+  Future<void> sessionLogout() async {
     try {
       await _api.sessionLogout(
         body: ApiSessionLogoutRequest(
-          refreshToken: session.refreshToken!,
-          token: session.token,
+          refreshToken: session!.refreshToken!,
+          token: session!.token,
         ),
       );
     } on Exception catch (e) {
@@ -131,7 +158,7 @@ class RestClient implements Client {
     bool create = false,
     Map<String, String>? vars,
   }) async {
-    _session = null;
+    session = null;
     try {
       final session = await _api.authenticateEmail(
         body: ApiAccountEmail(
@@ -141,7 +168,7 @@ class RestClient implements Client {
         ),
         username: username,
       );
-      return Session.fromApi(session);
+      return this.session = Session.fromApi(session);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -149,7 +176,6 @@ class RestClient implements Client {
 
   @override
   Future<void> linkEmail({
-    required Session session,
     required String email,
     required String password,
     Map<String, String>? vars,
@@ -169,7 +195,6 @@ class RestClient implements Client {
 
   @override
   Future<void> unlinkEmail({
-    required Session session,
     required String email,
     required String password,
     Map<String, String>? vars,
@@ -194,7 +219,7 @@ class RestClient implements Client {
     String? username,
     Map<String, String>? vars,
   }) async {
-    _session = null;
+    session = null;
 
     try {
       final session = await _api.authenticateDevice(
@@ -202,7 +227,7 @@ class RestClient implements Client {
         create: create,
         username: username,
       );
-      return Session.fromApi(session);
+      return this.session = Session.fromApi(session);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -210,7 +235,6 @@ class RestClient implements Client {
 
   @override
   Future<void> linkDevice({
-    required Session session,
     required String deviceId,
     Map<String, String>? vars,
   }) async {
@@ -225,7 +249,6 @@ class RestClient implements Client {
 
   @override
   Future<void> unlinkDevice({
-    required Session session,
     required String deviceId,
     Map<String, String>? vars,
   }) async {
@@ -246,7 +269,7 @@ class RestClient implements Client {
     Map<String, String>? vars,
     bool import = false,
   }) async {
-    _session = null;
+    session = null;
 
     try {
       final session = await _api.authenticateFacebook(
@@ -258,7 +281,7 @@ class RestClient implements Client {
         create: create,
         username: username,
       );
-      return Session.fromApi(session);
+      return this.session = Session.fromApi(session);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -266,7 +289,6 @@ class RestClient implements Client {
 
   @override
   Future<void> linkFacebook({
-    required Session session,
     required String token,
     bool import = false,
     Map<String, String>? vars,
@@ -286,7 +308,6 @@ class RestClient implements Client {
 
   @override
   Future<void> unlinkFacebook({
-    required Session session,
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -309,7 +330,7 @@ class RestClient implements Client {
     String? username,
     Map<String, String>? vars,
   }) async {
-    _session = null;
+    session = null;
 
     try {
       final session = await _api.authenticateGoogle(
@@ -320,7 +341,7 @@ class RestClient implements Client {
         create: create,
         username: username,
       );
-      return Session.fromApi(session);
+      return this.session = Session.fromApi(session);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -328,7 +349,6 @@ class RestClient implements Client {
 
   @override
   Future<void> linkGoogle({
-    required Session session,
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -346,7 +366,6 @@ class RestClient implements Client {
 
   @override
   Future<void> unlinkGoogle({
-    required Session session,
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -369,7 +388,7 @@ class RestClient implements Client {
     String? username,
     Map<String, String>? vars,
   }) async {
-    _session = null;
+    session = null;
 
     try {
       final session = await _api.authenticateApple(
@@ -380,7 +399,7 @@ class RestClient implements Client {
         create: create,
         username: username,
       );
-      return Session.fromApi(session);
+      return this.session = Session.fromApi(session);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -388,7 +407,6 @@ class RestClient implements Client {
 
   @override
   Future<void> linkApple({
-    required Session session,
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -406,7 +424,6 @@ class RestClient implements Client {
 
   @override
   Future<void> unlinkApple({
-    required Session session,
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -429,7 +446,7 @@ class RestClient implements Client {
     String? username,
     Map<String, String>? vars,
   }) async {
-    _session = null;
+    session = null;
 
     try {
       final session = await _api.authenticateFacebookInstantGame(
@@ -440,7 +457,7 @@ class RestClient implements Client {
         create: create,
         username: username,
       );
-      return Session.fromApi(session);
+      return this.session = Session.fromApi(session);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -448,7 +465,6 @@ class RestClient implements Client {
 
   @override
   Future<void> linkFacebookInstantGame({
-    required Session session,
     required String signedPlayerInfo,
     Map<String, String>? vars,
   }) async {
@@ -466,7 +482,6 @@ class RestClient implements Client {
 
   @override
   Future<void> unlinkFacebookInstantGame({
-    required Session session,
     required String signedPlayerInfo,
     Map<String, String>? vars,
   }) async {
@@ -494,7 +509,7 @@ class RestClient implements Client {
     String? username,
     Map<String, String>? vars,
   }) async {
-    _session = null;
+    session = null;
 
     try {
       final session = await _api.authenticateGameCenter(
@@ -510,7 +525,7 @@ class RestClient implements Client {
         create: create,
         username: username,
       );
-      return Session.fromApi(session);
+      return this.session = Session.fromApi(session);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -518,7 +533,6 @@ class RestClient implements Client {
 
   @override
   Future<void> linkGameCenter({
-    required Session session,
     required String playerId,
     required String bundleId,
     required int timestampSeconds,
@@ -546,7 +560,6 @@ class RestClient implements Client {
 
   @override
   Future<void> unlinkGameCenter({
-    required Session session,
     required String playerId,
     required String bundleId,
     required int timestampSeconds,
@@ -580,7 +593,7 @@ class RestClient implements Client {
     Map<String, String>? vars,
     bool import = false,
   }) async {
-    _session = null;
+    session = null;
 
     try {
       final session = await _api.authenticateSteam(
@@ -589,7 +602,7 @@ class RestClient implements Client {
         username: username,
         sync: import,
       );
-      return Session.fromApi(session);
+      return this.session = Session.fromApi(session);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -597,7 +610,6 @@ class RestClient implements Client {
 
   @override
   Future<void> linkSteam({
-    required Session session,
     required String token,
     Map<String, String>? vars,
     bool import = false,
@@ -616,7 +628,6 @@ class RestClient implements Client {
 
   @override
   Future<void> unlinkSteam({
-    required Session session,
     required String token,
     Map<String, String>? vars,
     bool import = false,
@@ -643,7 +654,7 @@ class RestClient implements Client {
         create: create,
         username: username,
       );
-      return Session.fromApi(session);
+      return this.session = Session.fromApi(session);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -651,7 +662,6 @@ class RestClient implements Client {
 
   @override
   Future<void> linkCustom({
-    required Session session,
     required String id,
     Map<String, String>? vars,
   }) async {
@@ -666,7 +676,6 @@ class RestClient implements Client {
 
   @override
   Future<void> unlinkCustom({
-    required Session session,
     required String id,
     Map<String, String>? vars,
   }) async {
@@ -681,13 +690,10 @@ class RestClient implements Client {
 
   @override
   Future<void> importFacebookFriends({
-    required Session session,
     required String token,
     bool reset = false,
     Map<String, String>? vars,
   }) async {
-    _session = session;
-
     try {
       await _api.importFacebookFriends(
         body: ApiAccountFacebook(
@@ -703,13 +709,10 @@ class RestClient implements Client {
 
   @override
   Future<void> importSteamFriends({
-    required Session session,
     required String token,
     bool reset = false,
     Map<String, String>? vars,
   }) async {
-    _session = session;
-
     try {
       await _api.importSteamFriends(
         body: ApiAccountSteam(token: token, vars: vars),
@@ -721,9 +724,7 @@ class RestClient implements Client {
   }
 
   @override
-  Future<Account> getAccount(Session session) async {
-    _session = session;
-
+  Future<Account> getAccount() async {
     try {
       final account = await _api.getAccount();
 
@@ -735,7 +736,6 @@ class RestClient implements Client {
 
   @override
   Future<void> updateAccount({
-    required Session session,
     String? username,
     String? displayName,
     String? avatarUrl,
@@ -743,8 +743,6 @@ class RestClient implements Client {
     String? location,
     String? timezone,
   }) async {
-    _session = session;
-
     try {
       await _api.updateAccount(
         body: ApiUpdateAccountRequest(
@@ -763,12 +761,10 @@ class RestClient implements Client {
 
   @override
   Future<List<User>> getUsers({
-    required Session session,
     List<String>? facebookIds,
     required List<String> ids,
     List<String>? usernames,
   }) async {
-    _session = session;
     try {
       final users = await _api.getUsers(
         ids: ids,
@@ -787,11 +783,8 @@ class RestClient implements Client {
 
   @override
   Future<void> writeStorageObjects({
-    required Session session,
     required Iterable<StorageObjectWrite> objects,
   }) async {
-    _session = session;
-
     try {
       await _api.writeStorageObjects(
         body: ApiWriteStorageObjectsRequest(
@@ -814,14 +807,11 @@ class RestClient implements Client {
 
   @override
   Future<StorageObjectList> listStorageObjects({
-    required Session session,
     required String collection,
     String? cursor,
     String? userId,
     int? limit = defaultLimit,
   }) async {
-    _session = session;
-
     try {
       final objects = await _api.listStorageObjects(
         collection: collection,
@@ -838,11 +828,8 @@ class RestClient implements Client {
 
   @override
   Future<List<StorageObject>> readStorageObjects({
-    required Session session,
     required Iterable<StorageObjectId> objectIds,
   }) async {
-    _session = session;
-
     try {
       final objects = await _api.readStorageObjects(
         body: ApiReadStorageObjectsRequest(
@@ -867,11 +854,8 @@ class RestClient implements Client {
 
   @override
   Future<void> deleteStorageObjects({
-    required Session session,
     required Iterable<StorageObjectId> objectIds,
   }) async {
-    _session = session;
-
     try {
       await _api.deleteStorageObjects(
         body: ApiDeleteStorageObjectsRequest(
@@ -891,14 +875,11 @@ class RestClient implements Client {
 
   @override
   Future<ChannelMessageList> listChannelMessages({
-    required Session session,
     required String channelId,
     int limit = defaultLimit,
     bool? forward,
     String? cursor,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listChannelMessages(
         channelId: channelId,
@@ -915,15 +896,12 @@ class RestClient implements Client {
 
   @override
   Future<LeaderboardRecordList> listLeaderboardRecords({
-    required Session session,
     required String leaderboardName,
     List<String>? ownerIds,
     int limit = defaultLimit,
     String? cursor,
     DateTime? expiry,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listLeaderboardRecords(
         leaderboardId: leaderboardName,
@@ -943,14 +921,11 @@ class RestClient implements Client {
 
   @override
   Future<LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
-    required Session session,
     required String leaderboardName,
     required String ownerId,
     int limit = defaultLimit,
     DateTime? expiry,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listLeaderboardRecordsAroundOwner(
         leaderboardId: leaderboardName,
@@ -969,15 +944,12 @@ class RestClient implements Client {
 
   @override
   Future<LeaderboardRecord> writeLeaderboardRecord({
-    required Session session,
     required String leaderboardName,
     required int score,
     int? subscore,
     String? metadata,
     LeaderboardOperator? operator,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.writeLeaderboardRecord(
           leaderboardId: leaderboardName,
@@ -996,11 +968,8 @@ class RestClient implements Client {
 
   @override
   Future<void> deleteLeaderboardRecord({
-    required Session session,
     required String leaderboardName,
   }) async {
-    _session = session;
-
     try {
       await _api.deleteLeaderboardRecord(leaderboardId: leaderboardName);
     } on Exception catch (e) {
@@ -1010,12 +979,9 @@ class RestClient implements Client {
 
   @override
   Future<void> addFriends({
-    required Session session,
     required List<String> ids,
     List<String>? usernames,
   }) async {
-    _session = session;
-
     try {
       await _api.addFriends(ids: ids, usernames: usernames ?? []);
     } on Exception catch (e) {
@@ -1025,13 +991,10 @@ class RestClient implements Client {
 
   @override
   Future<FriendsList> listFriends({
-    required Session session,
     FriendshipState? friendshipState,
     int limit = defaultLimit,
     String? cursor,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listFriends(
         cursor: cursor,
@@ -1047,12 +1010,9 @@ class RestClient implements Client {
 
   @override
   Future<void> deleteFriends({
-    required Session session,
     required List<String> ids,
     List<String>? usernames,
   }) async {
-    _session = session;
-
     try {
       await _api.deleteFriends(
         ids: ids,
@@ -1065,12 +1025,9 @@ class RestClient implements Client {
 
   @override
   Future<void> blockFriends({
-    required Session session,
     required List<String> ids,
     List<String>? usernames,
   }) async {
-    _session = session;
-
     try {
       await _api.blockFriends(
         ids: ids,
@@ -1083,7 +1040,6 @@ class RestClient implements Client {
 
   @override
   Future<Group> createGroup({
-    required Session session,
     required String name,
     String? avatarUrl,
     String? description,
@@ -1091,8 +1047,6 @@ class RestClient implements Client {
     int? maxCount,
     bool open = false,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.createGroup(
         body: ApiCreateGroupRequest(
@@ -1113,7 +1067,6 @@ class RestClient implements Client {
 
   @override
   Future<void> updateGroup({
-    required Session session,
     required String groupId,
     String? name,
     String? avatarUrl,
@@ -1122,8 +1075,6 @@ class RestClient implements Client {
     int? maxCount,
     bool? open,
   }) async {
-    _session = session;
-
     try {
       await _api.updateGroup(
         groupId: groupId,
@@ -1143,7 +1094,6 @@ class RestClient implements Client {
 
   @override
   Future<GroupList> listGroups({
-    required Session session,
     String? name,
     String? cursor,
     String? langTag,
@@ -1151,8 +1101,6 @@ class RestClient implements Client {
     bool? open,
     int limit = defaultLimit,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listGroups(
         cursor: cursor,
@@ -1171,11 +1119,8 @@ class RestClient implements Client {
 
   @override
   Future<void> deleteGroup({
-    required Session session,
     required String groupId,
   }) async {
-    _session = session;
-
     try {
       await _api.deleteGroup(groupId: groupId);
     } on Exception catch (e) {
@@ -1185,11 +1130,8 @@ class RestClient implements Client {
 
   @override
   Future<void> joinGroup({
-    required Session session,
     required String groupId,
   }) async {
-    _session = session;
-
     try {
       await _api.joinGroup(groupId: groupId);
     } on Exception catch (e) {
@@ -1199,20 +1141,17 @@ class RestClient implements Client {
 
   @override
   Future<UserGroupList> listUserGroups({
-    required Session session,
     String? cursor,
     int limit = defaultLimit,
     GroupMembershipState? state,
     String? userId,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listUserGroups(
         cursor: cursor,
         limit: limit,
         state: state?.index,
-        userId: userId ?? session.userId,
+        userId: userId ?? session!.userId,
       );
 
       return UserGroupList.fromJson(res.toJson());
@@ -1223,14 +1162,11 @@ class RestClient implements Client {
 
   @override
   Future<GroupUserList> listGroupUsers({
-    required Session session,
     required String groupId,
     String? cursor,
     int limit = defaultLimit,
     GroupMembershipState? state,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listGroupUsers(
         groupId: groupId,
@@ -1247,12 +1183,9 @@ class RestClient implements Client {
 
   @override
   Future<void> addGroupUsers({
-    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   }) async {
-    _session = session;
-
     try {
       await _api.addGroupUsers(
         groupId: groupId,
@@ -1265,12 +1198,9 @@ class RestClient implements Client {
 
   @override
   Future<void> promoteGroupUsers({
-    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   }) async {
-    _session = session;
-
     try {
       await _api.promoteGroupUsers(
         groupId: groupId,
@@ -1283,12 +1213,9 @@ class RestClient implements Client {
 
   @override
   Future<void> demoteGroupUsers({
-    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   }) async {
-    _session = session;
-
     try {
       await _api.demoteGroupUsers(
         groupId: groupId,
@@ -1301,12 +1228,9 @@ class RestClient implements Client {
 
   @override
   Future<void> kickGroupUsers({
-    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   }) async {
-    _session = session;
-
     try {
       await _api.kickGroupUsers(
         groupId: groupId,
@@ -1319,12 +1243,9 @@ class RestClient implements Client {
 
   @override
   Future<void> banGroupUsers({
-    required Session session,
     required String groupId,
     required Iterable<String> userIds,
   }) async {
-    _session = session;
-
     try {
       await _api.banGroupUsers(
         groupId: groupId,
@@ -1337,11 +1258,8 @@ class RestClient implements Client {
 
   @override
   Future<void> leaveGroup({
-    required Session session,
     required String groupId,
   }) async {
-    _session = session;
-
     try {
       await _api.leaveGroup(groupId: groupId);
     } on Exception catch (e) {
@@ -1351,12 +1269,9 @@ class RestClient implements Client {
 
   @override
   Future<NotificationList> listNotifications({
-    required Session session,
     int limit = defaultLimit,
     String? cursor,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listNotifications(
         limit: limit,
@@ -1371,11 +1286,8 @@ class RestClient implements Client {
 
   @override
   Future<void> deleteNotifications({
-    required Session session,
     required Iterable<String> notificationIds,
   }) async {
-    _session = session;
-
     try {
       await _api.deleteNotifications(
         ids: notificationIds.toList(growable: false),
@@ -1387,7 +1299,6 @@ class RestClient implements Client {
 
   @override
   Future<List<Match>> listMatches({
-    required Session session,
     bool? authoritative,
     String? label,
     int limit = defaultLimit,
@@ -1395,8 +1306,6 @@ class RestClient implements Client {
     int? minSize,
     String? query,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listMatches(
         authoritative: authoritative,
@@ -1418,11 +1327,8 @@ class RestClient implements Client {
 
   @override
   Future<void> joinTournament({
-    required Session session,
     required String tournamentId,
   }) async {
-    _session = session;
-
     try {
       await _api.joinTournament(tournamentId: tournamentId);
     } on Exception catch (e) {
@@ -1432,7 +1338,6 @@ class RestClient implements Client {
 
   @override
   Future<TournamentList> listTournaments({
-    required Session session,
     int? categoryStart,
     int? categoryEnd,
     String? cursor,
@@ -1440,8 +1345,6 @@ class RestClient implements Client {
     DateTime? endTime,
     int limit = defaultLimit,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listTournaments(
         categoryStart: categoryStart,
@@ -1462,15 +1365,12 @@ class RestClient implements Client {
 
   @override
   Future<TournamentRecordList> listTournamentRecords({
-    required Session session,
     required String tournamentId,
     required Iterable<String> ownerIds,
     int? expiry,
     int limit = defaultLimit,
     String? cursor,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listTournamentRecords(
         ownerIds: ownerIds.toList(growable: false),
@@ -1488,14 +1388,11 @@ class RestClient implements Client {
 
   @override
   Future<TournamentRecordList> listTournamentRecordsAroundOwner({
-    required Session session,
     required String tournamentId,
     required String ownerId,
     int? expiry,
     int limit = defaultLimit,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.listTournamentRecordsAroundOwner(
         ownerId: ownerId,
@@ -1512,15 +1409,12 @@ class RestClient implements Client {
 
   @override
   Future<LeaderboardRecord> writeTournamentRecord({
-    required Session session,
     required String tournamentId,
     String? metadata,
     LeaderboardOperator? operator,
     int? score,
     int? subscore,
   }) async {
-    _session = session;
-
     try {
       final res = await _api.writeTournamentRecord(
         tournamentId: tournamentId,
@@ -1540,12 +1434,9 @@ class RestClient implements Client {
 
   @override
   Future<String?> rpc({
-    required Session session,
     required String id,
     String? payload,
   }) async {
-    _session = session;
-
     try {
       ApiRpc res;
 
