@@ -1089,7 +1089,7 @@ class RestClient implements Client {
     String? description,
     String? langTag,
     int? maxCount,
-    bool? open,
+    bool open = false,
   }) async {
     _session = session;
 

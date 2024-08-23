@@ -88,3 +88,7 @@ tool/nakama_server/.cookie
 
 # Docker
 .cookie
+
+# NodeJS
+node_modules/
+build/

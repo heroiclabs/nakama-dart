@@ -904,7 +904,7 @@ class GrpcClient implements Client {
     String? description,
     String? langTag,
     int? maxCount,
-    bool? open,
+    bool open = false,
   }) async {
     final res = await _client.createGroup(
       api.CreateGroupRequest(

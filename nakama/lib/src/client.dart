@@ -659,7 +659,7 @@ abstract class Client {
     String? description,
     String? langTag,
     int? maxCount,
-    bool? open,
+    bool open = false,
   });
 
   /// Update a group. The user must have the correct access permissions for the group.
