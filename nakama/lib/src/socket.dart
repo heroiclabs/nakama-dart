@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:logging/logging.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'api/api.dart' as api;
@@ -141,63 +140,56 @@ class SocketImpl implements Socket {
         _onDisconnect = onDisconnect,
         _client = client;
 
-  static final _log = Logger('NakamaSocket');
-
   final Client _client;
   final void Function()? _onDisconnect;
   final void Function(Object error, StackTrace stackTrace)? _onError;
   WebSocketChannel? _channel;
-  final _eventControllers = <Type, StreamController>{};
+  StreamSubscription? _channelSubscription;
+  final _eventController = StreamController<Object>.broadcast();
   int _nextRequestId = 0;
   final _requestCompleters = <int, Completer>{};
 
   @override
-  Stream<ChannelPresenceEvent> get onChannelPresence => _getEventStream();
+  Stream<ChannelPresenceEvent> get onChannelPresence => _eventsOfType();
 
   @override
-  Stream<MatchmakerMatched> get onMatchmakerMatched => _getEventStream();
+  Stream<MatchmakerMatched> get onMatchmakerMatched => _eventsOfType();
 
   @override
-  Stream<MatchData> get onMatchData => _getEventStream();
+  Stream<MatchData> get onMatchData => _eventsOfType();
 
   @override
-  Stream<PartyPresenceEvent> get onPartyPresence => _getEventStream();
+  Stream<PartyPresenceEvent> get onPartyPresence => _eventsOfType();
 
   @override
-  Stream<PartyLeader> get onPartyLeader => _getEventStream();
+  Stream<PartyLeader> get onPartyLeader => _eventsOfType();
 
   @override
-  Stream<PartyData> get onPartyData => _getEventStream();
+  Stream<PartyData> get onPartyData => _eventsOfType();
 
   @override
-  Stream<MatchPresenceEvent> get onMatchPresence => _getEventStream();
+  Stream<MatchPresenceEvent> get onMatchPresence => _eventsOfType();
 
   @override
-  Stream<Notification> get onNotifications => _getEventStream();
+  Stream<Notification> get onNotifications => _eventsOfType();
 
   @override
-  Stream<StatusPresenceEvent> get onStatusPresence => _getEventStream();
+  Stream<StatusPresenceEvent> get onStatusPresence => _eventsOfType();
 
   @override
-  Stream<StreamPresenceEvent> get onStreamPresence => _getEventStream();
+  Stream<StreamPresenceEvent> get onStreamPresence => _eventsOfType();
 
   @override
-  Stream<RealtimeStreamData> get onStreamData => _getEventStream();
+  Stream<RealtimeStreamData> get onStreamData => _eventsOfType();
 
   // TODO: Create model for channel message and use it here
   @override
-  Stream<api.ChannelMessage> get onChannelMessage => _getEventStream();
+  Stream<api.ChannelMessage> get onChannelMessage => _eventsOfType();
 
-  StreamController<T> _getEventController<T>() {
-    return _eventControllers.putIfAbsent(
-      T,
-      () => StreamController<T>.broadcast(),
-    ) as StreamController<T>;
-  }
+  Stream<T> _eventsOfType<T>() =>
+      _eventController.stream.where((event) => event is T).cast<T>();
 
-  Stream<T> _getEventStream<T>() => _getEventController<T>().stream;
-
-  void _addToEventStream<T>(T value) => _getEventController<T>().add(value);
+  void _addEvent(Object value) => _eventController.add(value);
 
   (int, Future<T>) _createPendingRequest<T>() {
     @pragma('vm:awaiter-link')
@@ -220,18 +212,12 @@ class SocketImpl implements Socket {
   }
 
   void _onData(List<int> msg) {
-    try {
-      final envelope = rtapi.Envelope.fromBuffer(msg);
-      _log.info('onData: $envelope');
+    final envelope = rtapi.Envelope.fromBuffer(msg);
 
-      if (envelope.cid.isNotEmpty) {
-        _handleResponse(envelope);
-      } else {
-        _handleEvent(envelope);
-      }
-    } catch (e, s) {
-      _log.warning(e);
-      _log.warning(s);
+    if (envelope.cid.isNotEmpty) {
+      _handleResponse(envelope);
+    } else {
+      _handleEvent(envelope);
     }
   }
 
@@ -260,47 +246,47 @@ class SocketImpl implements Socket {
   void _handleEvent(rtapi.Envelope envelope) {
     switch (envelope.whichMessage()) {
       case rtapi.Envelope_Message.channelPresenceEvent:
-        _addToEventStream(
+        _addEvent(
           ChannelPresenceEvent.fromDto(envelope.channelPresenceEvent),
         );
       case rtapi.Envelope_Message.matchmakerMatched:
-        _addToEventStream(
+        _addEvent(
           MatchmakerMatched.fromDto(envelope.matchmakerMatched),
         );
       case rtapi.Envelope_Message.matchData:
-        _addToEventStream(MatchData.fromDto(envelope.matchData));
+        _addEvent(MatchData.fromDto(envelope.matchData));
       case rtapi.Envelope_Message.partyData:
-        _addToEventStream(PartyData.fromDto(envelope.partyData));
+        _addEvent(PartyData.fromDto(envelope.partyData));
       case rtapi.Envelope_Message.partyPresenceEvent:
-        _addToEventStream(
+        _addEvent(
           PartyPresenceEvent.fromDto(envelope.partyPresenceEvent),
         );
       case rtapi.Envelope_Message.partyLeader:
-        _addToEventStream(PartyLeader.fromDto(envelope.partyLeader));
+        _addEvent(PartyLeader.fromDto(envelope.partyLeader));
       case rtapi.Envelope_Message.matchPresenceEvent:
-        _addToEventStream(
+        _addEvent(
           MatchPresenceEvent.fromDto(envelope.matchPresenceEvent),
         );
       case rtapi.Envelope_Message.notifications:
         envelope.notifications.notifications
             .map((notification) => Notification.fromDto(notification))
-            .forEach(_addToEventStream);
+            .forEach(_addEvent);
       case rtapi.Envelope_Message.statusPresenceEvent:
-        _addToEventStream(
+        _addEvent(
           StatusPresenceEvent.fromDto(envelope.statusPresenceEvent),
         );
       case rtapi.Envelope_Message.streamPresenceEvent:
-        _addToEventStream(
+        _addEvent(
           StreamPresenceEvent.fromDto(envelope.streamPresenceEvent),
         );
       case rtapi.Envelope_Message.streamData:
-        _addToEventStream(
+        _addEvent(
           RealtimeStreamData.fromDto(envelope.streamData),
         );
       case rtapi.Envelope_Message.channelMessage:
-        _addToEventStream(envelope.channelMessage);
-      default:
-        _log.warning('Not implemented');
+        _addEvent(envelope.channelMessage);
+      case final type:
+        throw UnimplementedError('Event type ${type.name} is not implemented.');
     }
   }
 
@@ -322,9 +308,6 @@ class SocketImpl implements Socket {
 
     final token = session.token;
 
-    _log.info('Connecting ${ssl ? 'WSS' : 'WS'} to $host:$port');
-    _log.info('Using token $token');
-
     final uri = Uri(
       host: host,
       port: port,
@@ -336,10 +319,10 @@ class SocketImpl implements Socket {
       },
     );
     _channel = WebSocketChannel.connect(uri);
-    _log.info('connected');
 
-    _channel!.stream.listen(
-      (message) => _onData(message as List<int>),
+    _channelSubscription =
+        _channel!.stream.map((message) => _onData(message as List<int>)).listen(
+      (_) {},
       onDone: () {
         if (_onDisconnect != null) {
           _onDisconnect!();
@@ -349,6 +332,8 @@ class SocketImpl implements Socket {
       onError: (error, stackTrace) {
         if (_onError != null) {
           _onError!(error, stackTrace);
+        } else {
+          Error.throwWithStackTrace(error, stackTrace);
         }
       },
       cancelOnError: false,
@@ -359,16 +344,20 @@ class SocketImpl implements Socket {
   Future<void> disconnect() async {
     // TODO: Handle uncompleted requests
     final channel = _channel!;
+    final channelSubscription = _channelSubscription!;
     _channel = null;
-    await channel.sink.close();
+    _channelSubscription = null;
+    await Future.wait([
+      channel.sink.close(),
+      channelSubscription.cancel(),
+    ]);
   }
 
   @override
   Future<void> close() async {
     await Future.wait([
       disconnect(),
-      for (final controller in _eventControllers.values) //
-        controller.close(),
+      _eventController.close(),
     ]);
   }
 

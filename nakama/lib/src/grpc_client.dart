@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:grpc/grpc.dart' hide Client;
 import 'package:grpc/grpc_connection_interface.dart';
-import 'package:logging/logging.dart';
 
 import 'api/api.dart' as api;
 import 'api/proto/apigrpc/apigrpc.pbgrpc.dart';
@@ -60,8 +59,6 @@ final class GrpcClient extends ClientBase {
     required bool ssl,
     required String serverKey,
   }) {
-    _log.info('Connecting to $host:$grpcPort');
-
     final channel = ClientChannel(
       host,
       port: grpcPort,
@@ -102,8 +99,6 @@ final class GrpcClient extends ClientBase {
         _client = client {
     authenticationInterceptor._client = this;
   }
-
-  static final _log = Logger('NakamaGrpcClient');
 
   final ClientChannelBase _channel;
   final NakamaClient _client;
