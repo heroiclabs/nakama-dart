@@ -83,3 +83,11 @@ void clientTests(void Function(TestHelper helper) body) {
 void clientTest(String description, void Function() body) {
   test('$description (variant: ${_testClientType!.description})', body);
 }
+
+extension NakamaErrorTypeMatcherExtension on TypeMatcher<NakamaError> {
+  TypeMatcher<NakamaError> havingCode(Object code) =>
+      having((error) => error.code, 'code', code);
+
+  TypeMatcher<NakamaError> havingMessage(Object message) =>
+      having((error) => error.message, 'message', message);
+}

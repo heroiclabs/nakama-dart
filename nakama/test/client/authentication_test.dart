@@ -62,6 +62,17 @@ void main() {
 
         expect(account, isNotNull);
       });
+
+      clientTest('authenticateDevice with non-existing account', () async {
+        expectLater(
+          client.authenticateDevice(deviceId: faker.guid.guid(), create: false),
+          throwsA(
+            isA<NakamaError>()
+                .havingCode(ErrorCode.notFound)
+                .havingMessage('User account not found.'),
+          ),
+        );
+      });
     });
   });
 }

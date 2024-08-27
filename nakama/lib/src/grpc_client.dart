@@ -10,6 +10,7 @@ import 'api/proto/apigrpc/apigrpc.pbgrpc.dart';
 import 'client.dart';
 import 'models/account.dart';
 import 'models/channel_message.dart';
+import 'models/error.dart';
 import 'models/friends.dart';
 import 'models/friendship_state.dart';
 import 'models/group.dart';
@@ -22,11 +23,36 @@ import 'models/storage.dart';
 import 'models/tournament.dart';
 import 'socket.dart';
 
+class _AuthenticationInterceptor extends ClientInterceptor {
+  late final GrpcClient _client;
+
+  @override
+  ResponseFuture<R> interceptUnary<Q, R>(
+    ClientMethod<Q, R> method,
+    Q request,
+    CallOptions options,
+    ClientUnaryInvoker<Q, R> invoker,
+  ) {
+    final authOptions = CallOptions(metadata: {
+      'authorization': switch (_client.session) {
+        final session? => 'Bearer ${session.token}',
+        _ => 'Basic ${base64Encode('${_client.serverKey}:'.codeUnits)}'
+      },
+    });
+    return super.interceptUnary(
+      method,
+      request,
+      options.mergedWith(authOptions),
+      invoker,
+    );
+  }
+}
+
 /// [Client] for communicating with Nakama via gRPC.
 ///
 /// [GrpcClient] abstracts the gRPC calls and handles authentication
 /// for you.
-class GrpcClient implements Client {
+final class GrpcClient extends ClientBase {
   factory GrpcClient({
     required String host,
     required int httpPort,
@@ -45,11 +71,10 @@ class GrpcClient implements Client {
             : const ChannelCredentials.insecure(),
       ),
     );
+    final authenticationInterceptor = _AuthenticationInterceptor();
     final client = NakamaClient(
       channel,
-      options: CallOptions(metadata: {
-        'authorization': 'Basic ${base64Encode('$serverKey:'.codeUnits)}'
-      }),
+      interceptors: [authenticationInterceptor],
     );
 
     return GrpcClient._(
@@ -60,49 +85,38 @@ class GrpcClient implements Client {
       serverKey: serverKey,
       channel: channel,
       client: client,
+      authenticationInterceptor: authenticationInterceptor,
     );
   }
 
   GrpcClient._({
-    required this.host,
-    required this.httpPort,
-    required this.grpcPort,
-    required this.ssl,
-    required this.serverKey,
+    required super.host,
+    required super.httpPort,
+    required super.grpcPort,
+    required super.ssl,
+    required super.serverKey,
     required ClientChannelBase channel,
     required NakamaClient client,
+    required _AuthenticationInterceptor authenticationInterceptor,
   })  : _channel = channel,
-        _client = client;
+        _client = client {
+    authenticationInterceptor._client = this;
+  }
 
   static final _log = Logger('NakamaGrpcClient');
-
-  @override
-  final String host;
-  @override
-  final int httpPort;
-  @override
-  final int grpcPort;
-  @override
-  final bool ssl;
-  @override
-  final String serverKey;
 
   final ClientChannelBase _channel;
   final NakamaClient _client;
 
   @override
-  Session? session;
-
-  Future<CallOptions> _sessionCallOptions() async {
-    final session = this.session;
-    if (session == null) {
-      // TODO: Throw a custom exception
-      throw StateError(
-        'No session available. Make sure to authenticate first.',
+  NakamaError? translateException(Exception exception) {
+    if (exception is GrpcError) {
+      return NakamaError(
+        code: ErrorCode(exception.code),
+        message: exception.message,
       );
     }
-
-    return CallOptions(metadata: {'authorization': 'Bearer ${session.token}'});
+    return null;
   }
 
   @override
@@ -121,39 +135,32 @@ class GrpcClient implements Client {
   }
 
   @override
-  Future<Session> sessionRefresh({Map<String, String>? vars}) async {
-    final refreshToken = session?.refreshToken;
-    if (refreshToken == null) {
-      throw Exception('Session does not have a refresh token.');
-    }
-
-    final res = await _client.sessionRefresh(
-      api.SessionRefreshRequest(token: refreshToken, vars: vars),
+  Future<Session> performSessionRefresh({Map<String, String>? vars}) async {
+    final result = await _client.sessionRefresh(
+      api.SessionRefreshRequest(token: session!.refreshToken, vars: vars),
     );
 
-    return session = Session.fromDto(res);
+    return Session.fromDto(result);
   }
 
   @override
-  Future<void> sessionLogout() async {
-    await _client.sessionLogout(api.SessionLogoutRequest(
-      refreshToken: session!.refreshToken,
-      token: session!.token,
-    ));
+  Future<void> performSessionLogout() async {
+    await _client.sessionLogout(
+      api.SessionLogoutRequest(
+        refreshToken: session!.refreshToken,
+        token: session!.token,
+      ),
+    );
   }
 
   @override
-  Future<Session> authenticateEmail({
+  Future<Session> performAuthenticateEmail({
     String? email,
     String? username,
     required String password,
-    bool create = false,
+    required bool create,
     Map<String, String>? vars,
   }) async {
-    assert(email != null || username != null);
-    assert(create == false || email != null);
-
-    // Create the account email object
     final accountEmail = api.AccountEmail()
       ..password = password
       ..vars.addAll(vars ?? {});
@@ -162,7 +169,6 @@ class GrpcClient implements Client {
       accountEmail.email = email;
     }
 
-    // Create the request
     final request = api.AuthenticateEmailRequest()
       ..create_2 = api.BoolValue(value: create)
       ..account = accountEmail;
@@ -171,13 +177,12 @@ class GrpcClient implements Client {
       request.username = username;
     }
 
-    final res = await _client.authenticateEmail(request);
-
-    return session = Session.fromDto(res);
+    final result = await _client.authenticateEmail(request);
+    return session = Session.fromDto(result);
   }
 
   @override
-  Future<void> linkEmail({
+  Future<void> performLinkEmail({
     required String email,
     required String password,
     Map<String, String>? vars,
@@ -187,14 +192,11 @@ class GrpcClient implements Client {
       ..password = password
       ..vars.addAll(vars ?? {});
 
-    await _client.linkEmail(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.linkEmail(request);
   }
 
   @override
-  Future<void> unlinkEmail({
+  Future<void> performUnlinkEmail({
     required String email,
     required String password,
     Map<String, String>? vars,
@@ -204,16 +206,13 @@ class GrpcClient implements Client {
       ..password = password
       ..vars.addAll(vars ?? {});
 
-    await _client.unlinkEmail(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.unlinkEmail(request);
   }
 
   @override
-  Future<Session> authenticateDevice({
+  Future<Session> performAuthenticateDevice({
     required String deviceId,
-    bool create = true,
+    required bool create,
     String? username,
     Map<String, String>? vars,
   }) async {
@@ -233,7 +232,7 @@ class GrpcClient implements Client {
   }
 
   @override
-  Future<void> linkDevice({
+  Future<void> performLinkDevice({
     required String deviceId,
     Map<String, String>? vars,
   }) async {
@@ -241,14 +240,11 @@ class GrpcClient implements Client {
       ..id = deviceId
       ..vars.addAll(vars ?? {});
 
-    await _client.linkDevice(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.linkDevice(request);
   }
 
   @override
-  Future<void> unlinkDevice({
+  Future<void> performUnlinkDevice({
     required String deviceId,
     Map<String, String>? vars,
   }) async {
@@ -256,19 +252,16 @@ class GrpcClient implements Client {
       ..id = deviceId
       ..vars.addAll(vars ?? {});
 
-    await _client.unlinkDevice(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.unlinkDevice(request);
   }
 
   @override
-  Future<Session> authenticateFacebook({
+  Future<Session> performAuthenticateFacebook({
     required String token,
-    bool create = true,
+    required bool create,
     String? username,
     Map<String, String>? vars,
-    bool import = false,
+    required bool import,
   }) async {
     final request = api.AuthenticateFacebookRequest()
       ..create_2 = api.BoolValue(value: create)
@@ -287,9 +280,9 @@ class GrpcClient implements Client {
   }
 
   @override
-  Future<void> linkFacebook({
+  Future<void> performLinkFacebook({
     required String token,
-    bool import = false,
+    required bool import,
     Map<String, String>? vars,
   }) async {
     final request = api.LinkFacebookRequest()
@@ -298,14 +291,11 @@ class GrpcClient implements Client {
         ..vars.addAll(vars ?? {}))
       ..sync = api.BoolValue(value: import);
 
-    await _client.linkFacebook(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.linkFacebook(request);
   }
 
   @override
-  Future<void> unlinkFacebook({
+  Future<void> performUnlinkFacebook({
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -313,16 +303,13 @@ class GrpcClient implements Client {
       ..token = token
       ..vars.addAll(vars ?? {});
 
-    await _client.unlinkFacebook(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.unlinkFacebook(request);
   }
 
   @override
-  Future<Session> authenticateApple({
+  Future<Session> performAuthenticateApple({
     required String token,
-    bool create = true,
+    required bool create,
     String? username,
     Map<String, String>? vars,
   }) async {
@@ -342,7 +329,7 @@ class GrpcClient implements Client {
   }
 
   @override
-  Future<void> linkApple({
+  Future<void> performLinkApple({
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -350,14 +337,11 @@ class GrpcClient implements Client {
       ..token = token
       ..vars.addAll(vars ?? {});
 
-    await _client.linkApple(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.linkApple(request);
   }
 
   @override
-  Future<void> unlinkApple({
+  Future<void> performUnlinkApple({
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -365,16 +349,13 @@ class GrpcClient implements Client {
       ..token = token
       ..vars.addAll(vars ?? {});
 
-    await _client.unlinkApple(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.unlinkApple(request);
   }
 
   @override
-  Future<Session> authenticateFacebookInstantGame({
+  Future<Session> performAuthenticateFacebookInstantGame({
     required String signedPlayerInfo,
-    bool create = true,
+    required bool create,
     String? username,
     Map<String, String>? vars,
   }) async {
@@ -394,7 +375,7 @@ class GrpcClient implements Client {
   }
 
   @override
-  Future<void> linkFacebookInstantGame({
+  Future<void> performLinkFacebookInstantGame({
     required String signedPlayerInfo,
     Map<String, String>? vars,
   }) async {
@@ -402,14 +383,11 @@ class GrpcClient implements Client {
       ..signedPlayerInfo = signedPlayerInfo
       ..vars.addAll(vars ?? {});
 
-    await _client.linkFacebookInstantGame(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.linkFacebookInstantGame(request);
   }
 
   @override
-  Future<void> unlinkFacebookInstantGame({
+  Future<void> performUnlinkFacebookInstantGame({
     required String signedPlayerInfo,
     Map<String, String>? vars,
   }) async {
@@ -417,16 +395,13 @@ class GrpcClient implements Client {
       ..signedPlayerInfo = signedPlayerInfo
       ..vars.addAll(vars ?? {});
 
-    await _client.unlinkFacebookInstantGame(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.unlinkFacebookInstantGame(request);
   }
 
   @override
-  Future<Session> authenticateGoogle({
+  Future<Session> performAuthenticateGoogle({
     required String token,
-    bool create = true,
+    required bool create,
     String? username,
     Map<String, String>? vars,
   }) async {
@@ -446,7 +421,7 @@ class GrpcClient implements Client {
   }
 
   @override
-  Future<void> linkGoogle({
+  Future<void> performLinkGoogle({
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -454,14 +429,11 @@ class GrpcClient implements Client {
       ..token = token
       ..vars.addAll(vars ?? {});
 
-    await _client.linkGoogle(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.linkGoogle(request);
   }
 
   @override
-  Future<void> unlinkGoogle({
+  Future<void> performUnlinkGoogle({
     required String token,
     Map<String, String>? vars,
   }) async {
@@ -469,21 +441,18 @@ class GrpcClient implements Client {
       ..token = token
       ..vars.addAll(vars ?? {});
 
-    await _client.unlinkGoogle(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.unlinkGoogle(request);
   }
 
   @override
-  Future<Session> authenticateGameCenter({
+  Future<Session> performAuthenticateGameCenter({
     required String playerId,
     required String bundleId,
     required int timestampSeconds,
     required String salt,
     required String signature,
     required String publicKeyUrl,
-    bool create = true,
+    required bool create,
     String? username,
     Map<String, String>? vars,
   }) async {
@@ -508,7 +477,7 @@ class GrpcClient implements Client {
   }
 
   @override
-  Future<void> linkGameCenter({
+  Future<void> performLinkGameCenter({
     required String playerId,
     required String bundleId,
     required int timestampSeconds,
@@ -526,14 +495,11 @@ class GrpcClient implements Client {
       ..publicKeyUrl = publicKeyUrl
       ..vars.addAll(vars ?? {});
 
-    await _client.linkGameCenter(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.linkGameCenter(request);
   }
 
   @override
-  Future<void> unlinkGameCenter({
+  Future<void> performUnlinkGameCenter({
     required String playerId,
     required String bundleId,
     required int timestampSeconds,
@@ -551,19 +517,16 @@ class GrpcClient implements Client {
       ..publicKeyUrl = publicKeyUrl
       ..vars.addAll(vars ?? {});
 
-    await _client.unlinkGameCenter(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.unlinkGameCenter(request);
   }
 
   @override
-  Future<Session> authenticateSteam({
+  Future<Session> performAuthenticateSteam({
     required String token,
-    bool create = true,
+    required bool create,
     String? username,
     Map<String, String>? vars,
-    bool import = false,
+    required bool import,
   }) async {
     final request = api.AuthenticateSteamRequest()
       ..create_2 = api.BoolValue(value: create)
@@ -582,10 +545,10 @@ class GrpcClient implements Client {
   }
 
   @override
-  Future<void> linkSteam({
+  Future<void> performLinkSteam({
     required String token,
     Map<String, String>? vars,
-    bool import = false,
+    required bool import,
   }) async {
     final request = api.LinkSteamRequest()
       ..sync = api.BoolValue(value: import)
@@ -593,17 +556,14 @@ class GrpcClient implements Client {
         ..token = token
         ..vars.addAll(vars ?? {}));
 
-    await _client.linkSteam(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.linkSteam(request);
   }
 
   @override
-  Future<void> unlinkSteam({
+  Future<void> performUnlinkSteam({
     required String token,
     Map<String, String>? vars,
-    bool import = false,
+    required bool import,
   }) async {
     final request = api.LinkSteamRequest()
       ..sync = api.BoolValue(value: import)
@@ -611,16 +571,13 @@ class GrpcClient implements Client {
         ..token = token
         ..vars.addAll(vars ?? {}));
 
-    await _client.linkSteam(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.linkSteam(request);
   }
 
   @override
-  Future<Session> authenticateCustom({
+  Future<Session> performAuthenticateCustom({
     required String id,
-    bool create = true,
+    required bool create,
     String? username,
     Map<String, String>? vars,
   }) async {
@@ -640,7 +597,7 @@ class GrpcClient implements Client {
   }
 
   @override
-  Future<void> linkCustom({
+  Future<void> performLinkCustom({
     required String id,
     Map<String, String>? vars,
   }) async {
@@ -648,14 +605,11 @@ class GrpcClient implements Client {
       ..id = id
       ..vars.addAll(vars ?? {});
 
-    await _client.linkCustom(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.linkCustom(request);
   }
 
   @override
-  Future<void> unlinkCustom({
+  Future<void> performUnlinkCustom({
     required String id,
     Map<String, String>? vars,
   }) async {
@@ -663,24 +617,20 @@ class GrpcClient implements Client {
       ..id = id
       ..vars.addAll(vars ?? {});
 
-    await _client.linkCustom(
-      request,
-      options: await _sessionCallOptions(),
-    );
+    await _client.linkCustom(request);
   }
 
   @override
-  Future<Account> getAccount() async {
+  Future<Account> performGetAccount() async {
     final res = await _client.getAccount(
       api.Empty(),
-      options: await _sessionCallOptions(),
     );
 
     return Account.fromDto(res);
   }
 
   @override
-  Future<void> updateAccount({
+  Future<void> performUpdateAccount({
     String? username,
     String? displayName,
     String? avatarUrl,
@@ -698,12 +648,11 @@ class GrpcClient implements Client {
         location: location == null ? null : api.StringValue(value: location),
         timezone: timezone == null ? null : api.StringValue(value: timezone),
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<List<User>> getUsers({
+  Future<List<User>> performGetUsers({
     List<String>? facebookIds,
     List<String>? ids,
     List<String>? usernames,
@@ -714,14 +663,13 @@ class GrpcClient implements Client {
         ids: ids,
         usernames: usernames,
       ),
-      options: await _sessionCallOptions(),
     );
 
     return res.users.map((e) => User.fromDto(e)).toList(growable: false);
   }
 
   @override
-  Future<StorageObjectList> listStorageObjects({
+  Future<StorageObjectList> performListStorageObjects({
     String? collection,
     String? cursor,
     String? userId,
@@ -734,14 +682,13 @@ class GrpcClient implements Client {
         limit: api.Int32Value(value: limit),
         userId: userId,
       ),
-      options: await _sessionCallOptions(),
     );
 
     return StorageObjectList.fromDto(res);
   }
 
   @override
-  Future<ChannelMessageList> listChannelMessages({
+  Future<ChannelMessageList> performListChannelMessages({
     required String channelId,
     int limit = 20,
     bool? forward,
@@ -756,14 +703,13 @@ class GrpcClient implements Client {
         forward: api.BoolValue(value: forward),
         cursor: cursor,
       ),
-      options: await _sessionCallOptions(),
     );
 
     return ChannelMessageList.fromDto(res);
   }
 
   @override
-  Future<LeaderboardRecordList> listLeaderboardRecords({
+  Future<LeaderboardRecordList> performListLeaderboardRecords({
     required String leaderboardName,
     List<String>? ownerIds,
     int limit = 20,
@@ -783,14 +729,13 @@ class GrpcClient implements Client {
             : api.Int64Value(
                 value: api.Int64(expiry.millisecondsSinceEpoch ~/ 1000)),
       ),
-      options: await _sessionCallOptions(),
     );
 
     return LeaderboardRecordList.fromDto(res);
   }
 
   @override
-  Future<LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
+  Future<LeaderboardRecordList> performListLeaderboardRecordsAroundOwner({
     required String leaderboardName,
     required String ownerId,
     int limit = 20,
@@ -808,14 +753,13 @@ class GrpcClient implements Client {
             : api.Int64Value(
                 value: api.Int64(expiry.millisecondsSinceEpoch ~/ 1000)),
       ),
-      options: await _sessionCallOptions(),
     );
 
     return LeaderboardRecordList.fromDto(res);
   }
 
   @override
-  Future<LeaderboardRecord> writeLeaderboardRecord({
+  Future<LeaderboardRecord> performWriteLeaderboardRecord({
     required String leaderboardName,
     required int score,
     int? subscore,
@@ -832,26 +776,24 @@ class GrpcClient implements Client {
           operator: api.Operator.valueOf(operator?.index ?? 0),
         ),
       ),
-      options: await _sessionCallOptions(),
     );
 
     return LeaderboardRecord.fromDto(res);
   }
 
   @override
-  Future<void> deleteLeaderboardRecord({
+  Future<void> performDeleteLeaderboardRecord({
     required String leaderboardName,
   }) async {
     await _client.deleteLeaderboardRecord(
       api.DeleteLeaderboardRecordRequest(
         leaderboardId: leaderboardName,
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<void> addFriends({
+  Future<void> performAddFriends({
     List<String>? usernames,
     List<String>? ids,
   }) async {
@@ -860,14 +802,13 @@ class GrpcClient implements Client {
         usernames: usernames,
         ids: ids,
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<FriendsList> listFriends({
+  Future<FriendsList> performListFriends({
     FriendshipState? friendshipState,
-    int limit = defaultLimit,
+    required int limit,
     String? cursor,
   }) async {
     final res = await _client.listFriends(
@@ -876,14 +817,13 @@ class GrpcClient implements Client {
         limit: api.Int32Value(value: limit),
         state: api.Int32Value(value: friendshipState?.index),
       ),
-      options: await _sessionCallOptions(),
     );
 
     return FriendsList.fromDto(res);
   }
 
   @override
-  Future<void> deleteFriends({
+  Future<void> performDeleteFriends({
     List<String>? usernames,
     List<String>? ids,
   }) async {
@@ -892,12 +832,11 @@ class GrpcClient implements Client {
         ids: ids,
         usernames: usernames,
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<void> blockFriends({
+  Future<void> performBlockFriends({
     List<String>? usernames,
     List<String>? ids,
   }) async {
@@ -906,12 +845,11 @@ class GrpcClient implements Client {
         ids: ids,
         usernames: usernames,
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<Group> createGroup({
+  Future<Group> performCreateGroup({
     required String name,
     String? avatarUrl,
     String? description,
@@ -928,14 +866,13 @@ class GrpcClient implements Client {
         maxCount: maxCount,
         open: open,
       ),
-      options: await _sessionCallOptions(),
     );
 
     return Group.fromDto(res);
   }
 
   @override
-  Future<void> updateGroup({
+  Future<void> performUpdateGroup({
     required String groupId,
     String? name,
     String? avatarUrl,
@@ -953,18 +890,17 @@ class GrpcClient implements Client {
         name: api.StringValue(value: name),
         open: api.BoolValue(value: open),
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<GroupList> listGroups({
+  Future<GroupList> performListGroups({
     String? name,
     String? cursor,
     String? langTag,
     int? members,
     bool? open,
-    int limit = defaultLimit,
+    required int limit,
   }) async {
     final res = await _client.listGroups(
       api.ListGroupsRequest(
@@ -975,36 +911,33 @@ class GrpcClient implements Client {
         members: members == null ? null : api.Int32Value(value: members),
         open: open == null ? null : api.BoolValue(value: open),
       ),
-      options: await _sessionCallOptions(),
     );
 
     return GroupList.fromDto(res);
   }
 
   @override
-  Future<void> deleteGroup({
+  Future<void> performDeleteGroup({
     required String groupId,
   }) async {
     await _client.deleteGroup(
       api.DeleteGroupRequest(groupId: groupId),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<void> joinGroup({
+  Future<void> performJoinGroup({
     required String groupId,
   }) async {
     await _client.joinGroup(
       api.JoinGroupRequest(groupId: groupId),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<UserGroupList> listUserGroups({
+  Future<UserGroupList> performListUserGroups({
     String? cursor,
-    int limit = defaultLimit,
+    required int limit,
     GroupMembershipState? state,
     String? userId,
   }) async {
@@ -1015,17 +948,16 @@ class GrpcClient implements Client {
         state: api.Int32Value(value: state?.index),
         userId: userId,
       ),
-      options: await _sessionCallOptions(),
     );
 
     return UserGroupList.fromDto(res);
   }
 
   @override
-  Future<GroupUserList> listGroupUsers({
+  Future<GroupUserList> performListGroupUsers({
     required String groupId,
     String? cursor,
-    int limit = defaultLimit,
+    required int limit,
     GroupMembershipState? state,
   }) async {
     final res = await _client.listGroupUsers(
@@ -1035,14 +967,13 @@ class GrpcClient implements Client {
         limit: api.Int32Value(value: limit),
         state: api.Int32Value(value: state?.index),
       ),
-      options: await _sessionCallOptions(),
     );
 
     return GroupUserList.fromDto(res);
   }
 
   @override
-  Future<void> addGroupUsers({
+  Future<void> performAddGroupUsers({
     required String groupId,
     required Iterable<String> userIds,
   }) async {
@@ -1051,12 +982,11 @@ class GrpcClient implements Client {
         groupId: groupId,
         userIds: userIds,
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<void> promoteGroupUsers({
+  Future<void> performPromoteGroupUsers({
     required String groupId,
     required Iterable<String> userIds,
   }) async {
@@ -1065,12 +995,11 @@ class GrpcClient implements Client {
         groupId: groupId,
         userIds: userIds,
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<void> demoteGroupUsers({
+  Future<void> performDemoteGroupUsers({
     required String groupId,
     required Iterable<String> userIds,
   }) async {
@@ -1079,12 +1008,11 @@ class GrpcClient implements Client {
         groupId: groupId,
         userIds: userIds,
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<void> kickGroupUsers({
+  Future<void> performKickGroupUsers({
     required String groupId,
     required Iterable<String> userIds,
   }) async {
@@ -1093,12 +1021,11 @@ class GrpcClient implements Client {
         groupId: groupId,
         userIds: userIds,
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<void> banGroupUsers({
+  Future<void> performBanGroupUsers({
     required String groupId,
     required Iterable<String> userIds,
   }) async {
@@ -1107,25 +1034,23 @@ class GrpcClient implements Client {
         groupId: groupId,
         userIds: userIds,
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<void> leaveGroup({
+  Future<void> performLeaveGroup({
     required String groupId,
   }) async {
     await _client.leaveGroup(
       api.LeaveGroupRequest(
         groupId: groupId,
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<NotificationList> listNotifications({
-    int limit = defaultLimit,
+  Future<NotificationList> performListNotifications({
+    required int limit,
     String? cursor,
   }) async {
     final res = await _client.listNotifications(
@@ -1133,29 +1058,27 @@ class GrpcClient implements Client {
         cacheableCursor: cursor,
         limit: api.Int32Value(value: limit),
       ),
-      options: await _sessionCallOptions(),
     );
 
     return NotificationList.fromDto(res);
   }
 
   @override
-  Future<void> deleteNotifications({
+  Future<void> performDeleteNotifications({
     required Iterable<String> notificationIds,
   }) async {
     await _client.deleteNotifications(
       api.DeleteNotificationsRequest(
         ids: notificationIds,
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<List<Match>> listMatches({
+  Future<List<Match>> performListMatches({
     bool? authoritative,
     String? label,
-    int limit = defaultLimit,
+    required int limit,
     int? maxSize,
     int? minSize,
     String? query,
@@ -1169,32 +1092,30 @@ class GrpcClient implements Client {
         minSize: api.Int32Value(value: minSize),
         query: api.StringValue(value: query),
       ),
-      options: await _sessionCallOptions(),
     );
 
     return res.matches.map((e) => Match.fromDto(e)).toList(growable: false);
   }
 
   @override
-  Future<void> joinTournament({
+  Future<void> performJoinTournament({
     required String tournamentId,
   }) async {
     await _client.joinTournament(
       api.JoinTournamentRequest(
         tournamentId: tournamentId,
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<TournamentList> listTournaments({
+  Future<TournamentList> performListTournaments({
     int? categoryStart,
     int? categoryEnd,
     String? cursor,
     DateTime? startTime,
     DateTime? endTime,
-    int limit = defaultLimit,
+    required int limit,
   }) async {
     final res = await _client.listTournaments(
       api.ListTournamentsRequest(
@@ -1211,18 +1132,17 @@ class GrpcClient implements Client {
                 : null),
         limit: api.Int32Value(value: limit),
       ),
-      options: await _sessionCallOptions(),
     );
 
     return TournamentList.fromDto(res);
   }
 
   @override
-  Future<TournamentRecordList> listTournamentRecords({
+  Future<TournamentRecordList> performListTournamentRecords({
     required String tournamentId,
     Iterable<String>? ownerIds,
     int? expiry,
-    int limit = defaultLimit,
+    required int limit,
     String? cursor,
   }) async {
     final res = await _client.listTournamentRecords(
@@ -1234,18 +1154,17 @@ class GrpcClient implements Client {
         ownerIds: ownerIds,
         tournamentId: tournamentId,
       ),
-      options: await _sessionCallOptions(),
     );
 
     return TournamentRecordList.fromDto(res);
   }
 
   @override
-  Future<TournamentRecordList> listTournamentRecordsAroundOwner({
+  Future<TournamentRecordList> performListTournamentRecordsAroundOwner({
     required String tournamentId,
     required String ownerId,
     int? expiry,
-    int limit = defaultLimit,
+    required int limit,
   }) async {
     final res = await _client.listTournamentRecordsAroundOwner(
       api.ListTournamentRecordsAroundOwnerRequest(
@@ -1255,14 +1174,13 @@ class GrpcClient implements Client {
         ownerId: ownerId,
         tournamentId: tournamentId,
       ),
-      options: await _sessionCallOptions(),
     );
 
     return TournamentRecordList.fromDto(res);
   }
 
   @override
-  Future<LeaderboardRecord> writeTournamentRecord({
+  Future<LeaderboardRecord> performWriteTournamentRecord({
     required String tournamentId,
     String? metadata,
     LeaderboardOperator? operator,
@@ -1279,14 +1197,13 @@ class GrpcClient implements Client {
           subscore: subscore != null ? api.Int64(subscore) : null,
         ),
       ),
-      options: await _sessionCallOptions(),
     );
 
     return LeaderboardRecord.fromDto(res);
   }
 
   @override
-  Future<String?> rpc({
+  Future<String?> performRpc({
     required String id,
     String? payload,
   }) async {
@@ -1295,14 +1212,13 @@ class GrpcClient implements Client {
         id: id,
         payload: payload,
       ),
-      options: await _sessionCallOptions(),
     );
 
     return res.payload;
   }
 
   @override
-  Future<void> deleteStorageObjects({
+  Future<void> performDeleteStorageObjects({
     required Iterable<StorageObjectId> objectIds,
   }) async {
     await _client.deleteStorageObjects(
@@ -1315,12 +1231,11 @@ class GrpcClient implements Client {
                 ))
             .toList(),
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<List<StorageObject>> readStorageObjects({
+  Future<List<StorageObject>> performReadStorageObjects({
     required Iterable<StorageObjectId> objectIds,
   }) async {
     final res = await _client.readStorageObjects(
@@ -1333,7 +1248,6 @@ class GrpcClient implements Client {
                 ))
             .toList(),
       ),
-      options: await _sessionCallOptions(),
     );
 
     return res.objects
@@ -1342,19 +1256,18 @@ class GrpcClient implements Client {
   }
 
   @override
-  Future<void> writeStorageObjects({
+  Future<void> performWriteStorageObjects({
     required Iterable<StorageObjectWrite> objects,
   }) async {
     await _client.writeStorageObjects(
       api.WriteStorageObjectsRequest(
         objects: objects.map((e) => e.toDto()).toList(),
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<void> importFacebookFriends({
+  Future<void> performImportFacebookFriends({
     required String token,
     bool reset = false,
     Map<String, String>? vars,
@@ -1364,12 +1277,11 @@ class GrpcClient implements Client {
         account: api.AccountFacebook(token: token, vars: vars),
         reset: api.BoolValue(value: reset),
       ),
-      options: await _sessionCallOptions(),
     );
   }
 
   @override
-  Future<void> importSteamFriends({
+  Future<void> performImportSteamFriends({
     required String token,
     bool reset = false,
     Map<String, String>? vars,
@@ -1379,7 +1291,6 @@ class GrpcClient implements Client {
         account: api.AccountSteam(token: token, vars: vars),
         reset: api.BoolValue(value: reset),
       ),
-      options: await _sessionCallOptions(),
     );
   }
 }

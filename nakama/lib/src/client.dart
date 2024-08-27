@@ -1,9 +1,12 @@
+import 'package:meta/meta.dart';
+
 import 'client_stub.dart'
     if (dart.library.io) './client_io.dart'
     if (dart.library.js) './client_web.dart';
 import 'grpc_client.dart';
 import 'models/account.dart';
 import 'models/channel_message.dart';
+import 'models/error.dart';
 import 'models/friends.dart';
 import 'models/friendship_state.dart';
 import 'models/group.dart';
@@ -142,7 +145,7 @@ abstract interface class Client {
     String? email,
     String? username,
     required String password,
-    bool create = false,
+    bool create = true,
     Map<String, String>? vars,
   });
 
@@ -178,7 +181,7 @@ abstract interface class Client {
   /// - [vars] Extra information that will be bundled in the session token.
   Future<Session> authenticateDevice({
     required String deviceId,
-    bool create = false,
+    bool create = true,
     String? username,
     Map<String, String>? vars,
   });
@@ -532,7 +535,7 @@ abstract interface class Client {
   /// - [cursor] A cursor to paginate over the collection. Can be null.
   Future<StorageObjectList> listStorageObjects({
     required String collection,
-    int? limit,
+    int limit = defaultLimit,
     String? cursor,
     String? userId,
   });
@@ -933,4 +936,1556 @@ abstract interface class Client {
     required String id,
     String? payload,
   });
+}
+
+/// Base class for [Client] implementations that provides common functionality.
+abstract base class ClientBase implements Client {
+  ClientBase({
+    required this.host,
+    required this.httpPort,
+    required this.grpcPort,
+    required this.ssl,
+    required this.serverKey,
+  });
+
+  @override
+  final String host;
+  @override
+  final int httpPort;
+  @override
+  final int grpcPort;
+  @override
+  final bool ssl;
+  @override
+  final String serverKey;
+
+  @override
+  Session? session;
+
+  /// Translates an [exception] that is specific to this [Client] implementation
+  /// to a [NakamaError].
+  ///
+  /// If the [exception] is not specific to the implementation, it should return
+  /// `null`.
+  @protected
+  NakamaError? translateException(Exception exception);
+
+  @protected
+  Future<T> _performRequest<T>(Future<T> Function() request) async {
+    try {
+      return await request();
+    } on Exception catch (exception) {
+      if (translateException(exception) case final translatedException?) {
+        throw translatedException;
+      }
+      rethrow;
+    }
+  }
+
+  Future<Session> _performAuthRequest(
+    Future<Session> Function() request,
+  ) async {
+    session = null;
+    return session = await request();
+  }
+
+  Future<Session> performSessionRefresh({Map<String, String>? vars});
+
+  Future<void> performSessionLogout();
+
+  Future<Session> performAuthenticateEmail({
+    String? email,
+    String? username,
+    required String password,
+    required bool create,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performLinkEmail({
+    required String email,
+    required String password,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performUnlinkEmail({
+    required String email,
+    required String password,
+    Map<String, String>? vars,
+  });
+
+  Future<Session> performAuthenticateDevice({
+    required String deviceId,
+    required bool create,
+    String? username,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performLinkDevice({
+    required String deviceId,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performUnlinkDevice({
+    required String deviceId,
+    Map<String, String>? vars,
+  });
+
+  Future<Session> performAuthenticateFacebook({
+    required String token,
+    required bool create,
+    String? username,
+    Map<String, String>? vars,
+    required bool import,
+  });
+
+  Future<void> performLinkFacebook({
+    required String token,
+    required bool import,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performUnlinkFacebook({
+    required String token,
+    Map<String, String>? vars,
+  });
+
+  Future<Session> performAuthenticateGoogle({
+    required String token,
+    required bool create,
+    String? username,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performLinkGoogle({
+    required String token,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performUnlinkGoogle({
+    required String token,
+    Map<String, String>? vars,
+  });
+
+  Future<Session> performAuthenticateApple({
+    required String token,
+    required bool create,
+    String? username,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performLinkApple({
+    required String token,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performUnlinkApple({
+    required String token,
+    Map<String, String>? vars,
+  });
+
+  Future<Session> performAuthenticateFacebookInstantGame({
+    required String signedPlayerInfo,
+    required bool create,
+    String? username,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performLinkFacebookInstantGame({
+    required String signedPlayerInfo,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performUnlinkFacebookInstantGame({
+    required String signedPlayerInfo,
+    Map<String, String>? vars,
+  });
+
+  Future<Session> performAuthenticateGameCenter({
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    required bool create,
+    String? username,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performLinkGameCenter({
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performUnlinkGameCenter({
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    Map<String, String>? vars,
+  });
+
+  Future<Session> performAuthenticateSteam({
+    required String token,
+    required bool create,
+    String? username,
+    Map<String, String>? vars,
+    required bool import,
+  });
+
+  Future<void> performLinkSteam({
+    required String token,
+    Map<String, String>? vars,
+    required bool import,
+  });
+
+  Future<void> performUnlinkSteam({
+    required String token,
+    Map<String, String>? vars,
+    required bool import,
+  });
+
+  Future<Session> performAuthenticateCustom({
+    required String id,
+    required bool create,
+    String? username,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performLinkCustom({
+    required String id,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performUnlinkCustom({
+    required String id,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performImportFacebookFriends({
+    required String token,
+    bool reset = false,
+    Map<String, String>? vars,
+  });
+
+  Future<void> performImportSteamFriends({
+    required String token,
+    bool reset = false,
+    Map<String, String>? vars,
+  });
+
+  Future<Account> performGetAccount();
+
+  Future<void> performUpdateAccount({
+    String? username,
+    String? displayName,
+    String? avatarUrl,
+    String? langTag,
+    String? location,
+    String? timezone,
+  });
+
+  Future<List<User>> performGetUsers({
+    required List<String> ids,
+    List<String>? usernames,
+    List<String>? facebookIds,
+  });
+
+  Future<void> performWriteStorageObjects({
+    required Iterable<StorageObjectWrite> objects,
+  });
+
+  Future<StorageObjectList> performListStorageObjects({
+    required String collection,
+    required int limit,
+    String? cursor,
+    String? userId,
+  });
+
+  Future<void> performDeleteStorageObjects({
+    required Iterable<StorageObjectId> objectIds,
+  });
+
+  Future<List<StorageObject>> performReadStorageObjects({
+    required Iterable<StorageObjectId> objectIds,
+  });
+
+  Future<ChannelMessageList> performListChannelMessages({
+    required String channelId,
+    required int limit,
+    bool? forward,
+    String? cursor,
+  });
+
+  Future<LeaderboardRecordList> performListLeaderboardRecords({
+    required String leaderboardName,
+    List<String>? ownerIds,
+    required int limit,
+    String? cursor,
+    DateTime? expiry,
+  });
+
+  Future<LeaderboardRecordList> performListLeaderboardRecordsAroundOwner({
+    required String leaderboardName,
+    required String ownerId,
+    required int limit,
+    DateTime? expiry,
+  });
+
+  Future<LeaderboardRecord> performWriteLeaderboardRecord({
+    required String leaderboardName,
+    required int score,
+    int? subscore,
+    String? metadata,
+    LeaderboardOperator? operator,
+  });
+
+  Future<void> performDeleteLeaderboardRecord({
+    required String leaderboardName,
+  });
+
+  Future<void> performAddFriends({
+    required List<String> ids,
+    List<String>? usernames,
+  });
+
+  Future<FriendsList> performListFriends({
+    FriendshipState? friendshipState,
+    required int limit,
+    String? cursor,
+  });
+
+  Future<void> performDeleteFriends({
+    required List<String> ids,
+    List<String>? usernames,
+  });
+
+  Future<void> performBlockFriends({
+    required List<String> ids,
+    List<String>? usernames,
+  });
+
+  Future<Group> performCreateGroup({
+    required String name,
+    String? avatarUrl,
+    String? description,
+    String? langTag,
+    int? maxCount,
+    bool open = false,
+  });
+
+  Future<void> performUpdateGroup({
+    required String groupId,
+    required bool open,
+    String? name,
+    String? avatarUrl,
+    String? description,
+    String? langTag,
+    int? maxCount,
+  });
+
+  Future<GroupList> performListGroups({
+    String? name,
+    String? cursor,
+    String? langTag,
+    int? members,
+    bool? open,
+    required int limit,
+  });
+
+  Future<void> performDeleteGroup({
+    required String groupId,
+  });
+
+  Future<void> performJoinGroup({
+    required String groupId,
+  });
+
+  Future<UserGroupList> performListUserGroups({
+    String? userId,
+    GroupMembershipState? state,
+    required int limit,
+    String? cursor,
+  });
+
+  Future<GroupUserList> performListGroupUsers({
+    required String groupId,
+    String? cursor,
+    required int limit,
+    GroupMembershipState? state,
+  });
+
+  Future<void> performAddGroupUsers({
+    required String groupId,
+    required Iterable<String> userIds,
+  });
+
+  Future<void> performPromoteGroupUsers({
+    required String groupId,
+    required Iterable<String> userIds,
+  });
+
+  Future<void> performDemoteGroupUsers({
+    required String groupId,
+    required Iterable<String> userIds,
+  });
+
+  Future<void> performKickGroupUsers({
+    required String groupId,
+    required Iterable<String> userIds,
+  });
+
+  Future<void> performBanGroupUsers({
+    required String groupId,
+    required Iterable<String> userIds,
+  });
+
+  Future<void> performLeaveGroup({
+    required String groupId,
+  });
+
+  Future<NotificationList> performListNotifications({
+    required int limit,
+    String? cursor,
+  });
+
+  Future<void> performDeleteNotifications({
+    required Iterable<String> notificationIds,
+  });
+
+  Future<List<Match>> performListMatches({
+    bool? authoritative,
+    String? label,
+    required int limit,
+    int? maxSize,
+    int? minSize,
+    String? query,
+  });
+
+  Future<void> performJoinTournament({
+    required String tournamentId,
+  });
+
+  Future<TournamentList> performListTournaments({
+    int? categoryStart,
+    int? categoryEnd,
+    String? cursor,
+    DateTime? startTime,
+    DateTime? endTime,
+    required int limit,
+  });
+
+  Future<TournamentRecordList> performListTournamentRecords({
+    required String tournamentId,
+    required Iterable<String> ownerIds,
+    int? expiry,
+    required int limit,
+    String? cursor,
+  });
+
+  Future<TournamentRecordList> performListTournamentRecordsAroundOwner({
+    required String tournamentId,
+    required String ownerId,
+    int? expiry,
+    required int limit,
+  });
+
+  Future<LeaderboardRecord> performWriteTournamentRecord({
+    required String tournamentId,
+    required int score,
+    int? subscore,
+    String? metadata,
+    LeaderboardOperator? operator,
+  });
+
+  Future<String?> performRpc({
+    required String id,
+    String? payload,
+  });
+
+  @override
+  Future<Session> sessionRefresh({Map<String, String>? vars}) async {
+    final refreshToken = session?.refreshToken;
+    if (refreshToken == null) {
+      // TODO: Throw different exception.
+      throw Exception('Session does not have a refresh token.');
+    }
+
+    session = await _performRequest(() {
+      return performSessionRefresh(vars: vars);
+    });
+
+    return session!;
+  }
+
+  @override
+  Future<void> sessionLogout() {
+    return _performRequest(() {
+      return performSessionLogout();
+    });
+  }
+
+  @override
+  Future<Session> authenticateEmail({
+    String? email,
+    String? username,
+    required String password,
+    bool create = true,
+    Map<String, String>? vars,
+  }) {
+    // TODO: Throw different exception.
+    assert(email != null || username != null);
+    assert(create == false || email != null);
+
+    return _performAuthRequest(() {
+      return _performRequest(() {
+        return performAuthenticateEmail(
+          email: email,
+          username: username,
+          password: password,
+          create: create,
+          vars: vars,
+        );
+      });
+    });
+  }
+
+  @override
+  Future<void> linkEmail({
+    required String email,
+    required String password,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performLinkEmail(
+        email: email,
+        password: password,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<void> unlinkEmail({
+    required String email,
+    required String password,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performUnlinkEmail(
+        email: email,
+        password: password,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<Session> authenticateDevice({
+    required String deviceId,
+    bool create = true,
+    String? username,
+    Map<String, String>? vars,
+  }) {
+    return _performAuthRequest(() {
+      return _performRequest(() {
+        return performAuthenticateDevice(
+          deviceId: deviceId,
+          create: create,
+          username: username,
+          vars: vars,
+        );
+      });
+    });
+  }
+
+  @override
+  Future<void> linkDevice({
+    required String deviceId,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performLinkDevice(
+        deviceId: deviceId,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<void> unlinkDevice({
+    required String deviceId,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performUnlinkDevice(
+        deviceId: deviceId,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<Session> authenticateFacebook({
+    required String token,
+    bool create = true,
+    String? username,
+    Map<String, String>? vars,
+    bool import = false,
+  }) {
+    return _performAuthRequest(() {
+      return _performRequest(() {
+        return performAuthenticateFacebook(
+          token: token,
+          create: create,
+          username: username,
+          vars: vars,
+          import: import,
+        );
+      });
+    });
+  }
+
+  @override
+  Future<void> linkFacebook({
+    required String token,
+    bool import = false,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performLinkFacebook(
+        token: token,
+        import: import,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<void> unlinkFacebook({
+    required String token,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performUnlinkFacebook(
+        token: token,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<Session> authenticateGoogle({
+    required String token,
+    bool create = true,
+    String? username,
+    Map<String, String>? vars,
+  }) {
+    return _performAuthRequest(() {
+      return _performRequest(() {
+        return performAuthenticateGoogle(
+          token: token,
+          create: create,
+          username: username,
+          vars: vars,
+        );
+      });
+    });
+  }
+
+  @override
+  Future<void> linkGoogle({
+    required String token,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performLinkGoogle(
+        token: token,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<void> unlinkGoogle({
+    required String token,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performUnlinkGoogle(
+        token: token,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<Session> authenticateApple({
+    required String token,
+    bool create = true,
+    String? username,
+    Map<String, String>? vars,
+  }) {
+    return _performAuthRequest(() {
+      return _performRequest(() {
+        return performAuthenticateApple(
+          token: token,
+          create: create,
+          username: username,
+          vars: vars,
+        );
+      });
+    });
+  }
+
+  @override
+  Future<void> linkApple({
+    required String token,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performLinkApple(
+        token: token,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<void> unlinkApple({
+    required String token,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performUnlinkApple(
+        token: token,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<Session> authenticateFacebookInstantGame({
+    required String signedPlayerInfo,
+    bool create = true,
+    String? username,
+    Map<String, String>? vars,
+  }) {
+    return _performAuthRequest(() {
+      return _performRequest(() {
+        return performAuthenticateFacebookInstantGame(
+          signedPlayerInfo: signedPlayerInfo,
+          create: create,
+          username: username,
+          vars: vars,
+        );
+      });
+    });
+  }
+
+  @override
+  Future<void> linkFacebookInstantGame({
+    required String signedPlayerInfo,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performLinkFacebookInstantGame(
+        signedPlayerInfo: signedPlayerInfo,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<void> unlinkFacebookInstantGame({
+    required String signedPlayerInfo,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performUnlinkFacebookInstantGame(
+        signedPlayerInfo: signedPlayerInfo,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<Session> authenticateGameCenter({
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    bool create = true,
+    String? username,
+    Map<String, String>? vars,
+  }) {
+    return _performAuthRequest(() {
+      return _performRequest(() {
+        return performAuthenticateGameCenter(
+          playerId: playerId,
+          bundleId: bundleId,
+          timestampSeconds: timestampSeconds,
+          salt: salt,
+          signature: signature,
+          publicKeyUrl: publicKeyUrl,
+          create: create,
+          username: username,
+          vars: vars,
+        );
+      });
+    });
+  }
+
+  @override
+  Future<void> linkGameCenter({
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performLinkGameCenter(
+        playerId: playerId,
+        bundleId: bundleId,
+        timestampSeconds: timestampSeconds,
+        salt: salt,
+        signature: signature,
+        publicKeyUrl: publicKeyUrl,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<void> unlinkGameCenter({
+    required String playerId,
+    required String bundleId,
+    required int timestampSeconds,
+    required String salt,
+    required String signature,
+    required String publicKeyUrl,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performUnlinkGameCenter(
+        playerId: playerId,
+        bundleId: bundleId,
+        timestampSeconds: timestampSeconds,
+        salt: salt,
+        signature: signature,
+        publicKeyUrl: publicKeyUrl,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<Session> authenticateSteam({
+    required String token,
+    bool create = true,
+    String? username,
+    Map<String, String>? vars,
+    bool import = false,
+  }) {
+    return _performAuthRequest(() {
+      return _performRequest(() {
+        return performAuthenticateSteam(
+          token: token,
+          create: create,
+          username: username,
+          vars: vars,
+          import: import,
+        );
+      });
+    });
+  }
+
+  @override
+  Future<void> linkSteam({
+    required String token,
+    Map<String, String>? vars,
+    bool import = false,
+  }) {
+    return _performRequest(() {
+      return performLinkSteam(
+        token: token,
+        vars: vars,
+        import: import,
+      );
+    });
+  }
+
+  @override
+  Future<void> unlinkSteam({
+    required String token,
+    Map<String, String>? vars,
+    bool import = false,
+  }) {
+    return _performRequest(() {
+      return performUnlinkSteam(
+        token: token,
+        vars: vars,
+        import: import,
+      );
+    });
+  }
+
+  @override
+  Future<Session> authenticateCustom({
+    required String id,
+    bool create = true,
+    String? username,
+    Map<String, String>? vars,
+  }) {
+    return _performAuthRequest(() {
+      return _performRequest(() {
+        return performAuthenticateCustom(
+          id: id,
+          create: create,
+          username: username,
+          vars: vars,
+        );
+      });
+    });
+  }
+
+  @override
+  Future<void> linkCustom({
+    required String id,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performLinkCustom(
+        id: id,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<void> unlinkCustom({
+    required String id,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performUnlinkCustom(
+        id: id,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<void> importFacebookFriends({
+    required String token,
+    bool reset = false,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performImportFacebookFriends(
+        token: token,
+        reset: reset,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<void> importSteamFriends({
+    required String token,
+    bool reset = false,
+    Map<String, String>? vars,
+  }) {
+    return _performRequest(() {
+      return performImportSteamFriends(
+        token: token,
+        reset: reset,
+        vars: vars,
+      );
+    });
+  }
+
+  @override
+  Future<Account> getAccount() {
+    return _performRequest(() {
+      return performGetAccount();
+    });
+  }
+
+  @override
+  Future<void> updateAccount({
+    String? username,
+    String? displayName,
+    String? avatarUrl,
+    String? langTag,
+    String? location,
+    String? timezone,
+  }) {
+    return _performRequest(() {
+      return performUpdateAccount(
+        username: username,
+        displayName: displayName,
+        avatarUrl: avatarUrl,
+        langTag: langTag,
+        location: location,
+        timezone: timezone,
+      );
+    });
+  }
+
+  @override
+  Future<List<User>> getUsers({
+    required List<String> ids,
+    List<String>? usernames,
+    List<String>? facebookIds,
+  }) {
+    return _performRequest(() {
+      return performGetUsers(
+        ids: ids,
+        usernames: usernames,
+        facebookIds: facebookIds,
+      );
+    });
+  }
+
+  @override
+  Future<void> writeStorageObjects({
+    required Iterable<StorageObjectWrite> objects,
+  }) {
+    return _performRequest(() {
+      return performWriteStorageObjects(
+        objects: objects,
+      );
+    });
+  }
+
+  @override
+  Future<StorageObjectList> listStorageObjects({
+    required String collection,
+    int limit = defaultLimit,
+    String? cursor,
+    String? userId,
+  }) {
+    return _performRequest(() {
+      return performListStorageObjects(
+        collection: collection,
+        limit: limit,
+        cursor: cursor,
+        userId: userId,
+      );
+    });
+  }
+
+  @override
+  Future<void> deleteStorageObjects({
+    required Iterable<StorageObjectId> objectIds,
+  }) {
+    return _performRequest(() {
+      return performDeleteStorageObjects(
+        objectIds: objectIds,
+      );
+    });
+  }
+
+  @override
+  Future<List<StorageObject>> readStorageObjects({
+    required Iterable<StorageObjectId> objectIds,
+  }) {
+    return _performRequest(() {
+      return performReadStorageObjects(
+        objectIds: objectIds,
+      );
+    });
+  }
+
+  @override
+  Future<ChannelMessageList> listChannelMessages({
+    required String channelId,
+    int limit = defaultLimit,
+    bool? forward,
+    String? cursor,
+  }) {
+    return _performRequest(() {
+      return performListChannelMessages(
+        channelId: channelId,
+        limit: limit,
+        forward: forward,
+        cursor: cursor,
+      );
+    });
+  }
+
+  @override
+  Future<LeaderboardRecordList> listLeaderboardRecords({
+    required String leaderboardName,
+    List<String>? ownerIds,
+    int limit = defaultLimit,
+    String? cursor,
+    DateTime? expiry,
+  }) {
+    return _performRequest(() {
+      return performListLeaderboardRecords(
+        leaderboardName: leaderboardName,
+        ownerIds: ownerIds,
+        limit: limit,
+        cursor: cursor,
+        expiry: expiry,
+      );
+    });
+  }
+
+  @override
+  Future<LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
+    required String leaderboardName,
+    required String ownerId,
+    int limit = defaultLimit,
+    DateTime? expiry,
+  }) {
+    return _performRequest(() {
+      return performListLeaderboardRecordsAroundOwner(
+        leaderboardName: leaderboardName,
+        ownerId: ownerId,
+        limit: limit,
+        expiry: expiry,
+      );
+    });
+  }
+
+  @override
+  Future<LeaderboardRecord> writeLeaderboardRecord({
+    required String leaderboardName,
+    required int score,
+    int? subscore,
+    String? metadata,
+    LeaderboardOperator? operator,
+  }) {
+    return _performRequest(() {
+      return performWriteLeaderboardRecord(
+        leaderboardName: leaderboardName,
+        score: score,
+        subscore: subscore,
+        metadata: metadata,
+        operator: operator,
+      );
+    });
+  }
+
+  @override
+  Future<void> deleteLeaderboardRecord({
+    required String leaderboardName,
+  }) {
+    return _performRequest(() {
+      return performDeleteLeaderboardRecord(
+        leaderboardName: leaderboardName,
+      );
+    });
+  }
+
+  @override
+  Future<void> addFriends({
+    required List<String> ids,
+    List<String>? usernames,
+  }) {
+    return _performRequest(() {
+      return performAddFriends(
+        ids: ids,
+        usernames: usernames,
+      );
+    });
+  }
+
+  @override
+  Future<FriendsList> listFriends({
+    FriendshipState? friendshipState,
+    int limit = defaultLimit,
+    String? cursor,
+  }) {
+    return _performRequest(() {
+      return performListFriends(
+        friendshipState: friendshipState,
+        limit: limit,
+        cursor: cursor,
+      );
+    });
+  }
+
+  @override
+  Future<void> deleteFriends({
+    required List<String> ids,
+    List<String>? usernames,
+  }) {
+    return _performRequest(() {
+      return performDeleteFriends(
+        ids: ids,
+        usernames: usernames,
+      );
+    });
+  }
+
+  @override
+  Future<void> blockFriends({
+    required List<String> ids,
+    List<String>? usernames,
+  }) {
+    return _performRequest(() {
+      return performBlockFriends(
+        ids: ids,
+        usernames: usernames,
+      );
+    });
+  }
+
+  @override
+  Future<Group> createGroup({
+    required String name,
+    String? avatarUrl,
+    String? description,
+    String? langTag,
+    int? maxCount,
+    bool open = false,
+  }) {
+    return _performRequest(() {
+      return performCreateGroup(
+        name: name,
+        avatarUrl: avatarUrl,
+        description: description,
+        langTag: langTag,
+        maxCount: maxCount,
+        open: open,
+      );
+    });
+  }
+
+  @override
+  Future<void> updateGroup({
+    required String groupId,
+    required bool open,
+    String? name,
+    String? avatarUrl,
+    String? description,
+    String? langTag,
+    int? maxCount,
+  }) {
+    return _performRequest(() {
+      return performUpdateGroup(
+        groupId: groupId,
+        open: open,
+        name: name,
+        avatarUrl: avatarUrl,
+        description: description,
+        langTag: langTag,
+        maxCount: maxCount,
+      );
+    });
+  }
+
+  @override
+  Future<GroupList> listGroups({
+    String? name,
+    String? cursor,
+    String? langTag,
+    int? members,
+    bool? open,
+    int limit = defaultLimit,
+  }) {
+    return _performRequest(() {
+      return performListGroups(
+        name: name,
+        cursor: cursor,
+        langTag: langTag,
+        members: members,
+        open: open,
+        limit: limit,
+      );
+    });
+  }
+
+  @override
+  Future<void> deleteGroup({
+    required String groupId,
+  }) {
+    return _performRequest(() {
+      return performDeleteGroup(
+        groupId: groupId,
+      );
+    });
+  }
+
+  @override
+  Future<void> joinGroup({
+    required String groupId,
+  }) {
+    return _performRequest(() {
+      return performJoinGroup(
+        groupId: groupId,
+      );
+    });
+  }
+
+  @override
+  Future<UserGroupList> listUserGroups({
+    String? userId,
+    GroupMembershipState? state,
+    int limit = defaultLimit,
+    String? cursor,
+  }) {
+    return _performRequest(() {
+      return performListUserGroups(
+        userId: userId,
+        state: state,
+        limit: limit,
+        cursor: cursor,
+      );
+    });
+  }
+
+  @override
+  Future<GroupUserList> listGroupUsers({
+    required String groupId,
+    String? cursor,
+    int limit = defaultLimit,
+    GroupMembershipState? state,
+  }) {
+    return _performRequest(() {
+      return performListGroupUsers(
+        groupId: groupId,
+        cursor: cursor,
+        limit: limit,
+        state: state,
+      );
+    });
+  }
+
+  @override
+  Future<void> addGroupUsers({
+    required String groupId,
+    required Iterable<String> userIds,
+  }) {
+    return _performRequest(() {
+      return performAddGroupUsers(
+        groupId: groupId,
+        userIds: userIds,
+      );
+    });
+  }
+
+  @override
+  Future<void> promoteGroupUsers({
+    required String groupId,
+    required Iterable<String> userIds,
+  }) {
+    return _performRequest(() {
+      return performPromoteGroupUsers(
+        groupId: groupId,
+        userIds: userIds,
+      );
+    });
+  }
+
+  @override
+  Future<void> demoteGroupUsers({
+    required String groupId,
+    required Iterable<String> userIds,
+  }) {
+    return _performRequest(() {
+      return performDemoteGroupUsers(
+        groupId: groupId,
+        userIds: userIds,
+      );
+    });
+  }
+
+  @override
+  Future<void> kickGroupUsers({
+    required String groupId,
+    required Iterable<String> userIds,
+  }) {
+    return _performRequest(() {
+      return performKickGroupUsers(
+        groupId: groupId,
+        userIds: userIds,
+      );
+    });
+  }
+
+  @override
+  Future<void> banGroupUsers({
+    required String groupId,
+    required Iterable<String> userIds,
+  }) {
+    return _performRequest(() {
+      return performBanGroupUsers(
+        groupId: groupId,
+        userIds: userIds,
+      );
+    });
+  }
+
+  @override
+  Future<void> leaveGroup({
+    required String groupId,
+  }) {
+    return _performRequest(() {
+      return performLeaveGroup(
+        groupId: groupId,
+      );
+    });
+  }
+
+  @override
+  Future<NotificationList> listNotifications({
+    int limit = defaultLimit,
+    String? cursor,
+  }) {
+    return _performRequest(() {
+      return performListNotifications(
+        limit: limit,
+        cursor: cursor,
+      );
+    });
+  }
+
+  @override
+  Future<void> deleteNotifications({
+    required Iterable<String> notificationIds,
+  }) {
+    return _performRequest(() {
+      return performDeleteNotifications(
+        notificationIds: notificationIds,
+      );
+    });
+  }
+
+  @override
+  Future<List<Match>> listMatches({
+    bool? authoritative,
+    String? label,
+    int limit = defaultLimit,
+    int? maxSize,
+    int? minSize,
+    String? query,
+  }) {
+    return _performRequest(() {
+      return performListMatches(
+        authoritative: authoritative,
+        label: label,
+        limit: limit,
+        maxSize: maxSize,
+        minSize: minSize,
+        query: query,
+      );
+    });
+  }
+
+  @override
+  Future<void> joinTournament({
+    required String tournamentId,
+  }) {
+    return _performRequest(() {
+      return performJoinTournament(
+        tournamentId: tournamentId,
+      );
+    });
+  }
+
+  @override
+  Future<TournamentList> listTournaments({
+    int? categoryStart,
+    int? categoryEnd,
+    String? cursor,
+    DateTime? startTime,
+    DateTime? endTime,
+    int limit = defaultLimit,
+  }) {
+    return _performRequest(() {
+      return performListTournaments(
+        categoryStart: categoryStart,
+        categoryEnd: categoryEnd,
+        cursor: cursor,
+        startTime: startTime,
+        endTime: endTime,
+        limit: limit,
+      );
+    });
+  }
+
+  @override
+  Future<TournamentRecordList> listTournamentRecords({
+    required String tournamentId,
+    required Iterable<String> ownerIds,
+    int? expiry,
+    int limit = defaultLimit,
+    String? cursor,
+  }) {
+    return _performRequest(() {
+      return performListTournamentRecords(
+        tournamentId: tournamentId,
+        ownerIds: ownerIds,
+        expiry: expiry,
+        limit: limit,
+        cursor: cursor,
+      );
+    });
+  }
+
+  @override
+  Future<TournamentRecordList> listTournamentRecordsAroundOwner({
+    required String tournamentId,
+    required String ownerId,
+    int? expiry,
+    int limit = defaultLimit,
+  }) {
+    return _performRequest(() {
+      return performListTournamentRecordsAroundOwner(
+        tournamentId: tournamentId,
+        ownerId: ownerId,
+        expiry: expiry,
+        limit: limit,
+      );
+    });
+  }
+
+  @override
+  Future<LeaderboardRecord> writeTournamentRecord({
+    required String tournamentId,
+    required int score,
+    int? subscore,
+    String? metadata,
+    LeaderboardOperator? operator,
+  }) {
+    return _performRequest(() {
+      return performWriteTournamentRecord(
+        tournamentId: tournamentId,
+        score: score,
+        subscore: subscore,
+        metadata: metadata,
+        operator: operator,
+      );
+    });
+  }
+
+  @override
+  Future<String?> rpc({
+    required String id,
+    String? payload,
+  }) {
+    return _performRequest(() {
+      return performRpc(
+        id: id,
+        payload: payload,
+      );
+    });
+  }
 }

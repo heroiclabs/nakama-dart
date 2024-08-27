@@ -6,6 +6,7 @@ export 'src/models/channel_message.dart'
     show ChannelMessage, ChannelMessageList;
 export 'src/models/channel_type.dart' show ChannelType;
 export 'src/models/chat.dart' show Channel, ChannelMessageAck;
+export 'src/models/error.dart' show NakamaError, ErrorCode;
 export 'src/models/friends.dart' show Friend, FriendsList;
 export 'src/models/friendship_state.dart' show FriendshipState;
 export 'src/models/group.dart'
