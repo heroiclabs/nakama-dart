@@ -119,7 +119,7 @@ abstract interface class Client {
   /// After creating the socket, you must call [Socket.connect] to establish a
   /// connection with the server.
   Socket createSocket({
-    void Function()? onDisconnect,
+    void Function(int code, String reason)? onDisconnect,
     void Function(Object error, StackTrace stackTrace)? onError,
   });
 

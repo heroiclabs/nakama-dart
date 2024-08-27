@@ -40,7 +40,16 @@ class TestHelper {
   }
 
   Future<Socket> createSocket(Client client) async {
-    final socket = client.createSocket();
+    final socket = client.createSocket(
+      onDisconnect: (code, reason) {
+        expect(code, 1000);
+        // TODO: This should be "Disconnecting", which is what is used when
+        // closing the socket in `Socket.disconnect()`. Maybe this is a bug in
+        // the WebSocket implementation?
+        expect(reason, '');
+      },
+      onError: (error, stackTrace) => fail('Socket error: $error\n$stackTrace'),
+    );
     await socket.connect();
     addTearDown(socket.close);
     return socket;

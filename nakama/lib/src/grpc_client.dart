@@ -119,7 +119,7 @@ final class GrpcClient extends ClientBase {
 
   @override
   Socket createSocket({
-    void Function()? onDisconnect,
+    void Function(int code, String reason)? onDisconnect,
     void Function(Object error, StackTrace stackTrace)? onError,
   }) {
     return SocketImpl(

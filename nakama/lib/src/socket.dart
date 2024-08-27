@@ -8,6 +8,7 @@ import 'api/rtapi.dart' as rtapi;
 import 'client.dart';
 import 'models/channel_type.dart';
 import 'models/chat.dart';
+import 'models/error.dart';
 import 'models/match.dart';
 import 'models/matchmaker.dart';
 import 'models/notification.dart';
@@ -41,7 +42,7 @@ abstract class Socket {
   /// Closes this socket and releases its resources.
   Future<void> close();
 
-  Future updateStatus(String status);
+  Future<void> updateStatus(String status);
 
   Future<Match> createMatch([String? name]);
 
@@ -49,22 +50,19 @@ abstract class Socket {
 
   Future<Party> joinParty(String partyId);
 
-  Future<void> promotePartyMember({
-    required String partyId,
-    required UserPresence newLeader,
-  });
+  Future<void> promotePartyMember(String partyId, UserPresence user);
 
   Future<void> leaveParty(String partyId);
 
-  Future<void> acceptPartyMember(String partyId, UserPresence presence);
+  Future<void> acceptPartyMember(String partyId, UserPresence user);
 
-  Future<void> removePartyMember(String partyId, UserPresence presence);
+  Future<void> removePartyMember(String partyId, UserPresence user);
 
   Future<PartyMatchmakerTicket> addMatchmakerParty({
     required String partyId,
     required int minCount,
-    int? maxCount,
-    String? query,
+    required int maxCount,
+    String query = '*',
     Map<String, double>? numericProperties,
     Map<String, String>? stringProperties,
   });
@@ -77,8 +75,8 @@ abstract class Socket {
 
   Future<MatchmakerTicket> addMatchmaker({
     required int minCount,
-    int? maxCount,
-    String? query,
+    required int maxCount,
+    String query = '*',
     Map<String, double>? numericProperties,
     Map<String, String>? stringProperties,
   });
@@ -92,19 +90,16 @@ abstract class Socket {
     List<String>? usernames,
   });
 
-  Future<List<UserPresence>> unfollowUsers(
-    List<String> list, {
-    List<String>? userIds,
-  });
+  Future<List<UserPresence>> unfollowUsers(List<String> userIds);
 
-  void sendMatchData({
+  Future<void> sendMatchData({
     required String matchId,
     required int opCode,
     required List<int> data,
-    Iterable<UserPresence>? presences,
+    Iterable<UserPresence>? users,
   });
 
-  Future<List<UserPresence>> sendPartyData({
+  Future<void> sendPartyData({
     required String partyId,
     required int opCode,
     required List<int> data,
@@ -134,20 +129,24 @@ abstract class Socket {
 class SocketImpl implements Socket {
   SocketImpl({
     required Client client,
-    void Function()? onDisconnect,
+    void Function(int code, String reason)? onDisconnect,
     void Function(Object error, StackTrace stackTrace)? onError,
   })  : _onError = onError,
         _onDisconnect = onDisconnect,
         _client = client;
 
   final Client _client;
-  final void Function()? _onDisconnect;
+  final void Function(int code, String reason)? _onDisconnect;
   final void Function(Object error, StackTrace stackTrace)? _onError;
-  WebSocketChannel? _channel;
-  StreamSubscription? _channelSubscription;
+  WebSocketChannel? _webSocket;
+  Completer<void>? _webSocketDisconnectedCompleter;
   final _eventController = StreamController<Object>.broadcast();
   int _nextRequestId = 0;
   final _requestCompleters = <int, Completer>{};
+
+  bool get _isDisconnected => _webSocket == null;
+  bool get _isDisconnecting => _webSocketDisconnectedCompleter != null;
+  bool _isClosed = false;
 
   @override
   Stream<ChannelPresenceEvent> get onChannelPresence => _eventsOfType();
@@ -186,6 +185,22 @@ class SocketImpl implements Socket {
   @override
   Stream<api.ChannelMessage> get onChannelMessage => _eventsOfType();
 
+  void _checkNotClosed() {
+    if (_isClosed) {
+      throw StateError('Socket is closed.');
+    }
+  }
+
+  void _checkConnected() {
+    _checkNotClosed();
+    if (_isDisconnecting) {
+      throw StateError('Socket is currently disconnecting.');
+    }
+    if (_isDisconnected) {
+      throw StateError('Socket is not connected.');
+    }
+  }
+
   Stream<T> _eventsOfType<T>() =>
       _eventController.stream.where((event) => event is T).cast<T>();
 
@@ -199,99 +214,127 @@ class SocketImpl implements Socket {
     return (id, completer.future);
   }
 
-  Completer<Object?> _takePendingRequest(int id) {
-    // TODO: Handle unknown cid
-    return _requestCompleters.remove(id)!;
+  Completer<T> _pendingRequestCompleter<T>(String cid) {
+    final completer = _requestCompleters.remove(int.parse(cid));
+
+    if (completer == null) {
+      throw StateError('No pending request completer found for CID: $cid');
+    }
+
+    if (completer is! Completer<T>) {
+      throw StateError(
+        'Expected Completer<$T> but found ${completer.runtimeType}',
+      );
+    }
+
+    return completer;
   }
 
-  Future<T> _sendRequest<T>(rtapi.Envelope envelope) async {
+  void _completePendingRequest<T>(String cid, T response) =>
+      _pendingRequestCompleter(cid).complete(response);
+
+  Future<T> _send<T>(
+    rtapi.Envelope envelope, {
+    bool waitForResponse = true,
+  }) async {
+    _checkConnected();
+
+    if (!waitForResponse) {
+      _webSocket!.sink.add(envelope.writeToBuffer());
+      return Future.value();
+    }
+
     final (id, future) = _createPendingRequest<T>();
     envelope.cid = id.toString();
-    _channel!.sink.add(envelope.writeToBuffer());
+    _webSocket!.sink.add(envelope.writeToBuffer());
     return future;
   }
 
-  void _onData(List<int> msg) {
-    final envelope = rtapi.Envelope.fromBuffer(msg);
-
-    if (envelope.cid.isNotEmpty) {
-      _handleResponse(envelope);
-    } else {
-      _handleEvent(envelope);
-    }
-  }
-
-  void _handleResponse(rtapi.Envelope envelope) {
-    final completer = _takePendingRequest(int.parse(envelope.cid));
-    switch (completer) {
-      case Completer<rtapi.Match>():
-        completer.complete(envelope.match);
-      case Completer<rtapi.MatchmakerTicket>():
-        completer.complete(envelope.matchmakerTicket);
-      case Completer<rtapi.Status>():
-        completer.complete(envelope.status);
-      case Completer<rtapi.Channel>():
-        completer.complete(envelope.channel);
-      case Completer<rtapi.ChannelMessageAck>():
-        completer.complete(envelope.channelMessageAck);
-      case Completer<rtapi.Party>():
-        completer.complete(envelope.party);
-      case Completer<rtapi.PartyMatchmakerTicket>():
-        completer.complete(envelope.partyMatchmakerTicket);
-      default:
-        completer.complete();
-    }
-  }
-
-  void _handleEvent(rtapi.Envelope envelope) {
+  void _handleMessage(rtapi.Envelope envelope) {
     switch (envelope.whichMessage()) {
+      case rtapi.Envelope_Message.error:
+        final rtapi.Error(:code, :message) = envelope.error;
+        _pendingRequestCompleter<void>(envelope.cid).completeError(
+          NakamaError(code: ErrorCode(code), message: message),
+        );
+      case rtapi.Envelope_Message.notSet:
+        _completePendingRequest<void>(envelope.cid, null);
+      case rtapi.Envelope_Message.match:
+        _completePendingRequest(envelope.cid, Match.fromRtDto(envelope.match));
+      case rtapi.Envelope_Message.matchmakerTicket:
+        _completePendingRequest(
+          envelope.cid,
+          MatchmakerTicket.fromDto(envelope.matchmakerTicket),
+        );
+      case rtapi.Envelope_Message.status:
+        _completePendingRequest(
+          envelope.cid,
+          envelope.status.presences.map(UserPresence.fromDto).toList(),
+        );
+      case rtapi.Envelope_Message.channel:
+        _completePendingRequest(
+          envelope.cid,
+          Channel.fromDto(envelope.channel),
+        );
+      case rtapi.Envelope_Message.channelMessageAck:
+        _completePendingRequest(
+          envelope.cid,
+          ChannelMessageAck.fromDto(envelope.channelMessageAck),
+        );
+      case rtapi.Envelope_Message.partyMatchmakerTicket:
+        _completePendingRequest(
+          envelope.cid,
+          PartyMatchmakerTicket.fromDto(envelope.partyMatchmakerTicket),
+        );
+      case rtapi.Envelope_Message.rpc:
+        _completePendingRequest(envelope.cid, Rpc.fromDto(envelope.rpc));
+      case rtapi.Envelope_Message.party:
+        _completePendingRequest(envelope.cid, Party.fromDto(envelope.party));
       case rtapi.Envelope_Message.channelPresenceEvent:
-        _addEvent(
-          ChannelPresenceEvent.fromDto(envelope.channelPresenceEvent),
-        );
+        _addEvent(ChannelPresenceEvent.fromDto(envelope.channelPresenceEvent));
       case rtapi.Envelope_Message.matchmakerMatched:
-        _addEvent(
-          MatchmakerMatched.fromDto(envelope.matchmakerMatched),
-        );
+        _addEvent(MatchmakerMatched.fromDto(envelope.matchmakerMatched));
       case rtapi.Envelope_Message.matchData:
         _addEvent(MatchData.fromDto(envelope.matchData));
       case rtapi.Envelope_Message.partyData:
         _addEvent(PartyData.fromDto(envelope.partyData));
       case rtapi.Envelope_Message.partyPresenceEvent:
-        _addEvent(
-          PartyPresenceEvent.fromDto(envelope.partyPresenceEvent),
-        );
+        _addEvent(PartyPresenceEvent.fromDto(envelope.partyPresenceEvent));
       case rtapi.Envelope_Message.partyLeader:
         _addEvent(PartyLeader.fromDto(envelope.partyLeader));
       case rtapi.Envelope_Message.matchPresenceEvent:
-        _addEvent(
-          MatchPresenceEvent.fromDto(envelope.matchPresenceEvent),
-        );
+        _addEvent(MatchPresenceEvent.fromDto(envelope.matchPresenceEvent));
       case rtapi.Envelope_Message.notifications:
         envelope.notifications.notifications
-            .map((notification) => Notification.fromDto(notification))
+            .map(Notification.fromDto)
             .forEach(_addEvent);
       case rtapi.Envelope_Message.statusPresenceEvent:
-        _addEvent(
-          StatusPresenceEvent.fromDto(envelope.statusPresenceEvent),
-        );
+        _addEvent(StatusPresenceEvent.fromDto(envelope.statusPresenceEvent));
       case rtapi.Envelope_Message.streamPresenceEvent:
-        _addEvent(
-          StreamPresenceEvent.fromDto(envelope.streamPresenceEvent),
-        );
+        _addEvent(StreamPresenceEvent.fromDto(envelope.streamPresenceEvent));
       case rtapi.Envelope_Message.streamData:
-        _addEvent(
-          RealtimeStreamData.fromDto(envelope.streamData),
-        );
+        _addEvent(RealtimeStreamData.fromDto(envelope.streamData));
       case rtapi.Envelope_Message.channelMessage:
         _addEvent(envelope.channelMessage);
       case final type:
-        throw UnimplementedError('Event type ${type.name} is not implemented.');
+        throw UnimplementedError(
+          'Message type ${type.name} is not implemented.',
+        );
     }
   }
 
   @override
   Future<void> connect() async {
+    _checkNotClosed();
+
+    if (!_isDisconnected) {
+      return;
+    }
+
+    if (_isDisconnecting) {
+      throw StateError('Socket is currently disconnecting.');
+    }
+
     final ssl = _client.ssl;
     final host = _client.host;
     final port = _client.httpPort;
@@ -318,16 +361,32 @@ class SocketImpl implements Socket {
         'format': 'protobuf',
       },
     );
-    _channel = WebSocketChannel.connect(uri);
+    final webSocket = WebSocketChannel.connect(uri);
+    _webSocket = webSocket;
 
-    _channelSubscription =
-        _channel!.stream.map((message) => _onData(message as List<int>)).listen(
+    webSocket.stream.map((message) {
+      _handleMessage(rtapi.Envelope.fromBuffer(message as List<int>));
+    }).listen(
       (_) {},
       onDone: () {
         if (_onDisconnect != null) {
-          _onDisconnect!();
+          _onDisconnect!(webSocket.closeCode!, webSocket.closeReason!);
         }
-        _channel = null;
+
+        _webSocket = null;
+        _webSocketDisconnectedCompleter?.complete();
+        _webSocketDisconnectedCompleter = null;
+
+        for (final completer in _requestCompleters.values) {
+          completer.completeError(
+            NakamaError(
+              code: ErrorCode.aborted,
+              message:
+                  'The socket was disconnected before the request completed.',
+            ),
+            StackTrace.current,
+          );
+        }
       },
       onError: (error, stackTrace) {
         if (_onError != null) {
@@ -342,28 +401,33 @@ class SocketImpl implements Socket {
 
   @override
   Future<void> disconnect() async {
-    // TODO: Handle uncompleted requests
-    final channel = _channel!;
-    final channelSubscription = _channelSubscription!;
-    _channel = null;
-    _channelSubscription = null;
-    await Future.wait([
-      channel.sink.close(),
-      channelSubscription.cancel(),
-    ]);
+    _checkNotClosed();
+
+    if (_isDisconnected) {
+      return;
+    }
+
+    if (!_isDisconnecting) {
+      _webSocketDisconnectedCompleter = Completer();
+      await _webSocket!.sink.close(1000, 'Disconnecting');
+    }
+
+    await _webSocketDisconnectedCompleter!.future;
   }
 
   @override
   Future<void> close() async {
-    await Future.wait([
-      disconnect(),
-      _eventController.close(),
-    ]);
+    if (_isClosed) {
+      return;
+    }
+    await disconnect();
+    _isClosed = true;
+    await _eventController.close();
   }
 
   @override
-  Future updateStatus(String status) {
-    return _sendRequest<void>(
+  Future<void> updateStatus(String status) {
+    return _send(
       rtapi.Envelope(
         statusUpdate: rtapi.StatusUpdate(
           status: api.StringValue(value: status),
@@ -373,17 +437,17 @@ class SocketImpl implements Socket {
   }
 
   @override
-  Future<Match> createMatch([String? name]) async {
-    final response = await _sendRequest<rtapi.Match>(
-      rtapi.Envelope(matchCreate: rtapi.MatchCreate(name: name)),
+  Future<Match> createMatch([String? name]) {
+    return _send(
+      rtapi.Envelope(
+        matchCreate: rtapi.MatchCreate(name: name),
+      ),
     );
-
-    return Match.fromRtDto(response);
   }
 
   @override
-  Future<Party> createParty({int? maxSize, bool? open}) async {
-    final response = await _sendRequest<rtapi.Party>(
+  Future<Party> createParty({int? maxSize, bool? open}) {
+    return _send(
       rtapi.Envelope(
         partyCreate: rtapi.PartyCreate(
           maxSize: maxSize,
@@ -391,45 +455,32 @@ class SocketImpl implements Socket {
         ),
       ),
     );
-
-    return Party.fromDto(response);
   }
 
   @override
-  Future<Party> joinParty(String partyId) async {
-    final response = await _sendRequest<rtapi.Party>(
+  Future<Party> joinParty(String partyId) {
+    return _send(
       rtapi.Envelope(
         partyJoin: rtapi.PartyJoin(partyId: partyId),
       ),
     );
-
-    return Party.fromDto(response);
   }
 
   @override
-  Future<void> promotePartyMember({
-    required String partyId,
-    required UserPresence newLeader,
-  }) async {
-    await _sendRequest(
+  Future<void> promotePartyMember(String partyId, UserPresence user) {
+    return _send(
       rtapi.Envelope(
         partyPromote: rtapi.PartyPromote(
           partyId: partyId,
-          presence: rtapi.UserPresence(
-            userId: newLeader.userId,
-            sessionId: newLeader.sessionId,
-            username: newLeader.username,
-            persistence: newLeader.persistence,
-            status: api.StringValue(value: newLeader.status),
-          ),
+          presence: user.toDto(),
         ),
       ),
     );
   }
 
   @override
-  Future<void> leaveParty(String partyId) async {
-    await _sendRequest<rtapi.Party>(
+  Future<void> leaveParty(String partyId) {
+    return _send(
       rtapi.Envelope(
         partyLeave: rtapi.PartyLeave(partyId: partyId),
       ),
@@ -437,36 +488,24 @@ class SocketImpl implements Socket {
   }
 
   @override
-  Future<void> acceptPartyMember(String partyId, UserPresence presence) async {
-    await _sendRequest<rtapi.Party>(
+  Future<void> acceptPartyMember(String partyId, UserPresence user) {
+    return _send(
       rtapi.Envelope(
         partyAccept: rtapi.PartyAccept(
           partyId: partyId,
-          presence: rtapi.UserPresence(
-            userId: presence.userId,
-            sessionId: presence.sessionId,
-            username: presence.username,
-            persistence: presence.persistence,
-            status: api.StringValue(value: presence.status),
-          ),
+          presence: user.toDto(),
         ),
       ),
     );
   }
 
   @override
-  Future<void> removePartyMember(String partyId, UserPresence presence) async {
-    await _sendRequest<void>(
+  Future<void> removePartyMember(String partyId, UserPresence user) {
+    return _send(
       rtapi.Envelope(
         partyRemove: rtapi.PartyRemove(
           partyId: partyId,
-          presence: rtapi.UserPresence(
-            userId: presence.userId,
-            sessionId: presence.sessionId,
-            username: presence.username,
-            persistence: presence.persistence,
-            status: api.StringValue(value: presence.status),
-          ),
+          presence: user.toDto(),
         ),
       ),
     );
@@ -476,12 +515,12 @@ class SocketImpl implements Socket {
   Future<PartyMatchmakerTicket> addMatchmakerParty({
     required String partyId,
     required int minCount,
-    int? maxCount,
-    String? query,
+    required int maxCount,
+    String query = '*',
     Map<String, double>? numericProperties,
     Map<String, String>? stringProperties,
-  }) async {
-    final response = await _sendRequest<rtapi.PartyMatchmakerTicket>(
+  }) {
+    return _send(
       rtapi.Envelope(
         partyMatchmakerAdd: rtapi.PartyMatchmakerAdd(
           partyId: partyId,
@@ -493,13 +532,11 @@ class SocketImpl implements Socket {
         ),
       ),
     );
-
-    return PartyMatchmakerTicket.fromDto(response);
   }
 
   @override
-  Future<void> closeParty(String partyId) async {
-    await _sendRequest<void>(
+  Future<void> closeParty(String partyId) {
+    return _send(
       rtapi.Envelope(
         partyClose: rtapi.PartyClose(partyId: partyId),
       ),
@@ -510,36 +547,32 @@ class SocketImpl implements Socket {
   Future<Match> joinMatch(
     String matchId, {
     String? token,
-  }) async {
-    final response = await _sendRequest<rtapi.Match>(
+  }) {
+    return _send(
       rtapi.Envelope(
         matchJoin: rtapi.MatchJoin(matchId: matchId, token: token),
       ),
     );
-
-    return Match.fromRtDto(response);
   }
 
   @override
-  Future<void> leaveMatch(String matchId) async {
-    await _sendRequest<void>(
-      rtapi.Envelope(matchLeave: rtapi.MatchLeave(matchId: matchId)),
+  Future<void> leaveMatch(String matchId) {
+    return _send(
+      rtapi.Envelope(
+        matchLeave: rtapi.MatchLeave(matchId: matchId),
+      ),
     );
   }
 
   @override
   Future<MatchmakerTicket> addMatchmaker({
     required int minCount,
-    int? maxCount,
-    String? query,
+    required int maxCount,
+    String query = '*',
     Map<String, double>? numericProperties,
     Map<String, String>? stringProperties,
-  }) async {
-    // TODO: Throw ArgumentError instead of asserts
-    assert(minCount >= 2);
-    assert(maxCount == null || maxCount >= minCount);
-
-    final response = await _sendRequest<rtapi.MatchmakerTicket>(
+  }) {
+    return _send(
       rtapi.Envelope(
         matchmakerAdd: rtapi.MatchmakerAdd(
           maxCount: maxCount,
@@ -550,32 +583,32 @@ class SocketImpl implements Socket {
         ),
       ),
     );
-
-    return MatchmakerTicket.fromDto(response);
   }
 
   @override
-  Future<void> removeMatchmaker(String ticket) async {
-    await _sendRequest(
-      rtapi.Envelope(matchmakerRemove: rtapi.MatchmakerRemove(ticket: ticket)),
+  Future<void> removeMatchmaker(String ticket) {
+    return _send(
+      rtapi.Envelope(
+        matchmakerRemove: rtapi.MatchmakerRemove(ticket: ticket),
+      ),
     );
   }
 
   @override
-  Future<Rpc> rpc({required String id, String? payload}) async {
-    final response = await _sendRequest<api.Rpc>(
-      rtapi.Envelope(rpc: api.Rpc(id: id, payload: payload)),
+  Future<Rpc> rpc({required String id, String? payload}) {
+    return _send(
+      rtapi.Envelope(
+        rpc: api.Rpc(id: id, payload: payload),
+      ),
     );
-
-    return Rpc.fromDto(response);
   }
 
   @override
   Future<List<UserPresence>> followUsers({
     List<String>? userIds,
     List<String>? usernames,
-  }) async {
-    final response = await _sendRequest<rtapi.Status>(
+  }) {
+    return _send(
       rtapi.Envelope(
         statusFollow: rtapi.StatusFollow(
           userIds: userIds,
@@ -583,60 +616,47 @@ class SocketImpl implements Socket {
         ),
       ),
     );
-
-    return response.presences.map(UserPresence.fromDto).toList();
   }
 
   @override
-  Future<List<UserPresence>> unfollowUsers(
-    List<String> list, {
-    List<String>? userIds,
-  }) async {
-    final response = await _sendRequest<rtapi.Status>(
+  Future<List<UserPresence>> unfollowUsers(List<String> userIds) {
+    return _send(
       rtapi.Envelope(
         statusUnfollow: rtapi.StatusUnfollow(
           userIds: userIds,
         ),
       ),
     );
-
-    return response.presences.map(UserPresence.fromDto).toList();
   }
 
   @override
-  void sendMatchData({
+  Future<void> sendMatchData({
     required String matchId,
     required int opCode,
     required List<int> data,
-    Iterable<UserPresence>? presences,
-  }) async {
-    _sendRequest<void>(
+    Iterable<UserPresence>? users,
+  }) {
+    return _send(
+      waitForResponse: false,
       rtapi.Envelope(
         matchDataSend: rtapi.MatchDataSend(
           matchId: matchId,
           opCode: api.Int64(opCode),
           data: data,
-          presences: presences?.map((e) {
-            return rtapi.UserPresence(
-              userId: e.userId,
-              sessionId: e.sessionId,
-              username: e.username,
-              persistence: e.persistence,
-              status: api.StringValue(value: e.status),
-            );
-          }).toList(),
+          presences: users?.map((user) => user.toDto()).toList(),
         ),
       ),
     );
   }
 
   @override
-  Future<List<UserPresence>> sendPartyData({
+  Future<void> sendPartyData({
     required String partyId,
     required int opCode,
     required List<int> data,
-  }) async {
-    final response = await _sendRequest<rtapi.Status>(
+  }) {
+    return _send(
+      waitForResponse: false,
       rtapi.Envelope(
         partyDataSend: rtapi.PartyDataSend(
           partyId: partyId,
@@ -645,8 +665,6 @@ class SocketImpl implements Socket {
         ),
       ),
     );
-
-    return response.presences.map(UserPresence.fromDto).toList();
   }
 
   @override
@@ -655,8 +673,8 @@ class SocketImpl implements Socket {
     required ChannelType type,
     required bool persistence,
     required bool hidden,
-  }) async {
-    final response = await _sendRequest<rtapi.Channel>(
+  }) {
+    return _send(
       rtapi.Envelope(
         channelJoin: rtapi.ChannelJoin(
           target: target,
@@ -671,14 +689,14 @@ class SocketImpl implements Socket {
         ),
       ),
     );
-
-    return Channel.fromDto(response);
   }
 
   @override
-  Future<void> leaveChannel(String channelId) async {
-    await _sendRequest(
-      rtapi.Envelope(channelLeave: rtapi.ChannelLeave(channelId: channelId)),
+  Future<void> leaveChannel(String channelId) {
+    return _send(
+      rtapi.Envelope(
+        channelLeave: rtapi.ChannelLeave(channelId: channelId),
+      ),
     );
   }
 
@@ -686,8 +704,8 @@ class SocketImpl implements Socket {
   Future<ChannelMessageAck> sendMessage({
     required String channelId,
     required Map<String, String> content,
-  }) async {
-    final response = await _sendRequest<rtapi.ChannelMessageAck>(
+  }) {
+    return _send(
       rtapi.Envelope(
         channelMessageSend: rtapi.ChannelMessageSend(
           channelId: channelId,
@@ -695,8 +713,6 @@ class SocketImpl implements Socket {
         ),
       ),
     );
-
-    return ChannelMessageAck.fromDto(response);
   }
 
   @override
@@ -704,8 +720,8 @@ class SocketImpl implements Socket {
     required String channelId,
     required String messageId,
     required Map<String, String> content,
-  }) async {
-    final response = await _sendRequest<rtapi.ChannelMessageAck>(
+  }) {
+    return _send(
       rtapi.Envelope(
         channelMessageUpdate: rtapi.ChannelMessageUpdate(
           channelId: channelId,
@@ -714,7 +730,17 @@ class SocketImpl implements Socket {
         ),
       ),
     );
+  }
+}
 
-    return ChannelMessageAck.fromDto(response);
+extension on UserPresence {
+  rtapi.UserPresence toDto() {
+    return rtapi.UserPresence(
+      userId: userId,
+      sessionId: sessionId,
+      username: username,
+      persistence: persistence,
+      status: api.StringValue(value: status),
+    );
   }
 }

@@ -42,7 +42,7 @@ void main() {
 
       test('two clients can join a match', () async {
         // Expect to see B joining from A's point of view
-        socketA.onMatchPresence.listen((event) {
+        socketA.onMatchPresence.take(1).listen((event) {
           // We first see A then in a next notification we see B joining.
           expect(event.joins, hasLength(1));
         });
@@ -74,27 +74,43 @@ void main() {
         await socketA.removeMatchmaker(ticket.ticket);
       });
 
+      test('addMatchmaker with invalid maxCount', () async {
+        await expectLater(
+          socketA.addMatchmaker(
+            minCount: 2,
+            maxCount: 1,
+          ),
+          throwsA(
+            isA<NakamaError>()
+                .havingCode(ErrorCode.invalidArgument)
+                .havingMessage(
+                  'Invalid maximum count, must be >= minimum count',
+                ),
+          ),
+        );
+      });
+
       test('receives sent match data', () async {
-        final realtimeData = 'test'.codeUnits;
+        final data = 'test'.codeUnits;
 
         // B starts listening for match data, A sends some data after B joined
-        socketB.onMatchData.listen(expectAsync1((matchData) {
-          expect(matchData, isNotNull);
-          expect(matchData.presence?.userId, equals(clientA.session!.userId));
-          expect(matchData.data, equals(realtimeData));
-        }, count: 1));
+        socketB.onMatchData.listen(expectAsync1(
+          count: 1,
+          (matchData) {
+            expect(matchData, isNotNull);
+            expect(matchData.presence?.userId, equals(clientA.session!.userId));
+            expect(matchData.data, equals(data));
+          },
+        ));
 
         // A creates match, B joins
-        await socketA
-            .createMatch()
-            .then((value) => socketB.joinMatch(value.matchId))
-            .then((value) {
-          socketA.sendMatchData(
-            matchId: value.matchId,
-            opCode: 0,
-            data: realtimeData,
-          );
-        });
+        final match = await socketA.createMatch();
+        await socketB.joinMatch(match.matchId);
+        await socketA.sendMatchData(
+          matchId: match.matchId,
+          opCode: 0,
+          data: data,
+        );
       });
     });
   });
