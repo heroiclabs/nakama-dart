@@ -3,10 +3,10 @@ import 'grpc_client.dart';
 
 Client createClient({
   required String host,
-  int httpPort = defaultHttpPort,
-  int grpcPort = defaultGrpcPort,
-  bool ssl = defaultSsl,
-  String serverKey = defaultServerKey,
+  required int httpPort,
+  required int grpcPort,
+  required bool ssl,
+  required String serverKey,
 }) =>
     GrpcClient(
       host: host,

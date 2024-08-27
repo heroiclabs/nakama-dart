@@ -20,16 +20,25 @@ import 'models/tournament.dart';
 import 'rest_client.dart';
 import 'socket.dart';
 
-const defaultHttpPort = 7350;
-const defaultGrpcPort = 7349;
-const defaultSsl = false;
-const defaultLimit = 20;
-const defaultServerKey = 'defaultkey';
-
 /// Client to communicate with the Nakama server.
 ///
 /// For real-time communication, create a socket with [createSocket].
 abstract interface class Client {
+  /// The default HTTP port for the server.
+  static const defaultHttpPort = 7350;
+
+  /// The default gRPC port for the server.
+  static const defaultGrpcPort = 7349;
+
+  /// The default SSL setting for connecting to the server.
+  static const defaultSsl = false;
+
+  /// The default limit for list operations.
+  static const defaultLimit = 20;
+
+  /// The default key to use for unauthenticated requests.
+  static const defaultServerKey = 'defaultkey';
+
   /// Creates a new client that uses the optimal protocol for the current
   /// platform.
   ///
@@ -39,10 +48,10 @@ abstract interface class Client {
   /// On native platforms, a gRPC client will be created.
   factory Client({
     required String host,
-    int httpPort = defaultHttpPort,
-    int grpcPort = defaultGrpcPort,
-    bool ssl = defaultSsl,
-    String serverKey = defaultServerKey,
+    int httpPort = Client.defaultHttpPort,
+    int grpcPort = Client.defaultGrpcPort,
+    bool ssl = Client.defaultSsl,
+    String serverKey = Client.defaultServerKey,
   }) =>
       createClient(
         host: host,
@@ -57,10 +66,10 @@ abstract interface class Client {
   /// This is supported on all platforms.
   factory Client.rest({
     required String host,
-    int httpPort = defaultHttpPort,
-    int grpcPort = defaultGrpcPort,
-    bool ssl = defaultSsl,
-    String serverKey = defaultServerKey,
+    int httpPort = Client.defaultHttpPort,
+    int grpcPort = Client.defaultGrpcPort,
+    bool ssl = Client.defaultSsl,
+    String serverKey = Client.defaultServerKey,
   }) =>
       RestClient(
         host: host,
@@ -75,10 +84,10 @@ abstract interface class Client {
   /// This is supported on native platforms.
   factory Client.grpc({
     required String host,
-    int httpPort = defaultHttpPort,
-    int grpcPort = defaultGrpcPort,
-    bool ssl = defaultSsl,
-    String serverKey = defaultServerKey,
+    int httpPort = Client.defaultHttpPort,
+    int grpcPort = Client.defaultGrpcPort,
+    bool ssl = Client.defaultSsl,
+    String serverKey = Client.defaultServerKey,
   }) =>
       GrpcClient(
         host: host,
@@ -535,7 +544,7 @@ abstract interface class Client {
   /// - [cursor] A cursor to paginate over the collection. Can be null.
   Future<StorageObjectList> listStorageObjects({
     required String collection,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     String? cursor,
     String? userId,
   });
@@ -565,7 +574,7 @@ abstract interface class Client {
   /// - [cursor] A cursor for the current position in the messages history to list.
   Future<ChannelMessageList> listChannelMessages({
     required String channelId,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     bool? forward,
     String? cursor,
   });
@@ -581,7 +590,7 @@ abstract interface class Client {
   Future<LeaderboardRecordList> listLeaderboardRecords({
     required String leaderboardName,
     List<String>? ownerIds,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     String? cursor,
     DateTime? expiry,
   });
@@ -596,7 +605,7 @@ abstract interface class Client {
   Future<LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
     required String leaderboardName,
     required String ownerId,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     DateTime? expiry,
   });
 
@@ -637,7 +646,7 @@ abstract interface class Client {
   /// - [cursor] A cursor for the current position in the friends list.
   Future<FriendsList> listFriends({
     FriendshipState? friendshipState,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     String? cursor,
   });
 
@@ -714,7 +723,7 @@ abstract interface class Client {
     String? langTag,
     int? members,
     bool? open,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
   });
 
   /// Delete a group by id.
@@ -743,7 +752,7 @@ abstract interface class Client {
   Future<UserGroupList> listUserGroups({
     String? userId,
     GroupMembershipState? state,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     String? cursor,
   });
 
@@ -757,7 +766,7 @@ abstract interface class Client {
   Future<GroupUserList> listGroupUsers({
     required String groupId,
     String? cursor,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     GroupMembershipState? state,
   });
 
@@ -825,7 +834,7 @@ abstract interface class Client {
   /// - [limit] The number of notifications to list.
   /// - [cursor] A cursor for the current position in notifications to list.
   Future<NotificationList> listNotifications({
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     String? cursor,
   });
 
@@ -849,7 +858,7 @@ abstract interface class Client {
   Future<List<Match>> listMatches({
     bool? authoritative,
     String? label,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     int? maxSize,
     int? minSize,
     String? query,
@@ -878,7 +887,7 @@ abstract interface class Client {
     String? cursor,
     DateTime? startTime,
     DateTime? endTime,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
   });
 
   /// List records from a tournament.
@@ -893,7 +902,7 @@ abstract interface class Client {
     required String tournamentId,
     required Iterable<String> ownerIds,
     int? expiry,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     String? cursor,
   });
 
@@ -908,7 +917,7 @@ abstract interface class Client {
     required String tournamentId,
     required String ownerId,
     int? expiry,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
   });
 
   /// Write a record to a tournament.
@@ -1974,7 +1983,7 @@ abstract base class ClientBase implements Client {
   @override
   Future<StorageObjectList> listStorageObjects({
     required String collection,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     String? cursor,
     String? userId,
   }) {
@@ -2013,7 +2022,7 @@ abstract base class ClientBase implements Client {
   @override
   Future<ChannelMessageList> listChannelMessages({
     required String channelId,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     bool? forward,
     String? cursor,
   }) {
@@ -2031,7 +2040,7 @@ abstract base class ClientBase implements Client {
   Future<LeaderboardRecordList> listLeaderboardRecords({
     required String leaderboardName,
     List<String>? ownerIds,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     String? cursor,
     DateTime? expiry,
   }) {
@@ -2050,7 +2059,7 @@ abstract base class ClientBase implements Client {
   Future<LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
     required String leaderboardName,
     required String ownerId,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     DateTime? expiry,
   }) {
     return _performRequest(() {
@@ -2109,7 +2118,7 @@ abstract base class ClientBase implements Client {
   @override
   Future<FriendsList> listFriends({
     FriendshipState? friendshipState,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     String? cursor,
   }) {
     return _performRequest(() {
@@ -2198,7 +2207,7 @@ abstract base class ClientBase implements Client {
     String? langTag,
     int? members,
     bool? open,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
   }) {
     return _performRequest(() {
       return performListGroups(
@@ -2238,7 +2247,7 @@ abstract base class ClientBase implements Client {
   Future<UserGroupList> listUserGroups({
     String? userId,
     GroupMembershipState? state,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     String? cursor,
   }) {
     return _performRequest(() {
@@ -2255,7 +2264,7 @@ abstract base class ClientBase implements Client {
   Future<GroupUserList> listGroupUsers({
     required String groupId,
     String? cursor,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     GroupMembershipState? state,
   }) {
     return _performRequest(() {
@@ -2346,7 +2355,7 @@ abstract base class ClientBase implements Client {
 
   @override
   Future<NotificationList> listNotifications({
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     String? cursor,
   }) {
     return _performRequest(() {
@@ -2372,7 +2381,7 @@ abstract base class ClientBase implements Client {
   Future<List<Match>> listMatches({
     bool? authoritative,
     String? label,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     int? maxSize,
     int? minSize,
     String? query,
@@ -2407,7 +2416,7 @@ abstract base class ClientBase implements Client {
     String? cursor,
     DateTime? startTime,
     DateTime? endTime,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
   }) {
     return _performRequest(() {
       return performListTournaments(
@@ -2426,7 +2435,7 @@ abstract base class ClientBase implements Client {
     required String tournamentId,
     required Iterable<String> ownerIds,
     int? expiry,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
     String? cursor,
   }) {
     return _performRequest(() {
@@ -2445,7 +2454,7 @@ abstract base class ClientBase implements Client {
     required String tournamentId,
     required String ownerId,
     int? expiry,
-    int limit = defaultLimit,
+    int limit = Client.defaultLimit,
   }) {
     return _performRequest(() {
       return performListTournamentRecordsAroundOwner(
