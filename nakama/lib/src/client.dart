@@ -157,13 +157,10 @@ abstract interface class Client {
 
   /// Refresh a user session and return the new session.
   ///
-  /// - [session] Current session.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<Session> sessionRefresh({Map<String, String>? vars});
 
   /// Logout user session and invalidate refresh token.
-  ///
-  /// - [session] The session to log out.
   Future<void> sessionLogout();
 
   /// Authenticate a user with an email and password.
@@ -183,7 +180,6 @@ abstract interface class Client {
 
   /// Link an email with password to the user account owned by the session.
   ///
-  /// - [session] The session of the user.
   /// - [email] The email address of the user.
   /// - [password] The password for the user.
   /// - [vars] Extra information that will be bundled in the session token.
@@ -195,7 +191,6 @@ abstract interface class Client {
 
   /// Unlink an email with password to the user account owned by the session.
   ///
-  /// - [session] The session of the user.
   /// - [email] The email address of the user to remove from associated account.
   /// - [password] The password for the user to remove.
   /// - [vars] Extra information that will be bundled in the session token.
@@ -220,7 +215,6 @@ abstract interface class Client {
 
   /// Link a device ID to the user account owned by the session.
   ///
-  /// - [session] The session of the user.
   /// - [deviceId] A device identifier usually obtained from a platform API.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> linkDevice({
@@ -250,7 +244,6 @@ abstract interface class Client {
 
   /// Link a Facebook profile to a user account.
   ///
-  /// [session] The session of the user.
   /// [token] An OAuth access token from the Facebook SDK.
   /// [import] If the Facebook friends should be imported.
   /// [vars] Extra information that will be bundled in the session token.
@@ -262,7 +255,6 @@ abstract interface class Client {
 
   /// Unlink a Facebook profile from the user account owned by the session.
   ///
-  /// [session] The session of the user.
   /// [token] An OAuth access token from the Facebook SDK.
   /// [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkFacebook({
@@ -285,7 +277,6 @@ abstract interface class Client {
 
   /// Link a Google profile to a user account.
   ///
-  /// - [session] The session of the user.
   /// - [token] An OAuth access token from the Google SDK.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> linkGoogle({
@@ -295,7 +286,6 @@ abstract interface class Client {
 
   /// Unlink a Google profile from the user account owned by the session.
   ///
-  /// - [session] The session of the user.
   /// - [token] An OAuth access token from the Google SDK.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkGoogle({
@@ -318,7 +308,6 @@ abstract interface class Client {
 
   /// Link an Apple ID to the social profiles on the current user's account.
   ///
-  /// [session] The session of the user.
   /// [token] An authentication token from the Apple network.
   /// [vars] Extra information that will be bundled in the session token.
   Future<void> linkApple({
@@ -328,7 +317,6 @@ abstract interface class Client {
 
   /// Remove the Apple ID from the social profiles on the current user's account.
   ///
-  /// [session] The session of the user.
   /// [token] The ID token received from Apple to validate.
   /// [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkApple({
@@ -378,7 +366,6 @@ abstract interface class Client {
 
   /// Link a Game Center profile to a user account.
   ///
-  /// - [session] The session of the user.
   /// - [playerId] The player ID of the user in Game Center.
   /// - [bundleId] The bundle ID of the Game Center application.
   /// - [timestampSeconds] The date and time in unix format that the signature was created.
@@ -398,7 +385,6 @@ abstract interface class Client {
 
   /// Unlink a Game Center profile to a user account.
   ///
-  /// - [session] The session of the user.
   /// - [playerId] The player ID of the user in Game Center.
   /// - [bundleId] The bundle ID of the Game Center application.
   /// - [timestampSeconds] The date and time in unix format that the signature was created.
@@ -433,7 +419,6 @@ abstract interface class Client {
 
   /// Link a Steam profile to a user account.
   ///
-  /// - [session] The session of the user.
   /// - [token] An authentication token from the Steam network.
   /// - [vars] Extra information that will be bundled in the session token.
   /// - [import] If the Steam friends should be imported.
@@ -445,7 +430,6 @@ abstract interface class Client {
 
   /// Unlink a Steam profile from the user account owned by the session.
   ///
-  /// - [session] The session of the user.
   /// - [token] An authentication token from the Steam network.
   /// - [vars] Extra information that will be bundled in the session token.
   /// - [import] If the Steam friends should be imported.
@@ -470,7 +454,6 @@ abstract interface class Client {
 
   /// Link a custom ID to the user account owned by the session.
   ///
-  /// - [session] The session of the user.
   /// - [id] A custom identifier usually obtained from an external authentication service.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> linkCustom({
@@ -480,7 +463,6 @@ abstract interface class Client {
 
   /// Unlink a custom ID from the user account owned by the session.
   ///
-  /// - [session] The session of the user.
   /// - [id] A custom identifier usually obtained from an external authentication service.
   /// - [vars] Extra information that will be bundled in the session token.
   Future<void> unlinkCustom({
@@ -492,7 +474,6 @@ abstract interface class Client {
   /// The server will import friends when the user authenticates with Facebook.
   /// This function can be used to be explicit with the import operation.
   ///
-  /// - [session] The session of the user.
   /// - [token] An OAuth access token from the Facebook SDK.
   /// - [reset] If the Facebook friend import for the user should be reset.
   /// - [vars] Extra information that will be bundled in the session token.
@@ -506,7 +487,6 @@ abstract interface class Client {
   /// The server will import friends when the user authenticates with Steam.
   /// This function can be used to be explicit with the import operation.
   ///
-  /// - [session] The session of the user.
   /// - [token] An access token from Steam.
   /// - [reset] If the Steam friend import for the user should be reset.
   /// - [vars] Extra information that will be bundled in the session token.
@@ -517,13 +497,10 @@ abstract interface class Client {
   });
 
   /// Fetch the user account owned by the session.
-  ///
-  /// [session] Current session.
   Future<Account> getAccount();
 
   /// Update the current user's account on the server.
   ///
-  /// [session] The session for the user.
   /// [username] The new username for the user.
   /// [displayName] A new display name for the user.
   /// [avatarUrl] A new avatar url for the user.
@@ -541,7 +518,6 @@ abstract interface class Client {
 
   /// Fetch one or more users by id, usernames, or Facebook ids.
   ///
-  /// - [session] The session of the user.
   /// - [ids] The IDs of the users to retrieve.
   /// - [usernames] The usernames of the users to retrieve.
   /// - [facebookIds] The Facebook IDs of the users to retrieve.
@@ -553,7 +529,6 @@ abstract interface class Client {
 
   /// Write objects to the storage engine.
   ///
-  /// - [session] Current session.
   /// - [objects] The objects to write.
   Future<void> writeStorageObjects({
     required Iterable<StorageObjectWrite> objects,
@@ -561,7 +536,6 @@ abstract interface class Client {
 
   /// List storage objects in a collection which have public read access.
   ///
-  /// - [session] Current session.
   /// - [collection] The collection to list over.
   /// - [limit] The number of objects to list. Maximum is 100.
   /// - [cursor] A cursor to paginate over the collection. Can be null.
@@ -574,7 +548,6 @@ abstract interface class Client {
 
   /// Delete one or more storage objects.
   ///
-  /// - [session] Current session.
   /// - [objectIds] The ids of the objects to delete.
   Future<void> deleteStorageObjects({
     required Iterable<StorageObjectId> objectIds,
@@ -582,7 +555,6 @@ abstract interface class Client {
 
   /// Read one or more objects from the storage engine.
   ///
-  /// - [session] Current session.
   /// - [objectIds] The ids of the objects to read.
   Future<List<StorageObject>> readStorageObjects({
     required Iterable<StorageObjectId> objectIds,
@@ -590,7 +562,6 @@ abstract interface class Client {
 
   /// List messages from a chat channel.
   ///
-  /// - [session] The session of the user.
   /// - [channelId] The chat channel id.
   /// - [limit] The number of chat messages to list.
   /// - [forward] Fetch messages forward from the current cursor or the start.
@@ -604,7 +575,6 @@ abstract interface class Client {
 
   /// List records from a leaderboard.
   ///
-  /// - [session] Current session.
   /// - [leaderboardName] The name of the leaderboard to list.
   /// - [ownerIds] Record owners to fetch with the list of records. Only owners in this list will be retrieved in `ownerRecords` list.
   /// - [expiry] Expiry in seconds (since epoch) to begin fetching records from. 0 means from current time.
@@ -620,7 +590,6 @@ abstract interface class Client {
 
   /// List leaderboard records that belong to a user.
   ///
-  /// - [session] Current session.
   /// - [leaderboardName] The name of the leaderboard to list.
   /// - [ownerId] The ID of the user to list around.
   /// - [expiry] Expiry in seconds (since epoch) to begin fetching records from. 0 means from current time.
@@ -634,7 +603,6 @@ abstract interface class Client {
 
   /// Remove an owner's record from a leaderboard, if one exists.
   ///
-  /// - [session] Current session.
   /// - [leaderboardName] The name of the leaderboard with the record to be deleted.
   Future<LeaderboardRecord> writeLeaderboardRecord({
     required String leaderboardName,
@@ -645,7 +613,6 @@ abstract interface class Client {
   });
 
   /// Remove an owner's record from a leaderboard, if one exists.
-  /// - [session] Current session.
   /// - [leaderboardName] The id of the leaderboard with the records to be deleted.
   Future<void> deleteLeaderboardRecord({
     required String leaderboardName,
@@ -653,7 +620,6 @@ abstract interface class Client {
 
   /// Add one or more friends by id or username.
   ///
-  /// - [session] The session of the user.
   /// - [ids] The ids of the users to add or invite as friends.
   /// - [usernames] The usernames of the users to add as friends.
   Future<void> addFriends({
@@ -663,7 +629,6 @@ abstract interface class Client {
 
   /// List of friends of the current user.
   ///
-  /// - [session] The session of the user.
   /// - [friendshipState] Filter by friendship state.
   /// - [limit] The number of friends to list.
   /// - [cursor] A cursor for the current position in the friends list.
@@ -675,7 +640,6 @@ abstract interface class Client {
 
   /// Delete one or more users by id or username from friends.
   ///
-  /// - [session] The session of the user.
   /// - [ids] The user ids to remove as friends.
   /// - [usernames] The usernames to remove as friends.
   Future<void> deleteFriends({
@@ -685,7 +649,6 @@ abstract interface class Client {
 
   /// Block one or more users by id or username.
   ///
-  /// - [session] The session of the user.
   /// - [ids] The user ids to block.
   /// - [usernames] The usernames to block.
   Future<void> blockFriends({
@@ -695,7 +658,6 @@ abstract interface class Client {
 
   /// Create a group.
   ///
-  /// - [session] Current session.
   /// - [name] The name for the group.
   /// - [description] A description for the group.
   /// - [avatarUrl] An avatar url for the group.
@@ -713,7 +675,6 @@ abstract interface class Client {
 
   /// Update a group. The user must have the correct access permissions for the group.
   ///
-  /// - [session] Current session.
   /// - [groupId] The ID of the group to update.
   /// - [name] A new name for the group.
   /// - [open] If the group should have open membership.
@@ -733,7 +694,6 @@ abstract interface class Client {
 
   /// List groups on the server.
   ///
-  /// - [session] Current session.
   /// - [name] The name filter to apply to the group list.
   /// - [cursor] A cursor for the current position in the groups to list.
   /// - [langTag] The language tag filter to apply to the group list.
@@ -751,7 +711,6 @@ abstract interface class Client {
 
   /// Delete a group by id.
   ///
-  /// - [session] Current session.
   /// - [groupId] The group id to remove.
   Future<void> deleteGroup({
     required String groupId,
@@ -759,7 +718,6 @@ abstract interface class Client {
 
   /// Join a group.
   ///
-  /// - [session] Current session.
   /// - [groupId] The ID of the group to join.
   Future<void> joinGroup({
     required String groupId,
@@ -767,7 +725,6 @@ abstract interface class Client {
 
   /// List of groups the current user is a member of.
   ///
-  /// - [session] The session of the user.
   /// - [userId] The ID of the user whose groups to list. If `null`, it will be session userId.
   /// - [state] Filter by group membership state.
   /// - [limit] The number of records to list.
@@ -781,7 +738,6 @@ abstract interface class Client {
 
   /// List all users part of the group.
   ///
-  /// - [session] The session of the user.
   /// - [groupId] The ID of the group.
   /// - [state] Filter by group membership state.
   /// - [limit] The number of groups to list.
@@ -795,7 +751,6 @@ abstract interface class Client {
 
   /// Add one or more users to the group.
   ///
-  /// - [session] The session of the user.
   /// - [groupId] The id of the group to add users into.
   /// - [userIds] The ids of the users to add or invite to the group.
   Future<void> addGroupUsers({
@@ -805,7 +760,6 @@ abstract interface class Client {
 
   /// Promote one or more users in a group.
   ///
-  /// - [session] The session of the user.
   /// - [groupId] The ID of the group to promote users into.
   /// - [userIds] The IDs of the users to promote.
   Future<void> promoteGroupUsers({
@@ -815,7 +769,6 @@ abstract interface class Client {
 
   /// Demote a set of users in a group to the next role down.
   ///
-  /// - [session] The session of the user.
   /// - [groupId] The group to demote users in.
   /// - [userIds] The IDs of the users to demote.
   Future<void> demoteGroupUsers({
@@ -825,7 +778,6 @@ abstract interface class Client {
 
   /// Kick one or more users from the group.
   ///
-  /// - [session] The session of the user.
   /// - [groupId] The ID of the group.
   /// - [userIds] The IDs of the users to kick.
   Future<void> kickGroupUsers({
@@ -835,7 +787,6 @@ abstract interface class Client {
 
   /// Ban a set of users from a group.
   ///
-  /// - [session] The session of the user.
   /// - [groupId] The group to ban the users from.
   /// - [userIds] The IDs of the users to ban.
   Future<void> banGroupUsers({
@@ -845,7 +796,6 @@ abstract interface class Client {
 
   /// Leave a group by ID.
   ///
-  /// - [session] Current session.
   /// - [groupId] The ID of the group to leave.
   Future<void> leaveGroup({
     required String groupId,
@@ -853,7 +803,6 @@ abstract interface class Client {
 
   /// List notifications for the user with an optional cursor.
   ///
-  /// - [session] The session of the user.
   /// - [limit] The number of notifications to list.
   /// - [cursor] A cursor for the current position in notifications to list.
   Future<NotificationList> listNotifications({
@@ -863,7 +812,6 @@ abstract interface class Client {
 
   /// Delete one or more notifications by id.
   ///
-  /// - [session] The session of the user.
   /// - [notificationIds] The notification ids to remove.
   Future<void> deleteNotifications({
     required Iterable<String> notificationIds,
@@ -871,7 +819,6 @@ abstract interface class Client {
 
   /// Fetch a list of matches active on the server.
   ///
-  /// - [session] The session of the user.
   /// - [authoritative] If authoritative matches should be included.
   /// - [label] The label to filter the match list on.
   /// - [limit] The number of matches to list.
@@ -889,7 +836,6 @@ abstract interface class Client {
 
   /// Join a tournament by ID.
   ///
-  /// - [session] Current session.
   /// - [tournamentId] The ID of the tournament to join.
   Future<void> joinTournament({
     required String tournamentId,
@@ -897,7 +843,6 @@ abstract interface class Client {
 
   /// List current or upcoming tournaments.
   ///
-  /// - [session] Current session.
   /// - [categoryStart] The start of the category of tournaments to include.
   /// - [categoryEnd] The end of the category of tournaments to include.
   /// - [startTime] The start time of the tournaments. If null, tournaments will not be filtered by start time.
@@ -915,7 +860,6 @@ abstract interface class Client {
 
   /// List records from a tournament.
   ///
-  /// - [session] Current session.
   /// - [tournamentId] The ID of the tournament.
   /// - [ownerIds] Record owners to fetch with the list of records. Only owners in this list will be retrieved in `ownerRecords` list.
   /// - [expiry] Expiry in seconds (since epoch) to begin fetching records from.
@@ -931,7 +875,6 @@ abstract interface class Client {
 
   /// List tournament records around the owner.
   ///
-  /// - [session] Current session.
   /// - [tournamentId] The ID of the tournament.
   /// - [ownerId] The ID of the owner to pivot around.
   /// - [expiry] Expiry in seconds (since epoch) to begin fetching records from.
@@ -945,7 +888,6 @@ abstract interface class Client {
 
   /// Write a record to a tournament.
   ///
-  /// - [session] Current session.
   /// - [tournamentId] The ID of the tournament to write.
   /// - [score] The score of the tournament record.
   /// - [subscore] The sub score for the tournament record.
@@ -961,7 +903,6 @@ abstract interface class Client {
 
   /// Execute an RPC function on the server.
   ///
-  /// - [session] Current session.
   /// - [id] The ID of the function to execute.
   /// - [payload] The payload to send with the function call.
   Future<String?> rpc({
@@ -970,7 +911,8 @@ abstract interface class Client {
   });
 }
 
-/// Base class for [Client] implementations that provides common functionality.
+/// Base class for [Client] implementations that implements common
+/// functionality such as session management and request retries.
 abstract base class ClientBase implements Client {
   ClientBase({
     required this.host,
