@@ -18,6 +18,7 @@ import 'models/session.dart';
 import 'models/storage.dart';
 import 'models/tournament.dart';
 import 'rest_client.dart';
+import 'retry_policy.dart';
 import 'socket.dart';
 
 /// Client to communicate with the Nakama server.
@@ -39,6 +40,9 @@ abstract interface class Client {
   /// The default key to use for unauthenticated requests.
   static const defaultServerKey = 'defaultkey';
 
+  /// The default [RetryPolicy] to use when making requests.
+  static const defaultRetryPolicy = ExponentialBackoff.defaultPolicy;
+
   /// Creates a new client that uses the optimal protocol for the current
   /// platform.
   ///
@@ -46,12 +50,15 @@ abstract interface class Client {
   /// supported.
   ///
   /// On native platforms, a gRPC client will be created.
+  ///
+  /// To disable retries, set [retryPolicy] to [RetryPolicy.noRetries].
   factory Client({
     required String host,
     int httpPort = Client.defaultHttpPort,
     int grpcPort = Client.defaultGrpcPort,
     bool ssl = Client.defaultSsl,
     String serverKey = Client.defaultServerKey,
+    RetryPolicy retryPolicy = Client.defaultRetryPolicy,
   }) =>
       createClient(
         host: host,
@@ -59,17 +66,21 @@ abstract interface class Client {
         grpcPort: grpcPort,
         ssl: ssl,
         serverKey: serverKey,
+        retryPolicy: retryPolicy,
       );
 
   /// Creates a new client that uses the REST protocol.
   ///
   /// This is supported on all platforms.
+  ///
+  /// To disable retries, set [retryPolicy] to [RetryPolicy.noRetries].
   factory Client.rest({
     required String host,
     int httpPort = Client.defaultHttpPort,
     int grpcPort = Client.defaultGrpcPort,
     bool ssl = Client.defaultSsl,
     String serverKey = Client.defaultServerKey,
+    RetryPolicy retryPolicy = Client.defaultRetryPolicy,
   }) =>
       RestClient(
         host: host,
@@ -77,17 +88,21 @@ abstract interface class Client {
         grpcPort: grpcPort,
         ssl: ssl,
         serverKey: serverKey,
+        retryPolicy: retryPolicy,
       );
 
   /// Creates a new client that uses the gRPC protocol.
   ///
   /// This is supported on native platforms.
+  ///
+  /// To disable retries, set [retryPolicy] to [RetryPolicy.noRetries].
   factory Client.grpc({
     required String host,
     int httpPort = Client.defaultHttpPort,
     int grpcPort = Client.defaultGrpcPort,
     bool ssl = Client.defaultSsl,
     String serverKey = Client.defaultServerKey,
+    RetryPolicy retryPolicy = Client.defaultRetryPolicy,
   }) =>
       GrpcClient(
         host: host,
@@ -95,6 +110,7 @@ abstract interface class Client {
         grpcPort: grpcPort,
         ssl: ssl,
         serverKey: serverKey,
+        retryPolicy: retryPolicy,
       );
 
   /// The host of the server.
@@ -111,6 +127,11 @@ abstract interface class Client {
 
   /// The key to use when making unauthenticated requests.
   String get serverKey;
+
+  /// The retry policy to use when making requests.
+  ///
+  /// To disable retries, set this to [RetryPolicy.noRetries].
+  RetryPolicy get retryPolicy;
 
   /// The current session, if this client is authenticated.
   ///
@@ -131,6 +152,8 @@ abstract interface class Client {
     void Function(int code, String reason)? onDisconnect,
     void Function(Object error, StackTrace stackTrace)? onError,
   });
+
+  Future<void> healthcheck();
 
   /// Refresh a user session and return the new session.
   ///
@@ -955,6 +978,7 @@ abstract base class ClientBase implements Client {
     required this.grpcPort,
     required this.ssl,
     required this.serverKey,
+    required this.retryPolicy,
   });
 
   @override
@@ -967,6 +991,8 @@ abstract base class ClientBase implements Client {
   final bool ssl;
   @override
   final String serverKey;
+  @override
+  final RetryPolicy retryPolicy;
 
   @override
   Session? session;
@@ -981,13 +1007,24 @@ abstract base class ClientBase implements Client {
 
   @protected
   Future<T> _performRequest<T>(Future<T> Function() request) async {
-    try {
-      return await request();
-    } on Exception catch (exception) {
-      if (translateException(exception) case final translatedException?) {
-        throw translatedException;
+    var attempt = 0;
+
+    while (true) {
+      attempt++;
+      try {
+        return await request();
+      } on Exception catch (exception) {
+        if (translateException(exception) case final translatedException?) {
+          if (await retryPolicy.shouldRetry(
+            attempt,
+            translatedException.code,
+          )) {
+            continue;
+          }
+          throw translatedException;
+        }
+        rethrow;
       }
-      rethrow;
     }
   }
 
@@ -997,6 +1034,8 @@ abstract base class ClientBase implements Client {
     session = null;
     return session = await request();
   }
+
+  Future<void> performHealthcheck();
 
   Future<Session> performSessionRefresh({Map<String, String>? vars});
 
@@ -1418,6 +1457,13 @@ abstract base class ClientBase implements Client {
     required String id,
     String? payload,
   });
+
+  @override
+  Future<void> healthcheck() {
+    return _performRequest(() {
+      return performHealthcheck();
+    });
+  }
 
   @override
   Future<Session> sessionRefresh({Map<String, String>? vars}) async {

@@ -1,5 +1,6 @@
 import 'client.dart';
 import 'rest_client.dart';
+import 'retry_policy.dart';
 
 Client createClient({
   required String host,
@@ -7,6 +8,7 @@ Client createClient({
   required int grpcPort,
   required bool ssl,
   required String serverKey,
+  required RetryPolicy retryPolicy,
 }) =>
     RestClient(
       host: host,
@@ -14,4 +16,5 @@ Client createClient({
       grpcPort: grpcPort,
       ssl: ssl,
       serverKey: serverKey,
+      retryPolicy: retryPolicy,
     );

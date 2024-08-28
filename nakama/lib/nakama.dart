@@ -41,4 +41,5 @@ export 'src/models/storage_permission.dart'
     show StorageReadPermission, StorageWritePermission;
 export 'src/models/tournament.dart'
     show Tournament, TournamentList, TournamentRecordList;
+export 'src/retry_policy.dart' show RetryPolicy, ExponentialBackoff;
 export 'src/socket.dart' show Socket;

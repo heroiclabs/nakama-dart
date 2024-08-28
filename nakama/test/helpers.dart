@@ -26,10 +26,18 @@ class TestHelper {
     return client;
   });
 
-  Client createClient({bool tearDown = true}) {
+  Client createClient({bool tearDown = true, bool toAvailableServer = true}) {
     final client = switch (clientType) {
-      ClientType.rest => Client.rest(host: testHost),
-      ClientType.grpc => Client.grpc(host: testHost),
+      ClientType.rest => Client.rest(
+          host: testHost,
+          httpPort: toAvailableServer ? Client.defaultHttpPort : 1,
+          grpcPort: toAvailableServer ? Client.defaultGrpcPort : 1,
+        ),
+      ClientType.grpc => Client.grpc(
+          host: testHost,
+          httpPort: toAvailableServer ? Client.defaultHttpPort : 1,
+          grpcPort: toAvailableServer ? Client.defaultGrpcPort : 1,
+        ),
     };
 
     if (tearDown) {

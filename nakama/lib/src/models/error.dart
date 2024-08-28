@@ -170,12 +170,9 @@ final class ErrorCode {
 }
 
 /// An error returned by the Nakama server.
-class NakamaError implements Exception {
+final class NakamaError implements Exception {
   /// Creates a new [NakamaError] with the given [code] and [message].
-  NakamaError({
-    required this.code,
-    required this.message,
-  });
+  NakamaError({required this.code, this.message});
 
   /// The error code returned by the server.
   final ErrorCode code;

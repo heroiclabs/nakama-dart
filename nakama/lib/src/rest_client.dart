@@ -17,6 +17,7 @@ import 'models/notification.dart';
 import 'models/session.dart';
 import 'models/storage.dart';
 import 'models/tournament.dart';
+import 'retry_policy.dart';
 import 'socket.dart';
 
 /// [Client] for communicating with Nakama via REST.
@@ -31,6 +32,7 @@ final class RestClient extends ClientBase {
     required bool ssl,
     String? path,
     required String serverKey,
+    required RetryPolicy retryPolicy,
   }) {
     final baseUrl = Uri(
       host: host,
@@ -46,6 +48,7 @@ final class RestClient extends ClientBase {
       grpcPort: grpcPort,
       ssl: ssl,
       serverKey: serverKey,
+      retryPolicy: retryPolicy,
       dio: dio,
       api: api,
     );
@@ -57,6 +60,7 @@ final class RestClient extends ClientBase {
     required super.grpcPort,
     required super.ssl,
     required super.serverKey,
+    required super.retryPolicy,
     required Dio dio,
     required ApiClient api,
   })  : _dio = dio,
@@ -81,10 +85,12 @@ final class RestClient extends ClientBase {
 
   @override
   NakamaError? translateException(Exception exception) {
-    if (exception case DioException(:final response?)) {
-      return NakamaError.fromJson(response.data);
-    }
-    return null;
+    return switch (exception) {
+      DioException(:final response?) => NakamaError.fromJson(response.data),
+      DioException(type: DioExceptionType.connectionError, :final error) =>
+        NakamaError(code: ErrorCode.unavailable, message: error?.toString()),
+      _ => null,
+    };
   }
 
   @override
@@ -100,6 +106,11 @@ final class RestClient extends ClientBase {
       onDisconnect: onDisconnect,
       onError: onError,
     );
+  }
+
+  @override
+  Future<void> performHealthcheck() async {
+    await _api.healthcheck();
   }
 
   @override

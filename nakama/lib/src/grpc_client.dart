@@ -20,6 +20,7 @@ import 'models/notification.dart';
 import 'models/session.dart';
 import 'models/storage.dart';
 import 'models/tournament.dart';
+import 'retry_policy.dart';
 import 'socket.dart';
 
 class _AuthenticationInterceptor extends ClientInterceptor {
@@ -58,6 +59,7 @@ final class GrpcClient extends ClientBase {
     required int grpcPort,
     required bool ssl,
     required String serverKey,
+    required RetryPolicy retryPolicy,
   }) {
     final channel = ClientChannel(
       host,
@@ -80,6 +82,7 @@ final class GrpcClient extends ClientBase {
       grpcPort: grpcPort,
       ssl: ssl,
       serverKey: serverKey,
+      retryPolicy: retryPolicy,
       channel: channel,
       client: client,
       authenticationInterceptor: authenticationInterceptor,
@@ -92,6 +95,7 @@ final class GrpcClient extends ClientBase {
     required super.grpcPort,
     required super.ssl,
     required super.serverKey,
+    required super.retryPolicy,
     required ClientChannelBase channel,
     required NakamaClient client,
     required _AuthenticationInterceptor authenticationInterceptor,
@@ -127,6 +131,11 @@ final class GrpcClient extends ClientBase {
       onDisconnect: onDisconnect,
       onError: onError,
     );
+  }
+
+  @override
+  Future<void> performHealthcheck() async {
+    await _client.healthcheck(api.Empty());
   }
 
   @override
