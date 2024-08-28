@@ -997,15 +997,6 @@ abstract base class ClientBase implements Client {
   @override
   Session? session;
 
-  /// Translates an [exception] that is specific to this [Client] implementation
-  /// to a [NakamaError].
-  ///
-  /// If the [exception] is not specific to the implementation, it should return
-  /// `null`.
-  @protected
-  NakamaError? translateException(Exception exception);
-
-  @protected
   Future<T> _performRequest<T>(Future<T> Function() request) async {
     var attempt = 0;
 
@@ -1035,12 +1026,24 @@ abstract base class ClientBase implements Client {
     return session = await request();
   }
 
+  /// Translates an [exception] that is specific to this [Client] implementation
+  /// to a [NakamaError].
+  ///
+  /// If the [exception] is not specific to the implementation, it should return
+  /// `null`.
+  @visibleForOverriding
+  NakamaError? translateException(Exception exception);
+
+  @visibleForOverriding
   Future<void> performHealthcheck();
 
+  @visibleForOverriding
   Future<Session> performSessionRefresh({Map<String, String>? vars});
 
+  @visibleForOverriding
   Future<void> performSessionLogout();
 
+  @visibleForOverriding
   Future<Session> performAuthenticateEmail({
     String? email,
     String? username,
@@ -1049,18 +1052,21 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performLinkEmail({
     required String email,
     required String password,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performUnlinkEmail({
     required String email,
     required String password,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<Session> performAuthenticateDevice({
     required String deviceId,
     required bool create,
@@ -1068,16 +1074,19 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performLinkDevice({
     required String deviceId,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performUnlinkDevice({
     required String deviceId,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<Session> performAuthenticateFacebook({
     required String token,
     required bool create,
@@ -1086,17 +1095,20 @@ abstract base class ClientBase implements Client {
     required bool import,
   });
 
+  @visibleForOverriding
   Future<void> performLinkFacebook({
     required String token,
     required bool import,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performUnlinkFacebook({
     required String token,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<Session> performAuthenticateGoogle({
     required String token,
     required bool create,
@@ -1104,16 +1116,19 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performLinkGoogle({
     required String token,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performUnlinkGoogle({
     required String token,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<Session> performAuthenticateApple({
     required String token,
     required bool create,
@@ -1121,16 +1136,19 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performLinkApple({
     required String token,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performUnlinkApple({
     required String token,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<Session> performAuthenticateFacebookInstantGame({
     required String signedPlayerInfo,
     required bool create,
@@ -1138,16 +1156,19 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performLinkFacebookInstantGame({
     required String signedPlayerInfo,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performUnlinkFacebookInstantGame({
     required String signedPlayerInfo,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<Session> performAuthenticateGameCenter({
     required String playerId,
     required String bundleId,
@@ -1160,6 +1181,7 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performLinkGameCenter({
     required String playerId,
     required String bundleId,
@@ -1170,6 +1192,7 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performUnlinkGameCenter({
     required String playerId,
     required String bundleId,
@@ -1180,6 +1203,7 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<Session> performAuthenticateSteam({
     required String token,
     required bool create,
@@ -1188,18 +1212,21 @@ abstract base class ClientBase implements Client {
     required bool import,
   });
 
+  @visibleForOverriding
   Future<void> performLinkSteam({
     required String token,
     Map<String, String>? vars,
     required bool import,
   });
 
+  @visibleForOverriding
   Future<void> performUnlinkSteam({
     required String token,
     Map<String, String>? vars,
     required bool import,
   });
 
+  @visibleForOverriding
   Future<Session> performAuthenticateCustom({
     required String id,
     required bool create,
@@ -1207,30 +1234,36 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performLinkCustom({
     required String id,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performUnlinkCustom({
     required String id,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performImportFacebookFriends({
     required String token,
     bool reset = false,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<void> performImportSteamFriends({
     required String token,
     bool reset = false,
     Map<String, String>? vars,
   });
 
+  @visibleForOverriding
   Future<Account> performGetAccount();
 
+  @visibleForOverriding
   Future<void> performUpdateAccount({
     String? username,
     String? displayName,
@@ -1240,16 +1273,19 @@ abstract base class ClientBase implements Client {
     String? timezone,
   });
 
+  @visibleForOverriding
   Future<List<User>> performGetUsers({
     required List<String> ids,
     List<String>? usernames,
     List<String>? facebookIds,
   });
 
+  @visibleForOverriding
   Future<void> performWriteStorageObjects({
     required Iterable<StorageObjectWrite> objects,
   });
 
+  @visibleForOverriding
   Future<StorageObjectList> performListStorageObjects({
     required String collection,
     required int limit,
@@ -1257,14 +1293,17 @@ abstract base class ClientBase implements Client {
     String? userId,
   });
 
+  @visibleForOverriding
   Future<void> performDeleteStorageObjects({
     required Iterable<StorageObjectId> objectIds,
   });
 
+  @visibleForOverriding
   Future<List<StorageObject>> performReadStorageObjects({
     required Iterable<StorageObjectId> objectIds,
   });
 
+  @visibleForOverriding
   Future<ChannelMessageList> performListChannelMessages({
     required String channelId,
     required int limit,
@@ -1272,6 +1311,7 @@ abstract base class ClientBase implements Client {
     String? cursor,
   });
 
+  @visibleForOverriding
   Future<LeaderboardRecordList> performListLeaderboardRecords({
     required String leaderboardName,
     List<String>? ownerIds,
@@ -1280,6 +1320,7 @@ abstract base class ClientBase implements Client {
     DateTime? expiry,
   });
 
+  @visibleForOverriding
   Future<LeaderboardRecordList> performListLeaderboardRecordsAroundOwner({
     required String leaderboardName,
     required String ownerId,
@@ -1287,6 +1328,7 @@ abstract base class ClientBase implements Client {
     DateTime? expiry,
   });
 
+  @visibleForOverriding
   Future<LeaderboardRecord> performWriteLeaderboardRecord({
     required String leaderboardName,
     required int score,
@@ -1295,31 +1337,37 @@ abstract base class ClientBase implements Client {
     LeaderboardOperator? operator,
   });
 
+  @visibleForOverriding
   Future<void> performDeleteLeaderboardRecord({
     required String leaderboardName,
   });
 
+  @visibleForOverriding
   Future<void> performAddFriends({
     required List<String> ids,
     List<String>? usernames,
   });
 
+  @visibleForOverriding
   Future<FriendsList> performListFriends({
     FriendshipState? friendshipState,
     required int limit,
     String? cursor,
   });
 
+  @visibleForOverriding
   Future<void> performDeleteFriends({
     required List<String> ids,
     List<String>? usernames,
   });
 
+  @visibleForOverriding
   Future<void> performBlockFriends({
     required List<String> ids,
     List<String>? usernames,
   });
 
+  @visibleForOverriding
   Future<Group> performCreateGroup({
     required String name,
     String? avatarUrl,
@@ -1329,6 +1377,7 @@ abstract base class ClientBase implements Client {
     bool open = false,
   });
 
+  @visibleForOverriding
   Future<void> performUpdateGroup({
     required String groupId,
     required bool open,
@@ -1339,6 +1388,7 @@ abstract base class ClientBase implements Client {
     int? maxCount,
   });
 
+  @visibleForOverriding
   Future<GroupList> performListGroups({
     String? name,
     String? cursor,
@@ -1348,14 +1398,17 @@ abstract base class ClientBase implements Client {
     required int limit,
   });
 
+  @visibleForOverriding
   Future<void> performDeleteGroup({
     required String groupId,
   });
 
+  @visibleForOverriding
   Future<void> performJoinGroup({
     required String groupId,
   });
 
+  @visibleForOverriding
   Future<UserGroupList> performListUserGroups({
     String? userId,
     GroupMembershipState? state,
@@ -1363,6 +1416,7 @@ abstract base class ClientBase implements Client {
     String? cursor,
   });
 
+  @visibleForOverriding
   Future<GroupUserList> performListGroupUsers({
     required String groupId,
     String? cursor,
@@ -1370,44 +1424,53 @@ abstract base class ClientBase implements Client {
     GroupMembershipState? state,
   });
 
+  @visibleForOverriding
   Future<void> performAddGroupUsers({
     required String groupId,
     required Iterable<String> userIds,
   });
 
+  @visibleForOverriding
   Future<void> performPromoteGroupUsers({
     required String groupId,
     required Iterable<String> userIds,
   });
 
+  @visibleForOverriding
   Future<void> performDemoteGroupUsers({
     required String groupId,
     required Iterable<String> userIds,
   });
 
+  @visibleForOverriding
   Future<void> performKickGroupUsers({
     required String groupId,
     required Iterable<String> userIds,
   });
 
+  @visibleForOverriding
   Future<void> performBanGroupUsers({
     required String groupId,
     required Iterable<String> userIds,
   });
 
+  @visibleForOverriding
   Future<void> performLeaveGroup({
     required String groupId,
   });
 
+  @visibleForOverriding
   Future<NotificationList> performListNotifications({
     required int limit,
     String? cursor,
   });
 
+  @visibleForOverriding
   Future<void> performDeleteNotifications({
     required Iterable<String> notificationIds,
   });
 
+  @visibleForOverriding
   Future<List<Match>> performListMatches({
     bool? authoritative,
     String? label,
@@ -1417,10 +1480,12 @@ abstract base class ClientBase implements Client {
     String? query,
   });
 
+  @visibleForOverriding
   Future<void> performJoinTournament({
     required String tournamentId,
   });
 
+  @visibleForOverriding
   Future<TournamentList> performListTournaments({
     int? categoryStart,
     int? categoryEnd,
@@ -1430,6 +1495,7 @@ abstract base class ClientBase implements Client {
     required int limit,
   });
 
+  @visibleForOverriding
   Future<TournamentRecordList> performListTournamentRecords({
     required String tournamentId,
     required Iterable<String> ownerIds,
@@ -1438,6 +1504,7 @@ abstract base class ClientBase implements Client {
     String? cursor,
   });
 
+  @visibleForOverriding
   Future<TournamentRecordList> performListTournamentRecordsAroundOwner({
     required String tournamentId,
     required String ownerId,
@@ -1445,6 +1512,7 @@ abstract base class ClientBase implements Client {
     required int limit,
   });
 
+  @visibleForOverriding
   Future<LeaderboardRecord> performWriteTournamentRecord({
     required String tournamentId,
     required int score,
@@ -1453,6 +1521,7 @@ abstract base class ClientBase implements Client {
     LeaderboardOperator? operator,
   });
 
+  @visibleForOverriding
   Future<String?> performRpc({
     required String id,
     String? payload,
