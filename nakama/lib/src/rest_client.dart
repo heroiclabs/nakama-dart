@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 
@@ -33,6 +33,7 @@ final class RestClient extends ClientBase {
     String? path,
     required String serverKey,
     required RetryPolicy retryPolicy,
+    required bool autoRefreshSession,
   }) {
     final baseUrl = Uri(
       host: host,
@@ -49,6 +50,7 @@ final class RestClient extends ClientBase {
       ssl: ssl,
       serverKey: serverKey,
       retryPolicy: retryPolicy,
+      autoRefreshSession: autoRefreshSession,
       dio: dio,
       api: api,
     );
@@ -61,20 +63,14 @@ final class RestClient extends ClientBase {
     required super.ssl,
     required super.serverKey,
     required super.retryPolicy,
+    required super.autoRefreshSession,
     required Dio dio,
     required ApiClient api,
   })  : _dio = dio,
         _api = api {
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
-        options.headers.putIfAbsent(
-          'Authorization',
-          () => switch (session) {
-            final session? => 'Bearer ${session.token}',
-            _ => 'Basic ${base64Encode('$serverKey:'.codeUnits)}'
-          },
-        );
-
+        options.headers[HttpHeaders.authorizationHeader] = authorizationHeader;
         handler.next(options);
       },
     ));

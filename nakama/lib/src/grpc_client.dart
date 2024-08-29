@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:convert';
+import 'dart:io';
 
 import 'package:grpc/grpc.dart' hide Client;
 import 'package:grpc/grpc_connection_interface.dart';
@@ -34,10 +34,7 @@ class _AuthenticationInterceptor extends ClientInterceptor {
     ClientUnaryInvoker<Q, R> invoker,
   ) {
     final authOptions = CallOptions(metadata: {
-      'authorization': switch (_client.session) {
-        final session? => 'Bearer ${session.token}',
-        _ => 'Basic ${base64Encode('${_client.serverKey}:'.codeUnits)}'
-      },
+      HttpHeaders.authorizationHeader: _client.authorizationHeader
     });
     return super.interceptUnary(
       method,
@@ -60,6 +57,7 @@ final class GrpcClient extends ClientBase {
     required bool ssl,
     required String serverKey,
     required RetryPolicy retryPolicy,
+    required bool autoRefreshSession,
   }) {
     final channel = ClientChannel(
       host,
@@ -83,6 +81,7 @@ final class GrpcClient extends ClientBase {
       ssl: ssl,
       serverKey: serverKey,
       retryPolicy: retryPolicy,
+      autoRefreshSession: autoRefreshSession,
       channel: channel,
       client: client,
       authenticationInterceptor: authenticationInterceptor,
@@ -96,6 +95,7 @@ final class GrpcClient extends ClientBase {
     required super.ssl,
     required super.serverKey,
     required super.retryPolicy,
+    required super.autoRefreshSession,
     required ClientChannelBase channel,
     required NakamaClient client,
     required _AuthenticationInterceptor authenticationInterceptor,

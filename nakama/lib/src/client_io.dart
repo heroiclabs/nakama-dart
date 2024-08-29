@@ -9,6 +9,7 @@ Client createClient({
   required bool ssl,
   required String serverKey,
   required RetryPolicy retryPolicy,
+  required bool autoRefreshSession,
 }) =>
     GrpcClient(
       host: host,
@@ -17,4 +18,5 @@ Client createClient({
       ssl: ssl,
       serverKey: serverKey,
       retryPolicy: retryPolicy,
+      autoRefreshSession: autoRefreshSession,
     );

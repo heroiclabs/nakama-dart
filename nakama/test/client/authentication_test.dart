@@ -73,6 +73,13 @@ void main() {
           ),
         );
       });
+
+      clientTest('sessionRefresh returns new session', () async {
+        final session =
+            await client.authenticateDevice(deviceId: faker.guid.guid());
+        final refreshedSession = await client.sessionRefresh();
+        expect(refreshedSession, isNot(session));
+      });
     });
   });
 }

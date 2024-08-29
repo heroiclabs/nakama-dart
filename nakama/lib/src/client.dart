@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:meta/meta.dart';
 
 import 'client_stub.dart'
@@ -59,6 +62,7 @@ abstract interface class Client {
     bool ssl = Client.defaultSsl,
     String serverKey = Client.defaultServerKey,
     RetryPolicy retryPolicy = Client.defaultRetryPolicy,
+    bool autoRefreshSession = true,
   }) =>
       createClient(
         host: host,
@@ -67,6 +71,7 @@ abstract interface class Client {
         ssl: ssl,
         serverKey: serverKey,
         retryPolicy: retryPolicy,
+        autoRefreshSession: autoRefreshSession,
       );
 
   /// Creates a new client that uses the REST protocol.
@@ -81,6 +86,7 @@ abstract interface class Client {
     bool ssl = Client.defaultSsl,
     String serverKey = Client.defaultServerKey,
     RetryPolicy retryPolicy = Client.defaultRetryPolicy,
+    bool autoRefreshSession = true,
   }) =>
       RestClient(
         host: host,
@@ -89,6 +95,7 @@ abstract interface class Client {
         ssl: ssl,
         serverKey: serverKey,
         retryPolicy: retryPolicy,
+        autoRefreshSession: autoRefreshSession,
       );
 
   /// Creates a new client that uses the gRPC protocol.
@@ -103,6 +110,7 @@ abstract interface class Client {
     bool ssl = Client.defaultSsl,
     String serverKey = Client.defaultServerKey,
     RetryPolicy retryPolicy = Client.defaultRetryPolicy,
+    bool autoRefreshSession = true,
   }) =>
       GrpcClient(
         host: host,
@@ -111,27 +119,43 @@ abstract interface class Client {
         ssl: ssl,
         serverKey: serverKey,
         retryPolicy: retryPolicy,
+        autoRefreshSession: autoRefreshSession,
       );
 
   /// The host of the server.
   String get host;
 
   /// The HTTP port of the server.
+  ///
+  /// Defaults to 7350.
   int get httpPort;
 
   /// The gRPC port of the server.
+  ///
+  /// Defaults to 7349.
   int get grpcPort;
 
   /// Wether to use SSL when connecting to the server.
+  ///
+  /// Defaults to `false`.
   bool get ssl;
 
   /// The key to use when making unauthenticated requests.
+  ///
+  /// Defaults to 'defaultkey'.
   String get serverKey;
 
   /// The retry policy to use when making requests.
   ///
+  /// Defaults to [ExponentialBackoff.defaultPolicy].
+  ///
   /// To disable retries, set this to [RetryPolicy.noRetries].
   RetryPolicy get retryPolicy;
+
+  /// Wether to automatically refresh the session if it has expired.
+  ///
+  /// Defaults to `true`.
+  bool get autoRefreshSession;
 
   /// The current session, if this client is authenticated.
   ///
@@ -921,7 +945,10 @@ abstract base class ClientBase implements Client {
     required this.ssl,
     required this.serverKey,
     required this.retryPolicy,
+    required this.autoRefreshSession,
   });
+
+  static bool get _withoutSession => Zone.current[#_withoutSession]! as bool;
 
   @override
   final String host;
@@ -935,17 +962,44 @@ abstract base class ClientBase implements Client {
   final String serverKey;
   @override
   final RetryPolicy retryPolicy;
+  @override
+  final bool autoRefreshSession;
 
   @override
   Session? session;
 
-  Future<T> _performRequest<T>(Future<T> Function() request) async {
+  String get authorizationHeader {
+    return switch (session) {
+      final session? when !_withoutSession => 'Bearer ${session.token}',
+      _ => 'Basic ${base64Encode('$serverKey:'.codeUnits)}'
+    };
+  }
+
+  Future<T> _performRequest<T>(
+    Future<T> Function() request, {
+    bool autoRefreshSession = true,
+    bool withoutSession = false,
+  }) async {
+    if (session
+        case Session(isExpired: true, isRefreshExpired: false, :final vars)
+        when autoRefreshSession && this.autoRefreshSession) {
+      try {
+        await sessionRefresh(vars: vars);
+        // ignore: empty_catches
+      } catch (_) {
+        // If the session refresh fails, continue with the normal flow.
+      }
+    }
+
     var attempt = 0;
 
     while (true) {
       attempt++;
       try {
-        return await request();
+        return await runZoned(
+          request,
+          zoneValues: {#_withoutSession: withoutSession},
+        );
       } on Exception catch (exception) {
         if (translateException(exception) case final translatedException?) {
           if (await retryPolicy.shouldRetry(
@@ -954,6 +1008,7 @@ abstract base class ClientBase implements Client {
           )) {
             continue;
           }
+
           throw translatedException;
         }
         rethrow;
@@ -965,7 +1020,7 @@ abstract base class ClientBase implements Client {
     Future<Session> Function() request,
   ) async {
     session = null;
-    return session = await request();
+    return (session = await _performRequest(request))!;
   }
 
   /// Translates an [exception] that is specific to this [Client] implementation
@@ -1478,15 +1533,19 @@ abstract base class ClientBase implements Client {
 
   @override
   Future<Session> sessionRefresh({Map<String, String>? vars}) async {
-    final refreshToken = session?.refreshToken;
-    if (refreshToken == null) {
-      // TODO: Throw different exception.
-      throw Exception('Session does not have a refresh token.');
+    if (session == null) {
+      throw NakamaError(
+        code: ErrorCode.unauthenticated,
+        message: 'Client does not have a session. Ensure to authenticate it '
+            'first or set a session manually.',
+      );
     }
 
-    session = await _performRequest(() {
-      return performSessionRefresh(vars: vars);
-    });
+    session = await _performRequest(
+      autoRefreshSession: false,
+      withoutSession: true,
+      () => performSessionRefresh(vars: vars),
+    );
 
     return session!;
   }
@@ -1511,15 +1570,13 @@ abstract base class ClientBase implements Client {
     assert(create == false || email != null);
 
     return _performAuthRequest(() {
-      return _performRequest(() {
-        return performAuthenticateEmail(
-          email: email,
-          username: username,
-          password: password,
-          create: create,
-          vars: vars,
-        );
-      });
+      return performAuthenticateEmail(
+        email: email,
+        username: username,
+        password: password,
+        create: create,
+        vars: vars,
+      );
     });
   }
 
@@ -1561,14 +1618,12 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   }) {
     return _performAuthRequest(() {
-      return _performRequest(() {
-        return performAuthenticateDevice(
-          deviceId: deviceId,
-          create: create,
-          username: username,
-          vars: vars,
-        );
-      });
+      return performAuthenticateDevice(
+        deviceId: deviceId,
+        create: create,
+        username: username,
+        vars: vars,
+      );
     });
   }
 
@@ -1607,15 +1662,13 @@ abstract base class ClientBase implements Client {
     bool import = false,
   }) {
     return _performAuthRequest(() {
-      return _performRequest(() {
-        return performAuthenticateFacebook(
-          token: token,
-          create: create,
-          username: username,
-          vars: vars,
-          import: import,
-        );
-      });
+      return performAuthenticateFacebook(
+        token: token,
+        create: create,
+        username: username,
+        vars: vars,
+        import: import,
+      );
     });
   }
 
@@ -1655,14 +1708,12 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   }) {
     return _performAuthRequest(() {
-      return _performRequest(() {
-        return performAuthenticateGoogle(
-          token: token,
-          create: create,
-          username: username,
-          vars: vars,
-        );
-      });
+      return performAuthenticateGoogle(
+        token: token,
+        create: create,
+        username: username,
+        vars: vars,
+      );
     });
   }
 
@@ -1700,14 +1751,12 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   }) {
     return _performAuthRequest(() {
-      return _performRequest(() {
-        return performAuthenticateApple(
-          token: token,
-          create: create,
-          username: username,
-          vars: vars,
-        );
-      });
+      return performAuthenticateApple(
+        token: token,
+        create: create,
+        username: username,
+        vars: vars,
+      );
     });
   }
 
@@ -1745,14 +1794,12 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   }) {
     return _performAuthRequest(() {
-      return _performRequest(() {
-        return performAuthenticateFacebookInstantGame(
-          signedPlayerInfo: signedPlayerInfo,
-          create: create,
-          username: username,
-          vars: vars,
-        );
-      });
+      return performAuthenticateFacebookInstantGame(
+        signedPlayerInfo: signedPlayerInfo,
+        create: create,
+        username: username,
+        vars: vars,
+      );
     });
   }
 
@@ -1795,19 +1842,17 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   }) {
     return _performAuthRequest(() {
-      return _performRequest(() {
-        return performAuthenticateGameCenter(
-          playerId: playerId,
-          bundleId: bundleId,
-          timestampSeconds: timestampSeconds,
-          salt: salt,
-          signature: signature,
-          publicKeyUrl: publicKeyUrl,
-          create: create,
-          username: username,
-          vars: vars,
-        );
-      });
+      return performAuthenticateGameCenter(
+        playerId: playerId,
+        bundleId: bundleId,
+        timestampSeconds: timestampSeconds,
+        salt: salt,
+        signature: signature,
+        publicKeyUrl: publicKeyUrl,
+        create: create,
+        username: username,
+        vars: vars,
+      );
     });
   }
 
@@ -1866,15 +1911,13 @@ abstract base class ClientBase implements Client {
     bool import = false,
   }) {
     return _performAuthRequest(() {
-      return _performRequest(() {
-        return performAuthenticateSteam(
-          token: token,
-          create: create,
-          username: username,
-          vars: vars,
-          import: import,
-        );
-      });
+      return performAuthenticateSteam(
+        token: token,
+        create: create,
+        username: username,
+        vars: vars,
+        import: import,
+      );
     });
   }
 
@@ -1916,14 +1959,12 @@ abstract base class ClientBase implements Client {
     Map<String, String>? vars,
   }) {
     return _performAuthRequest(() {
-      return _performRequest(() {
-        return performAuthenticateCustom(
-          id: id,
-          create: create,
-          username: username,
-          vars: vars,
-        );
-      });
+      return performAuthenticateCustom(
+        id: id,
+        create: create,
+        username: username,
+        vars: vars,
+      );
     });
   }
 

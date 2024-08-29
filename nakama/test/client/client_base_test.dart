@@ -41,6 +41,7 @@ final class TestClient extends ClientBase {
           grpcPort: 0,
           ssl: false,
           serverKey: '',
+          autoRefreshSession: false,
         );
 
   @override

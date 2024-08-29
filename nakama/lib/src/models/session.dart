@@ -12,7 +12,7 @@ class Session with _$Session {
 
   factory Session({
     required String token,
-    required String? refreshToken,
+    required String refreshToken,
     required bool created,
     required Map<String, String>? vars,
     required String userId,
@@ -21,48 +21,50 @@ class Session with _$Session {
   }) = _Session;
 
   factory Session.fromDto(api.Session session) {
-    final token = JwtDecoder.decode(session.token);
-    assert(token.containsKey('uid'));
-
-    final refreshToken = JwtDecoder.decode(session.refreshToken);
-
-    return Session(
+    return Session._fromTokens(
       token: session.token,
       refreshToken: session.refreshToken,
       created: session.created,
-      vars: token.containsKey('vars')
-          ? token['vars'] as Map<String, String>?
-          : {},
-      userId: token['uid'] as String,
-      expiresAt: DateTime.fromMillisecondsSinceEpoch(
-        (token['exp'] as int) * 1000,
-      ),
-      refreshExpiresAt: DateTime.fromMillisecondsSinceEpoch(
-        (refreshToken['exp'] as int) * 1000,
-      ),
     );
   }
 
   factory Session.fromApi(ApiSession session) {
-    final token = JwtDecoder.decode(session.token!);
-    assert(token.containsKey('uid'));
+    return Session._fromTokens(
+      token: session.token!,
+      refreshToken: session.refreshToken!,
+      created: session.created ?? false,
+    );
+  }
 
-    final refreshToken = JwtDecoder.decode(session.refreshToken ?? '');
+  factory Session._fromTokens({
+    required String token,
+    required String refreshToken,
+    required bool created,
+  }) {
+    final decodedToken = JwtDecoder.decode(token);
+    final decodedRefreshToken = JwtDecoder.decode(refreshToken);
 
     return Session(
-      token: session.token!,
-      refreshToken: session.refreshToken,
-      created: session.created ?? false,
-      vars: token.containsKey('vars')
-          ? token['vars'] as Map<String, String>?
-          : {},
-      userId: token['uid'] as String,
-      expiresAt: DateTime.fromMillisecondsSinceEpoch(
-        (token['exp'] as int) * 1000,
-      ),
-      refreshExpiresAt: DateTime.fromMillisecondsSinceEpoch(
-        (refreshToken['exp'] as int) * 1000,
-      ),
+      token: token,
+      refreshToken: refreshToken,
+      created: created,
+      vars: decodedToken.vars,
+      userId: decodedToken.uid,
+      expiresAt: decodedToken.expiresAt,
+      refreshExpiresAt: decodedRefreshToken.expiresAt,
+    );
+  }
+
+  static Session? restore({
+    required String token,
+    required String refreshToken,
+  }) {
+    if (token.isEmpty || refreshToken.isEmpty) return null;
+
+    return Session._fromTokens(
+      token: token,
+      refreshToken: refreshToken,
+      created: false,
     );
   }
 
@@ -71,33 +73,18 @@ class Session with _$Session {
 
   bool hasRefreshExpired(DateTime time) => refreshExpiresAt.isBefore(time);
   bool get isRefreshExpired => hasRefreshExpired(DateTime.now());
+}
 
-  static Session? restore({
-    required String token,
-    required String refreshToken,
-  }) {
-    if (token.isEmpty || refreshToken.isEmpty) return null;
+extension on Map<String, Object?> {
+  String get uid => this['uid']! as String;
 
-    final tokenDict = JwtDecoder.decode(token);
-    final refreshTokenDict = JwtDecoder.decode(refreshToken);
+  DateTime get expiresAt =>
+      DateTime.fromMillisecondsSinceEpoch((this['exp']! as int) * 1000);
 
-    final created = tokenDict.containsKey('iat');
-    final userId = tokenDict['uid'] as String;
-    final expiresAt = DateTime.fromMillisecondsSinceEpoch(
-      (tokenDict['exp'] as int) * 1000,
-    );
-    final refreshExpiresAt = DateTime.fromMillisecondsSinceEpoch(
-      (refreshTokenDict['exp'] as int) * 1000,
-    );
-
-    return Session(
-      token: token,
-      refreshToken: refreshToken,
-      created: created,
-      vars: {},
-      userId: userId,
-      expiresAt: expiresAt,
-      refreshExpiresAt: refreshExpiresAt,
-    );
+  Map<String, String> get vars {
+    return switch (this['vars']) {
+      final Map<String, Object?> vars => vars.cast(),
+      _ => {},
+    };
   }
 }
