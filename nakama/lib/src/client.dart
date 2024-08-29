@@ -977,12 +977,11 @@ abstract base class ClientBase implements Client {
 
   Future<T> _performRequest<T>(
     Future<T> Function() request, {
-    bool autoRefreshSession = true,
     bool withoutSession = false,
   }) async {
     if (session
         case Session(isExpired: true, isRefreshExpired: false, :final vars)
-        when autoRefreshSession && this.autoRefreshSession) {
+        when !withoutSession && autoRefreshSession) {
       try {
         await sessionRefresh(vars: vars);
         // ignore: empty_catches
@@ -1019,8 +1018,7 @@ abstract base class ClientBase implements Client {
   Future<Session> _performAuthRequest(
     Future<Session> Function() request,
   ) async {
-    session = null;
-    return (session = await _performRequest(request))!;
+    return (session = await _performRequest(request, withoutSession: true))!;
   }
 
   /// Translates an [exception] that is specific to this [Client] implementation
@@ -1541,11 +1539,9 @@ abstract base class ClientBase implements Client {
       );
     }
 
-    session = await _performRequest(
-      autoRefreshSession: false,
-      withoutSession: true,
-      () => performSessionRefresh(vars: vars),
-    );
+    session = await _performRequest(withoutSession: true,() {
+      return performSessionRefresh(vars: vars);
+    });
 
     return session!;
   }
