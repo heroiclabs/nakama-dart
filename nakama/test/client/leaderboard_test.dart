@@ -29,12 +29,12 @@ void main() {
 
       clientTest('list records', () async {
         await client.writeLeaderboardRecord(
-          leaderboardName: leaderboardName,
+          leaderboardId: leaderboardName,
           score: 10,
         );
 
         final result = await client.listLeaderboardRecords(
-          leaderboardName: leaderboardName,
+          leaderboardId: leaderboardName,
         );
 
         expect(result, isA<LeaderboardRecordList>());
@@ -44,7 +44,7 @@ void main() {
 
       clientTest('write record', () async {
         final result = await client.writeLeaderboardRecord(
-          leaderboardName: leaderboardName,
+          leaderboardId: leaderboardName,
           score: 10,
         );
 
@@ -55,12 +55,12 @@ void main() {
 
       clientTest('list records around user', () async {
         await client.writeLeaderboardRecord(
-          leaderboardName: leaderboardName,
+          leaderboardId: leaderboardName,
           score: 10,
         );
 
         final result = await client.listLeaderboardRecordsAroundOwner(
-          leaderboardName: leaderboardName,
+          leaderboardId: leaderboardName,
           ownerId: client.session!.userId,
         );
 

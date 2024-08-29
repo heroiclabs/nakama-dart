@@ -713,15 +713,15 @@ final class RestClient extends ClientBase {
 
   @override
   Future<LeaderboardRecordList> performListLeaderboardRecords({
-    required String leaderboardName,
-    List<String>? ownerIds,
+    required String leaderboardId,
+    Iterable<String>? ownerIds,
     required int limit,
     String? cursor,
     DateTime? expiry,
   }) async {
     final result = await _api.listLeaderboardRecords(
-      leaderboardId: leaderboardName,
-      ownerIds: ownerIds ?? [],
+      leaderboardId: leaderboardId,
+      ownerIds: ownerIds?.toList() ?? const [],
       limit: limit,
       cursor: cursor,
       expiry: expiry == null
@@ -734,13 +734,13 @@ final class RestClient extends ClientBase {
 
   @override
   Future<LeaderboardRecordList> performListLeaderboardRecordsAroundOwner({
-    required String leaderboardName,
+    required String leaderboardId,
     required String ownerId,
     required int limit,
     DateTime? expiry,
   }) async {
     final result = await _api.listLeaderboardRecordsAroundOwner(
-      leaderboardId: leaderboardName,
+      leaderboardId: leaderboardId,
       ownerId: ownerId,
       limit: limit,
       expiry: expiry == null
@@ -753,14 +753,14 @@ final class RestClient extends ClientBase {
 
   @override
   Future<LeaderboardRecord> performWriteLeaderboardRecord({
-    required String leaderboardName,
+    required String leaderboardId,
     required int score,
     int? subscore,
     String? metadata,
     LeaderboardOperator? operator,
   }) async {
     final result = await _api.writeLeaderboardRecord(
-      leaderboardId: leaderboardName,
+      leaderboardId: leaderboardId,
       body: WriteLeaderboardRecordRequestLeaderboardRecordWrite(
         score: score.toString(),
         subscore: (subscore ?? 0).toString(),
@@ -774,9 +774,9 @@ final class RestClient extends ClientBase {
 
   @override
   Future<void> performDeleteLeaderboardRecord({
-    required String leaderboardName,
+    required String leaderboardId,
   }) async {
-    await _api.deleteLeaderboardRecord(leaderboardId: leaderboardName);
+    await _api.deleteLeaderboardRecord(leaderboardId: leaderboardId);
   }
 
   @override
@@ -1082,13 +1082,13 @@ final class RestClient extends ClientBase {
   @override
   Future<TournamentRecordList> performListTournamentRecords({
     required String tournamentId,
-    required Iterable<String> ownerIds,
+    Iterable<String>? ownerIds,
     int? expiry,
     required int limit,
     String? cursor,
   }) async {
     final result = await _api.listTournamentRecords(
-      ownerIds: ownerIds.toList(growable: false),
+      ownerIds: ownerIds?.toList() ?? const [],
       tournamentId: tournamentId,
       cursor: cursor,
       expiry: expiry?.toString(),

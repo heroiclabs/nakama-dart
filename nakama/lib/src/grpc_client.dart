@@ -714,8 +714,8 @@ final class GrpcClient extends ClientBase {
 
   @override
   Future<LeaderboardRecordList> performListLeaderboardRecords({
-    required String leaderboardName,
-    List<String>? ownerIds,
+    required String leaderboardId,
+    Iterable<String>? ownerIds,
     int limit = 20,
     String? cursor,
     DateTime? expiry,
@@ -724,7 +724,7 @@ final class GrpcClient extends ClientBase {
 
     final res = await _client.listLeaderboardRecords(
       api.ListLeaderboardRecordsRequest(
-        leaderboardId: leaderboardName,
+        leaderboardId: leaderboardId,
         ownerIds: ownerIds,
         limit: api.Int32Value(value: limit),
         cursor: cursor,
@@ -740,7 +740,7 @@ final class GrpcClient extends ClientBase {
 
   @override
   Future<LeaderboardRecordList> performListLeaderboardRecordsAroundOwner({
-    required String leaderboardName,
+    required String leaderboardId,
     required String ownerId,
     int limit = 20,
     DateTime? expiry,
@@ -749,7 +749,7 @@ final class GrpcClient extends ClientBase {
 
     final res = await _client.listLeaderboardRecordsAroundOwner(
       api.ListLeaderboardRecordsAroundOwnerRequest(
-        leaderboardId: leaderboardName,
+        leaderboardId: leaderboardId,
         ownerId: ownerId,
         limit: api.UInt32Value(value: limit),
         expiry: expiry == null
@@ -764,7 +764,7 @@ final class GrpcClient extends ClientBase {
 
   @override
   Future<LeaderboardRecord> performWriteLeaderboardRecord({
-    required String leaderboardName,
+    required String leaderboardId,
     required int score,
     int? subscore,
     String? metadata,
@@ -772,7 +772,7 @@ final class GrpcClient extends ClientBase {
   }) async {
     final res = await _client.writeLeaderboardRecord(
       api.WriteLeaderboardRecordRequest(
-        leaderboardId: leaderboardName,
+        leaderboardId: leaderboardId,
         record: api.WriteLeaderboardRecordRequest_LeaderboardRecordWrite(
           score: api.Int64(score),
           subscore: subscore == null ? null : api.Int64(subscore),
@@ -787,11 +787,11 @@ final class GrpcClient extends ClientBase {
 
   @override
   Future<void> performDeleteLeaderboardRecord({
-    required String leaderboardName,
+    required String leaderboardId,
   }) async {
     await _client.deleteLeaderboardRecord(
       api.DeleteLeaderboardRecordRequest(
-        leaderboardId: leaderboardName,
+        leaderboardId: leaderboardId,
       ),
     );
   }

@@ -599,14 +599,14 @@ abstract interface class Client {
 
   /// List records from a leaderboard.
   ///
-  /// - [leaderboardName] The name of the leaderboard to list.
+  /// - [leaderboardId] The name of the leaderboard to list.
   /// - [ownerIds] Record owners to fetch with the list of records. Only owners in this list will be retrieved in `ownerRecords` list.
   /// - [expiry] Expiry in seconds (since epoch) to begin fetching records from. 0 means from current time.
   /// - [limit] The number of records to list.
   /// - [cursor] A cursor for the current position in the leaderboard records to list.
   Future<LeaderboardRecordList> listLeaderboardRecords({
-    required String leaderboardName,
-    List<String>? ownerIds,
+    required String leaderboardId,
+    Iterable<String>? ownerIds,
     int limit = Client.defaultLimit,
     String? cursor,
     DateTime? expiry,
@@ -614,12 +614,12 @@ abstract interface class Client {
 
   /// List leaderboard records that belong to a user.
   ///
-  /// - [leaderboardName] The name of the leaderboard to list.
+  /// - [leaderboardId] The name of the leaderboard to list.
   /// - [ownerId] The ID of the user to list around.
   /// - [expiry] Expiry in seconds (since epoch) to begin fetching records from. 0 means from current time.
   /// - [limit] The number of records to list.
   Future<LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
-    required String leaderboardName,
+    required String leaderboardId,
     required String ownerId,
     int limit = Client.defaultLimit,
     DateTime? expiry,
@@ -627,9 +627,9 @@ abstract interface class Client {
 
   /// Remove an owner's record from a leaderboard, if one exists.
   ///
-  /// - [leaderboardName] The name of the leaderboard with the record to be deleted.
+  /// - [leaderboardId] The name of the leaderboard with the record to be deleted.
   Future<LeaderboardRecord> writeLeaderboardRecord({
-    required String leaderboardName,
+    required String leaderboardId,
     required int score,
     int? subscore,
     String? metadata,
@@ -637,9 +637,9 @@ abstract interface class Client {
   });
 
   /// Remove an owner's record from a leaderboard, if one exists.
-  /// - [leaderboardName] The id of the leaderboard with the records to be deleted.
+  /// - [leaderboardId] The id of the leaderboard with the records to be deleted.
   Future<void> deleteLeaderboardRecord({
-    required String leaderboardName,
+    required String leaderboardId,
   });
 
   /// Add one or more friends by id or username.
@@ -891,7 +891,7 @@ abstract interface class Client {
   /// - [cursor] An optional cursor for the next page of tournament records.
   Future<TournamentRecordList> listTournamentRecords({
     required String tournamentId,
-    required Iterable<String> ownerIds,
+    Iterable<String>? ownerIds,
     int? expiry,
     int limit = Client.defaultLimit,
     String? cursor,
@@ -1310,8 +1310,8 @@ abstract base class ClientBase implements Client {
 
   @visibleForOverriding
   Future<LeaderboardRecordList> performListLeaderboardRecords({
-    required String leaderboardName,
-    List<String>? ownerIds,
+    required String leaderboardId,
+    Iterable<String>? ownerIds,
     required int limit,
     String? cursor,
     DateTime? expiry,
@@ -1319,7 +1319,7 @@ abstract base class ClientBase implements Client {
 
   @visibleForOverriding
   Future<LeaderboardRecordList> performListLeaderboardRecordsAroundOwner({
-    required String leaderboardName,
+    required String leaderboardId,
     required String ownerId,
     required int limit,
     DateTime? expiry,
@@ -1327,7 +1327,7 @@ abstract base class ClientBase implements Client {
 
   @visibleForOverriding
   Future<LeaderboardRecord> performWriteLeaderboardRecord({
-    required String leaderboardName,
+    required String leaderboardId,
     required int score,
     int? subscore,
     String? metadata,
@@ -1336,7 +1336,7 @@ abstract base class ClientBase implements Client {
 
   @visibleForOverriding
   Future<void> performDeleteLeaderboardRecord({
-    required String leaderboardName,
+    required String leaderboardId,
   });
 
   @visibleForOverriding
@@ -1495,7 +1495,7 @@ abstract base class ClientBase implements Client {
   @visibleForOverriding
   Future<TournamentRecordList> performListTournamentRecords({
     required String tournamentId,
-    required Iterable<String> ownerIds,
+    Iterable<String>? ownerIds,
     int? expiry,
     required int limit,
     String? cursor,
@@ -2136,15 +2136,15 @@ abstract base class ClientBase implements Client {
 
   @override
   Future<LeaderboardRecordList> listLeaderboardRecords({
-    required String leaderboardName,
-    List<String>? ownerIds,
+    required String leaderboardId,
+    Iterable<String>? ownerIds,
     int limit = Client.defaultLimit,
     String? cursor,
     DateTime? expiry,
   }) {
     return _performRequest(() {
       return performListLeaderboardRecords(
-        leaderboardName: leaderboardName,
+        leaderboardId: leaderboardId,
         ownerIds: ownerIds,
         limit: limit,
         cursor: cursor,
@@ -2155,14 +2155,14 @@ abstract base class ClientBase implements Client {
 
   @override
   Future<LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
-    required String leaderboardName,
+    required String leaderboardId,
     required String ownerId,
     int limit = Client.defaultLimit,
     DateTime? expiry,
   }) {
     return _performRequest(() {
       return performListLeaderboardRecordsAroundOwner(
-        leaderboardName: leaderboardName,
+        leaderboardId: leaderboardId,
         ownerId: ownerId,
         limit: limit,
         expiry: expiry,
@@ -2172,7 +2172,7 @@ abstract base class ClientBase implements Client {
 
   @override
   Future<LeaderboardRecord> writeLeaderboardRecord({
-    required String leaderboardName,
+    required String leaderboardId,
     required int score,
     int? subscore,
     String? metadata,
@@ -2180,7 +2180,7 @@ abstract base class ClientBase implements Client {
   }) {
     return _performRequest(() {
       return performWriteLeaderboardRecord(
-        leaderboardName: leaderboardName,
+        leaderboardId: leaderboardId,
         score: score,
         subscore: subscore,
         metadata: metadata,
@@ -2191,11 +2191,11 @@ abstract base class ClientBase implements Client {
 
   @override
   Future<void> deleteLeaderboardRecord({
-    required String leaderboardName,
+    required String leaderboardId,
   }) {
     return _performRequest(() {
       return performDeleteLeaderboardRecord(
-        leaderboardName: leaderboardName,
+        leaderboardId: leaderboardId,
       );
     });
   }
@@ -2531,7 +2531,7 @@ abstract base class ClientBase implements Client {
   @override
   Future<TournamentRecordList> listTournamentRecords({
     required String tournamentId,
-    required Iterable<String> ownerIds,
+    Iterable<String>? ownerIds,
     int? expiry,
     int limit = Client.defaultLimit,
     String? cursor,
