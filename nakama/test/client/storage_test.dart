@@ -6,7 +6,7 @@ import '../helpers.dart';
 
 void main() {
   clientTests((helper) {
-    group('Storage Engine', skip: 'TODO: fix', () {
+    group('Storage Engine', () {
       late final Client client;
 
       setUpAll(() async {

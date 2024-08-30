@@ -321,9 +321,7 @@ void main() {
 
       test(
         'leaving chat creates a match presence event',
-        skip: 'TODO: running together with other tests causes failure',
         () async {
-          // Both joining channel
           final name = faker.lorem.words(2).join('-');
           final channel1 = await socketA.joinChannel(
             target: name,
@@ -339,16 +337,20 @@ void main() {
             hidden: false,
           );
 
-          // B receives presence event
-          socketB.onChannelPresence.listen((presence) {
-            expect(presence.leaves, hasLength(1));
-            expect(
-              presence.leaves?.first.userId,
-              clientA.session!.userId,
-            );
-          });
+          expect(
+            socketB.onChannelPresence,
+            emitsThrough(
+              isA<ChannelPresenceEvent>().having(
+                (event) => event.leaves,
+                'leaves',
+                [
+                  isA<UserPresence>().having((presence) => presence.userId,
+                      'userId', clientA.session!.userId)
+                ],
+              ),
+            ),
+          );
 
-          // A leaves
           await socketA.leaveChannel(channel1.id);
         },
       );
