@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:faker/faker.dart';
 import 'package:nakama/nakama.dart';
 import 'package:test/test.dart';
@@ -8,33 +6,26 @@ import '../helpers.dart';
 
 void main() {
   clientTests((helper) {
-    group('Leaderboard', skip: 'TODO: add missing RPC function', () {
+    group('Leaderboard', () {
       late final Client client;
-      late final String leaderboardName;
+      late final String leaderboardId;
 
       setUpAll(() async {
         client = helper.createClient();
 
         await client.authenticateDevice(deviceId: faker.guid.guid());
 
-        // Create leaderboard
-        final result = await client.rpc(
-          id: 'clientrpc.create_leaderboard',
-          payload: jsonEncode({'operator': 'best'}),
-        );
-
-        final payload = jsonDecode(result!);
-        leaderboardName = payload['leaderboard_id'];
+        leaderboardId = await client.createLeaderboard();
       });
 
       clientTest('list records', () async {
         await client.writeLeaderboardRecord(
-          leaderboardId: leaderboardName,
+          leaderboardId: leaderboardId,
           score: 10,
         );
 
         final result = await client.listLeaderboardRecords(
-          leaderboardId: leaderboardName,
+          leaderboardId: leaderboardId,
         );
 
         expect(result, isA<LeaderboardRecordList>());
@@ -44,7 +35,7 @@ void main() {
 
       clientTest('write record', () async {
         final result = await client.writeLeaderboardRecord(
-          leaderboardId: leaderboardName,
+          leaderboardId: leaderboardId,
           score: 10,
         );
 
@@ -55,12 +46,12 @@ void main() {
 
       clientTest('list records around user', () async {
         await client.writeLeaderboardRecord(
-          leaderboardId: leaderboardName,
+          leaderboardId: leaderboardId,
           score: 10,
         );
 
         final result = await client.listLeaderboardRecordsAroundOwner(
-          leaderboardId: leaderboardName,
+          leaderboardId: leaderboardId,
           ownerId: client.session!.userId,
         );
 

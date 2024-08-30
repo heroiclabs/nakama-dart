@@ -13,7 +13,6 @@ import 'models/match.dart';
 import 'models/matchmaker.dart';
 import 'models/notification.dart';
 import 'models/party.dart';
-import 'models/rpc.dart';
 import 'models/status.dart';
 
 /// A socket for real-time communication with the Nakama server.
@@ -83,7 +82,10 @@ abstract class Socket {
 
   Future<void> removeMatchmaker(String ticket);
 
-  Future<Rpc> rpc({required String id, String? payload});
+  Future<Map<String, Object?>?> rpc({
+    required String id,
+    Map<String, Object?>? payload,
+  });
 
   Future<List<UserPresence>> followUsers({
     List<String>? userIds,
@@ -287,7 +289,7 @@ class SocketImpl implements Socket {
           PartyMatchmakerTicket.fromDto(envelope.partyMatchmakerTicket),
         );
       case rtapi.Envelope_Message.rpc:
-        _completePendingRequest(envelope.cid, Rpc.fromDto(envelope.rpc));
+        _completePendingRequest(envelope.cid, envelope.rpc);
       case rtapi.Envelope_Message.party:
         _completePendingRequest(envelope.cid, Party.fromDto(envelope.party));
       case rtapi.Envelope_Message.channelPresenceEvent:
@@ -595,12 +597,21 @@ class SocketImpl implements Socket {
   }
 
   @override
-  Future<Rpc> rpc({required String id, String? payload}) {
-    return _send(
+  Future<Map<String, Object?>?> rpc({
+    required String id,
+    Map<String, Object?>? payload,
+  }) async {
+    final result = await _send<api.Rpc>(
       rtapi.Envelope(
-        rpc: api.Rpc(id: id, payload: payload),
+        rpc: api.Rpc(
+          id: id,
+          payload: payload != null ? jsonEncode(payload) : null,
+        ),
       ),
     );
+    return result.payload.isEmpty
+        ? null
+        : jsonDecode(result.payload) as Map<String, Object?>;
   }
 
   @override

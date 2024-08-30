@@ -26,7 +26,6 @@ export 'src/models/matchmaker.dart'
         PartyMatchmakerTicket;
 export 'src/models/notification.dart' show Notification, NotificationList;
 export 'src/models/party.dart' show PartyData, PartyLeader, PartyPresenceEvent;
-export 'src/models/rpc.dart' show Rpc;
 export 'src/models/session.dart' show Session;
 export 'src/models/status.dart'
     show

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -1137,15 +1138,20 @@ final class RestClient extends ClientBase {
   }
 
   @override
-  Future<String?> performRpc({
+  Future<Map<String, Object?>?> performRpc({
     required String id,
-    String? payload,
+    Map<String, Object?>? payload,
   }) async {
     final result = await switch (payload) {
-      final payload? => _api.rpcFunc(id: id, body: payload),
-      _ => _api.rpcFunc2(id: id)
+      final payload? => _api.rpcFunc(
+          id: id,
+          // The payload is double-encoded because the Nakama server expects
+          // it this way.
+          body: jsonEncode(jsonEncode(payload)),
+        ),
+      _ => _api.rpcFunc2(id: id),
     };
 
-    return result.payload;
+    return result.payload?.isEmpty ?? true ? null : jsonDecode(result.payload!);
   }
 }

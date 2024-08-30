@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:grpc/grpc.dart' hide Client;
@@ -1207,18 +1208,33 @@ final class GrpcClient extends ClientBase {
   }
 
   @override
-  Future<String?> performRpc({
+  Future<Map<String, Object?>?> performRpc({
     required String id,
-    String? payload,
+    Map<String, Object?>? payload,
   }) async {
     final res = await _client.rpcFunc(
       api.Rpc(
         id: id,
-        payload: payload,
+        payload: payload != null ? jsonEncode(payload) : null,
       ),
     );
 
-    return res.payload;
+    return res.payload.isEmpty ? null : jsonDecode(res.payload);
+  }
+
+  @override
+  Future<Map<String, Object?>?> rpc({
+    required String id,
+    Map<String, Object?>? payload,
+    String? httpKey,
+  }) async {
+    if (httpKey != null) {
+      throw NakamaError(
+        code: ErrorCode.invalidArgument,
+        message: 'RPC with HTTP key is not supported by gRPC protocol.',
+      );
+    }
+    return super.rpc(id: id, payload: payload, httpKey: httpKey);
   }
 
   @override

@@ -929,9 +929,12 @@ abstract interface class Client {
   ///
   /// - [id] The ID of the function to execute.
   /// - [payload] The payload to send with the function call.
-  Future<String?> rpc({
+  /// - [httpKey] The HTTP key to use for the function call. Not supported by
+  ///   gRPC protocol.
+  Future<Map<String, Object?>?> rpc({
     required String id,
-    String? payload,
+    Map<String, Object?>? payload,
+    String? httpKey,
   });
 }
 
@@ -949,6 +952,7 @@ abstract base class ClientBase implements Client {
   });
 
   static bool get _withoutSession => Zone.current[#_withoutSession]! as bool;
+  static String get _httpKey => Zone.current[#_httpKey]! as String;
 
   @override
   final String host;
@@ -971,13 +975,14 @@ abstract base class ClientBase implements Client {
   String get authorizationHeader {
     return switch (session) {
       final session? when !_withoutSession => 'Bearer ${session.token}',
-      _ => 'Basic ${base64Encode('$serverKey:'.codeUnits)}'
+      _ => 'Basic ${base64Encode('$_httpKey:'.codeUnits)}'
     };
   }
 
   Future<T> _performRequest<T>(
     Future<T> Function() request, {
     bool withoutSession = false,
+    String? httpKey,
   }) async {
     if (session
         case Session(isExpired: true, isRefreshExpired: false, :final vars)
@@ -997,7 +1002,10 @@ abstract base class ClientBase implements Client {
       try {
         return await runZoned(
           request,
-          zoneValues: {#_withoutSession: withoutSession},
+          zoneValues: {
+            #_withoutSession: withoutSession,
+            #_httpKey: httpKey ?? serverKey,
+          },
         );
       } on Exception catch (exception) {
         if (translateException(exception) case final translatedException?) {
@@ -1517,9 +1525,9 @@ abstract base class ClientBase implements Client {
   });
 
   @visibleForOverriding
-  Future<String?> performRpc({
+  Future<Map<String, Object?>?> performRpc({
     required String id,
-    String? payload,
+    Map<String, Object?>? payload,
   });
 
   @override
@@ -1539,7 +1547,7 @@ abstract base class ClientBase implements Client {
       );
     }
 
-    session = await _performRequest(withoutSession: true,() {
+    session = await _performRequest(withoutSession: true, () {
       return performSessionRefresh(vars: vars);
     });
 
@@ -2580,11 +2588,12 @@ abstract base class ClientBase implements Client {
   }
 
   @override
-  Future<String?> rpc({
+  Future<Map<String, Object?>?> rpc({
     required String id,
-    String? payload,
+    Map<String, Object?>? payload,
+    String? httpKey,
   }) {
-    return _performRequest(() {
+    return _performRequest(httpKey: httpKey, () {
       return performRpc(
         id: id,
         payload: payload,

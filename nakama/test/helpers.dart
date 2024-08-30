@@ -69,9 +69,32 @@ class TestHelper {
   Future<void> close() async => await (await _client).close();
 }
 
-extension on Client {
+enum LeaderboardOperator {
+  best,
+  set,
+  increment,
+}
+
+extension RpcTestingExtensions on Client {
+  Future<Map<String, Object?>?> echo({
+    Map<String, Object?>? input,
+    String? httpKey,
+  }) =>
+      rpc(id: 'testing.echo', payload: input, httpKey: httpKey);
+
   Future<void> deleteAllGroups() async =>
       await rpc(id: 'testing.delete_all_groups');
+
+  Future<String> createLeaderboard({
+    LeaderboardOperator operator = LeaderboardOperator.best,
+  }) async {
+    final result = await rpc(
+      id: 'testing.create_leaderboard',
+      payload: {'operator': operator.name},
+    );
+
+    return result!['leaderboard_id']! as String;
+  }
 }
 
 void withTestHelper(
