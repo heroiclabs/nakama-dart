@@ -1,5 +1,5 @@
-name: simple_multiplayer_web
-description: A new Flutter project.
+name: nakama_example
+description: A Flutter project to demonstrate the usage of the Nakama SDK.
 publish_to: "none"
 version: 1.0.0+1
 
@@ -10,13 +10,12 @@ dependencies:
   flutter:
     sdk: flutter
   logging: ^1.2.0
+  flutter_riverpod: ^2.6.1
   nakama:
     path: ../
 
 dev_dependencies:
   flutter_lints: ^3.0.1
-  flutter_test:
-    sdk: flutter
 
 flutter:
   uses-material-design: true

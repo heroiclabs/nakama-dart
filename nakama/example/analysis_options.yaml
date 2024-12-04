@@ -2,8 +2,43 @@ include: ../analysis_options.yaml
 
 linter:
   rules:
-    avoid_print: false
     prefer_const_constructors: false
-    prefer_const_constructors_in_immutables: false
-    prefer_const_declarations: false
     prefer_const_literals_to_create_immutables: false
+    unawaited_futures: true
+    always_use_package_imports: true
+    avoid_dynamic_calls: true
+    avoid_slow_async_io: true
+    cancel_subscriptions: true
+    discarded_futures: true
+    literal_only_boolean_expressions: true
+    always_declare_return_types: true
+    always_put_required_named_parameters_first: true
+    avoid_escaping_inner_quotes: true
+    avoid_final_parameters: true
+    avoid_redundant_argument_values: true
+    avoid_unused_constructor_parameters: true
+    avoid_void_async: true
+    cast_nullable_to_non_nullable: true
+    prefer_expression_function_bodies: true
+    prefer_null_aware_method_calls: true
+    prefer_null_aware_operators: true
+    sort_unnamed_constructors_first: true
+    unnecessary_breaks: true
+    unnecessary_final: true
+    unnecessary_lambdas: true
+    unnecessary_null_checks: true
+    unnecessary_parenthesis: true
+    unnecessary_raw_strings: true
+    use_colored_box: true
+    use_decorated_box: true
+    use_if_null_to_convert_nulls_to_bools: true
+    use_is_even_rather_than_modulo: true
+    use_named_constants: true
+    use_raw_strings: true
+    use_string_buffers: true
+
+analyzer:
+  language:
+    strict-casts: true
+    # strict-inference: true
+    strict-raw-types: true
