@@ -14,12 +14,14 @@ class NakamaWSClient {
   static NakamaWebsocketClient? get instance {
     if (_instance != null) return _instance!;
 
+    // to demostrate you can override the host and ssl
     _instance = NakamaWebsocketClient.init(
-        host: EnvService.nakamaBaseUrl, // to demostrate you can override the host
-        ssl: EnvService.nakamaSsl, // to demostrate you can override the ssl
+        host: EnvService.nakamaBaseUrl,
+        ssl: EnvService.nakamaSsl,
         token: _session?.token ?? '',
         onError: (dynamic error) {
-          debugPrint('NakamaWSClient - NakamaWebsocketClient - init ERROR: $error');
+          debugPrint(
+              'NakamaWSClient - NakamaWebsocketClient - init ERROR: $error');
         });
     return _instance;
   }

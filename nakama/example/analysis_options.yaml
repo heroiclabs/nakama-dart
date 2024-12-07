@@ -14,7 +14,6 @@ linter:
     always_declare_return_types: true
     always_put_required_named_parameters_first: true
     avoid_escaping_inner_quotes: true
-    avoid_final_parameters: true
     avoid_redundant_argument_values: true
     avoid_unused_constructor_parameters: true
     avoid_void_async: true
@@ -24,7 +23,6 @@ linter:
     prefer_null_aware_operators: true
     sort_unnamed_constructors_first: true
     unnecessary_breaks: true
-    unnecessary_final: true
     unnecessary_lambdas: true
     unnecessary_null_checks: true
     unnecessary_parenthesis: true
