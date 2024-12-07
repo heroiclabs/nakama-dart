@@ -6,6 +6,8 @@ A Flutter project to demonstrate the usage of the Nakama SDK.
 
 You'll need to setup the server and database before you can connect with the client. The simplest way is to use [Docker](https://heroiclabs.com/docs/nakama/getting-started/install/docker/) but have a look at the [server documentation](https://heroiclabs.com/docs/nakama/getting-started/install/) for other options.
 
+> **_NOTE:_** The example project contains a custom RPC function called 'hello_world'. It is a simple function that returns a message. Here an example of how to create a custom RPC function in Nakama using: [Go](https://www.youtube.com/watch?v=Ru3RZ6LkJEk&t=278s), [Typescript](https://www.youtube.com/watch?v=FXguREV6Zf8&t=216s) and [Lua](https://www.youtube.com/watch?v=iIlKlOaF0As&t=120s).
+
 Assuming you have Flutter and the desired emulator devices (Android Emulator or iOS Simulator) already installed, you can run the project by executing the following command inside the current project:
 
 > **_NOTE:_**  Make sure you are runnnig this commands in `/nakama-dart/nakama/example` directory.
