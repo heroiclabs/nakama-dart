@@ -1,16 +1,24 @@
-# simple_multiplayer_web
+# nakama_example
 
-A new Flutter project.
+A Flutter project to demonstrate the usage of the Nakama SDK.
 
-## Getting Started
+## 🚀 Getting Started
 
-This project is a starting point for a Flutter application.
+You'll need to setup the server and database before you can connect with the client. The simplest way is to use [Docker](https://heroiclabs.com/docs/nakama/getting-started/install/docker/) but have a look at the [server documentation](https://heroiclabs.com/docs/nakama/getting-started/install/) for other options.
 
-A few resources to get you started if this is your first Flutter project:
+> **_NOTE:_** The example project contains a custom RPC function called 'hello_world'. It is a simple function that returns a message. Here an example of how to create a custom RPC function in Nakama using: [Go](https://www.youtube.com/watch?v=Ru3RZ6LkJEk&t=278s), [Typescript](https://www.youtube.com/watch?v=FXguREV6Zf8&t=216s) and [Lua](https://www.youtube.com/watch?v=iIlKlOaF0As&t=120s).
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Assuming you have Flutter and the desired emulator devices (Android Emulator or iOS Simulator) already installed, you can run the project by executing the following command inside the current project:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+> **_NOTE:_**  Make sure you are runnnig this commands in `/nakama-dart/nakama/example` directory.
+
+```bash
+flutter pub get
+flutter run --dart-define-from-file=lib/configs/config.dev.json
+```
+
+The [`config.dev.json`](nakama/example/lib/configs/config.dev.json) file contains the project configuration to connect to the Nakama server.
+
+> **_NOTE:_**  If while running this project on an Android emulator you are facing `Error connecting: SocketException: Connection refused ...`, assuming you are running the Namaka server locally, you may want to set the config NAKAMA_BASE_URL as your IPV4 instead of `127.0.0.1` or `localhost`. You can find your IPV4 by running `ipconfig` on Windows or `ifconfig` on MacOS/Linux.
+
+> **_NOTE:_**  If you are facing `gRPC Error: 14, UNAVAILABLE, message: Error connecting: HandshakeException: Handshake error in client (OS Error: WRONG_VERSION_NUMBER(tls_record.cc:231)) ...`, you may want to double check you set the config NAKAMA_SSL correctly.

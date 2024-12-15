@@ -1,0 +1,9 @@
+{
+    "USER_LOGIN": "me@example.ch",
+    "USER_PASSWORD": "password",
+    "NAKAMA_BASE_URL": "localhost",
+    "NAKAMA_PORT_GRPC": "7349",
+    "NAKAMA_PORT_HTTP": "7350",
+    "NAKAMA_KEY": "defaultkey",
+    "NAKAMA_SSL": "false"
+}
