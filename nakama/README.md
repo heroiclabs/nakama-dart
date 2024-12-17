@@ -24,7 +24,7 @@ name: your_game
 dependencies:
     flutter:
         sdk: flutter
-    nakama: ^1.0.0-dev.6
+    nakama: ^1.2.0
 ```
 
 3. Use the connection credentials to build a client object:
