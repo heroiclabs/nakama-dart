@@ -1,3 +1,16 @@
+## 1.2.0
+
+* symlink readme from nakama by @lugehorsam in [#98](https://github.com/heroiclabs/nakama-dart/pull/98)
+* Fix account mapping for time related fields by @ilmalte in [#100](https://github.com/heroiclabs/nakama-dart/pull/100)
+* Create session restore by @garlen-javier in [#101](https://github.com/heroiclabs/nakama-dart/pull/101)
+* Refactored rest client by @fsufyan in [#103](https://github.com/heroiclabs/nakama-dart/pull/103)
+* Add missing match presence and remove duplicate session restore by @fsufyan in [#106](https://github.com/heroiclabs/nakama-dart/pull/106)
+* Add missing envelope to api.Rpc mapping in WebsocketClient by @rephlex187 in [#116](https://github.com/heroiclabs/nakama-dart/pull/116)
+* Include session in request for `NakamaGrpcClient.sessionLogout` by @blaugold in [#110](https://github.com/heroiclabs/nakama-dart/pull/110)
+* Fix defaults for `state` parameter of `listFriends`, `listGroupUsers` and `listUserGroups` in `NakamaGrpcClient` by @blaugold in [#109](https://github.com/heroiclabs/nakama-dart/pull/109)
+* WASM compatibility by @imaNNeo in [#118](https://github.com/heroiclabs/nakama-dart/pull/118)
+* Various improvements example project by @ilmalte in [#119](https://github.com/heroiclabs/nakama-dart/pull/119)
+
 ## 1.1.0
 - Satori: Adds the Satori SDK for Dart. Satori is our liveops server for game studios. Read more about it in the [documentation](https://heroiclabs.com/docs/satori/concepts/introduction/).
 
