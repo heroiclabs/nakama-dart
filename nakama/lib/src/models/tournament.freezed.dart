@@ -57,8 +57,12 @@ mixin _$Tournament {
   @JsonKey(name: 'prev_reset')
   int? get prevReset => throw _privateConstructorUsedError;
 
+  /// Serializes this Tournament to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Tournament
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TournamentCopyWith<Tournament> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -100,6 +104,8 @@ class _$TournamentCopyWithImpl<$Res, $Val extends Tournament>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Tournament
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -236,6 +242,8 @@ class __$$TournamentImplCopyWithImpl<$Res>
       _$TournamentImpl _value, $Res Function(_$TournamentImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Tournament
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -460,7 +468,7 @@ class _$TournamentImpl extends _Tournament {
                 other.prevReset == prevReset));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -483,7 +491,9 @@ class _$TournamentImpl extends _Tournament {
       startActive,
       prevReset);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Tournament
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TournamentImplCopyWith<_$TournamentImpl> get copyWith =>
@@ -576,8 +586,11 @@ abstract class _Tournament extends Tournament {
   @override
   @JsonKey(name: 'prev_reset')
   int? get prevReset;
+
+  /// Create a copy of Tournament
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TournamentImplCopyWith<_$TournamentImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -591,8 +604,12 @@ mixin _$TournamentList {
   String? get cursor => throw _privateConstructorUsedError;
   List<Tournament> get tournaments => throw _privateConstructorUsedError;
 
+  /// Serializes this TournamentList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TournamentList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TournamentListCopyWith<TournamentList> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -616,6 +633,8 @@ class _$TournamentListCopyWithImpl<$Res, $Val extends TournamentList>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TournamentList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -654,6 +673,8 @@ class __$$TournamentListImplCopyWithImpl<$Res>
       _$TournamentListImpl _value, $Res Function(_$TournamentListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TournamentList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -709,12 +730,14 @@ class _$TournamentListImpl extends _TournamentList {
                 .equals(other._tournaments, _tournaments));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, cursor, const DeepCollectionEquality().hash(_tournaments));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TournamentList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TournamentListImplCopyWith<_$TournamentListImpl> get copyWith =>
@@ -742,8 +765,11 @@ abstract class _TournamentList extends TournamentList {
   String? get cursor;
   @override
   List<Tournament> get tournaments;
+
+  /// Create a copy of TournamentList
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TournamentListImplCopyWith<_$TournamentListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -764,8 +790,12 @@ mixin _$TournamentRecordList {
   @JsonKey(name: 'previous_cursor')
   String? get previousCursor => throw _privateConstructorUsedError;
 
+  /// Serializes this TournamentRecordList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TournamentRecordList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TournamentRecordListCopyWith<TournamentRecordList> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -794,6 +824,8 @@ class _$TournamentRecordListCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TournamentRecordList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -846,6 +878,8 @@ class __$$TournamentRecordListImplCopyWithImpl<$Res>
       $Res Function(_$TournamentRecordListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TournamentRecordList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -935,7 +969,7 @@ class _$TournamentRecordListImpl extends _TournamentRecordList {
                 other.previousCursor == previousCursor));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -944,7 +978,9 @@ class _$TournamentRecordListImpl extends _TournamentRecordList {
       nextCursor,
       previousCursor);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TournamentRecordList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TournamentRecordListImplCopyWith<_$TournamentRecordListImpl>
@@ -985,8 +1021,11 @@ abstract class _TournamentRecordList extends TournamentRecordList {
   @override
   @JsonKey(name: 'previous_cursor')
   String? get previousCursor;
+
+  /// Create a copy of TournamentRecordList
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TournamentRecordListImplCopyWith<_$TournamentRecordListImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

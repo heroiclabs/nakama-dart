@@ -15,8 +15,8 @@ _$GroupImpl _$$GroupImplFromJson(Map<String, dynamic> json) => _$GroupImpl(
       metadata: json['metadata'] as String?,
       avatarUrl: json['avatar_url'] as String?,
       open: json['open'] as bool?,
-      edgeCount: json['edge_count'] as int?,
-      maxCount: json['max_count'] as int?,
+      edgeCount: (json['edge_count'] as num?)?.toInt(),
+      maxCount: (json['max_count'] as num?)?.toInt(),
       createTime: json['create_time'] == null
           ? null
           : DateTime.parse(json['create_time'] as String),

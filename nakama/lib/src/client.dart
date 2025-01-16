@@ -540,6 +540,9 @@ abstract interface class Client {
     String? timezone,
   });
 
+  /// Delete the user's account from the server.
+  Future<void> deleteAccount();
+
   /// Fetch one or more users by id, usernames, or Facebook ids.
   ///
   /// - [ids] The IDs of the users to retrieve.
@@ -1275,6 +1278,9 @@ abstract base class ClientBase implements Client {
     String? location,
     String? timezone,
   });
+
+  @visibleForOverriding
+  Future<void> performDeleteAccount();
 
   @visibleForOverriding
   Future<List<User>> performGetUsers({
@@ -2053,6 +2059,13 @@ abstract base class ClientBase implements Client {
         location: location,
         timezone: timezone,
       );
+    });
+  }
+
+  @override
+  Future<void> deleteAccount() {
+    return _performRequest(() {
+      return performDeleteAccount();
     });
   }
 

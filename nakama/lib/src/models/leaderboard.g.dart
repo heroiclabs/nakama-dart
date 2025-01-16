@@ -35,8 +35,8 @@ _$LeaderboardRecordImpl _$$LeaderboardRecordImplFromJson(
       ownerId: json['owner_id'] as String?,
       username: json['username'] as String?,
       score: json['score'] as String?,
-      subscore: json['subscore'] as int?,
-      numScore: json['num_score'] as int?,
+      subscore: (json['subscore'] as num?)?.toInt(),
+      numScore: (json['num_score'] as num?)?.toInt(),
       metadata: json['metadata'] as String?,
       createTime: json['create_time'] == null
           ? null
@@ -48,7 +48,7 @@ _$LeaderboardRecordImpl _$$LeaderboardRecordImplFromJson(
           ? null
           : DateTime.parse(json['expiry_time'] as String),
       rank: json['rank'] as String?,
-      maxNumScore: json['max_num_score'] as int?,
+      maxNumScore: (json['max_num_score'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$LeaderboardRecordImplToJson(

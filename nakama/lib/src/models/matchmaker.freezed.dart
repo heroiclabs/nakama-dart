@@ -19,7 +19,9 @@ mixin _$MatchmakerTicket {
   /// The ticket that can be used to cancel matchmaking.
   String get ticket => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchmakerTicket
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MatchmakerTicketCopyWith<MatchmakerTicket> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -43,6 +45,8 @@ class _$MatchmakerTicketCopyWithImpl<$Res, $Val extends MatchmakerTicket>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MatchmakerTicket
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -76,6 +80,8 @@ class __$$MatchmakerTicketImplCopyWithImpl<$Res>
       $Res Function(_$MatchmakerTicketImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MatchmakerTicket
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -115,7 +121,9 @@ class _$MatchmakerTicketImpl extends _MatchmakerTicket {
   @override
   int get hashCode => Object.hash(runtimeType, ticket);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchmakerTicket
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MatchmakerTicketImplCopyWith<_$MatchmakerTicketImpl> get copyWith =>
@@ -128,12 +136,14 @@ abstract class _MatchmakerTicket extends MatchmakerTicket {
       _$MatchmakerTicketImpl;
   const _MatchmakerTicket._() : super._();
 
-  @override
-
   /// The ticket that can be used to cancel matchmaking.
-  String get ticket;
   @override
-  @JsonKey(ignore: true)
+  String get ticket;
+
+  /// Create a copy of MatchmakerTicket
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MatchmakerTicketImplCopyWith<_$MatchmakerTicketImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -148,7 +158,9 @@ mixin _$PartyMatchmakerTicket {
   @JsonKey(name: 'ticket')
   String get ticket => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PartyMatchmakerTicket
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PartyMatchmakerTicketCopyWith<PartyMatchmakerTicket> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -175,6 +187,8 @@ class _$PartyMatchmakerTicketCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PartyMatchmakerTicket
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -217,6 +231,8 @@ class __$$PartyMatchmakerTicketImplCopyWithImpl<$Res>
       $Res Function(_$PartyMatchmakerTicketImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PartyMatchmakerTicket
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -271,7 +287,9 @@ class _$PartyMatchmakerTicketImpl extends _PartyMatchmakerTicket {
   @override
   int get hashCode => Object.hash(runtimeType, partyId, ticket);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PartyMatchmakerTicket
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PartyMatchmakerTicketImplCopyWith<_$PartyMatchmakerTicketImpl>
@@ -286,18 +304,20 @@ abstract class _PartyMatchmakerTicket extends PartyMatchmakerTicket {
       _$PartyMatchmakerTicketImpl;
   const _PartyMatchmakerTicket._() : super._();
 
-  @override
-
   /// Party ID.
+  @override
   @JsonKey(name: 'party_id')
   String get partyId;
-  @override
 
   /// The ticket that can be used to cancel matchmaking.
+  @override
   @JsonKey(name: 'ticket')
   String get ticket;
+
+  /// Create a copy of PartyMatchmakerTicket
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PartyMatchmakerTicketImplCopyWith<_$PartyMatchmakerTicketImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -336,7 +356,9 @@ mixin _$ChannelPresenceEvent {
   @JsonKey(name: 'user_id_two')
   String? get userIdTwo => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChannelPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChannelPresenceEventCopyWith<ChannelPresenceEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -368,6 +390,8 @@ class _$ChannelPresenceEventCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChannelPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -438,6 +462,8 @@ class __$$ChannelPresenceEventImplCopyWithImpl<$Res>
       $Res Function(_$ChannelPresenceEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChannelPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -568,7 +594,9 @@ class _$ChannelPresenceEventImpl extends _ChannelPresenceEvent {
       userIdOne,
       userIdTwo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChannelPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChannelPresenceEventImplCopyWith<_$ChannelPresenceEventImpl>
@@ -589,47 +617,49 @@ abstract class _ChannelPresenceEvent extends ChannelPresenceEvent {
       _$ChannelPresenceEventImpl;
   const _ChannelPresenceEvent._() : super._();
 
-  @override
-
   /// The channel identifier this event is for.
+  @override
   @JsonKey(name: 'channel_id')
   String get channelId;
-  @override
 
   /// Presences joining the channel as part of this event, if any.
+  @override
   @JsonKey(name: 'room_name')
   String? get roomName;
-  @override
 
   /// Presences leaving the channel as part of this event, if any.
+  @override
   @JsonKey(name: 'group_id')
   String? get groupId;
-  @override
 
   /// The name of the chat room, or an empty string if this message was not
   /// sent through a chat room.
+  @override
   @JsonKey(name: 'joins')
   Iterable<UserPresence>? get joins;
-  @override
 
   /// The ID of the group, or an empty string if this message was not sent
   /// through a group channel.
+  @override
   @JsonKey(name: 'leaves')
   Iterable<UserPresence>? get leaves;
-  @override
 
   /// The ID of the first DM user, or an empty string if this message was not
   /// sent through a DM chat.
+  @override
   @JsonKey(name: 'user_id_one')
   String? get userIdOne;
-  @override
 
   /// The ID of the second DM user, or an empty string if this message was not
   /// sent through a DM chat.
+  @override
   @JsonKey(name: 'user_id_two')
   String? get userIdTwo;
+
+  /// Create a copy of ChannelPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChannelPresenceEventImplCopyWith<_$ChannelPresenceEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -654,7 +684,9 @@ mixin _$MatchmakerUser {
   Map<String, double> get numericProperties =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchmakerUser
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MatchmakerUserCopyWith<MatchmakerUser> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -685,6 +717,8 @@ class _$MatchmakerUserCopyWithImpl<$Res, $Val extends MatchmakerUser>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MatchmakerUser
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -713,6 +747,8 @@ class _$MatchmakerUserCopyWithImpl<$Res, $Val extends MatchmakerUser>
     ) as $Val);
   }
 
+  /// Create a copy of MatchmakerUser
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserPresenceCopyWith<$Res> get presence {
@@ -749,6 +785,8 @@ class __$$MatchmakerUserImplCopyWithImpl<$Res>
       _$MatchmakerUserImpl _value, $Res Function(_$MatchmakerUserImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MatchmakerUser
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -854,7 +892,9 @@ class _$MatchmakerUserImpl extends _MatchmakerUser {
       const DeepCollectionEquality().hash(_stringProperties),
       const DeepCollectionEquality().hash(_numericProperties));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchmakerUser
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MatchmakerUserImplCopyWith<_$MatchmakerUserImpl> get copyWith =>
@@ -873,28 +913,30 @@ abstract class _MatchmakerUser extends MatchmakerUser {
       _$MatchmakerUserImpl;
   const _MatchmakerUser._() : super._();
 
-  @override
-
   /// User info.
+  @override
   @JsonKey(name: 'presence')
   UserPresence get presence;
-  @override
 
   /// Party identifier, if this user was matched as a party member.
+  @override
   @JsonKey(name: 'party_id')
   String get partyId;
-  @override
 
   /// String properties.
+  @override
   @JsonKey(name: 'string_properties')
   Map<String, String> get stringProperties;
-  @override
 
   /// Numeric properties.
+  @override
   @JsonKey(name: 'numeric_properties')
   Map<String, double> get numericProperties;
+
+  /// Create a copy of MatchmakerUser
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MatchmakerUserImplCopyWith<_$MatchmakerUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -921,7 +963,9 @@ mixin _$MatchmakerMatched {
   @JsonKey(name: 'self')
   MatchmakerUser get self => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchmakerMatched
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MatchmakerMatchedCopyWith<MatchmakerMatched> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -952,6 +996,8 @@ class _$MatchmakerMatchedCopyWithImpl<$Res, $Val extends MatchmakerMatched>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MatchmakerMatched
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -985,6 +1031,8 @@ class _$MatchmakerMatchedCopyWithImpl<$Res, $Val extends MatchmakerMatched>
     ) as $Val);
   }
 
+  /// Create a copy of MatchmakerMatched
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $MatchmakerUserCopyWith<$Res> get self {
@@ -1021,6 +1069,8 @@ class __$$MatchmakerMatchedImplCopyWithImpl<$Res>
       $Res Function(_$MatchmakerMatchedImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MatchmakerMatched
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1112,7 +1162,9 @@ class _$MatchmakerMatchedImpl extends _MatchmakerMatched {
   int get hashCode => Object.hash(runtimeType, ticket, matchId, token,
       const DeepCollectionEquality().hash(users), self);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchmakerMatched
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MatchmakerMatchedImplCopyWith<_$MatchmakerMatchedImpl> get copyWith =>
@@ -1130,33 +1182,35 @@ abstract class _MatchmakerMatched extends MatchmakerMatched {
       _$MatchmakerMatchedImpl;
   const _MatchmakerMatched._() : super._();
 
-  @override
-
   /// The matchmaking ticket that has completed.
+  @override
   @JsonKey(name: 'ticket')
   String get ticket;
-  @override
 
   /// Match ID.
+  @override
   @JsonKey(name: 'match_id')
   String? get matchId;
-  @override
 
   /// Match ID.
+  @override
   @JsonKey(name: 'token')
   String? get token;
-  @override
 
   /// The users that have been matched together, and information about their matchmaking data.
+  @override
   @JsonKey(name: 'users')
   Iterable<MatchmakerUser> get users;
-  @override
 
   /// A reference to the current user and their properties.
+  @override
   @JsonKey(name: 'self')
   MatchmakerUser get self;
+
+  /// Create a copy of MatchmakerMatched
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MatchmakerMatchedImplCopyWith<_$MatchmakerMatchedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1183,7 +1237,9 @@ mixin _$MatchData {
   @JsonKey(name: 'reliable')
   bool get reliable => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MatchDataCopyWith<MatchData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1213,6 +1269,8 @@ class _$MatchDataCopyWithImpl<$Res, $Val extends MatchData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MatchData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1246,6 +1304,8 @@ class _$MatchDataCopyWithImpl<$Res, $Val extends MatchData>
     ) as $Val);
   }
 
+  /// Create a copy of MatchData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserPresenceCopyWith<$Res>? get presence {
@@ -1286,6 +1346,8 @@ class __$$MatchDataImplCopyWithImpl<$Res>
       _$MatchDataImpl _value, $Res Function(_$MatchDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MatchData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1389,7 +1451,9 @@ class _$MatchDataImpl extends _MatchData {
   int get hashCode => Object.hash(runtimeType, matchId, presence, opCode,
       const DeepCollectionEquality().hash(_data), reliable);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MatchDataImplCopyWith<_$MatchDataImpl> get copyWith =>
@@ -1406,33 +1470,35 @@ abstract class _MatchData extends MatchData {
       _$MatchDataImpl;
   const _MatchData._() : super._();
 
-  @override
-
   /// The match unique ID.
+  @override
   @JsonKey(name: 'match_id')
   String get matchId;
-  @override
 
   /// A reference to the user presence that sent this data, if any.
+  @override
   @JsonKey(name: 'presence')
   UserPresence? get presence;
-  @override
 
   /// Op code value.
+  @override
   @JsonKey(name: 'op_code')
   int get opCode;
-  @override
 
   /// Data payload, if any.
+  @override
   @JsonKey(name: 'data')
   List<int>? get data;
-  @override
 
   /// True if this data was delivered reliably, false otherwise.
+  @override
   @JsonKey(name: 'reliable')
   bool get reliable;
+
+  /// Create a copy of MatchData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MatchDataImplCopyWith<_$MatchDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1451,7 +1517,9 @@ mixin _$MatchPresenceEvent {
   @JsonKey(name: 'leaves')
   List<UserPresence> get leaves => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MatchPresenceEventCopyWith<MatchPresenceEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1478,6 +1546,8 @@ class _$MatchPresenceEventCopyWithImpl<$Res, $Val extends MatchPresenceEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MatchPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1524,6 +1594,8 @@ class __$$MatchPresenceEventImplCopyWithImpl<$Res>
       $Res Function(_$MatchPresenceEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MatchPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1610,7 +1682,9 @@ class _$MatchPresenceEventImpl extends _MatchPresenceEvent {
       const DeepCollectionEquality().hash(_joins),
       const DeepCollectionEquality().hash(_leaves));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MatchPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MatchPresenceEventImplCopyWith<_$MatchPresenceEventImpl> get copyWith =>
@@ -1626,23 +1700,25 @@ abstract class _MatchPresenceEvent extends MatchPresenceEvent {
       _$MatchPresenceEventImpl;
   const _MatchPresenceEvent._() : super._();
 
-  @override
-
   /// The match unique ID.
+  @override
   @JsonKey(name: 'match_id')
   String get matchId;
-  @override
 
   /// The user presence that joined the match.
+  @override
   @JsonKey(name: 'joins')
   List<UserPresence> get joins;
-  @override
 
   /// The user presence that left the match.
+  @override
   @JsonKey(name: 'leaves')
   List<UserPresence> get leaves;
+
+  /// Create a copy of MatchPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MatchPresenceEventImplCopyWith<_$MatchPresenceEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

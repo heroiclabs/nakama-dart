@@ -114,7 +114,7 @@ final class RestClient extends ClientBase {
   Future<Session> performSessionRefresh({Map<String, String>? vars}) async {
     final result = await _api.sessionRefresh(
       body: ApiSessionRefreshRequest(
-        token: session!.refreshToken!,
+        token: session!.refreshToken,
         vars: vars,
       ),
     );
@@ -125,7 +125,7 @@ final class RestClient extends ClientBase {
   Future<void> performSessionLogout() async {
     await _api.sessionLogout(
       body: ApiSessionLogoutRequest(
-        refreshToken: session!.refreshToken!,
+        refreshToken: session!.refreshToken,
         token: session!.token,
       ),
     );
@@ -140,7 +140,7 @@ final class RestClient extends ClientBase {
     Map<String, String>? vars,
   }) async {
     final result = await _api.authenticateEmail(
-      body: ApiAccountEmail(
+      account: ApiAccountEmail(
         email: email,
         password: password,
         vars: vars,
@@ -189,7 +189,7 @@ final class RestClient extends ClientBase {
     Map<String, String>? vars,
   }) async {
     final result = await _api.authenticateDevice(
-      body: ApiAccountDevice(id: deviceId, vars: vars),
+      account: ApiAccountDevice(id: deviceId, vars: vars),
       create: create,
       username: username,
     );
@@ -225,7 +225,7 @@ final class RestClient extends ClientBase {
     required bool import,
   }) async {
     final result = await _api.authenticateFacebook(
-      body: ApiAccountFacebook(
+      account: ApiAccountFacebook(
         token: token,
         vars: vars,
       ),
@@ -243,7 +243,7 @@ final class RestClient extends ClientBase {
     Map<String, String>? vars,
   }) async {
     await _api.linkFacebook(
-      body: ApiAccountFacebook(
+      account: ApiAccountFacebook(
         token: token,
         vars: vars,
       ),
@@ -272,7 +272,7 @@ final class RestClient extends ClientBase {
     Map<String, String>? vars,
   }) async {
     final result = await _api.authenticateGoogle(
-      body: ApiAccountGoogle(
+      account: ApiAccountGoogle(
         token: token,
         vars: vars,
       ),
@@ -316,7 +316,7 @@ final class RestClient extends ClientBase {
     Map<String, String>? vars,
   }) async {
     final result = await _api.authenticateApple(
-      body: ApiAccountApple(
+      account: ApiAccountApple(
         token: token,
         vars: vars,
       ),
@@ -360,7 +360,7 @@ final class RestClient extends ClientBase {
     Map<String, String>? vars,
   }) async {
     final result = await _api.authenticateFacebookInstantGame(
-      body: ApiAccountFacebookInstantGame(
+      account: ApiAccountFacebookInstantGame(
         signedPlayerInfo: signedPlayerInfo,
         vars: vars,
       ),
@@ -409,7 +409,7 @@ final class RestClient extends ClientBase {
     Map<String, String>? vars,
   }) async {
     final result = await _api.authenticateGameCenter(
-      body: ApiAccountGameCenter(
+      account: ApiAccountGameCenter(
         playerId: playerId,
         bundleId: bundleId,
         timestampSeconds: timestampSeconds.toString(),
@@ -479,7 +479,7 @@ final class RestClient extends ClientBase {
     required bool import,
   }) async {
     final result = await _api.authenticateSteam(
-      body: ApiAccountSteam(token: token, vars: vars),
+      account: ApiAccountSteam(token: token, vars: vars),
       create: create,
       username: username,
       sync: import,
@@ -520,7 +520,7 @@ final class RestClient extends ClientBase {
     Map<String, String>? vars,
   }) async {
     final result = await _api.authenticateCustom(
-      body: ApiAccountCustom(id: id, vars: vars),
+      account: ApiAccountCustom(id: id, vars: vars),
       create: create,
       username: username,
     );
@@ -554,7 +554,7 @@ final class RestClient extends ClientBase {
     Map<String, String>? vars,
   }) async {
     await _api.importFacebookFriends(
-      body: ApiAccountFacebook(
+      account: ApiAccountFacebook(
         token: token,
         vars: vars,
       ),
@@ -569,7 +569,7 @@ final class RestClient extends ClientBase {
     Map<String, String>? vars,
   }) async {
     await _api.importSteamFriends(
-      body: ApiAccountSteam(token: token, vars: vars),
+      account: ApiAccountSteam(token: token, vars: vars),
       reset: reset,
     );
   }
@@ -600,6 +600,9 @@ final class RestClient extends ClientBase {
       ),
     );
   }
+
+  @override
+  Future<void> performDeleteAccount() => _api.deleteAccount();
 
   @override
   Future<List<User>> performGetUsers({
@@ -762,7 +765,7 @@ final class RestClient extends ClientBase {
   }) async {
     final result = await _api.writeLeaderboardRecord(
       leaderboardId: leaderboardId,
-      body: WriteLeaderboardRecordRequestLeaderboardRecordWrite(
+      record: WriteLeaderboardRecordRequestLeaderboardRecordWrite(
         score: score.toString(),
         subscore: (subscore ?? 0).toString(),
         metadata: metadata,
@@ -864,7 +867,6 @@ final class RestClient extends ClientBase {
     await _api.updateGroup(
       groupId: groupId,
       body: ApiUpdateGroupRequest(
-        groupId: groupId,
         name: name,
         open: open,
         avatarUrl: avatarUrl,
@@ -1126,7 +1128,7 @@ final class RestClient extends ClientBase {
   }) async {
     final result = await _api.writeTournamentRecord(
       tournamentId: tournamentId,
-      body: WriteTournamentRecordRequestTournamentRecordWrite(
+      record: WriteTournamentRecordRequestTournamentRecordWrite(
         metadata: metadata,
         score: score.toString(),
         subscore: (subscore ?? 0).toString(),
@@ -1147,7 +1149,7 @@ final class RestClient extends ClientBase {
           id: id,
           // The payload is double-encoded because the Nakama server expects
           // it this way.
-          body: jsonEncode(jsonEncode(payload)),
+          payload: jsonEncode(jsonEncode(payload)),
         ),
       _ => _api.rpcFunc2(id: id),
     };

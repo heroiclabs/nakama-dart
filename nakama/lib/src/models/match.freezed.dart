@@ -123,8 +123,13 @@ mixin _$Match {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this Match to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MatchCopyWith<Match> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -153,6 +158,8 @@ class _$MatchCopyWithImpl<$Res, $Val extends Match>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -222,6 +229,8 @@ class __$$MatchImplCopyWithImpl<$Res>
       _$MatchImpl _value, $Res Function(_$MatchImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -338,7 +347,7 @@ class _$MatchImpl extends _Match {
                 .equals(other._presences, _presences));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -350,7 +359,9 @@ class _$MatchImpl extends _Match {
       handlerName,
       const DeepCollectionEquality().hash(_presences));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MatchImplCopyWith<_$MatchImpl> get copyWith =>
@@ -506,8 +517,11 @@ abstract class _Match extends Match {
   @override
   @JsonKey(name: 'presences')
   List<UserPresence> get presences;
+
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MatchImplCopyWith<_$MatchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -538,6 +552,8 @@ class __$$RealtimeMatchImplCopyWithImpl<$Res>
       _$RealtimeMatchImpl _value, $Res Function(_$RealtimeMatchImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -647,7 +663,7 @@ class _$RealtimeMatchImpl extends RealtimeMatch {
                 .equals(other._presences, _presences));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -659,7 +675,9 @@ class _$RealtimeMatchImpl extends RealtimeMatch {
       handlerName,
       const DeepCollectionEquality().hash(_presences));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RealtimeMatchImplCopyWith<_$RealtimeMatchImpl> get copyWith =>
@@ -808,8 +826,11 @@ abstract class RealtimeMatch extends Match {
   String? get handlerName;
   @override
   List<UserPresence> get presences;
+
+  /// Create a copy of Match
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RealtimeMatchImplCopyWith<_$RealtimeMatchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -840,7 +861,9 @@ mixin _$Party {
   @JsonKey(name: 'presences')
   List<UserPresence> get presences => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Party
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PartyCopyWith<Party> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -871,6 +894,8 @@ class _$PartyCopyWithImpl<$Res, $Val extends Party>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Party
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -909,6 +934,8 @@ class _$PartyCopyWithImpl<$Res, $Val extends Party>
     ) as $Val);
   }
 
+  /// Create a copy of Party
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserPresenceCopyWith<$Res> get self {
@@ -917,6 +944,8 @@ class _$PartyCopyWithImpl<$Res, $Val extends Party>
     });
   }
 
+  /// Create a copy of Party
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserPresenceCopyWith<$Res> get leader {
@@ -955,6 +984,8 @@ class __$$PartyImplCopyWithImpl<$Res>
       _$PartyImpl _value, $Res Function(_$PartyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Party
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1067,7 +1098,9 @@ class _$PartyImpl extends _Party {
   int get hashCode => Object.hash(runtimeType, partyId, open, maxSize, self,
       leader, const DeepCollectionEquality().hash(_presences));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Party
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PartyImplCopyWith<_$PartyImpl> get copyWith =>
@@ -1085,38 +1118,40 @@ abstract class _Party extends Party {
       required final List<UserPresence> presences}) = _$PartyImpl;
   const _Party._() : super._();
 
-  @override
-
   /// Unique party identifier.
+  @override
   @JsonKey(name: 'party_id')
   String get partyId;
-  @override
 
   /// Open flag.
+  @override
   @JsonKey(name: 'open')
   bool get open;
-  @override
 
   /// Maximum number of party members.
+  @override
   @JsonKey(name: 'max_size')
   int get maxSize;
-  @override
 
   /// Self.
+  @override
   @JsonKey(name: 'self')
   UserPresence get self;
-  @override
 
   /// Leader.
+  @override
   @JsonKey(name: 'leader')
   UserPresence get leader;
-  @override
 
   /// All current party members.
+  @override
   @JsonKey(name: 'presences')
   List<UserPresence> get presences;
+
+  /// Create a copy of Party
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PartyImplCopyWith<_$PartyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

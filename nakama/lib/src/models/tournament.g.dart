@@ -11,14 +11,14 @@ _$TournamentImpl _$$TournamentImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       title: json['title'] as String?,
       description: json['description'] as String?,
-      category: json['category'] as int?,
-      sortOrder: json['sort_order'] as int?,
-      size: json['size'] as int?,
-      maxSize: json['max_size'] as int?,
-      maxNumScore: json['max_num_score'] as int?,
+      category: (json['category'] as num?)?.toInt(),
+      sortOrder: (json['sort_order'] as num?)?.toInt(),
+      size: (json['size'] as num?)?.toInt(),
+      maxSize: (json['max_size'] as num?)?.toInt(),
+      maxNumScore: (json['max_num_score'] as num?)?.toInt(),
       canEnter: json['can_enter'] as bool?,
-      endActive: json['end_active'] as int?,
-      nextReset: json['next_reset'] as int?,
+      endActive: (json['end_active'] as num?)?.toInt(),
+      nextReset: (json['next_reset'] as num?)?.toInt(),
       metadata: json['metadata'] as String?,
       createTime: json['create_time'] == null
           ? null
@@ -29,9 +29,9 @@ _$TournamentImpl _$$TournamentImplFromJson(Map<String, dynamic> json) =>
       endTime: json['end_time'] == null
           ? null
           : DateTime.parse(json['end_time'] as String),
-      duration: json['duration'] as int?,
-      startActive: json['start_active'] as int?,
-      prevReset: json['prev_reset'] as int?,
+      duration: (json['duration'] as num?)?.toInt(),
+      startActive: (json['start_active'] as num?)?.toInt(),
+      prevReset: (json['prev_reset'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$TournamentImplToJson(_$TournamentImpl instance) =>

@@ -10,8 +10,8 @@ _$MatchImpl _$$MatchImplFromJson(Map<String, dynamic> json) => _$MatchImpl(
       matchId: json['match_id'] as String,
       authoritative: json['authoritative'] as bool,
       label: json['label'] as String,
-      size: json['size'] as int,
-      tickRate: json['tick_rate'] as int?,
+      size: (json['size'] as num).toInt(),
+      tickRate: (json['tick_rate'] as num?)?.toInt(),
       handlerName: json['handler_name'] as String?,
       presences: (json['presences'] as List<dynamic>)
           .map((e) => UserPresence.fromJson(e as Map<String, dynamic>))
@@ -36,8 +36,8 @@ _$RealtimeMatchImpl _$$RealtimeMatchImplFromJson(Map<String, dynamic> json) =>
       matchId: json['match_id'] as String,
       authoritative: json['authoritative'] as bool,
       label: json['label'] as String,
-      size: json['size'] as int,
-      tickRate: json['tick_rate'] as int?,
+      size: (json['size'] as num).toInt(),
+      tickRate: (json['tick_rate'] as num?)?.toInt(),
       handlerName: json['handler_name'] as String?,
       presences: (json['presences'] as List<dynamic>)
           .map((e) => UserPresence.fromJson(e as Map<String, dynamic>))

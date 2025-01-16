@@ -42,8 +42,12 @@ mixin _$UserPresence {
   @JsonKey(name: 'status')
   String? get status => throw _privateConstructorUsedError;
 
+  /// Serializes this UserPresence to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserPresence
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserPresenceCopyWith<UserPresence> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -72,6 +76,8 @@ class _$UserPresenceCopyWithImpl<$Res, $Val extends UserPresence>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserPresence
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,6 +136,8 @@ class __$$UserPresenceImplCopyWithImpl<$Res>
       _$UserPresenceImpl _value, $Res Function(_$UserPresenceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserPresence
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -225,12 +233,14 @@ class _$UserPresenceImpl extends _UserPresence {
             (identical(other.status, status) || other.status == status));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, userId, sessionId, username, persistence, status);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserPresence
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserPresenceImplCopyWith<_$UserPresenceImpl> get copyWith =>
@@ -256,35 +266,37 @@ abstract class _UserPresence extends UserPresence {
   factory _UserPresence.fromJson(Map<String, dynamic> json) =
       _$UserPresenceImpl.fromJson;
 
-  @override
-
   /// The user this presence belongs to.
+  @override
   @JsonKey(name: 'user_id')
   String get userId;
-  @override
 
   /// A unique session ID identifying the particular connection, because the
   /// user may have many.
+  @override
   @JsonKey(name: 'session_id')
   String get sessionId;
-  @override
 
   /// The username for display purposes.
+  @override
   @JsonKey(name: 'username')
   String get username;
-  @override
 
   /// Whether this presence generates persistent data/messages, if applicable
   /// for the stream type.
+  @override
   @JsonKey(name: 'persistence')
   bool get persistence;
-  @override
 
   /// A user-set status message for this stream, if applicable.
+  @override
   @JsonKey(name: 'status')
   String? get status;
+
+  /// Create a copy of UserPresence
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserPresenceImplCopyWith<_$UserPresenceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -297,7 +309,9 @@ mixin _$StatusPresenceEvent {
   /// Previous statuses for the user.
   List<UserPresence> get leaves => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StatusPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StatusPresenceEventCopyWith<StatusPresenceEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -321,6 +335,8 @@ class _$StatusPresenceEventCopyWithImpl<$Res, $Val extends StatusPresenceEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StatusPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -359,6 +375,8 @@ class __$$StatusPresenceEventImplCopyWithImpl<$Res>
       $Res Function(_$StatusPresenceEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StatusPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -430,7 +448,9 @@ class _$StatusPresenceEventImpl extends _StatusPresenceEvent {
       const DeepCollectionEquality().hash(_joins),
       const DeepCollectionEquality().hash(_leaves));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StatusPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StatusPresenceEventImplCopyWith<_$StatusPresenceEventImpl> get copyWith =>
@@ -444,16 +464,18 @@ abstract class _StatusPresenceEvent extends StatusPresenceEvent {
       required final List<UserPresence> leaves}) = _$StatusPresenceEventImpl;
   const _StatusPresenceEvent._() : super._();
 
-  @override
-
   /// New statuses for the user.
-  List<UserPresence> get joins;
   @override
+  List<UserPresence> get joins;
 
   /// Previous statuses for the user.
-  List<UserPresence> get leaves;
   @override
-  @JsonKey(ignore: true)
+  List<UserPresence> get leaves;
+
+  /// Create a copy of StatusPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StatusPresenceEventImplCopyWith<_$StatusPresenceEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -472,7 +494,9 @@ mixin _$RealtimeStream {
   /// The label is an arbitrary identifying string, if the stream has one.
   String get label => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RealtimeStream
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RealtimeStreamCopyWith<RealtimeStream> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -496,6 +520,8 @@ class _$RealtimeStreamCopyWithImpl<$Res, $Val extends RealtimeStream>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RealtimeStream
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -544,6 +570,8 @@ class __$$RealtimeStreamImplCopyWithImpl<$Res>
       _$RealtimeStreamImpl _value, $Res Function(_$RealtimeStreamImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RealtimeStream
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -620,7 +648,9 @@ class _$RealtimeStreamImpl extends _RealtimeStream {
   int get hashCode =>
       Object.hash(runtimeType, mode, subject, subcontext, label);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RealtimeStream
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RealtimeStreamImplCopyWith<_$RealtimeStreamImpl> get copyWith =>
@@ -636,24 +666,26 @@ abstract class _RealtimeStream extends RealtimeStream {
       required final String label}) = _$RealtimeStreamImpl;
   const _RealtimeStream._() : super._();
 
-  @override
-
   /// Mode identifies the type of stream.
-  int get mode;
   @override
+  int get mode;
 
   /// Subject is the primary identifier, if any.
-  String get subject;
   @override
+  String get subject;
 
   /// Subcontext is a secondary identifier, if any.
-  String get subcontext;
   @override
+  String get subcontext;
 
   /// The label is an arbitrary identifying string, if the stream has one.
-  String get label;
   @override
-  @JsonKey(ignore: true)
+  String get label;
+
+  /// Create a copy of RealtimeStream
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RealtimeStreamImplCopyWith<_$RealtimeStreamImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -672,7 +704,9 @@ mixin _$RealtimeStreamData {
   /// True if this data was delivered reliably, false otherwise.
   bool get reliable => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RealtimeStreamData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RealtimeStreamDataCopyWith<RealtimeStreamData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -700,6 +734,8 @@ class _$RealtimeStreamDataCopyWithImpl<$Res, $Val extends RealtimeStreamData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RealtimeStreamData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -728,6 +764,8 @@ class _$RealtimeStreamDataCopyWithImpl<$Res, $Val extends RealtimeStreamData>
     ) as $Val);
   }
 
+  /// Create a copy of RealtimeStreamData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RealtimeStreamCopyWith<$Res> get stream {
@@ -736,6 +774,8 @@ class _$RealtimeStreamDataCopyWithImpl<$Res, $Val extends RealtimeStreamData>
     });
   }
 
+  /// Create a copy of RealtimeStreamData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserPresenceCopyWith<$Res> get sender {
@@ -770,6 +810,8 @@ class __$$RealtimeStreamDataImplCopyWithImpl<$Res>
       $Res Function(_$RealtimeStreamDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RealtimeStreamData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -845,7 +887,9 @@ class _$RealtimeStreamDataImpl extends _RealtimeStreamData {
   @override
   int get hashCode => Object.hash(runtimeType, stream, sender, data, reliable);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RealtimeStreamData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RealtimeStreamDataImplCopyWith<_$RealtimeStreamDataImpl> get copyWith =>
@@ -861,24 +905,26 @@ abstract class _RealtimeStreamData extends RealtimeStreamData {
       required final bool reliable}) = _$RealtimeStreamDataImpl;
   const _RealtimeStreamData._() : super._();
 
-  @override
-
   /// The stream this data message relates to.
-  RealtimeStream get stream;
   @override
+  RealtimeStream get stream;
 
   /// The sender, if any.
-  UserPresence get sender;
   @override
+  UserPresence get sender;
 
   /// Arbitrary contents of the data message.
-  String get data;
   @override
+  String get data;
 
   /// True if this data was delivered reliably, false otherwise.
-  bool get reliable;
   @override
-  @JsonKey(ignore: true)
+  bool get reliable;
+
+  /// Create a copy of RealtimeStreamData
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RealtimeStreamDataImplCopyWith<_$RealtimeStreamDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -894,7 +940,9 @@ mixin _$StreamPresenceEvent {
   /// The user presence that left the stream.
   List<UserPresence> get leaves => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StreamPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StreamPresenceEventCopyWith<StreamPresenceEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -923,6 +971,8 @@ class _$StreamPresenceEventCopyWithImpl<$Res, $Val extends StreamPresenceEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StreamPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -946,6 +996,8 @@ class _$StreamPresenceEventCopyWithImpl<$Res, $Val extends StreamPresenceEvent>
     ) as $Val);
   }
 
+  /// Create a copy of StreamPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RealtimeStreamCopyWith<$Res> get stream {
@@ -980,6 +1032,8 @@ class __$$StreamPresenceEventImplCopyWithImpl<$Res>
       $Res Function(_$StreamPresenceEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StreamPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1063,7 +1117,9 @@ class _$StreamPresenceEventImpl extends _StreamPresenceEvent {
       const DeepCollectionEquality().hash(_joins),
       const DeepCollectionEquality().hash(_leaves));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StreamPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StreamPresenceEventImplCopyWith<_$StreamPresenceEventImpl> get copyWith =>
@@ -1078,20 +1134,22 @@ abstract class _StreamPresenceEvent extends StreamPresenceEvent {
       required final List<UserPresence> leaves}) = _$StreamPresenceEventImpl;
   const _StreamPresenceEvent._() : super._();
 
-  @override
-
   /// The stream this presence event is for.
-  RealtimeStream get stream;
   @override
+  RealtimeStream get stream;
 
   /// The user presence that joined the stream.
-  List<UserPresence> get joins;
   @override
+  List<UserPresence> get joins;
 
   /// The user presence that left the stream.
-  List<UserPresence> get leaves;
   @override
-  @JsonKey(ignore: true)
+  List<UserPresence> get leaves;
+
+  /// Create a copy of StreamPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StreamPresenceEventImplCopyWith<_$StreamPresenceEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

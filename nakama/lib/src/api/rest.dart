@@ -9,6 +9,61 @@ import 'package:retrofit/retrofit.dart';
 
 part 'rest.g.dart';
 
+/// Update fields in a given group.
+@JsonSerializable(explicitToJson: true)
+class ApiUpdateGroupRequest {
+  @JsonKey(name: 'avatar_url')
+  final String? avatarUrl;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'lang_tag')
+  final String? langTag;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'open')
+  final bool? open;
+
+  const ApiUpdateGroupRequest({
+    required this.avatarUrl,
+    required this.description,
+    required this.langTag,
+    required this.name,
+    required this.open,
+  });
+
+  factory ApiUpdateGroupRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiUpdateGroupRequestFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ApiUpdateGroupRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+}
+
+/// A friend of a friend.
+@JsonSerializable(explicitToJson: true)
+class FriendsOfFriendsListFriendOfFriend {
+  @JsonKey(name: 'referrer')
+  final String? referrer;
+  @JsonKey(name: 'user')
+  final ApiUser? user;
+
+  const FriendsOfFriendsListFriendOfFriend({
+    required this.referrer,
+    required this.user,
+  });
+
+  factory FriendsOfFriendsListFriendOfFriend.fromJson(
+          Map<String, dynamic> json) =>
+      _$FriendsOfFriendsListFriendOfFriendFromJson(json);
+
+  Map<String, dynamic> toJson() =>
+      _$FriendsOfFriendsListFriendOfFriendToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+}
+
 /// A single user-role pair.
 @JsonSerializable(explicitToJson: true)
 class GroupUserListGroupUser {
@@ -285,7 +340,7 @@ class ApiAccountFacebookInstantGame {
   String toString() => jsonEncode(this);
 }
 
-/// Send Apple's Game Center account credentials to the server. Used with authenticate/link/unlink.
+/// Send Apple's Game Center account credentials to the server. Used with authenticate/link/unlink.  https://developer.apple.com/documentation/gamekit/gklocalplayer/1515407-generateidentityverificationsign
 @JsonSerializable(explicitToJson: true)
 class ApiAccountGameCenter {
   @JsonKey(name: 'bundle_id')
@@ -602,6 +657,28 @@ class ApiFriendList {
   String toString() => jsonEncode(this);
 }
 
+/// A List of friends of friends
+@JsonSerializable(explicitToJson: true)
+class ApiFriendsOfFriendsList {
+  @JsonKey(name: 'cursor')
+  final String? cursor;
+  @JsonKey(name: 'friends_of_friends')
+  final List<FriendsOfFriendsListFriendOfFriend>? friendsOfFriends;
+
+  const ApiFriendsOfFriendsList({
+    required this.cursor,
+    required this.friendsOfFriends,
+  });
+
+  factory ApiFriendsOfFriendsList.fromJson(Map<String, dynamic> json) =>
+      _$ApiFriendsOfFriendsListFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ApiFriendsOfFriendsListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+}
+
 /// A group in the server.
 @JsonSerializable(explicitToJson: true)
 class ApiGroup {
@@ -759,6 +836,8 @@ class ApiLeaderboardRecordList {
   final List<ApiLeaderboardRecord>? ownerRecords;
   @JsonKey(name: 'prev_cursor')
   final String? prevCursor;
+  @JsonKey(name: 'rank_count')
+  final String? rankCount;
   @JsonKey(name: 'records')
   final List<ApiLeaderboardRecord>? records;
 
@@ -766,6 +845,7 @@ class ApiLeaderboardRecordList {
     required this.nextCursor,
     required this.ownerRecords,
     required this.prevCursor,
+    required this.rankCount,
     required this.records,
   });
 
@@ -870,6 +950,53 @@ class ApiMatchList {
       _$ApiMatchListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiMatchListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+}
+
+/// Matchmaker ticket completion stats
+@JsonSerializable(explicitToJson: true)
+class ApiMatchmakerCompletionStats {
+  @JsonKey(name: 'complete_time')
+  final String? completeTime;
+  @JsonKey(name: 'create_time')
+  final String? createTime;
+
+  const ApiMatchmakerCompletionStats({
+    required this.completeTime,
+    required this.createTime,
+  });
+
+  factory ApiMatchmakerCompletionStats.fromJson(Map<String, dynamic> json) =>
+      _$ApiMatchmakerCompletionStatsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ApiMatchmakerCompletionStatsToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+}
+
+/// Matchmaker stats
+@JsonSerializable(explicitToJson: true)
+class ApiMatchmakerStats {
+  @JsonKey(name: 'completions')
+  final List<ApiMatchmakerCompletionStats>? completions;
+  @JsonKey(name: 'oldest_ticket_create_time')
+  final String? oldestTicketCreateTime;
+  @JsonKey(name: 'ticket_count')
+  final int? ticketCount;
+
+  const ApiMatchmakerStats({
+    required this.completions,
+    required this.oldestTicketCreateTime,
+    required this.ticketCount,
+  });
+
+  factory ApiMatchmakerStats.fromJson(Map<String, dynamic> json) =>
+      _$ApiMatchmakerStatsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ApiMatchmakerStatsToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -1132,8 +1259,12 @@ class ApiStorageObject {
 class ApiStorageObjectAck {
   @JsonKey(name: 'collection')
   final String? collection;
+  @JsonKey(name: 'create_time')
+  final String? createTime;
   @JsonKey(name: 'key')
   final String? key;
+  @JsonKey(name: 'update_time')
+  final String? updateTime;
   @JsonKey(name: 'user_id')
   final String? userId;
   @JsonKey(name: 'version')
@@ -1141,7 +1272,9 @@ class ApiStorageObjectAck {
 
   const ApiStorageObjectAck({
     required this.collection,
+    required this.createTime,
     required this.key,
+    required this.updateTime,
     required this.userId,
     required this.version,
   });
@@ -1231,6 +1364,8 @@ enum ApiStoreProvider {
   googlePlayStore,
   @JsonValue('HUAWEI_APP_GALLERY')
   huaweiAppGallery,
+  @JsonValue('FACEBOOK_INSTANT_STORE')
+  facebookInstantStore,
 }
 
 /// A list of validated subscriptions stored by Nakama.
@@ -1261,6 +1396,8 @@ class ApiSubscriptionList {
 /// A tournament on the server.
 @JsonSerializable(explicitToJson: true)
 class ApiTournament {
+  @JsonKey(name: 'authoritative')
+  final bool? authoritative;
   @JsonKey(name: 'can_enter')
   final bool? canEnter;
   @JsonKey(name: 'category')
@@ -1301,6 +1438,7 @@ class ApiTournament {
   final String? title;
 
   const ApiTournament({
+    required this.authoritative,
     required this.canEnter,
     required this.category,
     required this.createTime,
@@ -1362,6 +1500,8 @@ class ApiTournamentRecordList {
   final List<ApiLeaderboardRecord>? ownerRecords;
   @JsonKey(name: 'prev_cursor')
   final String? prevCursor;
+  @JsonKey(name: 'rank_count')
+  final String? rankCount;
   @JsonKey(name: 'records')
   final List<ApiLeaderboardRecord>? records;
 
@@ -1369,6 +1509,7 @@ class ApiTournamentRecordList {
     required this.nextCursor,
     required this.ownerRecords,
     required this.prevCursor,
+    required this.rankCount,
     required this.records,
   });
 
@@ -1410,40 +1551,6 @@ class ApiUpdateAccountRequest {
       _$ApiUpdateAccountRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$ApiUpdateAccountRequestToJson(this);
-
-  @override
-  String toString() => jsonEncode(this);
-}
-
-/// Update fields in a given group.
-@JsonSerializable(explicitToJson: true)
-class ApiUpdateGroupRequest {
-  @JsonKey(name: 'avatar_url')
-  final String? avatarUrl;
-  @JsonKey(name: 'description')
-  final String? description;
-  @JsonKey(name: 'group_id')
-  final String? groupId;
-  @JsonKey(name: 'lang_tag')
-  final String? langTag;
-  @JsonKey(name: 'name')
-  final String? name;
-  @JsonKey(name: 'open')
-  final bool? open;
-
-  const ApiUpdateGroupRequest({
-    required this.avatarUrl,
-    required this.description,
-    required this.groupId,
-    required this.langTag,
-    required this.name,
-    required this.open,
-  });
-
-  factory ApiUpdateGroupRequest.fromJson(Map<String, dynamic> json) =>
-      _$ApiUpdateGroupRequestFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ApiUpdateGroupRequestToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -1578,6 +1685,30 @@ class ApiValidatePurchaseAppleRequest {
 
   Map<String, dynamic> toJson() =>
       _$ApiValidatePurchaseAppleRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
+}
+
+/// Facebook Instant IAP Purchase validation request
+@JsonSerializable(explicitToJson: true)
+class ApiValidatePurchaseFacebookInstantRequest {
+  @JsonKey(name: 'persist')
+  final bool? persist;
+  @JsonKey(name: 'signed_request')
+  final String? signedRequest;
+
+  const ApiValidatePurchaseFacebookInstantRequest({
+    required this.persist,
+    required this.signedRequest,
+  });
+
+  factory ApiValidatePurchaseFacebookInstantRequest.fromJson(
+          Map<String, dynamic> json) =>
+      _$ApiValidatePurchaseFacebookInstantRequestFromJson(json);
+
+  Map<String, dynamic> toJson() =>
+      _$ApiValidatePurchaseFacebookInstantRequestToJson(this);
 
   @override
   String toString() => jsonEncode(this);
@@ -1734,6 +1865,8 @@ class ApiValidatedPurchase {
   final String? providerResponse;
   @JsonKey(name: 'purchase_time')
   final String? purchaseTime;
+  @JsonKey(name: 'refund_time')
+  final String? refundTime;
   @JsonKey(name: 'seen_before')
   final bool? seenBefore;
   @JsonKey(name: 'store')
@@ -1742,6 +1875,8 @@ class ApiValidatedPurchase {
   final String? transactionId;
   @JsonKey(name: 'update_time')
   final String? updateTime;
+  @JsonKey(name: 'user_id')
+  final String? userId;
 
   const ApiValidatedPurchase({
     required this.createTime,
@@ -1749,10 +1884,12 @@ class ApiValidatedPurchase {
     required this.productId,
     required this.providerResponse,
     required this.purchaseTime,
+    required this.refundTime,
     required this.seenBefore,
     required this.store,
     required this.transactionId,
     required this.updateTime,
+    required this.userId,
   });
 
   factory ApiValidatedPurchase.fromJson(Map<String, dynamic> json) =>
@@ -1779,12 +1916,20 @@ class ApiValidatedSubscription {
   final String? originalTransactionId;
   @JsonKey(name: 'product_id')
   final String? productId;
+  @JsonKey(name: 'provider_notification')
+  final String? providerNotification;
+  @JsonKey(name: 'provider_response')
+  final String? providerResponse;
   @JsonKey(name: 'purchase_time')
   final String? purchaseTime;
+  @JsonKey(name: 'refund_time')
+  final String? refundTime;
   @JsonKey(name: 'store')
   final ApiStoreProvider? store;
   @JsonKey(name: 'update_time')
   final String? updateTime;
+  @JsonKey(name: 'user_id')
+  final String? userId;
 
   const ApiValidatedSubscription({
     required this.active,
@@ -1793,9 +1938,13 @@ class ApiValidatedSubscription {
     required this.expiryTime,
     required this.originalTransactionId,
     required this.productId,
+    required this.providerNotification,
+    required this.providerResponse,
     required this.purchaseTime,
+    required this.refundTime,
     required this.store,
     required this.updateTime,
+    required this.userId,
   });
 
   factory ApiValidatedSubscription.fromJson(Map<String, dynamic> json) =>
@@ -1865,12 +2014,9 @@ class ApiWriteStorageObjectsRequest {
 class ProtobufAny {
   @JsonKey(name: 'type_url')
   final String? typeUrl;
-  @JsonKey(name: 'value')
-  final String? value;
 
   const ProtobufAny({
     required this.typeUrl,
-    required this.value,
   });
 
   factory ProtobufAny.fromJson(Map<String, dynamic> json) =>
@@ -1907,7 +2053,7 @@ class RpcStatus {
   String toString() => jsonEncode(this);
 }
 
-/// The low level client for the  API.
+/// The low level client for the Nakama API.
 @RestApi()
 abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
@@ -1915,6 +2061,12 @@ abstract class ApiClient {
   /// A healthcheck which load balancers can use to check the service.
   @GET('/healthcheck')
   Future<void> healthcheck({
+    String? bearerToken,
+  });
+
+  /// Delete the current user's account.
+  @DELETE('/v2/account')
+  Future<void> deleteAccount({
     String? bearerToken,
   });
 
@@ -1937,7 +2089,7 @@ abstract class ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    @Body() required ApiAccountApple body,
+    @Body() required ApiAccountApple account,
     @Query('create') bool? create,
     @Query('username') String? username,
   });
@@ -1948,7 +2100,7 @@ abstract class ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    @Body() required ApiAccountCustom body,
+    @Body() required ApiAccountCustom account,
     @Query('create') bool? create,
     @Query('username') String? username,
   });
@@ -1959,7 +2111,7 @@ abstract class ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    @Body() required ApiAccountDevice body,
+    @Body() required ApiAccountDevice account,
     @Query('create') bool? create,
     @Query('username') String? username,
   });
@@ -1970,7 +2122,7 @@ abstract class ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    @Body() required ApiAccountEmail body,
+    @Body() required ApiAccountEmail account,
     @Query('create') bool? create,
     @Query('username') String? username,
   });
@@ -1981,7 +2133,7 @@ abstract class ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    @Body() required ApiAccountFacebook body,
+    @Body() required ApiAccountFacebook account,
     @Query('create') bool? create,
     @Query('username') String? username,
     @Query('sync') bool? sync,
@@ -1993,7 +2145,7 @@ abstract class ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    @Body() required ApiAccountFacebookInstantGame body,
+    @Body() required ApiAccountFacebookInstantGame account,
     @Query('create') bool? create,
     @Query('username') String? username,
   });
@@ -2004,7 +2156,7 @@ abstract class ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    @Body() required ApiAccountGameCenter body,
+    @Body() required ApiAccountGameCenter account,
     @Query('create') bool? create,
     @Query('username') String? username,
   });
@@ -2015,7 +2167,7 @@ abstract class ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    @Body() required ApiAccountGoogle body,
+    @Body() required ApiAccountGoogle account,
     @Query('create') bool? create,
     @Query('username') String? username,
   });
@@ -2026,7 +2178,7 @@ abstract class ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    @Body() required ApiAccountSteam body,
+    @Body() required ApiAccountSteam account,
     @Query('create') bool? create,
     @Query('username') String? username,
     @Query('sync') bool? sync,
@@ -2064,7 +2216,7 @@ abstract class ApiClient {
   @POST('/v2/account/link/facebook')
   Future<void> linkFacebook({
     String? bearerToken,
-    @Body() required ApiAccountFacebook body,
+    @Body() required ApiAccountFacebook account,
     @Query('sync') bool? sync,
   });
 
@@ -2222,15 +2374,23 @@ abstract class ApiClient {
   @POST('/v2/friend/facebook')
   Future<void> importFacebookFriends({
     String? bearerToken,
-    @Body() required ApiAccountFacebook body,
+    @Body() required ApiAccountFacebook account,
     @Query('reset') bool? reset,
+  });
+
+  /// List friends of friends for the current user.
+  @GET('/v2/friend/friends')
+  Future<ApiFriendsOfFriendsList> listFriendsOfFriends({
+    String? bearerToken,
+    @Query('limit') int? limit,
+    @Query('cursor') String? cursor,
   });
 
   /// Import Steam friends and add them to a user's account.
   @POST('/v2/friend/steam')
   Future<void> importSteamFriends({
     String? bearerToken,
-    @Body() required ApiAccountSteam body,
+    @Body() required ApiAccountSteam account,
     @Query('reset') bool? reset,
   });
 
@@ -2339,6 +2499,13 @@ abstract class ApiClient {
     @Body() required ApiValidatePurchaseAppleRequest body,
   });
 
+  /// Validate FB Instant IAP Receipt
+  @POST('/v2/iap/purchase/facebookinstant')
+  Future<ApiValidatePurchaseResponse> validatePurchaseFacebookInstant({
+    String? bearerToken,
+    @Body() required ApiValidatePurchaseFacebookInstantRequest body,
+  });
+
   /// Validate Google IAP Receipt
   @POST('/v2/iap/purchase/google')
   Future<ApiValidatePurchaseResponse> validatePurchaseGoogle({
@@ -2404,7 +2571,7 @@ abstract class ApiClient {
   Future<ApiLeaderboardRecord> writeLeaderboardRecord({
     String? bearerToken,
     @Path('leaderboardId') required String leaderboardId,
-    @Body() required WriteLeaderboardRecordRequestLeaderboardRecordWrite body,
+    @Body() required WriteLeaderboardRecordRequestLeaderboardRecordWrite record,
   });
 
   /// List leaderboard records that belong to a user.
@@ -2415,6 +2582,7 @@ abstract class ApiClient {
     @Path('ownerId') required String ownerId,
     @Query('limit') int? limit,
     @Query('expiry') String? expiry,
+    @Query('cursor') String? cursor,
   });
 
   /// Fetch list of running matches.
@@ -2427,6 +2595,12 @@ abstract class ApiClient {
     @Query('minSize') int? minSize,
     @Query('maxSize') int? maxSize,
     @Query('query') String? query,
+  });
+
+  /// Get matchmaker stats.
+  @GET('/v2/matchmaker/stats')
+  Future<ApiMatchmakerStats> getMatchmakerStats({
+    String? bearerToken,
   });
 
   /// Delete one or more notifications for the current user.
@@ -2462,7 +2636,7 @@ abstract class ApiClient {
     String? basicAuthPassword,
     String? bearerToken,
     @Path('id') required String id,
-    @Body() required String body,
+    @Body() required String payload,
     @Query('httpKey') String? httpKey,
   });
 
@@ -2526,6 +2700,13 @@ abstract class ApiClient {
     @Query('cursor') String? cursor,
   });
 
+  /// Delete a tournament record.
+  @DELETE('/v2/tournament/{tournamentId}')
+  Future<void> deleteTournamentRecord({
+    String? bearerToken,
+    @Path('tournamentId') required String tournamentId,
+  });
+
   /// List tournament records.
   @GET('/v2/tournament/{tournamentId}')
   Future<ApiTournamentRecordList> listTournamentRecords({
@@ -2542,7 +2723,7 @@ abstract class ApiClient {
   Future<ApiLeaderboardRecord> writeTournamentRecord2({
     String? bearerToken,
     @Path('tournamentId') required String tournamentId,
-    @Body() required WriteTournamentRecordRequestTournamentRecordWrite body,
+    @Body() required WriteTournamentRecordRequestTournamentRecordWrite record,
   });
 
   /// Write a record to a tournament.
@@ -2550,7 +2731,7 @@ abstract class ApiClient {
   Future<ApiLeaderboardRecord> writeTournamentRecord({
     String? bearerToken,
     @Path('tournamentId') required String tournamentId,
-    @Body() required WriteTournamentRecordRequestTournamentRecordWrite body,
+    @Body() required WriteTournamentRecordRequestTournamentRecordWrite record,
   });
 
   /// Attempt to join an open and running tournament.
@@ -2568,6 +2749,7 @@ abstract class ApiClient {
     @Path('ownerId') required String ownerId,
     @Query('limit') int? limit,
     @Query('expiry') String? expiry,
+    @Query('cursor') String? cursor,
   });
 
   /// Fetch zero or more users by ID and/or username.

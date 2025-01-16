@@ -47,8 +47,12 @@ mixin _$ChannelMessage {
   @JsonKey(name: 'user_id_two')
   String? get userIdTwo => throw _privateConstructorUsedError;
 
+  /// Serializes this ChannelMessage to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChannelMessage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChannelMessageCopyWith<ChannelMessage> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -85,6 +89,8 @@ class _$ChannelMessageCopyWithImpl<$Res, $Val extends ChannelMessage>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChannelMessage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -191,6 +197,8 @@ class __$$ChannelMessageImplCopyWithImpl<$Res>
       _$ChannelMessageImpl _value, $Res Function(_$ChannelMessageImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChannelMessage
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -362,7 +370,7 @@ class _$ChannelMessageImpl extends _ChannelMessage {
                 other.userIdTwo == userIdTwo));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -380,7 +388,9 @@ class _$ChannelMessageImpl extends _ChannelMessage {
       userIdOne,
       userIdTwo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChannelMessage
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChannelMessageImplCopyWith<_$ChannelMessageImpl> get copyWith =>
@@ -455,8 +465,11 @@ abstract class _ChannelMessage extends ChannelMessage {
   @override
   @JsonKey(name: 'user_id_two')
   String? get userIdTwo;
+
+  /// Create a copy of ChannelMessage
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChannelMessageImplCopyWith<_$ChannelMessageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -476,8 +489,12 @@ mixin _$ChannelMessageList {
   @JsonKey(name: 'cacheable_cursor')
   String? get cacheableCursor => throw _privateConstructorUsedError;
 
+  /// Serializes this ChannelMessageList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ChannelMessageList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChannelMessageListCopyWith<ChannelMessageList> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -505,6 +522,8 @@ class _$ChannelMessageListCopyWithImpl<$Res, $Val extends ChannelMessageList>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChannelMessageList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -557,6 +576,8 @@ class __$$ChannelMessageListImplCopyWithImpl<$Res>
       $Res Function(_$ChannelMessageListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChannelMessageList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -640,7 +661,7 @@ class _$ChannelMessageListImpl extends _ChannelMessageList {
                 other.cacheableCursor == cacheableCursor));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -649,7 +670,9 @@ class _$ChannelMessageListImpl extends _ChannelMessageList {
       prevCursor,
       cacheableCursor);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChannelMessageList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChannelMessageListImplCopyWith<_$ChannelMessageListImpl> get copyWith =>
@@ -688,8 +711,11 @@ abstract class _ChannelMessageList extends ChannelMessageList {
   @override
   @JsonKey(name: 'cacheable_cursor')
   String? get cacheableCursor;
+
+  /// Create a copy of ChannelMessageList
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChannelMessageListImplCopyWith<_$ChannelMessageListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

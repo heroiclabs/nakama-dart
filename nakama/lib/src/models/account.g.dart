@@ -59,7 +59,7 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       gamecenterId: json['gamecenter_id'] as String?,
       steamId: json['steam_id'] as String?,
       online: json['online'] as bool? ?? false,
-      edgeCount: json['edge_count'] as int? ?? 0,
+      edgeCount: (json['edge_count'] as num?)?.toInt() ?? 0,
       createTime: json['create_time'] == null
           ? null
           : DateTime.parse(json['create_time'] as String),

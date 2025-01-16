@@ -32,7 +32,9 @@ mixin _$PartyData {
   @JsonKey(name: 'data')
   List<int>? get data => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PartyData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PartyDataCopyWith<PartyData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -61,6 +63,8 @@ class _$PartyDataCopyWithImpl<$Res, $Val extends PartyData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PartyData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +93,8 @@ class _$PartyDataCopyWithImpl<$Res, $Val extends PartyData>
     ) as $Val);
   }
 
+  /// Create a copy of PartyData
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserPresenceCopyWith<$Res>? get presence {
@@ -128,6 +134,8 @@ class __$$PartyDataImplCopyWithImpl<$Res>
       _$PartyDataImpl _value, $Res Function(_$PartyDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PartyData
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -218,7 +226,9 @@ class _$PartyDataImpl extends _PartyData {
   int get hashCode => Object.hash(runtimeType, partyId, presence, opCode,
       const DeepCollectionEquality().hash(_data));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PartyData
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PartyDataImplCopyWith<_$PartyDataImpl> get copyWith =>
@@ -233,28 +243,30 @@ abstract class _PartyData extends PartyData {
       @JsonKey(name: 'data') final List<int>? data}) = _$PartyDataImpl;
   const _PartyData._() : super._();
 
-  @override
-
   /// The party unique ID.
+  @override
   @JsonKey(name: 'party_id')
   String get partyId;
-  @override
 
   /// A reference to the user presence that sent this data, if any.
+  @override
   @JsonKey(name: 'presence')
   UserPresence? get presence;
-  @override
 
   /// Op code value.
+  @override
   @JsonKey(name: 'op_code')
   int get opCode;
-  @override
 
   /// Data payload, if any.
+  @override
   @JsonKey(name: 'data')
   List<int>? get data;
+
+  /// Create a copy of PartyData
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PartyDataImplCopyWith<_$PartyDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -273,7 +285,9 @@ mixin _$PartyPresenceEvent {
   @JsonKey(name: 'leaves')
   List<UserPresence>? get leaves => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PartyPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PartyPresenceEventCopyWith<PartyPresenceEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -300,6 +314,8 @@ class _$PartyPresenceEventCopyWithImpl<$Res, $Val extends PartyPresenceEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PartyPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -346,6 +362,8 @@ class __$$PartyPresenceEventImplCopyWithImpl<$Res>
       $Res Function(_$PartyPresenceEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PartyPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -436,7 +454,9 @@ class _$PartyPresenceEventImpl extends _PartyPresenceEvent {
       const DeepCollectionEquality().hash(_joins),
       const DeepCollectionEquality().hash(_leaves));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PartyPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PartyPresenceEventImplCopyWith<_$PartyPresenceEventImpl> get copyWith =>
@@ -452,23 +472,25 @@ abstract class _PartyPresenceEvent extends PartyPresenceEvent {
       _$PartyPresenceEventImpl;
   const _PartyPresenceEvent._() : super._();
 
-  @override
-
   /// The party unique ID.
+  @override
   @JsonKey(name: 'party_id')
   String get partyId;
-  @override
 
   /// Presences that have joined the party.
+  @override
   @JsonKey(name: 'joins')
   List<UserPresence>? get joins;
-  @override
 
   /// Presences that have left the party.
+  @override
   @JsonKey(name: 'leaves')
   List<UserPresence>? get leaves;
+
+  /// Create a copy of PartyPresenceEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PartyPresenceEventImplCopyWith<_$PartyPresenceEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -483,7 +505,9 @@ mixin _$PartyLeader {
   @JsonKey(name: 'presence')
   UserPresence? get newLeader => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PartyLeader
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PartyLeaderCopyWith<PartyLeader> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -511,6 +535,8 @@ class _$PartyLeaderCopyWithImpl<$Res, $Val extends PartyLeader>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PartyLeader
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -529,6 +555,8 @@ class _$PartyLeaderCopyWithImpl<$Res, $Val extends PartyLeader>
     ) as $Val);
   }
 
+  /// Create a copy of PartyLeader
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserPresenceCopyWith<$Res>? get newLeader {
@@ -566,6 +594,8 @@ class __$$PartyLeaderImplCopyWithImpl<$Res>
       _$PartyLeaderImpl _value, $Res Function(_$PartyLeaderImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PartyLeader
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -621,7 +651,9 @@ class _$PartyLeaderImpl extends _PartyLeader {
   @override
   int get hashCode => Object.hash(runtimeType, partyId, newLeader);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PartyLeader
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PartyLeaderImplCopyWith<_$PartyLeaderImpl> get copyWith =>
@@ -635,18 +667,20 @@ abstract class _PartyLeader extends PartyLeader {
       _$PartyLeaderImpl;
   const _PartyLeader._() : super._();
 
-  @override
-
   /// The ID of the party to announce the new leader for.
+  @override
   @JsonKey(name: 'party_id')
   String get partyId;
-  @override
 
   /// The presence of the new party leader.
+  @override
   @JsonKey(name: 'presence')
   UserPresence? get newLeader;
+
+  /// Create a copy of PartyLeader
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PartyLeaderImplCopyWith<_$PartyLeaderImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

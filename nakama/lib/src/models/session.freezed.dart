@@ -17,14 +17,16 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Session {
   String get token => throw _privateConstructorUsedError;
-  String? get refreshToken => throw _privateConstructorUsedError;
+  String get refreshToken => throw _privateConstructorUsedError;
   bool get created => throw _privateConstructorUsedError;
   Map<String, String>? get vars => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   DateTime get expiresAt => throw _privateConstructorUsedError;
   DateTime get refreshExpiresAt => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Session
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SessionCopyWith<Session> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -35,7 +37,7 @@ abstract class $SessionCopyWith<$Res> {
   @useResult
   $Res call(
       {String token,
-      String? refreshToken,
+      String refreshToken,
       bool created,
       Map<String, String>? vars,
       String userId,
@@ -53,11 +55,13 @@ class _$SessionCopyWithImpl<$Res, $Val extends Session>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Session
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? token = null,
-    Object? refreshToken = freezed,
+    Object? refreshToken = null,
     Object? created = null,
     Object? vars = freezed,
     Object? userId = null,
@@ -69,10 +73,10 @@ class _$SessionCopyWithImpl<$Res, $Val extends Session>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
-      refreshToken: freezed == refreshToken
+      refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       created: null == created
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -106,7 +110,7 @@ abstract class _$$SessionImplCopyWith<$Res> implements $SessionCopyWith<$Res> {
   @useResult
   $Res call(
       {String token,
-      String? refreshToken,
+      String refreshToken,
       bool created,
       Map<String, String>? vars,
       String userId,
@@ -122,11 +126,13 @@ class __$$SessionImplCopyWithImpl<$Res>
       _$SessionImpl _value, $Res Function(_$SessionImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Session
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? token = null,
-    Object? refreshToken = freezed,
+    Object? refreshToken = null,
     Object? created = null,
     Object? vars = freezed,
     Object? userId = null,
@@ -138,10 +144,10 @@ class __$$SessionImplCopyWithImpl<$Res>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
-      refreshToken: freezed == refreshToken
+      refreshToken: null == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       created: null == created
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -183,7 +189,7 @@ class _$SessionImpl extends _Session {
   @override
   final String token;
   @override
-  final String? refreshToken;
+  final String refreshToken;
   @override
   final bool created;
   final Map<String, String>? _vars;
@@ -236,7 +242,9 @@ class _$SessionImpl extends _Session {
       expiresAt,
       refreshExpiresAt);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Session
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SessionImplCopyWith<_$SessionImpl> get copyWith =>
@@ -246,7 +254,7 @@ class _$SessionImpl extends _Session {
 abstract class _Session extends Session {
   factory _Session(
       {required final String token,
-      required final String? refreshToken,
+      required final String refreshToken,
       required final bool created,
       required final Map<String, String>? vars,
       required final String userId,
@@ -257,7 +265,7 @@ abstract class _Session extends Session {
   @override
   String get token;
   @override
-  String? get refreshToken;
+  String get refreshToken;
   @override
   bool get created;
   @override
@@ -268,8 +276,11 @@ abstract class _Session extends Session {
   DateTime get expiresAt;
   @override
   DateTime get refreshExpiresAt;
+
+  /// Create a copy of Session
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SessionImplCopyWith<_$SessionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

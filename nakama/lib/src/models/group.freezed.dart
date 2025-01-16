@@ -44,8 +44,12 @@ mixin _$Group {
   @JsonKey(name: 'update_time')
   DateTime? get updateTime => throw _privateConstructorUsedError;
 
+  /// Serializes this Group to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Group
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GroupCopyWith<Group> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -79,6 +83,8 @@ class _$GroupCopyWithImpl<$Res, $Val extends Group>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Group
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -178,6 +184,8 @@ class __$$GroupImplCopyWithImpl<$Res>
       _$GroupImpl _value, $Res Function(_$GroupImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Group
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -336,7 +344,7 @@ class _$GroupImpl extends _Group {
                 other.updateTime == updateTime));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -353,7 +361,9 @@ class _$GroupImpl extends _Group {
       createTime,
       updateTime);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Group
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GroupImplCopyWith<_$GroupImpl> get copyWith =>
@@ -420,8 +430,11 @@ abstract class _Group extends Group {
   @override
   @JsonKey(name: 'update_time')
   DateTime? get updateTime;
+
+  /// Create a copy of Group
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GroupImplCopyWith<_$GroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -435,8 +448,12 @@ mixin _$GroupList {
   String? get cursor => throw _privateConstructorUsedError;
   List<Group>? get groups => throw _privateConstructorUsedError;
 
+  /// Serializes this GroupList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GroupList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GroupListCopyWith<GroupList> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -459,6 +476,8 @@ class _$GroupListCopyWithImpl<$Res, $Val extends GroupList>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GroupList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -497,6 +516,8 @@ class __$$GroupListImplCopyWithImpl<$Res>
       _$GroupListImpl _value, $Res Function(_$GroupListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GroupList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -552,12 +573,14 @@ class _$GroupListImpl extends _GroupList {
             const DeepCollectionEquality().equals(other._groups, _groups));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, cursor, const DeepCollectionEquality().hash(_groups));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GroupList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GroupListImplCopyWith<_$GroupListImpl> get copyWith =>
@@ -584,8 +607,11 @@ abstract class _GroupList extends GroupList {
   String? get cursor;
   @override
   List<Group>? get groups;
+
+  /// Create a copy of GroupList
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GroupListImplCopyWith<_$GroupListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -600,8 +626,12 @@ mixin _$UserGroupList {
   @JsonKey(name: 'user_groups')
   List<UserGroup>? get userGroups => throw _privateConstructorUsedError;
 
+  /// Serializes this UserGroupList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserGroupList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserGroupListCopyWith<UserGroupList> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -627,6 +657,8 @@ class _$UserGroupListCopyWithImpl<$Res, $Val extends UserGroupList>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserGroupList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -667,6 +699,8 @@ class __$$UserGroupListImplCopyWithImpl<$Res>
       _$UserGroupListImpl _value, $Res Function(_$UserGroupListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserGroupList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -726,12 +760,14 @@ class _$UserGroupListImpl extends _UserGroupList {
                 .equals(other._userGroups, _userGroups));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, cursor, const DeepCollectionEquality().hash(_userGroups));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserGroupList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserGroupListImplCopyWith<_$UserGroupListImpl> get copyWith =>
@@ -760,8 +796,11 @@ abstract class _UserGroupList extends UserGroupList {
   @override
   @JsonKey(name: 'user_groups')
   List<UserGroup>? get userGroups;
+
+  /// Create a copy of UserGroupList
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserGroupListImplCopyWith<_$UserGroupListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -775,8 +814,12 @@ mixin _$UserGroup {
   GroupMembershipState get state => throw _privateConstructorUsedError;
   Group get group => throw _privateConstructorUsedError;
 
+  /// Serializes this UserGroup to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UserGroup
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UserGroupCopyWith<UserGroup> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -801,6 +844,8 @@ class _$UserGroupCopyWithImpl<$Res, $Val extends UserGroup>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UserGroup
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -819,6 +864,8 @@ class _$UserGroupCopyWithImpl<$Res, $Val extends UserGroup>
     ) as $Val);
   }
 
+  /// Create a copy of UserGroup
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $GroupCopyWith<$Res> get group {
@@ -850,6 +897,8 @@ class __$$UserGroupImplCopyWithImpl<$Res>
       _$UserGroupImpl _value, $Res Function(_$UserGroupImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UserGroup
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -896,11 +945,13 @@ class _$UserGroupImpl extends _UserGroup {
             (identical(other.group, group) || other.group == group));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, state, group);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UserGroup
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UserGroupImplCopyWith<_$UserGroupImpl> get copyWith =>
@@ -927,8 +978,11 @@ abstract class _UserGroup extends UserGroup {
   GroupMembershipState get state;
   @override
   Group get group;
+
+  /// Create a copy of UserGroup
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UserGroupImplCopyWith<_$UserGroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -943,8 +997,12 @@ mixin _$GroupUserList {
   @JsonKey(name: 'group_users')
   List<GroupUser> get groupUsers => throw _privateConstructorUsedError;
 
+  /// Serializes this GroupUserList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GroupUserList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GroupUserListCopyWith<GroupUserList> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -970,6 +1028,8 @@ class _$GroupUserListCopyWithImpl<$Res, $Val extends GroupUserList>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GroupUserList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1010,6 +1070,8 @@ class __$$GroupUserListImplCopyWithImpl<$Res>
       _$GroupUserListImpl _value, $Res Function(_$GroupUserListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GroupUserList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1067,12 +1129,14 @@ class _$GroupUserListImpl extends _GroupUserList {
                 .equals(other._groupUsers, _groupUsers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, cursor, const DeepCollectionEquality().hash(_groupUsers));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GroupUserList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GroupUserListImplCopyWith<_$GroupUserListImpl> get copyWith =>
@@ -1101,8 +1165,11 @@ abstract class _GroupUserList extends GroupUserList {
   @override
   @JsonKey(name: 'group_users')
   List<GroupUser> get groupUsers;
+
+  /// Create a copy of GroupUserList
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GroupUserListImplCopyWith<_$GroupUserListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1116,8 +1183,12 @@ mixin _$GroupUser {
   GroupMembershipState get state => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
 
+  /// Serializes this GroupUser to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GroupUser
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GroupUserCopyWith<GroupUser> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1142,6 +1213,8 @@ class _$GroupUserCopyWithImpl<$Res, $Val extends GroupUser>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GroupUser
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1160,6 +1233,8 @@ class _$GroupUserCopyWithImpl<$Res, $Val extends GroupUser>
     ) as $Val);
   }
 
+  /// Create a copy of GroupUser
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get user {
@@ -1191,6 +1266,8 @@ class __$$GroupUserImplCopyWithImpl<$Res>
       _$GroupUserImpl _value, $Res Function(_$GroupUserImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GroupUser
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1237,11 +1314,13 @@ class _$GroupUserImpl extends _GroupUser {
             (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, state, user);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GroupUser
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GroupUserImplCopyWith<_$GroupUserImpl> get copyWith =>
@@ -1268,8 +1347,11 @@ abstract class _GroupUser extends GroupUser {
   GroupMembershipState get state;
   @override
   User get user;
+
+  /// Create a copy of GroupUser
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GroupUserImplCopyWith<_$GroupUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,10 +6,46 @@ part of 'rest.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+ApiUpdateGroupRequest _$ApiUpdateGroupRequestFromJson(
+        Map<String, dynamic> json) =>
+    ApiUpdateGroupRequest(
+      avatarUrl: json['avatar_url'] as String?,
+      description: json['description'] as String?,
+      langTag: json['lang_tag'] as String?,
+      name: json['name'] as String?,
+      open: json['open'] as bool?,
+    );
+
+Map<String, dynamic> _$ApiUpdateGroupRequestToJson(
+        ApiUpdateGroupRequest instance) =>
+    <String, dynamic>{
+      'avatar_url': instance.avatarUrl,
+      'description': instance.description,
+      'lang_tag': instance.langTag,
+      'name': instance.name,
+      'open': instance.open,
+    };
+
+FriendsOfFriendsListFriendOfFriend _$FriendsOfFriendsListFriendOfFriendFromJson(
+        Map<String, dynamic> json) =>
+    FriendsOfFriendsListFriendOfFriend(
+      referrer: json['referrer'] as String?,
+      user: json['user'] == null
+          ? null
+          : ApiUser.fromJson(json['user'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$FriendsOfFriendsListFriendOfFriendToJson(
+        FriendsOfFriendsListFriendOfFriend instance) =>
+    <String, dynamic>{
+      'referrer': instance.referrer,
+      'user': instance.user?.toJson(),
+    };
+
 GroupUserListGroupUser _$GroupUserListGroupUserFromJson(
         Map<String, dynamic> json) =>
     GroupUserListGroupUser(
-      state: json['state'] as int?,
+      state: (json['state'] as num?)?.toInt(),
       user: json['user'] == null
           ? null
           : ApiUser.fromJson(json['user'] as Map<String, dynamic>),
@@ -28,7 +64,7 @@ UserGroupListUserGroup _$UserGroupListUserGroupFromJson(
       group: json['group'] == null
           ? null
           : ApiGroup.fromJson(json['group'] as Map<String, dynamic>),
-      state: json['state'] as int?,
+      state: (json['state'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$UserGroupListUserGroupToJson(
@@ -255,7 +291,7 @@ Map<String, dynamic> _$ApiAccountSteamToJson(ApiAccountSteam instance) =>
 ApiChannelMessage _$ApiChannelMessageFromJson(Map<String, dynamic> json) =>
     ApiChannelMessage(
       channelId: json['channel_id'] as String?,
-      code: json['code'] as int?,
+      code: (json['code'] as num?)?.toInt(),
       content: json['content'] as String?,
       createTime: json['create_time'] as String?,
       groupId: json['group_id'] as String?,
@@ -312,7 +348,7 @@ ApiCreateGroupRequest _$ApiCreateGroupRequestFromJson(
       avatarUrl: json['avatar_url'] as String?,
       description: json['description'] as String?,
       langTag: json['lang_tag'] as String?,
-      maxCount: json['max_count'] as int?,
+      maxCount: (json['max_count'] as num?)?.toInt(),
       name: json['name'] as String?,
       open: json['open'] as bool?,
     );
@@ -376,7 +412,7 @@ Map<String, dynamic> _$ApiEventToJson(ApiEvent instance) => <String, dynamic>{
     };
 
 ApiFriend _$ApiFriendFromJson(Map<String, dynamic> json) => ApiFriend(
-      state: json['state'] as int?,
+      state: (json['state'] as num?)?.toInt(),
       updateTime: json['update_time'] as String?,
       user: json['user'] == null
           ? null
@@ -403,15 +439,33 @@ Map<String, dynamic> _$ApiFriendListToJson(ApiFriendList instance) =>
       'friends': instance.friends?.map((e) => e.toJson()).toList(),
     };
 
+ApiFriendsOfFriendsList _$ApiFriendsOfFriendsListFromJson(
+        Map<String, dynamic> json) =>
+    ApiFriendsOfFriendsList(
+      cursor: json['cursor'] as String?,
+      friendsOfFriends: (json['friends_of_friends'] as List<dynamic>?)
+          ?.map((e) => FriendsOfFriendsListFriendOfFriend.fromJson(
+              e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$ApiFriendsOfFriendsListToJson(
+        ApiFriendsOfFriendsList instance) =>
+    <String, dynamic>{
+      'cursor': instance.cursor,
+      'friends_of_friends':
+          instance.friendsOfFriends?.map((e) => e.toJson()).toList(),
+    };
+
 ApiGroup _$ApiGroupFromJson(Map<String, dynamic> json) => ApiGroup(
       avatarUrl: json['avatar_url'] as String?,
       createTime: json['create_time'] as String?,
       creatorId: json['creator_id'] as String?,
       description: json['description'] as String?,
-      edgeCount: json['edge_count'] as int?,
+      edgeCount: (json['edge_count'] as num?)?.toInt(),
       id: json['id'] as String?,
       langTag: json['lang_tag'] as String?,
-      maxCount: json['max_count'] as int?,
+      maxCount: (json['max_count'] as num?)?.toInt(),
       metadata: json['metadata'] as String?,
       name: json['name'] as String?,
       open: json['open'] as bool?,
@@ -467,9 +521,9 @@ ApiLeaderboardRecord _$ApiLeaderboardRecordFromJson(
       createTime: json['create_time'] as String?,
       expiryTime: json['expiry_time'] as String?,
       leaderboardId: json['leaderboard_id'] as String?,
-      maxNumScore: json['max_num_score'] as int?,
+      maxNumScore: (json['max_num_score'] as num?)?.toInt(),
       metadata: json['metadata'] as String?,
-      numScore: json['num_score'] as int?,
+      numScore: (json['num_score'] as num?)?.toInt(),
       ownerId: json['owner_id'] as String?,
       rank: json['rank'] as String?,
       score: json['score'] as String?,
@@ -503,6 +557,7 @@ ApiLeaderboardRecordList _$ApiLeaderboardRecordListFromJson(
           ?.map((e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
       prevCursor: json['prev_cursor'] as String?,
+      rankCount: json['rank_count'] as String?,
       records: (json['records'] as List<dynamic>?)
           ?.map((e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -514,6 +569,7 @@ Map<String, dynamic> _$ApiLeaderboardRecordListToJson(
       'next_cursor': instance.nextCursor,
       'owner_records': instance.ownerRecords?.map((e) => e.toJson()).toList(),
       'prev_cursor': instance.prevCursor,
+      'rank_count': instance.rankCount,
       'records': instance.records?.map((e) => e.toJson()).toList(),
     };
 
@@ -536,7 +592,7 @@ ApiListSubscriptionsRequest _$ApiListSubscriptionsRequestFromJson(
         Map<String, dynamic> json) =>
     ApiListSubscriptionsRequest(
       cursor: json['cursor'] as String?,
-      limit: json['limit'] as int?,
+      limit: (json['limit'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ApiListSubscriptionsRequestToJson(
@@ -551,8 +607,8 @@ ApiMatch _$ApiMatchFromJson(Map<String, dynamic> json) => ApiMatch(
       handlerName: json['handler_name'] as String?,
       label: json['label'] as String?,
       matchId: json['match_id'] as String?,
-      size: json['size'] as int?,
-      tickRate: json['tick_rate'] as int?,
+      size: (json['size'] as num?)?.toInt(),
+      tickRate: (json['tick_rate'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ApiMatchToJson(ApiMatch instance) => <String, dynamic>{
@@ -575,9 +631,40 @@ Map<String, dynamic> _$ApiMatchListToJson(ApiMatchList instance) =>
       'matches': instance.matches?.map((e) => e.toJson()).toList(),
     };
 
+ApiMatchmakerCompletionStats _$ApiMatchmakerCompletionStatsFromJson(
+        Map<String, dynamic> json) =>
+    ApiMatchmakerCompletionStats(
+      completeTime: json['complete_time'] as String?,
+      createTime: json['create_time'] as String?,
+    );
+
+Map<String, dynamic> _$ApiMatchmakerCompletionStatsToJson(
+        ApiMatchmakerCompletionStats instance) =>
+    <String, dynamic>{
+      'complete_time': instance.completeTime,
+      'create_time': instance.createTime,
+    };
+
+ApiMatchmakerStats _$ApiMatchmakerStatsFromJson(Map<String, dynamic> json) =>
+    ApiMatchmakerStats(
+      completions: (json['completions'] as List<dynamic>?)
+          ?.map((e) =>
+              ApiMatchmakerCompletionStats.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      oldestTicketCreateTime: json['oldest_ticket_create_time'] as String?,
+      ticketCount: (json['ticket_count'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$ApiMatchmakerStatsToJson(ApiMatchmakerStats instance) =>
+    <String, dynamic>{
+      'completions': instance.completions?.map((e) => e.toJson()).toList(),
+      'oldest_ticket_create_time': instance.oldestTicketCreateTime,
+      'ticket_count': instance.ticketCount,
+    };
+
 ApiNotification _$ApiNotificationFromJson(Map<String, dynamic> json) =>
     ApiNotification(
-      code: json['code'] as int?,
+      code: (json['code'] as num?)?.toInt(),
       content: json['content'] as String?,
       createTime: json['create_time'] as String?,
       id: json['id'] as String?,
@@ -703,8 +790,8 @@ ApiStorageObject _$ApiStorageObjectFromJson(Map<String, dynamic> json) =>
       collection: json['collection'] as String?,
       createTime: json['create_time'] as String?,
       key: json['key'] as String?,
-      permissionRead: json['permission_read'] as int?,
-      permissionWrite: json['permission_write'] as int?,
+      permissionRead: (json['permission_read'] as num?)?.toInt(),
+      permissionWrite: (json['permission_write'] as num?)?.toInt(),
       updateTime: json['update_time'] as String?,
       userId: json['user_id'] as String?,
       value: json['value'] as String?,
@@ -727,7 +814,9 @@ Map<String, dynamic> _$ApiStorageObjectToJson(ApiStorageObject instance) =>
 ApiStorageObjectAck _$ApiStorageObjectAckFromJson(Map<String, dynamic> json) =>
     ApiStorageObjectAck(
       collection: json['collection'] as String?,
+      createTime: json['create_time'] as String?,
       key: json['key'] as String?,
+      updateTime: json['update_time'] as String?,
       userId: json['user_id'] as String?,
       version: json['version'] as String?,
     );
@@ -736,7 +825,9 @@ Map<String, dynamic> _$ApiStorageObjectAckToJson(
         ApiStorageObjectAck instance) =>
     <String, dynamic>{
       'collection': instance.collection,
+      'create_time': instance.createTime,
       'key': instance.key,
+      'update_time': instance.updateTime,
       'user_id': instance.userId,
       'version': instance.version,
     };
@@ -805,29 +896,31 @@ Map<String, dynamic> _$ApiSubscriptionListToJson(
 
 ApiTournament _$ApiTournamentFromJson(Map<String, dynamic> json) =>
     ApiTournament(
+      authoritative: json['authoritative'] as bool?,
       canEnter: json['can_enter'] as bool?,
-      category: json['category'] as int?,
+      category: (json['category'] as num?)?.toInt(),
       createTime: json['create_time'] as String?,
       description: json['description'] as String?,
-      duration: json['duration'] as int?,
-      endActive: json['end_active'] as int?,
+      duration: (json['duration'] as num?)?.toInt(),
+      endActive: (json['end_active'] as num?)?.toInt(),
       endTime: json['end_time'] as String?,
       id: json['id'] as String?,
-      maxNumScore: json['max_num_score'] as int?,
-      maxSize: json['max_size'] as int?,
+      maxNumScore: (json['max_num_score'] as num?)?.toInt(),
+      maxSize: (json['max_size'] as num?)?.toInt(),
       metadata: json['metadata'] as String?,
-      nextReset: json['next_reset'] as int?,
+      nextReset: (json['next_reset'] as num?)?.toInt(),
       operator: $enumDecodeNullable(_$ApiOperatorEnumMap, json['operator']),
-      prevReset: json['prev_reset'] as int?,
-      size: json['size'] as int?,
-      sortOrder: json['sort_order'] as int?,
-      startActive: json['start_active'] as int?,
+      prevReset: (json['prev_reset'] as num?)?.toInt(),
+      size: (json['size'] as num?)?.toInt(),
+      sortOrder: (json['sort_order'] as num?)?.toInt(),
+      startActive: (json['start_active'] as num?)?.toInt(),
       startTime: json['start_time'] as String?,
       title: json['title'] as String?,
     );
 
 Map<String, dynamic> _$ApiTournamentToJson(ApiTournament instance) =>
     <String, dynamic>{
+      'authoritative': instance.authoritative,
       'can_enter': instance.canEnter,
       'category': instance.category,
       'create_time': instance.createTime,
@@ -871,6 +964,7 @@ ApiTournamentRecordList _$ApiTournamentRecordListFromJson(
           ?.map((e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
       prevCursor: json['prev_cursor'] as String?,
+      rankCount: json['rank_count'] as String?,
       records: (json['records'] as List<dynamic>?)
           ?.map((e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -882,6 +976,7 @@ Map<String, dynamic> _$ApiTournamentRecordListToJson(
       'next_cursor': instance.nextCursor,
       'owner_records': instance.ownerRecords?.map((e) => e.toJson()).toList(),
       'prev_cursor': instance.prevCursor,
+      'rank_count': instance.rankCount,
       'records': instance.records?.map((e) => e.toJson()).toList(),
     };
 
@@ -907,34 +1002,12 @@ Map<String, dynamic> _$ApiUpdateAccountRequestToJson(
       'username': instance.username,
     };
 
-ApiUpdateGroupRequest _$ApiUpdateGroupRequestFromJson(
-        Map<String, dynamic> json) =>
-    ApiUpdateGroupRequest(
-      avatarUrl: json['avatar_url'] as String?,
-      description: json['description'] as String?,
-      groupId: json['group_id'] as String?,
-      langTag: json['lang_tag'] as String?,
-      name: json['name'] as String?,
-      open: json['open'] as bool?,
-    );
-
-Map<String, dynamic> _$ApiUpdateGroupRequestToJson(
-        ApiUpdateGroupRequest instance) =>
-    <String, dynamic>{
-      'avatar_url': instance.avatarUrl,
-      'description': instance.description,
-      'group_id': instance.groupId,
-      'lang_tag': instance.langTag,
-      'name': instance.name,
-      'open': instance.open,
-    };
-
 ApiUser _$ApiUserFromJson(Map<String, dynamic> json) => ApiUser(
       appleId: json['apple_id'] as String?,
       avatarUrl: json['avatar_url'] as String?,
       createTime: json['create_time'] as String?,
       displayName: json['display_name'] as String?,
-      edgeCount: json['edge_count'] as int?,
+      edgeCount: (json['edge_count'] as num?)?.toInt(),
       facebookId: json['facebook_id'] as String?,
       facebookInstantGameId: json['facebook_instant_game_id'] as String?,
       gamecenterId: json['gamecenter_id'] as String?,
@@ -1008,6 +1081,21 @@ Map<String, dynamic> _$ApiValidatePurchaseAppleRequestToJson(
     <String, dynamic>{
       'persist': instance.persist,
       'receipt': instance.receipt,
+    };
+
+ApiValidatePurchaseFacebookInstantRequest
+    _$ApiValidatePurchaseFacebookInstantRequestFromJson(
+            Map<String, dynamic> json) =>
+        ApiValidatePurchaseFacebookInstantRequest(
+          persist: json['persist'] as bool?,
+          signedRequest: json['signed_request'] as String?,
+        );
+
+Map<String, dynamic> _$ApiValidatePurchaseFacebookInstantRequestToJson(
+        ApiValidatePurchaseFacebookInstantRequest instance) =>
+    <String, dynamic>{
+      'persist': instance.persist,
+      'signed_request': instance.signedRequest,
     };
 
 ApiValidatePurchaseGoogleRequest _$ApiValidatePurchaseGoogleRequestFromJson(
@@ -1107,10 +1195,12 @@ ApiValidatedPurchase _$ApiValidatedPurchaseFromJson(
       productId: json['product_id'] as String?,
       providerResponse: json['provider_response'] as String?,
       purchaseTime: json['purchase_time'] as String?,
+      refundTime: json['refund_time'] as String?,
       seenBefore: json['seen_before'] as bool?,
       store: $enumDecodeNullable(_$ApiStoreProviderEnumMap, json['store']),
       transactionId: json['transaction_id'] as String?,
       updateTime: json['update_time'] as String?,
+      userId: json['user_id'] as String?,
     );
 
 Map<String, dynamic> _$ApiValidatedPurchaseToJson(
@@ -1121,10 +1211,12 @@ Map<String, dynamic> _$ApiValidatedPurchaseToJson(
       'product_id': instance.productId,
       'provider_response': instance.providerResponse,
       'purchase_time': instance.purchaseTime,
+      'refund_time': instance.refundTime,
       'seen_before': instance.seenBefore,
       'store': _$ApiStoreProviderEnumMap[instance.store],
       'transaction_id': instance.transactionId,
       'update_time': instance.updateTime,
+      'user_id': instance.userId,
     };
 
 const _$ApiStoreEnvironmentEnumMap = {
@@ -1137,6 +1229,7 @@ const _$ApiStoreProviderEnumMap = {
   ApiStoreProvider.appleAppStore: 'APPLE_APP_STORE',
   ApiStoreProvider.googlePlayStore: 'GOOGLE_PLAY_STORE',
   ApiStoreProvider.huaweiAppGallery: 'HUAWEI_APP_GALLERY',
+  ApiStoreProvider.facebookInstantStore: 'FACEBOOK_INSTANT_STORE',
 };
 
 ApiValidatedSubscription _$ApiValidatedSubscriptionFromJson(
@@ -1149,9 +1242,13 @@ ApiValidatedSubscription _$ApiValidatedSubscriptionFromJson(
       expiryTime: json['expiry_time'] as String?,
       originalTransactionId: json['original_transaction_id'] as String?,
       productId: json['product_id'] as String?,
+      providerNotification: json['provider_notification'] as String?,
+      providerResponse: json['provider_response'] as String?,
       purchaseTime: json['purchase_time'] as String?,
+      refundTime: json['refund_time'] as String?,
       store: $enumDecodeNullable(_$ApiStoreProviderEnumMap, json['store']),
       updateTime: json['update_time'] as String?,
+      userId: json['user_id'] as String?,
     );
 
 Map<String, dynamic> _$ApiValidatedSubscriptionToJson(
@@ -1163,9 +1260,13 @@ Map<String, dynamic> _$ApiValidatedSubscriptionToJson(
       'expiry_time': instance.expiryTime,
       'original_transaction_id': instance.originalTransactionId,
       'product_id': instance.productId,
+      'provider_notification': instance.providerNotification,
+      'provider_response': instance.providerResponse,
       'purchase_time': instance.purchaseTime,
+      'refund_time': instance.refundTime,
       'store': _$ApiStoreProviderEnumMap[instance.store],
       'update_time': instance.updateTime,
+      'user_id': instance.userId,
     };
 
 ApiWriteStorageObject _$ApiWriteStorageObjectFromJson(
@@ -1173,8 +1274,8 @@ ApiWriteStorageObject _$ApiWriteStorageObjectFromJson(
     ApiWriteStorageObject(
       collection: json['collection'] as String?,
       key: json['key'] as String?,
-      permissionRead: json['permission_read'] as int?,
-      permissionWrite: json['permission_write'] as int?,
+      permissionRead: (json['permission_read'] as num?)?.toInt(),
+      permissionWrite: (json['permission_write'] as num?)?.toInt(),
       value: json['value'] as String?,
       version: json['version'] as String?,
     );
@@ -1207,17 +1308,15 @@ Map<String, dynamic> _$ApiWriteStorageObjectsRequestToJson(
 
 ProtobufAny _$ProtobufAnyFromJson(Map<String, dynamic> json) => ProtobufAny(
       typeUrl: json['type_url'] as String?,
-      value: json['value'] as String?,
     );
 
 Map<String, dynamic> _$ProtobufAnyToJson(ProtobufAny instance) =>
     <String, dynamic>{
       'type_url': instance.typeUrl,
-      'value': instance.value,
     };
 
 RpcStatus _$RpcStatusFromJson(Map<String, dynamic> json) => RpcStatus(
-      code: json['code'] as int?,
+      code: (json['code'] as num?)?.toInt(),
       details: (json['details'] as List<dynamic>?)
           ?.map((e) => ProtobufAny.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -1234,17 +1333,20 @@ Map<String, dynamic> _$RpcStatusToJson(RpcStatus instance) => <String, dynamic>{
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element
 
 class _ApiClient implements ApiClient {
   _ApiClient(
     this._dio, {
     this.baseUrl,
+    this.errorLogger,
   });
 
   final Dio _dio;
 
   String? baseUrl;
+
+  final ParseErrorLogger? errorLogger;
 
   @override
   Future<void> healthcheck({String? bearerToken}) async {
@@ -1253,7 +1355,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -1268,7 +1370,34 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
+  }
+
+  @override
+  Future<void> deleteAccount({String? bearerToken}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<void>(Options(
+      method: 'DELETE',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/v2/account',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -1278,25 +1407,31 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiAccount>(Options(
+    final _options = _setStreamType<ApiAccount>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/account',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiAccount.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/account',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiAccount _value;
+    try {
+      _value = ApiAccount.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -1310,7 +1445,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
@@ -1325,7 +1460,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -1333,7 +1469,7 @@ class _ApiClient implements ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    required ApiAccountApple body,
+    required ApiAccountApple account,
     bool? create,
     String? username,
   }) async {
@@ -1345,26 +1481,32 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    _data.addAll(account.toJson());
+    final _options = _setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/account/authenticate/apple',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiSession.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/account/authenticate/apple',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiSession _value;
+    try {
+      _value = ApiSession.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -1372,7 +1514,7 @@ class _ApiClient implements ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    required ApiAccountCustom body,
+    required ApiAccountCustom account,
     bool? create,
     String? username,
   }) async {
@@ -1384,26 +1526,32 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    _data.addAll(account.toJson());
+    final _options = _setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/account/authenticate/custom',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiSession.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/account/authenticate/custom',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiSession _value;
+    try {
+      _value = ApiSession.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -1411,7 +1559,7 @@ class _ApiClient implements ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    required ApiAccountDevice body,
+    required ApiAccountDevice account,
     bool? create,
     String? username,
   }) async {
@@ -1423,26 +1571,32 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    _data.addAll(account.toJson());
+    final _options = _setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/account/authenticate/device',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiSession.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/account/authenticate/device',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiSession _value;
+    try {
+      _value = ApiSession.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -1450,7 +1604,7 @@ class _ApiClient implements ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    required ApiAccountEmail body,
+    required ApiAccountEmail account,
     bool? create,
     String? username,
   }) async {
@@ -1462,26 +1616,32 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    _data.addAll(account.toJson());
+    final _options = _setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/account/authenticate/email',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiSession.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/account/authenticate/email',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiSession _value;
+    try {
+      _value = ApiSession.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -1489,7 +1649,7 @@ class _ApiClient implements ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    required ApiAccountFacebook body,
+    required ApiAccountFacebook account,
     bool? create,
     String? username,
     bool? sync,
@@ -1503,26 +1663,32 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    _data.addAll(account.toJson());
+    final _options = _setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/account/authenticate/facebook',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiSession.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/account/authenticate/facebook',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiSession _value;
+    try {
+      _value = ApiSession.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -1530,7 +1696,7 @@ class _ApiClient implements ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    required ApiAccountFacebookInstantGame body,
+    required ApiAccountFacebookInstantGame account,
     bool? create,
     String? username,
   }) async {
@@ -1542,26 +1708,32 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    _data.addAll(account.toJson());
+    final _options = _setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/account/authenticate/facebookinstantgame',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiSession.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/account/authenticate/facebookinstantgame',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiSession _value;
+    try {
+      _value = ApiSession.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -1569,7 +1741,7 @@ class _ApiClient implements ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    required ApiAccountGameCenter body,
+    required ApiAccountGameCenter account,
     bool? create,
     String? username,
   }) async {
@@ -1581,26 +1753,32 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    _data.addAll(account.toJson());
+    final _options = _setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/account/authenticate/gamecenter',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiSession.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/account/authenticate/gamecenter',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiSession _value;
+    try {
+      _value = ApiSession.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -1608,7 +1786,7 @@ class _ApiClient implements ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    required ApiAccountGoogle body,
+    required ApiAccountGoogle account,
     bool? create,
     String? username,
   }) async {
@@ -1620,26 +1798,32 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    _data.addAll(account.toJson());
+    final _options = _setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/account/authenticate/google',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiSession.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/account/authenticate/google',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiSession _value;
+    try {
+      _value = ApiSession.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -1647,7 +1831,7 @@ class _ApiClient implements ApiClient {
     String? basicAuthUsername,
     String? basicAuthPassword,
     String? bearerToken,
-    required ApiAccountSteam body,
+    required ApiAccountSteam account,
     bool? create,
     String? username,
     bool? sync,
@@ -1661,26 +1845,32 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    _data.addAll(account.toJson());
+    final _options = _setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/account/authenticate/steam',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiSession.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/account/authenticate/steam',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiSession _value;
+    try {
+      _value = ApiSession.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -1694,7 +1884,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1709,7 +1899,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -1723,7 +1914,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1738,7 +1929,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -1752,7 +1944,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1767,7 +1959,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -1781,7 +1974,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1796,13 +1989,14 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
   Future<void> linkFacebook({
     String? bearerToken,
-    required ApiAccountFacebook body,
+    required ApiAccountFacebook account,
     bool? sync,
   }) async {
     final _extra = <String, dynamic>{};
@@ -1810,8 +2004,8 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    _data.addAll(account.toJson());
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1826,7 +2020,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -1840,7 +2035,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1855,7 +2050,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -1869,7 +2065,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1884,7 +2080,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -1898,7 +2095,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1913,7 +2110,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -1927,7 +2125,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -1942,7 +2140,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -1958,25 +2157,31 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiSession>(Options(
+    final _options = _setStreamType<ApiSession>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/account/session/refresh',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiSession.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/account/session/refresh',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiSession _value;
+    try {
+      _value = ApiSession.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -1990,7 +2195,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2005,7 +2210,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2019,7 +2225,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2034,7 +2240,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2048,7 +2255,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2063,7 +2270,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2077,7 +2285,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2092,7 +2300,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2106,7 +2315,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2121,7 +2330,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2135,7 +2345,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2150,7 +2360,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2164,7 +2375,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2179,7 +2390,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2193,7 +2405,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2208,7 +2420,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2222,7 +2435,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2237,7 +2450,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2257,25 +2471,31 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiChannelMessageList>(Options(
+    final _options = _setStreamType<ApiChannelMessageList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/channel/${channelId}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiChannelMessageList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/channel/${channelId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiChannelMessageList _value;
+    try {
+      _value = ApiChannelMessageList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -2289,7 +2509,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2304,7 +2524,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2321,7 +2542,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -2336,7 +2557,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2355,25 +2577,31 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiFriendList>(Options(
+    final _options = _setStreamType<ApiFriendList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/friend',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiFriendList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/friend',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiFriendList _value;
+    try {
+      _value = ApiFriendList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -2390,7 +2618,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2405,7 +2633,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2422,7 +2651,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2437,13 +2666,14 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
   Future<void> importFacebookFriends({
     String? bearerToken,
-    required ApiAccountFacebook body,
+    required ApiAccountFacebook account,
     bool? reset,
   }) async {
     final _extra = <String, dynamic>{};
@@ -2451,8 +2681,8 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    _data.addAll(account.toJson());
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2467,13 +2697,55 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
+  }
+
+  @override
+  Future<ApiFriendsOfFriendsList> listFriendsOfFriends({
+    String? bearerToken,
+    int? limit,
+    String? cursor,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'limit': limit,
+      r'cursor': cursor,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ApiFriendsOfFriendsList>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/v2/friend/friends',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiFriendsOfFriendsList _value;
+    try {
+      _value = ApiFriendsOfFriendsList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<void> importSteamFriends({
     String? bearerToken,
-    required ApiAccountSteam body,
+    required ApiAccountSteam account,
     bool? reset,
   }) async {
     final _extra = <String, dynamic>{};
@@ -2481,8 +2753,8 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    _data.addAll(account.toJson());
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2497,7 +2769,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2522,25 +2795,31 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiGroupList>(Options(
+    final _options = _setStreamType<ApiGroupList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/group',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiGroupList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/group',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiGroupList _value;
+    try {
+      _value = ApiGroupList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -2554,25 +2833,31 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiGroup>(Options(
+    final _options = _setStreamType<ApiGroup>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/group',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiGroup.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/group',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiGroup _value;
+    try {
+      _value = ApiGroup.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -2585,7 +2870,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -2600,7 +2885,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2615,7 +2901,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
@@ -2630,7 +2916,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2644,7 +2931,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2659,7 +2946,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2673,7 +2961,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2688,7 +2976,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2702,7 +2991,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2717,7 +3006,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2730,7 +3020,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2745,7 +3035,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2759,7 +3050,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2774,7 +3065,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2787,7 +3079,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2802,7 +3094,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2816,7 +3109,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -2831,7 +3124,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -2851,25 +3145,31 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiGroupUserList>(Options(
+    final _options = _setStreamType<ApiGroupUserList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/group/${groupId}/user',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiGroupUserList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/group/${groupId}/user',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiGroupUserList _value;
+    try {
+      _value = ApiGroupUserList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -2883,25 +3183,69 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiValidatePurchaseResponse>(Options(
+    final _options = _setStreamType<ApiValidatePurchaseResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/iap/purchase/apple',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiValidatePurchaseResponse.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/iap/purchase/apple',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiValidatePurchaseResponse _value;
+    try {
+      _value = ApiValidatePurchaseResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ApiValidatePurchaseResponse> validatePurchaseFacebookInstant({
+    String? bearerToken,
+    required ApiValidatePurchaseFacebookInstantRequest body,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _options = _setStreamType<ApiValidatePurchaseResponse>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/v2/iap/purchase/facebookinstant',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiValidatePurchaseResponse _value;
+    try {
+      _value = ApiValidatePurchaseResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -2915,25 +3259,31 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiValidatePurchaseResponse>(Options(
+    final _options = _setStreamType<ApiValidatePurchaseResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/iap/purchase/google',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiValidatePurchaseResponse.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/iap/purchase/google',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiValidatePurchaseResponse _value;
+    try {
+      _value = ApiValidatePurchaseResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -2947,25 +3297,31 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiValidatePurchaseResponse>(Options(
+    final _options = _setStreamType<ApiValidatePurchaseResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/iap/purchase/huawei',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiValidatePurchaseResponse.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/iap/purchase/huawei',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiValidatePurchaseResponse _value;
+    try {
+      _value = ApiValidatePurchaseResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -2979,25 +3335,31 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiSubscriptionList>(Options(
+    final _options = _setStreamType<ApiSubscriptionList>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/iap/subscription',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiSubscriptionList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/iap/subscription',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiSubscriptionList _value;
+    try {
+      _value = ApiSubscriptionList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3011,25 +3373,31 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiValidateSubscriptionResponse>(Options(
+    final _options = _setStreamType<ApiValidateSubscriptionResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/iap/subscription/apple',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiValidateSubscriptionResponse.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/iap/subscription/apple',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiValidateSubscriptionResponse _value;
+    try {
+      _value = ApiValidateSubscriptionResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3043,25 +3411,31 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiValidateSubscriptionResponse>(Options(
+    final _options = _setStreamType<ApiValidateSubscriptionResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/iap/subscription/google',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiValidateSubscriptionResponse.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/iap/subscription/google',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiValidateSubscriptionResponse _value;
+    try {
+      _value = ApiValidateSubscriptionResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3074,25 +3448,31 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiValidatedSubscription>(Options(
+    final _options = _setStreamType<ApiValidatedSubscription>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/iap/subscription/${productId}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiValidatedSubscription.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/iap/subscription/${productId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiValidatedSubscription _value;
+    try {
+      _value = ApiValidatedSubscription.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3105,7 +3485,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -3120,7 +3500,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -3142,58 +3523,70 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiLeaderboardRecordList>(Options(
+    final _options = _setStreamType<ApiLeaderboardRecordList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/leaderboard/${leaderboardId}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiLeaderboardRecordList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/leaderboard/${leaderboardId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiLeaderboardRecordList _value;
+    try {
+      _value = ApiLeaderboardRecordList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ApiLeaderboardRecord> writeLeaderboardRecord({
     String? bearerToken,
     required String leaderboardId,
-    required WriteLeaderboardRecordRequestLeaderboardRecordWrite body,
+    required WriteLeaderboardRecordRequestLeaderboardRecordWrite record,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiLeaderboardRecord>(Options(
+    _data.addAll(record.toJson());
+    final _options = _setStreamType<ApiLeaderboardRecord>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/leaderboard/${leaderboardId}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiLeaderboardRecord.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/leaderboard/${leaderboardId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiLeaderboardRecord _value;
+    try {
+      _value = ApiLeaderboardRecord.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3203,34 +3596,42 @@ class _ApiClient implements ApiClient {
     required String ownerId,
     int? limit,
     String? expiry,
+    String? cursor,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'limit': limit,
       r'expiry': expiry,
+      r'cursor': cursor,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiLeaderboardRecordList>(Options(
+    final _options = _setStreamType<ApiLeaderboardRecordList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/leaderboard/${leaderboardId}/owner/${ownerId}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiLeaderboardRecordList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/leaderboard/${leaderboardId}/owner/${ownerId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiLeaderboardRecordList _value;
+    try {
+      _value = ApiLeaderboardRecordList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3255,25 +3656,65 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiMatchList>(Options(
+    final _options = _setStreamType<ApiMatchList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/match',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiMatchList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/match',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiMatchList _value;
+    try {
+      _value = ApiMatchList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ApiMatchmakerStats> getMatchmakerStats({String? bearerToken}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ApiMatchmakerStats>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/v2/matchmaker/stats',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiMatchmakerStats _value;
+    try {
+      _value = ApiMatchmakerStats.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3286,7 +3727,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -3301,7 +3742,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -3318,25 +3760,31 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiNotificationList>(Options(
+    final _options = _setStreamType<ApiNotificationList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/notification',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiNotificationList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/notification',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiNotificationList _value;
+    try {
+      _value = ApiNotificationList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3356,25 +3804,31 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiRpc>(Options(
+    final _options = _setStreamType<ApiRpc>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/rpc/${id}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiRpc.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/rpc/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiRpc _value;
+    try {
+      _value = ApiRpc.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3383,33 +3837,39 @@ class _ApiClient implements ApiClient {
     String? basicAuthPassword,
     String? bearerToken,
     required String id,
-    required String body,
+    required String payload,
     String? httpKey,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'httpKey': httpKey};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = body;
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiRpc>(Options(
+    final _data = payload;
+    final _options = _setStreamType<ApiRpc>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/rpc/${id}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiRpc.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/rpc/${id}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiRpc _value;
+    try {
+      _value = ApiRpc.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3423,7 +3883,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3438,7 +3898,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -3452,25 +3913,31 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiStorageObjects>(Options(
+    final _options = _setStreamType<ApiStorageObjects>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/storage',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiStorageObjects.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/storage',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiStorageObjects _value;
+    try {
+      _value = ApiStorageObjects.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3484,25 +3951,31 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiStorageObjectAcks>(Options(
+    final _options = _setStreamType<ApiStorageObjectAcks>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/storage',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiStorageObjectAcks.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/storage',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiStorageObjectAcks _value;
+    try {
+      _value = ApiStorageObjectAcks.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3516,7 +3989,7 @@ class _ApiClient implements ApiClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(body.toJson());
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
@@ -3531,7 +4004,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -3551,25 +4025,31 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiStorageObjectList>(Options(
+    final _options = _setStreamType<ApiStorageObjectList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/storage/${collection}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiStorageObjectList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/storage/${collection}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiStorageObjectList _value;
+    try {
+      _value = ApiStorageObjectList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3588,25 +4068,31 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiStorageObjectList>(Options(
+    final _options = _setStreamType<ApiStorageObjectList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/storage/${collection}/${userId}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiStorageObjectList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/storage/${collection}/${userId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiStorageObjectList _value;
+    try {
+      _value = ApiStorageObjectList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3631,25 +4117,60 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiTournamentList>(Options(
+    final _options = _setStreamType<ApiTournamentList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/tournament',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiTournamentList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/tournament',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiTournamentList _value;
+    try {
+      _value = ApiTournamentList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<void> deleteTournamentRecord({
+    String? bearerToken,
+    required String tournamentId,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<void>(Options(
+      method: 'DELETE',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/v2/tournament/${tournamentId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -3671,91 +4192,109 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiTournamentRecordList>(Options(
+    final _options = _setStreamType<ApiTournamentRecordList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/tournament/${tournamentId}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiTournamentRecordList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/tournament/${tournamentId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiTournamentRecordList _value;
+    try {
+      _value = ApiTournamentRecordList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ApiLeaderboardRecord> writeTournamentRecord2({
     String? bearerToken,
     required String tournamentId,
-    required WriteTournamentRecordRequestTournamentRecordWrite body,
+    required WriteTournamentRecordRequestTournamentRecordWrite record,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiLeaderboardRecord>(Options(
+    _data.addAll(record.toJson());
+    final _options = _setStreamType<ApiLeaderboardRecord>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/tournament/${tournamentId}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiLeaderboardRecord.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/tournament/${tournamentId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiLeaderboardRecord _value;
+    try {
+      _value = ApiLeaderboardRecord.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
   Future<ApiLeaderboardRecord> writeTournamentRecord({
     String? bearerToken,
     required String tournamentId,
-    required WriteTournamentRecordRequestTournamentRecordWrite body,
+    required WriteTournamentRecordRequestTournamentRecordWrite record,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiLeaderboardRecord>(Options(
+    _data.addAll(record.toJson());
+    final _options = _setStreamType<ApiLeaderboardRecord>(Options(
       method: 'PUT',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/tournament/${tournamentId}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiLeaderboardRecord.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/tournament/${tournamentId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiLeaderboardRecord _value;
+    try {
+      _value = ApiLeaderboardRecord.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3768,7 +4307,7 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    await _dio.fetch<void>(_setStreamType<void>(Options(
+    final _options = _setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -3783,7 +4322,8 @@ class _ApiClient implements ApiClient {
             baseUrl: _combineBaseUrls(
           _dio.options.baseUrl,
           baseUrl,
-        ))));
+        )));
+    await _dio.fetch<void>(_options);
   }
 
   @override
@@ -3793,34 +4333,42 @@ class _ApiClient implements ApiClient {
     required String ownerId,
     int? limit,
     String? expiry,
+    String? cursor,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'limit': limit,
       r'expiry': expiry,
+      r'cursor': cursor,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiTournamentRecordList>(Options(
+    final _options = _setStreamType<ApiTournamentRecordList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/tournament/${tournamentId}/owner/${ownerId}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiTournamentRecordList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/tournament/${tournamentId}/owner/${ownerId}',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiTournamentRecordList _value;
+    try {
+      _value = ApiTournamentRecordList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3839,25 +4387,31 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<ApiUsers>(Options(
+    final _options = _setStreamType<ApiUsers>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/user',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiUsers.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/user',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiUsers _value;
+    try {
+      _value = ApiUsers.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -3877,25 +4431,31 @@ class _ApiClient implements ApiClient {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<ApiUserGroupList>(Options(
+    final _options = _setStreamType<ApiUserGroupList>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
-            .compose(
-              _dio.options,
-              '/v2/user/${userId}/group',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(
-                baseUrl: _combineBaseUrls(
-              _dio.options.baseUrl,
-              baseUrl,
-            ))));
-    final value = ApiUserGroupList.fromJson(_result.data!);
-    return value;
+        .compose(
+          _dio.options,
+          '/v2/user/${userId}/group',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiUserGroupList _value;
+    try {
+      _value = ApiUserGroupList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

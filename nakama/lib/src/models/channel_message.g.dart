@@ -10,7 +10,7 @@ _$ChannelMessageImpl _$$ChannelMessageImplFromJson(Map<String, dynamic> json) =>
     _$ChannelMessageImpl(
       channelId: json['channel_id'] as String,
       messageId: json['message_id'] as String,
-      code: json['code'] as int,
+      code: (json['code'] as num).toInt(),
       senderId: json['sender_id'] as String,
       username: json['username'] as String,
       content: json['content'] as String,

@@ -41,8 +41,12 @@ mixin _$StorageObject {
   @JsonKey(name: 'update_time')
   DateTime? get updateTime => throw _privateConstructorUsedError;
 
+  /// Serializes this StorageObject to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of StorageObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StorageObjectCopyWith<StorageObject> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -76,6 +80,8 @@ class _$StorageObjectCopyWithImpl<$Res, $Val extends StorageObject>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StorageObject
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -159,6 +165,8 @@ class __$$StorageObjectImplCopyWithImpl<$Res>
       _$StorageObjectImpl _value, $Res Function(_$StorageObjectImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StorageObject
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -285,12 +293,14 @@ class _$StorageObjectImpl extends _StorageObject {
                 other.updateTime == updateTime));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, collection, key, userId, value,
       version, permissionRead, permissionWrite, createTime, updateTime);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StorageObject
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StorageObjectImplCopyWith<_$StorageObjectImpl> get copyWith =>
@@ -350,8 +360,11 @@ abstract class _StorageObject extends StorageObject {
   @override
   @JsonKey(name: 'update_time')
   DateTime? get updateTime;
+
+  /// Create a copy of StorageObject
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StorageObjectImplCopyWith<_$StorageObjectImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -365,8 +378,12 @@ mixin _$StorageObjectList {
   String? get cursor => throw _privateConstructorUsedError;
   List<StorageObject> get objects => throw _privateConstructorUsedError;
 
+  /// Serializes this StorageObjectList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of StorageObjectList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StorageObjectListCopyWith<StorageObjectList> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -390,6 +407,8 @@ class _$StorageObjectListCopyWithImpl<$Res, $Val extends StorageObjectList>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StorageObjectList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -428,6 +447,8 @@ class __$$StorageObjectListImplCopyWithImpl<$Res>
       $Res Function(_$StorageObjectListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StorageObjectList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -482,12 +503,14 @@ class _$StorageObjectListImpl extends _StorageObjectList {
             const DeepCollectionEquality().equals(other._objects, _objects));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, cursor, const DeepCollectionEquality().hash(_objects));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StorageObjectList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StorageObjectListImplCopyWith<_$StorageObjectListImpl> get copyWith =>
@@ -515,8 +538,11 @@ abstract class _StorageObjectList extends StorageObjectList {
   String? get cursor;
   @override
   List<StorageObject> get objects;
+
+  /// Create a copy of StorageObjectList
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StorageObjectListImplCopyWith<_$StorageObjectListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -536,8 +562,12 @@ mixin _$StorageObjectId {
   @JsonKey(name: 'version')
   String? get version => throw _privateConstructorUsedError;
 
+  /// Serializes this StorageObjectId to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of StorageObjectId
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StorageObjectIdCopyWith<StorageObjectId> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -565,6 +595,8 @@ class _$StorageObjectIdCopyWithImpl<$Res, $Val extends StorageObjectId>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StorageObjectId
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -617,6 +649,8 @@ class __$$StorageObjectIdImplCopyWithImpl<$Res>
       _$StorageObjectIdImpl _value, $Res Function(_$StorageObjectIdImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StorageObjectId
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -689,12 +723,14 @@ class _$StorageObjectIdImpl extends _StorageObjectId {
             (identical(other.version, version) || other.version == version));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, collection, key, userId, version);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StorageObjectId
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StorageObjectIdImplCopyWith<_$StorageObjectIdImpl> get copyWith =>
@@ -732,8 +768,11 @@ abstract class _StorageObjectId extends StorageObjectId {
   @override
   @JsonKey(name: 'version')
   String? get version;
+
+  /// Create a copy of StorageObjectId
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StorageObjectIdImplCopyWith<_$StorageObjectIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -759,8 +798,12 @@ mixin _$StorageObjectWrite {
   StorageWritePermission? get permissionWrite =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this StorageObjectWrite to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of StorageObjectWrite
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StorageObjectWriteCopyWith<StorageObjectWrite> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -791,6 +834,8 @@ class _$StorageObjectWriteCopyWithImpl<$Res, $Val extends StorageObjectWrite>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StorageObjectWrite
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -856,6 +901,8 @@ class __$$StorageObjectWriteImplCopyWithImpl<$Res>
       $Res Function(_$StorageObjectWriteImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StorageObjectWrite
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -950,12 +997,14 @@ class _$StorageObjectWriteImpl extends _StorageObjectWrite {
                 other.permissionWrite == permissionWrite));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, collection, key, value, version,
       permissionRead, permissionWrite);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StorageObjectWrite
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StorageObjectWriteImplCopyWith<_$StorageObjectWriteImpl> get copyWith =>
@@ -1004,8 +1053,11 @@ abstract class _StorageObjectWrite extends StorageObjectWrite {
   @override
   @JsonKey(name: 'permission_write')
   StorageWritePermission? get permissionWrite;
+
+  /// Create a copy of StorageObjectWrite
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StorageObjectWriteImplCopyWith<_$StorageObjectWriteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

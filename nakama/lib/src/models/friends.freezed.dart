@@ -23,8 +23,12 @@ mixin _$FriendsList {
   String? get cursor => throw _privateConstructorUsedError;
   List<Friend>? get friends => throw _privateConstructorUsedError;
 
+  /// Serializes this FriendsList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of FriendsList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FriendsListCopyWith<FriendsList> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,6 +52,8 @@ class _$FriendsListCopyWithImpl<$Res, $Val extends FriendsList>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FriendsList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -86,6 +92,8 @@ class __$$FriendsListImplCopyWithImpl<$Res>
       _$FriendsListImpl _value, $Res Function(_$FriendsListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of FriendsList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -141,12 +149,14 @@ class _$FriendsListImpl extends _FriendsList {
             const DeepCollectionEquality().equals(other._friends, _friends));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, cursor, const DeepCollectionEquality().hash(_friends));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FriendsList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FriendsListImplCopyWith<_$FriendsListImpl> get copyWith =>
@@ -173,8 +183,11 @@ abstract class _FriendsList extends FriendsList {
   String? get cursor;
   @override
   List<Friend>? get friends;
+
+  /// Create a copy of FriendsList
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FriendsListImplCopyWith<_$FriendsListImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -190,8 +203,12 @@ mixin _$Friend {
   DateTime get updateTime => throw _privateConstructorUsedError;
   User get user => throw _privateConstructorUsedError;
 
+  /// Serializes this Friend to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of Friend
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FriendCopyWith<Friend> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -218,6 +235,8 @@ class _$FriendCopyWithImpl<$Res, $Val extends Friend>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Friend
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -241,6 +260,8 @@ class _$FriendCopyWithImpl<$Res, $Val extends Friend>
     ) as $Val);
   }
 
+  /// Create a copy of Friend
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get user {
@@ -274,6 +295,8 @@ class __$$FriendImplCopyWithImpl<$Res>
       _$FriendImpl _value, $Res Function(_$FriendImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Friend
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -334,11 +357,13 @@ class _$FriendImpl extends _Friend {
             (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, state, updateTime, user);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Friend
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FriendImplCopyWith<_$FriendImpl> get copyWith =>
@@ -368,8 +393,11 @@ abstract class _Friend extends Friend {
   DateTime get updateTime;
   @override
   User get user;
+
+  /// Create a copy of Friend
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FriendImplCopyWith<_$FriendImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

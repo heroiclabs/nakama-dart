@@ -11,7 +11,7 @@ _$NotificationImpl _$$NotificationImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       subject: json['subject'] as String?,
       content: json['content'] as String?,
-      code: json['code'] as int,
+      code: (json['code'] as num).toInt(),
       senderId: json['sender_id'] as String,
       createTime: DateTime.parse(json['create_time'] as String),
       persistent: json['persistent'] as bool,

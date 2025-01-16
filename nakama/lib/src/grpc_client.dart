@@ -657,6 +657,9 @@ final class GrpcClient extends ClientBase {
   }
 
   @override
+  Future<void> performDeleteAccount() => _client.deleteAccount(api.Empty());
+
+  @override
   Future<List<User>> performGetUsers({
     List<String>? facebookIds,
     List<String>? ids,

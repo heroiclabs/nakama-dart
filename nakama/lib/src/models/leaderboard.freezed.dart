@@ -31,8 +31,12 @@ mixin _$LeaderboardRecordList {
   @JsonKey(name: 'prev_cursor')
   String? get prevCursor => throw _privateConstructorUsedError;
 
+  /// Serializes this LeaderboardRecordList to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LeaderboardRecordList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LeaderboardRecordListCopyWith<LeaderboardRecordList> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -61,6 +65,8 @@ class _$LeaderboardRecordListCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LeaderboardRecordList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -115,6 +121,8 @@ class __$$LeaderboardRecordListImplCopyWithImpl<$Res>
       $Res Function(_$LeaderboardRecordListImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LeaderboardRecordList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -209,7 +217,7 @@ class _$LeaderboardRecordListImpl extends _LeaderboardRecordList {
                 other.prevCursor == prevCursor));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -218,7 +226,9 @@ class _$LeaderboardRecordListImpl extends _LeaderboardRecordList {
       nextCursor,
       prevCursor);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LeaderboardRecordList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LeaderboardRecordListImplCopyWith<_$LeaderboardRecordListImpl>
@@ -259,8 +269,11 @@ abstract class _LeaderboardRecordList extends LeaderboardRecordList {
   @override
   @JsonKey(name: 'prev_cursor')
   String? get prevCursor;
+
+  /// Create a copy of LeaderboardRecordList
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LeaderboardRecordListImplCopyWith<_$LeaderboardRecordListImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -296,8 +309,12 @@ mixin _$LeaderboardRecord {
   @JsonKey(name: 'max_num_score')
   int? get maxNumScore => throw _privateConstructorUsedError;
 
+  /// Serializes this LeaderboardRecord to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LeaderboardRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LeaderboardRecordCopyWith<LeaderboardRecord> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -333,6 +350,8 @@ class _$LeaderboardRecordCopyWithImpl<$Res, $Val extends LeaderboardRecord>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LeaderboardRecord
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -433,6 +452,8 @@ class __$$LeaderboardRecordImplCopyWithImpl<$Res>
       $Res Function(_$LeaderboardRecordImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LeaderboardRecord
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -593,7 +614,7 @@ class _$LeaderboardRecordImpl extends _LeaderboardRecord {
                 other.maxNumScore == maxNumScore));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -610,7 +631,9 @@ class _$LeaderboardRecordImpl extends _LeaderboardRecord {
       rank,
       maxNumScore);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LeaderboardRecord
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LeaderboardRecordImplCopyWith<_$LeaderboardRecordImpl> get copyWith =>
@@ -681,8 +704,11 @@ abstract class _LeaderboardRecord extends LeaderboardRecord {
   @override
   @JsonKey(name: 'max_num_score')
   int? get maxNumScore;
+
+  /// Create a copy of LeaderboardRecord
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LeaderboardRecordImplCopyWith<_$LeaderboardRecordImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -32,6 +32,14 @@ void main() {
       clientTest('update account', () async {
         await client.updateAccount(displayName: 'name');
       });
+
+      clientTest('delete account', () async {
+        await client.deleteAccount();
+        await expectLater(
+          client.getAccount,
+          throwsA(isA<NakamaError>().havingCode(ErrorCode.notFound)),
+        );
+      });
     });
   });
 }

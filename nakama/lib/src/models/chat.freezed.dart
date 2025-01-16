@@ -48,7 +48,9 @@ mixin _$Channel {
   @JsonKey(name: 'user_id_two')
   String get userIdTwo => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Channel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChannelCopyWith<Channel> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -79,6 +81,8 @@ class _$ChannelCopyWithImpl<$Res, $Val extends Channel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Channel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -122,6 +126,8 @@ class _$ChannelCopyWithImpl<$Res, $Val extends Channel>
     ) as $Val);
   }
 
+  /// Create a copy of Channel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserPresenceCopyWith<$Res> get self {
@@ -159,6 +165,8 @@ class __$$ChannelImplCopyWithImpl<$Res>
       _$ChannelImpl _value, $Res Function(_$ChannelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Channel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -297,7 +305,9 @@ class _$ChannelImpl extends _Channel {
       userIdOne,
       userIdTwo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Channel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChannelImplCopyWith<_$ChannelImpl> get copyWith =>
@@ -316,47 +326,49 @@ abstract class _Channel extends Channel {
       required final String userIdTwo}) = _$ChannelImpl;
   const _Channel._() : super._();
 
-  @override
-
   /// The ID of the channel.
+  @override
   @JsonKey(name: 'id')
   String get id;
-  @override
 
   /// The users currently in the channel.
+  @override
   @JsonKey(name: 'presences')
   List<UserPresence> get presences;
-  @override
 
   /// A reference to the current user's presence in the channel.
+  @override
   @JsonKey(name: 'self')
   UserPresence get self;
-  @override
 
   /// The name of the chat room, or an empty string if this message was not
   /// sent through a chat room.
+  @override
   @JsonKey(name: 'room_name')
   String get roomName;
-  @override
 
   /// The ID of the group, or an empty string if this message was not sent
   /// through a group channel.
+  @override
   @JsonKey(name: 'group_id')
   String get groupId;
-  @override
 
   /// The ID of the first DM user, or an empty string if this message was not
   /// sent through a DM chat.
+  @override
   @JsonKey(name: 'user_id_one')
   String get userIdOne;
-  @override
 
   /// The ID of the second DM user, or an empty string if this message was not
   /// sent through a DM chat.
+  @override
   @JsonKey(name: 'user_id_two')
   String get userIdTwo;
+
+  /// Create a copy of Channel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChannelImplCopyWith<_$ChannelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -407,7 +419,9 @@ mixin _$ChannelMessageAck {
   @JsonKey(name: 'user_id_two')
   String get userIdTwo => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChannelMessageAck
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ChannelMessageAckCopyWith<ChannelMessageAck> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -442,6 +456,8 @@ class _$ChannelMessageAckCopyWithImpl<$Res, $Val extends ChannelMessageAck>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ChannelMessageAck
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -536,6 +552,8 @@ class __$$ChannelMessageAckImplCopyWithImpl<$Res>
       $Res Function(_$ChannelMessageAckImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ChannelMessageAck
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -717,7 +735,9 @@ class _$ChannelMessageAckImpl extends _ChannelMessageAck {
       userIdOne,
       userIdTwo);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ChannelMessageAck
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChannelMessageAckImplCopyWith<_$ChannelMessageAckImpl> get copyWith =>
@@ -741,63 +761,65 @@ abstract class _ChannelMessageAck extends ChannelMessageAck {
       _$ChannelMessageAckImpl;
   const _ChannelMessageAck._() : super._();
 
-  @override
-
   /// The channel the message was sent to.
+  @override
   @JsonKey(name: 'channel_id')
   String get channelId;
-  @override
 
   /// The unique ID assigned to the message.
+  @override
   @JsonKey(name: 'message_id')
   String get messageId;
-  @override
 
   /// The code representing a message type or category.
+  @override
   @JsonKey(name: 'code')
   int get code;
-  @override
 
   /// Username of the message sender.
+  @override
   @JsonKey(name: 'username')
   String get username;
-  @override
 
   /// The UNIX time when the message was created.
+  @override
   @JsonKey(name: 'created')
   DateTime get created;
-  @override
 
   /// The UNIX time when the message was last updated.
+  @override
   @JsonKey(name: 'updated')
   DateTime get updated;
-  @override
 
   /// True if the message was persisted to the channel's history, false otherwise.
+  @override
   @JsonKey(name: 'persistent')
   bool get persistent;
-  @override
 
   /// The name of the chat room, or an empty string if this message was not sent through a chat room.
+  @override
   @JsonKey(name: 'room_name')
   String get roomName;
-  @override
 
   /// The ID of the group, or an empty string if this message was not sent through a group channel.
+  @override
   @JsonKey(name: 'group_id')
   String get groupId;
-  @override
 
   /// The ID of the first DM user, or an empty string if this message was not sent through a DM chat.
+  @override
   @JsonKey(name: 'user_id_one')
   String get userIdOne;
-  @override
 
   /// The ID of the second DM user, or an empty string if this message was not sent through a DM chat.
+  @override
   @JsonKey(name: 'user_id_two')
   String get userIdTwo;
+
+  /// Create a copy of ChannelMessageAck
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChannelMessageAckImplCopyWith<_$ChannelMessageAckImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
