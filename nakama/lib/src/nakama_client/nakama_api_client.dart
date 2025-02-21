@@ -1121,11 +1121,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
   Future<void> updateGroup({
     required model.Session session,
     required String groupId,
-    String? name,
+    required String? name,
     String? avatarUrl,
     String? description,
-    String? langTag,
-    int? maxCount,
+    required String? langTag,
     bool? open,
   }) async {
     _session = session;
