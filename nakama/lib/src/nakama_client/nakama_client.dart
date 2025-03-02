@@ -633,16 +633,14 @@ abstract class NakamaBaseClient {
   /// - [description] A new description for the group.
   /// - [avatarUrl] A new avatar url for the group.
   /// - [langTag] A new language tag in BCP-47 format for the group.
-  /// - [maxCount] The maximum number of members allowed.
   Future<void> updateGroup({
     required model.Session session,
     required String groupId,
-    required bool open,
-    String? name,
+    bool open,
+    required String? name,
     String? avatarUrl,
     String? description,
-    String? langTag,
-    int? maxCount,
+    required String? langTag,
   });
 
   /// List groups on the server.
