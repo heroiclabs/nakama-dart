@@ -156,6 +156,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
           vars: vars,
         ),
         username: username,
+        create: create,
       );
       return model.Session.fromApi(session);
     } on Exception catch (e) {
