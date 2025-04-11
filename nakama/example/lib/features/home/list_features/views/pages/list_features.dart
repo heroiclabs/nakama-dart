@@ -48,7 +48,7 @@ class ListFeaturesPage extends ConsumerWidget {
                         }
                       }
                     },
-                    child: const Text('Create, list and join matches')),
+                    child: const Text('Create, list and leave matches')),
               ),
               SizedBox(
                 width: double.infinity,
