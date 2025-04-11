@@ -1185,11 +1185,11 @@ class NakamaGrpcClient extends NakamaBaseClient {
     final res = await _client.listMatches(
       api.ListMatchesRequest(
         authoritative: api.BoolValue(value: authoritative),
-        label: api.StringValue(value: label),
+        label: label != null ? api.StringValue(value: label) : null,
         limit: api.Int32Value(value: limit),
         maxSize: api.Int32Value(value: maxSize),
         minSize: api.Int32Value(value: minSize),
-        query: api.StringValue(value: query),
+        query: query != null ? api.StringValue(value: query) : null,
       ),
       options: _getSessionCallOptions(session),
     );
