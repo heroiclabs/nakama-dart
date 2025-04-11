@@ -37,6 +37,24 @@ class ListFeaturesPage extends ConsumerWidget {
                 child: TextButton(
                     onPressed: () async {
                       try {
+                        if (context.mounted) {
+                          await Navigator.pushNamed(context, Routes.matches);
+                        }
+                      } catch (e) {
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(e.toString()),
+                          ));
+                        }
+                      }
+                    },
+                    child: const Text('Create, list and join matches')),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                    onPressed: () async {
+                      try {
                         await ref.read(sessionProvider.notifier).logout();
                         if (context.mounted) {
                           await Navigator.pushNamed(context, Routes.login);
