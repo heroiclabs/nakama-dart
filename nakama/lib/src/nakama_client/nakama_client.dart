@@ -523,7 +523,7 @@ abstract class NakamaBaseClient {
     DateTime? expiry,
   });
 
-  /// List leaderboard records that belong to a user.
+  /// List leaderboard records around the target ownerId.
   ///
   /// - [session] Current session.
   /// - [leaderboardName] The name of the leaderboard to list.
