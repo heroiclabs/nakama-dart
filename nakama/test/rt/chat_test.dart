@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:faker/faker.dart';
@@ -335,13 +336,6 @@ void main() {
     test('leaving chat creates a match presence event', () async {
       // Both joining channel
       final name = faker.lorem.words(2).join('-');
-      final channel1 = await socket.joinChannel(
-        target: name,
-        type: ChannelType.room,
-        persistence: true,
-        hidden: false,
-      );
-
       await socketB.joinChannel(
         target: name,
         type: ChannelType.room,
@@ -350,13 +344,30 @@ void main() {
       );
 
       // B receives presence event
+      final Completer completer = Completer();
       socketB.onChannelPresence.listen((presence) {
-        expect(presence.leaves, hasLength(1));
-        expect(presence.leaves?.first.userId, equals(sessionA.userId));
+        if(presence.leaves != null && presence.leaves!.isNotEmpty) {
+          expect(presence.leaves!.first.userId, sessionA.userId);
+          completer.complete();
+        }
       });
+
+      final channel1 = await socket.joinChannel(
+        target: name,
+        type: ChannelType.room,
+        persistence: true,
+        hidden: false,
+      );
 
       // A leaves
       await socket.leaveChannel(channelId: channel1.id);
+
+      try{
+        await completer.future.timeout(const Duration(seconds: 5));
+      }
+      catch(e) {
+        fail('Test timed out waiting for presence leave event');
+      }
     });
   });
 }

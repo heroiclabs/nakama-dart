@@ -1,35 +1,37 @@
 version: '3'
 services:
-  cockroachdb:
-    image: cockroachdb/cockroach:latest-v20.2
-    command: start-single-node --insecure --store=attrs=ssd,path=/var/lib/cockroach/
-    restart: "no"
-    volumes:
-      - data:/var/lib/cockroach
+  postgres:
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=nakama
+      - POSTGRES_PASSWORD=localdb
     expose:
       - "8080"
-      - "26257"
-    ports:
-      - "26257:26257"
-      - "8080:8080"
+      - "5432"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health?ready=1"]
+      test: [ "CMD", "pg_isready", "-U", "postgres", "-d", "nakama" ]
       interval: 3s
       timeout: 3s
       retries: 5
+    image: postgres:12.2-alpine
+    ports:
+      - "5432:5432"
+      - "8080:8080"
+    volumes:
+      - data:/var/lib/postgresql/data
   nakama:
-    image: registry.heroiclabs.com/heroiclabs/nakama:3.17.0
+    image: registry.heroiclabs.com/heroiclabs/nakama:3.26.0
     entrypoint:
       - "/bin/sh"
       - "-ecx"
       - >
-          /nakama/nakama migrate up --database.address root@cockroachdb:26257 &&
-          exec /nakama/nakama --name nakama1 --database.address root@cockroachdb:26257 --logger.level DEBUG --session.token_expiry_sec 7200 --metrics.prometheus_port 9100          
+          /nakama/nakama migrate up --database.address postgres:localdb@postgres:5432/nakama &&
+          exec /nakama/nakama --name nakama1 --database.address postgres:localdb@postgres:5432/nakama --logger.level DEBUG --session.token_expiry_sec 7200 --metrics.prometheus_port 9100
     restart: "no"
     links:
-      - "cockroachdb:db"
+      - "postgres:db"
     depends_on:
-      cockroachdb:
+      postgres:
         condition: service_healthy
       prometheus:
         condition: service_started
