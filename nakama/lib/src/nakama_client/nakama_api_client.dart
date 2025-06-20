@@ -654,6 +654,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
+    _session = null;
     try {
       final session = await _api.authenticateCustom(
         body: ApiAccountCustom(id: id, vars: vars),
