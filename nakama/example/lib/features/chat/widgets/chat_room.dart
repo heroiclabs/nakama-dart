@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nakama_example/features/chat/providers/chat_provider.dart';
 import 'package:nakama_example/features/common/providers/session_provider.dart';
+import 'package:nakama_example/features/common/widgets/copy_button.dart';
 import 'package:nakama_example/services/nakama_socket_service.dart';
 
 class ChatRoom extends StatelessWidget {
@@ -25,34 +25,14 @@ class ChatRoom extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Room Name: ${chat.channel!.roomName}'),
-              IconButton(
-                icon: Icon(Icons.copy),
-                onPressed: () async {
-                  await Clipboard.setData(
-                      ClipboardData(text: chat.channel!.roomName));
-                  if (!context.mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Copied to clipboard!')),
-                  );
-                },
-              ),
+              CopyButton(text: chat.channel!.roomName),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Channel ID: ${chat.channel!.id}'),
-              IconButton(
-                icon: Icon(Icons.copy),
-                onPressed: () async {
-                  await Clipboard.setData(
-                      ClipboardData(text: chat.channel!.id));
-                  if (!context.mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Copied to clipboard!')),
-                  );
-                },
-              ),
+              CopyButton(text: chat.channel!.id),
             ],
           ),
           const SizedBox(height: 20),
