@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:nakama_example/features/authentication/login/views/pages/login_page.dart';
 import 'package:nakama_example/features/authentication/signup/views/pages/signup_page.dart';
+import 'package:nakama_example/features/chat/views/chats.dart';
 import 'package:nakama_example/features/common/routes.dart';
 import 'package:nakama_example/features/home/list_features/views/pages/list_features.dart';
 import 'package:nakama_example/features/rpc/custom/views/pages/rpc_custom.dart';
@@ -20,6 +21,7 @@ void main() {
         Routes.signup: (context) => SignupPage(),
         Routes.home: (context) => ListFeaturesPage(),
         Routes.rpc: (context) => RpcCustomPage(),
+        Routes.chats: (context) => ChatsPage(),
       },
     ),
   ));

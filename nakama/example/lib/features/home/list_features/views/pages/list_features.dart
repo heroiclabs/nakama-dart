@@ -20,6 +20,24 @@ class ListFeaturesPage extends ConsumerWidget {
                     onPressed: () async {
                       try {
                         if (context.mounted) {
+                          await Navigator.pushNamed(context, Routes.chats);
+                        }
+                      } catch (e) {
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(e.toString()),
+                          ));
+                        }
+                      }
+                    },
+                    child: const Text('Join chat, list messages')),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                    onPressed: () async {
+                      try {
+                        if (context.mounted) {
                           await Navigator.pushNamed(context, Routes.rpc);
                         }
                       } catch (e) {
