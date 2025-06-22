@@ -19,7 +19,7 @@ class ChannelMessage with _$ChannelMessage {
     @JsonKey(name: 'update_time') required DateTime updateTime,
     @JsonKey(name: 'persistent') required bool persistent,
     @JsonKey(name: 'room_name') required String? roomName,
-    @JsonKey(name: 'group_id') required String groupId,
+    @JsonKey(name: 'group_id') required String? groupId,
     @JsonKey(name: 'user_id_one') required String? userIdOne,
     @JsonKey(name: 'user_id_two') required String? userIdTwo,
   }) = _ChannelMessage;
