@@ -18,7 +18,7 @@ _$ChannelMessageImpl _$$ChannelMessageImplFromJson(Map<String, dynamic> json) =>
       updateTime: DateTime.parse(json['update_time'] as String),
       persistent: json['persistent'] as bool,
       roomName: json['room_name'] as String?,
-      groupId: json['group_id'] as String,
+      groupId: json['group_id'] as String?,
       userIdOne: json['user_id_one'] as String?,
       userIdTwo: json['user_id_two'] as String?,
     );

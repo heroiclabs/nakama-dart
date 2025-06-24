@@ -41,7 +41,7 @@ mixin _$ChannelMessage {
   @JsonKey(name: 'room_name')
   String? get roomName => throw _privateConstructorUsedError;
   @JsonKey(name: 'group_id')
-  String get groupId => throw _privateConstructorUsedError;
+  String? get groupId => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_id_one')
   String? get userIdOne => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_id_two')
@@ -70,7 +70,7 @@ abstract class $ChannelMessageCopyWith<$Res> {
       @JsonKey(name: 'update_time') DateTime updateTime,
       @JsonKey(name: 'persistent') bool persistent,
       @JsonKey(name: 'room_name') String? roomName,
-      @JsonKey(name: 'group_id') String groupId,
+      @JsonKey(name: 'group_id') String? groupId,
       @JsonKey(name: 'user_id_one') String? userIdOne,
       @JsonKey(name: 'user_id_two') String? userIdTwo});
 }
@@ -98,7 +98,7 @@ class _$ChannelMessageCopyWithImpl<$Res, $Val extends ChannelMessage>
     Object? updateTime = null,
     Object? persistent = null,
     Object? roomName = freezed,
-    Object? groupId = null,
+    Object? groupId = freezed,
     Object? userIdOne = freezed,
     Object? userIdTwo = freezed,
   }) {
@@ -143,10 +143,10 @@ class _$ChannelMessageCopyWithImpl<$Res, $Val extends ChannelMessage>
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
               as String?,
-      groupId: null == groupId
+      groupId: freezed == groupId
           ? _value.groupId
           : groupId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       userIdOne: freezed == userIdOne
           ? _value.userIdOne
           : userIdOne // ignore: cast_nullable_to_non_nullable
@@ -178,7 +178,7 @@ abstract class _$$ChannelMessageImplCopyWith<$Res>
       @JsonKey(name: 'update_time') DateTime updateTime,
       @JsonKey(name: 'persistent') bool persistent,
       @JsonKey(name: 'room_name') String? roomName,
-      @JsonKey(name: 'group_id') String groupId,
+      @JsonKey(name: 'group_id') String? groupId,
       @JsonKey(name: 'user_id_one') String? userIdOne,
       @JsonKey(name: 'user_id_two') String? userIdTwo});
 }
@@ -204,7 +204,7 @@ class __$$ChannelMessageImplCopyWithImpl<$Res>
     Object? updateTime = null,
     Object? persistent = null,
     Object? roomName = freezed,
-    Object? groupId = null,
+    Object? groupId = freezed,
     Object? userIdOne = freezed,
     Object? userIdTwo = freezed,
   }) {
@@ -249,10 +249,10 @@ class __$$ChannelMessageImplCopyWithImpl<$Res>
           ? _value.roomName
           : roomName // ignore: cast_nullable_to_non_nullable
               as String?,
-      groupId: null == groupId
+      groupId: freezed == groupId
           ? _value.groupId
           : groupId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       userIdOne: freezed == userIdOne
           ? _value.userIdOne
           : userIdOne // ignore: cast_nullable_to_non_nullable
@@ -319,7 +319,7 @@ class _$ChannelMessageImpl extends _ChannelMessage {
   final String? roomName;
   @override
   @JsonKey(name: 'group_id')
-  final String groupId;
+  final String? groupId;
   @override
   @JsonKey(name: 'user_id_one')
   final String? userIdOne;
@@ -407,7 +407,7 @@ abstract class _ChannelMessage extends ChannelMessage {
           @JsonKey(name: 'update_time') required final DateTime updateTime,
           @JsonKey(name: 'persistent') required final bool persistent,
           @JsonKey(name: 'room_name') required final String? roomName,
-          @JsonKey(name: 'group_id') required final String groupId,
+          @JsonKey(name: 'group_id') required final String? groupId,
           @JsonKey(name: 'user_id_one') required final String? userIdOne,
           @JsonKey(name: 'user_id_two') required final String? userIdTwo}) =
       _$ChannelMessageImpl;
@@ -448,7 +448,7 @@ abstract class _ChannelMessage extends ChannelMessage {
   String? get roomName;
   @override
   @JsonKey(name: 'group_id')
-  String get groupId;
+  String? get groupId;
   @override
   @JsonKey(name: 'user_id_one')
   String? get userIdOne;
