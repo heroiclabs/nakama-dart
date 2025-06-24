@@ -538,10 +538,13 @@ abstract class NakamaBaseClient {
     DateTime? expiry,
   });
 
-  /// Remove an owner's record from a leaderboard, if one exists.
-  ///
+  /// Write a record to a leaderboard.
   /// - [session] Current session.
-  /// - [leaderboardName] The name of the leaderboard with the record to be deleted.
+  /// - [leaderboardName] The name of the leaderboard to write the record to.
+  /// - [score] The score of the leaderboard record.
+  /// - [subscore] The subscore for the leaderboard record.
+  /// - [metadata] The metadata for the leaderboard record.
+  /// - [operator] The operator for the record that can be used to override the one set in the leaderboard.
   Future<model.LeaderboardRecord> writeLeaderboardRecord({
     required model.Session session,
     required String leaderboardName,
