@@ -4,8 +4,11 @@ import 'package:logging/logging.dart';
 import 'package:nakama_example/features/authentication/login/views/pages/login_page.dart';
 import 'package:nakama_example/features/authentication/signup/views/pages/signup_page.dart';
 import 'package:nakama_example/features/common/routes.dart';
+import 'package:nakama_example/features/group/views/groups.dart';
 import 'package:nakama_example/features/home/list_features/views/pages/list_features.dart';
 import 'package:nakama_example/features/match/views/matches.dart';
+import 'package:nakama_example/features/leaderboard/views/pages/leaderboard.dart';
+import 'package:nakama_example/features/leaderboard/views/pages/leaderboards.dart';
 import 'package:nakama_example/features/rpc/custom/views/pages/rpc_custom.dart';
 
 void main() {
@@ -22,6 +25,20 @@ void main() {
         Routes.home: (context) => ListFeaturesPage(),
         Routes.rpc: (context) => RpcCustomPage(),
         Routes.matches: (context) => MatchesPage(),
+        Routes.groups: (context) => GroupsPage(),
+        Routes.leaderboards: (context) => LeaderboardsPage(),
+      },
+      onGenerateRoute: (settings) {
+        // Routes.leaderboard
+        if (settings.name != null &&
+            settings.name!.startsWith(Routes.leaderboards)) {
+          final id = settings.name!.replaceFirst('${Routes.leaderboards}/', '');
+          return MaterialPageRoute(
+            builder: (context) => LeaderboardPage(),
+            settings: RouteSettings(arguments: id),
+          );
+        }
+        return null;
       },
     ),
   ));
