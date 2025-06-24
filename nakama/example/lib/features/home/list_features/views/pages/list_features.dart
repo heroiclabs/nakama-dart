@@ -20,6 +20,44 @@ class ListFeaturesPage extends ConsumerWidget {
                     onPressed: () async {
                       try {
                         if (context.mounted) {
+                          await Navigator.pushNamed(
+                              context, Routes.leaderboards);
+                        }
+                      } catch (e) {
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(e.toString()),
+                          ));
+                        }
+                      }
+                    },
+                    child: const Text(
+                        'Create, list leaderboards and submit scores')),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                    onPressed: () async {
+                      try {
+                        if (context.mounted) {
+                          await Navigator.pushNamed(context, Routes.groups);
+                        }
+                      } catch (e) {
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(e.toString()),
+                          ));
+                        }
+                      }
+                    },
+                    child: const Text('Create, list and update groups')),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                    onPressed: () async {
+                      try {
+                        if (context.mounted) {
                           await Navigator.pushNamed(context, Routes.rpc);
                         }
                       } catch (e) {
@@ -31,6 +69,24 @@ class ListFeaturesPage extends ConsumerWidget {
                       }
                     },
                     child: const Text('Call custom RPCs')),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                    onPressed: () async {
+                      try {
+                        if (context.mounted) {
+                          await Navigator.pushNamed(context, Routes.matches);
+                        }
+                      } catch (e) {
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(e.toString()),
+                          ));
+                        }
+                      }
+                    },
+                    child: const Text('Create, list and leave matches')),
               ),
               SizedBox(
                 width: double.infinity,

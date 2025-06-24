@@ -5,8 +5,8 @@ import 'package:nakama_example/features/rpc/custom/providers/rpc_provider.dart';
 class RpcCustomPage extends ConsumerWidget {
   const RpcCustomPage({super.key});
 
-  Future<void> _callRpc(BuildContext context, WidgetRef ref,
-      Future<String?> Function() rpcCall) async {
+  Future<void> _callRpc(
+      BuildContext context, Future<String?> Function() rpcCall) async {
     String? message;
     try {
       message = await rpcCall();
@@ -33,7 +33,6 @@ class RpcCustomPage extends ConsumerWidget {
                 child: TextButton(
                   onPressed: () async => _callRpc(
                     context,
-                    ref,
                     () => ref
                         .read(rpcCustomProvider.notifier)
                         .call('hello_world'),
@@ -46,7 +45,6 @@ class RpcCustomPage extends ConsumerWidget {
                 child: TextButton(
                   onPressed: () async => _callRpc(
                     context,
-                    ref,
                     () => ref.read(rpcCustomProvider.notifier).callWithPayload(
                         'hello_world', {'name': 'HTTP with payload'}),
                   ),
@@ -58,7 +56,6 @@ class RpcCustomPage extends ConsumerWidget {
                 child: TextButton(
                   onPressed: () async => _callRpc(
                     context,
-                    ref,
                     () => ref
                         .read(rpcCustomProvider.notifier)
                         .callWS('hello_world'),
@@ -71,7 +68,6 @@ class RpcCustomPage extends ConsumerWidget {
                 child: TextButton(
                   onPressed: () async => _callRpc(
                     context,
-                    ref,
                     () => ref
                         .read(rpcCustomProvider.notifier)
                         .callWSWithPayload(
