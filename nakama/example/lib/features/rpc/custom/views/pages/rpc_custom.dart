@@ -45,11 +45,35 @@ class RpcCustomPage extends ConsumerWidget {
                 child: TextButton(
                   onPressed: () async => _callRpc(
                     context,
+                    () => ref.read(rpcCustomProvider.notifier).callWithPayload(
+                        'hello_world', {'name': 'HTTP with payload'}),
+                  ),
+                  child: const Text('Call "hello_world" (HTTP) with payload'),
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                  onPressed: () async => _callRpc(
+                    context,
                     () => ref
                         .read(rpcCustomProvider.notifier)
                         .callWS('hello_world'),
                   ),
                   child: const Text('Call "hello_world (WebSocket)"'),
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                  onPressed: () async => _callRpc(
+                    context,
+                    () => ref
+                        .read(rpcCustomProvider.notifier)
+                        .callWSWithPayload(
+                            'hello_world', {'name': 'Websocket with payload'}),
+                  ),
+                  child: const Text('Call "hello_world (WebSocket)" with payload'),
                 ),
               ),
             ],

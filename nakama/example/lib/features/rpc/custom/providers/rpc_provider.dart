@@ -28,6 +28,13 @@ class RpcCustomNotifier extends StateNotifier<String?> {
     return state!;
   }
 
+  Future<String> callWSWithPayload(String id, dynamic payload) async {
+    final result = await NakamaWSClient.instance!
+        .rpc(id: id, payload: jsonEncode(payload));
+    state = result.payload;
+    return state!;
+  }
+
   String? currentSession() => state;
 }
 
