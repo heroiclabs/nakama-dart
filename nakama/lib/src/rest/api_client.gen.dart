@@ -2342,7 +2342,7 @@ abstract class ApiClient {
     @Body() required WriteLeaderboardRecordRequestLeaderboardRecordWrite body,
   });
 
-  /// List leaderboard records that belong to a user.
+  /// List leaderboard records around the target ownerId.
   @GET('/v2/leaderboard/{leaderboardId}/owner/{ownerId}')
   Future<ApiLeaderboardRecordList> listLeaderboardRecordsAroundOwner({
     String? bearerToken,
