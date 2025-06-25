@@ -14,6 +14,7 @@ import 'package:nakama/src/models/session.dart' as model;
 import 'package:nakama/src/models/storage.dart' as model;
 import 'package:nakama/src/models/tournament.dart' as model;
 import 'package:nakama/src/rest/api_client.gen.dart';
+import 'package:nakama/src/utils/prepare_payload.dart';
 
 const _kDefaultAppKey = 'default';
 
@@ -654,6 +655,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
   }) async {
+    _session = null;
     try {
       final session = await _api.authenticateCustom(
         body: ApiAccountCustom(id: id, vars: vars),
@@ -1122,11 +1124,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
   Future<void> updateGroup({
     required model.Session session,
     required String groupId,
-    String? name,
+    required String? name,
     String? avatarUrl,
     String? description,
-    String? langTag,
-    int? maxCount,
+    required String? langTag,
     bool? open,
   }) async {
     _session = session;
@@ -1554,7 +1555,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
       if (payload == null) {
         res = await _api.rpcFunc2(id: id);
       } else {
-        res = await _api.rpcFunc(id: id, body: payload);
+        res = await _api.rpcFunc(id: id, body: preparePayload(payload));
       }
 
       return res.payload;

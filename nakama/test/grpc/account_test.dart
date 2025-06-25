@@ -11,8 +11,8 @@ void main() {
 
     setUpAll(() async {
       client = getNakamaClient(
-        host: kTestHost,
-        ssl: false,
+          host: kTestHost,
+          ssl: false,
         serverKey: kTestServerKey,
       );
 
@@ -43,6 +43,8 @@ void main() {
 
     test('updating my account', () async {
       await client.updateAccount(session: session, displayName: 'name');
+      final updatedAccount = await client.getAccount(session);
+      expect(updatedAccount.user.displayName, 'name');
     });
   });
 }

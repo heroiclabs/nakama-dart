@@ -17,6 +17,7 @@ import 'package:nakama/src/models/notification.dart' as model;
 import 'package:nakama/src/models/session.dart' as model;
 import 'package:nakama/src/models/storage.dart' as model;
 import 'package:nakama/src/models/tournament.dart' as model;
+import 'package:nakama/src/utils/prepare_payload.dart';
 
 const _kDefaultAppKey = 'default';
 
@@ -945,11 +946,10 @@ class NakamaGrpcClient extends NakamaBaseClient {
   Future<void> updateGroup({
     required model.Session session,
     required String groupId,
-    String? name,
+    required String? name,
     String? avatarUrl,
     String? description,
-    String? langTag,
-    int? maxCount,
+    required String? langTag,
     bool? open,
   }) async {
     await _client.updateGroup(
@@ -1185,11 +1185,11 @@ class NakamaGrpcClient extends NakamaBaseClient {
     final res = await _client.listMatches(
       api.ListMatchesRequest(
         authoritative: api.BoolValue(value: authoritative),
-        label: api.StringValue(value: label),
+        label: label != null ? api.StringValue(value: label) : null,
         limit: api.Int32Value(value: limit),
         maxSize: api.Int32Value(value: maxSize),
         minSize: api.Int32Value(value: minSize),
-        query: api.StringValue(value: query),
+        query: query != null ? api.StringValue(value: query) : null,
       ),
       options: _getSessionCallOptions(session),
     );
@@ -1313,7 +1313,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
     final res = await _client.rpcFunc(
       api.Rpc(
         id: id,
-        payload: payload,
+        payload: payload == null ? null : preparePayload(payload),
       ),
       options: _getSessionCallOptions(session),
     );

@@ -523,7 +523,7 @@ abstract class NakamaBaseClient {
     DateTime? expiry,
   });
 
-  /// List leaderboard records that belong to a user.
+  /// List leaderboard records around the target ownerId.
   ///
   /// - [session] Current session.
   /// - [leaderboardName] The name of the leaderboard to list.
@@ -538,10 +538,13 @@ abstract class NakamaBaseClient {
     DateTime? expiry,
   });
 
-  /// Remove an owner's record from a leaderboard, if one exists.
-  ///
+  /// Write a record to a leaderboard.
   /// - [session] Current session.
-  /// - [leaderboardName] The name of the leaderboard with the record to be deleted.
+  /// - [leaderboardName] The name of the leaderboard to write the record to.
+  /// - [score] The score of the leaderboard record.
+  /// - [subscore] The subscore for the leaderboard record.
+  /// - [metadata] The metadata for the leaderboard record.
+  /// - [operator] The operator for the record that can be used to override the one set in the leaderboard.
   Future<model.LeaderboardRecord> writeLeaderboardRecord({
     required model.Session session,
     required String leaderboardName,
@@ -633,16 +636,14 @@ abstract class NakamaBaseClient {
   /// - [description] A new description for the group.
   /// - [avatarUrl] A new avatar url for the group.
   /// - [langTag] A new language tag in BCP-47 format for the group.
-  /// - [maxCount] The maximum number of members allowed.
   Future<void> updateGroup({
     required model.Session session,
     required String groupId,
-    required bool open,
-    String? name,
+    bool open,
+    required String? name,
     String? avatarUrl,
     String? description,
-    String? langTag,
-    int? maxCount,
+    required String? langTag,
   });
 
   /// List groups on the server.
