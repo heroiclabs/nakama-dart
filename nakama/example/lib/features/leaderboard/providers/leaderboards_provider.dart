@@ -1,10 +1,8 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nakama_example/features/common/providers/session_provider.dart';
 import 'package:nakama_example/features/leaderboard/providers/leaderboard_provider.dart';
 import 'package:nakama_example/features/rpc/custom/providers/rpc_provider.dart';
-import 'package:nakama_example/services/nakama_service.dart';
 
 class LeaderboardsNotifier extends StateNotifier<List<String>> {
   Ref ref;

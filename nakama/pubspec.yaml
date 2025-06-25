@@ -12,13 +12,13 @@ dependencies:
   dio: ^5.7.0
   fixnum: ^1.1.0
   freezed_annotation: ^3.0.0
-  grpc: ^4.0.4
+  grpc: ^4.1.0
   json_annotation: ^4.8.1
   jwt_decoder: ^2.0.1
   logging: ^1.1.0
   meta: ^1.8.0
-  protobuf: ^4.0.0
-  retrofit: ^4.1.0
+  protobuf: ^4.1.0
+  retrofit: ^4.4.2
   web_socket_channel: ^3.0.1
 
 dev_dependencies:

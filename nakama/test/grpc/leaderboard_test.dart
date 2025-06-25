@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:faker/faker.dart';
 import 'package:nakama/nakama.dart';
 import 'package:test/expect.dart';
