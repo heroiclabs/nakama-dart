@@ -1,6 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:faker/faker.dart';
 import 'package:nakama/nakama.dart';
+import 'package:nakama/src/models/response_error.dart';
 import 'package:test/test.dart';
 
 import '../config.dart';
@@ -24,9 +24,9 @@ void main() {
       await client.sessionLogout(session: session);
 
       await expectLater(
-        client.sessionLogout(session: session),
+        client.sessionRefresh(session: session),
         throwsA(
-          isA<DioException>(),
+          isA<ResponseError>(),
         ),
       );
     });
