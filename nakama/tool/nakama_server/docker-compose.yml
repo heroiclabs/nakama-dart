@@ -1,79 +1,45 @@
-version: '3'
 services:
-  postgres:
-    container_name: postgres
-    environment:
-      - POSTGRES_DB=nakama
-      - POSTGRES_PASSWORD=localdb
+  cockroachdb:
+    image: cockroachdb/cockroach:latest-v23.1
+    command: start-single-node --insecure --store=attrs=ssd,path=/var/lib/cockroach/
+    restart: "no"
+    volumes:
+      - data:/var/lib/cockroach
     expose:
       - "8080"
-      - "5432"
+      - "26257"
+    ports:
+      - "26257:26257"
+      - "8080:8080"
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "postgres", "-d", "nakama" ]
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health?ready=1"]
       interval: 3s
       timeout: 3s
       retries: 5
-    image: postgres:12.2-alpine
-    ports:
-      - "5432:5432"
-      - "8080:8080"
-    volumes:
-      - data:/var/lib/postgresql/data
   nakama:
     image: registry.heroiclabs.com/heroiclabs/nakama:3.26.0
     entrypoint:
       - "/bin/sh"
       - "-ecx"
       - >
-          /nakama/nakama migrate up --database.address postgres:localdb@postgres:5432/nakama &&
-          exec /nakama/nakama --name nakama1 --database.address postgres:localdb@postgres:5432/nakama --logger.level DEBUG --session.token_expiry_sec 7200 --metrics.prometheus_port 9100
+          /nakama/nakama migrate up --database.address root@cockroachdb:26257 &&
+          exec /nakama/nakama --name nakama1 --database.address root@cockroachdb:26257 --logger.level DEBUG --session.token_expiry_sec 7200
     restart: "no"
     links:
-      - "postgres:db"
-    depends_on:
-      postgres:
-        condition: service_healthy
-      prometheus:
-        condition: service_started
-    volumes:
-      - ./:/nakama/data
+      - "cockroachdb:db"
     expose:
-      - "7349"
-      - "7350"
       - "7351"
-      - "9100"
+      - "7350"
+      - "7349"
     ports:
-      - "7349:7349"
-      - "7350:7350"
       - "7351:7351"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:7350/"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-  prometheus:
-    image: prom/prometheus
-    entrypoint: /bin/sh -c
-    command: |
-      'sh -s <<EOF
-        cat > ./prometheus.yml <<EON
-      global:
-        scrape_interval:     15s
-        evaluation_interval: 15s
+      - "7350:7350"
+      - "7349:7349"
+    depends_on:
+      cockroachdb:
+        condition: service_healthy
+    volumes:
+      - ./modules/main.lua:/nakama/data/modules/main.lua
 
-      scrape_configs:
-        - job_name: prometheus
-          static_configs:
-          - targets: ['localhost:9090']
-
-        - job_name: nakama
-          metrics_path: /
-          static_configs:
-          - targets: ['nakama:9100']
-      EON
-      prometheus --config.file=./prometheus.yml
-      EOF'      
-    ports:
-      - '9090:9090'
 volumes:
   data:
