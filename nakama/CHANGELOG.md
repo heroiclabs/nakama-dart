@@ -1,3 +1,21 @@
+## 1.3.0
+
+* fix: pass missing 'create' argument to _api.authenticateEmail by @bobby-bloom in https://github.com/heroiclabs/nakama-dart/pull/130
+* Update documentation for writeLeaderboardRecord method by @ilmalte in https://github.com/heroiclabs/nakama-dart/pull/126
+* Add leaderboards in example project by @ilmalte in https://github.com/heroiclabs/nakama-dart/pull/127
+* Add groups in example project by @ilmalte in https://github.com/heroiclabs/nakama-dart/pull/128
+* Refactor updateGroup method parameters by @ilmalte in https://github.com/heroiclabs/nakama-dart/pull/129
+* Handle null values for label and query in listMatches request by @ilmalte in https://github.com/heroiclabs/nakama-dart/pull/133
+* Add matches in example project by @ilmalte in https://github.com/heroiclabs/nakama-dart/pull/134
+* Fix RPC payload encoding for Web by @ilmalte in https://github.com/heroiclabs/nakama-dart/pull/135
+* Update Docker images and add RPC examples by @ilmalte in https://github.com/heroiclabs/nakama-dart/pull/136
+* Update comment for leaderboard records listing to clarify ownerId context by @ilmalte in https://github.com/heroiclabs/nakama-dart/pull/137
+* Fixes bug where authenticateCustom fails when user has session by @jakeobrien in https://github.com/heroiclabs/nakama-dart/pull/141
+* GroupId nullable in ChannelMessage by @ilmalte in https://github.com/heroiclabs/nakama-dart/pull/142
+* Add chats in example project by @ilmalte in https://github.com/heroiclabs/nakama-dart/pull/143
+* update freezed, and update tests by @andresfelipemendez in https://github.com/heroiclabs/nakama-dart/pull/138
+* Bump packages by @ilmalte in https://github.com/heroiclabs/nakama-dart/pull/144
+
 ## 1.2.0
 
 * symlink readme from nakama by @lugehorsam in [#98](https://github.com/heroiclabs/nakama-dart/pull/98)
