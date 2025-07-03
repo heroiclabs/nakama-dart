@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,85 +10,71 @@ part of 'live_event.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-LiveEventList _$LiveEventListFromJson(Map<String, dynamic> json) {
-  return _LiveEventList.fromJson(json);
-}
 
 /// @nodoc
 mixin _$LiveEventList {
-  List<LiveEvent> get liveEvents => throw _privateConstructorUsedError;
+  List<LiveEvent> get liveEvents;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $LiveEventListCopyWith<LiveEventList> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $LiveEventListCopyWith<$Res> {
-  factory $LiveEventListCopyWith(
-          LiveEventList value, $Res Function(LiveEventList) then) =
-      _$LiveEventListCopyWithImpl<$Res, LiveEventList>;
-  @useResult
-  $Res call({List<LiveEvent> liveEvents});
-}
-
-/// @nodoc
-class _$LiveEventListCopyWithImpl<$Res, $Val extends LiveEventList>
-    implements $LiveEventListCopyWith<$Res> {
-  _$LiveEventListCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
+  /// Create a copy of LiveEventList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
+  $LiveEventListCopyWith<LiveEventList> get copyWith =>
+      _$LiveEventListCopyWithImpl<LiveEventList>(
+          this as LiveEventList, _$identity);
+
+  /// Serializes this LiveEventList to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? liveEvents = null,
-  }) {
-    return _then(_value.copyWith(
-      liveEvents: null == liveEvents
-          ? _value.liveEvents
-          : liveEvents // ignore: cast_nullable_to_non_nullable
-              as List<LiveEvent>,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is LiveEventList &&
+            const DeepCollectionEquality()
+                .equals(other.liveEvents, liveEvents));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(liveEvents));
+
+  @override
+  String toString() {
+    return 'LiveEventList(liveEvents: $liveEvents)';
   }
 }
 
 /// @nodoc
-abstract class _$$LiveEventListImplCopyWith<$Res>
-    implements $LiveEventListCopyWith<$Res> {
-  factory _$$LiveEventListImplCopyWith(
-          _$LiveEventListImpl value, $Res Function(_$LiveEventListImpl) then) =
-      __$$LiveEventListImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $LiveEventListCopyWith<$Res> {
+  factory $LiveEventListCopyWith(
+          LiveEventList value, $Res Function(LiveEventList) _then) =
+      _$LiveEventListCopyWithImpl;
   @useResult
   $Res call({List<LiveEvent> liveEvents});
 }
 
 /// @nodoc
-class __$$LiveEventListImplCopyWithImpl<$Res>
-    extends _$LiveEventListCopyWithImpl<$Res, _$LiveEventListImpl>
-    implements _$$LiveEventListImplCopyWith<$Res> {
-  __$$LiveEventListImplCopyWithImpl(
-      _$LiveEventListImpl _value, $Res Function(_$LiveEventListImpl) _then)
-      : super(_value, _then);
+class _$LiveEventListCopyWithImpl<$Res>
+    implements $LiveEventListCopyWith<$Res> {
+  _$LiveEventListCopyWithImpl(this._self, this._then);
 
+  final LiveEventList _self;
+  final $Res Function(LiveEventList) _then;
+
+  /// Create a copy of LiveEventList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? liveEvents = null,
   }) {
-    return _then(_$LiveEventListImpl(
+    return _then(_self.copyWith(
       liveEvents: null == liveEvents
-          ? _value._liveEvents
+          ? _self.liveEvents
           : liveEvents // ignore: cast_nullable_to_non_nullable
               as List<LiveEvent>,
     ));
@@ -96,13 +83,12 @@ class __$$LiveEventListImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LiveEventListImpl extends _LiveEventList {
-  const _$LiveEventListImpl({required final List<LiveEvent> liveEvents})
+class _LiveEventList extends LiveEventList {
+  const _LiveEventList({required final List<LiveEvent> liveEvents})
       : _liveEvents = liveEvents,
         super._();
-
-  factory _$LiveEventListImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LiveEventListImplFromJson(json);
+  factory _LiveEventList.fromJson(Map<String, dynamic> json) =>
+      _$LiveEventListFromJson(json);
 
   final List<LiveEvent> _liveEvents;
   @override
@@ -112,146 +98,133 @@ class _$LiveEventListImpl extends _LiveEventList {
     return EqualUnmodifiableListView(_liveEvents);
   }
 
+  /// Create a copy of LiveEventList
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'LiveEventList(liveEvents: $liveEvents)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$LiveEventListCopyWith<_LiveEventList> get copyWith =>
+      __$LiveEventListCopyWithImpl<_LiveEventList>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$LiveEventListToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LiveEventListImpl &&
+            other is _LiveEventList &&
             const DeepCollectionEquality()
                 .equals(other._liveEvents, _liveEvents));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_liveEvents));
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$LiveEventListImplCopyWith<_$LiveEventListImpl> get copyWith =>
-      __$$LiveEventListImplCopyWithImpl<_$LiveEventListImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LiveEventListImplToJson(
-      this,
-    );
+  String toString() {
+    return 'LiveEventList(liveEvents: $liveEvents)';
   }
 }
 
-abstract class _LiveEventList extends LiveEventList {
-  const factory _LiveEventList({required final List<LiveEvent> liveEvents}) =
-      _$LiveEventListImpl;
-  const _LiveEventList._() : super._();
-
-  factory _LiveEventList.fromJson(Map<String, dynamic> json) =
-      _$LiveEventListImpl.fromJson;
-
+/// @nodoc
+abstract mixin class _$LiveEventListCopyWith<$Res>
+    implements $LiveEventListCopyWith<$Res> {
+  factory _$LiveEventListCopyWith(
+          _LiveEventList value, $Res Function(_LiveEventList) _then) =
+      __$LiveEventListCopyWithImpl;
   @override
-  List<LiveEvent> get liveEvents;
-  @override
-  @JsonKey(ignore: true)
-  _$$LiveEventListImplCopyWith<_$LiveEventListImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @useResult
+  $Res call({List<LiveEvent> liveEvents});
 }
 
-LiveEvent _$LiveEventFromJson(Map<String, dynamic> json) {
-  return _LiveEvent.fromJson(json);
+/// @nodoc
+class __$LiveEventListCopyWithImpl<$Res>
+    implements _$LiveEventListCopyWith<$Res> {
+  __$LiveEventListCopyWithImpl(this._self, this._then);
+
+  final _LiveEventList _self;
+  final $Res Function(_LiveEventList) _then;
+
+  /// Create a copy of LiveEventList
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? liveEvents = null,
+  }) {
+    return _then(_LiveEventList(
+      liveEvents: null == liveEvents
+          ? _self._liveEvents
+          : liveEvents // ignore: cast_nullable_to_non_nullable
+              as List<LiveEvent>,
+    ));
+  }
 }
 
 /// @nodoc
 mixin _$LiveEvent {
   /// End time of current event run.
-  String? get activeEndTimeSec => throw _privateConstructorUsedError;
+  String? get activeEndTimeSec;
 
   /// Start time of current event run.
-  String? get activeStartTimeSec => throw _privateConstructorUsedError;
+  String? get activeStartTimeSec;
 
   /// Description.
-  String? get description => throw _privateConstructorUsedError;
+  String? get description;
 
   /// Name.
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
 
   /// Event value.
-  String? get value => throw _privateConstructorUsedError;
+  String? get value;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $LiveEventCopyWith<LiveEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $LiveEventCopyWith<$Res> {
-  factory $LiveEventCopyWith(LiveEvent value, $Res Function(LiveEvent) then) =
-      _$LiveEventCopyWithImpl<$Res, LiveEvent>;
-  @useResult
-  $Res call(
-      {String? activeEndTimeSec,
-      String? activeStartTimeSec,
-      String? description,
-      String? name,
-      String? value});
-}
-
-/// @nodoc
-class _$LiveEventCopyWithImpl<$Res, $Val extends LiveEvent>
-    implements $LiveEventCopyWith<$Res> {
-  _$LiveEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
+  /// Create a copy of LiveEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
+  $LiveEventCopyWith<LiveEvent> get copyWith =>
+      _$LiveEventCopyWithImpl<LiveEvent>(this as LiveEvent, _$identity);
+
+  /// Serializes this LiveEvent to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? activeEndTimeSec = freezed,
-    Object? activeStartTimeSec = freezed,
-    Object? description = freezed,
-    Object? name = freezed,
-    Object? value = freezed,
-  }) {
-    return _then(_value.copyWith(
-      activeEndTimeSec: freezed == activeEndTimeSec
-          ? _value.activeEndTimeSec
-          : activeEndTimeSec // ignore: cast_nullable_to_non_nullable
-              as String?,
-      activeStartTimeSec: freezed == activeStartTimeSec
-          ? _value.activeStartTimeSec
-          : activeStartTimeSec // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is LiveEvent &&
+            (identical(other.activeEndTimeSec, activeEndTimeSec) ||
+                other.activeEndTimeSec == activeEndTimeSec) &&
+            (identical(other.activeStartTimeSec, activeStartTimeSec) ||
+                other.activeStartTimeSec == activeStartTimeSec) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.value, value) || other.value == value));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, activeEndTimeSec,
+      activeStartTimeSec, description, name, value);
+
+  @override
+  String toString() {
+    return 'LiveEvent(activeEndTimeSec: $activeEndTimeSec, activeStartTimeSec: $activeStartTimeSec, description: $description, name: $name, value: $value)';
   }
 }
 
 /// @nodoc
-abstract class _$$LiveEventImplCopyWith<$Res>
-    implements $LiveEventCopyWith<$Res> {
-  factory _$$LiveEventImplCopyWith(
-          _$LiveEventImpl value, $Res Function(_$LiveEventImpl) then) =
-      __$$LiveEventImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $LiveEventCopyWith<$Res> {
+  factory $LiveEventCopyWith(LiveEvent value, $Res Function(LiveEvent) _then) =
+      _$LiveEventCopyWithImpl;
   @useResult
   $Res call(
       {String? activeEndTimeSec,
@@ -262,13 +235,14 @@ abstract class _$$LiveEventImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$LiveEventImplCopyWithImpl<$Res>
-    extends _$LiveEventCopyWithImpl<$Res, _$LiveEventImpl>
-    implements _$$LiveEventImplCopyWith<$Res> {
-  __$$LiveEventImplCopyWithImpl(
-      _$LiveEventImpl _value, $Res Function(_$LiveEventImpl) _then)
-      : super(_value, _then);
+class _$LiveEventCopyWithImpl<$Res> implements $LiveEventCopyWith<$Res> {
+  _$LiveEventCopyWithImpl(this._self, this._then);
 
+  final LiveEvent _self;
+  final $Res Function(LiveEvent) _then;
+
+  /// Create a copy of LiveEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -278,25 +252,25 @@ class __$$LiveEventImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? value = freezed,
   }) {
-    return _then(_$LiveEventImpl(
+    return _then(_self.copyWith(
       activeEndTimeSec: freezed == activeEndTimeSec
-          ? _value.activeEndTimeSec
+          ? _self.activeEndTimeSec
           : activeEndTimeSec // ignore: cast_nullable_to_non_nullable
               as String?,
       activeStartTimeSec: freezed == activeStartTimeSec
-          ? _value.activeStartTimeSec
+          ? _self.activeStartTimeSec
           : activeStartTimeSec // ignore: cast_nullable_to_non_nullable
               as String?,
       description: freezed == description
-          ? _value.description
+          ? _self.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
       name: freezed == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
       value: freezed == value
-          ? _value.value
+          ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
@@ -305,17 +279,16 @@ class __$$LiveEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LiveEventImpl extends _LiveEvent {
-  const _$LiveEventImpl(
+class _LiveEvent extends LiveEvent {
+  const _LiveEvent(
       {this.activeEndTimeSec,
       this.activeStartTimeSec,
       this.description,
       this.name,
       this.value})
       : super._();
-
-  factory _$LiveEventImpl.fromJson(Map<String, dynamic> json) =>
-      _$$LiveEventImplFromJson(json);
+  factory _LiveEvent.fromJson(Map<String, dynamic> json) =>
+      _$LiveEventFromJson(json);
 
   /// End time of current event run.
   @override
@@ -337,16 +310,26 @@ class _$LiveEventImpl extends _LiveEvent {
   @override
   final String? value;
 
+  /// Create a copy of LiveEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'LiveEvent(activeEndTimeSec: $activeEndTimeSec, activeStartTimeSec: $activeStartTimeSec, description: $description, name: $name, value: $value)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$LiveEventCopyWith<_LiveEvent> get copyWith =>
+      __$LiveEventCopyWithImpl<_LiveEvent>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$LiveEventToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LiveEventImpl &&
+            other is _LiveEvent &&
             (identical(other.activeEndTimeSec, activeEndTimeSec) ||
                 other.activeEndTimeSec == activeEndTimeSec) &&
             (identical(other.activeStartTimeSec, activeStartTimeSec) ||
@@ -357,59 +340,74 @@ class _$LiveEventImpl extends _LiveEvent {
             (identical(other.value, value) || other.value == value));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, activeEndTimeSec,
       activeStartTimeSec, description, name, value);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$LiveEventImplCopyWith<_$LiveEventImpl> get copyWith =>
-      __$$LiveEventImplCopyWithImpl<_$LiveEventImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$LiveEventImplToJson(
-      this,
-    );
+  String toString() {
+    return 'LiveEvent(activeEndTimeSec: $activeEndTimeSec, activeStartTimeSec: $activeStartTimeSec, description: $description, name: $name, value: $value)';
   }
 }
 
-abstract class _LiveEvent extends LiveEvent {
-  const factory _LiveEvent(
-      {final String? activeEndTimeSec,
-      final String? activeStartTimeSec,
-      final String? description,
-      final String? name,
-      final String? value}) = _$LiveEventImpl;
-  const _LiveEvent._() : super._();
-
-  factory _LiveEvent.fromJson(Map<String, dynamic> json) =
-      _$LiveEventImpl.fromJson;
-
+/// @nodoc
+abstract mixin class _$LiveEventCopyWith<$Res>
+    implements $LiveEventCopyWith<$Res> {
+  factory _$LiveEventCopyWith(
+          _LiveEvent value, $Res Function(_LiveEvent) _then) =
+      __$LiveEventCopyWithImpl;
   @override
-
-  /// End time of current event run.
-  String? get activeEndTimeSec;
-  @override
-
-  /// Start time of current event run.
-  String? get activeStartTimeSec;
-  @override
-
-  /// Description.
-  String? get description;
-  @override
-
-  /// Name.
-  String? get name;
-  @override
-
-  /// Event value.
-  String? get value;
-  @override
-  @JsonKey(ignore: true)
-  _$$LiveEventImplCopyWith<_$LiveEventImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @useResult
+  $Res call(
+      {String? activeEndTimeSec,
+      String? activeStartTimeSec,
+      String? description,
+      String? name,
+      String? value});
 }
+
+/// @nodoc
+class __$LiveEventCopyWithImpl<$Res> implements _$LiveEventCopyWith<$Res> {
+  __$LiveEventCopyWithImpl(this._self, this._then);
+
+  final _LiveEvent _self;
+  final $Res Function(_LiveEvent) _then;
+
+  /// Create a copy of LiveEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? activeEndTimeSec = freezed,
+    Object? activeStartTimeSec = freezed,
+    Object? description = freezed,
+    Object? name = freezed,
+    Object? value = freezed,
+  }) {
+    return _then(_LiveEvent(
+      activeEndTimeSec: freezed == activeEndTimeSec
+          ? _self.activeEndTimeSec
+          : activeEndTimeSec // ignore: cast_nullable_to_non_nullable
+              as String?,
+      activeStartTimeSec: freezed == activeStartTimeSec
+          ? _self.activeStartTimeSec
+          : activeStartTimeSec // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _self.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      value: freezed == value
+          ? _self.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+// dart format on

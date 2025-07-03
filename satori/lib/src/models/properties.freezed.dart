@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,85 +10,59 @@ part of 'properties.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Properties _$PropertiesFromJson(Map<String, dynamic> json) {
-  return _Properties.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Properties {
   /// Event default properties.
-  Map<String, String>? get $default => throw _privateConstructorUsedError;
+  Map<String, String>? get $default;
 
   /// Event custom properties.
-  Map<String, String>? get custom => throw _privateConstructorUsedError;
+  Map<String, String>? get custom;
 
   /// Event computed properties.
-  Map<String, String>? get computed => throw _privateConstructorUsedError;
+  Map<String, String>? get computed;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $PropertiesCopyWith<Properties> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PropertiesCopyWith<$Res> {
-  factory $PropertiesCopyWith(
-          Properties value, $Res Function(Properties) then) =
-      _$PropertiesCopyWithImpl<$Res, Properties>;
-  @useResult
-  $Res call(
-      {Map<String, String>? $default,
-      Map<String, String>? custom,
-      Map<String, String>? computed});
-}
-
-/// @nodoc
-class _$PropertiesCopyWithImpl<$Res, $Val extends Properties>
-    implements $PropertiesCopyWith<$Res> {
-  _$PropertiesCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
+  /// Create a copy of Properties
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
+  $PropertiesCopyWith<Properties> get copyWith =>
+      _$PropertiesCopyWithImpl<Properties>(this as Properties, _$identity);
+
+  /// Serializes this Properties to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? $default = freezed,
-    Object? custom = freezed,
-    Object? computed = freezed,
-  }) {
-    return _then(_value.copyWith(
-      $default: freezed == $default
-          ? _value.$default
-          : $default // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
-      custom: freezed == custom
-          ? _value.custom
-          : custom // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
-      computed: freezed == computed
-          ? _value.computed
-          : computed // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Properties &&
+            const DeepCollectionEquality().equals(other.$default, $default) &&
+            const DeepCollectionEquality().equals(other.custom, custom) &&
+            const DeepCollectionEquality().equals(other.computed, computed));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash($default),
+      const DeepCollectionEquality().hash(custom),
+      const DeepCollectionEquality().hash(computed));
+
+  @override
+  String toString() {
+    return 'Properties(\$default: ${$default}, custom: $custom, computed: $computed)';
   }
 }
 
 /// @nodoc
-abstract class _$$PropertiesImplCopyWith<$Res>
-    implements $PropertiesCopyWith<$Res> {
-  factory _$$PropertiesImplCopyWith(
-          _$PropertiesImpl value, $Res Function(_$PropertiesImpl) then) =
-      __$$PropertiesImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $PropertiesCopyWith<$Res> {
+  factory $PropertiesCopyWith(
+          Properties value, $Res Function(Properties) _then) =
+      _$PropertiesCopyWithImpl;
   @useResult
   $Res call(
       {Map<String, String>? $default,
@@ -96,13 +71,14 @@ abstract class _$$PropertiesImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PropertiesImplCopyWithImpl<$Res>
-    extends _$PropertiesCopyWithImpl<$Res, _$PropertiesImpl>
-    implements _$$PropertiesImplCopyWith<$Res> {
-  __$$PropertiesImplCopyWithImpl(
-      _$PropertiesImpl _value, $Res Function(_$PropertiesImpl) _then)
-      : super(_value, _then);
+class _$PropertiesCopyWithImpl<$Res> implements $PropertiesCopyWith<$Res> {
+  _$PropertiesCopyWithImpl(this._self, this._then);
 
+  final Properties _self;
+  final $Res Function(Properties) _then;
+
+  /// Create a copy of Properties
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -110,17 +86,17 @@ class __$$PropertiesImplCopyWithImpl<$Res>
     Object? custom = freezed,
     Object? computed = freezed,
   }) {
-    return _then(_$PropertiesImpl(
+    return _then(_self.copyWith(
       $default: freezed == $default
-          ? _value._$default
+          ? _self.$default
           : $default // ignore: cast_nullable_to_non_nullable
               as Map<String, String>?,
       custom: freezed == custom
-          ? _value._custom
+          ? _self.custom
           : custom // ignore: cast_nullable_to_non_nullable
               as Map<String, String>?,
       computed: freezed == computed
-          ? _value._computed
+          ? _self.computed
           : computed // ignore: cast_nullable_to_non_nullable
               as Map<String, String>?,
     ));
@@ -129,8 +105,8 @@ class __$$PropertiesImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PropertiesImpl extends _Properties {
-  const _$PropertiesImpl(
+class _Properties extends Properties {
+  const _Properties(
       {final Map<String, String>? $default,
       final Map<String, String>? custom,
       final Map<String, String>? computed})
@@ -138,9 +114,8 @@ class _$PropertiesImpl extends _Properties {
         _custom = custom,
         _computed = computed,
         super._();
-
-  factory _$PropertiesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PropertiesImplFromJson(json);
+  factory _Properties.fromJson(Map<String, dynamic> json) =>
+      _$PropertiesFromJson(json);
 
   /// Event default properties.
   final Map<String, String>? _$default;
@@ -181,22 +156,32 @@ class _$PropertiesImpl extends _Properties {
     return EqualUnmodifiableMapView(value);
   }
 
+  /// Create a copy of Properties
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Properties(\$default: ${$default}, custom: $custom, computed: $computed)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$PropertiesCopyWith<_Properties> get copyWith =>
+      __$PropertiesCopyWithImpl<_Properties>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$PropertiesToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PropertiesImpl &&
+            other is _Properties &&
             const DeepCollectionEquality().equals(other._$default, _$default) &&
             const DeepCollectionEquality().equals(other._custom, _custom) &&
             const DeepCollectionEquality().equals(other._computed, _computed));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -204,44 +189,57 @@ class _$PropertiesImpl extends _Properties {
       const DeepCollectionEquality().hash(_custom),
       const DeepCollectionEquality().hash(_computed));
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$PropertiesImplCopyWith<_$PropertiesImpl> get copyWith =>
-      __$$PropertiesImplCopyWithImpl<_$PropertiesImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PropertiesImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Properties(\$default: ${$default}, custom: $custom, computed: $computed)';
   }
 }
 
-abstract class _Properties extends Properties {
-  const factory _Properties(
-      {final Map<String, String>? $default,
-      final Map<String, String>? custom,
-      final Map<String, String>? computed}) = _$PropertiesImpl;
-  const _Properties._() : super._();
-
-  factory _Properties.fromJson(Map<String, dynamic> json) =
-      _$PropertiesImpl.fromJson;
-
+/// @nodoc
+abstract mixin class _$PropertiesCopyWith<$Res>
+    implements $PropertiesCopyWith<$Res> {
+  factory _$PropertiesCopyWith(
+          _Properties value, $Res Function(_Properties) _then) =
+      __$PropertiesCopyWithImpl;
   @override
-
-  /// Event default properties.
-  Map<String, String>? get $default;
-  @override
-
-  /// Event custom properties.
-  Map<String, String>? get custom;
-  @override
-
-  /// Event computed properties.
-  Map<String, String>? get computed;
-  @override
-  @JsonKey(ignore: true)
-  _$$PropertiesImplCopyWith<_$PropertiesImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @useResult
+  $Res call(
+      {Map<String, String>? $default,
+      Map<String, String>? custom,
+      Map<String, String>? computed});
 }
+
+/// @nodoc
+class __$PropertiesCopyWithImpl<$Res> implements _$PropertiesCopyWith<$Res> {
+  __$PropertiesCopyWithImpl(this._self, this._then);
+
+  final _Properties _self;
+  final $Res Function(_Properties) _then;
+
+  /// Create a copy of Properties
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? $default = freezed,
+    Object? custom = freezed,
+    Object? computed = freezed,
+  }) {
+    return _then(_Properties(
+      $default: freezed == $default
+          ? _self._$default
+          : $default // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
+      custom: freezed == custom
+          ? _self._custom
+          : custom // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
+      computed: freezed == computed
+          ? _self._computed
+          : computed // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>?,
+    ));
+  }
+}
+
+// dart format on

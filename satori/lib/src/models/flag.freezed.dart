@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,84 +10,67 @@ part of 'flag.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-FlagList _$FlagListFromJson(Map<String, dynamic> json) {
-  return _FlagList.fromJson(json);
-}
 
 /// @nodoc
 mixin _$FlagList {
-  List<Flag> get flags => throw _privateConstructorUsedError;
+  List<Flag> get flags;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $FlagListCopyWith<FlagList> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $FlagListCopyWith<$Res> {
-  factory $FlagListCopyWith(FlagList value, $Res Function(FlagList) then) =
-      _$FlagListCopyWithImpl<$Res, FlagList>;
-  @useResult
-  $Res call({List<Flag> flags});
-}
-
-/// @nodoc
-class _$FlagListCopyWithImpl<$Res, $Val extends FlagList>
-    implements $FlagListCopyWith<$Res> {
-  _$FlagListCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
+  /// Create a copy of FlagList
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
+  $FlagListCopyWith<FlagList> get copyWith =>
+      _$FlagListCopyWithImpl<FlagList>(this as FlagList, _$identity);
+
+  /// Serializes this FlagList to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? flags = null,
-  }) {
-    return _then(_value.copyWith(
-      flags: null == flags
-          ? _value.flags
-          : flags // ignore: cast_nullable_to_non_nullable
-              as List<Flag>,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FlagList &&
+            const DeepCollectionEquality().equals(other.flags, flags));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(flags));
+
+  @override
+  String toString() {
+    return 'FlagList(flags: $flags)';
   }
 }
 
 /// @nodoc
-abstract class _$$FlagListImplCopyWith<$Res>
-    implements $FlagListCopyWith<$Res> {
-  factory _$$FlagListImplCopyWith(
-          _$FlagListImpl value, $Res Function(_$FlagListImpl) then) =
-      __$$FlagListImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $FlagListCopyWith<$Res> {
+  factory $FlagListCopyWith(FlagList value, $Res Function(FlagList) _then) =
+      _$FlagListCopyWithImpl;
   @useResult
   $Res call({List<Flag> flags});
 }
 
 /// @nodoc
-class __$$FlagListImplCopyWithImpl<$Res>
-    extends _$FlagListCopyWithImpl<$Res, _$FlagListImpl>
-    implements _$$FlagListImplCopyWith<$Res> {
-  __$$FlagListImplCopyWithImpl(
-      _$FlagListImpl _value, $Res Function(_$FlagListImpl) _then)
-      : super(_value, _then);
+class _$FlagListCopyWithImpl<$Res> implements $FlagListCopyWith<$Res> {
+  _$FlagListCopyWithImpl(this._self, this._then);
 
+  final FlagList _self;
+  final $Res Function(FlagList) _then;
+
+  /// Create a copy of FlagList
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? flags = null,
   }) {
-    return _then(_$FlagListImpl(
+    return _then(_self.copyWith(
       flags: null == flags
-          ? _value._flags
+          ? _self.flags
           : flags // ignore: cast_nullable_to_non_nullable
               as List<Flag>,
     ));
@@ -95,13 +79,12 @@ class __$$FlagListImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FlagListImpl extends _FlagList {
-  const _$FlagListImpl({required final List<Flag> flags})
+class _FlagList extends FlagList {
+  const _FlagList({required final List<Flag> flags})
       : _flags = flags,
         super._();
-
-  factory _$FlagListImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FlagListImplFromJson(json);
+  factory _FlagList.fromJson(Map<String, dynamic> json) =>
+      _$FlagListFromJson(json);
 
   final List<Flag> _flags;
   @override
@@ -111,132 +94,132 @@ class _$FlagListImpl extends _FlagList {
     return EqualUnmodifiableListView(_flags);
   }
 
+  /// Create a copy of FlagList
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'FlagList(flags: $flags)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$FlagListCopyWith<_FlagList> get copyWith =>
+      __$FlagListCopyWithImpl<_FlagList>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$FlagListToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FlagListImpl &&
+            other is _FlagList &&
             const DeepCollectionEquality().equals(other._flags, _flags));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_flags));
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$FlagListImplCopyWith<_$FlagListImpl> get copyWith =>
-      __$$FlagListImplCopyWithImpl<_$FlagListImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$FlagListImplToJson(
-      this,
-    );
+  String toString() {
+    return 'FlagList(flags: $flags)';
   }
 }
 
-abstract class _FlagList extends FlagList {
-  const factory _FlagList({required final List<Flag> flags}) = _$FlagListImpl;
-  const _FlagList._() : super._();
-
-  factory _FlagList.fromJson(Map<String, dynamic> json) =
-      _$FlagListImpl.fromJson;
-
+/// @nodoc
+abstract mixin class _$FlagListCopyWith<$Res>
+    implements $FlagListCopyWith<$Res> {
+  factory _$FlagListCopyWith(_FlagList value, $Res Function(_FlagList) _then) =
+      __$FlagListCopyWithImpl;
   @override
-  List<Flag> get flags;
-  @override
-  @JsonKey(ignore: true)
-  _$$FlagListImplCopyWith<_$FlagListImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @useResult
+  $Res call({List<Flag> flags});
 }
 
-Flag _$FlagFromJson(Map<String, dynamic> json) {
-  return _Flag.fromJson(json);
+/// @nodoc
+class __$FlagListCopyWithImpl<$Res> implements _$FlagListCopyWith<$Res> {
+  __$FlagListCopyWithImpl(this._self, this._then);
+
+  final _FlagList _self;
+  final $Res Function(_FlagList) _then;
+
+  /// Create a copy of FlagList
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? flags = null,
+  }) {
+    return _then(_FlagList(
+      flags: null == flags
+          ? _self._flags
+          : flags // ignore: cast_nullable_to_non_nullable
+              as List<Flag>,
+    ));
+  }
 }
 
 /// @nodoc
 mixin _$Flag {
   /// Flag name
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
 
   /// Value associated with this Flag.
-  String? get value => throw _privateConstructorUsedError;
+  String? get value;
 
   /// Whether the value for this flag has conditionally changed from the default state.
-  bool? get conditionChanged => throw _privateConstructorUsedError;
+  bool? get conditionChanged;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $FlagCopyWith<Flag> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $FlagCopyWith<$Res> {
-  factory $FlagCopyWith(Flag value, $Res Function(Flag) then) =
-      _$FlagCopyWithImpl<$Res, Flag>;
-  @useResult
-  $Res call({String? name, String? value, bool? conditionChanged});
-}
-
-/// @nodoc
-class _$FlagCopyWithImpl<$Res, $Val extends Flag>
-    implements $FlagCopyWith<$Res> {
-  _$FlagCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
+  /// Create a copy of Flag
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
+  $FlagCopyWith<Flag> get copyWith =>
+      _$FlagCopyWithImpl<Flag>(this as Flag, _$identity);
+
+  /// Serializes this Flag to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? name = freezed,
-    Object? value = freezed,
-    Object? conditionChanged = freezed,
-  }) {
-    return _then(_value.copyWith(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String?,
-      conditionChanged: freezed == conditionChanged
-          ? _value.conditionChanged
-          : conditionChanged // ignore: cast_nullable_to_non_nullable
-              as bool?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Flag &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.value, value) || other.value == value) &&
+            (identical(other.conditionChanged, conditionChanged) ||
+                other.conditionChanged == conditionChanged));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, value, conditionChanged);
+
+  @override
+  String toString() {
+    return 'Flag(name: $name, value: $value, conditionChanged: $conditionChanged)';
   }
 }
 
 /// @nodoc
-abstract class _$$FlagImplCopyWith<$Res> implements $FlagCopyWith<$Res> {
-  factory _$$FlagImplCopyWith(
-          _$FlagImpl value, $Res Function(_$FlagImpl) then) =
-      __$$FlagImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $FlagCopyWith<$Res> {
+  factory $FlagCopyWith(Flag value, $Res Function(Flag) _then) =
+      _$FlagCopyWithImpl;
   @useResult
   $Res call({String? name, String? value, bool? conditionChanged});
 }
 
 /// @nodoc
-class __$$FlagImplCopyWithImpl<$Res>
-    extends _$FlagCopyWithImpl<$Res, _$FlagImpl>
-    implements _$$FlagImplCopyWith<$Res> {
-  __$$FlagImplCopyWithImpl(_$FlagImpl _value, $Res Function(_$FlagImpl) _then)
-      : super(_value, _then);
+class _$FlagCopyWithImpl<$Res> implements $FlagCopyWith<$Res> {
+  _$FlagCopyWithImpl(this._self, this._then);
 
+  final Flag _self;
+  final $Res Function(Flag) _then;
+
+  /// Create a copy of Flag
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -244,17 +227,17 @@ class __$$FlagImplCopyWithImpl<$Res>
     Object? value = freezed,
     Object? conditionChanged = freezed,
   }) {
-    return _then(_$FlagImpl(
+    return _then(_self.copyWith(
       name: freezed == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
       value: freezed == value
-          ? _value.value
+          ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
               as String?,
       conditionChanged: freezed == conditionChanged
-          ? _value.conditionChanged
+          ? _self.conditionChanged
           : conditionChanged // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
@@ -263,11 +246,9 @@ class __$$FlagImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$FlagImpl extends _Flag {
-  const _$FlagImpl({this.name, this.value, this.conditionChanged}) : super._();
-
-  factory _$FlagImpl.fromJson(Map<String, dynamic> json) =>
-      _$$FlagImplFromJson(json);
+class _Flag extends Flag {
+  const _Flag({this.name, this.value, this.conditionChanged}) : super._();
+  factory _Flag.fromJson(Map<String, dynamic> json) => _$FlagFromJson(json);
 
   /// Flag name
   @override
@@ -281,63 +262,82 @@ class _$FlagImpl extends _Flag {
   @override
   final bool? conditionChanged;
 
+  /// Create a copy of Flag
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Flag(name: $name, value: $value, conditionChanged: $conditionChanged)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$FlagCopyWith<_Flag> get copyWith =>
+      __$FlagCopyWithImpl<_Flag>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$FlagToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FlagImpl &&
+            other is _Flag &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.conditionChanged, conditionChanged) ||
                 other.conditionChanged == conditionChanged));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, value, conditionChanged);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$FlagImplCopyWith<_$FlagImpl> get copyWith =>
-      __$$FlagImplCopyWithImpl<_$FlagImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$FlagImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Flag(name: $name, value: $value, conditionChanged: $conditionChanged)';
   }
 }
 
-abstract class _Flag extends Flag {
-  const factory _Flag(
-      {final String? name,
-      final String? value,
-      final bool? conditionChanged}) = _$FlagImpl;
-  const _Flag._() : super._();
-
-  factory _Flag.fromJson(Map<String, dynamic> json) = _$FlagImpl.fromJson;
-
+/// @nodoc
+abstract mixin class _$FlagCopyWith<$Res> implements $FlagCopyWith<$Res> {
+  factory _$FlagCopyWith(_Flag value, $Res Function(_Flag) _then) =
+      __$FlagCopyWithImpl;
   @override
-
-  /// Flag name
-  String? get name;
-  @override
-
-  /// Value associated with this Flag.
-  String? get value;
-  @override
-
-  /// Whether the value for this flag has conditionally changed from the default state.
-  bool? get conditionChanged;
-  @override
-  @JsonKey(ignore: true)
-  _$$FlagImplCopyWith<_$FlagImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @useResult
+  $Res call({String? name, String? value, bool? conditionChanged});
 }
+
+/// @nodoc
+class __$FlagCopyWithImpl<$Res> implements _$FlagCopyWith<$Res> {
+  __$FlagCopyWithImpl(this._self, this._then);
+
+  final _Flag _self;
+  final $Res Function(_Flag) _then;
+
+  /// Create a copy of Flag
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? name = freezed,
+    Object? value = freezed,
+    Object? conditionChanged = freezed,
+  }) {
+    return _then(_Flag(
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      value: freezed == value
+          ? _self.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String?,
+      conditionChanged: freezed == conditionChanged
+          ? _self.conditionChanged
+          : conditionChanged // ignore: cast_nullable_to_non_nullable
+              as bool?,
+    ));
+  }
+}
+
+// dart format on

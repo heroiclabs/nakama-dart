@@ -6,8 +6,7 @@ part of 'properties.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PropertiesImpl _$$PropertiesImplFromJson(Map<String, dynamic> json) =>
-    _$PropertiesImpl(
+_Properties _$PropertiesFromJson(Map<String, dynamic> json) => _Properties(
       $default: (json[r'$default'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, e as String),
       ),
@@ -19,7 +18,7 @@ _$PropertiesImpl _$$PropertiesImplFromJson(Map<String, dynamic> json) =>
       ),
     );
 
-Map<String, dynamic> _$$PropertiesImplToJson(_$PropertiesImpl instance) =>
+Map<String, dynamic> _$PropertiesToJson(_Properties instance) =>
     <String, dynamic>{
       r'$default': instance.$default,
       'custom': instance.custom,

@@ -6,26 +6,23 @@ part of 'flag.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$FlagListImpl _$$FlagListImplFromJson(Map<String, dynamic> json) =>
-    _$FlagListImpl(
+_FlagList _$FlagListFromJson(Map<String, dynamic> json) => _FlagList(
       flags: (json['flags'] as List<dynamic>)
           .map((e) => Flag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$FlagListImplToJson(_$FlagListImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$FlagListToJson(_FlagList instance) => <String, dynamic>{
       'flags': instance.flags,
     };
 
-_$FlagImpl _$$FlagImplFromJson(Map<String, dynamic> json) => _$FlagImpl(
+_Flag _$FlagFromJson(Map<String, dynamic> json) => _Flag(
       name: json['name'] as String?,
       value: json['value'] as String?,
       conditionChanged: json['conditionChanged'] as bool?,
     );
 
-Map<String, dynamic> _$$FlagImplToJson(_$FlagImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$FlagToJson(_Flag instance) => <String, dynamic>{
       'name': instance.name,
       'value': instance.value,
       'conditionChanged': instance.conditionChanged,

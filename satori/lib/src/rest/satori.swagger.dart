@@ -1,6 +1,7 @@
 // ignore_for_file: type=lint
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:json_annotation/json_annotation.dart' as json;
 import 'package:collection/collection.dart';
 import 'dart:convert';
 
@@ -11,6 +12,8 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart' show MultipartFile;
 import 'package:chopper/chopper.dart' as chopper;
+import 'satori.enums.swagger.dart' as enums;
+export 'satori.enums.swagger.dart';
 
 part 'satori.swagger.chopper.dart';
 part 'satori.swagger.g.dart';
@@ -28,20 +31,21 @@ abstract class Satori extends ChopperService {
     ErrorConverter? errorConverter,
     Converter? converter,
     Uri? baseUrl,
-    Iterable<dynamic>? interceptors,
+    List<Interceptor>? interceptors,
   }) {
     if (client != null) {
       return _$Satori(client);
     }
 
     final newClient = ChopperClient(
-        services: [_$Satori()],
-        converter: converter ?? $JsonSerializableConverter(),
-        interceptors: interceptors ?? [],
-        client: httpClient,
-        authenticator: authenticator,
-        errorConverter: errorConverter,
-        baseUrl: baseUrl ?? Uri.parse('http://127.0.0.1:7450'));
+      services: [_$Satori()],
+      converter: converter ?? $JsonSerializableConverter(),
+      interceptors: interceptors ?? [],
+      client: httpClient,
+      authenticator: authenticator,
+      errorConverter: errorConverter,
+      baseUrl: baseUrl ?? Uri.parse('http://127.0.0.1:7450'),
+    );
     return _$Satori(newClient);
   }
 
@@ -51,7 +55,7 @@ abstract class Satori extends ChopperService {
   }
 
   ///A healthcheck which load balancers can use to check the service.
-  @Get(path: '/healthcheck')
+  @GET(path: '/healthcheck')
   Future<chopper.Response<Object>> _healthcheckGet();
 
   ///A readycheck which load balancers can use to check the service.
@@ -60,15 +64,18 @@ abstract class Satori extends ChopperService {
   }
 
   ///A readycheck which load balancers can use to check the service.
-  @Get(path: '/readycheck')
+  @GET(path: '/readycheck')
   Future<chopper.Response<Object>> _readycheckGet();
 
   ///Authenticate against the server.
   ///@param body
-  Future<chopper.Response<ApiSession>> v1AuthenticatePost(
-      {required ApiAuthenticateRequest? body}) {
+  Future<chopper.Response<ApiSession>> v1AuthenticatePost({
+    required ApiAuthenticateRequest? body,
+  }) {
     generatedMapping.putIfAbsent(
-        ApiAuthenticateRequest, () => ApiAuthenticateRequest.fromJsonFactory);
+      ApiAuthenticateRequest,
+      () => ApiAuthenticateRequest.fromJsonFactory,
+    );
     generatedMapping.putIfAbsent(ApiSession, () => ApiSession.fromJsonFactory);
 
     return _v1AuthenticatePost(body: body);
@@ -76,32 +83,40 @@ abstract class Satori extends ChopperService {
 
   ///Authenticate against the server.
   ///@param body
-  @Post(path: '/v1/authenticate')
-  Future<chopper.Response<ApiSession>> _v1AuthenticatePost(
-      {@Body() required ApiAuthenticateRequest? body});
+  @POST(path: '/v1/authenticate')
+  Future<chopper.Response<ApiSession>> _v1AuthenticatePost({
+    @Body() required ApiAuthenticateRequest? body,
+  });
 
   ///Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
   ///@param body Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
-  Future<chopper.Response<Object>> v1AuthenticateLogoutPost(
-      {required ApiAuthenticateLogoutRequest? body}) {
-    generatedMapping.putIfAbsent(ApiAuthenticateLogoutRequest,
-        () => ApiAuthenticateLogoutRequest.fromJsonFactory);
+  Future<chopper.Response<Object>> v1AuthenticateLogoutPost({
+    required ApiAuthenticateLogoutRequest? body,
+  }) {
+    generatedMapping.putIfAbsent(
+      ApiAuthenticateLogoutRequest,
+      () => ApiAuthenticateLogoutRequest.fromJsonFactory,
+    );
 
     return _v1AuthenticateLogoutPost(body: body);
   }
 
   ///Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
   ///@param body Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
-  @Post(path: '/v1/authenticate/logout')
-  Future<chopper.Response<Object>> _v1AuthenticateLogoutPost(
-      {@Body() required ApiAuthenticateLogoutRequest? body});
+  @POST(path: '/v1/authenticate/logout')
+  Future<chopper.Response<Object>> _v1AuthenticateLogoutPost({
+    @Body() required ApiAuthenticateLogoutRequest? body,
+  });
 
   ///Refresh a user's session using a refresh token retrieved from a previous authentication request.
   ///@param body Authenticate against the server with a refresh token.
-  Future<chopper.Response<ApiSession>> v1AuthenticateRefreshPost(
-      {required ApiAuthenticateRefreshRequest? body}) {
-    generatedMapping.putIfAbsent(ApiAuthenticateRefreshRequest,
-        () => ApiAuthenticateRefreshRequest.fromJsonFactory);
+  Future<chopper.Response<ApiSession>> v1AuthenticateRefreshPost({
+    required ApiAuthenticateRefreshRequest? body,
+  }) {
+    generatedMapping.putIfAbsent(
+      ApiAuthenticateRefreshRequest,
+      () => ApiAuthenticateRefreshRequest.fromJsonFactory,
+    );
     generatedMapping.putIfAbsent(ApiSession, () => ApiSession.fromJsonFactory);
 
     return _v1AuthenticateRefreshPost(body: body);
@@ -109,63 +124,98 @@ abstract class Satori extends ChopperService {
 
   ///Refresh a user's session using a refresh token retrieved from a previous authentication request.
   ///@param body Authenticate against the server with a refresh token.
-  @Post(path: '/v1/authenticate/refresh')
-  Future<chopper.Response<ApiSession>> _v1AuthenticateRefreshPost(
-      {@Body() required ApiAuthenticateRefreshRequest? body});
+  @POST(path: '/v1/authenticate/refresh')
+  Future<chopper.Response<ApiSession>> _v1AuthenticateRefreshPost({
+    @Body() required ApiAuthenticateRefreshRequest? body,
+  });
 
   ///Publish an event for this session.
   ///@param body
-  Future<chopper.Response<Object>> v1EventPost(
-      {required ApiEventRequest? body}) {
+  Future<chopper.Response<Object>> v1EventPost({
+    required ApiEventRequest? body,
+  }) {
     generatedMapping.putIfAbsent(
-        ApiEventRequest, () => ApiEventRequest.fromJsonFactory);
+      ApiEventRequest,
+      () => ApiEventRequest.fromJsonFactory,
+    );
 
     return _v1EventPost(body: body);
   }
 
   ///Publish an event for this session.
   ///@param body
-  @Post(path: '/v1/event')
-  Future<chopper.Response<Object>> _v1EventPost(
-      {@Body() required ApiEventRequest? body});
+  @POST(path: '/v1/event')
+  Future<chopper.Response<Object>> _v1EventPost({
+    @Body() required ApiEventRequest? body,
+  });
 
   ///Get or list all available experiments for this identity.
   ///@param names Experiment names; if empty string all experiments are returned.
-  Future<chopper.Response<ApiExperimentList>> v1ExperimentGet(
-      {List<String>? names}) {
+  Future<chopper.Response<ApiExperimentList>> v1ExperimentGet({
+    List<String>? names,
+  }) {
     generatedMapping.putIfAbsent(
-        ApiExperimentList, () => ApiExperimentList.fromJsonFactory);
+      ApiExperimentList,
+      () => ApiExperimentList.fromJsonFactory,
+    );
 
     return _v1ExperimentGet(names: names);
   }
 
   ///Get or list all available experiments for this identity.
   ///@param names Experiment names; if empty string all experiments are returned.
-  @Get(path: '/v1/experiment')
-  Future<chopper.Response<ApiExperimentList>> _v1ExperimentGet(
-      {@Query('names') List<String>? names});
+  @GET(path: '/v1/experiment')
+  Future<chopper.Response<ApiExperimentList>> _v1ExperimentGet({
+    @Query('names') List<String>? names,
+  });
 
   ///List all available flags for this identity.
   ///@param names Flag names; if empty string all flags are returned.
   Future<chopper.Response<ApiFlagList>> v1FlagGet({List<String>? names}) {
     generatedMapping.putIfAbsent(
-        ApiFlagList, () => ApiFlagList.fromJsonFactory);
+      ApiFlagList,
+      () => ApiFlagList.fromJsonFactory,
+    );
 
     return _v1FlagGet(names: names);
   }
 
   ///List all available flags for this identity.
   ///@param names Flag names; if empty string all flags are returned.
-  @Get(path: '/v1/flag')
-  Future<chopper.Response<ApiFlagList>> _v1FlagGet(
-      {@Query('names') List<String>? names});
+  @GET(path: '/v1/flag')
+  Future<chopper.Response<ApiFlagList>> _v1FlagGet({
+    @Query('names') List<String>? names,
+  });
+
+  ///List all available flags and their value overrides for this identity.
+  ///@param names Flag names; if empty string all flags are returned.
+  Future<chopper.Response<ApiFlagOverrideList>> v1FlagOverrideGet({
+    List<String>? names,
+  }) {
+    generatedMapping.putIfAbsent(
+      ApiFlagOverrideList,
+      () => ApiFlagOverrideList.fromJsonFactory,
+    );
+
+    return _v1FlagOverrideGet(names: names);
+  }
+
+  ///List all available flags and their value overrides for this identity.
+  ///@param names Flag names; if empty string all flags are returned.
+  @GET(path: '/v1/flag/override')
+  Future<chopper.Response<ApiFlagOverrideList>> _v1FlagOverrideGet({
+    @Query('names') List<String>? names,
+  });
 
   ///Enrich/replace the current session with new identifier.
   ///@param body Enrich/replace the current session with a new ID.
-  Future<chopper.Response<ApiSession>> v1IdentifyPut(
-      {required ApiIdentifyRequest? body}) {
+  Future<chopper.Response<ApiSession>> v1IdentifyPut({
+    required ApiIdentifyRequest? body,
+  }) {
     generatedMapping.putIfAbsent(
-        ApiIdentifyRequest, () => ApiIdentifyRequest.fromJsonFactory);
+      ApiIdentifyRequest,
+      () => ApiIdentifyRequest.fromJsonFactory,
+    );
     generatedMapping.putIfAbsent(ApiSession, () => ApiSession.fromJsonFactory);
 
     return _v1IdentifyPut(body: body);
@@ -173,9 +223,10 @@ abstract class Satori extends ChopperService {
 
   ///Enrich/replace the current session with new identifier.
   ///@param body Enrich/replace the current session with a new ID.
-  @Put(path: '/v1/identify')
-  Future<chopper.Response<ApiSession>> _v1IdentifyPut(
-      {@Body() required ApiIdentifyRequest? body});
+  @PUT(path: '/v1/identify')
+  Future<chopper.Response<ApiSession>> _v1IdentifyPut({
+    @Body() required ApiIdentifyRequest? body,
+  });
 
   ///Delete the caller's identity and associated data.
   Future<chopper.Response<Object>> v1IdentityDelete() {
@@ -183,24 +234,28 @@ abstract class Satori extends ChopperService {
   }
 
   ///Delete the caller's identity and associated data.
-  @Delete(path: '/v1/identity')
+  @DELETE(path: '/v1/identity')
   Future<chopper.Response<Object>> _v1IdentityDelete();
 
   ///List available live events.
   ///@param names Live event names; if empty string all live events are returned.
-  Future<chopper.Response<ApiLiveEventList>> v1LiveEventGet(
-      {List<String>? names}) {
+  Future<chopper.Response<ApiLiveEventList>> v1LiveEventGet({
+    List<String>? names,
+  }) {
     generatedMapping.putIfAbsent(
-        ApiLiveEventList, () => ApiLiveEventList.fromJsonFactory);
+      ApiLiveEventList,
+      () => ApiLiveEventList.fromJsonFactory,
+    );
 
     return _v1LiveEventGet(names: names);
   }
 
   ///List available live events.
   ///@param names Live event names; if empty string all live events are returned.
-  @Get(path: '/v1/live-event')
-  Future<chopper.Response<ApiLiveEventList>> _v1LiveEventGet(
-      {@Query('names') List<String>? names});
+  @GET(path: '/v1/live-event')
+  Future<chopper.Response<ApiLiveEventList>> _v1LiveEventGet({
+    @Query('names') List<String>? names,
+  });
 
   ///Get the list of messages for the identity.
   ///@param limit Max number of messages to return. Between 1 and 100.
@@ -211,8 +266,10 @@ abstract class Satori extends ChopperService {
     bool? forward,
     String? cursor,
   }) {
-    generatedMapping.putIfAbsent(ApiGetMessageListResponse,
-        () => ApiGetMessageListResponse.fromJsonFactory);
+    generatedMapping.putIfAbsent(
+      ApiGetMessageListResponse,
+      () => ApiGetMessageListResponse.fromJsonFactory,
+    );
 
     return _v1MessageGet(limit: limit, forward: forward, cursor: cursor);
   }
@@ -221,7 +278,7 @@ abstract class Satori extends ChopperService {
   ///@param limit Max number of messages to return. Between 1 and 100.
   ///@param forward True if listing should be older messages to newer, false if reverse.
   ///@param cursor A pagination cursor, if any.
-  @Get(path: '/v1/message')
+  @GET(path: '/v1/message')
   Future<chopper.Response<ApiGetMessageListResponse>> _v1MessageGet({
     @Query('limit') int? limit,
     @Query('forward') bool? forward,
@@ -236,9 +293,10 @@ abstract class Satori extends ChopperService {
 
   ///Deletes a message for an identity.
   ///@param id The identifier of the message.
-  @Delete(path: '/v1/message/{id}')
-  Future<chopper.Response<Object>> _v1MessageIdDelete(
-      {@Path('id') required String? id});
+  @DELETE(path: '/v1/message/{id}')
+  Future<chopper.Response<Object>> _v1MessageIdDelete({
+    @Path('id') required String? id,
+  });
 
   ///Updates a message for an identity.
   ///@param id The identifier of the messages.
@@ -253,7 +311,7 @@ abstract class Satori extends ChopperService {
   ///Updates a message for an identity.
   ///@param id The identifier of the messages.
   ///@param body The request to update the status of a message.
-  @Put(path: '/v1/message/{id}')
+  @PUT(path: '/v1/message/{id}')
   Future<chopper.Response<Object>> _v1MessageIdPut({
     @Path('id') required String? id,
     @Body() required Object? body,
@@ -262,38 +320,116 @@ abstract class Satori extends ChopperService {
   ///List properties associated with this identity.
   Future<chopper.Response<ApiProperties>> v1PropertiesGet() {
     generatedMapping.putIfAbsent(
-        ApiProperties, () => ApiProperties.fromJsonFactory);
+      ApiProperties,
+      () => ApiProperties.fromJsonFactory,
+    );
 
     return _v1PropertiesGet();
   }
 
   ///List properties associated with this identity.
-  @Get(path: '/v1/properties')
+  @GET(path: '/v1/properties')
   Future<chopper.Response<ApiProperties>> _v1PropertiesGet();
 
   ///Update identity properties.
   ///@param body Update Properties associated with this identity.
-  Future<chopper.Response<Object>> v1PropertiesPut(
-      {required ApiUpdatePropertiesRequest? body}) {
-    generatedMapping.putIfAbsent(ApiUpdatePropertiesRequest,
-        () => ApiUpdatePropertiesRequest.fromJsonFactory);
+  Future<chopper.Response<Object>> v1PropertiesPut({
+    required ApiUpdatePropertiesRequest? body,
+  }) {
+    generatedMapping.putIfAbsent(
+      ApiUpdatePropertiesRequest,
+      () => ApiUpdatePropertiesRequest.fromJsonFactory,
+    );
 
     return _v1PropertiesPut(body: body);
   }
 
   ///Update identity properties.
   ///@param body Update Properties associated with this identity.
-  @Put(path: '/v1/properties')
-  Future<chopper.Response<Object>> _v1PropertiesPut(
-      {@Body() required ApiUpdatePropertiesRequest? body});
+  @PUT(path: '/v1/properties')
+  Future<chopper.Response<Object>> _v1PropertiesPut({
+    @Body() required ApiUpdatePropertiesRequest? body,
+  });
+}
+
+@JsonSerializable(explicitToJson: true)
+class FlagValueChangeReason {
+  const FlagValueChangeReason({this.type, this.name, this.variantName});
+
+  factory FlagValueChangeReason.fromJson(Map<String, dynamic> json) =>
+      _$FlagValueChangeReasonFromJson(json);
+
+  static const toJsonFactory = _$FlagValueChangeReasonToJson;
+  Map<String, dynamic> toJson() => _$FlagValueChangeReasonToJson(this);
+
+  @JsonKey(
+    name: 'type',
+    includeIfNull: true,
+    toJson: flagValueChangeReasonTypeNullableToJson,
+    fromJson: flagValueChangeReasonTypeNullableFromJson,
+  )
+  final enums.FlagValueChangeReasonType? type;
+  @JsonKey(name: 'name', includeIfNull: true)
+  final String? name;
+  @JsonKey(name: 'variantName', includeIfNull: true)
+  final String? variantName;
+  static const fromJsonFactory = _$FlagValueChangeReasonFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is FlagValueChangeReason &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.variantName, variantName) ||
+                const DeepCollectionEquality().equals(
+                  other.variantName,
+                  variantName,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(variantName) ^
+      runtimeType.hashCode;
+}
+
+extension $FlagValueChangeReasonExtension on FlagValueChangeReason {
+  FlagValueChangeReason copyWith({
+    enums.FlagValueChangeReasonType? type,
+    String? name,
+    String? variantName,
+  }) {
+    return FlagValueChangeReason(
+      type: type ?? this.type,
+      name: name ?? this.name,
+      variantName: variantName ?? this.variantName,
+    );
+  }
+
+  FlagValueChangeReason copyWithWrapped({
+    Wrapped<enums.FlagValueChangeReasonType?>? type,
+    Wrapped<String?>? name,
+    Wrapped<String?>? variantName,
+  }) {
+    return FlagValueChangeReason(
+      type: (type != null ? type.value : this.type),
+      name: (name != null ? name.value : this.name),
+      variantName: (variantName != null ? variantName.value : this.variantName),
+    );
+  }
 }
 
 @JsonSerializable(explicitToJson: true)
 class ApiAuthenticateLogoutRequest {
-  const ApiAuthenticateLogoutRequest({
-    this.token,
-    this.refreshToken,
-  });
+  const ApiAuthenticateLogoutRequest({this.token, this.refreshToken});
 
   factory ApiAuthenticateLogoutRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiAuthenticateLogoutRequestFromJson(json);
@@ -314,8 +450,10 @@ class ApiAuthenticateLogoutRequest {
             (identical(other.token, token) ||
                 const DeepCollectionEquality().equals(other.token, token)) &&
             (identical(other.refreshToken, refreshToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.refreshToken, refreshToken)));
+                const DeepCollectionEquality().equals(
+                  other.refreshToken,
+                  refreshToken,
+                )));
   }
 
   @override
@@ -332,24 +470,27 @@ extension $ApiAuthenticateLogoutRequestExtension
     on ApiAuthenticateLogoutRequest {
   ApiAuthenticateLogoutRequest copyWith({String? token, String? refreshToken}) {
     return ApiAuthenticateLogoutRequest(
-        token: token ?? this.token,
-        refreshToken: refreshToken ?? this.refreshToken);
+      token: token ?? this.token,
+      refreshToken: refreshToken ?? this.refreshToken,
+    );
   }
 
-  ApiAuthenticateLogoutRequest copyWithWrapped(
-      {Wrapped<String?>? token, Wrapped<String?>? refreshToken}) {
+  ApiAuthenticateLogoutRequest copyWithWrapped({
+    Wrapped<String?>? token,
+    Wrapped<String?>? refreshToken,
+  }) {
     return ApiAuthenticateLogoutRequest(
-        token: (token != null ? token.value : this.token),
-        refreshToken:
-            (refreshToken != null ? refreshToken.value : this.refreshToken));
+      token: (token != null ? token.value : this.token),
+      refreshToken: (refreshToken != null
+          ? refreshToken.value
+          : this.refreshToken),
+    );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class ApiAuthenticateRefreshRequest {
-  const ApiAuthenticateRefreshRequest({
-    this.refreshToken,
-  });
+  const ApiAuthenticateRefreshRequest({this.refreshToken});
 
   factory ApiAuthenticateRefreshRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiAuthenticateRefreshRequestFromJson(json);
@@ -366,8 +507,10 @@ class ApiAuthenticateRefreshRequest {
     return identical(this, other) ||
         (other is ApiAuthenticateRefreshRequest &&
             (identical(other.refreshToken, refreshToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.refreshToken, refreshToken)));
+                const DeepCollectionEquality().equals(
+                  other.refreshToken,
+                  refreshToken,
+                )));
   }
 
   @override
@@ -382,14 +525,18 @@ extension $ApiAuthenticateRefreshRequestExtension
     on ApiAuthenticateRefreshRequest {
   ApiAuthenticateRefreshRequest copyWith({String? refreshToken}) {
     return ApiAuthenticateRefreshRequest(
-        refreshToken: refreshToken ?? this.refreshToken);
+      refreshToken: refreshToken ?? this.refreshToken,
+    );
   }
 
-  ApiAuthenticateRefreshRequest copyWithWrapped(
-      {Wrapped<String?>? refreshToken}) {
+  ApiAuthenticateRefreshRequest copyWithWrapped({
+    Wrapped<String?>? refreshToken,
+  }) {
     return ApiAuthenticateRefreshRequest(
-        refreshToken:
-            (refreshToken != null ? refreshToken.value : this.refreshToken));
+      refreshToken: (refreshToken != null
+          ? refreshToken.value
+          : this.refreshToken),
+    );
   }
 }
 
@@ -399,6 +546,7 @@ class ApiAuthenticateRequest {
     this.id,
     this.$default,
     this.custom,
+    this.noSession,
   });
 
   factory ApiAuthenticateRequest.fromJson(Map<String, dynamic> json) =>
@@ -413,6 +561,8 @@ class ApiAuthenticateRequest {
   final Map<String, dynamic>? $default;
   @JsonKey(name: 'custom', includeIfNull: true)
   final Map<String, dynamic>? custom;
+  @JsonKey(name: 'noSession', includeIfNull: true)
+  final bool? noSession;
   static const fromJsonFactory = _$ApiAuthenticateRequestFromJson;
 
   @override
@@ -422,10 +572,17 @@ class ApiAuthenticateRequest {
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.$default, $default) ||
-                const DeepCollectionEquality()
-                    .equals(other.$default, $default)) &&
+                const DeepCollectionEquality().equals(
+                  other.$default,
+                  $default,
+                )) &&
             (identical(other.custom, custom) ||
-                const DeepCollectionEquality().equals(other.custom, custom)));
+                const DeepCollectionEquality().equals(other.custom, custom)) &&
+            (identical(other.noSession, noSession) ||
+                const DeepCollectionEquality().equals(
+                  other.noSession,
+                  noSession,
+                )));
   }
 
   @override
@@ -436,28 +593,37 @@ class ApiAuthenticateRequest {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash($default) ^
       const DeepCollectionEquality().hash(custom) ^
+      const DeepCollectionEquality().hash(noSession) ^
       runtimeType.hashCode;
 }
 
 extension $ApiAuthenticateRequestExtension on ApiAuthenticateRequest {
-  ApiAuthenticateRequest copyWith(
-      {String? id,
-      Map<String, dynamic>? $default,
-      Map<String, dynamic>? custom}) {
+  ApiAuthenticateRequest copyWith({
+    String? id,
+    Map<String, dynamic>? $default,
+    Map<String, dynamic>? custom,
+    bool? noSession,
+  }) {
     return ApiAuthenticateRequest(
-        id: id ?? this.id,
-        $default: $default ?? this.$default,
-        custom: custom ?? this.custom);
+      id: id ?? this.id,
+      $default: $default ?? this.$default,
+      custom: custom ?? this.custom,
+      noSession: noSession ?? this.noSession,
+    );
   }
 
-  ApiAuthenticateRequest copyWithWrapped(
-      {Wrapped<String?>? id,
-      Wrapped<Map<String, dynamic>?>? $default,
-      Wrapped<Map<String, dynamic>?>? custom}) {
+  ApiAuthenticateRequest copyWithWrapped({
+    Wrapped<String?>? id,
+    Wrapped<Map<String, dynamic>?>? $default,
+    Wrapped<Map<String, dynamic>?>? custom,
+    Wrapped<bool?>? noSession,
+  }) {
     return ApiAuthenticateRequest(
-        id: (id != null ? id.value : this.id),
-        $default: ($default != null ? $default.value : this.$default),
-        custom: (custom != null ? custom.value : this.custom));
+      id: (id != null ? id.value : this.id),
+      $default: ($default != null ? $default.value : this.$default),
+      custom: (custom != null ? custom.value : this.custom),
+      noSession: (noSession != null ? noSession.value : this.noSession),
+    );
   }
 }
 
@@ -498,13 +664,17 @@ class ApiEvent {
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality()
-                    .equals(other.metadata, metadata)) &&
+                const DeepCollectionEquality().equals(
+                  other.metadata,
+                  metadata,
+                )) &&
             (identical(other.$value, $value) ||
                 const DeepCollectionEquality().equals(other.$value, $value)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)));
+                const DeepCollectionEquality().equals(
+                  other.timestamp,
+                  timestamp,
+                )));
   }
 
   @override
@@ -521,40 +691,42 @@ class ApiEvent {
 }
 
 extension $ApiEventExtension on ApiEvent {
-  ApiEvent copyWith(
-      {String? name,
-      String? id,
-      Map<String, dynamic>? metadata,
-      String? $value,
-      DateTime? timestamp}) {
+  ApiEvent copyWith({
+    String? name,
+    String? id,
+    Map<String, dynamic>? metadata,
+    String? $value,
+    DateTime? timestamp,
+  }) {
     return ApiEvent(
-        name: name ?? this.name,
-        id: id ?? this.id,
-        metadata: metadata ?? this.metadata,
-        $value: $value ?? this.$value,
-        timestamp: timestamp ?? this.timestamp);
+      name: name ?? this.name,
+      id: id ?? this.id,
+      metadata: metadata ?? this.metadata,
+      $value: $value ?? this.$value,
+      timestamp: timestamp ?? this.timestamp,
+    );
   }
 
-  ApiEvent copyWithWrapped(
-      {Wrapped<String?>? name,
-      Wrapped<String?>? id,
-      Wrapped<Map<String, dynamic>?>? metadata,
-      Wrapped<String?>? $value,
-      Wrapped<DateTime?>? timestamp}) {
+  ApiEvent copyWithWrapped({
+    Wrapped<String?>? name,
+    Wrapped<String?>? id,
+    Wrapped<Map<String, dynamic>?>? metadata,
+    Wrapped<String?>? $value,
+    Wrapped<DateTime?>? timestamp,
+  }) {
     return ApiEvent(
-        name: (name != null ? name.value : this.name),
-        id: (id != null ? id.value : this.id),
-        metadata: (metadata != null ? metadata.value : this.metadata),
-        $value: ($value != null ? $value.value : this.$value),
-        timestamp: (timestamp != null ? timestamp.value : this.timestamp));
+      name: (name != null ? name.value : this.name),
+      id: (id != null ? id.value : this.id),
+      metadata: (metadata != null ? metadata.value : this.metadata),
+      $value: ($value != null ? $value.value : this.$value),
+      timestamp: (timestamp != null ? timestamp.value : this.timestamp),
+    );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class ApiEventRequest {
-  const ApiEventRequest({
-    this.events,
-  });
+  const ApiEventRequest({this.events});
 
   factory ApiEventRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiEventRequestFromJson(json);
@@ -589,16 +761,14 @@ extension $ApiEventRequestExtension on ApiEventRequest {
 
   ApiEventRequest copyWithWrapped({Wrapped<List<ApiEvent>?>? events}) {
     return ApiEventRequest(
-        events: (events != null ? events.value : this.events));
+      events: (events != null ? events.value : this.events),
+    );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class ApiExperiment {
-  const ApiExperiment({
-    this.name,
-    this.$value,
-  });
+  const ApiExperiment({this.name, this.$value});
 
   factory ApiExperiment.fromJson(Map<String, dynamic> json) =>
       _$ApiExperimentFromJson(json);
@@ -635,22 +805,25 @@ class ApiExperiment {
 extension $ApiExperimentExtension on ApiExperiment {
   ApiExperiment copyWith({String? name, String? $value}) {
     return ApiExperiment(
-        name: name ?? this.name, $value: $value ?? this.$value);
+      name: name ?? this.name,
+      $value: $value ?? this.$value,
+    );
   }
 
-  ApiExperiment copyWithWrapped(
-      {Wrapped<String?>? name, Wrapped<String?>? $value}) {
+  ApiExperiment copyWithWrapped({
+    Wrapped<String?>? name,
+    Wrapped<String?>? $value,
+  }) {
     return ApiExperiment(
-        name: (name != null ? name.value : this.name),
-        $value: ($value != null ? $value.value : this.$value));
+      name: (name != null ? name.value : this.name),
+      $value: ($value != null ? $value.value : this.$value),
+    );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class ApiExperimentList {
-  const ApiExperimentList({
-    this.experiments,
-  });
+  const ApiExperimentList({this.experiments});
 
   factory ApiExperimentList.fromJson(Map<String, dynamic> json) =>
       _$ApiExperimentListFromJson(json);
@@ -659,7 +832,10 @@ class ApiExperimentList {
   Map<String, dynamic> toJson() => _$ApiExperimentListToJson(this);
 
   @JsonKey(
-      name: 'experiments', includeIfNull: true, defaultValue: <ApiExperiment>[])
+    name: 'experiments',
+    includeIfNull: true,
+    defaultValue: <ApiExperiment>[],
+  )
   final List<ApiExperiment>? experiments;
   static const fromJsonFactory = _$ApiExperimentListFromJson;
 
@@ -668,8 +844,10 @@ class ApiExperimentList {
     return identical(this, other) ||
         (other is ApiExperimentList &&
             (identical(other.experiments, experiments) ||
-                const DeepCollectionEquality()
-                    .equals(other.experiments, experiments)));
+                const DeepCollectionEquality().equals(
+                  other.experiments,
+                  experiments,
+                )));
   }
 
   @override
@@ -685,11 +863,12 @@ extension $ApiExperimentListExtension on ApiExperimentList {
     return ApiExperimentList(experiments: experiments ?? this.experiments);
   }
 
-  ApiExperimentList copyWithWrapped(
-      {Wrapped<List<ApiExperiment>?>? experiments}) {
+  ApiExperimentList copyWithWrapped({
+    Wrapped<List<ApiExperiment>?>? experiments,
+  }) {
     return ApiExperimentList(
-        experiments:
-            (experiments != null ? experiments.value : this.experiments));
+      experiments: (experiments != null ? experiments.value : this.experiments),
+    );
   }
 }
 
@@ -699,6 +878,7 @@ class ApiFlag {
     this.name,
     this.$value,
     this.conditionChanged,
+    this.changeReason,
   });
 
   factory ApiFlag.fromJson(Map<String, dynamic> json) =>
@@ -713,6 +893,8 @@ class ApiFlag {
   final String? $value;
   @JsonKey(name: 'conditionChanged', includeIfNull: true)
   final bool? conditionChanged;
+  @JsonKey(name: 'changeReason', includeIfNull: true)
+  final FlagValueChangeReason? changeReason;
   static const fromJsonFactory = _$ApiFlagFromJson;
 
   @override
@@ -724,8 +906,15 @@ class ApiFlag {
             (identical(other.$value, $value) ||
                 const DeepCollectionEquality().equals(other.$value, $value)) &&
             (identical(other.conditionChanged, conditionChanged) ||
-                const DeepCollectionEquality()
-                    .equals(other.conditionChanged, conditionChanged)));
+                const DeepCollectionEquality().equals(
+                  other.conditionChanged,
+                  conditionChanged,
+                )) &&
+            (identical(other.changeReason, changeReason) ||
+                const DeepCollectionEquality().equals(
+                  other.changeReason,
+                  changeReason,
+                )));
   }
 
   @override
@@ -736,35 +925,47 @@ class ApiFlag {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash($value) ^
       const DeepCollectionEquality().hash(conditionChanged) ^
+      const DeepCollectionEquality().hash(changeReason) ^
       runtimeType.hashCode;
 }
 
 extension $ApiFlagExtension on ApiFlag {
-  ApiFlag copyWith({String? name, String? $value, bool? conditionChanged}) {
+  ApiFlag copyWith({
+    String? name,
+    String? $value,
+    bool? conditionChanged,
+    FlagValueChangeReason? changeReason,
+  }) {
     return ApiFlag(
-        name: name ?? this.name,
-        $value: $value ?? this.$value,
-        conditionChanged: conditionChanged ?? this.conditionChanged);
+      name: name ?? this.name,
+      $value: $value ?? this.$value,
+      conditionChanged: conditionChanged ?? this.conditionChanged,
+      changeReason: changeReason ?? this.changeReason,
+    );
   }
 
-  ApiFlag copyWithWrapped(
-      {Wrapped<String?>? name,
-      Wrapped<String?>? $value,
-      Wrapped<bool?>? conditionChanged}) {
+  ApiFlag copyWithWrapped({
+    Wrapped<String?>? name,
+    Wrapped<String?>? $value,
+    Wrapped<bool?>? conditionChanged,
+    Wrapped<FlagValueChangeReason?>? changeReason,
+  }) {
     return ApiFlag(
-        name: (name != null ? name.value : this.name),
-        $value: ($value != null ? $value.value : this.$value),
-        conditionChanged: (conditionChanged != null
-            ? conditionChanged.value
-            : this.conditionChanged));
+      name: (name != null ? name.value : this.name),
+      $value: ($value != null ? $value.value : this.$value),
+      conditionChanged: (conditionChanged != null
+          ? conditionChanged.value
+          : this.conditionChanged),
+      changeReason: (changeReason != null
+          ? changeReason.value
+          : this.changeReason),
+    );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class ApiFlagList {
-  const ApiFlagList({
-    this.flags,
-  });
+  const ApiFlagList({this.flags});
 
   factory ApiFlagList.fromJson(Map<String, dynamic> json) =>
       _$ApiFlagListFromJson(json);
@@ -803,6 +1004,226 @@ extension $ApiFlagListExtension on ApiFlagList {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ApiFlagOverride {
+  const ApiFlagOverride({this.flagName, this.overrides});
+
+  factory ApiFlagOverride.fromJson(Map<String, dynamic> json) =>
+      _$ApiFlagOverrideFromJson(json);
+
+  static const toJsonFactory = _$ApiFlagOverrideToJson;
+  Map<String, dynamic> toJson() => _$ApiFlagOverrideToJson(this);
+
+  @JsonKey(name: 'flagName', includeIfNull: true)
+  final String? flagName;
+  @JsonKey(
+    name: 'overrides',
+    includeIfNull: true,
+    defaultValue: <ApiFlagOverrideValue>[],
+  )
+  final List<ApiFlagOverrideValue>? overrides;
+  static const fromJsonFactory = _$ApiFlagOverrideFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ApiFlagOverride &&
+            (identical(other.flagName, flagName) ||
+                const DeepCollectionEquality().equals(
+                  other.flagName,
+                  flagName,
+                )) &&
+            (identical(other.overrides, overrides) ||
+                const DeepCollectionEquality().equals(
+                  other.overrides,
+                  overrides,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(flagName) ^
+      const DeepCollectionEquality().hash(overrides) ^
+      runtimeType.hashCode;
+}
+
+extension $ApiFlagOverrideExtension on ApiFlagOverride {
+  ApiFlagOverride copyWith({
+    String? flagName,
+    List<ApiFlagOverrideValue>? overrides,
+  }) {
+    return ApiFlagOverride(
+      flagName: flagName ?? this.flagName,
+      overrides: overrides ?? this.overrides,
+    );
+  }
+
+  ApiFlagOverride copyWithWrapped({
+    Wrapped<String?>? flagName,
+    Wrapped<List<ApiFlagOverrideValue>?>? overrides,
+  }) {
+    return ApiFlagOverride(
+      flagName: (flagName != null ? flagName.value : this.flagName),
+      overrides: (overrides != null ? overrides.value : this.overrides),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ApiFlagOverrideList {
+  const ApiFlagOverrideList({this.flags});
+
+  factory ApiFlagOverrideList.fromJson(Map<String, dynamic> json) =>
+      _$ApiFlagOverrideListFromJson(json);
+
+  static const toJsonFactory = _$ApiFlagOverrideListToJson;
+  Map<String, dynamic> toJson() => _$ApiFlagOverrideListToJson(this);
+
+  @JsonKey(
+    name: 'flags',
+    includeIfNull: true,
+    defaultValue: <ApiFlagOverride>[],
+  )
+  final List<ApiFlagOverride>? flags;
+  static const fromJsonFactory = _$ApiFlagOverrideListFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ApiFlagOverrideList &&
+            (identical(other.flags, flags) ||
+                const DeepCollectionEquality().equals(other.flags, flags)));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(flags) ^ runtimeType.hashCode;
+}
+
+extension $ApiFlagOverrideListExtension on ApiFlagOverrideList {
+  ApiFlagOverrideList copyWith({List<ApiFlagOverride>? flags}) {
+    return ApiFlagOverrideList(flags: flags ?? this.flags);
+  }
+
+  ApiFlagOverrideList copyWithWrapped({
+    Wrapped<List<ApiFlagOverride>?>? flags,
+  }) {
+    return ApiFlagOverrideList(
+      flags: (flags != null ? flags.value : this.flags),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
+class ApiFlagOverrideValue {
+  const ApiFlagOverrideValue({
+    this.type,
+    this.name,
+    this.variantName,
+    this.$value,
+    this.createTimeSec,
+  });
+
+  factory ApiFlagOverrideValue.fromJson(Map<String, dynamic> json) =>
+      _$ApiFlagOverrideValueFromJson(json);
+
+  static const toJsonFactory = _$ApiFlagOverrideValueToJson;
+  Map<String, dynamic> toJson() => _$ApiFlagOverrideValueToJson(this);
+
+  @JsonKey(
+    name: 'type',
+    includeIfNull: true,
+    toJson: apiFlagOverrideTypeNullableToJson,
+    fromJson: apiFlagOverrideTypeNullableFromJson,
+  )
+  final enums.ApiFlagOverrideType? type;
+  @JsonKey(name: 'name', includeIfNull: true)
+  final String? name;
+  @JsonKey(name: 'variantName', includeIfNull: true)
+  final String? variantName;
+  @JsonKey(name: 'value', includeIfNull: true)
+  final String? $value;
+  @JsonKey(name: 'createTimeSec', includeIfNull: true)
+  final String? createTimeSec;
+  static const fromJsonFactory = _$ApiFlagOverrideValueFromJson;
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other is ApiFlagOverrideValue &&
+            (identical(other.type, type) ||
+                const DeepCollectionEquality().equals(other.type, type)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.variantName, variantName) ||
+                const DeepCollectionEquality().equals(
+                  other.variantName,
+                  variantName,
+                )) &&
+            (identical(other.$value, $value) ||
+                const DeepCollectionEquality().equals(other.$value, $value)) &&
+            (identical(other.createTimeSec, createTimeSec) ||
+                const DeepCollectionEquality().equals(
+                  other.createTimeSec,
+                  createTimeSec,
+                )));
+  }
+
+  @override
+  String toString() => jsonEncode(this);
+
+  @override
+  int get hashCode =>
+      const DeepCollectionEquality().hash(type) ^
+      const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(variantName) ^
+      const DeepCollectionEquality().hash($value) ^
+      const DeepCollectionEquality().hash(createTimeSec) ^
+      runtimeType.hashCode;
+}
+
+extension $ApiFlagOverrideValueExtension on ApiFlagOverrideValue {
+  ApiFlagOverrideValue copyWith({
+    enums.ApiFlagOverrideType? type,
+    String? name,
+    String? variantName,
+    String? $value,
+    String? createTimeSec,
+  }) {
+    return ApiFlagOverrideValue(
+      type: type ?? this.type,
+      name: name ?? this.name,
+      variantName: variantName ?? this.variantName,
+      $value: $value ?? this.$value,
+      createTimeSec: createTimeSec ?? this.createTimeSec,
+    );
+  }
+
+  ApiFlagOverrideValue copyWithWrapped({
+    Wrapped<enums.ApiFlagOverrideType?>? type,
+    Wrapped<String?>? name,
+    Wrapped<String?>? variantName,
+    Wrapped<String?>? $value,
+    Wrapped<String?>? createTimeSec,
+  }) {
+    return ApiFlagOverrideValue(
+      type: (type != null ? type.value : this.type),
+      name: (name != null ? name.value : this.name),
+      variantName: (variantName != null ? variantName.value : this.variantName),
+      $value: ($value != null ? $value.value : this.$value),
+      createTimeSec: (createTimeSec != null
+          ? createTimeSec.value
+          : this.createTimeSec),
+    );
+  }
+}
+
+@JsonSerializable(explicitToJson: true)
 class ApiGetMessageListResponse {
   const ApiGetMessageListResponse({
     this.messages,
@@ -832,17 +1253,25 @@ class ApiGetMessageListResponse {
     return identical(this, other) ||
         (other is ApiGetMessageListResponse &&
             (identical(other.messages, messages) ||
-                const DeepCollectionEquality()
-                    .equals(other.messages, messages)) &&
+                const DeepCollectionEquality().equals(
+                  other.messages,
+                  messages,
+                )) &&
             (identical(other.nextCursor, nextCursor) ||
-                const DeepCollectionEquality()
-                    .equals(other.nextCursor, nextCursor)) &&
+                const DeepCollectionEquality().equals(
+                  other.nextCursor,
+                  nextCursor,
+                )) &&
             (identical(other.prevCursor, prevCursor) ||
-                const DeepCollectionEquality()
-                    .equals(other.prevCursor, prevCursor)) &&
+                const DeepCollectionEquality().equals(
+                  other.prevCursor,
+                  prevCursor,
+                )) &&
             (identical(other.cacheableCursor, cacheableCursor) ||
-                const DeepCollectionEquality()
-                    .equals(other.cacheableCursor, cacheableCursor)));
+                const DeepCollectionEquality().equals(
+                  other.cacheableCursor,
+                  cacheableCursor,
+                )));
   }
 
   @override
@@ -858,40 +1287,40 @@ class ApiGetMessageListResponse {
 }
 
 extension $ApiGetMessageListResponseExtension on ApiGetMessageListResponse {
-  ApiGetMessageListResponse copyWith(
-      {List<ApiMessage>? messages,
-      String? nextCursor,
-      String? prevCursor,
-      String? cacheableCursor}) {
+  ApiGetMessageListResponse copyWith({
+    List<ApiMessage>? messages,
+    String? nextCursor,
+    String? prevCursor,
+    String? cacheableCursor,
+  }) {
     return ApiGetMessageListResponse(
-        messages: messages ?? this.messages,
-        nextCursor: nextCursor ?? this.nextCursor,
-        prevCursor: prevCursor ?? this.prevCursor,
-        cacheableCursor: cacheableCursor ?? this.cacheableCursor);
+      messages: messages ?? this.messages,
+      nextCursor: nextCursor ?? this.nextCursor,
+      prevCursor: prevCursor ?? this.prevCursor,
+      cacheableCursor: cacheableCursor ?? this.cacheableCursor,
+    );
   }
 
-  ApiGetMessageListResponse copyWithWrapped(
-      {Wrapped<List<ApiMessage>?>? messages,
-      Wrapped<String?>? nextCursor,
-      Wrapped<String?>? prevCursor,
-      Wrapped<String?>? cacheableCursor}) {
+  ApiGetMessageListResponse copyWithWrapped({
+    Wrapped<List<ApiMessage>?>? messages,
+    Wrapped<String?>? nextCursor,
+    Wrapped<String?>? prevCursor,
+    Wrapped<String?>? cacheableCursor,
+  }) {
     return ApiGetMessageListResponse(
-        messages: (messages != null ? messages.value : this.messages),
-        nextCursor: (nextCursor != null ? nextCursor.value : this.nextCursor),
-        prevCursor: (prevCursor != null ? prevCursor.value : this.prevCursor),
-        cacheableCursor: (cacheableCursor != null
-            ? cacheableCursor.value
-            : this.cacheableCursor));
+      messages: (messages != null ? messages.value : this.messages),
+      nextCursor: (nextCursor != null ? nextCursor.value : this.nextCursor),
+      prevCursor: (prevCursor != null ? prevCursor.value : this.prevCursor),
+      cacheableCursor: (cacheableCursor != null
+          ? cacheableCursor.value
+          : this.cacheableCursor),
+    );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class ApiIdentifyRequest {
-  const ApiIdentifyRequest({
-    this.id,
-    this.$default,
-    this.custom,
-  });
+  const ApiIdentifyRequest({this.id, this.$default, this.custom});
 
   factory ApiIdentifyRequest.fromJson(Map<String, dynamic> json) =>
       _$ApiIdentifyRequestFromJson(json);
@@ -914,8 +1343,10 @@ class ApiIdentifyRequest {
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.$default, $default) ||
-                const DeepCollectionEquality()
-                    .equals(other.$default, $default)) &&
+                const DeepCollectionEquality().equals(
+                  other.$default,
+                  $default,
+                )) &&
             (identical(other.custom, custom) ||
                 const DeepCollectionEquality().equals(other.custom, custom)));
   }
@@ -932,24 +1363,28 @@ class ApiIdentifyRequest {
 }
 
 extension $ApiIdentifyRequestExtension on ApiIdentifyRequest {
-  ApiIdentifyRequest copyWith(
-      {String? id,
-      Map<String, dynamic>? $default,
-      Map<String, dynamic>? custom}) {
+  ApiIdentifyRequest copyWith({
+    String? id,
+    Map<String, dynamic>? $default,
+    Map<String, dynamic>? custom,
+  }) {
     return ApiIdentifyRequest(
-        id: id ?? this.id,
-        $default: $default ?? this.$default,
-        custom: custom ?? this.custom);
+      id: id ?? this.id,
+      $default: $default ?? this.$default,
+      custom: custom ?? this.custom,
+    );
   }
 
-  ApiIdentifyRequest copyWithWrapped(
-      {Wrapped<String?>? id,
-      Wrapped<Map<String, dynamic>?>? $default,
-      Wrapped<Map<String, dynamic>?>? custom}) {
+  ApiIdentifyRequest copyWithWrapped({
+    Wrapped<String?>? id,
+    Wrapped<Map<String, dynamic>?>? $default,
+    Wrapped<Map<String, dynamic>?>? custom,
+  }) {
     return ApiIdentifyRequest(
-        id: (id != null ? id.value : this.id),
-        $default: ($default != null ? $default.value : this.$default),
-        custom: (custom != null ? custom.value : this.custom));
+      id: (id != null ? id.value : this.id),
+      $default: ($default != null ? $default.value : this.$default),
+      custom: (custom != null ? custom.value : this.custom),
+    );
   }
 }
 
@@ -962,6 +1397,10 @@ class ApiLiveEvent {
     this.activeStartTimeSec,
     this.activeEndTimeSec,
     this.id,
+    this.startTimeSec,
+    this.endTimeSec,
+    this.durationSec,
+    this.resetCron,
   });
 
   factory ApiLiveEvent.fromJson(Map<String, dynamic> json) =>
@@ -982,6 +1421,14 @@ class ApiLiveEvent {
   final String? activeEndTimeSec;
   @JsonKey(name: 'id', includeIfNull: true)
   final String? id;
+  @JsonKey(name: 'startTimeSec', includeIfNull: true)
+  final String? startTimeSec;
+  @JsonKey(name: 'endTimeSec', includeIfNull: true)
+  final String? endTimeSec;
+  @JsonKey(name: 'durationSec', includeIfNull: true)
+  final String? durationSec;
+  @JsonKey(name: 'resetCron', includeIfNull: true)
+  final String? resetCron;
   static const fromJsonFactory = _$ApiLiveEventFromJson;
 
   @override
@@ -991,18 +1438,44 @@ class ApiLiveEvent {
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.description, description) ||
-                const DeepCollectionEquality()
-                    .equals(other.description, description)) &&
+                const DeepCollectionEquality().equals(
+                  other.description,
+                  description,
+                )) &&
             (identical(other.$value, $value) ||
                 const DeepCollectionEquality().equals(other.$value, $value)) &&
             (identical(other.activeStartTimeSec, activeStartTimeSec) ||
-                const DeepCollectionEquality()
-                    .equals(other.activeStartTimeSec, activeStartTimeSec)) &&
+                const DeepCollectionEquality().equals(
+                  other.activeStartTimeSec,
+                  activeStartTimeSec,
+                )) &&
             (identical(other.activeEndTimeSec, activeEndTimeSec) ||
-                const DeepCollectionEquality()
-                    .equals(other.activeEndTimeSec, activeEndTimeSec)) &&
+                const DeepCollectionEquality().equals(
+                  other.activeEndTimeSec,
+                  activeEndTimeSec,
+                )) &&
             (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.startTimeSec, startTimeSec) ||
+                const DeepCollectionEquality().equals(
+                  other.startTimeSec,
+                  startTimeSec,
+                )) &&
+            (identical(other.endTimeSec, endTimeSec) ||
+                const DeepCollectionEquality().equals(
+                  other.endTimeSec,
+                  endTimeSec,
+                )) &&
+            (identical(other.durationSec, durationSec) ||
+                const DeepCollectionEquality().equals(
+                  other.durationSec,
+                  durationSec,
+                )) &&
+            (identical(other.resetCron, resetCron) ||
+                const DeepCollectionEquality().equals(
+                  other.resetCron,
+                  resetCron,
+                )));
   }
 
   @override
@@ -1016,53 +1489,76 @@ class ApiLiveEvent {
       const DeepCollectionEquality().hash(activeStartTimeSec) ^
       const DeepCollectionEquality().hash(activeEndTimeSec) ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(startTimeSec) ^
+      const DeepCollectionEquality().hash(endTimeSec) ^
+      const DeepCollectionEquality().hash(durationSec) ^
+      const DeepCollectionEquality().hash(resetCron) ^
       runtimeType.hashCode;
 }
 
 extension $ApiLiveEventExtension on ApiLiveEvent {
-  ApiLiveEvent copyWith(
-      {String? name,
-      String? description,
-      String? $value,
-      String? activeStartTimeSec,
-      String? activeEndTimeSec,
-      String? id}) {
+  ApiLiveEvent copyWith({
+    String? name,
+    String? description,
+    String? $value,
+    String? activeStartTimeSec,
+    String? activeEndTimeSec,
+    String? id,
+    String? startTimeSec,
+    String? endTimeSec,
+    String? durationSec,
+    String? resetCron,
+  }) {
     return ApiLiveEvent(
-        name: name ?? this.name,
-        description: description ?? this.description,
-        $value: $value ?? this.$value,
-        activeStartTimeSec: activeStartTimeSec ?? this.activeStartTimeSec,
-        activeEndTimeSec: activeEndTimeSec ?? this.activeEndTimeSec,
-        id: id ?? this.id);
+      name: name ?? this.name,
+      description: description ?? this.description,
+      $value: $value ?? this.$value,
+      activeStartTimeSec: activeStartTimeSec ?? this.activeStartTimeSec,
+      activeEndTimeSec: activeEndTimeSec ?? this.activeEndTimeSec,
+      id: id ?? this.id,
+      startTimeSec: startTimeSec ?? this.startTimeSec,
+      endTimeSec: endTimeSec ?? this.endTimeSec,
+      durationSec: durationSec ?? this.durationSec,
+      resetCron: resetCron ?? this.resetCron,
+    );
   }
 
-  ApiLiveEvent copyWithWrapped(
-      {Wrapped<String?>? name,
-      Wrapped<String?>? description,
-      Wrapped<String?>? $value,
-      Wrapped<String?>? activeStartTimeSec,
-      Wrapped<String?>? activeEndTimeSec,
-      Wrapped<String?>? id}) {
+  ApiLiveEvent copyWithWrapped({
+    Wrapped<String?>? name,
+    Wrapped<String?>? description,
+    Wrapped<String?>? $value,
+    Wrapped<String?>? activeStartTimeSec,
+    Wrapped<String?>? activeEndTimeSec,
+    Wrapped<String?>? id,
+    Wrapped<String?>? startTimeSec,
+    Wrapped<String?>? endTimeSec,
+    Wrapped<String?>? durationSec,
+    Wrapped<String?>? resetCron,
+  }) {
     return ApiLiveEvent(
-        name: (name != null ? name.value : this.name),
-        description:
-            (description != null ? description.value : this.description),
-        $value: ($value != null ? $value.value : this.$value),
-        activeStartTimeSec: (activeStartTimeSec != null
-            ? activeStartTimeSec.value
-            : this.activeStartTimeSec),
-        activeEndTimeSec: (activeEndTimeSec != null
-            ? activeEndTimeSec.value
-            : this.activeEndTimeSec),
-        id: (id != null ? id.value : this.id));
+      name: (name != null ? name.value : this.name),
+      description: (description != null ? description.value : this.description),
+      $value: ($value != null ? $value.value : this.$value),
+      activeStartTimeSec: (activeStartTimeSec != null
+          ? activeStartTimeSec.value
+          : this.activeStartTimeSec),
+      activeEndTimeSec: (activeEndTimeSec != null
+          ? activeEndTimeSec.value
+          : this.activeEndTimeSec),
+      id: (id != null ? id.value : this.id),
+      startTimeSec: (startTimeSec != null
+          ? startTimeSec.value
+          : this.startTimeSec),
+      endTimeSec: (endTimeSec != null ? endTimeSec.value : this.endTimeSec),
+      durationSec: (durationSec != null ? durationSec.value : this.durationSec),
+      resetCron: (resetCron != null ? resetCron.value : this.resetCron),
+    );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class ApiLiveEventList {
-  const ApiLiveEventList({
-    this.liveEvents,
-  });
+  const ApiLiveEventList({this.liveEvents});
 
   factory ApiLiveEventList.fromJson(Map<String, dynamic> json) =>
       _$ApiLiveEventListFromJson(json);
@@ -1071,7 +1567,10 @@ class ApiLiveEventList {
   Map<String, dynamic> toJson() => _$ApiLiveEventListToJson(this);
 
   @JsonKey(
-      name: 'liveEvents', includeIfNull: true, defaultValue: <ApiLiveEvent>[])
+    name: 'liveEvents',
+    includeIfNull: true,
+    defaultValue: <ApiLiveEvent>[],
+  )
   final List<ApiLiveEvent>? liveEvents;
   static const fromJsonFactory = _$ApiLiveEventListFromJson;
 
@@ -1080,8 +1579,10 @@ class ApiLiveEventList {
     return identical(this, other) ||
         (other is ApiLiveEventList &&
             (identical(other.liveEvents, liveEvents) ||
-                const DeepCollectionEquality()
-                    .equals(other.liveEvents, liveEvents)));
+                const DeepCollectionEquality().equals(
+                  other.liveEvents,
+                  liveEvents,
+                )));
   }
 
   @override
@@ -1099,7 +1600,8 @@ extension $ApiLiveEventListExtension on ApiLiveEventList {
 
   ApiLiveEventList copyWithWrapped({Wrapped<List<ApiLiveEvent>?>? liveEvents}) {
     return ApiLiveEventList(
-        liveEvents: (liveEvents != null ? liveEvents.value : this.liveEvents));
+      liveEvents: (liveEvents != null ? liveEvents.value : this.liveEvents),
+    );
   }
 }
 
@@ -1114,6 +1616,9 @@ class ApiMessage {
     this.readTime,
     this.consumeTime,
     this.text,
+    this.id,
+    this.title,
+    this.imageUrl,
   });
 
   factory ApiMessage.fromJson(Map<String, dynamic> json) =>
@@ -1138,6 +1643,12 @@ class ApiMessage {
   final String? consumeTime;
   @JsonKey(name: 'text', includeIfNull: true)
   final String? text;
+  @JsonKey(name: 'id', includeIfNull: true)
+  final String? id;
+  @JsonKey(name: 'title', includeIfNull: true)
+  final String? title;
+  @JsonKey(name: 'imageUrl', includeIfNull: true)
+  final String? imageUrl;
   static const fromJsonFactory = _$ApiMessageFromJson;
 
   @override
@@ -1145,28 +1656,51 @@ class ApiMessage {
     return identical(this, other) ||
         (other is ApiMessage &&
             (identical(other.scheduleId, scheduleId) ||
-                const DeepCollectionEquality()
-                    .equals(other.scheduleId, scheduleId)) &&
+                const DeepCollectionEquality().equals(
+                  other.scheduleId,
+                  scheduleId,
+                )) &&
             (identical(other.sendTime, sendTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.sendTime, sendTime)) &&
+                const DeepCollectionEquality().equals(
+                  other.sendTime,
+                  sendTime,
+                )) &&
             (identical(other.metadata, metadata) ||
-                const DeepCollectionEquality()
-                    .equals(other.metadata, metadata)) &&
+                const DeepCollectionEquality().equals(
+                  other.metadata,
+                  metadata,
+                )) &&
             (identical(other.createTime, createTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.createTime, createTime)) &&
+                const DeepCollectionEquality().equals(
+                  other.createTime,
+                  createTime,
+                )) &&
             (identical(other.updateTime, updateTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.updateTime, updateTime)) &&
+                const DeepCollectionEquality().equals(
+                  other.updateTime,
+                  updateTime,
+                )) &&
             (identical(other.readTime, readTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.readTime, readTime)) &&
+                const DeepCollectionEquality().equals(
+                  other.readTime,
+                  readTime,
+                )) &&
             (identical(other.consumeTime, consumeTime) ||
-                const DeepCollectionEquality()
-                    .equals(other.consumeTime, consumeTime)) &&
+                const DeepCollectionEquality().equals(
+                  other.consumeTime,
+                  consumeTime,
+                )) &&
             (identical(other.text, text) ||
-                const DeepCollectionEquality().equals(other.text, text)));
+                const DeepCollectionEquality().equals(other.text, text)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.title, title) ||
+                const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.imageUrl, imageUrl) ||
+                const DeepCollectionEquality().equals(
+                  other.imageUrl,
+                  imageUrl,
+                )));
   }
 
   @override
@@ -1182,59 +1716,73 @@ class ApiMessage {
       const DeepCollectionEquality().hash(readTime) ^
       const DeepCollectionEquality().hash(consumeTime) ^
       const DeepCollectionEquality().hash(text) ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(imageUrl) ^
       runtimeType.hashCode;
 }
 
 extension $ApiMessageExtension on ApiMessage {
-  ApiMessage copyWith(
-      {String? scheduleId,
-      String? sendTime,
-      Map<String, dynamic>? metadata,
-      String? createTime,
-      String? updateTime,
-      String? readTime,
-      String? consumeTime,
-      String? text}) {
+  ApiMessage copyWith({
+    String? scheduleId,
+    String? sendTime,
+    Map<String, dynamic>? metadata,
+    String? createTime,
+    String? updateTime,
+    String? readTime,
+    String? consumeTime,
+    String? text,
+    String? id,
+    String? title,
+    String? imageUrl,
+  }) {
     return ApiMessage(
-        scheduleId: scheduleId ?? this.scheduleId,
-        sendTime: sendTime ?? this.sendTime,
-        metadata: metadata ?? this.metadata,
-        createTime: createTime ?? this.createTime,
-        updateTime: updateTime ?? this.updateTime,
-        readTime: readTime ?? this.readTime,
-        consumeTime: consumeTime ?? this.consumeTime,
-        text: text ?? this.text);
+      scheduleId: scheduleId ?? this.scheduleId,
+      sendTime: sendTime ?? this.sendTime,
+      metadata: metadata ?? this.metadata,
+      createTime: createTime ?? this.createTime,
+      updateTime: updateTime ?? this.updateTime,
+      readTime: readTime ?? this.readTime,
+      consumeTime: consumeTime ?? this.consumeTime,
+      text: text ?? this.text,
+      id: id ?? this.id,
+      title: title ?? this.title,
+      imageUrl: imageUrl ?? this.imageUrl,
+    );
   }
 
-  ApiMessage copyWithWrapped(
-      {Wrapped<String?>? scheduleId,
-      Wrapped<String?>? sendTime,
-      Wrapped<Map<String, dynamic>?>? metadata,
-      Wrapped<String?>? createTime,
-      Wrapped<String?>? updateTime,
-      Wrapped<String?>? readTime,
-      Wrapped<String?>? consumeTime,
-      Wrapped<String?>? text}) {
+  ApiMessage copyWithWrapped({
+    Wrapped<String?>? scheduleId,
+    Wrapped<String?>? sendTime,
+    Wrapped<Map<String, dynamic>?>? metadata,
+    Wrapped<String?>? createTime,
+    Wrapped<String?>? updateTime,
+    Wrapped<String?>? readTime,
+    Wrapped<String?>? consumeTime,
+    Wrapped<String?>? text,
+    Wrapped<String?>? id,
+    Wrapped<String?>? title,
+    Wrapped<String?>? imageUrl,
+  }) {
     return ApiMessage(
-        scheduleId: (scheduleId != null ? scheduleId.value : this.scheduleId),
-        sendTime: (sendTime != null ? sendTime.value : this.sendTime),
-        metadata: (metadata != null ? metadata.value : this.metadata),
-        createTime: (createTime != null ? createTime.value : this.createTime),
-        updateTime: (updateTime != null ? updateTime.value : this.updateTime),
-        readTime: (readTime != null ? readTime.value : this.readTime),
-        consumeTime:
-            (consumeTime != null ? consumeTime.value : this.consumeTime),
-        text: (text != null ? text.value : this.text));
+      scheduleId: (scheduleId != null ? scheduleId.value : this.scheduleId),
+      sendTime: (sendTime != null ? sendTime.value : this.sendTime),
+      metadata: (metadata != null ? metadata.value : this.metadata),
+      createTime: (createTime != null ? createTime.value : this.createTime),
+      updateTime: (updateTime != null ? updateTime.value : this.updateTime),
+      readTime: (readTime != null ? readTime.value : this.readTime),
+      consumeTime: (consumeTime != null ? consumeTime.value : this.consumeTime),
+      text: (text != null ? text.value : this.text),
+      id: (id != null ? id.value : this.id),
+      title: (title != null ? title.value : this.title),
+      imageUrl: (imageUrl != null ? imageUrl.value : this.imageUrl),
+    );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class ApiProperties {
-  const ApiProperties({
-    this.$default,
-    this.computed,
-    this.custom,
-  });
+  const ApiProperties({this.$default, this.computed, this.custom});
 
   factory ApiProperties.fromJson(Map<String, dynamic> json) =>
       _$ApiPropertiesFromJson(json);
@@ -1255,11 +1803,15 @@ class ApiProperties {
     return identical(this, other) ||
         (other is ApiProperties &&
             (identical(other.$default, $default) ||
-                const DeepCollectionEquality()
-                    .equals(other.$default, $default)) &&
+                const DeepCollectionEquality().equals(
+                  other.$default,
+                  $default,
+                )) &&
             (identical(other.computed, computed) ||
-                const DeepCollectionEquality()
-                    .equals(other.computed, computed)) &&
+                const DeepCollectionEquality().equals(
+                  other.computed,
+                  computed,
+                )) &&
             (identical(other.custom, custom) ||
                 const DeepCollectionEquality().equals(other.custom, custom)));
   }
@@ -1276,34 +1828,34 @@ class ApiProperties {
 }
 
 extension $ApiPropertiesExtension on ApiProperties {
-  ApiProperties copyWith(
-      {Map<String, dynamic>? $default,
-      Map<String, dynamic>? computed,
-      Map<String, dynamic>? custom}) {
+  ApiProperties copyWith({
+    Map<String, dynamic>? $default,
+    Map<String, dynamic>? computed,
+    Map<String, dynamic>? custom,
+  }) {
     return ApiProperties(
-        $default: $default ?? this.$default,
-        computed: computed ?? this.computed,
-        custom: custom ?? this.custom);
+      $default: $default ?? this.$default,
+      computed: computed ?? this.computed,
+      custom: custom ?? this.custom,
+    );
   }
 
-  ApiProperties copyWithWrapped(
-      {Wrapped<Map<String, dynamic>?>? $default,
-      Wrapped<Map<String, dynamic>?>? computed,
-      Wrapped<Map<String, dynamic>?>? custom}) {
+  ApiProperties copyWithWrapped({
+    Wrapped<Map<String, dynamic>?>? $default,
+    Wrapped<Map<String, dynamic>?>? computed,
+    Wrapped<Map<String, dynamic>?>? custom,
+  }) {
     return ApiProperties(
-        $default: ($default != null ? $default.value : this.$default),
-        computed: (computed != null ? computed.value : this.computed),
-        custom: (custom != null ? custom.value : this.custom));
+      $default: ($default != null ? $default.value : this.$default),
+      computed: (computed != null ? computed.value : this.computed),
+      custom: (custom != null ? custom.value : this.custom),
+    );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class ApiSession {
-  const ApiSession({
-    this.token,
-    this.refreshToken,
-    this.properties,
-  });
+  const ApiSession({this.token, this.refreshToken, this.properties});
 
   factory ApiSession.fromJson(Map<String, dynamic> json) =>
       _$ApiSessionFromJson(json);
@@ -1326,11 +1878,15 @@ class ApiSession {
             (identical(other.token, token) ||
                 const DeepCollectionEquality().equals(other.token, token)) &&
             (identical(other.refreshToken, refreshToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.refreshToken, refreshToken)) &&
+                const DeepCollectionEquality().equals(
+                  other.refreshToken,
+                  refreshToken,
+                )) &&
             (identical(other.properties, properties) ||
-                const DeepCollectionEquality()
-                    .equals(other.properties, properties)));
+                const DeepCollectionEquality().equals(
+                  other.properties,
+                  properties,
+                )));
   }
 
   @override
@@ -1345,23 +1901,30 @@ class ApiSession {
 }
 
 extension $ApiSessionExtension on ApiSession {
-  ApiSession copyWith(
-      {String? token, String? refreshToken, ApiProperties? properties}) {
+  ApiSession copyWith({
+    String? token,
+    String? refreshToken,
+    ApiProperties? properties,
+  }) {
     return ApiSession(
-        token: token ?? this.token,
-        refreshToken: refreshToken ?? this.refreshToken,
-        properties: properties ?? this.properties);
+      token: token ?? this.token,
+      refreshToken: refreshToken ?? this.refreshToken,
+      properties: properties ?? this.properties,
+    );
   }
 
-  ApiSession copyWithWrapped(
-      {Wrapped<String?>? token,
-      Wrapped<String?>? refreshToken,
-      Wrapped<ApiProperties?>? properties}) {
+  ApiSession copyWithWrapped({
+    Wrapped<String?>? token,
+    Wrapped<String?>? refreshToken,
+    Wrapped<ApiProperties?>? properties,
+  }) {
     return ApiSession(
-        token: (token != null ? token.value : this.token),
-        refreshToken:
-            (refreshToken != null ? refreshToken.value : this.refreshToken),
-        properties: (properties != null ? properties.value : this.properties));
+      token: (token != null ? token.value : this.token),
+      refreshToken: (refreshToken != null
+          ? refreshToken.value
+          : this.refreshToken),
+      properties: (properties != null ? properties.value : this.properties),
+    );
   }
 }
 
@@ -1392,13 +1955,17 @@ class ApiUpdatePropertiesRequest {
     return identical(this, other) ||
         (other is ApiUpdatePropertiesRequest &&
             (identical(other.$default, $default) ||
-                const DeepCollectionEquality()
-                    .equals(other.$default, $default)) &&
+                const DeepCollectionEquality().equals(
+                  other.$default,
+                  $default,
+                )) &&
             (identical(other.custom, custom) ||
                 const DeepCollectionEquality().equals(other.custom, custom)) &&
             (identical(other.recompute, recompute) ||
-                const DeepCollectionEquality()
-                    .equals(other.recompute, recompute)));
+                const DeepCollectionEquality().equals(
+                  other.recompute,
+                  recompute,
+                )));
   }
 
   @override
@@ -1413,32 +1980,34 @@ class ApiUpdatePropertiesRequest {
 }
 
 extension $ApiUpdatePropertiesRequestExtension on ApiUpdatePropertiesRequest {
-  ApiUpdatePropertiesRequest copyWith(
-      {Map<String, dynamic>? $default,
-      Map<String, dynamic>? custom,
-      bool? recompute}) {
+  ApiUpdatePropertiesRequest copyWith({
+    Map<String, dynamic>? $default,
+    Map<String, dynamic>? custom,
+    bool? recompute,
+  }) {
     return ApiUpdatePropertiesRequest(
-        $default: $default ?? this.$default,
-        custom: custom ?? this.custom,
-        recompute: recompute ?? this.recompute);
+      $default: $default ?? this.$default,
+      custom: custom ?? this.custom,
+      recompute: recompute ?? this.recompute,
+    );
   }
 
-  ApiUpdatePropertiesRequest copyWithWrapped(
-      {Wrapped<Map<String, dynamic>?>? $default,
-      Wrapped<Map<String, dynamic>?>? custom,
-      Wrapped<bool?>? recompute}) {
+  ApiUpdatePropertiesRequest copyWithWrapped({
+    Wrapped<Map<String, dynamic>?>? $default,
+    Wrapped<Map<String, dynamic>?>? custom,
+    Wrapped<bool?>? recompute,
+  }) {
     return ApiUpdatePropertiesRequest(
-        $default: ($default != null ? $default.value : this.$default),
-        custom: (custom != null ? custom.value : this.custom),
-        recompute: (recompute != null ? recompute.value : this.recompute));
+      $default: ($default != null ? $default.value : this.$default),
+      custom: (custom != null ? custom.value : this.custom),
+      recompute: (recompute != null ? recompute.value : this.recompute),
+    );
   }
 }
 
 @JsonSerializable(explicitToJson: true)
 class ProtobufAny {
-  const ProtobufAny({
-    this.type,
-  });
+  const ProtobufAny({this.type});
 
   factory ProtobufAny.fromJson(Map<String, dynamic> json) =>
       _$ProtobufAnyFromJson(json);
@@ -1446,7 +2015,7 @@ class ProtobufAny {
   static const toJsonFactory = _$ProtobufAnyToJson;
   Map<String, dynamic> toJson() => _$ProtobufAnyToJson(this);
 
-  @JsonKey(name: 'type', includeIfNull: true)
+  @JsonKey(name: '@type', includeIfNull: true)
   final String? type;
   static const fromJsonFactory = _$ProtobufAnyFromJson;
 
@@ -1478,11 +2047,7 @@ extension $ProtobufAnyExtension on ProtobufAny {
 
 @JsonSerializable(explicitToJson: true)
 class RpcStatus {
-  const RpcStatus({
-    this.code,
-    this.message,
-    this.details,
-  });
+  const RpcStatus({this.code, this.message, this.details});
 
   factory RpcStatus.fromJson(Map<String, dynamic> json) =>
       _$RpcStatusFromJson(json);
@@ -1505,8 +2070,10 @@ class RpcStatus {
             (identical(other.code, code) ||
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.message, message) ||
-                const DeepCollectionEquality()
-                    .equals(other.message, message)) &&
+                const DeepCollectionEquality().equals(
+                  other.message,
+                  message,
+                )) &&
             (identical(other.details, details) ||
                 const DeepCollectionEquality().equals(other.details, details)));
   }
@@ -1525,20 +2092,180 @@ class RpcStatus {
 extension $RpcStatusExtension on RpcStatus {
   RpcStatus copyWith({int? code, String? message, List<ProtobufAny>? details}) {
     return RpcStatus(
-        code: code ?? this.code,
-        message: message ?? this.message,
-        details: details ?? this.details);
+      code: code ?? this.code,
+      message: message ?? this.message,
+      details: details ?? this.details,
+    );
   }
 
-  RpcStatus copyWithWrapped(
-      {Wrapped<int?>? code,
-      Wrapped<String?>? message,
-      Wrapped<List<ProtobufAny>?>? details}) {
+  RpcStatus copyWithWrapped({
+    Wrapped<int?>? code,
+    Wrapped<String?>? message,
+    Wrapped<List<ProtobufAny>?>? details,
+  }) {
     return RpcStatus(
-        code: (code != null ? code.value : this.code),
-        message: (message != null ? message.value : this.message),
-        details: (details != null ? details.value : this.details));
+      code: (code != null ? code.value : this.code),
+      message: (message != null ? message.value : this.message),
+      details: (details != null ? details.value : this.details),
+    );
   }
+}
+
+String? flagValueChangeReasonTypeNullableToJson(
+  enums.FlagValueChangeReasonType? flagValueChangeReasonType,
+) {
+  return flagValueChangeReasonType?.value;
+}
+
+String? flagValueChangeReasonTypeToJson(
+  enums.FlagValueChangeReasonType flagValueChangeReasonType,
+) {
+  return flagValueChangeReasonType.value;
+}
+
+enums.FlagValueChangeReasonType flagValueChangeReasonTypeFromJson(
+  Object? flagValueChangeReasonType, [
+  enums.FlagValueChangeReasonType? defaultValue,
+]) {
+  return enums.FlagValueChangeReasonType.values.firstWhereOrNull(
+        (e) => e.value == flagValueChangeReasonType,
+      ) ??
+      defaultValue ??
+      enums.FlagValueChangeReasonType.swaggerGeneratedUnknown;
+}
+
+enums.FlagValueChangeReasonType? flagValueChangeReasonTypeNullableFromJson(
+  Object? flagValueChangeReasonType, [
+  enums.FlagValueChangeReasonType? defaultValue,
+]) {
+  if (flagValueChangeReasonType == null) {
+    return null;
+  }
+  return enums.FlagValueChangeReasonType.values.firstWhereOrNull(
+        (e) => e.value == flagValueChangeReasonType,
+      ) ??
+      defaultValue;
+}
+
+String flagValueChangeReasonTypeExplodedListToJson(
+  List<enums.FlagValueChangeReasonType>? flagValueChangeReasonType,
+) {
+  return flagValueChangeReasonType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> flagValueChangeReasonTypeListToJson(
+  List<enums.FlagValueChangeReasonType>? flagValueChangeReasonType,
+) {
+  if (flagValueChangeReasonType == null) {
+    return [];
+  }
+
+  return flagValueChangeReasonType.map((e) => e.value!).toList();
+}
+
+List<enums.FlagValueChangeReasonType> flagValueChangeReasonTypeListFromJson(
+  List? flagValueChangeReasonType, [
+  List<enums.FlagValueChangeReasonType>? defaultValue,
+]) {
+  if (flagValueChangeReasonType == null) {
+    return defaultValue ?? [];
+  }
+
+  return flagValueChangeReasonType
+      .map((e) => flagValueChangeReasonTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.FlagValueChangeReasonType>?
+flagValueChangeReasonTypeNullableListFromJson(
+  List? flagValueChangeReasonType, [
+  List<enums.FlagValueChangeReasonType>? defaultValue,
+]) {
+  if (flagValueChangeReasonType == null) {
+    return defaultValue;
+  }
+
+  return flagValueChangeReasonType
+      .map((e) => flagValueChangeReasonTypeFromJson(e.toString()))
+      .toList();
+}
+
+String? apiFlagOverrideTypeNullableToJson(
+  enums.ApiFlagOverrideType? apiFlagOverrideType,
+) {
+  return apiFlagOverrideType?.value;
+}
+
+String? apiFlagOverrideTypeToJson(
+  enums.ApiFlagOverrideType apiFlagOverrideType,
+) {
+  return apiFlagOverrideType.value;
+}
+
+enums.ApiFlagOverrideType apiFlagOverrideTypeFromJson(
+  Object? apiFlagOverrideType, [
+  enums.ApiFlagOverrideType? defaultValue,
+]) {
+  return enums.ApiFlagOverrideType.values.firstWhereOrNull(
+        (e) => e.value == apiFlagOverrideType,
+      ) ??
+      defaultValue ??
+      enums.ApiFlagOverrideType.swaggerGeneratedUnknown;
+}
+
+enums.ApiFlagOverrideType? apiFlagOverrideTypeNullableFromJson(
+  Object? apiFlagOverrideType, [
+  enums.ApiFlagOverrideType? defaultValue,
+]) {
+  if (apiFlagOverrideType == null) {
+    return null;
+  }
+  return enums.ApiFlagOverrideType.values.firstWhereOrNull(
+        (e) => e.value == apiFlagOverrideType,
+      ) ??
+      defaultValue;
+}
+
+String apiFlagOverrideTypeExplodedListToJson(
+  List<enums.ApiFlagOverrideType>? apiFlagOverrideType,
+) {
+  return apiFlagOverrideType?.map((e) => e.value!).join(',') ?? '';
+}
+
+List<String> apiFlagOverrideTypeListToJson(
+  List<enums.ApiFlagOverrideType>? apiFlagOverrideType,
+) {
+  if (apiFlagOverrideType == null) {
+    return [];
+  }
+
+  return apiFlagOverrideType.map((e) => e.value!).toList();
+}
+
+List<enums.ApiFlagOverrideType> apiFlagOverrideTypeListFromJson(
+  List? apiFlagOverrideType, [
+  List<enums.ApiFlagOverrideType>? defaultValue,
+]) {
+  if (apiFlagOverrideType == null) {
+    return defaultValue ?? [];
+  }
+
+  return apiFlagOverrideType
+      .map((e) => apiFlagOverrideTypeFromJson(e.toString()))
+      .toList();
+}
+
+List<enums.ApiFlagOverrideType>? apiFlagOverrideTypeNullableListFromJson(
+  List? apiFlagOverrideType, [
+  List<enums.ApiFlagOverrideType>? defaultValue,
+]) {
+  if (apiFlagOverrideType == null) {
+    return defaultValue;
+  }
+
+  return apiFlagOverrideType
+      .map((e) => apiFlagOverrideTypeFromJson(e.toString()))
+      .toList();
 }
 
 typedef $JsonFactory<T> = T Function(Map<String, dynamic> json);
@@ -1588,7 +2315,8 @@ class $CustomJsonDecoder {
 class $JsonSerializableConverter extends chopper.JsonConverter {
   @override
   FutureOr<chopper.Response<ResultType>> convertResponse<ResultType, Item>(
-      chopper.Response response) async {
+    chopper.Response response,
+  ) async {
     if (response.bodyString.isEmpty) {
       // In rare cases, when let's say 204 (no content) is returned -
       // we cannot decode the missing json with the result type specified
@@ -1601,13 +2329,16 @@ class $JsonSerializableConverter extends chopper.JsonConverter {
 
     if (ResultType == DateTime) {
       return response.copyWith(
-          body: DateTime.parse((response.body as String).replaceAll('"', ''))
-              as ResultType);
+        body:
+            DateTime.parse((response.body as String).replaceAll('"', ''))
+                as ResultType,
+      );
     }
 
     final jsonRes = await super.convertResponse(response);
     return jsonRes.copyWith<ResultType>(
-        body: $jsonDecoder.decode<Item>(jsonRes.body) as ResultType);
+      body: $jsonDecoder.decode<Item>(jsonRes.body) as ResultType,
+    );
   }
 }
 

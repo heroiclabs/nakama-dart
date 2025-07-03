@@ -1,3 +1,4 @@
+// dart format width=80
 // Generated code - do not change
 
 part of 'satori.swagger.dart';
@@ -118,6 +119,20 @@ final class _$Satori extends Satori {
       parameters: $params,
     );
     return client.send<ApiFlagList, ApiFlagList>($request);
+  }
+
+  @override
+  Future<Response<ApiFlagOverrideList>> _v1FlagOverrideGet(
+      {List<String>? names}) {
+    final Uri $url = Uri.parse('/v1/flag/override');
+    final Map<String, dynamic> $params = <String, dynamic>{'names': names};
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      parameters: $params,
+    );
+    return client.send<ApiFlagOverrideList, ApiFlagOverrideList>($request);
   }
 
   @override

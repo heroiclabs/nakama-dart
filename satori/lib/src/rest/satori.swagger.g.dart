@@ -6,6 +6,22 @@ part of 'satori.swagger.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+FlagValueChangeReason _$FlagValueChangeReasonFromJson(
+        Map<String, dynamic> json) =>
+    FlagValueChangeReason(
+      type: flagValueChangeReasonTypeNullableFromJson(json['type']),
+      name: json['name'] as String?,
+      variantName: json['variantName'] as String?,
+    );
+
+Map<String, dynamic> _$FlagValueChangeReasonToJson(
+        FlagValueChangeReason instance) =>
+    <String, dynamic>{
+      'type': flagValueChangeReasonTypeNullableToJson(instance.type),
+      'name': instance.name,
+      'variantName': instance.variantName,
+    };
+
 ApiAuthenticateLogoutRequest _$ApiAuthenticateLogoutRequestFromJson(
         Map<String, dynamic> json) =>
     ApiAuthenticateLogoutRequest(
@@ -38,6 +54,7 @@ ApiAuthenticateRequest _$ApiAuthenticateRequestFromJson(
       id: json['id'] as String?,
       $default: json['default'] as Map<String, dynamic>?,
       custom: json['custom'] as Map<String, dynamic>?,
+      noSession: json['noSession'] as bool?,
     );
 
 Map<String, dynamic> _$ApiAuthenticateRequestToJson(
@@ -46,6 +63,7 @@ Map<String, dynamic> _$ApiAuthenticateRequestToJson(
       'id': instance.id,
       'default': instance.$default,
       'custom': instance.custom,
+      'noSession': instance.noSession,
     };
 
 ApiEvent _$ApiEventFromJson(Map<String, dynamic> json) => ApiEvent(
@@ -108,12 +126,17 @@ ApiFlag _$ApiFlagFromJson(Map<String, dynamic> json) => ApiFlag(
       name: json['name'] as String?,
       $value: json['value'] as String?,
       conditionChanged: json['conditionChanged'] as bool?,
+      changeReason: json['changeReason'] == null
+          ? null
+          : FlagValueChangeReason.fromJson(
+              json['changeReason'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$ApiFlagToJson(ApiFlag instance) => <String, dynamic>{
       'name': instance.name,
       'value': instance.$value,
       'conditionChanged': instance.conditionChanged,
+      'changeReason': instance.changeReason?.toJson(),
     };
 
 ApiFlagList _$ApiFlagListFromJson(Map<String, dynamic> json) => ApiFlagList(
@@ -126,6 +149,56 @@ ApiFlagList _$ApiFlagListFromJson(Map<String, dynamic> json) => ApiFlagList(
 Map<String, dynamic> _$ApiFlagListToJson(ApiFlagList instance) =>
     <String, dynamic>{
       'flags': instance.flags?.map((e) => e.toJson()).toList(),
+    };
+
+ApiFlagOverride _$ApiFlagOverrideFromJson(Map<String, dynamic> json) =>
+    ApiFlagOverride(
+      flagName: json['flagName'] as String?,
+      overrides: (json['overrides'] as List<dynamic>?)
+              ?.map((e) =>
+                  ApiFlagOverrideValue.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ApiFlagOverrideToJson(ApiFlagOverride instance) =>
+    <String, dynamic>{
+      'flagName': instance.flagName,
+      'overrides': instance.overrides?.map((e) => e.toJson()).toList(),
+    };
+
+ApiFlagOverrideList _$ApiFlagOverrideListFromJson(Map<String, dynamic> json) =>
+    ApiFlagOverrideList(
+      flags: (json['flags'] as List<dynamic>?)
+              ?.map((e) => ApiFlagOverride.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
+    );
+
+Map<String, dynamic> _$ApiFlagOverrideListToJson(
+        ApiFlagOverrideList instance) =>
+    <String, dynamic>{
+      'flags': instance.flags?.map((e) => e.toJson()).toList(),
+    };
+
+ApiFlagOverrideValue _$ApiFlagOverrideValueFromJson(
+        Map<String, dynamic> json) =>
+    ApiFlagOverrideValue(
+      type: apiFlagOverrideTypeNullableFromJson(json['type']),
+      name: json['name'] as String?,
+      variantName: json['variantName'] as String?,
+      $value: json['value'] as String?,
+      createTimeSec: json['createTimeSec'] as String?,
+    );
+
+Map<String, dynamic> _$ApiFlagOverrideValueToJson(
+        ApiFlagOverrideValue instance) =>
+    <String, dynamic>{
+      'type': apiFlagOverrideTypeNullableToJson(instance.type),
+      'name': instance.name,
+      'variantName': instance.variantName,
+      'value': instance.$value,
+      'createTimeSec': instance.createTimeSec,
     };
 
 ApiGetMessageListResponse _$ApiGetMessageListResponseFromJson(
@@ -170,6 +243,10 @@ ApiLiveEvent _$ApiLiveEventFromJson(Map<String, dynamic> json) => ApiLiveEvent(
       activeStartTimeSec: json['activeStartTimeSec'] as String?,
       activeEndTimeSec: json['activeEndTimeSec'] as String?,
       id: json['id'] as String?,
+      startTimeSec: json['startTimeSec'] as String?,
+      endTimeSec: json['endTimeSec'] as String?,
+      durationSec: json['durationSec'] as String?,
+      resetCron: json['resetCron'] as String?,
     );
 
 Map<String, dynamic> _$ApiLiveEventToJson(ApiLiveEvent instance) =>
@@ -180,6 +257,10 @@ Map<String, dynamic> _$ApiLiveEventToJson(ApiLiveEvent instance) =>
       'activeStartTimeSec': instance.activeStartTimeSec,
       'activeEndTimeSec': instance.activeEndTimeSec,
       'id': instance.id,
+      'startTimeSec': instance.startTimeSec,
+      'endTimeSec': instance.endTimeSec,
+      'durationSec': instance.durationSec,
+      'resetCron': instance.resetCron,
     };
 
 ApiLiveEventList _$ApiLiveEventListFromJson(Map<String, dynamic> json) =>
@@ -204,6 +285,9 @@ ApiMessage _$ApiMessageFromJson(Map<String, dynamic> json) => ApiMessage(
       readTime: json['readTime'] as String?,
       consumeTime: json['consumeTime'] as String?,
       text: json['text'] as String?,
+      id: json['id'] as String?,
+      title: json['title'] as String?,
+      imageUrl: json['imageUrl'] as String?,
     );
 
 Map<String, dynamic> _$ApiMessageToJson(ApiMessage instance) =>
@@ -216,6 +300,9 @@ Map<String, dynamic> _$ApiMessageToJson(ApiMessage instance) =>
       'readTime': instance.readTime,
       'consumeTime': instance.consumeTime,
       'text': instance.text,
+      'id': instance.id,
+      'title': instance.title,
+      'imageUrl': instance.imageUrl,
     };
 
 ApiProperties _$ApiPropertiesFromJson(Map<String, dynamic> json) =>
@@ -264,16 +351,16 @@ Map<String, dynamic> _$ApiUpdatePropertiesRequestToJson(
     };
 
 ProtobufAny _$ProtobufAnyFromJson(Map<String, dynamic> json) => ProtobufAny(
-      type: json['type'] as String?,
+      type: json['@type'] as String?,
     );
 
 Map<String, dynamic> _$ProtobufAnyToJson(ProtobufAny instance) =>
     <String, dynamic>{
-      'type': instance.type,
+      '@type': instance.type,
     };
 
 RpcStatus _$RpcStatusFromJson(Map<String, dynamic> json) => RpcStatus(
-      code: json['code'] as int?,
+      code: (json['code'] as num?)?.toInt(),
       message: json['message'] as String?,
       details: (json['details'] as List<dynamic>?)
               ?.map((e) => ProtobufAny.fromJson(e as Map<String, dynamic>))
