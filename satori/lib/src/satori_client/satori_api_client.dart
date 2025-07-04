@@ -1,12 +1,10 @@
-import 'dart:convert';
-
-import 'package:chopper/chopper.dart';
 import 'package:satori/src/models/event.dart';
 import 'package:satori/src/models/experiment.dart';
 import 'package:satori/src/models/flag.dart';
 import 'package:satori/src/models/live_event.dart';
 import 'package:satori/src/models/properties.dart';
 import 'package:satori/src/models/session.dart';
+import 'package:satori/src/rest/auth_interceptor.dart';
 import 'package:satori/src/rest/satori.swagger.dart';
 import 'package:satori/src/satori_client/satori_client.dart';
 
@@ -18,10 +16,10 @@ class SatoriRestApiClient extends SatoriBaseClient {
   Session? _session;
 
   factory SatoriRestApiClient.init({
-    String host = '127.0.0.1',
-    String apiKey = 'apikey',
-    int port = 7450,
-    bool ssl = false,
+    String host = 'your-satoricloud-instance',
+    String apiKey = 'your-satoricloud-instance-api-key',
+    int port = 443,
+    bool ssl = true,
   }) {
     return SatoriRestApiClient._(
       host: host,
@@ -40,23 +38,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
     _api = Satori.create(
       baseUrl: Uri(scheme: ssl ? 'https' : 'http', host: host, port: port),
       interceptors: [
-        (request) async {
-          // Use basic authentication
-          if (_session == null) {
-            return applyHeader(
-              request,
-              'Authorization',
-              'Basic ${base64Encode('$apiKey:'.codeUnits)}',
-            );
-          }
-
-          // Use bearer token
-          return applyHeader(
-            request,
-            'Authorization',
-            'Bearer ${_session!.token}',
-          );
-        },
+        AuthInterceptor(apiKey, () => _session),
       ],
     );
   }
@@ -90,7 +72,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
     _session = session; // Pass session data in request
 
     final response = await _api.v1AuthenticateLogoutPost(
-      body: ApiAuthenticateLogoutRequest(token: session.token, refreshToken: session.refreshToken),
+      body: ApiAuthenticateLogoutRequest(
+          token: session.token, refreshToken: session.refreshToken),
     );
 
     if (!response.isSuccessful) {
@@ -110,7 +93,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
     ));
 
     if (!response.isSuccessful) {
-      throw Exception('Failed to refresh session with Satori: ${response.error}');
+      throw Exception(
+          'Failed to refresh session with Satori: ${response.error}');
     }
 
     return Session.fromApi(response.body!);
@@ -125,7 +109,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
     final response = await _api.v1IdentityDelete();
 
     if (!response.isSuccessful) {
-      throw Exception('Failed to delete identity from Satori: ${response.error}');
+      throw Exception(
+          'Failed to delete identity from Satori: ${response.error}');
     }
   }
 
@@ -172,7 +157,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
     final response = await _api.v1ExperimentGet(names: []);
 
     if (!response.isSuccessful) {
-      throw Exception('Failed to get all experiments from Satori: ${response.error}');
+      throw Exception(
+          'Failed to get all experiments from Satori: ${response.error}');
     }
 
     return ExperimentList.fromJson(response.body!.toJson());
@@ -188,7 +174,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
     final response = await _api.v1ExperimentGet(names: names);
 
     if (!response.isSuccessful) {
-      throw Exception('Failed to get experiments from Satori: ${response.error}');
+      throw Exception(
+          'Failed to get experiments from Satori: ${response.error}');
     }
 
     return ExperimentList.fromJson(response.body!.toJson());
@@ -244,7 +231,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
     final response = await _api.v1LiveEventGet(names: names ?? []);
 
     if (!response.isSuccessful) {
-      throw Exception('Failed to get live events from Satori: ${response.error}');
+      throw Exception(
+          'Failed to get live events from Satori: ${response.error}');
     }
 
     return LiveEventList.fromJson(response.body!.toJson());
@@ -282,7 +270,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
     final response = await _api.v1PropertiesGet();
 
     if (!response.isSuccessful) {
-      throw Exception('Failed to list properties from Satori: ${response.error}');
+      throw Exception(
+          'Failed to list properties from Satori: ${response.error}');
     }
 
     return Properties.fromDto(response.body!);
@@ -305,7 +294,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
     ));
 
     if (!response.isSuccessful) {
-      throw Exception('Failed to update properties with Satori: ${response.error}');
+      throw Exception(
+          'Failed to update properties with Satori: ${response.error}');
     }
   }
 }

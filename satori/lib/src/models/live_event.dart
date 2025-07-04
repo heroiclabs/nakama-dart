@@ -6,7 +6,7 @@ part 'live_event.g.dart';
 
 /// List of Live events.
 @freezed
-class LiveEventList with _$LiveEventList {
+abstract class LiveEventList with _$LiveEventList {
   const LiveEventList._();
 
   const factory LiveEventList({
@@ -22,7 +22,7 @@ class LiveEventList with _$LiveEventList {
 
 /// A single live event.
 @freezed
-class LiveEvent with _$LiveEvent {
+abstract class LiveEvent with _$LiveEvent {
   const LiveEvent._();
 
   const factory LiveEvent({

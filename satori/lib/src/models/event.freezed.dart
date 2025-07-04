@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,102 +10,65 @@ part of 'event.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-Event _$EventFromJson(Map<String, dynamic> json) {
-  return _SatoriEvent.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Event {
   /// The name of the event.
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
 
   /// The time when the event was triggered.
-  DateTime? get timestamp => throw _privateConstructorUsedError;
+  DateTime? get timestamp;
 
   /// Optional value.
-  String? get value => throw _privateConstructorUsedError;
+  String? get value;
 
   /// Event metadata, if any.
-  Map<String, dynamic>? get metadata => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get metadata;
 
   /// Optional event ID assigned by the client, used to de-duplicate in retransmission scenarios.
   /// If not supplied the server will assign a randomly generated unique event identifier.
-  String? get id => throw _privateConstructorUsedError;
+  String? get id;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $EventCopyWith<Event> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $EventCopyWith<$Res> {
-  factory $EventCopyWith(Event value, $Res Function(Event) then) =
-      _$EventCopyWithImpl<$Res, Event>;
-  @useResult
-  $Res call(
-      {String? name,
-      DateTime? timestamp,
-      String? value,
-      Map<String, dynamic>? metadata,
-      String? id});
-}
-
-/// @nodoc
-class _$EventCopyWithImpl<$Res, $Val extends Event>
-    implements $EventCopyWith<$Res> {
-  _$EventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
+  /// Create a copy of Event
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
+  $EventCopyWith<Event> get copyWith =>
+      _$EventCopyWithImpl<Event>(this as Event, _$identity);
+
+  /// Serializes this Event to a JSON map.
+  Map<String, dynamic> toJson();
+
   @override
-  $Res call({
-    Object? name = freezed,
-    Object? timestamp = freezed,
-    Object? value = freezed,
-    Object? metadata = freezed,
-    Object? id = freezed,
-  }) {
-    return _then(_value.copyWith(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      timestamp: freezed == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String?,
-      metadata: freezed == metadata
-          ? _value.metadata
-          : metadata // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
-      id: freezed == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Event &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.timestamp, timestamp) ||
+                other.timestamp == timestamp) &&
+            (identical(other.value, value) || other.value == value) &&
+            const DeepCollectionEquality().equals(other.metadata, metadata) &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, name, timestamp, value,
+      const DeepCollectionEquality().hash(metadata), id);
+
+  @override
+  String toString() {
+    return 'Event(name: $name, timestamp: $timestamp, value: $value, metadata: $metadata, id: $id)';
   }
 }
 
 /// @nodoc
-abstract class _$$SatoriEventImplCopyWith<$Res>
-    implements $EventCopyWith<$Res> {
-  factory _$$SatoriEventImplCopyWith(
-          _$SatoriEventImpl value, $Res Function(_$SatoriEventImpl) then) =
-      __$$SatoriEventImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $EventCopyWith<$Res> {
+  factory $EventCopyWith(Event value, $Res Function(Event) _then) =
+      _$EventCopyWithImpl;
   @useResult
   $Res call(
       {String? name,
@@ -115,13 +79,14 @@ abstract class _$$SatoriEventImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$SatoriEventImplCopyWithImpl<$Res>
-    extends _$EventCopyWithImpl<$Res, _$SatoriEventImpl>
-    implements _$$SatoriEventImplCopyWith<$Res> {
-  __$$SatoriEventImplCopyWithImpl(
-      _$SatoriEventImpl _value, $Res Function(_$SatoriEventImpl) _then)
-      : super(_value, _then);
+class _$EventCopyWithImpl<$Res> implements $EventCopyWith<$Res> {
+  _$EventCopyWithImpl(this._self, this._then);
 
+  final Event _self;
+  final $Res Function(Event) _then;
+
+  /// Create a copy of Event
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -131,25 +96,25 @@ class __$$SatoriEventImplCopyWithImpl<$Res>
     Object? metadata = freezed,
     Object? id = freezed,
   }) {
-    return _then(_$SatoriEventImpl(
+    return _then(_self.copyWith(
       name: freezed == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
       timestamp: freezed == timestamp
-          ? _value.timestamp
+          ? _self.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       value: freezed == value
-          ? _value.value
+          ? _self.value
           : value // ignore: cast_nullable_to_non_nullable
               as String?,
       metadata: freezed == metadata
-          ? _value._metadata
+          ? _self.metadata
           : metadata // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
       id: freezed == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
@@ -158,8 +123,8 @@ class __$$SatoriEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SatoriEventImpl extends _SatoriEvent {
-  const _$SatoriEventImpl(
+class _Event extends Event {
+  const _Event(
       {this.name,
       this.timestamp,
       this.value,
@@ -167,9 +132,7 @@ class _$SatoriEventImpl extends _SatoriEvent {
       this.id})
       : _metadata = metadata,
         super._();
-
-  factory _$SatoriEventImpl.fromJson(Map<String, dynamic> json) =>
-      _$$SatoriEventImplFromJson(json);
+  factory _Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);
 
   /// The name of the event.
   @override
@@ -201,16 +164,26 @@ class _$SatoriEventImpl extends _SatoriEvent {
   @override
   final String? id;
 
+  /// Create a copy of Event
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Event(name: $name, timestamp: $timestamp, value: $value, metadata: $metadata, id: $id)';
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$EventCopyWith<_Event> get copyWith =>
+      __$EventCopyWithImpl<_Event>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$EventToJson(
+      this,
+    );
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SatoriEventImpl &&
+            other is _Event &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.timestamp, timestamp) ||
                 other.timestamp == timestamp) &&
@@ -219,60 +192,72 @@ class _$SatoriEventImpl extends _SatoriEvent {
             (identical(other.id, id) || other.id == id));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, timestamp, value,
       const DeepCollectionEquality().hash(_metadata), id);
 
-  @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
-  _$$SatoriEventImplCopyWith<_$SatoriEventImpl> get copyWith =>
-      __$$SatoriEventImplCopyWithImpl<_$SatoriEventImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$SatoriEventImplToJson(
-      this,
-    );
+  String toString() {
+    return 'Event(name: $name, timestamp: $timestamp, value: $value, metadata: $metadata, id: $id)';
   }
 }
 
-abstract class _SatoriEvent extends Event {
-  const factory _SatoriEvent(
-      {final String? name,
-      final DateTime? timestamp,
-      final String? value,
-      final Map<String, dynamic>? metadata,
-      final String? id}) = _$SatoriEventImpl;
-  const _SatoriEvent._() : super._();
-
-  factory _SatoriEvent.fromJson(Map<String, dynamic> json) =
-      _$SatoriEventImpl.fromJson;
-
+/// @nodoc
+abstract mixin class _$EventCopyWith<$Res> implements $EventCopyWith<$Res> {
+  factory _$EventCopyWith(_Event value, $Res Function(_Event) _then) =
+      __$EventCopyWithImpl;
   @override
-
-  /// The name of the event.
-  String? get name;
-  @override
-
-  /// The time when the event was triggered.
-  DateTime? get timestamp;
-  @override
-
-  /// Optional value.
-  String? get value;
-  @override
-
-  /// Event metadata, if any.
-  Map<String, dynamic>? get metadata;
-  @override
-
-  /// Optional event ID assigned by the client, used to de-duplicate in retransmission scenarios.
-  /// If not supplied the server will assign a randomly generated unique event identifier.
-  String? get id;
-  @override
-  @JsonKey(ignore: true)
-  _$$SatoriEventImplCopyWith<_$SatoriEventImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @useResult
+  $Res call(
+      {String? name,
+      DateTime? timestamp,
+      String? value,
+      Map<String, dynamic>? metadata,
+      String? id});
 }
+
+/// @nodoc
+class __$EventCopyWithImpl<$Res> implements _$EventCopyWith<$Res> {
+  __$EventCopyWithImpl(this._self, this._then);
+
+  final _Event _self;
+  final $Res Function(_Event) _then;
+
+  /// Create a copy of Event
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? name = freezed,
+    Object? timestamp = freezed,
+    Object? value = freezed,
+    Object? metadata = freezed,
+    Object? id = freezed,
+  }) {
+    return _then(_Event(
+      name: freezed == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timestamp: freezed == timestamp
+          ? _self.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      value: freezed == value
+          ? _self.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String?,
+      metadata: freezed == metadata
+          ? _self._metadata
+          : metadata // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      id: freezed == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+// dart format on

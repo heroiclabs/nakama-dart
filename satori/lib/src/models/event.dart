@@ -6,7 +6,7 @@ part 'event.g.dart';
 
 /// An event to be published to the server.
 @freezed
-class Event with _$Event {
+abstract class Event with _$Event {
   const Event._();
 
   const factory Event({
@@ -25,7 +25,7 @@ class Event with _$Event {
     /// Optional event ID assigned by the client, used to de-duplicate in retransmission scenarios.
     /// If not supplied the server will assign a randomly generated unique event identifier.
     String? id,
-  }) = _SatoriEvent;
+  }) = _Event;
 
   factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);
 

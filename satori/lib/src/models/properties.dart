@@ -6,7 +6,7 @@ part 'properties.g.dart';
 
 /// Properties associated with an identity.
 @freezed
-class Properties with _$Properties {
+abstract class Properties with _$Properties {
   const Properties._();
 
   const factory Properties({

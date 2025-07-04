@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,95 +10,63 @@ part of 'session.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Session {
   /// The authorization token used to construct this session.
-  String get token => throw _privateConstructorUsedError;
+  String get token;
 
   /// Refresh token that can be used for session token renewal.
-  String get refreshToken => throw _privateConstructorUsedError;
+  String get refreshToken;
 
   /// The ID of the user who owns this session.
-  String get identityId => throw _privateConstructorUsedError;
+  String get identityId;
 
   /// The time when the session token expires.
-  DateTime get expiresAt => throw _privateConstructorUsedError;
+  DateTime get expiresAt;
 
   /// The time when the refresh token expires.
-  DateTime get refreshExpiresAt => throw _privateConstructorUsedError;
+  DateTime get refreshExpiresAt;
 
-  @JsonKey(ignore: true)
-  $SessionCopyWith<Session> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SessionCopyWith<$Res> {
-  factory $SessionCopyWith(Session value, $Res Function(Session) then) =
-      _$SessionCopyWithImpl<$Res, Session>;
-  @useResult
-  $Res call(
-      {String token,
-      String refreshToken,
-      String identityId,
-      DateTime expiresAt,
-      DateTime refreshExpiresAt});
-}
-
-/// @nodoc
-class _$SessionCopyWithImpl<$Res, $Val extends Session>
-    implements $SessionCopyWith<$Res> {
-  _$SessionCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
+  /// Create a copy of Session
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
+  $SessionCopyWith<Session> get copyWith =>
+      _$SessionCopyWithImpl<Session>(this as Session, _$identity);
+
   @override
-  $Res call({
-    Object? token = null,
-    Object? refreshToken = null,
-    Object? identityId = null,
-    Object? expiresAt = null,
-    Object? refreshExpiresAt = null,
-  }) {
-    return _then(_value.copyWith(
-      token: null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-      refreshToken: null == refreshToken
-          ? _value.refreshToken
-          : refreshToken // ignore: cast_nullable_to_non_nullable
-              as String,
-      identityId: null == identityId
-          ? _value.identityId
-          : identityId // ignore: cast_nullable_to_non_nullable
-              as String,
-      expiresAt: null == expiresAt
-          ? _value.expiresAt
-          : expiresAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      refreshExpiresAt: null == refreshExpiresAt
-          ? _value.refreshExpiresAt
-          : refreshExpiresAt // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Session &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.refreshToken, refreshToken) ||
+                other.refreshToken == refreshToken) &&
+            (identical(other.identityId, identityId) ||
+                other.identityId == identityId) &&
+            (identical(other.expiresAt, expiresAt) ||
+                other.expiresAt == expiresAt) &&
+            (identical(other.refreshExpiresAt, refreshExpiresAt) ||
+                other.refreshExpiresAt == refreshExpiresAt));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, token, refreshToken, identityId,
+      expiresAt, refreshExpiresAt);
+
+  @override
+  String toString() {
+    return 'Session(token: $token, refreshToken: $refreshToken, identityId: $identityId, expiresAt: $expiresAt, refreshExpiresAt: $refreshExpiresAt)';
   }
 }
 
 /// @nodoc
-abstract class _$$SessionImplCopyWith<$Res> implements $SessionCopyWith<$Res> {
-  factory _$$SessionImplCopyWith(
-          _$SessionImpl value, $Res Function(_$SessionImpl) then) =
-      __$$SessionImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $SessionCopyWith<$Res> {
+  factory $SessionCopyWith(Session value, $Res Function(Session) _then) =
+      _$SessionCopyWithImpl;
   @useResult
   $Res call(
       {String token,
@@ -108,13 +77,14 @@ abstract class _$$SessionImplCopyWith<$Res> implements $SessionCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$SessionImplCopyWithImpl<$Res>
-    extends _$SessionCopyWithImpl<$Res, _$SessionImpl>
-    implements _$$SessionImplCopyWith<$Res> {
-  __$$SessionImplCopyWithImpl(
-      _$SessionImpl _value, $Res Function(_$SessionImpl) _then)
-      : super(_value, _then);
+class _$SessionCopyWithImpl<$Res> implements $SessionCopyWith<$Res> {
+  _$SessionCopyWithImpl(this._self, this._then);
 
+  final Session _self;
+  final $Res Function(Session) _then;
+
+  /// Create a copy of Session
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -124,25 +94,25 @@ class __$$SessionImplCopyWithImpl<$Res>
     Object? expiresAt = null,
     Object? refreshExpiresAt = null,
   }) {
-    return _then(_$SessionImpl(
+    return _then(_self.copyWith(
       token: null == token
-          ? _value.token
+          ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
       refreshToken: null == refreshToken
-          ? _value.refreshToken
+          ? _self.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
               as String,
       identityId: null == identityId
-          ? _value.identityId
+          ? _self.identityId
           : identityId // ignore: cast_nullable_to_non_nullable
               as String,
       expiresAt: null == expiresAt
-          ? _value.expiresAt
+          ? _self.expiresAt
           : expiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
       refreshExpiresAt: null == refreshExpiresAt
-          ? _value.refreshExpiresAt
+          ? _self.refreshExpiresAt
           : refreshExpiresAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
@@ -151,8 +121,8 @@ class __$$SessionImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SessionImpl extends _Session {
-  _$SessionImpl(
+class _Session extends Session {
+  _Session(
       {required this.token,
       required this.refreshToken,
       required this.identityId,
@@ -180,16 +150,19 @@ class _$SessionImpl extends _Session {
   @override
   final DateTime refreshExpiresAt;
 
+  /// Create a copy of Session
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'Session(token: $token, refreshToken: $refreshToken, identityId: $identityId, expiresAt: $expiresAt, refreshExpiresAt: $refreshExpiresAt)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$SessionCopyWith<_Session> get copyWith =>
+      __$SessionCopyWithImpl<_Session>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SessionImpl &&
+            other is _Session &&
             (identical(other.token, token) || other.token == token) &&
             (identical(other.refreshToken, refreshToken) ||
                 other.refreshToken == refreshToken) &&
@@ -205,44 +178,67 @@ class _$SessionImpl extends _Session {
   int get hashCode => Object.hash(runtimeType, token, refreshToken, identityId,
       expiresAt, refreshExpiresAt);
 
-  @JsonKey(ignore: true)
+  @override
+  String toString() {
+    return 'Session(token: $token, refreshToken: $refreshToken, identityId: $identityId, expiresAt: $expiresAt, refreshExpiresAt: $refreshExpiresAt)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$SessionCopyWith<$Res> implements $SessionCopyWith<$Res> {
+  factory _$SessionCopyWith(_Session value, $Res Function(_Session) _then) =
+      __$SessionCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String token,
+      String refreshToken,
+      String identityId,
+      DateTime expiresAt,
+      DateTime refreshExpiresAt});
+}
+
+/// @nodoc
+class __$SessionCopyWithImpl<$Res> implements _$SessionCopyWith<$Res> {
+  __$SessionCopyWithImpl(this._self, this._then);
+
+  final _Session _self;
+  final $Res Function(_Session) _then;
+
+  /// Create a copy of Session
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  _$$SessionImplCopyWith<_$SessionImpl> get copyWith =>
-      __$$SessionImplCopyWithImpl<_$SessionImpl>(this, _$identity);
+  $Res call({
+    Object? token = null,
+    Object? refreshToken = null,
+    Object? identityId = null,
+    Object? expiresAt = null,
+    Object? refreshExpiresAt = null,
+  }) {
+    return _then(_Session(
+      token: null == token
+          ? _self.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      refreshToken: null == refreshToken
+          ? _self.refreshToken
+          : refreshToken // ignore: cast_nullable_to_non_nullable
+              as String,
+      identityId: null == identityId
+          ? _self.identityId
+          : identityId // ignore: cast_nullable_to_non_nullable
+              as String,
+      expiresAt: null == expiresAt
+          ? _self.expiresAt
+          : expiresAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      refreshExpiresAt: null == refreshExpiresAt
+          ? _self.refreshExpiresAt
+          : refreshExpiresAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
 }
 
-abstract class _Session extends Session {
-  factory _Session(
-      {required final String token,
-      required final String refreshToken,
-      required final String identityId,
-      required final DateTime expiresAt,
-      required final DateTime refreshExpiresAt}) = _$SessionImpl;
-  _Session._() : super._();
-
-  @override
-
-  /// The authorization token used to construct this session.
-  String get token;
-  @override
-
-  /// Refresh token that can be used for session token renewal.
-  String get refreshToken;
-  @override
-
-  /// The ID of the user who owns this session.
-  String get identityId;
-  @override
-
-  /// The time when the session token expires.
-  DateTime get expiresAt;
-  @override
-
-  /// The time when the refresh token expires.
-  DateTime get refreshExpiresAt;
-  @override
-  @JsonKey(ignore: true)
-  _$$SessionImplCopyWith<_$SessionImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

@@ -6,7 +6,7 @@ part 'flag.g.dart';
 
 /// All flags available to the identity
 @freezed
-class FlagList with _$FlagList {
+abstract class FlagList with _$FlagList {
   const FlagList._();
 
   const factory FlagList({
@@ -22,7 +22,7 @@ class FlagList with _$FlagList {
 
 /// Feature flag available to the identity.
 @freezed
-class Flag with _$Flag {
+abstract class Flag with _$Flag {
   const Flag._();
 
   const factory Flag({

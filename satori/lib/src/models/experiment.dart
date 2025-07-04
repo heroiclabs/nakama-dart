@@ -6,7 +6,7 @@ part 'experiment.g.dart';
 
 /// All experiments that this identity is involved with.
 @freezed
-class ExperimentList with _$ExperimentList {
+abstract class ExperimentList with _$ExperimentList {
   const ExperimentList._();
 
   const factory ExperimentList({
@@ -22,7 +22,7 @@ class ExperimentList with _$ExperimentList {
 
 /// An experiment that this user is partaking.
 @freezed
-class Experiment with _$Experiment {
+abstract class Experiment with _$Experiment {
   const Experiment._();
 
   const factory Experiment({

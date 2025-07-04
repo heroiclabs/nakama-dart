@@ -6,8 +6,7 @@ part of 'event.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$SatoriEventImpl _$$SatoriEventImplFromJson(Map<String, dynamic> json) =>
-    _$SatoriEventImpl(
+_Event _$EventFromJson(Map<String, dynamic> json) => _Event(
       name: json['name'] as String?,
       timestamp: json['timestamp'] == null
           ? null
@@ -17,8 +16,7 @@ _$SatoriEventImpl _$$SatoriEventImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
     );
 
-Map<String, dynamic> _$$SatoriEventImplToJson(_$SatoriEventImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$EventToJson(_Event instance) => <String, dynamic>{
       'name': instance.name,
       'timestamp': instance.timestamp?.toIso8601String(),
       'value': instance.value,
