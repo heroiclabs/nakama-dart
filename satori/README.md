@@ -11,7 +11,7 @@ In your dart project add the dependency in `pubspec.yaml`:
 ```yaml
 dependencies:
   ...
-  satori: ^1.0.0
+  satori: ^1.3.0
 ```
 
 To use Satori within your dart app you need to import the Satori package:
