@@ -3,11 +3,11 @@ import 'package:satori/satori.dart';
 import 'package:satori_example/services/env_service.dart';
 
 class SatoriClient {
-  static SatoriRestApiClient? _instance;
+  static SatoriBaseClient? _instance;
 
-  static SatoriRestApiClient? get instance {
+  static SatoriBaseClient? get instance {
     if (_instance != null) return _instance!;
-    _instance = SatoriRestApiClient.init(
+    _instance = getSatoriClient(
       host: EnvService.satoriBaseUrl,
       port: EnvService.satoriPort,
       ssl: EnvService.satoriSsl,
@@ -17,7 +17,7 @@ class SatoriClient {
   }
 }
 
-final satoriClientProvider = Provider<SatoriRestApiClient>((ref) {
+final satoriClientProvider = Provider<SatoriBaseClient>((ref) {
   return SatoriClient.instance!;
 });
 
