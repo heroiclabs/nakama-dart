@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nakama/nakama.dart';
 import 'package:nakama/src/api/api.dart' as api;
 import 'package:nakama/src/api/rtapi.dart' as rtpb;
+import 'package:nakama/src/utils/platform_normalizer.dart';
 
 part 'match.freezed.dart';
 part 'match.g.dart';
@@ -35,7 +36,7 @@ class Match with _$Match {
   factory Match.fromDto(api.Match dto) => Match.realtime(
         matchId: dto.matchId,
         authoritative: dto.authoritative,
-        handlerName: dto.handlerName,
+        handlerName: PlatformNormalizer.normalizeNullableString(dto.handlerName),
         label: dto.label.value,
         size: dto.size,
         tickRate: dto.tickRate,

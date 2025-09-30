@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nakama/src/api/rtapi.dart' as rtpb;
+import 'package:nakama/src/utils/platform_normalizer.dart';
 
 part 'status.freezed.dart';
 part 'status.g.dart';
@@ -32,7 +33,7 @@ class UserPresence with _$UserPresence {
         sessionId: dto.sessionId,
         username: dto.username,
         persistence: dto.persistence,
-        status: dto.status.value.isNotEmpty ? dto.status.value : null,
+        status: PlatformNormalizer.normalizeNullableString(dto.status.value),
       );
 
   factory UserPresence.fromJson(Map<String, Object?> json) => _$UserPresenceFromJson(json);

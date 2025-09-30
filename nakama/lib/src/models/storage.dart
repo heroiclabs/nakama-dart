@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nakama/src/api/api.dart' as api;
 import 'package:nakama/src/api/proto/google/protobuf/wrappers.pb.dart';
 import 'package:nakama/src/enum/storage_permission.dart';
+import 'package:nakama/src/utils/platform_normalizer.dart';
 
 part 'storage.freezed.dart';
 part 'storage.g.dart';
@@ -27,7 +28,7 @@ class StorageObject with _$StorageObject {
   factory StorageObject.fromDto(api.StorageObject dto) => StorageObject(
         collection: dto.collection,
         key: dto.key,
-        userId: dto.userId,
+        userId: PlatformNormalizer.normalizeNullableString(dto.userId),
         value: dto.value,
         version: dto.version,
         permissionRead: StorageReadPermission.values[dto.permissionRead],
@@ -49,7 +50,7 @@ class StorageObjectList with _$StorageObjectList {
   factory StorageObjectList.fromJson(Map<String, Object?> json) => _$StorageObjectListFromJson(json);
 
   factory StorageObjectList.fromDto(api.StorageObjectList dto) => StorageObjectList(
-        cursor: dto.cursor,
+        cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
         objects: dto.objects.map((e) => StorageObject.fromDto(e)).toList(growable: false),
       );
 }
@@ -70,7 +71,7 @@ class StorageObjectId with _$StorageObjectId {
   factory StorageObjectId.fromDto(api.DeleteStorageObjectId dto) => StorageObjectId(
         collection: dto.collection,
         key: dto.key,
-        version: dto.version,
+        version: PlatformNormalizer.normalizeNullableString(dto.version),
       );
 }
 

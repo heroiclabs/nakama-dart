@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nakama/src/api/api.dart' as api;
 import 'package:nakama/src/models/leaderboard.dart';
+import 'package:nakama/src/utils/platform_normalizer.dart';
 
 part 'tournament.freezed.dart';
 part 'tournament.g.dart';
@@ -39,18 +40,18 @@ class Tournament with _$Tournament {
         createTime: dto.createTime.hasNanos() ? dto.createTime.toDateTime() : null,
         endTime: dto.endTime.hasNanos() ? dto.endTime.toDateTime() : null,
         startTime: dto.startTime.hasNanos() ? dto.startTime.toDateTime() : null,
-        description: dto.description,
+        description: PlatformNormalizer.normalizeNullableString(dto.description),
         duration: dto.duration,
         endActive: dto.endActive,
         maxNumScore: dto.maxNumScore,
         maxSize: dto.maxSize,
-        metadata: dto.metadata,
+        metadata: PlatformNormalizer.normalizeNullableString(dto.metadata),
         nextReset: dto.nextReset,
         prevReset: dto.prevReset,
         size: dto.size,
         sortOrder: dto.sortOrder,
         startActive: dto.startActive,
-        title: dto.title,
+        title: PlatformNormalizer.normalizeNullableString(dto.title),
       );
 }
 
@@ -67,7 +68,7 @@ class TournamentList with _$TournamentList {
 
   factory TournamentList.fromDto(api.TournamentList dto) => TournamentList(
         tournaments: dto.tournaments.map((e) => Tournament.fromDto(e)).toList(growable: false),
-        cursor: dto.cursor,
+        cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
       );
 }
 
@@ -87,7 +88,7 @@ class TournamentRecordList with _$TournamentRecordList {
   factory TournamentRecordList.fromDto(api.TournamentRecordList dto) => TournamentRecordList(
         records: dto.records.map((e) => LeaderboardRecord.fromDto(e)).toList(growable: false),
         ownerRecords: dto.ownerRecords.map((e) => LeaderboardRecord.fromDto(e)).toList(growable: false),
-        nextCursor: dto.nextCursor,
-        previousCursor: dto.prevCursor,
+        nextCursor: PlatformNormalizer.normalizeNullableString(dto.nextCursor),
+        previousCursor: PlatformNormalizer.normalizeNullableString(dto.prevCursor),
       );
 }
