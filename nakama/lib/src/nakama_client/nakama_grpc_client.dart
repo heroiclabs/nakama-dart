@@ -109,7 +109,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
     Map<String, String>? vars,
   }) async {
     final res = await _client.sessionRefresh(
-      api.SessionRefreshRequest(token: session.refreshToken, vars: vars),
+      api.SessionRefreshRequest(token: session.refreshToken, vars: vars?.entries),
     );
 
     return model.Session.fromDto(res);
@@ -1379,7 +1379,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
       {required model.Session session, required String token, bool reset = false, Map<String, String>? vars}) async {
     await _client.importFacebookFriends(
       api.ImportFacebookFriendsRequest(
-        account: AccountFacebook(token: token, vars: vars),
+        account: AccountFacebook(token: token, vars: vars?.entries),
         reset: api.BoolValue(value: reset),
       ),
       options: _getSessionCallOptions(session),
@@ -1395,7 +1395,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }) async {
     await _client.importSteamFriends(
       api.ImportSteamFriendsRequest(
-        account: AccountSteam(token: token, vars: vars),
+        account: AccountSteam(token: token, vars: vars?.entries),
         reset: api.BoolValue(value: reset),
       ),
       options: _getSessionCallOptions(session),

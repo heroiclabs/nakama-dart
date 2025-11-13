@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,687 +9,573 @@ part of 'channel_message.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-ChannelMessage _$ChannelMessageFromJson(Map<String, dynamic> json) {
-  return _ChannelMessage.fromJson(json);
-}
 
 /// @nodoc
 mixin _$ChannelMessage {
-  @JsonKey(name: 'channel_id')
-  String get channelId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'message_id')
-  String get messageId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'code')
-  int get code => throw _privateConstructorUsedError;
-  @JsonKey(name: 'sender_id')
-  String get senderId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'username')
-  String get username => throw _privateConstructorUsedError;
-  @JsonKey(name: 'content')
-  String get content => throw _privateConstructorUsedError;
-  @JsonKey(name: 'create_time')
-  DateTime get createTime => throw _privateConstructorUsedError;
-  @JsonKey(name: 'update_time')
-  DateTime get updateTime => throw _privateConstructorUsedError;
-  @JsonKey(name: 'persistent')
-  bool get persistent => throw _privateConstructorUsedError;
-  @JsonKey(name: 'room_name')
-  String? get roomName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'group_id')
-  String? get groupId => throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_id_one')
-  String? get userIdOne => throw _privateConstructorUsedError;
-  @JsonKey(name: 'user_id_two')
-  String? get userIdTwo => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ChannelMessageCopyWith<ChannelMessage> get copyWith =>
-      throw _privateConstructorUsedError;
+@JsonKey(name: 'channel_id') String get channelId;@JsonKey(name: 'message_id') String get messageId;@JsonKey(name: 'code') int get code;@JsonKey(name: 'sender_id') String get senderId;@JsonKey(name: 'username') String get username;@JsonKey(name: 'content') String get content;@JsonKey(name: 'create_time') DateTime get createTime;@JsonKey(name: 'update_time') DateTime get updateTime;@JsonKey(name: 'persistent') bool get persistent;@JsonKey(name: 'room_name') String? get roomName;@JsonKey(name: 'group_id') String? get groupId;@JsonKey(name: 'user_id_one') String? get userIdOne;@JsonKey(name: 'user_id_two') String? get userIdTwo;
+/// Create a copy of ChannelMessage
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ChannelMessageCopyWith<ChannelMessage> get copyWith => _$ChannelMessageCopyWithImpl<ChannelMessage>(this as ChannelMessage, _$identity);
+
+  /// Serializes this ChannelMessage to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChannelMessage&&(identical(other.channelId, channelId) || other.channelId == channelId)&&(identical(other.messageId, messageId) || other.messageId == messageId)&&(identical(other.code, code) || other.code == code)&&(identical(other.senderId, senderId) || other.senderId == senderId)&&(identical(other.username, username) || other.username == username)&&(identical(other.content, content) || other.content == content)&&(identical(other.createTime, createTime) || other.createTime == createTime)&&(identical(other.updateTime, updateTime) || other.updateTime == updateTime)&&(identical(other.persistent, persistent) || other.persistent == persistent)&&(identical(other.roomName, roomName) || other.roomName == roomName)&&(identical(other.groupId, groupId) || other.groupId == groupId)&&(identical(other.userIdOne, userIdOne) || other.userIdOne == userIdOne)&&(identical(other.userIdTwo, userIdTwo) || other.userIdTwo == userIdTwo));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,channelId,messageId,code,senderId,username,content,createTime,updateTime,persistent,roomName,groupId,userIdOne,userIdTwo);
+
+@override
+String toString() {
+  return 'ChannelMessage(channelId: $channelId, messageId: $messageId, code: $code, senderId: $senderId, username: $username, content: $content, createTime: $createTime, updateTime: $updateTime, persistent: $persistent, roomName: $roomName, groupId: $groupId, userIdOne: $userIdOne, userIdTwo: $userIdTwo)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ChannelMessageCopyWith<$Res> {
-  factory $ChannelMessageCopyWith(
-          ChannelMessage value, $Res Function(ChannelMessage) then) =
-      _$ChannelMessageCopyWithImpl<$Res, ChannelMessage>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'channel_id') String channelId,
-      @JsonKey(name: 'message_id') String messageId,
-      @JsonKey(name: 'code') int code,
-      @JsonKey(name: 'sender_id') String senderId,
-      @JsonKey(name: 'username') String username,
-      @JsonKey(name: 'content') String content,
-      @JsonKey(name: 'create_time') DateTime createTime,
-      @JsonKey(name: 'update_time') DateTime updateTime,
-      @JsonKey(name: 'persistent') bool persistent,
-      @JsonKey(name: 'room_name') String? roomName,
-      @JsonKey(name: 'group_id') String? groupId,
-      @JsonKey(name: 'user_id_one') String? userIdOne,
-      @JsonKey(name: 'user_id_two') String? userIdTwo});
-}
+abstract mixin class $ChannelMessageCopyWith<$Res>  {
+  factory $ChannelMessageCopyWith(ChannelMessage value, $Res Function(ChannelMessage) _then) = _$ChannelMessageCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'channel_id') String channelId,@JsonKey(name: 'message_id') String messageId,@JsonKey(name: 'code') int code,@JsonKey(name: 'sender_id') String senderId,@JsonKey(name: 'username') String username,@JsonKey(name: 'content') String content,@JsonKey(name: 'create_time') DateTime createTime,@JsonKey(name: 'update_time') DateTime updateTime,@JsonKey(name: 'persistent') bool persistent,@JsonKey(name: 'room_name') String? roomName,@JsonKey(name: 'group_id') String? groupId,@JsonKey(name: 'user_id_one') String? userIdOne,@JsonKey(name: 'user_id_two') String? userIdTwo
+});
 
+
+
+
+}
 /// @nodoc
-class _$ChannelMessageCopyWithImpl<$Res, $Val extends ChannelMessage>
+class _$ChannelMessageCopyWithImpl<$Res>
     implements $ChannelMessageCopyWith<$Res> {
-  _$ChannelMessageCopyWithImpl(this._value, this._then);
+  _$ChannelMessageCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ChannelMessage _self;
+  final $Res Function(ChannelMessage) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? channelId = null,
-    Object? messageId = null,
-    Object? code = null,
-    Object? senderId = null,
-    Object? username = null,
-    Object? content = null,
-    Object? createTime = null,
-    Object? updateTime = null,
-    Object? persistent = null,
-    Object? roomName = freezed,
-    Object? groupId = freezed,
-    Object? userIdOne = freezed,
-    Object? userIdTwo = freezed,
-  }) {
-    return _then(_value.copyWith(
-      channelId: null == channelId
-          ? _value.channelId
-          : channelId // ignore: cast_nullable_to_non_nullable
-              as String,
-      messageId: null == messageId
-          ? _value.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as String,
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as int,
-      senderId: null == senderId
-          ? _value.senderId
-          : senderId // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      createTime: null == createTime
-          ? _value.createTime
-          : createTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updateTime: null == updateTime
-          ? _value.updateTime
-          : updateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      persistent: null == persistent
-          ? _value.persistent
-          : persistent // ignore: cast_nullable_to_non_nullable
-              as bool,
-      roomName: freezed == roomName
-          ? _value.roomName
-          : roomName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      groupId: freezed == groupId
-          ? _value.groupId
-          : groupId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userIdOne: freezed == userIdOne
-          ? _value.userIdOne
-          : userIdOne // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userIdTwo: freezed == userIdTwo
-          ? _value.userIdTwo
-          : userIdTwo // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of ChannelMessage
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? channelId = null,Object? messageId = null,Object? code = null,Object? senderId = null,Object? username = null,Object? content = null,Object? createTime = null,Object? updateTime = null,Object? persistent = null,Object? roomName = freezed,Object? groupId = freezed,Object? userIdOne = freezed,Object? userIdTwo = freezed,}) {
+  return _then(_self.copyWith(
+channelId: null == channelId ? _self.channelId : channelId // ignore: cast_nullable_to_non_nullable
+as String,messageId: null == messageId ? _self.messageId : messageId // ignore: cast_nullable_to_non_nullable
+as String,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
+as int,senderId: null == senderId ? _self.senderId : senderId // ignore: cast_nullable_to_non_nullable
+as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
+as String,createTime: null == createTime ? _self.createTime : createTime // ignore: cast_nullable_to_non_nullable
+as DateTime,updateTime: null == updateTime ? _self.updateTime : updateTime // ignore: cast_nullable_to_non_nullable
+as DateTime,persistent: null == persistent ? _self.persistent : persistent // ignore: cast_nullable_to_non_nullable
+as bool,roomName: freezed == roomName ? _self.roomName : roomName // ignore: cast_nullable_to_non_nullable
+as String?,groupId: freezed == groupId ? _self.groupId : groupId // ignore: cast_nullable_to_non_nullable
+as String?,userIdOne: freezed == userIdOne ? _self.userIdOne : userIdOne // ignore: cast_nullable_to_non_nullable
+as String?,userIdTwo: freezed == userIdTwo ? _self.userIdTwo : userIdTwo // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$ChannelMessageImplCopyWith<$Res>
-    implements $ChannelMessageCopyWith<$Res> {
-  factory _$$ChannelMessageImplCopyWith(_$ChannelMessageImpl value,
-          $Res Function(_$ChannelMessageImpl) then) =
-      __$$ChannelMessageImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'channel_id') String channelId,
-      @JsonKey(name: 'message_id') String messageId,
-      @JsonKey(name: 'code') int code,
-      @JsonKey(name: 'sender_id') String senderId,
-      @JsonKey(name: 'username') String username,
-      @JsonKey(name: 'content') String content,
-      @JsonKey(name: 'create_time') DateTime createTime,
-      @JsonKey(name: 'update_time') DateTime updateTime,
-      @JsonKey(name: 'persistent') bool persistent,
-      @JsonKey(name: 'room_name') String? roomName,
-      @JsonKey(name: 'group_id') String? groupId,
-      @JsonKey(name: 'user_id_one') String? userIdOne,
-      @JsonKey(name: 'user_id_two') String? userIdTwo});
 }
 
-/// @nodoc
-class __$$ChannelMessageImplCopyWithImpl<$Res>
-    extends _$ChannelMessageCopyWithImpl<$Res, _$ChannelMessageImpl>
-    implements _$$ChannelMessageImplCopyWith<$Res> {
-  __$$ChannelMessageImplCopyWithImpl(
-      _$ChannelMessageImpl _value, $Res Function(_$ChannelMessageImpl) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? channelId = null,
-    Object? messageId = null,
-    Object? code = null,
-    Object? senderId = null,
-    Object? username = null,
-    Object? content = null,
-    Object? createTime = null,
-    Object? updateTime = null,
-    Object? persistent = null,
-    Object? roomName = freezed,
-    Object? groupId = freezed,
-    Object? userIdOne = freezed,
-    Object? userIdTwo = freezed,
-  }) {
-    return _then(_$ChannelMessageImpl(
-      channelId: null == channelId
-          ? _value.channelId
-          : channelId // ignore: cast_nullable_to_non_nullable
-              as String,
-      messageId: null == messageId
-          ? _value.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as String,
-      code: null == code
-          ? _value.code
-          : code // ignore: cast_nullable_to_non_nullable
-              as int,
-      senderId: null == senderId
-          ? _value.senderId
-          : senderId // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      createTime: null == createTime
-          ? _value.createTime
-          : createTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      updateTime: null == updateTime
-          ? _value.updateTime
-          : updateTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      persistent: null == persistent
-          ? _value.persistent
-          : persistent // ignore: cast_nullable_to_non_nullable
-              as bool,
-      roomName: freezed == roomName
-          ? _value.roomName
-          : roomName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      groupId: freezed == groupId
-          ? _value.groupId
-          : groupId // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userIdOne: freezed == userIdOne
-          ? _value.userIdOne
-          : userIdOne // ignore: cast_nullable_to_non_nullable
-              as String?,
-      userIdTwo: freezed == userIdTwo
-          ? _value.userIdTwo
-          : userIdTwo // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [ChannelMessage].
+extension ChannelMessagePatterns on ChannelMessage {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ChannelMessage value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ChannelMessage() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ChannelMessage value)  $default,){
+final _that = this;
+switch (_that) {
+case _ChannelMessage():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ChannelMessage value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ChannelMessage() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'channel_id')  String channelId, @JsonKey(name: 'message_id')  String messageId, @JsonKey(name: 'code')  int code, @JsonKey(name: 'sender_id')  String senderId, @JsonKey(name: 'username')  String username, @JsonKey(name: 'content')  String content, @JsonKey(name: 'create_time')  DateTime createTime, @JsonKey(name: 'update_time')  DateTime updateTime, @JsonKey(name: 'persistent')  bool persistent, @JsonKey(name: 'room_name')  String? roomName, @JsonKey(name: 'group_id')  String? groupId, @JsonKey(name: 'user_id_one')  String? userIdOne, @JsonKey(name: 'user_id_two')  String? userIdTwo)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ChannelMessage() when $default != null:
+return $default(_that.channelId,_that.messageId,_that.code,_that.senderId,_that.username,_that.content,_that.createTime,_that.updateTime,_that.persistent,_that.roomName,_that.groupId,_that.userIdOne,_that.userIdTwo);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'channel_id')  String channelId, @JsonKey(name: 'message_id')  String messageId, @JsonKey(name: 'code')  int code, @JsonKey(name: 'sender_id')  String senderId, @JsonKey(name: 'username')  String username, @JsonKey(name: 'content')  String content, @JsonKey(name: 'create_time')  DateTime createTime, @JsonKey(name: 'update_time')  DateTime updateTime, @JsonKey(name: 'persistent')  bool persistent, @JsonKey(name: 'room_name')  String? roomName, @JsonKey(name: 'group_id')  String? groupId, @JsonKey(name: 'user_id_one')  String? userIdOne, @JsonKey(name: 'user_id_two')  String? userIdTwo)  $default,) {final _that = this;
+switch (_that) {
+case _ChannelMessage():
+return $default(_that.channelId,_that.messageId,_that.code,_that.senderId,_that.username,_that.content,_that.createTime,_that.updateTime,_that.persistent,_that.roomName,_that.groupId,_that.userIdOne,_that.userIdTwo);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'channel_id')  String channelId, @JsonKey(name: 'message_id')  String messageId, @JsonKey(name: 'code')  int code, @JsonKey(name: 'sender_id')  String senderId, @JsonKey(name: 'username')  String username, @JsonKey(name: 'content')  String content, @JsonKey(name: 'create_time')  DateTime createTime, @JsonKey(name: 'update_time')  DateTime updateTime, @JsonKey(name: 'persistent')  bool persistent, @JsonKey(name: 'room_name')  String? roomName, @JsonKey(name: 'group_id')  String? groupId, @JsonKey(name: 'user_id_one')  String? userIdOne, @JsonKey(name: 'user_id_two')  String? userIdTwo)?  $default,) {final _that = this;
+switch (_that) {
+case _ChannelMessage() when $default != null:
+return $default(_that.channelId,_that.messageId,_that.code,_that.senderId,_that.username,_that.content,_that.createTime,_that.updateTime,_that.persistent,_that.roomName,_that.groupId,_that.userIdOne,_that.userIdTwo);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ChannelMessageImpl extends _ChannelMessage {
-  const _$ChannelMessageImpl(
-      {@JsonKey(name: 'channel_id') required this.channelId,
-      @JsonKey(name: 'message_id') required this.messageId,
-      @JsonKey(name: 'code') required this.code,
-      @JsonKey(name: 'sender_id') required this.senderId,
-      @JsonKey(name: 'username') required this.username,
-      @JsonKey(name: 'content') required this.content,
-      @JsonKey(name: 'create_time') required this.createTime,
-      @JsonKey(name: 'update_time') required this.updateTime,
-      @JsonKey(name: 'persistent') required this.persistent,
-      @JsonKey(name: 'room_name') required this.roomName,
-      @JsonKey(name: 'group_id') required this.groupId,
-      @JsonKey(name: 'user_id_one') required this.userIdOne,
-      @JsonKey(name: 'user_id_two') required this.userIdTwo})
-      : super._();
 
-  factory _$ChannelMessageImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChannelMessageImplFromJson(json);
+class _ChannelMessage extends ChannelMessage {
+  const _ChannelMessage({@JsonKey(name: 'channel_id') required this.channelId, @JsonKey(name: 'message_id') required this.messageId, @JsonKey(name: 'code') required this.code, @JsonKey(name: 'sender_id') required this.senderId, @JsonKey(name: 'username') required this.username, @JsonKey(name: 'content') required this.content, @JsonKey(name: 'create_time') required this.createTime, @JsonKey(name: 'update_time') required this.updateTime, @JsonKey(name: 'persistent') required this.persistent, @JsonKey(name: 'room_name') required this.roomName, @JsonKey(name: 'group_id') required this.groupId, @JsonKey(name: 'user_id_one') required this.userIdOne, @JsonKey(name: 'user_id_two') required this.userIdTwo}): super._();
+  factory _ChannelMessage.fromJson(Map<String, dynamic> json) => _$ChannelMessageFromJson(json);
 
-  @override
-  @JsonKey(name: 'channel_id')
-  final String channelId;
-  @override
-  @JsonKey(name: 'message_id')
-  final String messageId;
-  @override
-  @JsonKey(name: 'code')
-  final int code;
-  @override
-  @JsonKey(name: 'sender_id')
-  final String senderId;
-  @override
-  @JsonKey(name: 'username')
-  final String username;
-  @override
-  @JsonKey(name: 'content')
-  final String content;
-  @override
-  @JsonKey(name: 'create_time')
-  final DateTime createTime;
-  @override
-  @JsonKey(name: 'update_time')
-  final DateTime updateTime;
-  @override
-  @JsonKey(name: 'persistent')
-  final bool persistent;
-  @override
-  @JsonKey(name: 'room_name')
-  final String? roomName;
-  @override
-  @JsonKey(name: 'group_id')
-  final String? groupId;
-  @override
-  @JsonKey(name: 'user_id_one')
-  final String? userIdOne;
-  @override
-  @JsonKey(name: 'user_id_two')
-  final String? userIdTwo;
+@override@JsonKey(name: 'channel_id') final  String channelId;
+@override@JsonKey(name: 'message_id') final  String messageId;
+@override@JsonKey(name: 'code') final  int code;
+@override@JsonKey(name: 'sender_id') final  String senderId;
+@override@JsonKey(name: 'username') final  String username;
+@override@JsonKey(name: 'content') final  String content;
+@override@JsonKey(name: 'create_time') final  DateTime createTime;
+@override@JsonKey(name: 'update_time') final  DateTime updateTime;
+@override@JsonKey(name: 'persistent') final  bool persistent;
+@override@JsonKey(name: 'room_name') final  String? roomName;
+@override@JsonKey(name: 'group_id') final  String? groupId;
+@override@JsonKey(name: 'user_id_one') final  String? userIdOne;
+@override@JsonKey(name: 'user_id_two') final  String? userIdTwo;
 
-  @override
-  String toString() {
-    return 'ChannelMessage(channelId: $channelId, messageId: $messageId, code: $code, senderId: $senderId, username: $username, content: $content, createTime: $createTime, updateTime: $updateTime, persistent: $persistent, roomName: $roomName, groupId: $groupId, userIdOne: $userIdOne, userIdTwo: $userIdTwo)';
-  }
+/// Create a copy of ChannelMessage
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ChannelMessageCopyWith<_ChannelMessage> get copyWith => __$ChannelMessageCopyWithImpl<_ChannelMessage>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChannelMessageImpl &&
-            (identical(other.channelId, channelId) ||
-                other.channelId == channelId) &&
-            (identical(other.messageId, messageId) ||
-                other.messageId == messageId) &&
-            (identical(other.code, code) || other.code == code) &&
-            (identical(other.senderId, senderId) ||
-                other.senderId == senderId) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.content, content) || other.content == content) &&
-            (identical(other.createTime, createTime) ||
-                other.createTime == createTime) &&
-            (identical(other.updateTime, updateTime) ||
-                other.updateTime == updateTime) &&
-            (identical(other.persistent, persistent) ||
-                other.persistent == persistent) &&
-            (identical(other.roomName, roomName) ||
-                other.roomName == roomName) &&
-            (identical(other.groupId, groupId) || other.groupId == groupId) &&
-            (identical(other.userIdOne, userIdOne) ||
-                other.userIdOne == userIdOne) &&
-            (identical(other.userIdTwo, userIdTwo) ||
-                other.userIdTwo == userIdTwo));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      channelId,
-      messageId,
-      code,
-      senderId,
-      username,
-      content,
-      createTime,
-      updateTime,
-      persistent,
-      roomName,
-      groupId,
-      userIdOne,
-      userIdTwo);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChannelMessageImplCopyWith<_$ChannelMessageImpl> get copyWith =>
-      __$$ChannelMessageImplCopyWithImpl<_$ChannelMessageImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChannelMessageImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$ChannelMessageToJson(this, );
 }
 
-abstract class _ChannelMessage extends ChannelMessage {
-  const factory _ChannelMessage(
-          {@JsonKey(name: 'channel_id') required final String channelId,
-          @JsonKey(name: 'message_id') required final String messageId,
-          @JsonKey(name: 'code') required final int code,
-          @JsonKey(name: 'sender_id') required final String senderId,
-          @JsonKey(name: 'username') required final String username,
-          @JsonKey(name: 'content') required final String content,
-          @JsonKey(name: 'create_time') required final DateTime createTime,
-          @JsonKey(name: 'update_time') required final DateTime updateTime,
-          @JsonKey(name: 'persistent') required final bool persistent,
-          @JsonKey(name: 'room_name') required final String? roomName,
-          @JsonKey(name: 'group_id') required final String? groupId,
-          @JsonKey(name: 'user_id_one') required final String? userIdOne,
-          @JsonKey(name: 'user_id_two') required final String? userIdTwo}) =
-      _$ChannelMessageImpl;
-  const _ChannelMessage._() : super._();
-
-  factory _ChannelMessage.fromJson(Map<String, dynamic> json) =
-      _$ChannelMessageImpl.fromJson;
-
-  @override
-  @JsonKey(name: 'channel_id')
-  String get channelId;
-  @override
-  @JsonKey(name: 'message_id')
-  String get messageId;
-  @override
-  @JsonKey(name: 'code')
-  int get code;
-  @override
-  @JsonKey(name: 'sender_id')
-  String get senderId;
-  @override
-  @JsonKey(name: 'username')
-  String get username;
-  @override
-  @JsonKey(name: 'content')
-  String get content;
-  @override
-  @JsonKey(name: 'create_time')
-  DateTime get createTime;
-  @override
-  @JsonKey(name: 'update_time')
-  DateTime get updateTime;
-  @override
-  @JsonKey(name: 'persistent')
-  bool get persistent;
-  @override
-  @JsonKey(name: 'room_name')
-  String? get roomName;
-  @override
-  @JsonKey(name: 'group_id')
-  String? get groupId;
-  @override
-  @JsonKey(name: 'user_id_one')
-  String? get userIdOne;
-  @override
-  @JsonKey(name: 'user_id_two')
-  String? get userIdTwo;
-  @override
-  @JsonKey(ignore: true)
-  _$$ChannelMessageImplCopyWith<_$ChannelMessageImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChannelMessage&&(identical(other.channelId, channelId) || other.channelId == channelId)&&(identical(other.messageId, messageId) || other.messageId == messageId)&&(identical(other.code, code) || other.code == code)&&(identical(other.senderId, senderId) || other.senderId == senderId)&&(identical(other.username, username) || other.username == username)&&(identical(other.content, content) || other.content == content)&&(identical(other.createTime, createTime) || other.createTime == createTime)&&(identical(other.updateTime, updateTime) || other.updateTime == updateTime)&&(identical(other.persistent, persistent) || other.persistent == persistent)&&(identical(other.roomName, roomName) || other.roomName == roomName)&&(identical(other.groupId, groupId) || other.groupId == groupId)&&(identical(other.userIdOne, userIdOne) || other.userIdOne == userIdOne)&&(identical(other.userIdTwo, userIdTwo) || other.userIdTwo == userIdTwo));
 }
 
-ChannelMessageList _$ChannelMessageListFromJson(Map<String, dynamic> json) {
-  return _ChannelMessageList.fromJson(json);
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,channelId,messageId,code,senderId,username,content,createTime,updateTime,persistent,roomName,groupId,userIdOne,userIdTwo);
+
+@override
+String toString() {
+  return 'ChannelMessage(channelId: $channelId, messageId: $messageId, code: $code, senderId: $senderId, username: $username, content: $content, createTime: $createTime, updateTime: $updateTime, persistent: $persistent, roomName: $roomName, groupId: $groupId, userIdOne: $userIdOne, userIdTwo: $userIdTwo)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ChannelMessageCopyWith<$Res> implements $ChannelMessageCopyWith<$Res> {
+  factory _$ChannelMessageCopyWith(_ChannelMessage value, $Res Function(_ChannelMessage) _then) = __$ChannelMessageCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'channel_id') String channelId,@JsonKey(name: 'message_id') String messageId,@JsonKey(name: 'code') int code,@JsonKey(name: 'sender_id') String senderId,@JsonKey(name: 'username') String username,@JsonKey(name: 'content') String content,@JsonKey(name: 'create_time') DateTime createTime,@JsonKey(name: 'update_time') DateTime updateTime,@JsonKey(name: 'persistent') bool persistent,@JsonKey(name: 'room_name') String? roomName,@JsonKey(name: 'group_id') String? groupId,@JsonKey(name: 'user_id_one') String? userIdOne,@JsonKey(name: 'user_id_two') String? userIdTwo
+});
+
+
+
+
+}
+/// @nodoc
+class __$ChannelMessageCopyWithImpl<$Res>
+    implements _$ChannelMessageCopyWith<$Res> {
+  __$ChannelMessageCopyWithImpl(this._self, this._then);
+
+  final _ChannelMessage _self;
+  final $Res Function(_ChannelMessage) _then;
+
+/// Create a copy of ChannelMessage
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? channelId = null,Object? messageId = null,Object? code = null,Object? senderId = null,Object? username = null,Object? content = null,Object? createTime = null,Object? updateTime = null,Object? persistent = null,Object? roomName = freezed,Object? groupId = freezed,Object? userIdOne = freezed,Object? userIdTwo = freezed,}) {
+  return _then(_ChannelMessage(
+channelId: null == channelId ? _self.channelId : channelId // ignore: cast_nullable_to_non_nullable
+as String,messageId: null == messageId ? _self.messageId : messageId // ignore: cast_nullable_to_non_nullable
+as String,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
+as int,senderId: null == senderId ? _self.senderId : senderId // ignore: cast_nullable_to_non_nullable
+as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
+as String,createTime: null == createTime ? _self.createTime : createTime // ignore: cast_nullable_to_non_nullable
+as DateTime,updateTime: null == updateTime ? _self.updateTime : updateTime // ignore: cast_nullable_to_non_nullable
+as DateTime,persistent: null == persistent ? _self.persistent : persistent // ignore: cast_nullable_to_non_nullable
+as bool,roomName: freezed == roomName ? _self.roomName : roomName // ignore: cast_nullable_to_non_nullable
+as String?,groupId: freezed == groupId ? _self.groupId : groupId // ignore: cast_nullable_to_non_nullable
+as String?,userIdOne: freezed == userIdOne ? _self.userIdOne : userIdOne // ignore: cast_nullable_to_non_nullable
+as String?,userIdTwo: freezed == userIdTwo ? _self.userIdTwo : userIdTwo // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
 
 /// @nodoc
 mixin _$ChannelMessageList {
-  @JsonKey(name: 'messages')
-  List<ChannelMessage>? get messages => throw _privateConstructorUsedError;
-  @JsonKey(name: 'next_cursor')
-  String? get nextCursor => throw _privateConstructorUsedError;
-  @JsonKey(name: 'prev_cursor')
-  String? get prevCursor => throw _privateConstructorUsedError;
-  @JsonKey(name: 'cacheable_cursor')
-  String? get cacheableCursor => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ChannelMessageListCopyWith<ChannelMessageList> get copyWith =>
-      throw _privateConstructorUsedError;
+@JsonKey(name: 'messages') List<ChannelMessage>? get messages;@JsonKey(name: 'next_cursor') String? get nextCursor;@JsonKey(name: 'prev_cursor') String? get prevCursor;@JsonKey(name: 'cacheable_cursor') String? get cacheableCursor;
+/// Create a copy of ChannelMessageList
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ChannelMessageListCopyWith<ChannelMessageList> get copyWith => _$ChannelMessageListCopyWithImpl<ChannelMessageList>(this as ChannelMessageList, _$identity);
+
+  /// Serializes this ChannelMessageList to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChannelMessageList&&const DeepCollectionEquality().equals(other.messages, messages)&&(identical(other.nextCursor, nextCursor) || other.nextCursor == nextCursor)&&(identical(other.prevCursor, prevCursor) || other.prevCursor == prevCursor)&&(identical(other.cacheableCursor, cacheableCursor) || other.cacheableCursor == cacheableCursor));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(messages),nextCursor,prevCursor,cacheableCursor);
+
+@override
+String toString() {
+  return 'ChannelMessageList(messages: $messages, nextCursor: $nextCursor, prevCursor: $prevCursor, cacheableCursor: $cacheableCursor)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ChannelMessageListCopyWith<$Res> {
-  factory $ChannelMessageListCopyWith(
-          ChannelMessageList value, $Res Function(ChannelMessageList) then) =
-      _$ChannelMessageListCopyWithImpl<$Res, ChannelMessageList>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'messages') List<ChannelMessage>? messages,
-      @JsonKey(name: 'next_cursor') String? nextCursor,
-      @JsonKey(name: 'prev_cursor') String? prevCursor,
-      @JsonKey(name: 'cacheable_cursor') String? cacheableCursor});
-}
+abstract mixin class $ChannelMessageListCopyWith<$Res>  {
+  factory $ChannelMessageListCopyWith(ChannelMessageList value, $Res Function(ChannelMessageList) _then) = _$ChannelMessageListCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'messages') List<ChannelMessage>? messages,@JsonKey(name: 'next_cursor') String? nextCursor,@JsonKey(name: 'prev_cursor') String? prevCursor,@JsonKey(name: 'cacheable_cursor') String? cacheableCursor
+});
 
+
+
+
+}
 /// @nodoc
-class _$ChannelMessageListCopyWithImpl<$Res, $Val extends ChannelMessageList>
+class _$ChannelMessageListCopyWithImpl<$Res>
     implements $ChannelMessageListCopyWith<$Res> {
-  _$ChannelMessageListCopyWithImpl(this._value, this._then);
+  _$ChannelMessageListCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ChannelMessageList _self;
+  final $Res Function(ChannelMessageList) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? messages = freezed,
-    Object? nextCursor = freezed,
-    Object? prevCursor = freezed,
-    Object? cacheableCursor = freezed,
-  }) {
-    return _then(_value.copyWith(
-      messages: freezed == messages
-          ? _value.messages
-          : messages // ignore: cast_nullable_to_non_nullable
-              as List<ChannelMessage>?,
-      nextCursor: freezed == nextCursor
-          ? _value.nextCursor
-          : nextCursor // ignore: cast_nullable_to_non_nullable
-              as String?,
-      prevCursor: freezed == prevCursor
-          ? _value.prevCursor
-          : prevCursor // ignore: cast_nullable_to_non_nullable
-              as String?,
-      cacheableCursor: freezed == cacheableCursor
-          ? _value.cacheableCursor
-          : cacheableCursor // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of ChannelMessageList
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? messages = freezed,Object? nextCursor = freezed,Object? prevCursor = freezed,Object? cacheableCursor = freezed,}) {
+  return _then(_self.copyWith(
+messages: freezed == messages ? _self.messages : messages // ignore: cast_nullable_to_non_nullable
+as List<ChannelMessage>?,nextCursor: freezed == nextCursor ? _self.nextCursor : nextCursor // ignore: cast_nullable_to_non_nullable
+as String?,prevCursor: freezed == prevCursor ? _self.prevCursor : prevCursor // ignore: cast_nullable_to_non_nullable
+as String?,cacheableCursor: freezed == cacheableCursor ? _self.cacheableCursor : cacheableCursor // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$ChannelMessageListImplCopyWith<$Res>
-    implements $ChannelMessageListCopyWith<$Res> {
-  factory _$$ChannelMessageListImplCopyWith(_$ChannelMessageListImpl value,
-          $Res Function(_$ChannelMessageListImpl) then) =
-      __$$ChannelMessageListImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'messages') List<ChannelMessage>? messages,
-      @JsonKey(name: 'next_cursor') String? nextCursor,
-      @JsonKey(name: 'prev_cursor') String? prevCursor,
-      @JsonKey(name: 'cacheable_cursor') String? cacheableCursor});
 }
 
-/// @nodoc
-class __$$ChannelMessageListImplCopyWithImpl<$Res>
-    extends _$ChannelMessageListCopyWithImpl<$Res, _$ChannelMessageListImpl>
-    implements _$$ChannelMessageListImplCopyWith<$Res> {
-  __$$ChannelMessageListImplCopyWithImpl(_$ChannelMessageListImpl _value,
-      $Res Function(_$ChannelMessageListImpl) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? messages = freezed,
-    Object? nextCursor = freezed,
-    Object? prevCursor = freezed,
-    Object? cacheableCursor = freezed,
-  }) {
-    return _then(_$ChannelMessageListImpl(
-      messages: freezed == messages
-          ? _value._messages
-          : messages // ignore: cast_nullable_to_non_nullable
-              as List<ChannelMessage>?,
-      nextCursor: freezed == nextCursor
-          ? _value.nextCursor
-          : nextCursor // ignore: cast_nullable_to_non_nullable
-              as String?,
-      prevCursor: freezed == prevCursor
-          ? _value.prevCursor
-          : prevCursor // ignore: cast_nullable_to_non_nullable
-              as String?,
-      cacheableCursor: freezed == cacheableCursor
-          ? _value.cacheableCursor
-          : cacheableCursor // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [ChannelMessageList].
+extension ChannelMessageListPatterns on ChannelMessageList {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ChannelMessageList value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ChannelMessageList() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ChannelMessageList value)  $default,){
+final _that = this;
+switch (_that) {
+case _ChannelMessageList():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ChannelMessageList value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ChannelMessageList() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'messages')  List<ChannelMessage>? messages, @JsonKey(name: 'next_cursor')  String? nextCursor, @JsonKey(name: 'prev_cursor')  String? prevCursor, @JsonKey(name: 'cacheable_cursor')  String? cacheableCursor)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ChannelMessageList() when $default != null:
+return $default(_that.messages,_that.nextCursor,_that.prevCursor,_that.cacheableCursor);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'messages')  List<ChannelMessage>? messages, @JsonKey(name: 'next_cursor')  String? nextCursor, @JsonKey(name: 'prev_cursor')  String? prevCursor, @JsonKey(name: 'cacheable_cursor')  String? cacheableCursor)  $default,) {final _that = this;
+switch (_that) {
+case _ChannelMessageList():
+return $default(_that.messages,_that.nextCursor,_that.prevCursor,_that.cacheableCursor);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'messages')  List<ChannelMessage>? messages, @JsonKey(name: 'next_cursor')  String? nextCursor, @JsonKey(name: 'prev_cursor')  String? prevCursor, @JsonKey(name: 'cacheable_cursor')  String? cacheableCursor)?  $default,) {final _that = this;
+switch (_that) {
+case _ChannelMessageList() when $default != null:
+return $default(_that.messages,_that.nextCursor,_that.prevCursor,_that.cacheableCursor);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ChannelMessageListImpl extends _ChannelMessageList {
-  const _$ChannelMessageListImpl(
-      {@JsonKey(name: 'messages') required final List<ChannelMessage>? messages,
-      @JsonKey(name: 'next_cursor') required this.nextCursor,
-      @JsonKey(name: 'prev_cursor') required this.prevCursor,
-      @JsonKey(name: 'cacheable_cursor') required this.cacheableCursor})
-      : _messages = messages,
-        super._();
 
-  factory _$ChannelMessageListImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ChannelMessageListImplFromJson(json);
+class _ChannelMessageList extends ChannelMessageList {
+  const _ChannelMessageList({@JsonKey(name: 'messages') required final  List<ChannelMessage>? messages, @JsonKey(name: 'next_cursor') required this.nextCursor, @JsonKey(name: 'prev_cursor') required this.prevCursor, @JsonKey(name: 'cacheable_cursor') required this.cacheableCursor}): _messages = messages,super._();
+  factory _ChannelMessageList.fromJson(Map<String, dynamic> json) => _$ChannelMessageListFromJson(json);
 
-  final List<ChannelMessage>? _messages;
-  @override
-  @JsonKey(name: 'messages')
-  List<ChannelMessage>? get messages {
-    final value = _messages;
-    if (value == null) return null;
-    if (_messages is EqualUnmodifiableListView) return _messages;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  @override
-  @JsonKey(name: 'next_cursor')
-  final String? nextCursor;
-  @override
-  @JsonKey(name: 'prev_cursor')
-  final String? prevCursor;
-  @override
-  @JsonKey(name: 'cacheable_cursor')
-  final String? cacheableCursor;
-
-  @override
-  String toString() {
-    return 'ChannelMessageList(messages: $messages, nextCursor: $nextCursor, prevCursor: $prevCursor, cacheableCursor: $cacheableCursor)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChannelMessageListImpl &&
-            const DeepCollectionEquality().equals(other._messages, _messages) &&
-            (identical(other.nextCursor, nextCursor) ||
-                other.nextCursor == nextCursor) &&
-            (identical(other.prevCursor, prevCursor) ||
-                other.prevCursor == prevCursor) &&
-            (identical(other.cacheableCursor, cacheableCursor) ||
-                other.cacheableCursor == cacheableCursor));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_messages),
-      nextCursor,
-      prevCursor,
-      cacheableCursor);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChannelMessageListImplCopyWith<_$ChannelMessageListImpl> get copyWith =>
-      __$$ChannelMessageListImplCopyWithImpl<_$ChannelMessageListImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$ChannelMessageListImplToJson(
-      this,
-    );
-  }
+ final  List<ChannelMessage>? _messages;
+@override@JsonKey(name: 'messages') List<ChannelMessage>? get messages {
+  final value = _messages;
+  if (value == null) return null;
+  if (_messages is EqualUnmodifiableListView) return _messages;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
 }
 
-abstract class _ChannelMessageList extends ChannelMessageList {
-  const factory _ChannelMessageList(
-      {@JsonKey(name: 'messages') required final List<ChannelMessage>? messages,
-      @JsonKey(name: 'next_cursor') required final String? nextCursor,
-      @JsonKey(name: 'prev_cursor') required final String? prevCursor,
-      @JsonKey(name: 'cacheable_cursor')
-      required final String? cacheableCursor}) = _$ChannelMessageListImpl;
-  const _ChannelMessageList._() : super._();
+@override@JsonKey(name: 'next_cursor') final  String? nextCursor;
+@override@JsonKey(name: 'prev_cursor') final  String? prevCursor;
+@override@JsonKey(name: 'cacheable_cursor') final  String? cacheableCursor;
 
-  factory _ChannelMessageList.fromJson(Map<String, dynamic> json) =
-      _$ChannelMessageListImpl.fromJson;
+/// Create a copy of ChannelMessageList
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ChannelMessageListCopyWith<_ChannelMessageList> get copyWith => __$ChannelMessageListCopyWithImpl<_ChannelMessageList>(this, _$identity);
 
-  @override
-  @JsonKey(name: 'messages')
-  List<ChannelMessage>? get messages;
-  @override
-  @JsonKey(name: 'next_cursor')
-  String? get nextCursor;
-  @override
-  @JsonKey(name: 'prev_cursor')
-  String? get prevCursor;
-  @override
-  @JsonKey(name: 'cacheable_cursor')
-  String? get cacheableCursor;
-  @override
-  @JsonKey(ignore: true)
-  _$$ChannelMessageListImplCopyWith<_$ChannelMessageListImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+Map<String, dynamic> toJson() {
+  return _$ChannelMessageListToJson(this, );
 }
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ChannelMessageList&&const DeepCollectionEquality().equals(other._messages, _messages)&&(identical(other.nextCursor, nextCursor) || other.nextCursor == nextCursor)&&(identical(other.prevCursor, prevCursor) || other.prevCursor == prevCursor)&&(identical(other.cacheableCursor, cacheableCursor) || other.cacheableCursor == cacheableCursor));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_messages),nextCursor,prevCursor,cacheableCursor);
+
+@override
+String toString() {
+  return 'ChannelMessageList(messages: $messages, nextCursor: $nextCursor, prevCursor: $prevCursor, cacheableCursor: $cacheableCursor)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ChannelMessageListCopyWith<$Res> implements $ChannelMessageListCopyWith<$Res> {
+  factory _$ChannelMessageListCopyWith(_ChannelMessageList value, $Res Function(_ChannelMessageList) _then) = __$ChannelMessageListCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'messages') List<ChannelMessage>? messages,@JsonKey(name: 'next_cursor') String? nextCursor,@JsonKey(name: 'prev_cursor') String? prevCursor,@JsonKey(name: 'cacheable_cursor') String? cacheableCursor
+});
+
+
+
+
+}
+/// @nodoc
+class __$ChannelMessageListCopyWithImpl<$Res>
+    implements _$ChannelMessageListCopyWith<$Res> {
+  __$ChannelMessageListCopyWithImpl(this._self, this._then);
+
+  final _ChannelMessageList _self;
+  final $Res Function(_ChannelMessageList) _then;
+
+/// Create a copy of ChannelMessageList
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? messages = freezed,Object? nextCursor = freezed,Object? prevCursor = freezed,Object? cacheableCursor = freezed,}) {
+  return _then(_ChannelMessageList(
+messages: freezed == messages ? _self._messages : messages // ignore: cast_nullable_to_non_nullable
+as List<ChannelMessage>?,nextCursor: freezed == nextCursor ? _self.nextCursor : nextCursor // ignore: cast_nullable_to_non_nullable
+as String?,prevCursor: freezed == prevCursor ? _self.prevCursor : prevCursor // ignore: cast_nullable_to_non_nullable
+as String?,cacheableCursor: freezed == cacheableCursor ? _self.cacheableCursor : cacheableCursor // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+// dart format on

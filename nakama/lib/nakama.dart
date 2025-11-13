@@ -1,5 +1,3 @@
-library nakama;
-
 export 'package:fixnum/fixnum.dart' show Int64;
 
 // Enums
