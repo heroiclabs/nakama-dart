@@ -1415,7 +1415,15 @@ class NakamaRestApiClient extends NakamaBaseClient {
         query: query,
       );
 
-      return res.matches?.map((e) => model.Match.fromJson(e.toJson())).toList(growable: false) ?? [];
+      return res.matches?.map((e) {
+        final json = e.toJson();
+        json['runtimeType'] = 'default';
+        // Handle null values that are required fields in the domain model
+        json['authoritative'] ??= false;
+        json['label'] ??= '';
+        json['presences'] ??= <Map<String, dynamic>>[];
+        return model.Match.fromJson(json);
+      }).toList(growable: false) ?? [];
     } on Exception catch (e) {
       throw _handleError(e);
     }
