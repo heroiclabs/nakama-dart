@@ -6,7 +6,7 @@ import 'package:nakama/src/rest/api_client.gen.dart';
 part 'session.freezed.dart';
 
 @freezed
-class Session with _$Session {
+sealed class Session with _$Session {
   const Session._();
 
   factory Session({

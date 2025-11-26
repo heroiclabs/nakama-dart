@@ -6,35 +6,34 @@ part of 'tournament.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TournamentImpl _$$TournamentImplFromJson(Map<String, dynamic> json) =>
-    _$TournamentImpl(
-      id: json['id'] as String,
-      title: json['title'] as String?,
-      description: json['description'] as String?,
-      category: json['category'] as int?,
-      sortOrder: json['sort_order'] as int?,
-      size: json['size'] as int?,
-      maxSize: json['max_size'] as int?,
-      maxNumScore: json['max_num_score'] as int?,
-      canEnter: json['can_enter'] as bool?,
-      endActive: json['end_active'] as int?,
-      nextReset: json['next_reset'] as int?,
-      metadata: json['metadata'] as String?,
-      createTime: json['create_time'] == null
-          ? null
-          : DateTime.parse(json['create_time'] as String),
-      startTime: json['start_time'] == null
-          ? null
-          : DateTime.parse(json['start_time'] as String),
-      endTime: json['end_time'] == null
-          ? null
-          : DateTime.parse(json['end_time'] as String),
-      duration: json['duration'] as int?,
-      startActive: json['start_active'] as int?,
-      prevReset: json['prev_reset'] as int?,
-    );
+_Tournament _$TournamentFromJson(Map<String, dynamic> json) => _Tournament(
+  id: json['id'] as String,
+  title: json['title'] as String?,
+  description: json['description'] as String?,
+  category: (json['category'] as num?)?.toInt(),
+  sortOrder: (json['sort_order'] as num?)?.toInt(),
+  size: (json['size'] as num?)?.toInt(),
+  maxSize: (json['max_size'] as num?)?.toInt(),
+  maxNumScore: (json['max_num_score'] as num?)?.toInt(),
+  canEnter: json['can_enter'] as bool?,
+  endActive: (json['end_active'] as num?)?.toInt(),
+  nextReset: (json['next_reset'] as num?)?.toInt(),
+  metadata: json['metadata'] as String?,
+  createTime: json['create_time'] == null
+      ? null
+      : DateTime.parse(json['create_time'] as String),
+  startTime: json['start_time'] == null
+      ? null
+      : DateTime.parse(json['start_time'] as String),
+  endTime: json['end_time'] == null
+      ? null
+      : DateTime.parse(json['end_time'] as String),
+  duration: (json['duration'] as num?)?.toInt(),
+  startActive: (json['start_active'] as num?)?.toInt(),
+  prevReset: (json['prev_reset'] as num?)?.toInt(),
+);
 
-Map<String, dynamic> _$$TournamentImplToJson(_$TournamentImpl instance) =>
+Map<String, dynamic> _$TournamentToJson(_Tournament instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
@@ -56,39 +55,38 @@ Map<String, dynamic> _$$TournamentImplToJson(_$TournamentImpl instance) =>
       'prev_reset': instance.prevReset,
     };
 
-_$TournamentListImpl _$$TournamentListImplFromJson(Map<String, dynamic> json) =>
-    _$TournamentListImpl(
+_TournamentList _$TournamentListFromJson(Map<String, dynamic> json) =>
+    _TournamentList(
       cursor: json['cursor'] as String?,
       tournaments: (json['tournaments'] as List<dynamic>)
           .map((e) => Tournament.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$TournamentListImplToJson(
-        _$TournamentListImpl instance) =>
+Map<String, dynamic> _$TournamentListToJson(_TournamentList instance) =>
     <String, dynamic>{
       'cursor': instance.cursor,
       'tournaments': instance.tournaments,
     };
 
-_$TournamentRecordListImpl _$$TournamentRecordListImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TournamentRecordListImpl(
-      records: (json['records'] as List<dynamic>)
-          .map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      ownerRecords: (json['owner_records'] as List<dynamic>)
-          .map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      nextCursor: json['next_cursor'] as String?,
-      previousCursor: json['previous_cursor'] as String?,
-    );
+_TournamentRecordList _$TournamentRecordListFromJson(
+  Map<String, dynamic> json,
+) => _TournamentRecordList(
+  records: (json['records'] as List<dynamic>)
+      .map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  ownerRecords: (json['owner_records'] as List<dynamic>)
+      .map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  nextCursor: json['next_cursor'] as String?,
+  previousCursor: json['previous_cursor'] as String?,
+);
 
-Map<String, dynamic> _$$TournamentRecordListImplToJson(
-        _$TournamentRecordListImpl instance) =>
-    <String, dynamic>{
-      'records': instance.records,
-      'owner_records': instance.ownerRecords,
-      'next_cursor': instance.nextCursor,
-      'previous_cursor': instance.previousCursor,
-    };
+Map<String, dynamic> _$TournamentRecordListToJson(
+  _TournamentRecordList instance,
+) => <String, dynamic>{
+  'records': instance.records,
+  'owner_records': instance.ownerRecords,
+  'next_cursor': instance.nextCursor,
+  'previous_cursor': instance.previousCursor,
+};

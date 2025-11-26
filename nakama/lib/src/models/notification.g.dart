@@ -6,18 +6,18 @@ part of 'notification.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$NotificationImpl _$$NotificationImplFromJson(Map<String, dynamic> json) =>
-    _$NotificationImpl(
+_Notification _$NotificationFromJson(Map<String, dynamic> json) =>
+    _Notification(
       id: json['id'] as String,
       subject: json['subject'] as String?,
       content: json['content'] as String?,
-      code: json['code'] as int,
+      code: (json['code'] as num).toInt(),
       senderId: json['sender_id'] as String,
       createTime: DateTime.parse(json['create_time'] as String),
       persistent: json['persistent'] as bool,
     );
 
-Map<String, dynamic> _$$NotificationImplToJson(_$NotificationImpl instance) =>
+Map<String, dynamic> _$NotificationToJson(_Notification instance) =>
     <String, dynamic>{
       'id': instance.id,
       'subject': instance.subject,
@@ -28,17 +28,15 @@ Map<String, dynamic> _$$NotificationImplToJson(_$NotificationImpl instance) =>
       'persistent': instance.persistent,
     };
 
-_$NotificationListImpl _$$NotificationListImplFromJson(
-        Map<String, dynamic> json) =>
-    _$NotificationListImpl(
+_NotificationList _$NotificationListFromJson(Map<String, dynamic> json) =>
+    _NotificationList(
       cursor: json['cacheable_cursor'] as String?,
       notifications: (json['notifications'] as List<dynamic>)
           .map((e) => Notification.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$NotificationListImplToJson(
-        _$NotificationListImpl instance) =>
+Map<String, dynamic> _$NotificationListToJson(_NotificationList instance) =>
     <String, dynamic>{
       'cacheable_cursor': instance.cursor,
       'notifications': instance.notifications,

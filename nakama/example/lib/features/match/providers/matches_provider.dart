@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -48,6 +49,6 @@ class MatchesNotifier extends StateNotifier<List<Match>> {
 final matchesProvider =
     StateNotifierProvider.autoDispose<MatchesNotifier, List<Match>>((ref) {
   final notifier = MatchesNotifier(ref);
-  notifier.listMatches();
+  unawaited(notifier.listMatches());
   return notifier;
 });

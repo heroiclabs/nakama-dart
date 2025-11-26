@@ -7,7 +7,7 @@ part 'friends.freezed.dart';
 part 'friends.g.dart';
 
 @freezed
-class FriendsList with _$FriendsList {
+sealed class FriendsList with _$FriendsList {
   const FriendsList._();
 
   const factory FriendsList({
@@ -30,7 +30,7 @@ class FriendsList with _$FriendsList {
 }
 
 @freezed
-class Friend with _$Friend {
+sealed class Friend with _$Friend {
   const Friend._();
 
   const factory Friend({

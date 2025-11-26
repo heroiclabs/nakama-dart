@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nakama_example/features/leaderboard/providers/leaderboard_provider.dart';
 import 'package:nakama_example/features/rpc/custom/providers/rpc_provider.dart';
@@ -12,7 +14,8 @@ class LeaderboardsNotifier extends StateNotifier<List<String>> {
     final leaderboards = await ref
         .read(rpcCustomProvider.notifier)
         .callWithPayload('list_leaderboards_rpc', {});
-    final leaderboardNames = (jsonDecode(leaderboards) as List)
+    final leaderboardNames = (jsonDecode(leaderboards) as List<dynamic>)
+        .cast<Map<String, dynamic>>()
         .map((leaderboard) => leaderboard['id'] as String)
         .toList();
     state = leaderboardNames;
@@ -36,6 +39,6 @@ class LeaderboardsNotifier extends StateNotifier<List<String>> {
 final leaderboardsProvider =
     StateNotifierProvider<LeaderboardsNotifier, List<String>>((ref) {
   final notifier = LeaderboardsNotifier(ref);
-  notifier.listLeaderboards();
+  unawaited(notifier.listLeaderboards());
   return notifier;
 });
