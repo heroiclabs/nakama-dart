@@ -8,7 +8,7 @@ part 'match.freezed.dart';
 part 'match.g.dart';
 
 @freezed
-class Match with _$Match {
+sealed class Match with _$Match {
   const Match._();
 
   const factory Match({
@@ -21,19 +21,9 @@ class Match with _$Match {
     @JsonKey(name: 'presences') required List<UserPresence> presences,
   }) = _Match;
 
-  factory Match.realtime({
-    required String matchId,
-    required bool authoritative,
-    required String label,
-    required int size,
-    int? tickRate,
-    String? handlerName,
-    required List<UserPresence> presences,
-  }) = RealtimeMatch;
-
   factory Match.fromJson(Map<String, Object?> json) => _$MatchFromJson(json);
 
-  factory Match.fromDto(api.Match dto) => Match.realtime(
+  factory Match.fromDto(api.Match dto) => Match(
         matchId: dto.matchId,
         authoritative: dto.authoritative,
         handlerName: PlatformNormalizer.normalizeNullableString(dto.handlerName),
@@ -43,7 +33,7 @@ class Match with _$Match {
         presences: [],
       );
 
-  factory Match.fromRtpb(rtpb.Match dto) => Match.realtime(
+  factory Match.fromRtpb(rtpb.Match dto) => Match(
         matchId: dto.matchId,
         authoritative: dto.authoritative,
         label: dto.label.value,
@@ -53,7 +43,7 @@ class Match with _$Match {
 }
 
 @freezed
-class Party with _$Party {
+sealed class Party with _$Party {
   const Party._();
 
   const factory Party({

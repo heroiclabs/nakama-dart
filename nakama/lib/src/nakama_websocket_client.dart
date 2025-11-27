@@ -172,7 +172,7 @@ class NakamaWebsocketClient {
     ]);
   }
 
-  void _onData(msg) {
+  void _onData(dynamic msg) {
     try {
       final receivedEnvelope = rtpb.Envelope.fromBuffer(msg);
       _log.info('onData: $receivedEnvelope');
@@ -352,8 +352,8 @@ class NakamaWebsocketClient {
       minCount: minCount,
       maxCount: maxCount,
       query: query,
-      numericProperties: numericProperties,
-      stringProperties: stringProperties,
+      numericProperties: numericProperties?.entries,
+      stringProperties: stringProperties?.entries,
     )));
 
     return PartyMatchmakerTicket.fromDto(res);
@@ -394,8 +394,8 @@ class NakamaWebsocketClient {
         matchmakerAdd: rtpb.MatchmakerAdd(
       maxCount: maxCount,
       minCount: minCount,
-      numericProperties: numericProperties,
-      stringProperties: stringProperties,
+      numericProperties: numericProperties?.entries,
+      stringProperties: stringProperties?.entries,
       query: query,
     )));
 
@@ -496,8 +496,6 @@ class NakamaWebsocketClient {
             return rtpb.ChannelJoin_Type.GROUP;
           case ChannelType.directMessage:
             return rtpb.ChannelJoin_Type.DIRECT_MESSAGE;
-          default:
-            return rtpb.ChannelJoin_Type.TYPE_UNSPECIFIED;
         }
       }()
           .value,

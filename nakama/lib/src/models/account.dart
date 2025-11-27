@@ -6,7 +6,7 @@ part 'account.freezed.dart';
 part 'account.g.dart';
 
 @freezed
-class Account with _$Account {
+sealed class Account with _$Account {
   const Account._();
 
   const factory Account({
@@ -33,7 +33,7 @@ class Account with _$Account {
 }
 
 @freezed
-class Device with _$Device {
+sealed class Device with _$Device {
   const Device._();
 
   const factory Device({
@@ -50,7 +50,7 @@ class Device with _$Device {
 }
 
 @freezed
-class User with _$User {
+sealed class User with _$User {
   const User._();
 
   const factory User({

@@ -1,66 +1,70 @@
-///
-//  Generated code. Do not modify.
-//  source: google/protobuf/wrappers.proto
+// This is a generated file - do not edit.
 //
-// @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
+// Generated from google/protobuf/wrappers.proto.
+
+// @dart = 3.3
+
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: curly_braces_in_flow_control_structures
+// ignore_for_file: deprecated_member_use_from_same_package
+// ignore_for_file: implementation_imports, library_prefixes
+// ignore_for_file: non_constant_identifier_names
 
 import 'dart:core' as $core;
 
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
-
 import 'package:protobuf/src/protobuf/mixins/well_known.dart' as $mixin;
 
-class DoubleValue extends $pb.GeneratedMessage with $mixin.DoubleValueMixin {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'DoubleValue',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'google.protobuf'),
-      createEmptyInstance: create,
-      toProto3Json: $mixin.DoubleValueMixin.toProto3JsonHelper,
-      fromProto3Json: $mixin.DoubleValueMixin.fromProto3JsonHelper)
-    ..a<$core.double>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value',
-        $pb.PbFieldType.OD)
-    ..hasRequiredFields = false;
+export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
-  DoubleValue._() : super();
+/// Wrapper message for `double`.
+///
+/// The JSON representation for `DoubleValue` is JSON number.
+///
+/// Not recommended for use in new APIs, but still useful for legacy APIs and
+/// has no plan to be removed.
+class DoubleValue extends $pb.GeneratedMessage with $mixin.DoubleValueMixin {
   factory DoubleValue({
     $core.double? value,
   }) {
-    final _result = create();
-    if (value != null) {
-      _result.value = value;
-    }
-    return _result;
+    final result = create();
+    if (value != null) result.value = value;
+    return result;
   }
-  factory DoubleValue.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory DoubleValue.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
-  DoubleValue clone() => DoubleValue()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
+
+  DoubleValue._();
+
+  factory DoubleValue.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory DoubleValue.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'DoubleValue',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'google.protobuf'),
+      createEmptyInstance: create,
+      wellKnownType: $mixin.WellKnownType.doubleValue)
+    ..aD(1, _omitFieldNames ? '' : 'value')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  DoubleValue clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   DoubleValue copyWith(void Function(DoubleValue) updates) =>
       super.copyWith((message) => updates(message as DoubleValue))
-          as DoubleValue; // ignore: deprecated_member_use
+          as DoubleValue;
+
+  @$core.override
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static DoubleValue create() => DoubleValue._();
+  @$core.override
   DoubleValue createEmptyInstance() => create();
   static $pb.PbList<DoubleValue> createRepeated() => $pb.PbList<DoubleValue>();
   @$core.pragma('dart2js:noInline')
@@ -68,68 +72,62 @@ class DoubleValue extends $pb.GeneratedMessage with $mixin.DoubleValueMixin {
       $pb.GeneratedMessage.$_defaultFor<DoubleValue>(create);
   static DoubleValue? _defaultInstance;
 
+  /// The double value.
   @$pb.TagNumber(1)
   $core.double get value => $_getN(0);
   @$pb.TagNumber(1)
-  set value($core.double v) {
-    $_setDouble(0, v);
-  }
-
+  set value($core.double value) => $_setDouble(0, value);
   @$pb.TagNumber(1)
   $core.bool hasValue() => $_has(0);
   @$pb.TagNumber(1)
-  void clearValue() => clearField(1);
+  void clearValue() => $_clearField(1);
 }
 
+/// Wrapper message for `float`.
+///
+/// The JSON representation for `FloatValue` is JSON number.
+///
+/// Not recommended for use in new APIs, but still useful for legacy APIs and
+/// has no plan to be removed.
 class FloatValue extends $pb.GeneratedMessage with $mixin.FloatValueMixin {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'FloatValue',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'google.protobuf'),
-      createEmptyInstance: create,
-      toProto3Json: $mixin.FloatValueMixin.toProto3JsonHelper,
-      fromProto3Json: $mixin.FloatValueMixin.fromProto3JsonHelper)
-    ..a<$core.double>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value',
-        $pb.PbFieldType.OF)
-    ..hasRequiredFields = false;
-
-  FloatValue._() : super();
   factory FloatValue({
     $core.double? value,
   }) {
-    final _result = create();
-    if (value != null) {
-      _result.value = value;
-    }
-    return _result;
+    final result = create();
+    if (value != null) result.value = value;
+    return result;
   }
-  factory FloatValue.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory FloatValue.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
-  FloatValue clone() => FloatValue()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
+
+  FloatValue._();
+
+  factory FloatValue.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory FloatValue.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'FloatValue',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'google.protobuf'),
+      createEmptyInstance: create,
+      wellKnownType: $mixin.WellKnownType.floatValue)
+    ..aD(1, _omitFieldNames ? '' : 'value', fieldType: $pb.PbFieldType.OF)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  FloatValue clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   FloatValue copyWith(void Function(FloatValue) updates) =>
-      super.copyWith((message) => updates(message as FloatValue))
-          as FloatValue; // ignore: deprecated_member_use
+      super.copyWith((message) => updates(message as FloatValue)) as FloatValue;
+
+  @$core.override
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static FloatValue create() => FloatValue._();
+  @$core.override
   FloatValue createEmptyInstance() => create();
   static $pb.PbList<FloatValue> createRepeated() => $pb.PbList<FloatValue>();
   @$core.pragma('dart2js:noInline')
@@ -137,67 +135,62 @@ class FloatValue extends $pb.GeneratedMessage with $mixin.FloatValueMixin {
       $pb.GeneratedMessage.$_defaultFor<FloatValue>(create);
   static FloatValue? _defaultInstance;
 
+  /// The float value.
   @$pb.TagNumber(1)
   $core.double get value => $_getN(0);
   @$pb.TagNumber(1)
-  set value($core.double v) {
-    $_setFloat(0, v);
-  }
-
+  set value($core.double value) => $_setFloat(0, value);
   @$pb.TagNumber(1)
   $core.bool hasValue() => $_has(0);
   @$pb.TagNumber(1)
-  void clearValue() => clearField(1);
+  void clearValue() => $_clearField(1);
 }
 
+/// Wrapper message for `int64`.
+///
+/// The JSON representation for `Int64Value` is JSON string.
+///
+/// Not recommended for use in new APIs, but still useful for legacy APIs and
+/// has no plan to be removed.
 class Int64Value extends $pb.GeneratedMessage with $mixin.Int64ValueMixin {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'Int64Value',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'google.protobuf'),
-      createEmptyInstance: create,
-      toProto3Json: $mixin.Int64ValueMixin.toProto3JsonHelper,
-      fromProto3Json: $mixin.Int64ValueMixin.fromProto3JsonHelper)
-    ..aInt64(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value')
-    ..hasRequiredFields = false;
-
-  Int64Value._() : super();
   factory Int64Value({
     $fixnum.Int64? value,
   }) {
-    final _result = create();
-    if (value != null) {
-      _result.value = value;
-    }
-    return _result;
+    final result = create();
+    if (value != null) result.value = value;
+    return result;
   }
-  factory Int64Value.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory Int64Value.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
-  Int64Value clone() => Int64Value()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
+
+  Int64Value._();
+
+  factory Int64Value.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory Int64Value.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Int64Value',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'google.protobuf'),
+      createEmptyInstance: create,
+      wellKnownType: $mixin.WellKnownType.int64Value)
+    ..aInt64(1, _omitFieldNames ? '' : 'value')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  Int64Value clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Int64Value copyWith(void Function(Int64Value) updates) =>
-      super.copyWith((message) => updates(message as Int64Value))
-          as Int64Value; // ignore: deprecated_member_use
+      super.copyWith((message) => updates(message as Int64Value)) as Int64Value;
+
+  @$core.override
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static Int64Value create() => Int64Value._();
+  @$core.override
   Int64Value createEmptyInstance() => create();
   static $pb.PbList<Int64Value> createRepeated() => $pb.PbList<Int64Value>();
   @$core.pragma('dart2js:noInline')
@@ -205,69 +198,64 @@ class Int64Value extends $pb.GeneratedMessage with $mixin.Int64ValueMixin {
       $pb.GeneratedMessage.$_defaultFor<Int64Value>(create);
   static Int64Value? _defaultInstance;
 
+  /// The int64 value.
   @$pb.TagNumber(1)
   $fixnum.Int64 get value => $_getI64(0);
   @$pb.TagNumber(1)
-  set value($fixnum.Int64 v) {
-    $_setInt64(0, v);
-  }
-
+  set value($fixnum.Int64 value) => $_setInt64(0, value);
   @$pb.TagNumber(1)
   $core.bool hasValue() => $_has(0);
   @$pb.TagNumber(1)
-  void clearValue() => clearField(1);
+  void clearValue() => $_clearField(1);
 }
 
+/// Wrapper message for `uint64`.
+///
+/// The JSON representation for `UInt64Value` is JSON string.
+///
+/// Not recommended for use in new APIs, but still useful for legacy APIs and
+/// has no plan to be removed.
 class UInt64Value extends $pb.GeneratedMessage with $mixin.UInt64ValueMixin {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'UInt64Value',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'google.protobuf'),
-      createEmptyInstance: create,
-      toProto3Json: $mixin.UInt64ValueMixin.toProto3JsonHelper,
-      fromProto3Json: $mixin.UInt64ValueMixin.fromProto3JsonHelper)
-    ..a<$fixnum.Int64>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value',
-        $pb.PbFieldType.OU6,
-        defaultOrMaker: $fixnum.Int64.ZERO)
-    ..hasRequiredFields = false;
-
-  UInt64Value._() : super();
   factory UInt64Value({
     $fixnum.Int64? value,
   }) {
-    final _result = create();
-    if (value != null) {
-      _result.value = value;
-    }
-    return _result;
+    final result = create();
+    if (value != null) result.value = value;
+    return result;
   }
-  factory UInt64Value.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory UInt64Value.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
-  UInt64Value clone() => UInt64Value()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
+
+  UInt64Value._();
+
+  factory UInt64Value.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory UInt64Value.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'UInt64Value',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'google.protobuf'),
+      createEmptyInstance: create,
+      wellKnownType: $mixin.WellKnownType.uint64Value)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'value', $pb.PbFieldType.OU6,
+        defaultOrMaker: $fixnum.Int64.ZERO)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  UInt64Value clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   UInt64Value copyWith(void Function(UInt64Value) updates) =>
       super.copyWith((message) => updates(message as UInt64Value))
-          as UInt64Value; // ignore: deprecated_member_use
+          as UInt64Value;
+
+  @$core.override
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static UInt64Value create() => UInt64Value._();
+  @$core.override
   UInt64Value createEmptyInstance() => create();
   static $pb.PbList<UInt64Value> createRepeated() => $pb.PbList<UInt64Value>();
   @$core.pragma('dart2js:noInline')
@@ -275,68 +263,62 @@ class UInt64Value extends $pb.GeneratedMessage with $mixin.UInt64ValueMixin {
       $pb.GeneratedMessage.$_defaultFor<UInt64Value>(create);
   static UInt64Value? _defaultInstance;
 
+  /// The uint64 value.
   @$pb.TagNumber(1)
   $fixnum.Int64 get value => $_getI64(0);
   @$pb.TagNumber(1)
-  set value($fixnum.Int64 v) {
-    $_setInt64(0, v);
-  }
-
+  set value($fixnum.Int64 value) => $_setInt64(0, value);
   @$pb.TagNumber(1)
   $core.bool hasValue() => $_has(0);
   @$pb.TagNumber(1)
-  void clearValue() => clearField(1);
+  void clearValue() => $_clearField(1);
 }
 
+/// Wrapper message for `int32`.
+///
+/// The JSON representation for `Int32Value` is JSON number.
+///
+/// Not recommended for use in new APIs, but still useful for legacy APIs and
+/// has no plan to be removed.
 class Int32Value extends $pb.GeneratedMessage with $mixin.Int32ValueMixin {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'Int32Value',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'google.protobuf'),
-      createEmptyInstance: create,
-      toProto3Json: $mixin.Int32ValueMixin.toProto3JsonHelper,
-      fromProto3Json: $mixin.Int32ValueMixin.fromProto3JsonHelper)
-    ..a<$core.int>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value',
-        $pb.PbFieldType.O3)
-    ..hasRequiredFields = false;
-
-  Int32Value._() : super();
   factory Int32Value({
     $core.int? value,
   }) {
-    final _result = create();
-    if (value != null) {
-      _result.value = value;
-    }
-    return _result;
+    final result = create();
+    if (value != null) result.value = value;
+    return result;
   }
-  factory Int32Value.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory Int32Value.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
-  Int32Value clone() => Int32Value()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
+
+  Int32Value._();
+
+  factory Int32Value.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory Int32Value.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'Int32Value',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'google.protobuf'),
+      createEmptyInstance: create,
+      wellKnownType: $mixin.WellKnownType.int32Value)
+    ..aI(1, _omitFieldNames ? '' : 'value')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  Int32Value clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   Int32Value copyWith(void Function(Int32Value) updates) =>
-      super.copyWith((message) => updates(message as Int32Value))
-          as Int32Value; // ignore: deprecated_member_use
+      super.copyWith((message) => updates(message as Int32Value)) as Int32Value;
+
+  @$core.override
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static Int32Value create() => Int32Value._();
+  @$core.override
   Int32Value createEmptyInstance() => create();
   static $pb.PbList<Int32Value> createRepeated() => $pb.PbList<Int32Value>();
   @$core.pragma('dart2js:noInline')
@@ -344,68 +326,63 @@ class Int32Value extends $pb.GeneratedMessage with $mixin.Int32ValueMixin {
       $pb.GeneratedMessage.$_defaultFor<Int32Value>(create);
   static Int32Value? _defaultInstance;
 
+  /// The int32 value.
   @$pb.TagNumber(1)
   $core.int get value => $_getIZ(0);
   @$pb.TagNumber(1)
-  set value($core.int v) {
-    $_setSignedInt32(0, v);
-  }
-
+  set value($core.int value) => $_setSignedInt32(0, value);
   @$pb.TagNumber(1)
   $core.bool hasValue() => $_has(0);
   @$pb.TagNumber(1)
-  void clearValue() => clearField(1);
+  void clearValue() => $_clearField(1);
 }
 
+/// Wrapper message for `uint32`.
+///
+/// The JSON representation for `UInt32Value` is JSON number.
+///
+/// Not recommended for use in new APIs, but still useful for legacy APIs and
+/// has no plan to be removed.
 class UInt32Value extends $pb.GeneratedMessage with $mixin.UInt32ValueMixin {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'UInt32Value',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'google.protobuf'),
-      createEmptyInstance: create,
-      toProto3Json: $mixin.UInt32ValueMixin.toProto3JsonHelper,
-      fromProto3Json: $mixin.UInt32ValueMixin.fromProto3JsonHelper)
-    ..a<$core.int>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value',
-        $pb.PbFieldType.OU3)
-    ..hasRequiredFields = false;
-
-  UInt32Value._() : super();
   factory UInt32Value({
     $core.int? value,
   }) {
-    final _result = create();
-    if (value != null) {
-      _result.value = value;
-    }
-    return _result;
+    final result = create();
+    if (value != null) result.value = value;
+    return result;
   }
-  factory UInt32Value.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory UInt32Value.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
-  UInt32Value clone() => UInt32Value()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
+
+  UInt32Value._();
+
+  factory UInt32Value.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory UInt32Value.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'UInt32Value',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'google.protobuf'),
+      createEmptyInstance: create,
+      wellKnownType: $mixin.WellKnownType.uint32Value)
+    ..aI(1, _omitFieldNames ? '' : 'value', fieldType: $pb.PbFieldType.OU3)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  UInt32Value clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   UInt32Value copyWith(void Function(UInt32Value) updates) =>
       super.copyWith((message) => updates(message as UInt32Value))
-          as UInt32Value; // ignore: deprecated_member_use
+          as UInt32Value;
+
+  @$core.override
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static UInt32Value create() => UInt32Value._();
+  @$core.override
   UInt32Value createEmptyInstance() => create();
   static $pb.PbList<UInt32Value> createRepeated() => $pb.PbList<UInt32Value>();
   @$core.pragma('dart2js:noInline')
@@ -413,67 +390,62 @@ class UInt32Value extends $pb.GeneratedMessage with $mixin.UInt32ValueMixin {
       $pb.GeneratedMessage.$_defaultFor<UInt32Value>(create);
   static UInt32Value? _defaultInstance;
 
+  /// The uint32 value.
   @$pb.TagNumber(1)
   $core.int get value => $_getIZ(0);
   @$pb.TagNumber(1)
-  set value($core.int v) {
-    $_setUnsignedInt32(0, v);
-  }
-
+  set value($core.int value) => $_setUnsignedInt32(0, value);
   @$pb.TagNumber(1)
   $core.bool hasValue() => $_has(0);
   @$pb.TagNumber(1)
-  void clearValue() => clearField(1);
+  void clearValue() => $_clearField(1);
 }
 
+/// Wrapper message for `bool`.
+///
+/// The JSON representation for `BoolValue` is JSON `true` and `false`.
+///
+/// Not recommended for use in new APIs, but still useful for legacy APIs and
+/// has no plan to be removed.
 class BoolValue extends $pb.GeneratedMessage with $mixin.BoolValueMixin {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'BoolValue',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'google.protobuf'),
-      createEmptyInstance: create,
-      toProto3Json: $mixin.BoolValueMixin.toProto3JsonHelper,
-      fromProto3Json: $mixin.BoolValueMixin.fromProto3JsonHelper)
-    ..aOB(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value')
-    ..hasRequiredFields = false;
-
-  BoolValue._() : super();
   factory BoolValue({
     $core.bool? value,
   }) {
-    final _result = create();
-    if (value != null) {
-      _result.value = value;
-    }
-    return _result;
+    final result = create();
+    if (value != null) result.value = value;
+    return result;
   }
-  factory BoolValue.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory BoolValue.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
-  BoolValue clone() => BoolValue()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
+
+  BoolValue._();
+
+  factory BoolValue.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory BoolValue.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'BoolValue',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'google.protobuf'),
+      createEmptyInstance: create,
+      wellKnownType: $mixin.WellKnownType.boolValue)
+    ..aOB(1, _omitFieldNames ? '' : 'value')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  BoolValue clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   BoolValue copyWith(void Function(BoolValue) updates) =>
-      super.copyWith((message) => updates(message as BoolValue))
-          as BoolValue; // ignore: deprecated_member_use
+      super.copyWith((message) => updates(message as BoolValue)) as BoolValue;
+
+  @$core.override
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static BoolValue create() => BoolValue._();
+  @$core.override
   BoolValue createEmptyInstance() => create();
   static $pb.PbList<BoolValue> createRepeated() => $pb.PbList<BoolValue>();
   @$core.pragma('dart2js:noInline')
@@ -481,67 +453,63 @@ class BoolValue extends $pb.GeneratedMessage with $mixin.BoolValueMixin {
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BoolValue>(create);
   static BoolValue? _defaultInstance;
 
+  /// The bool value.
   @$pb.TagNumber(1)
   $core.bool get value => $_getBF(0);
   @$pb.TagNumber(1)
-  set value($core.bool v) {
-    $_setBool(0, v);
-  }
-
+  set value($core.bool value) => $_setBool(0, value);
   @$pb.TagNumber(1)
   $core.bool hasValue() => $_has(0);
   @$pb.TagNumber(1)
-  void clearValue() => clearField(1);
+  void clearValue() => $_clearField(1);
 }
 
+/// Wrapper message for `string`.
+///
+/// The JSON representation for `StringValue` is JSON string.
+///
+/// Not recommended for use in new APIs, but still useful for legacy APIs and
+/// has no plan to be removed.
 class StringValue extends $pb.GeneratedMessage with $mixin.StringValueMixin {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'StringValue',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'google.protobuf'),
-      createEmptyInstance: create,
-      toProto3Json: $mixin.StringValueMixin.toProto3JsonHelper,
-      fromProto3Json: $mixin.StringValueMixin.fromProto3JsonHelper)
-    ..aOS(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value')
-    ..hasRequiredFields = false;
-
-  StringValue._() : super();
   factory StringValue({
     $core.String? value,
   }) {
-    final _result = create();
-    if (value != null) {
-      _result.value = value;
-    }
-    return _result;
+    final result = create();
+    if (value != null) result.value = value;
+    return result;
   }
-  factory StringValue.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory StringValue.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
-  StringValue clone() => StringValue()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
+
+  StringValue._();
+
+  factory StringValue.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory StringValue.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'StringValue',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'google.protobuf'),
+      createEmptyInstance: create,
+      wellKnownType: $mixin.WellKnownType.stringValue)
+    ..aOS(1, _omitFieldNames ? '' : 'value')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  StringValue clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   StringValue copyWith(void Function(StringValue) updates) =>
       super.copyWith((message) => updates(message as StringValue))
-          as StringValue; // ignore: deprecated_member_use
+          as StringValue;
+
+  @$core.override
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static StringValue create() => StringValue._();
+  @$core.override
   StringValue createEmptyInstance() => create();
   static $pb.PbList<StringValue> createRepeated() => $pb.PbList<StringValue>();
   @$core.pragma('dart2js:noInline')
@@ -549,68 +517,63 @@ class StringValue extends $pb.GeneratedMessage with $mixin.StringValueMixin {
       $pb.GeneratedMessage.$_defaultFor<StringValue>(create);
   static StringValue? _defaultInstance;
 
+  /// The string value.
   @$pb.TagNumber(1)
   $core.String get value => $_getSZ(0);
   @$pb.TagNumber(1)
-  set value($core.String v) {
-    $_setString(0, v);
-  }
-
+  set value($core.String value) => $_setString(0, value);
   @$pb.TagNumber(1)
   $core.bool hasValue() => $_has(0);
   @$pb.TagNumber(1)
-  void clearValue() => clearField(1);
+  void clearValue() => $_clearField(1);
 }
 
+/// Wrapper message for `bytes`.
+///
+/// The JSON representation for `BytesValue` is JSON string.
+///
+/// Not recommended for use in new APIs, but still useful for legacy APIs and
+/// has no plan to be removed.
 class BytesValue extends $pb.GeneratedMessage with $mixin.BytesValueMixin {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'BytesValue',
-      package: const $pb.PackageName(
-          const $core.bool.fromEnvironment('protobuf.omit_message_names')
-              ? ''
-              : 'google.protobuf'),
-      createEmptyInstance: create,
-      toProto3Json: $mixin.BytesValueMixin.toProto3JsonHelper,
-      fromProto3Json: $mixin.BytesValueMixin.fromProto3JsonHelper)
-    ..a<$core.List<$core.int>>(
-        1,
-        const $core.bool.fromEnvironment('protobuf.omit_field_names')
-            ? ''
-            : 'value',
-        $pb.PbFieldType.OY)
-    ..hasRequiredFields = false;
-
-  BytesValue._() : super();
   factory BytesValue({
     $core.List<$core.int>? value,
   }) {
-    final _result = create();
-    if (value != null) {
-      _result.value = value;
-    }
-    return _result;
+    final result = create();
+    if (value != null) result.value = value;
+    return result;
   }
-  factory BytesValue.fromBuffer($core.List<$core.int> i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(i, r);
-  factory BytesValue.fromJson($core.String i,
-          [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(i, r);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-      'Will be removed in next major version')
-  BytesValue clone() => BytesValue()..mergeFromMessage(this);
-  @$core.Deprecated('Using this can add significant overhead to your binary. '
-      'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-      'Will be removed in next major version')
+
+  BytesValue._();
+
+  factory BytesValue.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory BytesValue.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'BytesValue',
+      package:
+          const $pb.PackageName(_omitMessageNames ? '' : 'google.protobuf'),
+      createEmptyInstance: create,
+      wellKnownType: $mixin.WellKnownType.bytesValue)
+    ..a<$core.List<$core.int>>(
+        1, _omitFieldNames ? '' : 'value', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  BytesValue clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   BytesValue copyWith(void Function(BytesValue) updates) =>
-      super.copyWith((message) => updates(message as BytesValue))
-          as BytesValue; // ignore: deprecated_member_use
+      super.copyWith((message) => updates(message as BytesValue)) as BytesValue;
+
+  @$core.override
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static BytesValue create() => BytesValue._();
+  @$core.override
   BytesValue createEmptyInstance() => create();
   static $pb.PbList<BytesValue> createRepeated() => $pb.PbList<BytesValue>();
   @$core.pragma('dart2js:noInline')
@@ -618,15 +581,18 @@ class BytesValue extends $pb.GeneratedMessage with $mixin.BytesValueMixin {
       $pb.GeneratedMessage.$_defaultFor<BytesValue>(create);
   static BytesValue? _defaultInstance;
 
+  /// The bytes value.
   @$pb.TagNumber(1)
   $core.List<$core.int> get value => $_getN(0);
   @$pb.TagNumber(1)
-  set value($core.List<$core.int> v) {
-    $_setBytes(0, v);
-  }
-
+  set value($core.List<$core.int> value) => $_setBytes(0, value);
   @$pb.TagNumber(1)
   $core.bool hasValue() => $_has(0);
   @$pb.TagNumber(1)
-  void clearValue() => clearField(1);
+  void clearValue() => $_clearField(1);
 }
+
+const $core.bool _omitFieldNames =
+    $core.bool.fromEnvironment('protobuf.omit_field_names');
+const $core.bool _omitMessageNames =
+    $core.bool.fromEnvironment('protobuf.omit_message_names');

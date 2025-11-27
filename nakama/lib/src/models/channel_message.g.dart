@@ -6,11 +6,11 @@ part of 'channel_message.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ChannelMessageImpl _$$ChannelMessageImplFromJson(Map<String, dynamic> json) =>
-    _$ChannelMessageImpl(
+_ChannelMessage _$ChannelMessageFromJson(Map<String, dynamic> json) =>
+    _ChannelMessage(
       channelId: json['channel_id'] as String,
       messageId: json['message_id'] as String,
-      code: json['code'] as int,
+      code: (json['code'] as num).toInt(),
       senderId: json['sender_id'] as String,
       username: json['username'] as String,
       content: json['content'] as String,
@@ -23,8 +23,7 @@ _$ChannelMessageImpl _$$ChannelMessageImplFromJson(Map<String, dynamic> json) =>
       userIdTwo: json['user_id_two'] as String?,
     );
 
-Map<String, dynamic> _$$ChannelMessageImplToJson(
-        _$ChannelMessageImpl instance) =>
+Map<String, dynamic> _$ChannelMessageToJson(_ChannelMessage instance) =>
     <String, dynamic>{
       'channel_id': instance.channelId,
       'message_id': instance.messageId,
@@ -41,9 +40,8 @@ Map<String, dynamic> _$$ChannelMessageImplToJson(
       'user_id_two': instance.userIdTwo,
     };
 
-_$ChannelMessageListImpl _$$ChannelMessageListImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ChannelMessageListImpl(
+_ChannelMessageList _$ChannelMessageListFromJson(Map<String, dynamic> json) =>
+    _ChannelMessageList(
       messages: (json['messages'] as List<dynamic>?)
           ?.map((e) => ChannelMessage.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -52,8 +50,7 @@ _$ChannelMessageListImpl _$$ChannelMessageListImplFromJson(
       cacheableCursor: json['cacheable_cursor'] as String?,
     );
 
-Map<String, dynamic> _$$ChannelMessageListImplToJson(
-        _$ChannelMessageListImpl instance) =>
+Map<String, dynamic> _$ChannelMessageListToJson(_ChannelMessageList instance) =>
     <String, dynamic>{
       'messages': instance.messages,
       'next_cursor': instance.nextCursor,

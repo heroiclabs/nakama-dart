@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:math';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nakama/nakama.dart';
 import 'package:nakama_example/features/common/providers/session_provider.dart';
@@ -49,6 +51,6 @@ class GroupsNotifier extends StateNotifier<List<Group>> {
 final groupsProvider =
     StateNotifierProvider<GroupsNotifier, List<Group>>((ref) {
   final notifier = GroupsNotifier(ref);
-  notifier.listGroups();
+  unawaited(notifier.listGroups());
   return notifier;
 });

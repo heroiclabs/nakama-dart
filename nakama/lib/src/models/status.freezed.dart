@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,1089 +9,1428 @@ part of 'status.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
-UserPresence _$UserPresenceFromJson(Map<String, dynamic> json) {
-  return _UserPresence.fromJson(json);
-}
 
 /// @nodoc
 mixin _$UserPresence {
-  /// The user this presence belongs to.
-  @JsonKey(name: 'user_id')
-  String get userId => throw _privateConstructorUsedError;
 
-  /// A unique session ID identifying the particular connection, because the
-  /// user may have many.
-  @JsonKey(name: 'session_id')
-  String get sessionId => throw _privateConstructorUsedError;
+/// The user this presence belongs to.
+@JsonKey(name: 'user_id') String get userId;/// A unique session ID identifying the particular connection, because the
+/// user may have many.
+@JsonKey(name: 'session_id') String get sessionId;/// The username for display purposes.
+@JsonKey(name: 'username') String get username;/// Whether this presence generates persistent data/messages, if applicable
+/// for the stream type.
+@JsonKey(name: 'persistence') bool get persistence;/// A user-set status message for this stream, if applicable.
+@JsonKey(name: 'status') String? get status;
+/// Create a copy of UserPresence
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UserPresenceCopyWith<UserPresence> get copyWith => _$UserPresenceCopyWithImpl<UserPresence>(this as UserPresence, _$identity);
 
-  /// The username for display purposes.
-  @JsonKey(name: 'username')
-  String get username => throw _privateConstructorUsedError;
+  /// Serializes this UserPresence to a JSON map.
+  Map<String, dynamic> toJson();
 
-  /// Whether this presence generates persistent data/messages, if applicable
-  /// for the stream type.
-  @JsonKey(name: 'persistence')
-  bool get persistence => throw _privateConstructorUsedError;
 
-  /// A user-set status message for this stream, if applicable.
-  @JsonKey(name: 'status')
-  String? get status => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UserPresence&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.sessionId, sessionId) || other.sessionId == sessionId)&&(identical(other.username, username) || other.username == username)&&(identical(other.persistence, persistence) || other.persistence == persistence)&&(identical(other.status, status) || other.status == status));
+}
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $UserPresenceCopyWith<UserPresence> get copyWith =>
-      throw _privateConstructorUsedError;
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,userId,sessionId,username,persistence,status);
+
+@override
+String toString() {
+  return 'UserPresence(userId: $userId, sessionId: $sessionId, username: $username, persistence: $persistence, status: $status)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $UserPresenceCopyWith<$Res> {
-  factory $UserPresenceCopyWith(
-          UserPresence value, $Res Function(UserPresence) then) =
-      _$UserPresenceCopyWithImpl<$Res, UserPresence>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'user_id') String userId,
-      @JsonKey(name: 'session_id') String sessionId,
-      @JsonKey(name: 'username') String username,
-      @JsonKey(name: 'persistence') bool persistence,
-      @JsonKey(name: 'status') String? status});
-}
+abstract mixin class $UserPresenceCopyWith<$Res>  {
+  factory $UserPresenceCopyWith(UserPresence value, $Res Function(UserPresence) _then) = _$UserPresenceCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'user_id') String userId,@JsonKey(name: 'session_id') String sessionId,@JsonKey(name: 'username') String username,@JsonKey(name: 'persistence') bool persistence,@JsonKey(name: 'status') String? status
+});
 
+
+
+
+}
 /// @nodoc
-class _$UserPresenceCopyWithImpl<$Res, $Val extends UserPresence>
+class _$UserPresenceCopyWithImpl<$Res>
     implements $UserPresenceCopyWith<$Res> {
-  _$UserPresenceCopyWithImpl(this._value, this._then);
+  _$UserPresenceCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final UserPresence _self;
+  final $Res Function(UserPresence) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-    Object? sessionId = null,
-    Object? username = null,
-    Object? persistence = null,
-    Object? status = freezed,
-  }) {
-    return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      sessionId: null == sessionId
-          ? _value.sessionId
-          : sessionId // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      persistence: null == persistence
-          ? _value.persistence
-          : persistence // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
+/// Create a copy of UserPresence
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? userId = null,Object? sessionId = null,Object? username = null,Object? persistence = null,Object? status = freezed,}) {
+  return _then(_self.copyWith(
+userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as String,sessionId: null == sessionId ? _self.sessionId : sessionId // ignore: cast_nullable_to_non_nullable
+as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as String,persistence: null == persistence ? _self.persistence : persistence // ignore: cast_nullable_to_non_nullable
+as bool,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
 }
 
-/// @nodoc
-abstract class _$$UserPresenceImplCopyWith<$Res>
-    implements $UserPresenceCopyWith<$Res> {
-  factory _$$UserPresenceImplCopyWith(
-          _$UserPresenceImpl value, $Res Function(_$UserPresenceImpl) then) =
-      __$$UserPresenceImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'user_id') String userId,
-      @JsonKey(name: 'session_id') String sessionId,
-      @JsonKey(name: 'username') String username,
-      @JsonKey(name: 'persistence') bool persistence,
-      @JsonKey(name: 'status') String? status});
 }
 
-/// @nodoc
-class __$$UserPresenceImplCopyWithImpl<$Res>
-    extends _$UserPresenceCopyWithImpl<$Res, _$UserPresenceImpl>
-    implements _$$UserPresenceImplCopyWith<$Res> {
-  __$$UserPresenceImplCopyWithImpl(
-      _$UserPresenceImpl _value, $Res Function(_$UserPresenceImpl) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-    Object? sessionId = null,
-    Object? username = null,
-    Object? persistence = null,
-    Object? status = freezed,
-  }) {
-    return _then(_$UserPresenceImpl(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      sessionId: null == sessionId
-          ? _value.sessionId
-          : sessionId // ignore: cast_nullable_to_non_nullable
-              as String,
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      persistence: null == persistence
-          ? _value.persistence
-          : persistence // ignore: cast_nullable_to_non_nullable
-              as bool,
-      status: freezed == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
+/// Adds pattern-matching-related methods to [UserPresence].
+extension UserPresencePatterns on UserPresence {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserPresence value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _UserPresence() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserPresence value)  $default,){
+final _that = this;
+switch (_that) {
+case _UserPresence():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserPresence value)?  $default,){
+final _that = this;
+switch (_that) {
+case _UserPresence() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'user_id')  String userId, @JsonKey(name: 'session_id')  String sessionId, @JsonKey(name: 'username')  String username, @JsonKey(name: 'persistence')  bool persistence, @JsonKey(name: 'status')  String? status)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _UserPresence() when $default != null:
+return $default(_that.userId,_that.sessionId,_that.username,_that.persistence,_that.status);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'user_id')  String userId, @JsonKey(name: 'session_id')  String sessionId, @JsonKey(name: 'username')  String username, @JsonKey(name: 'persistence')  bool persistence, @JsonKey(name: 'status')  String? status)  $default,) {final _that = this;
+switch (_that) {
+case _UserPresence():
+return $default(_that.userId,_that.sessionId,_that.username,_that.persistence,_that.status);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'user_id')  String userId, @JsonKey(name: 'session_id')  String sessionId, @JsonKey(name: 'username')  String username, @JsonKey(name: 'persistence')  bool persistence, @JsonKey(name: 'status')  String? status)?  $default,) {final _that = this;
+switch (_that) {
+case _UserPresence() when $default != null:
+return $default(_that.userId,_that.sessionId,_that.username,_that.persistence,_that.status);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$UserPresenceImpl extends _UserPresence {
-  const _$UserPresenceImpl(
-      {@JsonKey(name: 'user_id') required this.userId,
-      @JsonKey(name: 'session_id') required this.sessionId,
-      @JsonKey(name: 'username') required this.username,
-      @JsonKey(name: 'persistence') required this.persistence,
-      @JsonKey(name: 'status') this.status})
-      : super._();
 
-  factory _$UserPresenceImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserPresenceImplFromJson(json);
+class _UserPresence extends UserPresence {
+  const _UserPresence({@JsonKey(name: 'user_id') required this.userId, @JsonKey(name: 'session_id') required this.sessionId, @JsonKey(name: 'username') required this.username, @JsonKey(name: 'persistence') required this.persistence, @JsonKey(name: 'status') this.status}): super._();
+  factory _UserPresence.fromJson(Map<String, dynamic> json) => _$UserPresenceFromJson(json);
 
-  /// The user this presence belongs to.
-  @override
-  @JsonKey(name: 'user_id')
-  final String userId;
+/// The user this presence belongs to.
+@override@JsonKey(name: 'user_id') final  String userId;
+/// A unique session ID identifying the particular connection, because the
+/// user may have many.
+@override@JsonKey(name: 'session_id') final  String sessionId;
+/// The username for display purposes.
+@override@JsonKey(name: 'username') final  String username;
+/// Whether this presence generates persistent data/messages, if applicable
+/// for the stream type.
+@override@JsonKey(name: 'persistence') final  bool persistence;
+/// A user-set status message for this stream, if applicable.
+@override@JsonKey(name: 'status') final  String? status;
 
-  /// A unique session ID identifying the particular connection, because the
-  /// user may have many.
-  @override
-  @JsonKey(name: 'session_id')
-  final String sessionId;
+/// Create a copy of UserPresence
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UserPresenceCopyWith<_UserPresence> get copyWith => __$UserPresenceCopyWithImpl<_UserPresence>(this, _$identity);
 
-  /// The username for display purposes.
-  @override
-  @JsonKey(name: 'username')
-  final String username;
-
-  /// Whether this presence generates persistent data/messages, if applicable
-  /// for the stream type.
-  @override
-  @JsonKey(name: 'persistence')
-  final bool persistence;
-
-  /// A user-set status message for this stream, if applicable.
-  @override
-  @JsonKey(name: 'status')
-  final String? status;
-
-  @override
-  String toString() {
-    return 'UserPresence(userId: $userId, sessionId: $sessionId, username: $username, persistence: $persistence, status: $status)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserPresenceImpl &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.sessionId, sessionId) ||
-                other.sessionId == sessionId) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.persistence, persistence) ||
-                other.persistence == persistence) &&
-            (identical(other.status, status) || other.status == status));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, userId, sessionId, username, persistence, status);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserPresenceImplCopyWith<_$UserPresenceImpl> get copyWith =>
-      __$$UserPresenceImplCopyWithImpl<_$UserPresenceImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserPresenceImplToJson(
-      this,
-    );
-  }
+@override
+Map<String, dynamic> toJson() {
+  return _$UserPresenceToJson(this, );
 }
 
-abstract class _UserPresence extends UserPresence {
-  const factory _UserPresence(
-      {@JsonKey(name: 'user_id') required final String userId,
-      @JsonKey(name: 'session_id') required final String sessionId,
-      @JsonKey(name: 'username') required final String username,
-      @JsonKey(name: 'persistence') required final bool persistence,
-      @JsonKey(name: 'status') final String? status}) = _$UserPresenceImpl;
-  const _UserPresence._() : super._();
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserPresence&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.sessionId, sessionId) || other.sessionId == sessionId)&&(identical(other.username, username) || other.username == username)&&(identical(other.persistence, persistence) || other.persistence == persistence)&&(identical(other.status, status) || other.status == status));
+}
 
-  factory _UserPresence.fromJson(Map<String, dynamic> json) =
-      _$UserPresenceImpl.fromJson;
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,userId,sessionId,username,persistence,status);
 
-  @override
+@override
+String toString() {
+  return 'UserPresence(userId: $userId, sessionId: $sessionId, username: $username, persistence: $persistence, status: $status)';
+}
 
-  /// The user this presence belongs to.
-  @JsonKey(name: 'user_id')
-  String get userId;
-  @override
 
-  /// A unique session ID identifying the particular connection, because the
-  /// user may have many.
-  @JsonKey(name: 'session_id')
-  String get sessionId;
-  @override
+}
 
-  /// The username for display purposes.
-  @JsonKey(name: 'username')
-  String get username;
-  @override
+/// @nodoc
+abstract mixin class _$UserPresenceCopyWith<$Res> implements $UserPresenceCopyWith<$Res> {
+  factory _$UserPresenceCopyWith(_UserPresence value, $Res Function(_UserPresence) _then) = __$UserPresenceCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'user_id') String userId,@JsonKey(name: 'session_id') String sessionId,@JsonKey(name: 'username') String username,@JsonKey(name: 'persistence') bool persistence,@JsonKey(name: 'status') String? status
+});
 
-  /// Whether this presence generates persistent data/messages, if applicable
-  /// for the stream type.
-  @JsonKey(name: 'persistence')
-  bool get persistence;
-  @override
 
-  /// A user-set status message for this stream, if applicable.
-  @JsonKey(name: 'status')
-  String? get status;
-  @override
-  @JsonKey(ignore: true)
-  _$$UserPresenceImplCopyWith<_$UserPresenceImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+}
+/// @nodoc
+class __$UserPresenceCopyWithImpl<$Res>
+    implements _$UserPresenceCopyWith<$Res> {
+  __$UserPresenceCopyWithImpl(this._self, this._then);
+
+  final _UserPresence _self;
+  final $Res Function(_UserPresence) _then;
+
+/// Create a copy of UserPresence
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? userId = null,Object? sessionId = null,Object? username = null,Object? persistence = null,Object? status = freezed,}) {
+  return _then(_UserPresence(
+userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
+as String,sessionId: null == sessionId ? _self.sessionId : sessionId // ignore: cast_nullable_to_non_nullable
+as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as String,persistence: null == persistence ? _self.persistence : persistence // ignore: cast_nullable_to_non_nullable
+as bool,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$StatusPresenceEvent {
-  /// New statuses for the user.
-  List<UserPresence> get joins => throw _privateConstructorUsedError;
 
-  /// Previous statuses for the user.
-  List<UserPresence> get leaves => throw _privateConstructorUsedError;
+/// New statuses for the user.
+ List<UserPresence> get joins;/// Previous statuses for the user.
+ List<UserPresence> get leaves;
+/// Create a copy of StatusPresenceEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$StatusPresenceEventCopyWith<StatusPresenceEvent> get copyWith => _$StatusPresenceEventCopyWithImpl<StatusPresenceEvent>(this as StatusPresenceEvent, _$identity);
 
-  @JsonKey(ignore: true)
-  $StatusPresenceEventCopyWith<StatusPresenceEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StatusPresenceEvent&&const DeepCollectionEquality().equals(other.joins, joins)&&const DeepCollectionEquality().equals(other.leaves, leaves));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(joins),const DeepCollectionEquality().hash(leaves));
+
+@override
+String toString() {
+  return 'StatusPresenceEvent(joins: $joins, leaves: $leaves)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $StatusPresenceEventCopyWith<$Res> {
-  factory $StatusPresenceEventCopyWith(
-          StatusPresenceEvent value, $Res Function(StatusPresenceEvent) then) =
-      _$StatusPresenceEventCopyWithImpl<$Res, StatusPresenceEvent>;
-  @useResult
-  $Res call({List<UserPresence> joins, List<UserPresence> leaves});
-}
+abstract mixin class $StatusPresenceEventCopyWith<$Res>  {
+  factory $StatusPresenceEventCopyWith(StatusPresenceEvent value, $Res Function(StatusPresenceEvent) _then) = _$StatusPresenceEventCopyWithImpl;
+@useResult
+$Res call({
+ List<UserPresence> joins, List<UserPresence> leaves
+});
 
+
+
+
+}
 /// @nodoc
-class _$StatusPresenceEventCopyWithImpl<$Res, $Val extends StatusPresenceEvent>
+class _$StatusPresenceEventCopyWithImpl<$Res>
     implements $StatusPresenceEventCopyWith<$Res> {
-  _$StatusPresenceEventCopyWithImpl(this._value, this._then);
+  _$StatusPresenceEventCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final StatusPresenceEvent _self;
+  final $Res Function(StatusPresenceEvent) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? joins = null,
-    Object? leaves = null,
-  }) {
-    return _then(_value.copyWith(
-      joins: null == joins
-          ? _value.joins
-          : joins // ignore: cast_nullable_to_non_nullable
-              as List<UserPresence>,
-      leaves: null == leaves
-          ? _value.leaves
-          : leaves // ignore: cast_nullable_to_non_nullable
-              as List<UserPresence>,
-    ) as $Val);
-  }
+/// Create a copy of StatusPresenceEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? joins = null,Object? leaves = null,}) {
+  return _then(_self.copyWith(
+joins: null == joins ? _self.joins : joins // ignore: cast_nullable_to_non_nullable
+as List<UserPresence>,leaves: null == leaves ? _self.leaves : leaves // ignore: cast_nullable_to_non_nullable
+as List<UserPresence>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [StatusPresenceEvent].
+extension StatusPresenceEventPatterns on StatusPresenceEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _StatusPresenceEvent value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _StatusPresenceEvent() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _StatusPresenceEvent value)  $default,){
+final _that = this;
+switch (_that) {
+case _StatusPresenceEvent():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _StatusPresenceEvent value)?  $default,){
+final _that = this;
+switch (_that) {
+case _StatusPresenceEvent() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<UserPresence> joins,  List<UserPresence> leaves)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _StatusPresenceEvent() when $default != null:
+return $default(_that.joins,_that.leaves);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<UserPresence> joins,  List<UserPresence> leaves)  $default,) {final _that = this;
+switch (_that) {
+case _StatusPresenceEvent():
+return $default(_that.joins,_that.leaves);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<UserPresence> joins,  List<UserPresence> leaves)?  $default,) {final _that = this;
+switch (_that) {
+case _StatusPresenceEvent() when $default != null:
+return $default(_that.joins,_that.leaves);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$StatusPresenceEventImplCopyWith<$Res>
-    implements $StatusPresenceEventCopyWith<$Res> {
-  factory _$$StatusPresenceEventImplCopyWith(_$StatusPresenceEventImpl value,
-          $Res Function(_$StatusPresenceEventImpl) then) =
-      __$$StatusPresenceEventImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<UserPresence> joins, List<UserPresence> leaves});
+
+
+class _StatusPresenceEvent extends StatusPresenceEvent {
+  const _StatusPresenceEvent({required final  List<UserPresence> joins, required final  List<UserPresence> leaves}): _joins = joins,_leaves = leaves,super._();
+  
+
+/// New statuses for the user.
+ final  List<UserPresence> _joins;
+/// New statuses for the user.
+@override List<UserPresence> get joins {
+  if (_joins is EqualUnmodifiableListView) return _joins;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_joins);
+}
+
+/// Previous statuses for the user.
+ final  List<UserPresence> _leaves;
+/// Previous statuses for the user.
+@override List<UserPresence> get leaves {
+  if (_leaves is EqualUnmodifiableListView) return _leaves;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_leaves);
+}
+
+
+/// Create a copy of StatusPresenceEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StatusPresenceEventCopyWith<_StatusPresenceEvent> get copyWith => __$StatusPresenceEventCopyWithImpl<_StatusPresenceEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StatusPresenceEvent&&const DeepCollectionEquality().equals(other._joins, _joins)&&const DeepCollectionEquality().equals(other._leaves, _leaves));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_joins),const DeepCollectionEquality().hash(_leaves));
+
+@override
+String toString() {
+  return 'StatusPresenceEvent(joins: $joins, leaves: $leaves)';
+}
+
+
 }
 
 /// @nodoc
-class __$$StatusPresenceEventImplCopyWithImpl<$Res>
-    extends _$StatusPresenceEventCopyWithImpl<$Res, _$StatusPresenceEventImpl>
-    implements _$$StatusPresenceEventImplCopyWith<$Res> {
-  __$$StatusPresenceEventImplCopyWithImpl(_$StatusPresenceEventImpl _value,
-      $Res Function(_$StatusPresenceEventImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$StatusPresenceEventCopyWith<$Res> implements $StatusPresenceEventCopyWith<$Res> {
+  factory _$StatusPresenceEventCopyWith(_StatusPresenceEvent value, $Res Function(_StatusPresenceEvent) _then) = __$StatusPresenceEventCopyWithImpl;
+@override @useResult
+$Res call({
+ List<UserPresence> joins, List<UserPresence> leaves
+});
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? joins = null,
-    Object? leaves = null,
-  }) {
-    return _then(_$StatusPresenceEventImpl(
-      joins: null == joins
-          ? _value._joins
-          : joins // ignore: cast_nullable_to_non_nullable
-              as List<UserPresence>,
-      leaves: null == leaves
-          ? _value._leaves
-          : leaves // ignore: cast_nullable_to_non_nullable
-              as List<UserPresence>,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$StatusPresenceEventCopyWithImpl<$Res>
+    implements _$StatusPresenceEventCopyWith<$Res> {
+  __$StatusPresenceEventCopyWithImpl(this._self, this._then);
 
-class _$StatusPresenceEventImpl extends _StatusPresenceEvent {
-  const _$StatusPresenceEventImpl(
-      {required final List<UserPresence> joins,
-      required final List<UserPresence> leaves})
-      : _joins = joins,
-        _leaves = leaves,
-        super._();
+  final _StatusPresenceEvent _self;
+  final $Res Function(_StatusPresenceEvent) _then;
 
-  /// New statuses for the user.
-  final List<UserPresence> _joins;
-
-  /// New statuses for the user.
-  @override
-  List<UserPresence> get joins {
-    if (_joins is EqualUnmodifiableListView) return _joins;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_joins);
-  }
-
-  /// Previous statuses for the user.
-  final List<UserPresence> _leaves;
-
-  /// Previous statuses for the user.
-  @override
-  List<UserPresence> get leaves {
-    if (_leaves is EqualUnmodifiableListView) return _leaves;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_leaves);
-  }
-
-  @override
-  String toString() {
-    return 'StatusPresenceEvent(joins: $joins, leaves: $leaves)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StatusPresenceEventImpl &&
-            const DeepCollectionEquality().equals(other._joins, _joins) &&
-            const DeepCollectionEquality().equals(other._leaves, _leaves));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_joins),
-      const DeepCollectionEquality().hash(_leaves));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$StatusPresenceEventImplCopyWith<_$StatusPresenceEventImpl> get copyWith =>
-      __$$StatusPresenceEventImplCopyWithImpl<_$StatusPresenceEventImpl>(
-          this, _$identity);
+/// Create a copy of StatusPresenceEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? joins = null,Object? leaves = null,}) {
+  return _then(_StatusPresenceEvent(
+joins: null == joins ? _self._joins : joins // ignore: cast_nullable_to_non_nullable
+as List<UserPresence>,leaves: null == leaves ? _self._leaves : leaves // ignore: cast_nullable_to_non_nullable
+as List<UserPresence>,
+  ));
 }
 
-abstract class _StatusPresenceEvent extends StatusPresenceEvent {
-  const factory _StatusPresenceEvent(
-      {required final List<UserPresence> joins,
-      required final List<UserPresence> leaves}) = _$StatusPresenceEventImpl;
-  const _StatusPresenceEvent._() : super._();
 
-  @override
-
-  /// New statuses for the user.
-  List<UserPresence> get joins;
-  @override
-
-  /// Previous statuses for the user.
-  List<UserPresence> get leaves;
-  @override
-  @JsonKey(ignore: true)
-  _$$StatusPresenceEventImplCopyWith<_$StatusPresenceEventImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$RealtimeStream {
-  /// Mode identifies the type of stream.
-  int get mode => throw _privateConstructorUsedError;
 
-  /// Subject is the primary identifier, if any.
-  String get subject => throw _privateConstructorUsedError;
+/// Mode identifies the type of stream.
+ int get mode;/// Subject is the primary identifier, if any.
+ String get subject;/// Subcontext is a secondary identifier, if any.
+ String get subcontext;/// The label is an arbitrary identifying string, if the stream has one.
+ String get label;
+/// Create a copy of RealtimeStream
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$RealtimeStreamCopyWith<RealtimeStream> get copyWith => _$RealtimeStreamCopyWithImpl<RealtimeStream>(this as RealtimeStream, _$identity);
 
-  /// Subcontext is a secondary identifier, if any.
-  String get subcontext => throw _privateConstructorUsedError;
 
-  /// The label is an arbitrary identifying string, if the stream has one.
-  String get label => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $RealtimeStreamCopyWith<RealtimeStream> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RealtimeStream&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.subject, subject) || other.subject == subject)&&(identical(other.subcontext, subcontext) || other.subcontext == subcontext)&&(identical(other.label, label) || other.label == label));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,mode,subject,subcontext,label);
+
+@override
+String toString() {
+  return 'RealtimeStream(mode: $mode, subject: $subject, subcontext: $subcontext, label: $label)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $RealtimeStreamCopyWith<$Res> {
-  factory $RealtimeStreamCopyWith(
-          RealtimeStream value, $Res Function(RealtimeStream) then) =
-      _$RealtimeStreamCopyWithImpl<$Res, RealtimeStream>;
-  @useResult
-  $Res call({int mode, String subject, String subcontext, String label});
-}
+abstract mixin class $RealtimeStreamCopyWith<$Res>  {
+  factory $RealtimeStreamCopyWith(RealtimeStream value, $Res Function(RealtimeStream) _then) = _$RealtimeStreamCopyWithImpl;
+@useResult
+$Res call({
+ int mode, String subject, String subcontext, String label
+});
 
+
+
+
+}
 /// @nodoc
-class _$RealtimeStreamCopyWithImpl<$Res, $Val extends RealtimeStream>
+class _$RealtimeStreamCopyWithImpl<$Res>
     implements $RealtimeStreamCopyWith<$Res> {
-  _$RealtimeStreamCopyWithImpl(this._value, this._then);
+  _$RealtimeStreamCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final RealtimeStream _self;
+  final $Res Function(RealtimeStream) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? mode = null,
-    Object? subject = null,
-    Object? subcontext = null,
-    Object? label = null,
-  }) {
-    return _then(_value.copyWith(
-      mode: null == mode
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as int,
-      subject: null == subject
-          ? _value.subject
-          : subject // ignore: cast_nullable_to_non_nullable
-              as String,
-      subcontext: null == subcontext
-          ? _value.subcontext
-          : subcontext // ignore: cast_nullable_to_non_nullable
-              as String,
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
+/// Create a copy of RealtimeStream
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? mode = null,Object? subject = null,Object? subcontext = null,Object? label = null,}) {
+  return _then(_self.copyWith(
+mode: null == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
+as int,subject: null == subject ? _self.subject : subject // ignore: cast_nullable_to_non_nullable
+as String,subcontext: null == subcontext ? _self.subcontext : subcontext // ignore: cast_nullable_to_non_nullable
+as String,label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [RealtimeStream].
+extension RealtimeStreamPatterns on RealtimeStream {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _RealtimeStream value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _RealtimeStream() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _RealtimeStream value)  $default,){
+final _that = this;
+switch (_that) {
+case _RealtimeStream():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _RealtimeStream value)?  $default,){
+final _that = this;
+switch (_that) {
+case _RealtimeStream() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int mode,  String subject,  String subcontext,  String label)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _RealtimeStream() when $default != null:
+return $default(_that.mode,_that.subject,_that.subcontext,_that.label);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int mode,  String subject,  String subcontext,  String label)  $default,) {final _that = this;
+switch (_that) {
+case _RealtimeStream():
+return $default(_that.mode,_that.subject,_that.subcontext,_that.label);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int mode,  String subject,  String subcontext,  String label)?  $default,) {final _that = this;
+switch (_that) {
+case _RealtimeStream() when $default != null:
+return $default(_that.mode,_that.subject,_that.subcontext,_that.label);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$RealtimeStreamImplCopyWith<$Res>
-    implements $RealtimeStreamCopyWith<$Res> {
-  factory _$$RealtimeStreamImplCopyWith(_$RealtimeStreamImpl value,
-          $Res Function(_$RealtimeStreamImpl) then) =
-      __$$RealtimeStreamImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int mode, String subject, String subcontext, String label});
+
+
+class _RealtimeStream extends RealtimeStream {
+  const _RealtimeStream({required this.mode, required this.subject, required this.subcontext, required this.label}): super._();
+  
+
+/// Mode identifies the type of stream.
+@override final  int mode;
+/// Subject is the primary identifier, if any.
+@override final  String subject;
+/// Subcontext is a secondary identifier, if any.
+@override final  String subcontext;
+/// The label is an arbitrary identifying string, if the stream has one.
+@override final  String label;
+
+/// Create a copy of RealtimeStream
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$RealtimeStreamCopyWith<_RealtimeStream> get copyWith => __$RealtimeStreamCopyWithImpl<_RealtimeStream>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RealtimeStream&&(identical(other.mode, mode) || other.mode == mode)&&(identical(other.subject, subject) || other.subject == subject)&&(identical(other.subcontext, subcontext) || other.subcontext == subcontext)&&(identical(other.label, label) || other.label == label));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,mode,subject,subcontext,label);
+
+@override
+String toString() {
+  return 'RealtimeStream(mode: $mode, subject: $subject, subcontext: $subcontext, label: $label)';
+}
+
+
 }
 
 /// @nodoc
-class __$$RealtimeStreamImplCopyWithImpl<$Res>
-    extends _$RealtimeStreamCopyWithImpl<$Res, _$RealtimeStreamImpl>
-    implements _$$RealtimeStreamImplCopyWith<$Res> {
-  __$$RealtimeStreamImplCopyWithImpl(
-      _$RealtimeStreamImpl _value, $Res Function(_$RealtimeStreamImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$RealtimeStreamCopyWith<$Res> implements $RealtimeStreamCopyWith<$Res> {
+  factory _$RealtimeStreamCopyWith(_RealtimeStream value, $Res Function(_RealtimeStream) _then) = __$RealtimeStreamCopyWithImpl;
+@override @useResult
+$Res call({
+ int mode, String subject, String subcontext, String label
+});
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? mode = null,
-    Object? subject = null,
-    Object? subcontext = null,
-    Object? label = null,
-  }) {
-    return _then(_$RealtimeStreamImpl(
-      mode: null == mode
-          ? _value.mode
-          : mode // ignore: cast_nullable_to_non_nullable
-              as int,
-      subject: null == subject
-          ? _value.subject
-          : subject // ignore: cast_nullable_to_non_nullable
-              as String,
-      subcontext: null == subcontext
-          ? _value.subcontext
-          : subcontext // ignore: cast_nullable_to_non_nullable
-              as String,
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$RealtimeStreamCopyWithImpl<$Res>
+    implements _$RealtimeStreamCopyWith<$Res> {
+  __$RealtimeStreamCopyWithImpl(this._self, this._then);
 
-class _$RealtimeStreamImpl extends _RealtimeStream {
-  const _$RealtimeStreamImpl(
-      {required this.mode,
-      required this.subject,
-      required this.subcontext,
-      required this.label})
-      : super._();
+  final _RealtimeStream _self;
+  final $Res Function(_RealtimeStream) _then;
 
-  /// Mode identifies the type of stream.
-  @override
-  final int mode;
-
-  /// Subject is the primary identifier, if any.
-  @override
-  final String subject;
-
-  /// Subcontext is a secondary identifier, if any.
-  @override
-  final String subcontext;
-
-  /// The label is an arbitrary identifying string, if the stream has one.
-  @override
-  final String label;
-
-  @override
-  String toString() {
-    return 'RealtimeStream(mode: $mode, subject: $subject, subcontext: $subcontext, label: $label)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RealtimeStreamImpl &&
-            (identical(other.mode, mode) || other.mode == mode) &&
-            (identical(other.subject, subject) || other.subject == subject) &&
-            (identical(other.subcontext, subcontext) ||
-                other.subcontext == subcontext) &&
-            (identical(other.label, label) || other.label == label));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, mode, subject, subcontext, label);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RealtimeStreamImplCopyWith<_$RealtimeStreamImpl> get copyWith =>
-      __$$RealtimeStreamImplCopyWithImpl<_$RealtimeStreamImpl>(
-          this, _$identity);
+/// Create a copy of RealtimeStream
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? mode = null,Object? subject = null,Object? subcontext = null,Object? label = null,}) {
+  return _then(_RealtimeStream(
+mode: null == mode ? _self.mode : mode // ignore: cast_nullable_to_non_nullable
+as int,subject: null == subject ? _self.subject : subject // ignore: cast_nullable_to_non_nullable
+as String,subcontext: null == subcontext ? _self.subcontext : subcontext // ignore: cast_nullable_to_non_nullable
+as String,label: null == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
 }
 
-abstract class _RealtimeStream extends RealtimeStream {
-  const factory _RealtimeStream(
-      {required final int mode,
-      required final String subject,
-      required final String subcontext,
-      required final String label}) = _$RealtimeStreamImpl;
-  const _RealtimeStream._() : super._();
 
-  @override
-
-  /// Mode identifies the type of stream.
-  int get mode;
-  @override
-
-  /// Subject is the primary identifier, if any.
-  String get subject;
-  @override
-
-  /// Subcontext is a secondary identifier, if any.
-  String get subcontext;
-  @override
-
-  /// The label is an arbitrary identifying string, if the stream has one.
-  String get label;
-  @override
-  @JsonKey(ignore: true)
-  _$$RealtimeStreamImplCopyWith<_$RealtimeStreamImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$RealtimeStreamData {
-  /// The stream this data message relates to.
-  RealtimeStream get stream => throw _privateConstructorUsedError;
 
-  /// The sender, if any.
-  UserPresence get sender => throw _privateConstructorUsedError;
+/// The stream this data message relates to.
+ RealtimeStream get stream;/// The sender, if any.
+ UserPresence get sender;/// Arbitrary contents of the data message.
+ String get data;/// True if this data was delivered reliably, false otherwise.
+ bool get reliable;
+/// Create a copy of RealtimeStreamData
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$RealtimeStreamDataCopyWith<RealtimeStreamData> get copyWith => _$RealtimeStreamDataCopyWithImpl<RealtimeStreamData>(this as RealtimeStreamData, _$identity);
 
-  /// Arbitrary contents of the data message.
-  String get data => throw _privateConstructorUsedError;
 
-  /// True if this data was delivered reliably, false otherwise.
-  bool get reliable => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $RealtimeStreamDataCopyWith<RealtimeStreamData> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RealtimeStreamData&&(identical(other.stream, stream) || other.stream == stream)&&(identical(other.sender, sender) || other.sender == sender)&&(identical(other.data, data) || other.data == data)&&(identical(other.reliable, reliable) || other.reliable == reliable));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,stream,sender,data,reliable);
+
+@override
+String toString() {
+  return 'RealtimeStreamData(stream: $stream, sender: $sender, data: $data, reliable: $reliable)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $RealtimeStreamDataCopyWith<$Res> {
-  factory $RealtimeStreamDataCopyWith(
-          RealtimeStreamData value, $Res Function(RealtimeStreamData) then) =
-      _$RealtimeStreamDataCopyWithImpl<$Res, RealtimeStreamData>;
-  @useResult
-  $Res call(
-      {RealtimeStream stream, UserPresence sender, String data, bool reliable});
+abstract mixin class $RealtimeStreamDataCopyWith<$Res>  {
+  factory $RealtimeStreamDataCopyWith(RealtimeStreamData value, $Res Function(RealtimeStreamData) _then) = _$RealtimeStreamDataCopyWithImpl;
+@useResult
+$Res call({
+ RealtimeStream stream, UserPresence sender, String data, bool reliable
+});
 
-  $RealtimeStreamCopyWith<$Res> get stream;
-  $UserPresenceCopyWith<$Res> get sender;
+
+$RealtimeStreamCopyWith<$Res> get stream;$UserPresenceCopyWith<$Res> get sender;
+
 }
-
 /// @nodoc
-class _$RealtimeStreamDataCopyWithImpl<$Res, $Val extends RealtimeStreamData>
+class _$RealtimeStreamDataCopyWithImpl<$Res>
     implements $RealtimeStreamDataCopyWith<$Res> {
-  _$RealtimeStreamDataCopyWithImpl(this._value, this._then);
+  _$RealtimeStreamDataCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final RealtimeStreamData _self;
+  final $Res Function(RealtimeStreamData) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? stream = null,
-    Object? sender = null,
-    Object? data = null,
-    Object? reliable = null,
-  }) {
-    return _then(_value.copyWith(
-      stream: null == stream
-          ? _value.stream
-          : stream // ignore: cast_nullable_to_non_nullable
-              as RealtimeStream,
-      sender: null == sender
-          ? _value.sender
-          : sender // ignore: cast_nullable_to_non_nullable
-              as UserPresence,
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-      reliable: null == reliable
-          ? _value.reliable
-          : reliable // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
+/// Create a copy of RealtimeStreamData
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? stream = null,Object? sender = null,Object? data = null,Object? reliable = null,}) {
+  return _then(_self.copyWith(
+stream: null == stream ? _self.stream : stream // ignore: cast_nullable_to_non_nullable
+as RealtimeStream,sender: null == sender ? _self.sender : sender // ignore: cast_nullable_to_non_nullable
+as UserPresence,data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as String,reliable: null == reliable ? _self.reliable : reliable // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+/// Create a copy of RealtimeStreamData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RealtimeStreamCopyWith<$Res> get stream {
+  
+  return $RealtimeStreamCopyWith<$Res>(_self.stream, (value) {
+    return _then(_self.copyWith(stream: value));
+  });
+}/// Create a copy of RealtimeStreamData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserPresenceCopyWith<$Res> get sender {
+  
+  return $UserPresenceCopyWith<$Res>(_self.sender, (value) {
+    return _then(_self.copyWith(sender: value));
+  });
+}
+}
 
-  @override
-  @pragma('vm:prefer-inline')
-  $RealtimeStreamCopyWith<$Res> get stream {
-    return $RealtimeStreamCopyWith<$Res>(_value.stream, (value) {
-      return _then(_value.copyWith(stream: value) as $Val);
-    });
-  }
 
-  @override
-  @pragma('vm:prefer-inline')
-  $UserPresenceCopyWith<$Res> get sender {
-    return $UserPresenceCopyWith<$Res>(_value.sender, (value) {
-      return _then(_value.copyWith(sender: value) as $Val);
-    });
-  }
+/// Adds pattern-matching-related methods to [RealtimeStreamData].
+extension RealtimeStreamDataPatterns on RealtimeStreamData {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _RealtimeStreamData value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _RealtimeStreamData() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _RealtimeStreamData value)  $default,){
+final _that = this;
+switch (_that) {
+case _RealtimeStreamData():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _RealtimeStreamData value)?  $default,){
+final _that = this;
+switch (_that) {
+case _RealtimeStreamData() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( RealtimeStream stream,  UserPresence sender,  String data,  bool reliable)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _RealtimeStreamData() when $default != null:
+return $default(_that.stream,_that.sender,_that.data,_that.reliable);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( RealtimeStream stream,  UserPresence sender,  String data,  bool reliable)  $default,) {final _that = this;
+switch (_that) {
+case _RealtimeStreamData():
+return $default(_that.stream,_that.sender,_that.data,_that.reliable);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( RealtimeStream stream,  UserPresence sender,  String data,  bool reliable)?  $default,) {final _that = this;
+switch (_that) {
+case _RealtimeStreamData() when $default != null:
+return $default(_that.stream,_that.sender,_that.data,_that.reliable);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$RealtimeStreamDataImplCopyWith<$Res>
-    implements $RealtimeStreamDataCopyWith<$Res> {
-  factory _$$RealtimeStreamDataImplCopyWith(_$RealtimeStreamDataImpl value,
-          $Res Function(_$RealtimeStreamDataImpl) then) =
-      __$$RealtimeStreamDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {RealtimeStream stream, UserPresence sender, String data, bool reliable});
 
-  @override
-  $RealtimeStreamCopyWith<$Res> get stream;
-  @override
-  $UserPresenceCopyWith<$Res> get sender;
+
+class _RealtimeStreamData extends RealtimeStreamData {
+  const _RealtimeStreamData({required this.stream, required this.sender, required this.data, required this.reliable}): super._();
+  
+
+/// The stream this data message relates to.
+@override final  RealtimeStream stream;
+/// The sender, if any.
+@override final  UserPresence sender;
+/// Arbitrary contents of the data message.
+@override final  String data;
+/// True if this data was delivered reliably, false otherwise.
+@override final  bool reliable;
+
+/// Create a copy of RealtimeStreamData
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$RealtimeStreamDataCopyWith<_RealtimeStreamData> get copyWith => __$RealtimeStreamDataCopyWithImpl<_RealtimeStreamData>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RealtimeStreamData&&(identical(other.stream, stream) || other.stream == stream)&&(identical(other.sender, sender) || other.sender == sender)&&(identical(other.data, data) || other.data == data)&&(identical(other.reliable, reliable) || other.reliable == reliable));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,stream,sender,data,reliable);
+
+@override
+String toString() {
+  return 'RealtimeStreamData(stream: $stream, sender: $sender, data: $data, reliable: $reliable)';
+}
+
+
 }
 
 /// @nodoc
-class __$$RealtimeStreamDataImplCopyWithImpl<$Res>
-    extends _$RealtimeStreamDataCopyWithImpl<$Res, _$RealtimeStreamDataImpl>
-    implements _$$RealtimeStreamDataImplCopyWith<$Res> {
-  __$$RealtimeStreamDataImplCopyWithImpl(_$RealtimeStreamDataImpl _value,
-      $Res Function(_$RealtimeStreamDataImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$RealtimeStreamDataCopyWith<$Res> implements $RealtimeStreamDataCopyWith<$Res> {
+  factory _$RealtimeStreamDataCopyWith(_RealtimeStreamData value, $Res Function(_RealtimeStreamData) _then) = __$RealtimeStreamDataCopyWithImpl;
+@override @useResult
+$Res call({
+ RealtimeStream stream, UserPresence sender, String data, bool reliable
+});
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? stream = null,
-    Object? sender = null,
-    Object? data = null,
-    Object? reliable = null,
-  }) {
-    return _then(_$RealtimeStreamDataImpl(
-      stream: null == stream
-          ? _value.stream
-          : stream // ignore: cast_nullable_to_non_nullable
-              as RealtimeStream,
-      sender: null == sender
-          ? _value.sender
-          : sender // ignore: cast_nullable_to_non_nullable
-              as UserPresence,
-      data: null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as String,
-      reliable: null == reliable
-          ? _value.reliable
-          : reliable // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
+
+@override $RealtimeStreamCopyWith<$Res> get stream;@override $UserPresenceCopyWith<$Res> get sender;
+
 }
-
 /// @nodoc
+class __$RealtimeStreamDataCopyWithImpl<$Res>
+    implements _$RealtimeStreamDataCopyWith<$Res> {
+  __$RealtimeStreamDataCopyWithImpl(this._self, this._then);
 
-class _$RealtimeStreamDataImpl extends _RealtimeStreamData {
-  const _$RealtimeStreamDataImpl(
-      {required this.stream,
-      required this.sender,
-      required this.data,
-      required this.reliable})
-      : super._();
+  final _RealtimeStreamData _self;
+  final $Res Function(_RealtimeStreamData) _then;
 
-  /// The stream this data message relates to.
-  @override
-  final RealtimeStream stream;
-
-  /// The sender, if any.
-  @override
-  final UserPresence sender;
-
-  /// Arbitrary contents of the data message.
-  @override
-  final String data;
-
-  /// True if this data was delivered reliably, false otherwise.
-  @override
-  final bool reliable;
-
-  @override
-  String toString() {
-    return 'RealtimeStreamData(stream: $stream, sender: $sender, data: $data, reliable: $reliable)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RealtimeStreamDataImpl &&
-            (identical(other.stream, stream) || other.stream == stream) &&
-            (identical(other.sender, sender) || other.sender == sender) &&
-            (identical(other.data, data) || other.data == data) &&
-            (identical(other.reliable, reliable) ||
-                other.reliable == reliable));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, stream, sender, data, reliable);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RealtimeStreamDataImplCopyWith<_$RealtimeStreamDataImpl> get copyWith =>
-      __$$RealtimeStreamDataImplCopyWithImpl<_$RealtimeStreamDataImpl>(
-          this, _$identity);
+/// Create a copy of RealtimeStreamData
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? stream = null,Object? sender = null,Object? data = null,Object? reliable = null,}) {
+  return _then(_RealtimeStreamData(
+stream: null == stream ? _self.stream : stream // ignore: cast_nullable_to_non_nullable
+as RealtimeStream,sender: null == sender ? _self.sender : sender // ignore: cast_nullable_to_non_nullable
+as UserPresence,data: null == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
+as String,reliable: null == reliable ? _self.reliable : reliable // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
 
-abstract class _RealtimeStreamData extends RealtimeStreamData {
-  const factory _RealtimeStreamData(
-      {required final RealtimeStream stream,
-      required final UserPresence sender,
-      required final String data,
-      required final bool reliable}) = _$RealtimeStreamDataImpl;
-  const _RealtimeStreamData._() : super._();
-
-  @override
-
-  /// The stream this data message relates to.
-  RealtimeStream get stream;
-  @override
-
-  /// The sender, if any.
-  UserPresence get sender;
-  @override
-
-  /// Arbitrary contents of the data message.
-  String get data;
-  @override
-
-  /// True if this data was delivered reliably, false otherwise.
-  bool get reliable;
-  @override
-  @JsonKey(ignore: true)
-  _$$RealtimeStreamDataImplCopyWith<_$RealtimeStreamDataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+/// Create a copy of RealtimeStreamData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RealtimeStreamCopyWith<$Res> get stream {
+  
+  return $RealtimeStreamCopyWith<$Res>(_self.stream, (value) {
+    return _then(_self.copyWith(stream: value));
+  });
+}/// Create a copy of RealtimeStreamData
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$UserPresenceCopyWith<$Res> get sender {
+  
+  return $UserPresenceCopyWith<$Res>(_self.sender, (value) {
+    return _then(_self.copyWith(sender: value));
+  });
+}
 }
 
 /// @nodoc
 mixin _$StreamPresenceEvent {
-  /// The stream this presence event is for.
-  RealtimeStream get stream => throw _privateConstructorUsedError;
 
-  /// The user presence that joined the stream.
-  List<UserPresence> get joins => throw _privateConstructorUsedError;
+/// The stream this presence event is for.
+ RealtimeStream get stream;/// The user presence that joined the stream.
+ List<UserPresence> get joins;/// The user presence that left the stream.
+ List<UserPresence> get leaves;
+/// Create a copy of StreamPresenceEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$StreamPresenceEventCopyWith<StreamPresenceEvent> get copyWith => _$StreamPresenceEventCopyWithImpl<StreamPresenceEvent>(this as StreamPresenceEvent, _$identity);
 
-  /// The user presence that left the stream.
-  List<UserPresence> get leaves => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $StreamPresenceEventCopyWith<StreamPresenceEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StreamPresenceEvent&&(identical(other.stream, stream) || other.stream == stream)&&const DeepCollectionEquality().equals(other.joins, joins)&&const DeepCollectionEquality().equals(other.leaves, leaves));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,stream,const DeepCollectionEquality().hash(joins),const DeepCollectionEquality().hash(leaves));
+
+@override
+String toString() {
+  return 'StreamPresenceEvent(stream: $stream, joins: $joins, leaves: $leaves)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $StreamPresenceEventCopyWith<$Res> {
-  factory $StreamPresenceEventCopyWith(
-          StreamPresenceEvent value, $Res Function(StreamPresenceEvent) then) =
-      _$StreamPresenceEventCopyWithImpl<$Res, StreamPresenceEvent>;
-  @useResult
-  $Res call(
-      {RealtimeStream stream,
-      List<UserPresence> joins,
-      List<UserPresence> leaves});
+abstract mixin class $StreamPresenceEventCopyWith<$Res>  {
+  factory $StreamPresenceEventCopyWith(StreamPresenceEvent value, $Res Function(StreamPresenceEvent) _then) = _$StreamPresenceEventCopyWithImpl;
+@useResult
+$Res call({
+ RealtimeStream stream, List<UserPresence> joins, List<UserPresence> leaves
+});
 
-  $RealtimeStreamCopyWith<$Res> get stream;
+
+$RealtimeStreamCopyWith<$Res> get stream;
+
 }
-
 /// @nodoc
-class _$StreamPresenceEventCopyWithImpl<$Res, $Val extends StreamPresenceEvent>
+class _$StreamPresenceEventCopyWithImpl<$Res>
     implements $StreamPresenceEventCopyWith<$Res> {
-  _$StreamPresenceEventCopyWithImpl(this._value, this._then);
+  _$StreamPresenceEventCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final StreamPresenceEvent _self;
+  final $Res Function(StreamPresenceEvent) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? stream = null,
-    Object? joins = null,
-    Object? leaves = null,
-  }) {
-    return _then(_value.copyWith(
-      stream: null == stream
-          ? _value.stream
-          : stream // ignore: cast_nullable_to_non_nullable
-              as RealtimeStream,
-      joins: null == joins
-          ? _value.joins
-          : joins // ignore: cast_nullable_to_non_nullable
-              as List<UserPresence>,
-      leaves: null == leaves
-          ? _value.leaves
-          : leaves // ignore: cast_nullable_to_non_nullable
-              as List<UserPresence>,
-    ) as $Val);
-  }
+/// Create a copy of StreamPresenceEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? stream = null,Object? joins = null,Object? leaves = null,}) {
+  return _then(_self.copyWith(
+stream: null == stream ? _self.stream : stream // ignore: cast_nullable_to_non_nullable
+as RealtimeStream,joins: null == joins ? _self.joins : joins // ignore: cast_nullable_to_non_nullable
+as List<UserPresence>,leaves: null == leaves ? _self.leaves : leaves // ignore: cast_nullable_to_non_nullable
+as List<UserPresence>,
+  ));
+}
+/// Create a copy of StreamPresenceEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RealtimeStreamCopyWith<$Res> get stream {
+  
+  return $RealtimeStreamCopyWith<$Res>(_self.stream, (value) {
+    return _then(_self.copyWith(stream: value));
+  });
+}
+}
 
-  @override
-  @pragma('vm:prefer-inline')
-  $RealtimeStreamCopyWith<$Res> get stream {
-    return $RealtimeStreamCopyWith<$Res>(_value.stream, (value) {
-      return _then(_value.copyWith(stream: value) as $Val);
-    });
-  }
+
+/// Adds pattern-matching-related methods to [StreamPresenceEvent].
+extension StreamPresenceEventPatterns on StreamPresenceEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _StreamPresenceEvent value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _StreamPresenceEvent() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _StreamPresenceEvent value)  $default,){
+final _that = this;
+switch (_that) {
+case _StreamPresenceEvent():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _StreamPresenceEvent value)?  $default,){
+final _that = this;
+switch (_that) {
+case _StreamPresenceEvent() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( RealtimeStream stream,  List<UserPresence> joins,  List<UserPresence> leaves)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _StreamPresenceEvent() when $default != null:
+return $default(_that.stream,_that.joins,_that.leaves);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( RealtimeStream stream,  List<UserPresence> joins,  List<UserPresence> leaves)  $default,) {final _that = this;
+switch (_that) {
+case _StreamPresenceEvent():
+return $default(_that.stream,_that.joins,_that.leaves);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( RealtimeStream stream,  List<UserPresence> joins,  List<UserPresence> leaves)?  $default,) {final _that = this;
+switch (_that) {
+case _StreamPresenceEvent() when $default != null:
+return $default(_that.stream,_that.joins,_that.leaves);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$StreamPresenceEventImplCopyWith<$Res>
-    implements $StreamPresenceEventCopyWith<$Res> {
-  factory _$$StreamPresenceEventImplCopyWith(_$StreamPresenceEventImpl value,
-          $Res Function(_$StreamPresenceEventImpl) then) =
-      __$$StreamPresenceEventImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {RealtimeStream stream,
-      List<UserPresence> joins,
-      List<UserPresence> leaves});
 
-  @override
-  $RealtimeStreamCopyWith<$Res> get stream;
+
+class _StreamPresenceEvent extends StreamPresenceEvent {
+  const _StreamPresenceEvent({required this.stream, required final  List<UserPresence> joins, required final  List<UserPresence> leaves}): _joins = joins,_leaves = leaves,super._();
+  
+
+/// The stream this presence event is for.
+@override final  RealtimeStream stream;
+/// The user presence that joined the stream.
+ final  List<UserPresence> _joins;
+/// The user presence that joined the stream.
+@override List<UserPresence> get joins {
+  if (_joins is EqualUnmodifiableListView) return _joins;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_joins);
+}
+
+/// The user presence that left the stream.
+ final  List<UserPresence> _leaves;
+/// The user presence that left the stream.
+@override List<UserPresence> get leaves {
+  if (_leaves is EqualUnmodifiableListView) return _leaves;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_leaves);
+}
+
+
+/// Create a copy of StreamPresenceEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StreamPresenceEventCopyWith<_StreamPresenceEvent> get copyWith => __$StreamPresenceEventCopyWithImpl<_StreamPresenceEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _StreamPresenceEvent&&(identical(other.stream, stream) || other.stream == stream)&&const DeepCollectionEquality().equals(other._joins, _joins)&&const DeepCollectionEquality().equals(other._leaves, _leaves));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,stream,const DeepCollectionEquality().hash(_joins),const DeepCollectionEquality().hash(_leaves));
+
+@override
+String toString() {
+  return 'StreamPresenceEvent(stream: $stream, joins: $joins, leaves: $leaves)';
+}
+
+
 }
 
 /// @nodoc
-class __$$StreamPresenceEventImplCopyWithImpl<$Res>
-    extends _$StreamPresenceEventCopyWithImpl<$Res, _$StreamPresenceEventImpl>
-    implements _$$StreamPresenceEventImplCopyWith<$Res> {
-  __$$StreamPresenceEventImplCopyWithImpl(_$StreamPresenceEventImpl _value,
-      $Res Function(_$StreamPresenceEventImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$StreamPresenceEventCopyWith<$Res> implements $StreamPresenceEventCopyWith<$Res> {
+  factory _$StreamPresenceEventCopyWith(_StreamPresenceEvent value, $Res Function(_StreamPresenceEvent) _then) = __$StreamPresenceEventCopyWithImpl;
+@override @useResult
+$Res call({
+ RealtimeStream stream, List<UserPresence> joins, List<UserPresence> leaves
+});
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? stream = null,
-    Object? joins = null,
-    Object? leaves = null,
-  }) {
-    return _then(_$StreamPresenceEventImpl(
-      stream: null == stream
-          ? _value.stream
-          : stream // ignore: cast_nullable_to_non_nullable
-              as RealtimeStream,
-      joins: null == joins
-          ? _value._joins
-          : joins // ignore: cast_nullable_to_non_nullable
-              as List<UserPresence>,
-      leaves: null == leaves
-          ? _value._leaves
-          : leaves // ignore: cast_nullable_to_non_nullable
-              as List<UserPresence>,
-    ));
-  }
+
+@override $RealtimeStreamCopyWith<$Res> get stream;
+
 }
-
 /// @nodoc
+class __$StreamPresenceEventCopyWithImpl<$Res>
+    implements _$StreamPresenceEventCopyWith<$Res> {
+  __$StreamPresenceEventCopyWithImpl(this._self, this._then);
 
-class _$StreamPresenceEventImpl extends _StreamPresenceEvent {
-  const _$StreamPresenceEventImpl(
-      {required this.stream,
-      required final List<UserPresence> joins,
-      required final List<UserPresence> leaves})
-      : _joins = joins,
-        _leaves = leaves,
-        super._();
+  final _StreamPresenceEvent _self;
+  final $Res Function(_StreamPresenceEvent) _then;
 
-  /// The stream this presence event is for.
-  @override
-  final RealtimeStream stream;
-
-  /// The user presence that joined the stream.
-  final List<UserPresence> _joins;
-
-  /// The user presence that joined the stream.
-  @override
-  List<UserPresence> get joins {
-    if (_joins is EqualUnmodifiableListView) return _joins;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_joins);
-  }
-
-  /// The user presence that left the stream.
-  final List<UserPresence> _leaves;
-
-  /// The user presence that left the stream.
-  @override
-  List<UserPresence> get leaves {
-    if (_leaves is EqualUnmodifiableListView) return _leaves;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_leaves);
-  }
-
-  @override
-  String toString() {
-    return 'StreamPresenceEvent(stream: $stream, joins: $joins, leaves: $leaves)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$StreamPresenceEventImpl &&
-            (identical(other.stream, stream) || other.stream == stream) &&
-            const DeepCollectionEquality().equals(other._joins, _joins) &&
-            const DeepCollectionEquality().equals(other._leaves, _leaves));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      stream,
-      const DeepCollectionEquality().hash(_joins),
-      const DeepCollectionEquality().hash(_leaves));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$StreamPresenceEventImplCopyWith<_$StreamPresenceEventImpl> get copyWith =>
-      __$$StreamPresenceEventImplCopyWithImpl<_$StreamPresenceEventImpl>(
-          this, _$identity);
+/// Create a copy of StreamPresenceEvent
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? stream = null,Object? joins = null,Object? leaves = null,}) {
+  return _then(_StreamPresenceEvent(
+stream: null == stream ? _self.stream : stream // ignore: cast_nullable_to_non_nullable
+as RealtimeStream,joins: null == joins ? _self._joins : joins // ignore: cast_nullable_to_non_nullable
+as List<UserPresence>,leaves: null == leaves ? _self._leaves : leaves // ignore: cast_nullable_to_non_nullable
+as List<UserPresence>,
+  ));
 }
 
-abstract class _StreamPresenceEvent extends StreamPresenceEvent {
-  const factory _StreamPresenceEvent(
-      {required final RealtimeStream stream,
-      required final List<UserPresence> joins,
-      required final List<UserPresence> leaves}) = _$StreamPresenceEventImpl;
-  const _StreamPresenceEvent._() : super._();
-
-  @override
-
-  /// The stream this presence event is for.
-  RealtimeStream get stream;
-  @override
-
-  /// The user presence that joined the stream.
-  List<UserPresence> get joins;
-  @override
-
-  /// The user presence that left the stream.
-  List<UserPresence> get leaves;
-  @override
-  @JsonKey(ignore: true)
-  _$$StreamPresenceEventImplCopyWith<_$StreamPresenceEventImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+/// Create a copy of StreamPresenceEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RealtimeStreamCopyWith<$Res> get stream {
+  
+  return $RealtimeStreamCopyWith<$Res>(_self.stream, (value) {
+    return _then(_self.copyWith(stream: value));
+  });
 }
+}
+
+// dart format on

@@ -5,7 +5,7 @@ import 'package:nakama/src/api/rtapi.dart' as rtpb;
 part 'chat.freezed.dart';
 
 @freezed
-class Channel with _$Channel {
+sealed class Channel with _$Channel {
   const Channel._();
 
   const factory Channel({
@@ -47,7 +47,7 @@ class Channel with _$Channel {
 }
 
 @freezed
-class ChannelMessageAck with _$ChannelMessageAck {
+sealed class ChannelMessageAck with _$ChannelMessageAck {
   const ChannelMessageAck._();
 
   /// A receipt reply from a channel message send operation.

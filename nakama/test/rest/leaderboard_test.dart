@@ -8,7 +8,7 @@ void main() {
   group('[REST] Test Leaderboard', () {
     late final NakamaBaseClient client;
     late final Session session;
-    late final String leaderboardName = "test";
+    late final String leaderboardName = 'test';
 
     setUpAll(() async {
       client = NakamaRestApiClient.init(

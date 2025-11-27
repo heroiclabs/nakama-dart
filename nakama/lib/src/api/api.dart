@@ -1,5 +1,3 @@
-library api;
-
 // In64 used in protobuf
 export 'package:fixnum/fixnum.dart' show Int64;
 

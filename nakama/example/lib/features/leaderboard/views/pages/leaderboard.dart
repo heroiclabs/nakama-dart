@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nakama_example/features/common/providers/session_provider.dart';
@@ -14,12 +16,12 @@ class LeaderboardPage extends ConsumerWidget {
 
     // Fetch leaderboard records when the page is loaded
     ref.listen(leaderboardProvider.notifier, (previous, next) {
-      ref.read(leaderboardProvider.notifier).listRecords(leaderboardName);
+      unawaited(ref.read(leaderboardProvider.notifier).listRecords(leaderboardName));
     });
 
     // Fetch records initially
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(leaderboardProvider.notifier).listRecords(leaderboardName);
+      unawaited(ref.read(leaderboardProvider.notifier).listRecords(leaderboardName));
     });
 
     return Scaffold(

@@ -6,7 +6,7 @@ part 'status.freezed.dart';
 part 'status.g.dart';
 
 @freezed
-class UserPresence with _$UserPresence {
+sealed class UserPresence with _$UserPresence {
   const UserPresence._();
 
   const factory UserPresence({
@@ -40,7 +40,7 @@ class UserPresence with _$UserPresence {
 }
 
 @freezed
-class StatusPresenceEvent with _$StatusPresenceEvent {
+sealed class StatusPresenceEvent with _$StatusPresenceEvent {
   const StatusPresenceEvent._();
 
   const factory StatusPresenceEvent({
@@ -58,7 +58,7 @@ class StatusPresenceEvent with _$StatusPresenceEvent {
 }
 
 @freezed
-class RealtimeStream with _$RealtimeStream {
+sealed class RealtimeStream with _$RealtimeStream {
   const RealtimeStream._();
 
   const factory RealtimeStream({
@@ -84,7 +84,7 @@ class RealtimeStream with _$RealtimeStream {
 }
 
 @freezed
-class RealtimeStreamData with _$RealtimeStreamData {
+sealed class RealtimeStreamData with _$RealtimeStreamData {
   const RealtimeStreamData._();
 
   const factory RealtimeStreamData({
@@ -110,7 +110,7 @@ class RealtimeStreamData with _$RealtimeStreamData {
 }
 
 @freezed
-class StreamPresenceEvent with _$StreamPresenceEvent {
+sealed class StreamPresenceEvent with _$StreamPresenceEvent {
   const StreamPresenceEvent._();
 
   const factory StreamPresenceEvent({
