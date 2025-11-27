@@ -7,5 +7,5 @@ SatoriBaseClient getSatoriClient({
   bool ssl = false,
 }) =>
     throw UnsupportedError(
-      'Satori is not supported outside JS runtime.',
+      'Satori client initialization failed. Platform not detected correctly.',
     );

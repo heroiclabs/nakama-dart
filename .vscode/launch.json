@@ -5,8 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "example (dev config)",
+            "name": "nakama/example (dev config)",
             "cwd": "nakama/example",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "flutterMode": "debug",
+            "toolArgs": [
+                "--dart-define-from-file",
+                "lib/configs/config.dev.json"
+            ]
+        },
+        {
+            "name": "satori/example (dev config)",
+            "cwd": "satori/example",
             "request": "launch",
             "type": "dart",
             "program": "lib/main.dart",

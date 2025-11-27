@@ -62,7 +62,7 @@ void main() {
 
       expect(flags, isA<FlagList>());
       expect(flags.flags, isNotNull);
-      expect(flags.flags.length, equals(19));
+      expect(flags.flags.length, equals(277));
     });
 
     test('get flag', () async {
