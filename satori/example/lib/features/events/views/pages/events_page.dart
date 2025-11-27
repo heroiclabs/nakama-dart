@@ -128,30 +128,62 @@ class _EventsPageState extends ConsumerState<EventsPage> {
             const SizedBox(height: 8),
             Wrap(
               spacing: 8.0,
+              runSpacing: 8.0,
               children: [
                 ElevatedButton.icon(
-                  onPressed: () => _setEventExample('app_started', null),
-                  icon: const Icon(Icons.play_arrow, size: 16),
-                  label: const Text('App Started'),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  ),
+                  onPressed: () => _setEventExample('achievementUnlocked', 'ACHIEVEMENT_ID'),
+                  icon: const Icon(Icons.emoji_events, size: 16),
+                  label: const Text('Achievement Unlocked'),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => _setEventExample('level_completed', 'level_1'),
-                  icon: const Icon(Icons.star, size: 16),
+                  onPressed: () => _setEventExample('awardReceived', 'AWARD_ID'),
+                  icon: const Icon(Icons.card_giftcard, size: 16),
+                  label: const Text('Award Received'),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => _setEventExample('coinsSpent', '100'),
+                  icon: const Icon(Icons.monetization_on, size: 16),
+                  label: const Text('Coins Spent'),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => _setEventExample('guildJoined', 'GUILD_ID'),
+                  icon: const Icon(Icons.group_add, size: 16),
+                  label: const Text('Guild Joined'),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => _setEventExample('guildMemberAccepted', 'MEMBER_ID'),
+                  icon: const Icon(Icons.person_add_alt_1, size: 16),
+                  label: const Text('Guild Member Accepted'),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => _setEventExample('guildRewardsClaimed', 'REWARD_ID'),
+                  icon: const Icon(Icons.redeem, size: 16),
+                  label: const Text('Guild Rewards Claimed'),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => _setEventExample('guildRoleUpdated', 'ROLE_ID'),
+                  icon: const Icon(Icons.admin_panel_settings, size: 16),
+                  label: const Text('Guild Role Updated'),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => _setEventExample('inventoryUpdated', 'ITEM_ID'),
+                  icon: const Icon(Icons.inventory, size: 16),
+                  label: const Text('Inventory Updated'),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => _setEventExample('levelCompleted', '2'),
+                  icon: const Icon(Icons.check_circle, size: 16),
                   label: const Text('Level Completed'),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  ),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => _setEventExample('purchase_made', '9.99'),
-                  icon: const Icon(Icons.shopping_cart, size: 16),
-                  label: const Text('Purchase'),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  ),
+                  onPressed: () => _setEventExample('levelFailed', 'level_3'),
+                  icon: const Icon(Icons.cancel, size: 16),
+                  label: const Text('Level Failed'),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => _setEventExample('levelStarted', 'level_4'),
+                  icon: const Icon(Icons.play_arrow, size: 16),
+                  label: const Text('Level Started'),
                 ),
               ],
             ),
