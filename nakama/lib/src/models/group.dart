@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nakama/src/api/api.dart' as api;
 import 'package:nakama/src/enum/group_membership_states.dart';
 import 'package:nakama/src/models/account.dart';
+import 'package:nakama/src/utils/platform_normalizer.dart';
 
 part 'group.freezed.dart';
 part 'group.g.dart';
@@ -29,12 +30,12 @@ sealed class Group with _$Group {
 
   factory Group.fromDto(api.Group dto) => Group(
         id: dto.id,
-        creatorId: dto.creatorId,
-        name: dto.name,
-        description: dto.description,
-        langTag: dto.langTag,
-        metadata: dto.metadata,
-        avatarUrl: dto.avatarUrl,
+        creatorId: PlatformNormalizer.normalizeNullableString(dto.creatorId),
+        name: PlatformNormalizer.normalizeNullableString(dto.name),
+        description: PlatformNormalizer.normalizeNullableString(dto.description),
+        langTag: PlatformNormalizer.normalizeNullableString(dto.langTag),
+        metadata: PlatformNormalizer.normalizeNullableString(dto.metadata),
+        avatarUrl: PlatformNormalizer.normalizeNullableString(dto.avatarUrl),
         open: dto.open.value,
         edgeCount: dto.edgeCount,
         maxCount: dto.maxCount,
@@ -55,7 +56,7 @@ sealed class GroupList with _$GroupList {
   factory GroupList.fromJson(Map<String, Object?> json) => _$GroupListFromJson(json);
 
   factory GroupList.fromDto(api.GroupList dto) => GroupList(
-        cursor: dto.cursor,
+        cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
         groups: dto.groups.map((e) => Group.fromDto(e)).toList(growable: false),
       );
 }
@@ -72,7 +73,7 @@ sealed class UserGroupList with _$UserGroupList {
   factory UserGroupList.fromJson(Map<String, Object?> json) => _$UserGroupListFromJson(json);
 
   factory UserGroupList.fromDto(api.UserGroupList dto) => UserGroupList(
-        cursor: dto.cursor,
+        cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
         userGroups: dto.userGroups.map((e) => UserGroup.fromDto(e)).toList(growable: false),
       );
 }
@@ -106,7 +107,7 @@ sealed class GroupUserList with _$GroupUserList {
   factory GroupUserList.fromJson(Map<String, Object?> json) => _$GroupUserListFromJson(json);
 
   factory GroupUserList.fromDto(api.GroupUserList dto) => GroupUserList(
-        cursor: dto.cursor,
+        cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
         groupUsers: dto.groupUsers.map((e) => GroupUser.fromDto(e)).toList(growable: false),
       );
 }

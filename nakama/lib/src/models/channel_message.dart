@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nakama/src/api/api.dart' as api;
+import 'package:nakama/src/utils/platform_normalizer.dart';
 
 part 'channel_message.freezed.dart';
 part 'channel_message.g.dart';
@@ -36,10 +37,10 @@ sealed class ChannelMessage with _$ChannelMessage {
         createTime: dto.createTime.toDateTime(),
         updateTime: dto.updateTime.toDateTime(),
         persistent: dto.persistent.value,
-        roomName: dto.roomName,
-        groupId: dto.groupId,
-        userIdOne: dto.userIdOne,
-        userIdTwo: dto.userIdTwo,
+        roomName: PlatformNormalizer.normalizeNullableString(dto.roomName),
+        groupId: PlatformNormalizer.normalizeNullableString(dto.groupId),
+        userIdOne: PlatformNormalizer.normalizeNullableString(dto.userIdOne),
+        userIdTwo: PlatformNormalizer.normalizeNullableString(dto.userIdTwo),
       );
 }
 
@@ -58,8 +59,8 @@ sealed class ChannelMessageList with _$ChannelMessageList {
 
   factory ChannelMessageList.fromDto(api.ChannelMessageList dto) => ChannelMessageList(
         messages: dto.messages.map((e) => ChannelMessage.fromDto(e)).toList(growable: false),
-        nextCursor: dto.nextCursor,
-        prevCursor: dto.prevCursor,
-        cacheableCursor: dto.cacheableCursor,
+        nextCursor: PlatformNormalizer.normalizeNullableString(dto.nextCursor),
+        prevCursor: PlatformNormalizer.normalizeNullableString(dto.prevCursor),
+        cacheableCursor: PlatformNormalizer.normalizeNullableString(dto.cacheableCursor),
       );
 }

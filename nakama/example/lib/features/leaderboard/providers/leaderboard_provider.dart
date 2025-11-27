@@ -23,7 +23,7 @@ class LeaderboardNotifier extends StateNotifier<List<LeaderboardRecord>> {
               cursor: cursor);
       allRecords.addAll(leaderboardRecordsList.records ?? []);
       cursor = leaderboardRecordsList.nextCursor;
-    } while (cursor!.isNotEmpty);
+    } while (cursor != null);
 
     state = allRecords;
     return state;
@@ -45,7 +45,7 @@ class LeaderboardNotifier extends StateNotifier<List<LeaderboardRecord>> {
       );
       allRecords.addAll(leaderboardRecordsList.records ?? []);
       cursor = leaderboardRecordsList.nextCursor;
-    } while (cursor!.isNotEmpty);
+    } while (cursor != null);
 
     state = allRecords;
     return state;

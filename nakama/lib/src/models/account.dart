@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nakama/src/api/api.dart' as api;
+import 'package:nakama/src/utils/platform_normalizer.dart';
 
 part 'account.freezed.dart';
 part 'account.g.dart';
@@ -21,10 +22,10 @@ sealed class Account with _$Account {
   factory Account.fromJson(Map<String, Object?> json) => _$AccountFromJson(json);
 
   factory Account.fromDto(api.Account dto) => Account(
-        wallet: dto.wallet,
-        email: dto.email,
+        wallet: PlatformNormalizer.normalizeNullableString(dto.wallet),
+        email: PlatformNormalizer.normalizeNullableString(dto.email),
         devices: dto.devices.map((e) => Device.fromDto(e)).toList(growable: false),
-        customId: dto.customId,
+        customId: PlatformNormalizer.normalizeNullableString(dto.customId),
         verifyTime: dto.verifyTime.hasSeconds() ? dto.verifyTime.toDateTime() : null,
         disableTime: dto.disableTime.hasSeconds() ? dto.disableTime.toDateTime() : null,
         user: User.fromDto(dto.user),
@@ -77,22 +78,22 @@ sealed class User with _$User {
 
   factory User.fromDto(api.User user) => User(
         id: user.id,
-        username: user.username,
-        displayName: user.displayName,
-        avatarUrl: user.avatarUrl,
-        langTag: user.langTag,
-        location: user.location,
-        timezone: user.timezone,
-        metadata: user.metadata,
-        facebookId: user.facebookId,
-        googleId: user.googleId,
-        gamecenterId: user.gamecenterId,
-        steamId: user.steamId,
+        username: PlatformNormalizer.normalizeNullableString(user.username),
+        displayName: PlatformNormalizer.normalizeNullableString(user.displayName),
+        avatarUrl: PlatformNormalizer.normalizeNullableString(user.avatarUrl),
+        langTag: PlatformNormalizer.normalizeNullableString(user.langTag),
+        location: PlatformNormalizer.normalizeNullableString(user.location),
+        timezone: PlatformNormalizer.normalizeNullableString(user.timezone),
+        metadata: PlatformNormalizer.normalizeNullableString(user.metadata),
+        facebookId: PlatformNormalizer.normalizeNullableString(user.facebookId),
+        googleId: PlatformNormalizer.normalizeNullableString(user.googleId),
+        gamecenterId: PlatformNormalizer.normalizeNullableString(user.gamecenterId),
+        steamId: PlatformNormalizer.normalizeNullableString(user.steamId),
         online: user.online,
         edgeCount: user.edgeCount,
         createTime: user.createTime.toDateTime(),
         updateTime: user.updateTime.toDateTime(),
-        facebookInstantGameId: user.facebookInstantGameId,
-        appleId: user.appleId,
+        facebookInstantGameId: PlatformNormalizer.normalizeNullableString(user.facebookInstantGameId),
+        appleId: PlatformNormalizer.normalizeNullableString(user.appleId),
       );
 }
