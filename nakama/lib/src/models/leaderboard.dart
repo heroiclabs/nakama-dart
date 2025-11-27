@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nakama/src/api/api.dart' as api;
+import 'package:nakama/src/utils/platform_normalizer.dart';
 
 part 'leaderboard.freezed.dart';
 part 'leaderboard.g.dart';
@@ -22,7 +23,7 @@ enum LeaderboardOperator {
 }
 
 @freezed
-class LeaderboardRecordList with _$LeaderboardRecordList {
+sealed class LeaderboardRecordList with _$LeaderboardRecordList {
   const LeaderboardRecordList._();
 
   const factory LeaderboardRecordList({
@@ -37,13 +38,13 @@ class LeaderboardRecordList with _$LeaderboardRecordList {
   factory LeaderboardRecordList.fromDto(api.LeaderboardRecordList dto) => LeaderboardRecordList(
         records: dto.records.map((e) => LeaderboardRecord.fromDto(e)).toList(),
         ownerRecords: dto.ownerRecords.map((e) => LeaderboardRecord.fromDto(e)).toList(),
-        nextCursor: dto.nextCursor,
-        prevCursor: dto.prevCursor,
+        nextCursor: PlatformNormalizer.normalizeNullableString(dto.nextCursor),
+        prevCursor: PlatformNormalizer.normalizeNullableString(dto.prevCursor),
       );
 }
 
 @freezed
-class LeaderboardRecord with _$LeaderboardRecord {
+sealed class LeaderboardRecord with _$LeaderboardRecord {
   const LeaderboardRecord._();
 
   const factory LeaderboardRecord({
@@ -64,13 +65,13 @@ class LeaderboardRecord with _$LeaderboardRecord {
   factory LeaderboardRecord.fromJson(Map<String, Object?> json) => _$LeaderboardRecordFromJson(json);
 
   factory LeaderboardRecord.fromDto(api.LeaderboardRecord dto) => LeaderboardRecord(
-        leaderboardId: dto.leaderboardId,
-        ownerId: dto.ownerId,
-        username: dto.username.value,
+        leaderboardId: PlatformNormalizer.normalizeNullableString(dto.leaderboardId),
+        ownerId: PlatformNormalizer.normalizeNullableString(dto.ownerId),
+        username: PlatformNormalizer.normalizeNullableString(dto.username.value),
         score: dto.score.toString(),
         subscore: dto.subscore.toInt(),
         numScore: dto.numScore.toInt(),
-        metadata: dto.metadata,
+        metadata: PlatformNormalizer.normalizeNullableString(dto.metadata),
         createTime: dto.createTime.hasNanos() ? dto.createTime.toDateTime() : null,
         updateTime: dto.updateTime.hasNanos() ? dto.updateTime.toDateTime() : null,
         expiryTime: dto.expiryTime.hasNanos() ? dto.expiryTime.toDateTime() : null,

@@ -6,26 +6,26 @@ repository: https://github.com/heroiclabs/nakama-dart
 homepage: https://heroiclabs.com/docs/nakama/client-libraries/dart
 
 environment:
-  sdk: ">=3.1.0 <4.0.0"
+  sdk: ^3.8.0
 
 dependencies:
-  dio: ^5.7.0
+  dio: ^5.9.0
   fixnum: ^1.1.0
-  freezed_annotation: ^3.0.0
+  freezed_annotation: ^3.1.0
   grpc: ^4.1.0
-  json_annotation: ^4.8.1
+  json_annotation: ^4.9.0
   jwt_decoder: ^2.0.1
   logging: ^1.1.0
   meta: ^1.8.0
-  protobuf: ^4.1.0
+  protobuf: ^5.1.0
   retrofit: ^4.4.2
   web_socket_channel: ^3.0.1
 
 dev_dependencies:
-  build_runner: ^2.3.2
+  build_runner: ^2.10.2
   faker: ^2.0.0
-  flutter_lints: ^5.0.0
-  freezed: ^3.0.6
+  flutter_lints: ^6.0.0
+  freezed: ^3.2.3
   json_serializable: ^6.7.1
-  retrofit_generator: ^9.2.0
-  test: ^1.22.0
+  retrofit_generator: ^10.1.4
+  test: ^1.27.0

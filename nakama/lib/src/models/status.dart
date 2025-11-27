@@ -1,11 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nakama/src/api/rtapi.dart' as rtpb;
+import 'package:nakama/src/utils/platform_normalizer.dart';
 
 part 'status.freezed.dart';
 part 'status.g.dart';
 
 @freezed
-class UserPresence with _$UserPresence {
+sealed class UserPresence with _$UserPresence {
   const UserPresence._();
 
   const factory UserPresence({
@@ -32,14 +33,14 @@ class UserPresence with _$UserPresence {
         sessionId: dto.sessionId,
         username: dto.username,
         persistence: dto.persistence,
-        status: dto.status.value.isNotEmpty ? dto.status.value : null,
+        status: PlatformNormalizer.normalizeNullableString(dto.status.value),
       );
 
   factory UserPresence.fromJson(Map<String, Object?> json) => _$UserPresenceFromJson(json);
 }
 
 @freezed
-class StatusPresenceEvent with _$StatusPresenceEvent {
+sealed class StatusPresenceEvent with _$StatusPresenceEvent {
   const StatusPresenceEvent._();
 
   const factory StatusPresenceEvent({
@@ -57,7 +58,7 @@ class StatusPresenceEvent with _$StatusPresenceEvent {
 }
 
 @freezed
-class RealtimeStream with _$RealtimeStream {
+sealed class RealtimeStream with _$RealtimeStream {
   const RealtimeStream._();
 
   const factory RealtimeStream({
@@ -83,7 +84,7 @@ class RealtimeStream with _$RealtimeStream {
 }
 
 @freezed
-class RealtimeStreamData with _$RealtimeStreamData {
+sealed class RealtimeStreamData with _$RealtimeStreamData {
   const RealtimeStreamData._();
 
   const factory RealtimeStreamData({
@@ -109,7 +110,7 @@ class RealtimeStreamData with _$RealtimeStreamData {
 }
 
 @freezed
-class StreamPresenceEvent with _$StreamPresenceEvent {
+sealed class StreamPresenceEvent with _$StreamPresenceEvent {
   const StreamPresenceEvent._();
 
   const factory StreamPresenceEvent({

@@ -1,60 +1,65 @@
-///
-//  Generated code. Do not modify.
-//  source: api/api.proto
+// This is a generated file - do not edit.
 //
-// @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
+// Generated from api/api.proto.
 
-// ignore_for_file: UNDEFINED_SHOWN_NAME
+// @dart = 3.3
+
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: curly_braces_in_flow_control_structures
+// ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:core' as $core;
+
 import 'package:protobuf/protobuf.dart' as $pb;
 
+/// Validation Provider,
 class StoreProvider extends $pb.ProtobufEnum {
-  static const StoreProvider APPLE_APP_STORE = StoreProvider._(
-      0,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'APPLE_APP_STORE');
-  static const StoreProvider GOOGLE_PLAY_STORE = StoreProvider._(
-      1,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'GOOGLE_PLAY_STORE');
-  static const StoreProvider HUAWEI_APP_GALLERY = StoreProvider._(
-      2,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'HUAWEI_APP_GALLERY');
+  /// Apple App Store
+  static const StoreProvider APPLE_APP_STORE =
+      StoreProvider._(0, _omitEnumNames ? '' : 'APPLE_APP_STORE');
+
+  /// Google Play Store
+  static const StoreProvider GOOGLE_PLAY_STORE =
+      StoreProvider._(1, _omitEnumNames ? '' : 'GOOGLE_PLAY_STORE');
+
+  /// Huawei App Gallery
+  static const StoreProvider HUAWEI_APP_GALLERY =
+      StoreProvider._(2, _omitEnumNames ? '' : 'HUAWEI_APP_GALLERY');
+
+  /// Facebook Instant Store
+  static const StoreProvider FACEBOOK_INSTANT_STORE =
+      StoreProvider._(3, _omitEnumNames ? '' : 'FACEBOOK_INSTANT_STORE');
 
   static const $core.List<StoreProvider> values = <StoreProvider>[
     APPLE_APP_STORE,
     GOOGLE_PLAY_STORE,
     HUAWEI_APP_GALLERY,
+    FACEBOOK_INSTANT_STORE,
   ];
 
-  static final $core.Map<$core.int, StoreProvider> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
-  static StoreProvider? valueOf($core.int value) => _byValue[value];
+  static final $core.List<StoreProvider?> _byValue =
+      $pb.ProtobufEnum.$_initByValueList(values, 3);
+  static StoreProvider? valueOf($core.int value) =>
+      value < 0 || value >= _byValue.length ? null : _byValue[value];
 
-  const StoreProvider._($core.int v, $core.String n) : super(v, n);
+  const StoreProvider._(super.value, super.name);
 }
 
+/// Environment where a purchase/subscription took place,
 class StoreEnvironment extends $pb.ProtobufEnum {
-  static const StoreEnvironment UNKNOWN = StoreEnvironment._(
-      0,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'UNKNOWN');
-  static const StoreEnvironment SANDBOX = StoreEnvironment._(
-      1,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'SANDBOX');
-  static const StoreEnvironment PRODUCTION = StoreEnvironment._(
-      2,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'PRODUCTION');
+  /// Unknown environment.
+  static const StoreEnvironment UNKNOWN =
+      StoreEnvironment._(0, _omitEnumNames ? '' : 'UNKNOWN');
+
+  /// Sandbox/test environment.
+  static const StoreEnvironment SANDBOX =
+      StoreEnvironment._(1, _omitEnumNames ? '' : 'SANDBOX');
+
+  /// Production environment.
+  static const StoreEnvironment PRODUCTION =
+      StoreEnvironment._(2, _omitEnumNames ? '' : 'PRODUCTION');
 
   static const $core.List<StoreEnvironment> values = <StoreEnvironment>[
     UNKNOWN,
@@ -62,39 +67,33 @@ class StoreEnvironment extends $pb.ProtobufEnum {
     PRODUCTION,
   ];
 
-  static final $core.Map<$core.int, StoreEnvironment> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
-  static StoreEnvironment? valueOf($core.int value) => _byValue[value];
+  static final $core.List<StoreEnvironment?> _byValue =
+      $pb.ProtobufEnum.$_initByValueList(values, 2);
+  static StoreEnvironment? valueOf($core.int value) =>
+      value < 0 || value >= _byValue.length ? null : _byValue[value];
 
-  const StoreEnvironment._($core.int v, $core.String n) : super(v, n);
+  const StoreEnvironment._(super.value, super.name);
 }
 
+/// Operator that can be used to override the one set in the leaderboard.
 class Operator extends $pb.ProtobufEnum {
-  static const Operator NO_OVERRIDE = Operator._(
-      0,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'NO_OVERRIDE');
-  static const Operator BEST = Operator._(
-      1,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'BEST');
-  static const Operator SET = Operator._(
-      2,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'SET');
-  static const Operator INCREMENT = Operator._(
-      3,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'INCREMENT');
-  static const Operator DECREMENT = Operator._(
-      4,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'DECREMENT');
+  /// Do not override the leaderboard operator.
+  static const Operator NO_OVERRIDE =
+      Operator._(0, _omitEnumNames ? '' : 'NO_OVERRIDE');
+
+  /// Override the leaderboard operator with BEST.
+  static const Operator BEST = Operator._(1, _omitEnumNames ? '' : 'BEST');
+
+  /// Override the leaderboard operator with SET.
+  static const Operator SET = Operator._(2, _omitEnumNames ? '' : 'SET');
+
+  /// Override the leaderboard operator with INCREMENT.
+  static const Operator INCREMENT =
+      Operator._(3, _omitEnumNames ? '' : 'INCREMENT');
+
+  /// Override the leaderboard operator with DECREMENT.
+  static const Operator DECREMENT =
+      Operator._(4, _omitEnumNames ? '' : 'DECREMENT');
 
   static const $core.List<Operator> values = <Operator>[
     NO_OVERRIDE,
@@ -104,34 +103,31 @@ class Operator extends $pb.ProtobufEnum {
     DECREMENT,
   ];
 
-  static final $core.Map<$core.int, Operator> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
-  static Operator? valueOf($core.int value) => _byValue[value];
+  static final $core.List<Operator?> _byValue =
+      $pb.ProtobufEnum.$_initByValueList(values, 4);
+  static Operator? valueOf($core.int value) =>
+      value < 0 || value >= _byValue.length ? null : _byValue[value];
 
-  const Operator._($core.int v, $core.String n) : super(v, n);
+  const Operator._(super.value, super.name);
 }
 
+/// The friendship status.
 class Friend_State extends $pb.ProtobufEnum {
-  static const Friend_State FRIEND = Friend_State._(
-      0,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'FRIEND');
-  static const Friend_State INVITE_SENT = Friend_State._(
-      1,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'INVITE_SENT');
-  static const Friend_State INVITE_RECEIVED = Friend_State._(
-      2,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'INVITE_RECEIVED');
-  static const Friend_State BLOCKED = Friend_State._(
-      3,
-      const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-          ? ''
-          : 'BLOCKED');
+  /// The user is a friend of the current user.
+  static const Friend_State FRIEND =
+      Friend_State._(0, _omitEnumNames ? '' : 'FRIEND');
+
+  /// The current user has sent an invite to the user.
+  static const Friend_State INVITE_SENT =
+      Friend_State._(1, _omitEnumNames ? '' : 'INVITE_SENT');
+
+  /// The current user has received an invite from this user.
+  static const Friend_State INVITE_RECEIVED =
+      Friend_State._(2, _omitEnumNames ? '' : 'INVITE_RECEIVED');
+
+  /// The current user has blocked this user.
+  static const Friend_State BLOCKED =
+      Friend_State._(3, _omitEnumNames ? '' : 'BLOCKED');
 
   static const $core.List<Friend_State> values = <Friend_State>[
     FRIEND,
@@ -140,38 +136,31 @@ class Friend_State extends $pb.ProtobufEnum {
     BLOCKED,
   ];
 
-  static final $core.Map<$core.int, Friend_State> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
-  static Friend_State? valueOf($core.int value) => _byValue[value];
+  static final $core.List<Friend_State?> _byValue =
+      $pb.ProtobufEnum.$_initByValueList(values, 3);
+  static Friend_State? valueOf($core.int value) =>
+      value < 0 || value >= _byValue.length ? null : _byValue[value];
 
-  const Friend_State._($core.int v, $core.String n) : super(v, n);
+  const Friend_State._(super.value, super.name);
 }
 
+/// The group role status.
 class GroupUserList_GroupUser_State extends $pb.ProtobufEnum {
+  /// The user is a superadmin with full control of the group.
   static const GroupUserList_GroupUser_State SUPERADMIN =
-      GroupUserList_GroupUser_State._(
-          0,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'SUPERADMIN');
+      GroupUserList_GroupUser_State._(0, _omitEnumNames ? '' : 'SUPERADMIN');
+
+  /// The user is an admin with additional privileges.
   static const GroupUserList_GroupUser_State ADMIN =
-      GroupUserList_GroupUser_State._(
-          1,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'ADMIN');
+      GroupUserList_GroupUser_State._(1, _omitEnumNames ? '' : 'ADMIN');
+
+  /// The user is a regular member.
   static const GroupUserList_GroupUser_State MEMBER =
-      GroupUserList_GroupUser_State._(
-          2,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'MEMBER');
+      GroupUserList_GroupUser_State._(2, _omitEnumNames ? '' : 'MEMBER');
+
+  /// The user has requested to join the group
   static const GroupUserList_GroupUser_State JOIN_REQUEST =
-      GroupUserList_GroupUser_State._(
-          3,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'JOIN_REQUEST');
+      GroupUserList_GroupUser_State._(3, _omitEnumNames ? '' : 'JOIN_REQUEST');
 
   static const $core.List<GroupUserList_GroupUser_State> values =
       <GroupUserList_GroupUser_State>[
@@ -181,40 +170,31 @@ class GroupUserList_GroupUser_State extends $pb.ProtobufEnum {
     JOIN_REQUEST,
   ];
 
-  static final $core.Map<$core.int, GroupUserList_GroupUser_State> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
+  static final $core.List<GroupUserList_GroupUser_State?> _byValue =
+      $pb.ProtobufEnum.$_initByValueList(values, 3);
   static GroupUserList_GroupUser_State? valueOf($core.int value) =>
-      _byValue[value];
+      value < 0 || value >= _byValue.length ? null : _byValue[value];
 
-  const GroupUserList_GroupUser_State._($core.int v, $core.String n)
-      : super(v, n);
+  const GroupUserList_GroupUser_State._(super.value, super.name);
 }
 
+/// The group role status.
 class UserGroupList_UserGroup_State extends $pb.ProtobufEnum {
+  /// The user is a superadmin with full control of the group.
   static const UserGroupList_UserGroup_State SUPERADMIN =
-      UserGroupList_UserGroup_State._(
-          0,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'SUPERADMIN');
+      UserGroupList_UserGroup_State._(0, _omitEnumNames ? '' : 'SUPERADMIN');
+
+  /// The user is an admin with additional privileges.
   static const UserGroupList_UserGroup_State ADMIN =
-      UserGroupList_UserGroup_State._(
-          1,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'ADMIN');
+      UserGroupList_UserGroup_State._(1, _omitEnumNames ? '' : 'ADMIN');
+
+  /// The user is a regular member.
   static const UserGroupList_UserGroup_State MEMBER =
-      UserGroupList_UserGroup_State._(
-          2,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'MEMBER');
+      UserGroupList_UserGroup_State._(2, _omitEnumNames ? '' : 'MEMBER');
+
+  /// The user has requested to join the group
   static const UserGroupList_UserGroup_State JOIN_REQUEST =
-      UserGroupList_UserGroup_State._(
-          3,
-          const $core.bool.fromEnvironment('protobuf.omit_enum_names')
-              ? ''
-              : 'JOIN_REQUEST');
+      UserGroupList_UserGroup_State._(3, _omitEnumNames ? '' : 'JOIN_REQUEST');
 
   static const $core.List<UserGroupList_UserGroup_State> values =
       <UserGroupList_UserGroup_State>[
@@ -224,11 +204,13 @@ class UserGroupList_UserGroup_State extends $pb.ProtobufEnum {
     JOIN_REQUEST,
   ];
 
-  static final $core.Map<$core.int, UserGroupList_UserGroup_State> _byValue =
-      $pb.ProtobufEnum.initByValue(values);
+  static final $core.List<UserGroupList_UserGroup_State?> _byValue =
+      $pb.ProtobufEnum.$_initByValueList(values, 3);
   static UserGroupList_UserGroup_State? valueOf($core.int value) =>
-      _byValue[value];
+      value < 0 || value >= _byValue.length ? null : _byValue[value];
 
-  const UserGroupList_UserGroup_State._($core.int v, $core.String n)
-      : super(v, n);
+  const UserGroupList_UserGroup_State._(super.value, super.name);
 }
+
+const $core.bool _omitEnumNames =
+    $core.bool.fromEnvironment('protobuf.omit_enum_names');

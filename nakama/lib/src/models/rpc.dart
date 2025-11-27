@@ -4,7 +4,7 @@ import 'package:nakama/src/api/api.dart' as api;
 part 'rpc.freezed.dart';
 
 @freezed
-class Rpc with _$Rpc {
+sealed class Rpc with _$Rpc {
   const Rpc._();
 
   const factory Rpc({

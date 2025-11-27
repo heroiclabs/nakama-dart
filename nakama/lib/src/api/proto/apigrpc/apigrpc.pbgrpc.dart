@@ -1,888 +1,1145 @@
-///
-//  Generated code. Do not modify.
-//  source: apigrpc/apigrpc.proto
+// This is a generated file - do not edit.
 //
-// @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
+// Generated from apigrpc/apigrpc.proto.
+
+// @dart = 3.3
+
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: curly_braces_in_flow_control_structures
+// ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
+// ignore_for_file: non_constant_identifier_names
 
 import 'dart:async' as $async;
-
 import 'dart:core' as $core;
 
 import 'package:grpc/service_api.dart' as $grpc;
+import 'package:protobuf/protobuf.dart' as $pb;
+
 import '../api/api.pb.dart' as $0;
 import '../google/protobuf/empty.pb.dart' as $1;
+
 export 'apigrpc.pb.dart';
 
+/// *
+///  The Nakama RPC protocol service built with GRPC.
+@$pb.GrpcServiceName('nakama.api.Nakama')
 class NakamaClient extends $grpc.Client {
+  /// The hostname for this service.
+  static const $core.String defaultHost = '';
+
+  /// OAuth scopes needed for the client.
+  static const $core.List<$core.String> oauthScopes = [
+    '',
+  ];
+
+  NakamaClient(super.channel, {super.options, super.interceptors});
+
+  /// Add friends by ID or username to a user's account.
+  $grpc.ResponseFuture<$1.Empty> addFriends(
+    $0.AddFriendsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$addFriends, request, options: options);
+  }
+
+  /// Add users to a group.
+  $grpc.ResponseFuture<$1.Empty> addGroupUsers(
+    $0.AddGroupUsersRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$addGroupUsers, request, options: options);
+  }
+
+  /// Refresh a user's session using a refresh token retrieved from a previous authentication request.
+  $grpc.ResponseFuture<$0.Session> sessionRefresh(
+    $0.SessionRefreshRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$sessionRefresh, request, options: options);
+  }
+
+  /// Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
+  $grpc.ResponseFuture<$1.Empty> sessionLogout(
+    $0.SessionLogoutRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$sessionLogout, request, options: options);
+  }
+
+  /// Authenticate a user with an Apple ID against the server.
+  $grpc.ResponseFuture<$0.Session> authenticateApple(
+    $0.AuthenticateAppleRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$authenticateApple, request, options: options);
+  }
+
+  /// Authenticate a user with a custom id against the server.
+  $grpc.ResponseFuture<$0.Session> authenticateCustom(
+    $0.AuthenticateCustomRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$authenticateCustom, request, options: options);
+  }
+
+  /// Authenticate a user with a device id against the server.
+  $grpc.ResponseFuture<$0.Session> authenticateDevice(
+    $0.AuthenticateDeviceRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$authenticateDevice, request, options: options);
+  }
+
+  /// Authenticate a user with an email+password against the server.
+  $grpc.ResponseFuture<$0.Session> authenticateEmail(
+    $0.AuthenticateEmailRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$authenticateEmail, request, options: options);
+  }
+
+  /// Authenticate a user with a Facebook OAuth token against the server.
+  $grpc.ResponseFuture<$0.Session> authenticateFacebook(
+    $0.AuthenticateFacebookRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$authenticateFacebook, request, options: options);
+  }
+
+  /// Authenticate a user with a Facebook Instant Game token against the server.
+  $grpc.ResponseFuture<$0.Session> authenticateFacebookInstantGame(
+    $0.AuthenticateFacebookInstantGameRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$authenticateFacebookInstantGame, request,
+        options: options);
+  }
+
+  /// Authenticate a user with Apple's GameCenter against the server.
+  $grpc.ResponseFuture<$0.Session> authenticateGameCenter(
+    $0.AuthenticateGameCenterRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$authenticateGameCenter, request,
+        options: options);
+  }
+
+  /// Authenticate a user with Google against the server.
+  $grpc.ResponseFuture<$0.Session> authenticateGoogle(
+    $0.AuthenticateGoogleRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$authenticateGoogle, request, options: options);
+  }
+
+  /// Authenticate a user with Steam against the server.
+  $grpc.ResponseFuture<$0.Session> authenticateSteam(
+    $0.AuthenticateSteamRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$authenticateSteam, request, options: options);
+  }
+
+  /// Ban a set of users from a group.
+  $grpc.ResponseFuture<$1.Empty> banGroupUsers(
+    $0.BanGroupUsersRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$banGroupUsers, request, options: options);
+  }
+
+  /// Block one or more users by ID or username.
+  $grpc.ResponseFuture<$1.Empty> blockFriends(
+    $0.BlockFriendsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$blockFriends, request, options: options);
+  }
+
+  /// Create a new group with the current user as the owner.
+  $grpc.ResponseFuture<$0.Group> createGroup(
+    $0.CreateGroupRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$createGroup, request, options: options);
+  }
+
+  /// Delete the current user's account.
+  $grpc.ResponseFuture<$1.Empty> deleteAccount(
+    $1.Empty request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$deleteAccount, request, options: options);
+  }
+
+  /// Delete one or more users by ID or username.
+  $grpc.ResponseFuture<$1.Empty> deleteFriends(
+    $0.DeleteFriendsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$deleteFriends, request, options: options);
+  }
+
+  /// Delete a group by ID.
+  $grpc.ResponseFuture<$1.Empty> deleteGroup(
+    $0.DeleteGroupRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$deleteGroup, request, options: options);
+  }
+
+  /// Delete a leaderboard record.
+  $grpc.ResponseFuture<$1.Empty> deleteLeaderboardRecord(
+    $0.DeleteLeaderboardRecordRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$deleteLeaderboardRecord, request,
+        options: options);
+  }
+
+  /// Delete one or more notifications for the current user.
+  $grpc.ResponseFuture<$1.Empty> deleteNotifications(
+    $0.DeleteNotificationsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$deleteNotifications, request, options: options);
+  }
+
+  /// Delete a tournament record.
+  $grpc.ResponseFuture<$1.Empty> deleteTournamentRecord(
+    $0.DeleteTournamentRecordRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$deleteTournamentRecord, request,
+        options: options);
+  }
+
+  /// Delete one or more objects by ID or username.
+  $grpc.ResponseFuture<$1.Empty> deleteStorageObjects(
+    $0.DeleteStorageObjectsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$deleteStorageObjects, request, options: options);
+  }
+
+  /// Submit an event for processing in the server's registered runtime custom events handler.
+  $grpc.ResponseFuture<$1.Empty> event(
+    $0.Event request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$event, request, options: options);
+  }
+
+  /// Fetch the current user's account.
+  $grpc.ResponseFuture<$0.Account> getAccount(
+    $1.Empty request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$getAccount, request, options: options);
+  }
+
+  /// Fetch zero or more users by ID and/or username.
+  $grpc.ResponseFuture<$0.Users> getUsers(
+    $0.GetUsersRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$getUsers, request, options: options);
+  }
+
+  /// Get subscription by product id.
+  $grpc.ResponseFuture<$0.ValidatedSubscription> getSubscription(
+    $0.GetSubscriptionRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$getSubscription, request, options: options);
+  }
+
+  /// Get matchmaker stats.
+  $grpc.ResponseFuture<$0.MatchmakerStats> getMatchmakerStats(
+    $1.Empty request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$getMatchmakerStats, request, options: options);
+  }
+
+  /// A healthcheck which load balancers can use to check the service.
+  $grpc.ResponseFuture<$1.Empty> healthcheck(
+    $1.Empty request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$healthcheck, request, options: options);
+  }
+
+  /// Import Facebook friends and add them to a user's account.
+  $grpc.ResponseFuture<$1.Empty> importFacebookFriends(
+    $0.ImportFacebookFriendsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$importFacebookFriends, request, options: options);
+  }
+
+  /// Import Steam friends and add them to a user's account.
+  $grpc.ResponseFuture<$1.Empty> importSteamFriends(
+    $0.ImportSteamFriendsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$importSteamFriends, request, options: options);
+  }
+
+  /// Immediately join an open group, or request to join a closed one.
+  $grpc.ResponseFuture<$1.Empty> joinGroup(
+    $0.JoinGroupRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$joinGroup, request, options: options);
+  }
+
+  /// Attempt to join an open and running tournament.
+  $grpc.ResponseFuture<$1.Empty> joinTournament(
+    $0.JoinTournamentRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$joinTournament, request, options: options);
+  }
+
+  /// Kick a set of users from a group.
+  $grpc.ResponseFuture<$1.Empty> kickGroupUsers(
+    $0.KickGroupUsersRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$kickGroupUsers, request, options: options);
+  }
+
+  /// Leave a group the user is a member of.
+  $grpc.ResponseFuture<$1.Empty> leaveGroup(
+    $0.LeaveGroupRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$leaveGroup, request, options: options);
+  }
+
+  /// Add an Apple ID to the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> linkApple(
+    $0.AccountApple request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$linkApple, request, options: options);
+  }
+
+  /// Add a custom ID to the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> linkCustom(
+    $0.AccountCustom request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$linkCustom, request, options: options);
+  }
+
+  /// Add a device ID to the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> linkDevice(
+    $0.AccountDevice request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$linkDevice, request, options: options);
+  }
+
+  /// Add an email+password to the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> linkEmail(
+    $0.AccountEmail request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$linkEmail, request, options: options);
+  }
+
+  /// Add Facebook to the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> linkFacebook(
+    $0.LinkFacebookRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$linkFacebook, request, options: options);
+  }
+
+  /// Add Facebook Instant Game to the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> linkFacebookInstantGame(
+    $0.AccountFacebookInstantGame request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$linkFacebookInstantGame, request,
+        options: options);
+  }
+
+  /// Add Apple's GameCenter to the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> linkGameCenter(
+    $0.AccountGameCenter request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$linkGameCenter, request, options: options);
+  }
+
+  /// Add Google to the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> linkGoogle(
+    $0.AccountGoogle request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$linkGoogle, request, options: options);
+  }
+
+  /// Add Steam to the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> linkSteam(
+    $0.LinkSteamRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$linkSteam, request, options: options);
+  }
+
+  /// List a channel's message history.
+  $grpc.ResponseFuture<$0.ChannelMessageList> listChannelMessages(
+    $0.ListChannelMessagesRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listChannelMessages, request, options: options);
+  }
+
+  /// List all friends for the current user.
+  $grpc.ResponseFuture<$0.FriendList> listFriends(
+    $0.ListFriendsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listFriends, request, options: options);
+  }
+
+  /// List friends of friends for the current user.
+  $grpc.ResponseFuture<$0.FriendsOfFriendsList> listFriendsOfFriends(
+    $0.ListFriendsOfFriendsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listFriendsOfFriends, request, options: options);
+  }
+
+  /// List groups based on given filters.
+  $grpc.ResponseFuture<$0.GroupList> listGroups(
+    $0.ListGroupsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listGroups, request, options: options);
+  }
+
+  /// List all users that are part of a group.
+  $grpc.ResponseFuture<$0.GroupUserList> listGroupUsers(
+    $0.ListGroupUsersRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listGroupUsers, request, options: options);
+  }
+
+  /// List leaderboard records.
+  $grpc.ResponseFuture<$0.LeaderboardRecordList> listLeaderboardRecords(
+    $0.ListLeaderboardRecordsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listLeaderboardRecords, request,
+        options: options);
+  }
+
+  /// List leaderboard records around the target ownerId.
+  $grpc.ResponseFuture<$0.LeaderboardRecordList>
+      listLeaderboardRecordsAroundOwner(
+    $0.ListLeaderboardRecordsAroundOwnerRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listLeaderboardRecordsAroundOwner, request,
+        options: options);
+  }
+
+  /// List running matches and optionally filter by matching criteria.
+  $grpc.ResponseFuture<$0.MatchList> listMatches(
+    $0.ListMatchesRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listMatches, request, options: options);
+  }
+
+  /// List parties and optionally filter by matching criteria.
+  $grpc.ResponseFuture<$0.PartyList> listParties(
+    $0.ListPartiesRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listParties, request, options: options);
+  }
+
+  /// Fetch list of notifications.
+  $grpc.ResponseFuture<$0.NotificationList> listNotifications(
+    $0.ListNotificationsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listNotifications, request, options: options);
+  }
+
+  /// List publicly readable storage objects in a given collection.
+  $grpc.ResponseFuture<$0.StorageObjectList> listStorageObjects(
+    $0.ListStorageObjectsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listStorageObjects, request, options: options);
+  }
+
+  /// List user's subscriptions.
+  $grpc.ResponseFuture<$0.SubscriptionList> listSubscriptions(
+    $0.ListSubscriptionsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listSubscriptions, request, options: options);
+  }
+
+  /// List current or upcoming tournaments.
+  $grpc.ResponseFuture<$0.TournamentList> listTournaments(
+    $0.ListTournamentsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listTournaments, request, options: options);
+  }
+
+  /// List tournament records.
+  $grpc.ResponseFuture<$0.TournamentRecordList> listTournamentRecords(
+    $0.ListTournamentRecordsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listTournamentRecords, request, options: options);
+  }
+
+  /// List tournament records for a given owner.
+  $grpc.ResponseFuture<$0.TournamentRecordList>
+      listTournamentRecordsAroundOwner(
+    $0.ListTournamentRecordsAroundOwnerRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listTournamentRecordsAroundOwner, request,
+        options: options);
+  }
+
+  /// List groups the current user belongs to.
+  $grpc.ResponseFuture<$0.UserGroupList> listUserGroups(
+    $0.ListUserGroupsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$listUserGroups, request, options: options);
+  }
+
+  /// Promote a set of users in a group to the next role up.
+  $grpc.ResponseFuture<$1.Empty> promoteGroupUsers(
+    $0.PromoteGroupUsersRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$promoteGroupUsers, request, options: options);
+  }
+
+  /// Demote a set of users in a group to the next role down.
+  $grpc.ResponseFuture<$1.Empty> demoteGroupUsers(
+    $0.DemoteGroupUsersRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$demoteGroupUsers, request, options: options);
+  }
+
+  /// Get storage objects.
+  $grpc.ResponseFuture<$0.StorageObjects> readStorageObjects(
+    $0.ReadStorageObjectsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$readStorageObjects, request, options: options);
+  }
+
+  /// Execute a Lua function on the server.
+  $grpc.ResponseFuture<$0.Rpc> rpcFunc(
+    $0.Rpc request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$rpcFunc, request, options: options);
+  }
+
+  /// Remove the Apple ID from the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> unlinkApple(
+    $0.AccountApple request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$unlinkApple, request, options: options);
+  }
+
+  /// Remove the custom ID from the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> unlinkCustom(
+    $0.AccountCustom request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$unlinkCustom, request, options: options);
+  }
+
+  /// Remove the device ID from the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> unlinkDevice(
+    $0.AccountDevice request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$unlinkDevice, request, options: options);
+  }
+
+  /// Remove the email+password from the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> unlinkEmail(
+    $0.AccountEmail request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$unlinkEmail, request, options: options);
+  }
+
+  /// Remove Facebook from the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> unlinkFacebook(
+    $0.AccountFacebook request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$unlinkFacebook, request, options: options);
+  }
+
+  /// Remove Facebook Instant Game profile from the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> unlinkFacebookInstantGame(
+    $0.AccountFacebookInstantGame request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$unlinkFacebookInstantGame, request,
+        options: options);
+  }
+
+  /// Remove Apple's GameCenter from the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> unlinkGameCenter(
+    $0.AccountGameCenter request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$unlinkGameCenter, request, options: options);
+  }
+
+  /// Remove Google from the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> unlinkGoogle(
+    $0.AccountGoogle request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$unlinkGoogle, request, options: options);
+  }
+
+  /// Remove Steam from the social profiles on the current user's account.
+  $grpc.ResponseFuture<$1.Empty> unlinkSteam(
+    $0.AccountSteam request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$unlinkSteam, request, options: options);
+  }
+
+  /// Update fields in the current user's account.
+  $grpc.ResponseFuture<$1.Empty> updateAccount(
+    $0.UpdateAccountRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$updateAccount, request, options: options);
+  }
+
+  /// Update fields in a given group.
+  $grpc.ResponseFuture<$1.Empty> updateGroup(
+    $0.UpdateGroupRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$updateGroup, request, options: options);
+  }
+
+  /// Validate Apple IAP Receipt
+  $grpc.ResponseFuture<$0.ValidatePurchaseResponse> validatePurchaseApple(
+    $0.ValidatePurchaseAppleRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$validatePurchaseApple, request, options: options);
+  }
+
+  /// Validate Apple Subscription Receipt
+  $grpc.ResponseFuture<$0.ValidateSubscriptionResponse>
+      validateSubscriptionApple(
+    $0.ValidateSubscriptionAppleRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$validateSubscriptionApple, request,
+        options: options);
+  }
+
+  /// Validate Google IAP Receipt
+  $grpc.ResponseFuture<$0.ValidatePurchaseResponse> validatePurchaseGoogle(
+    $0.ValidatePurchaseGoogleRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$validatePurchaseGoogle, request,
+        options: options);
+  }
+
+  /// Validate Google Subscription Receipt
+  $grpc.ResponseFuture<$0.ValidateSubscriptionResponse>
+      validateSubscriptionGoogle(
+    $0.ValidateSubscriptionGoogleRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$validateSubscriptionGoogle, request,
+        options: options);
+  }
+
+  /// Validate Huawei IAP Receipt
+  $grpc.ResponseFuture<$0.ValidatePurchaseResponse> validatePurchaseHuawei(
+    $0.ValidatePurchaseHuaweiRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$validatePurchaseHuawei, request,
+        options: options);
+  }
+
+  /// Validate FB Instant IAP Receipt
+  $grpc.ResponseFuture<$0.ValidatePurchaseResponse>
+      validatePurchaseFacebookInstant(
+    $0.ValidatePurchaseFacebookInstantRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$validatePurchaseFacebookInstant, request,
+        options: options);
+  }
+
+  /// Write a record to a leaderboard.
+  $grpc.ResponseFuture<$0.LeaderboardRecord> writeLeaderboardRecord(
+    $0.WriteLeaderboardRecordRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$writeLeaderboardRecord, request,
+        options: options);
+  }
+
+  /// Write objects into the storage engine.
+  $grpc.ResponseFuture<$0.StorageObjectAcks> writeStorageObjects(
+    $0.WriteStorageObjectsRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$writeStorageObjects, request, options: options);
+  }
+
+  /// Write a record to a tournament.
+  $grpc.ResponseFuture<$0.LeaderboardRecord> writeTournamentRecord(
+    $0.WriteTournamentRecordRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$writeTournamentRecord, request, options: options);
+  }
+
+  // method descriptors
+
   static final _$addFriends =
       $grpc.ClientMethod<$0.AddFriendsRequest, $1.Empty>(
           '/nakama.api.Nakama/AddFriends',
           ($0.AddFriendsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$addGroupUsers =
       $grpc.ClientMethod<$0.AddGroupUsersRequest, $1.Empty>(
           '/nakama.api.Nakama/AddGroupUsers',
           ($0.AddGroupUsersRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$sessionRefresh =
       $grpc.ClientMethod<$0.SessionRefreshRequest, $0.Session>(
           '/nakama.api.Nakama/SessionRefresh',
           ($0.SessionRefreshRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
+          $0.Session.fromBuffer);
   static final _$sessionLogout =
       $grpc.ClientMethod<$0.SessionLogoutRequest, $1.Empty>(
           '/nakama.api.Nakama/SessionLogout',
           ($0.SessionLogoutRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$authenticateApple =
       $grpc.ClientMethod<$0.AuthenticateAppleRequest, $0.Session>(
           '/nakama.api.Nakama/AuthenticateApple',
           ($0.AuthenticateAppleRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
+          $0.Session.fromBuffer);
   static final _$authenticateCustom =
       $grpc.ClientMethod<$0.AuthenticateCustomRequest, $0.Session>(
           '/nakama.api.Nakama/AuthenticateCustom',
           ($0.AuthenticateCustomRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
+          $0.Session.fromBuffer);
   static final _$authenticateDevice =
       $grpc.ClientMethod<$0.AuthenticateDeviceRequest, $0.Session>(
           '/nakama.api.Nakama/AuthenticateDevice',
           ($0.AuthenticateDeviceRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
+          $0.Session.fromBuffer);
   static final _$authenticateEmail =
       $grpc.ClientMethod<$0.AuthenticateEmailRequest, $0.Session>(
           '/nakama.api.Nakama/AuthenticateEmail',
           ($0.AuthenticateEmailRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
+          $0.Session.fromBuffer);
   static final _$authenticateFacebook =
       $grpc.ClientMethod<$0.AuthenticateFacebookRequest, $0.Session>(
           '/nakama.api.Nakama/AuthenticateFacebook',
           ($0.AuthenticateFacebookRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
+          $0.Session.fromBuffer);
   static final _$authenticateFacebookInstantGame =
       $grpc.ClientMethod<$0.AuthenticateFacebookInstantGameRequest, $0.Session>(
           '/nakama.api.Nakama/AuthenticateFacebookInstantGame',
           ($0.AuthenticateFacebookInstantGameRequest value) =>
               value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
+          $0.Session.fromBuffer);
   static final _$authenticateGameCenter =
       $grpc.ClientMethod<$0.AuthenticateGameCenterRequest, $0.Session>(
           '/nakama.api.Nakama/AuthenticateGameCenter',
           ($0.AuthenticateGameCenterRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
+          $0.Session.fromBuffer);
   static final _$authenticateGoogle =
       $grpc.ClientMethod<$0.AuthenticateGoogleRequest, $0.Session>(
           '/nakama.api.Nakama/AuthenticateGoogle',
           ($0.AuthenticateGoogleRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
+          $0.Session.fromBuffer);
   static final _$authenticateSteam =
       $grpc.ClientMethod<$0.AuthenticateSteamRequest, $0.Session>(
           '/nakama.api.Nakama/AuthenticateSteam',
           ($0.AuthenticateSteamRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.Session.fromBuffer(value));
+          $0.Session.fromBuffer);
   static final _$banGroupUsers =
       $grpc.ClientMethod<$0.BanGroupUsersRequest, $1.Empty>(
           '/nakama.api.Nakama/BanGroupUsers',
           ($0.BanGroupUsersRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$blockFriends =
       $grpc.ClientMethod<$0.BlockFriendsRequest, $1.Empty>(
           '/nakama.api.Nakama/BlockFriends',
           ($0.BlockFriendsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$createGroup =
       $grpc.ClientMethod<$0.CreateGroupRequest, $0.Group>(
           '/nakama.api.Nakama/CreateGroup',
           ($0.CreateGroupRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.Group.fromBuffer(value));
+          $0.Group.fromBuffer);
   static final _$deleteAccount = $grpc.ClientMethod<$1.Empty, $1.Empty>(
       '/nakama.api.Nakama/DeleteAccount',
       ($1.Empty value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$deleteFriends =
       $grpc.ClientMethod<$0.DeleteFriendsRequest, $1.Empty>(
           '/nakama.api.Nakama/DeleteFriends',
           ($0.DeleteFriendsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$deleteGroup =
       $grpc.ClientMethod<$0.DeleteGroupRequest, $1.Empty>(
           '/nakama.api.Nakama/DeleteGroup',
           ($0.DeleteGroupRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$deleteLeaderboardRecord =
       $grpc.ClientMethod<$0.DeleteLeaderboardRecordRequest, $1.Empty>(
           '/nakama.api.Nakama/DeleteLeaderboardRecord',
           ($0.DeleteLeaderboardRecordRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$deleteNotifications =
       $grpc.ClientMethod<$0.DeleteNotificationsRequest, $1.Empty>(
           '/nakama.api.Nakama/DeleteNotifications',
           ($0.DeleteNotificationsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$deleteTournamentRecord =
       $grpc.ClientMethod<$0.DeleteTournamentRecordRequest, $1.Empty>(
           '/nakama.api.Nakama/DeleteTournamentRecord',
           ($0.DeleteTournamentRecordRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$deleteStorageObjects =
       $grpc.ClientMethod<$0.DeleteStorageObjectsRequest, $1.Empty>(
           '/nakama.api.Nakama/DeleteStorageObjects',
           ($0.DeleteStorageObjectsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$event = $grpc.ClientMethod<$0.Event, $1.Empty>(
       '/nakama.api.Nakama/Event',
       ($0.Event value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$getAccount = $grpc.ClientMethod<$1.Empty, $0.Account>(
       '/nakama.api.Nakama/GetAccount',
       ($1.Empty value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.Account.fromBuffer(value));
+      $0.Account.fromBuffer);
   static final _$getUsers = $grpc.ClientMethod<$0.GetUsersRequest, $0.Users>(
       '/nakama.api.Nakama/GetUsers',
       ($0.GetUsersRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.Users.fromBuffer(value));
+      $0.Users.fromBuffer);
   static final _$getSubscription =
       $grpc.ClientMethod<$0.GetSubscriptionRequest, $0.ValidatedSubscription>(
           '/nakama.api.Nakama/GetSubscription',
           ($0.GetSubscriptionRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) =>
-              $0.ValidatedSubscription.fromBuffer(value));
+          $0.ValidatedSubscription.fromBuffer);
+  static final _$getMatchmakerStats =
+      $grpc.ClientMethod<$1.Empty, $0.MatchmakerStats>(
+          '/nakama.api.Nakama/GetMatchmakerStats',
+          ($1.Empty value) => value.writeToBuffer(),
+          $0.MatchmakerStats.fromBuffer);
   static final _$healthcheck = $grpc.ClientMethod<$1.Empty, $1.Empty>(
       '/nakama.api.Nakama/Healthcheck',
       ($1.Empty value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$importFacebookFriends =
       $grpc.ClientMethod<$0.ImportFacebookFriendsRequest, $1.Empty>(
           '/nakama.api.Nakama/ImportFacebookFriends',
           ($0.ImportFacebookFriendsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$importSteamFriends =
       $grpc.ClientMethod<$0.ImportSteamFriendsRequest, $1.Empty>(
           '/nakama.api.Nakama/ImportSteamFriends',
           ($0.ImportSteamFriendsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$joinGroup = $grpc.ClientMethod<$0.JoinGroupRequest, $1.Empty>(
       '/nakama.api.Nakama/JoinGroup',
       ($0.JoinGroupRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$joinTournament =
       $grpc.ClientMethod<$0.JoinTournamentRequest, $1.Empty>(
           '/nakama.api.Nakama/JoinTournament',
           ($0.JoinTournamentRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$kickGroupUsers =
       $grpc.ClientMethod<$0.KickGroupUsersRequest, $1.Empty>(
           '/nakama.api.Nakama/KickGroupUsers',
           ($0.KickGroupUsersRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$leaveGroup =
       $grpc.ClientMethod<$0.LeaveGroupRequest, $1.Empty>(
           '/nakama.api.Nakama/LeaveGroup',
           ($0.LeaveGroupRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$linkApple = $grpc.ClientMethod<$0.AccountApple, $1.Empty>(
       '/nakama.api.Nakama/LinkApple',
       ($0.AccountApple value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$linkCustom = $grpc.ClientMethod<$0.AccountCustom, $1.Empty>(
       '/nakama.api.Nakama/LinkCustom',
       ($0.AccountCustom value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$linkDevice = $grpc.ClientMethod<$0.AccountDevice, $1.Empty>(
       '/nakama.api.Nakama/LinkDevice',
       ($0.AccountDevice value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$linkEmail = $grpc.ClientMethod<$0.AccountEmail, $1.Empty>(
       '/nakama.api.Nakama/LinkEmail',
       ($0.AccountEmail value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$linkFacebook =
       $grpc.ClientMethod<$0.LinkFacebookRequest, $1.Empty>(
           '/nakama.api.Nakama/LinkFacebook',
           ($0.LinkFacebookRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$linkFacebookInstantGame =
       $grpc.ClientMethod<$0.AccountFacebookInstantGame, $1.Empty>(
           '/nakama.api.Nakama/LinkFacebookInstantGame',
           ($0.AccountFacebookInstantGame value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$linkGameCenter =
       $grpc.ClientMethod<$0.AccountGameCenter, $1.Empty>(
           '/nakama.api.Nakama/LinkGameCenter',
           ($0.AccountGameCenter value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$linkGoogle = $grpc.ClientMethod<$0.AccountGoogle, $1.Empty>(
       '/nakama.api.Nakama/LinkGoogle',
       ($0.AccountGoogle value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$linkSteam = $grpc.ClientMethod<$0.LinkSteamRequest, $1.Empty>(
       '/nakama.api.Nakama/LinkSteam',
       ($0.LinkSteamRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$listChannelMessages =
       $grpc.ClientMethod<$0.ListChannelMessagesRequest, $0.ChannelMessageList>(
           '/nakama.api.Nakama/ListChannelMessages',
           ($0.ListChannelMessagesRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) =>
-              $0.ChannelMessageList.fromBuffer(value));
+          $0.ChannelMessageList.fromBuffer);
   static final _$listFriends =
       $grpc.ClientMethod<$0.ListFriendsRequest, $0.FriendList>(
           '/nakama.api.Nakama/ListFriends',
           ($0.ListFriendsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.FriendList.fromBuffer(value));
+          $0.FriendList.fromBuffer);
+  static final _$listFriendsOfFriends = $grpc.ClientMethod<
+          $0.ListFriendsOfFriendsRequest, $0.FriendsOfFriendsList>(
+      '/nakama.api.Nakama/ListFriendsOfFriends',
+      ($0.ListFriendsOfFriendsRequest value) => value.writeToBuffer(),
+      $0.FriendsOfFriendsList.fromBuffer);
   static final _$listGroups =
       $grpc.ClientMethod<$0.ListGroupsRequest, $0.GroupList>(
           '/nakama.api.Nakama/ListGroups',
           ($0.ListGroupsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.GroupList.fromBuffer(value));
+          $0.GroupList.fromBuffer);
   static final _$listGroupUsers =
       $grpc.ClientMethod<$0.ListGroupUsersRequest, $0.GroupUserList>(
           '/nakama.api.Nakama/ListGroupUsers',
           ($0.ListGroupUsersRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.GroupUserList.fromBuffer(value));
+          $0.GroupUserList.fromBuffer);
   static final _$listLeaderboardRecords = $grpc.ClientMethod<
           $0.ListLeaderboardRecordsRequest, $0.LeaderboardRecordList>(
       '/nakama.api.Nakama/ListLeaderboardRecords',
       ($0.ListLeaderboardRecordsRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) =>
-          $0.LeaderboardRecordList.fromBuffer(value));
+      $0.LeaderboardRecordList.fromBuffer);
   static final _$listLeaderboardRecordsAroundOwner = $grpc.ClientMethod<
           $0.ListLeaderboardRecordsAroundOwnerRequest,
           $0.LeaderboardRecordList>(
       '/nakama.api.Nakama/ListLeaderboardRecordsAroundOwner',
       ($0.ListLeaderboardRecordsAroundOwnerRequest value) =>
           value.writeToBuffer(),
-      ($core.List<$core.int> value) =>
-          $0.LeaderboardRecordList.fromBuffer(value));
+      $0.LeaderboardRecordList.fromBuffer);
   static final _$listMatches =
       $grpc.ClientMethod<$0.ListMatchesRequest, $0.MatchList>(
           '/nakama.api.Nakama/ListMatches',
           ($0.ListMatchesRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.MatchList.fromBuffer(value));
+          $0.MatchList.fromBuffer);
+  static final _$listParties =
+      $grpc.ClientMethod<$0.ListPartiesRequest, $0.PartyList>(
+          '/nakama.api.Nakama/ListParties',
+          ($0.ListPartiesRequest value) => value.writeToBuffer(),
+          $0.PartyList.fromBuffer);
   static final _$listNotifications =
       $grpc.ClientMethod<$0.ListNotificationsRequest, $0.NotificationList>(
           '/nakama.api.Nakama/ListNotifications',
           ($0.ListNotificationsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) =>
-              $0.NotificationList.fromBuffer(value));
+          $0.NotificationList.fromBuffer);
   static final _$listStorageObjects =
       $grpc.ClientMethod<$0.ListStorageObjectsRequest, $0.StorageObjectList>(
           '/nakama.api.Nakama/ListStorageObjects',
           ($0.ListStorageObjectsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) =>
-              $0.StorageObjectList.fromBuffer(value));
+          $0.StorageObjectList.fromBuffer);
   static final _$listSubscriptions =
       $grpc.ClientMethod<$0.ListSubscriptionsRequest, $0.SubscriptionList>(
           '/nakama.api.Nakama/ListSubscriptions',
           ($0.ListSubscriptionsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) =>
-              $0.SubscriptionList.fromBuffer(value));
+          $0.SubscriptionList.fromBuffer);
   static final _$listTournaments =
       $grpc.ClientMethod<$0.ListTournamentsRequest, $0.TournamentList>(
           '/nakama.api.Nakama/ListTournaments',
           ($0.ListTournamentsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.TournamentList.fromBuffer(value));
+          $0.TournamentList.fromBuffer);
   static final _$listTournamentRecords = $grpc.ClientMethod<
           $0.ListTournamentRecordsRequest, $0.TournamentRecordList>(
       '/nakama.api.Nakama/ListTournamentRecords',
       ($0.ListTournamentRecordsRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) =>
-          $0.TournamentRecordList.fromBuffer(value));
+      $0.TournamentRecordList.fromBuffer);
   static final _$listTournamentRecordsAroundOwner = $grpc.ClientMethod<
           $0.ListTournamentRecordsAroundOwnerRequest, $0.TournamentRecordList>(
       '/nakama.api.Nakama/ListTournamentRecordsAroundOwner',
       ($0.ListTournamentRecordsAroundOwnerRequest value) =>
           value.writeToBuffer(),
-      ($core.List<$core.int> value) =>
-          $0.TournamentRecordList.fromBuffer(value));
+      $0.TournamentRecordList.fromBuffer);
   static final _$listUserGroups =
       $grpc.ClientMethod<$0.ListUserGroupsRequest, $0.UserGroupList>(
           '/nakama.api.Nakama/ListUserGroups',
           ($0.ListUserGroupsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.UserGroupList.fromBuffer(value));
+          $0.UserGroupList.fromBuffer);
   static final _$promoteGroupUsers =
       $grpc.ClientMethod<$0.PromoteGroupUsersRequest, $1.Empty>(
           '/nakama.api.Nakama/PromoteGroupUsers',
           ($0.PromoteGroupUsersRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$demoteGroupUsers =
       $grpc.ClientMethod<$0.DemoteGroupUsersRequest, $1.Empty>(
           '/nakama.api.Nakama/DemoteGroupUsers',
           ($0.DemoteGroupUsersRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$readStorageObjects =
       $grpc.ClientMethod<$0.ReadStorageObjectsRequest, $0.StorageObjects>(
           '/nakama.api.Nakama/ReadStorageObjects',
           ($0.ReadStorageObjectsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.StorageObjects.fromBuffer(value));
+          $0.StorageObjects.fromBuffer);
   static final _$rpcFunc = $grpc.ClientMethod<$0.Rpc, $0.Rpc>(
       '/nakama.api.Nakama/RpcFunc',
       ($0.Rpc value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.Rpc.fromBuffer(value));
+      $0.Rpc.fromBuffer);
   static final _$unlinkApple = $grpc.ClientMethod<$0.AccountApple, $1.Empty>(
       '/nakama.api.Nakama/UnlinkApple',
       ($0.AccountApple value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$unlinkCustom = $grpc.ClientMethod<$0.AccountCustom, $1.Empty>(
       '/nakama.api.Nakama/UnlinkCustom',
       ($0.AccountCustom value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$unlinkDevice = $grpc.ClientMethod<$0.AccountDevice, $1.Empty>(
       '/nakama.api.Nakama/UnlinkDevice',
       ($0.AccountDevice value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$unlinkEmail = $grpc.ClientMethod<$0.AccountEmail, $1.Empty>(
       '/nakama.api.Nakama/UnlinkEmail',
       ($0.AccountEmail value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$unlinkFacebook =
       $grpc.ClientMethod<$0.AccountFacebook, $1.Empty>(
           '/nakama.api.Nakama/UnlinkFacebook',
           ($0.AccountFacebook value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$unlinkFacebookInstantGame =
       $grpc.ClientMethod<$0.AccountFacebookInstantGame, $1.Empty>(
           '/nakama.api.Nakama/UnlinkFacebookInstantGame',
           ($0.AccountFacebookInstantGame value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$unlinkGameCenter =
       $grpc.ClientMethod<$0.AccountGameCenter, $1.Empty>(
           '/nakama.api.Nakama/UnlinkGameCenter',
           ($0.AccountGameCenter value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$unlinkGoogle = $grpc.ClientMethod<$0.AccountGoogle, $1.Empty>(
       '/nakama.api.Nakama/UnlinkGoogle',
       ($0.AccountGoogle value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$unlinkSteam = $grpc.ClientMethod<$0.AccountSteam, $1.Empty>(
       '/nakama.api.Nakama/UnlinkSteam',
       ($0.AccountSteam value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+      $1.Empty.fromBuffer);
   static final _$updateAccount =
       $grpc.ClientMethod<$0.UpdateAccountRequest, $1.Empty>(
           '/nakama.api.Nakama/UpdateAccount',
           ($0.UpdateAccountRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$updateGroup =
       $grpc.ClientMethod<$0.UpdateGroupRequest, $1.Empty>(
           '/nakama.api.Nakama/UpdateGroup',
           ($0.UpdateGroupRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+          $1.Empty.fromBuffer);
   static final _$validatePurchaseApple = $grpc.ClientMethod<
           $0.ValidatePurchaseAppleRequest, $0.ValidatePurchaseResponse>(
       '/nakama.api.Nakama/ValidatePurchaseApple',
       ($0.ValidatePurchaseAppleRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) =>
-          $0.ValidatePurchaseResponse.fromBuffer(value));
+      $0.ValidatePurchaseResponse.fromBuffer);
   static final _$validateSubscriptionApple = $grpc.ClientMethod<
           $0.ValidateSubscriptionAppleRequest, $0.ValidateSubscriptionResponse>(
       '/nakama.api.Nakama/ValidateSubscriptionApple',
       ($0.ValidateSubscriptionAppleRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) =>
-          $0.ValidateSubscriptionResponse.fromBuffer(value));
+      $0.ValidateSubscriptionResponse.fromBuffer);
   static final _$validatePurchaseGoogle = $grpc.ClientMethod<
           $0.ValidatePurchaseGoogleRequest, $0.ValidatePurchaseResponse>(
       '/nakama.api.Nakama/ValidatePurchaseGoogle',
       ($0.ValidatePurchaseGoogleRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) =>
-          $0.ValidatePurchaseResponse.fromBuffer(value));
+      $0.ValidatePurchaseResponse.fromBuffer);
   static final _$validateSubscriptionGoogle = $grpc.ClientMethod<
           $0.ValidateSubscriptionGoogleRequest,
           $0.ValidateSubscriptionResponse>(
       '/nakama.api.Nakama/ValidateSubscriptionGoogle',
       ($0.ValidateSubscriptionGoogleRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) =>
-          $0.ValidateSubscriptionResponse.fromBuffer(value));
+      $0.ValidateSubscriptionResponse.fromBuffer);
   static final _$validatePurchaseHuawei = $grpc.ClientMethod<
           $0.ValidatePurchaseHuaweiRequest, $0.ValidatePurchaseResponse>(
       '/nakama.api.Nakama/ValidatePurchaseHuawei',
       ($0.ValidatePurchaseHuaweiRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) =>
-          $0.ValidatePurchaseResponse.fromBuffer(value));
+      $0.ValidatePurchaseResponse.fromBuffer);
+  static final _$validatePurchaseFacebookInstant = $grpc.ClientMethod<
+          $0.ValidatePurchaseFacebookInstantRequest,
+          $0.ValidatePurchaseResponse>(
+      '/nakama.api.Nakama/ValidatePurchaseFacebookInstant',
+      ($0.ValidatePurchaseFacebookInstantRequest value) =>
+          value.writeToBuffer(),
+      $0.ValidatePurchaseResponse.fromBuffer);
   static final _$writeLeaderboardRecord = $grpc.ClientMethod<
           $0.WriteLeaderboardRecordRequest, $0.LeaderboardRecord>(
       '/nakama.api.Nakama/WriteLeaderboardRecord',
       ($0.WriteLeaderboardRecordRequest value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.LeaderboardRecord.fromBuffer(value));
+      $0.LeaderboardRecord.fromBuffer);
   static final _$writeStorageObjects =
       $grpc.ClientMethod<$0.WriteStorageObjectsRequest, $0.StorageObjectAcks>(
           '/nakama.api.Nakama/WriteStorageObjects',
           ($0.WriteStorageObjectsRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) =>
-              $0.StorageObjectAcks.fromBuffer(value));
+          $0.StorageObjectAcks.fromBuffer);
   static final _$writeTournamentRecord =
       $grpc.ClientMethod<$0.WriteTournamentRecordRequest, $0.LeaderboardRecord>(
           '/nakama.api.Nakama/WriteTournamentRecord',
           ($0.WriteTournamentRecordRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) =>
-              $0.LeaderboardRecord.fromBuffer(value));
-
-  NakamaClient($grpc.ClientChannel channel,
-      {$grpc.CallOptions? options,
-      $core.Iterable<$grpc.ClientInterceptor>? interceptors})
-      : super(channel, options: options, interceptors: interceptors);
-
-  $grpc.ResponseFuture<$1.Empty> addFriends($0.AddFriendsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$addFriends, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> addGroupUsers($0.AddGroupUsersRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$addGroupUsers, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Session> sessionRefresh(
-      $0.SessionRefreshRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$sessionRefresh, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> sessionLogout($0.SessionLogoutRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$sessionLogout, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Session> authenticateApple(
-      $0.AuthenticateAppleRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$authenticateApple, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Session> authenticateCustom(
-      $0.AuthenticateCustomRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$authenticateCustom, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Session> authenticateDevice(
-      $0.AuthenticateDeviceRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$authenticateDevice, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Session> authenticateEmail(
-      $0.AuthenticateEmailRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$authenticateEmail, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Session> authenticateFacebook(
-      $0.AuthenticateFacebookRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$authenticateFacebook, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Session> authenticateFacebookInstantGame(
-      $0.AuthenticateFacebookInstantGameRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$authenticateFacebookInstantGame, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Session> authenticateGameCenter(
-      $0.AuthenticateGameCenterRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$authenticateGameCenter, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Session> authenticateGoogle(
-      $0.AuthenticateGoogleRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$authenticateGoogle, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Session> authenticateSteam(
-      $0.AuthenticateSteamRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$authenticateSteam, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> banGroupUsers($0.BanGroupUsersRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$banGroupUsers, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> blockFriends($0.BlockFriendsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$blockFriends, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Group> createGroup($0.CreateGroupRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$createGroup, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> deleteAccount($1.Empty request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$deleteAccount, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> deleteFriends($0.DeleteFriendsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$deleteFriends, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> deleteGroup($0.DeleteGroupRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$deleteGroup, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> deleteLeaderboardRecord(
-      $0.DeleteLeaderboardRecordRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$deleteLeaderboardRecord, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> deleteNotifications(
-      $0.DeleteNotificationsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$deleteNotifications, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> deleteTournamentRecord(
-      $0.DeleteTournamentRecordRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$deleteTournamentRecord, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> deleteStorageObjects(
-      $0.DeleteStorageObjectsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$deleteStorageObjects, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> event($0.Event request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$event, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Account> getAccount($1.Empty request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$getAccount, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Users> getUsers($0.GetUsersRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$getUsers, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.ValidatedSubscription> getSubscription(
-      $0.GetSubscriptionRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$getSubscription, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> healthcheck($1.Empty request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$healthcheck, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> importFacebookFriends(
-      $0.ImportFacebookFriendsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$importFacebookFriends, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> importSteamFriends(
-      $0.ImportSteamFriendsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$importSteamFriends, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> joinGroup($0.JoinGroupRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$joinGroup, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> joinTournament(
-      $0.JoinTournamentRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$joinTournament, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> kickGroupUsers(
-      $0.KickGroupUsersRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$kickGroupUsers, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> leaveGroup($0.LeaveGroupRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$leaveGroup, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> linkApple($0.AccountApple request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$linkApple, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> linkCustom($0.AccountCustom request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$linkCustom, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> linkDevice($0.AccountDevice request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$linkDevice, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> linkEmail($0.AccountEmail request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$linkEmail, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> linkFacebook($0.LinkFacebookRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$linkFacebook, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> linkFacebookInstantGame(
-      $0.AccountFacebookInstantGame request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$linkFacebookInstantGame, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> linkGameCenter($0.AccountGameCenter request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$linkGameCenter, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> linkGoogle($0.AccountGoogle request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$linkGoogle, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> linkSteam($0.LinkSteamRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$linkSteam, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.ChannelMessageList> listChannelMessages(
-      $0.ListChannelMessagesRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listChannelMessages, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.FriendList> listFriends($0.ListFriendsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listFriends, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.GroupList> listGroups($0.ListGroupsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listGroups, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.GroupUserList> listGroupUsers(
-      $0.ListGroupUsersRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listGroupUsers, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.LeaderboardRecordList> listLeaderboardRecords(
-      $0.ListLeaderboardRecordsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listLeaderboardRecords, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$0.LeaderboardRecordList>
-      listLeaderboardRecordsAroundOwner(
-          $0.ListLeaderboardRecordsAroundOwnerRequest request,
-          {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listLeaderboardRecordsAroundOwner, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$0.MatchList> listMatches($0.ListMatchesRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listMatches, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.NotificationList> listNotifications(
-      $0.ListNotificationsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listNotifications, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.StorageObjectList> listStorageObjects(
-      $0.ListStorageObjectsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listStorageObjects, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.SubscriptionList> listSubscriptions(
-      $0.ListSubscriptionsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listSubscriptions, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.TournamentList> listTournaments(
-      $0.ListTournamentsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listTournaments, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.TournamentRecordList> listTournamentRecords(
-      $0.ListTournamentRecordsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listTournamentRecords, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.TournamentRecordList>
-      listTournamentRecordsAroundOwner(
-          $0.ListTournamentRecordsAroundOwnerRequest request,
-          {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listTournamentRecordsAroundOwner, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$0.UserGroupList> listUserGroups(
-      $0.ListUserGroupsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$listUserGroups, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> promoteGroupUsers(
-      $0.PromoteGroupUsersRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$promoteGroupUsers, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> demoteGroupUsers(
-      $0.DemoteGroupUsersRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$demoteGroupUsers, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.StorageObjects> readStorageObjects(
-      $0.ReadStorageObjectsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$readStorageObjects, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.Rpc> rpcFunc($0.Rpc request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$rpcFunc, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> unlinkApple($0.AccountApple request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$unlinkApple, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> unlinkCustom($0.AccountCustom request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$unlinkCustom, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> unlinkDevice($0.AccountDevice request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$unlinkDevice, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> unlinkEmail($0.AccountEmail request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$unlinkEmail, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> unlinkFacebook($0.AccountFacebook request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$unlinkFacebook, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> unlinkFacebookInstantGame(
-      $0.AccountFacebookInstantGame request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$unlinkFacebookInstantGame, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> unlinkGameCenter($0.AccountGameCenter request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$unlinkGameCenter, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> unlinkGoogle($0.AccountGoogle request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$unlinkGoogle, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> unlinkSteam($0.AccountSteam request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$unlinkSteam, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> updateAccount($0.UpdateAccountRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$updateAccount, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Empty> updateGroup($0.UpdateGroupRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$updateGroup, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.ValidatePurchaseResponse> validatePurchaseApple(
-      $0.ValidatePurchaseAppleRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$validatePurchaseApple, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.ValidateSubscriptionResponse>
-      validateSubscriptionApple($0.ValidateSubscriptionAppleRequest request,
-          {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$validateSubscriptionApple, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$0.ValidatePurchaseResponse> validatePurchaseGoogle(
-      $0.ValidatePurchaseGoogleRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$validatePurchaseGoogle, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$0.ValidateSubscriptionResponse>
-      validateSubscriptionGoogle($0.ValidateSubscriptionGoogleRequest request,
-          {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$validateSubscriptionGoogle, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$0.ValidatePurchaseResponse> validatePurchaseHuawei(
-      $0.ValidatePurchaseHuaweiRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$validatePurchaseHuawei, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$0.LeaderboardRecord> writeLeaderboardRecord(
-      $0.WriteLeaderboardRecordRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$writeLeaderboardRecord, request,
-        options: options);
-  }
-
-  $grpc.ResponseFuture<$0.StorageObjectAcks> writeStorageObjects(
-      $0.WriteStorageObjectsRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$writeStorageObjects, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$0.LeaderboardRecord> writeTournamentRecord(
-      $0.WriteTournamentRecordRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$writeTournamentRecord, request, options: options);
-  }
+          $0.LeaderboardRecord.fromBuffer);
 }
 
+@$pb.GrpcServiceName('nakama.api.Nakama')
 abstract class NakamaServiceBase extends $grpc.Service {
   $core.String get $name => 'nakama.api.Nakama';
 
@@ -1101,6 +1358,13 @@ abstract class NakamaServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.GetSubscriptionRequest.fromBuffer(value),
         ($0.ValidatedSubscription value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.Empty, $0.MatchmakerStats>(
+        'GetMatchmakerStats',
+        getMatchmakerStats_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $1.Empty.fromBuffer(value),
+        ($0.MatchmakerStats value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$1.Empty, $1.Empty>(
         'Healthcheck',
         healthcheck_Pre,
@@ -1236,6 +1500,15 @@ abstract class NakamaServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.ListFriendsRequest.fromBuffer(value),
         ($0.FriendList value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ListFriendsOfFriendsRequest,
+            $0.FriendsOfFriendsList>(
+        'ListFriendsOfFriends',
+        listFriendsOfFriends_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.ListFriendsOfFriendsRequest.fromBuffer(value),
+        ($0.FriendsOfFriendsList value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.ListGroupsRequest, $0.GroupList>(
         'ListGroups',
         listGroups_Pre,
@@ -1277,6 +1550,14 @@ abstract class NakamaServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.ListMatchesRequest.fromBuffer(value),
         ($0.MatchList value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ListPartiesRequest, $0.PartyList>(
+        'ListParties',
+        listParties_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.ListPartiesRequest.fromBuffer(value),
+        ($0.PartyList value) => value.writeToBuffer()));
     $addMethod(
         $grpc.ServiceMethod<$0.ListNotificationsRequest, $0.NotificationList>(
             'ListNotifications',
@@ -1496,6 +1777,15 @@ abstract class NakamaServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.ValidatePurchaseHuaweiRequest.fromBuffer(value),
         ($0.ValidatePurchaseResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ValidatePurchaseFacebookInstantRequest,
+            $0.ValidatePurchaseResponse>(
+        'ValidatePurchaseFacebookInstant',
+        validatePurchaseFacebookInstant_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.ValidatePurchaseFacebookInstantRequest.fromBuffer(value),
+        ($0.ValidatePurchaseResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.WriteLeaderboardRecordRequest,
             $0.LeaderboardRecord>(
         'WriteLeaderboardRecord',
@@ -1525,584 +1815,701 @@ abstract class NakamaServiceBase extends $grpc.Service {
         ($0.LeaderboardRecord value) => value.writeToBuffer()));
   }
 
-  $async.Future<$1.Empty> addFriends_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AddFriendsRequest> request) async {
-    return addFriends(call, await request);
-  }
-
-  $async.Future<$1.Empty> addGroupUsers_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AddGroupUsersRequest> request) async {
-    return addGroupUsers(call, await request);
-  }
-
-  $async.Future<$0.Session> sessionRefresh_Pre($grpc.ServiceCall call,
-      $async.Future<$0.SessionRefreshRequest> request) async {
-    return sessionRefresh(call, await request);
-  }
-
-  $async.Future<$1.Empty> sessionLogout_Pre($grpc.ServiceCall call,
-      $async.Future<$0.SessionLogoutRequest> request) async {
-    return sessionLogout(call, await request);
-  }
-
-  $async.Future<$0.Session> authenticateApple_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AuthenticateAppleRequest> request) async {
-    return authenticateApple(call, await request);
-  }
-
-  $async.Future<$0.Session> authenticateCustom_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AuthenticateCustomRequest> request) async {
-    return authenticateCustom(call, await request);
-  }
-
-  $async.Future<$0.Session> authenticateDevice_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AuthenticateDeviceRequest> request) async {
-    return authenticateDevice(call, await request);
-  }
-
-  $async.Future<$0.Session> authenticateEmail_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AuthenticateEmailRequest> request) async {
-    return authenticateEmail(call, await request);
-  }
-
-  $async.Future<$0.Session> authenticateFacebook_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AuthenticateFacebookRequest> request) async {
-    return authenticateFacebook(call, await request);
-  }
-
-  $async.Future<$0.Session> authenticateFacebookInstantGame_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.AuthenticateFacebookInstantGameRequest> request) async {
-    return authenticateFacebookInstantGame(call, await request);
-  }
-
-  $async.Future<$0.Session> authenticateGameCenter_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AuthenticateGameCenterRequest> request) async {
-    return authenticateGameCenter(call, await request);
-  }
-
-  $async.Future<$0.Session> authenticateGoogle_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AuthenticateGoogleRequest> request) async {
-    return authenticateGoogle(call, await request);
-  }
-
-  $async.Future<$0.Session> authenticateSteam_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AuthenticateSteamRequest> request) async {
-    return authenticateSteam(call, await request);
-  }
-
-  $async.Future<$1.Empty> banGroupUsers_Pre($grpc.ServiceCall call,
-      $async.Future<$0.BanGroupUsersRequest> request) async {
-    return banGroupUsers(call, await request);
-  }
-
-  $async.Future<$1.Empty> blockFriends_Pre($grpc.ServiceCall call,
-      $async.Future<$0.BlockFriendsRequest> request) async {
-    return blockFriends(call, await request);
-  }
-
-  $async.Future<$0.Group> createGroup_Pre($grpc.ServiceCall call,
-      $async.Future<$0.CreateGroupRequest> request) async {
-    return createGroup(call, await request);
-  }
-
-  $async.Future<$1.Empty> deleteAccount_Pre(
-      $grpc.ServiceCall call, $async.Future<$1.Empty> request) async {
-    return deleteAccount(call, await request);
-  }
-
-  $async.Future<$1.Empty> deleteFriends_Pre($grpc.ServiceCall call,
-      $async.Future<$0.DeleteFriendsRequest> request) async {
-    return deleteFriends(call, await request);
-  }
-
-  $async.Future<$1.Empty> deleteGroup_Pre($grpc.ServiceCall call,
-      $async.Future<$0.DeleteGroupRequest> request) async {
-    return deleteGroup(call, await request);
-  }
-
-  $async.Future<$1.Empty> deleteLeaderboardRecord_Pre($grpc.ServiceCall call,
-      $async.Future<$0.DeleteLeaderboardRecordRequest> request) async {
-    return deleteLeaderboardRecord(call, await request);
-  }
-
-  $async.Future<$1.Empty> deleteNotifications_Pre($grpc.ServiceCall call,
-      $async.Future<$0.DeleteNotificationsRequest> request) async {
-    return deleteNotifications(call, await request);
-  }
-
-  $async.Future<$1.Empty> deleteTournamentRecord_Pre($grpc.ServiceCall call,
-      $async.Future<$0.DeleteTournamentRecordRequest> request) async {
-    return deleteTournamentRecord(call, await request);
-  }
-
-  $async.Future<$1.Empty> deleteStorageObjects_Pre($grpc.ServiceCall call,
-      $async.Future<$0.DeleteStorageObjectsRequest> request) async {
-    return deleteStorageObjects(call, await request);
-  }
-
-  $async.Future<$1.Empty> event_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.Event> request) async {
-    return event(call, await request);
-  }
-
-  $async.Future<$0.Account> getAccount_Pre(
-      $grpc.ServiceCall call, $async.Future<$1.Empty> request) async {
-    return getAccount(call, await request);
-  }
-
-  $async.Future<$0.Users> getUsers_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.GetUsersRequest> request) async {
-    return getUsers(call, await request);
-  }
-
-  $async.Future<$0.ValidatedSubscription> getSubscription_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.GetSubscriptionRequest> request) async {
-    return getSubscription(call, await request);
-  }
-
-  $async.Future<$1.Empty> healthcheck_Pre(
-      $grpc.ServiceCall call, $async.Future<$1.Empty> request) async {
-    return healthcheck(call, await request);
-  }
-
-  $async.Future<$1.Empty> importFacebookFriends_Pre($grpc.ServiceCall call,
-      $async.Future<$0.ImportFacebookFriendsRequest> request) async {
-    return importFacebookFriends(call, await request);
-  }
-
-  $async.Future<$1.Empty> importSteamFriends_Pre($grpc.ServiceCall call,
-      $async.Future<$0.ImportSteamFriendsRequest> request) async {
-    return importSteamFriends(call, await request);
-  }
-
-  $async.Future<$1.Empty> joinGroup_Pre($grpc.ServiceCall call,
-      $async.Future<$0.JoinGroupRequest> request) async {
-    return joinGroup(call, await request);
-  }
-
-  $async.Future<$1.Empty> joinTournament_Pre($grpc.ServiceCall call,
-      $async.Future<$0.JoinTournamentRequest> request) async {
-    return joinTournament(call, await request);
-  }
-
-  $async.Future<$1.Empty> kickGroupUsers_Pre($grpc.ServiceCall call,
-      $async.Future<$0.KickGroupUsersRequest> request) async {
-    return kickGroupUsers(call, await request);
-  }
-
-  $async.Future<$1.Empty> leaveGroup_Pre($grpc.ServiceCall call,
-      $async.Future<$0.LeaveGroupRequest> request) async {
-    return leaveGroup(call, await request);
-  }
-
-  $async.Future<$1.Empty> linkApple_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.AccountApple> request) async {
-    return linkApple(call, await request);
-  }
-
-  $async.Future<$1.Empty> linkCustom_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.AccountCustom> request) async {
-    return linkCustom(call, await request);
-  }
-
-  $async.Future<$1.Empty> linkDevice_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.AccountDevice> request) async {
-    return linkDevice(call, await request);
-  }
-
-  $async.Future<$1.Empty> linkEmail_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.AccountEmail> request) async {
-    return linkEmail(call, await request);
-  }
-
-  $async.Future<$1.Empty> linkFacebook_Pre($grpc.ServiceCall call,
-      $async.Future<$0.LinkFacebookRequest> request) async {
-    return linkFacebook(call, await request);
-  }
-
-  $async.Future<$1.Empty> linkFacebookInstantGame_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AccountFacebookInstantGame> request) async {
-    return linkFacebookInstantGame(call, await request);
-  }
-
-  $async.Future<$1.Empty> linkGameCenter_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AccountGameCenter> request) async {
-    return linkGameCenter(call, await request);
-  }
-
-  $async.Future<$1.Empty> linkGoogle_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.AccountGoogle> request) async {
-    return linkGoogle(call, await request);
-  }
-
-  $async.Future<$1.Empty> linkSteam_Pre($grpc.ServiceCall call,
-      $async.Future<$0.LinkSteamRequest> request) async {
-    return linkSteam(call, await request);
-  }
-
-  $async.Future<$0.ChannelMessageList> listChannelMessages_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ListChannelMessagesRequest> request) async {
-    return listChannelMessages(call, await request);
-  }
-
-  $async.Future<$0.FriendList> listFriends_Pre($grpc.ServiceCall call,
-      $async.Future<$0.ListFriendsRequest> request) async {
-    return listFriends(call, await request);
-  }
-
-  $async.Future<$0.GroupList> listGroups_Pre($grpc.ServiceCall call,
-      $async.Future<$0.ListGroupsRequest> request) async {
-    return listGroups(call, await request);
-  }
-
-  $async.Future<$0.GroupUserList> listGroupUsers_Pre($grpc.ServiceCall call,
-      $async.Future<$0.ListGroupUsersRequest> request) async {
-    return listGroupUsers(call, await request);
-  }
-
-  $async.Future<$0.LeaderboardRecordList> listLeaderboardRecords_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ListLeaderboardRecordsRequest> request) async {
-    return listLeaderboardRecords(call, await request);
-  }
-
-  $async.Future<$0.LeaderboardRecordList> listLeaderboardRecordsAroundOwner_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ListLeaderboardRecordsAroundOwnerRequest>
-          request) async {
-    return listLeaderboardRecordsAroundOwner(call, await request);
-  }
-
-  $async.Future<$0.MatchList> listMatches_Pre($grpc.ServiceCall call,
-      $async.Future<$0.ListMatchesRequest> request) async {
-    return listMatches(call, await request);
-  }
-
-  $async.Future<$0.NotificationList> listNotifications_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ListNotificationsRequest> request) async {
-    return listNotifications(call, await request);
-  }
-
-  $async.Future<$0.StorageObjectList> listStorageObjects_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ListStorageObjectsRequest> request) async {
-    return listStorageObjects(call, await request);
-  }
-
-  $async.Future<$0.SubscriptionList> listSubscriptions_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ListSubscriptionsRequest> request) async {
-    return listSubscriptions(call, await request);
-  }
-
-  $async.Future<$0.TournamentList> listTournaments_Pre($grpc.ServiceCall call,
-      $async.Future<$0.ListTournamentsRequest> request) async {
-    return listTournaments(call, await request);
-  }
-
-  $async.Future<$0.TournamentRecordList> listTournamentRecords_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ListTournamentRecordsRequest> request) async {
-    return listTournamentRecords(call, await request);
-  }
-
-  $async.Future<$0.TournamentRecordList> listTournamentRecordsAroundOwner_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ListTournamentRecordsAroundOwnerRequest> request) async {
-    return listTournamentRecordsAroundOwner(call, await request);
-  }
-
-  $async.Future<$0.UserGroupList> listUserGroups_Pre($grpc.ServiceCall call,
-      $async.Future<$0.ListUserGroupsRequest> request) async {
-    return listUserGroups(call, await request);
-  }
-
-  $async.Future<$1.Empty> promoteGroupUsers_Pre($grpc.ServiceCall call,
-      $async.Future<$0.PromoteGroupUsersRequest> request) async {
-    return promoteGroupUsers(call, await request);
-  }
-
-  $async.Future<$1.Empty> demoteGroupUsers_Pre($grpc.ServiceCall call,
-      $async.Future<$0.DemoteGroupUsersRequest> request) async {
-    return demoteGroupUsers(call, await request);
-  }
-
-  $async.Future<$0.StorageObjects> readStorageObjects_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ReadStorageObjectsRequest> request) async {
-    return readStorageObjects(call, await request);
-  }
-
-  $async.Future<$0.Rpc> rpcFunc_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.Rpc> request) async {
-    return rpcFunc(call, await request);
-  }
-
-  $async.Future<$1.Empty> unlinkApple_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.AccountApple> request) async {
-    return unlinkApple(call, await request);
-  }
-
-  $async.Future<$1.Empty> unlinkCustom_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.AccountCustom> request) async {
-    return unlinkCustom(call, await request);
-  }
-
-  $async.Future<$1.Empty> unlinkDevice_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.AccountDevice> request) async {
-    return unlinkDevice(call, await request);
-  }
-
-  $async.Future<$1.Empty> unlinkEmail_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.AccountEmail> request) async {
-    return unlinkEmail(call, await request);
-  }
-
-  $async.Future<$1.Empty> unlinkFacebook_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.AccountFacebook> request) async {
-    return unlinkFacebook(call, await request);
-  }
-
-  $async.Future<$1.Empty> unlinkFacebookInstantGame_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AccountFacebookInstantGame> request) async {
-    return unlinkFacebookInstantGame(call, await request);
-  }
-
-  $async.Future<$1.Empty> unlinkGameCenter_Pre($grpc.ServiceCall call,
-      $async.Future<$0.AccountGameCenter> request) async {
-    return unlinkGameCenter(call, await request);
-  }
-
-  $async.Future<$1.Empty> unlinkGoogle_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.AccountGoogle> request) async {
-    return unlinkGoogle(call, await request);
-  }
-
-  $async.Future<$1.Empty> unlinkSteam_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.AccountSteam> request) async {
-    return unlinkSteam(call, await request);
-  }
-
-  $async.Future<$1.Empty> updateAccount_Pre($grpc.ServiceCall call,
-      $async.Future<$0.UpdateAccountRequest> request) async {
-    return updateAccount(call, await request);
-  }
-
-  $async.Future<$1.Empty> updateGroup_Pre($grpc.ServiceCall call,
-      $async.Future<$0.UpdateGroupRequest> request) async {
-    return updateGroup(call, await request);
-  }
-
-  $async.Future<$0.ValidatePurchaseResponse> validatePurchaseApple_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ValidatePurchaseAppleRequest> request) async {
-    return validatePurchaseApple(call, await request);
-  }
-
-  $async.Future<$0.ValidateSubscriptionResponse> validateSubscriptionApple_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ValidateSubscriptionAppleRequest> request) async {
-    return validateSubscriptionApple(call, await request);
-  }
-
-  $async.Future<$0.ValidatePurchaseResponse> validatePurchaseGoogle_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ValidatePurchaseGoogleRequest> request) async {
-    return validatePurchaseGoogle(call, await request);
-  }
-
-  $async.Future<$0.ValidateSubscriptionResponse> validateSubscriptionGoogle_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ValidateSubscriptionGoogleRequest> request) async {
-    return validateSubscriptionGoogle(call, await request);
-  }
-
-  $async.Future<$0.ValidatePurchaseResponse> validatePurchaseHuawei_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.ValidatePurchaseHuaweiRequest> request) async {
-    return validatePurchaseHuawei(call, await request);
-  }
-
-  $async.Future<$0.LeaderboardRecord> writeLeaderboardRecord_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.WriteLeaderboardRecordRequest> request) async {
-    return writeLeaderboardRecord(call, await request);
-  }
-
-  $async.Future<$0.StorageObjectAcks> writeStorageObjects_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.WriteStorageObjectsRequest> request) async {
-    return writeStorageObjects(call, await request);
-  }
-
-  $async.Future<$0.LeaderboardRecord> writeTournamentRecord_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.WriteTournamentRecordRequest> request) async {
-    return writeTournamentRecord(call, await request);
+  $async.Future<$1.Empty> addFriends_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AddFriendsRequest> $request) async {
+    return addFriends($call, await $request);
   }
 
   $async.Future<$1.Empty> addFriends(
       $grpc.ServiceCall call, $0.AddFriendsRequest request);
+
+  $async.Future<$1.Empty> addGroupUsers_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AddGroupUsersRequest> $request) async {
+    return addGroupUsers($call, await $request);
+  }
+
   $async.Future<$1.Empty> addGroupUsers(
       $grpc.ServiceCall call, $0.AddGroupUsersRequest request);
+
+  $async.Future<$0.Session> sessionRefresh_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.SessionRefreshRequest> $request) async {
+    return sessionRefresh($call, await $request);
+  }
+
   $async.Future<$0.Session> sessionRefresh(
       $grpc.ServiceCall call, $0.SessionRefreshRequest request);
+
+  $async.Future<$1.Empty> sessionLogout_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.SessionLogoutRequest> $request) async {
+    return sessionLogout($call, await $request);
+  }
+
   $async.Future<$1.Empty> sessionLogout(
       $grpc.ServiceCall call, $0.SessionLogoutRequest request);
+
+  $async.Future<$0.Session> authenticateApple_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AuthenticateAppleRequest> $request) async {
+    return authenticateApple($call, await $request);
+  }
+
   $async.Future<$0.Session> authenticateApple(
       $grpc.ServiceCall call, $0.AuthenticateAppleRequest request);
+
+  $async.Future<$0.Session> authenticateCustom_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AuthenticateCustomRequest> $request) async {
+    return authenticateCustom($call, await $request);
+  }
+
   $async.Future<$0.Session> authenticateCustom(
       $grpc.ServiceCall call, $0.AuthenticateCustomRequest request);
+
+  $async.Future<$0.Session> authenticateDevice_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AuthenticateDeviceRequest> $request) async {
+    return authenticateDevice($call, await $request);
+  }
+
   $async.Future<$0.Session> authenticateDevice(
       $grpc.ServiceCall call, $0.AuthenticateDeviceRequest request);
+
+  $async.Future<$0.Session> authenticateEmail_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AuthenticateEmailRequest> $request) async {
+    return authenticateEmail($call, await $request);
+  }
+
   $async.Future<$0.Session> authenticateEmail(
       $grpc.ServiceCall call, $0.AuthenticateEmailRequest request);
+
+  $async.Future<$0.Session> authenticateFacebook_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AuthenticateFacebookRequest> $request) async {
+    return authenticateFacebook($call, await $request);
+  }
+
   $async.Future<$0.Session> authenticateFacebook(
       $grpc.ServiceCall call, $0.AuthenticateFacebookRequest request);
+
+  $async.Future<$0.Session> authenticateFacebookInstantGame_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.AuthenticateFacebookInstantGameRequest> $request) async {
+    return authenticateFacebookInstantGame($call, await $request);
+  }
+
   $async.Future<$0.Session> authenticateFacebookInstantGame(
       $grpc.ServiceCall call,
       $0.AuthenticateFacebookInstantGameRequest request);
+
+  $async.Future<$0.Session> authenticateGameCenter_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AuthenticateGameCenterRequest> $request) async {
+    return authenticateGameCenter($call, await $request);
+  }
+
   $async.Future<$0.Session> authenticateGameCenter(
       $grpc.ServiceCall call, $0.AuthenticateGameCenterRequest request);
+
+  $async.Future<$0.Session> authenticateGoogle_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AuthenticateGoogleRequest> $request) async {
+    return authenticateGoogle($call, await $request);
+  }
+
   $async.Future<$0.Session> authenticateGoogle(
       $grpc.ServiceCall call, $0.AuthenticateGoogleRequest request);
+
+  $async.Future<$0.Session> authenticateSteam_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AuthenticateSteamRequest> $request) async {
+    return authenticateSteam($call, await $request);
+  }
+
   $async.Future<$0.Session> authenticateSteam(
       $grpc.ServiceCall call, $0.AuthenticateSteamRequest request);
+
+  $async.Future<$1.Empty> banGroupUsers_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.BanGroupUsersRequest> $request) async {
+    return banGroupUsers($call, await $request);
+  }
+
   $async.Future<$1.Empty> banGroupUsers(
       $grpc.ServiceCall call, $0.BanGroupUsersRequest request);
+
+  $async.Future<$1.Empty> blockFriends_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.BlockFriendsRequest> $request) async {
+    return blockFriends($call, await $request);
+  }
+
   $async.Future<$1.Empty> blockFriends(
       $grpc.ServiceCall call, $0.BlockFriendsRequest request);
+
+  $async.Future<$0.Group> createGroup_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.CreateGroupRequest> $request) async {
+    return createGroup($call, await $request);
+  }
+
   $async.Future<$0.Group> createGroup(
       $grpc.ServiceCall call, $0.CreateGroupRequest request);
+
+  $async.Future<$1.Empty> deleteAccount_Pre(
+      $grpc.ServiceCall $call, $async.Future<$1.Empty> $request) async {
+    return deleteAccount($call, await $request);
+  }
+
   $async.Future<$1.Empty> deleteAccount(
       $grpc.ServiceCall call, $1.Empty request);
+
+  $async.Future<$1.Empty> deleteFriends_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.DeleteFriendsRequest> $request) async {
+    return deleteFriends($call, await $request);
+  }
+
   $async.Future<$1.Empty> deleteFriends(
       $grpc.ServiceCall call, $0.DeleteFriendsRequest request);
+
+  $async.Future<$1.Empty> deleteGroup_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.DeleteGroupRequest> $request) async {
+    return deleteGroup($call, await $request);
+  }
+
   $async.Future<$1.Empty> deleteGroup(
       $grpc.ServiceCall call, $0.DeleteGroupRequest request);
+
+  $async.Future<$1.Empty> deleteLeaderboardRecord_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.DeleteLeaderboardRecordRequest> $request) async {
+    return deleteLeaderboardRecord($call, await $request);
+  }
+
   $async.Future<$1.Empty> deleteLeaderboardRecord(
       $grpc.ServiceCall call, $0.DeleteLeaderboardRecordRequest request);
+
+  $async.Future<$1.Empty> deleteNotifications_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.DeleteNotificationsRequest> $request) async {
+    return deleteNotifications($call, await $request);
+  }
+
   $async.Future<$1.Empty> deleteNotifications(
       $grpc.ServiceCall call, $0.DeleteNotificationsRequest request);
+
+  $async.Future<$1.Empty> deleteTournamentRecord_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.DeleteTournamentRecordRequest> $request) async {
+    return deleteTournamentRecord($call, await $request);
+  }
+
   $async.Future<$1.Empty> deleteTournamentRecord(
       $grpc.ServiceCall call, $0.DeleteTournamentRecordRequest request);
+
+  $async.Future<$1.Empty> deleteStorageObjects_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.DeleteStorageObjectsRequest> $request) async {
+    return deleteStorageObjects($call, await $request);
+  }
+
   $async.Future<$1.Empty> deleteStorageObjects(
       $grpc.ServiceCall call, $0.DeleteStorageObjectsRequest request);
+
+  $async.Future<$1.Empty> event_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.Event> $request) async {
+    return event($call, await $request);
+  }
+
   $async.Future<$1.Empty> event($grpc.ServiceCall call, $0.Event request);
+
+  $async.Future<$0.Account> getAccount_Pre(
+      $grpc.ServiceCall $call, $async.Future<$1.Empty> $request) async {
+    return getAccount($call, await $request);
+  }
+
   $async.Future<$0.Account> getAccount(
       $grpc.ServiceCall call, $1.Empty request);
+
+  $async.Future<$0.Users> getUsers_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.GetUsersRequest> $request) async {
+    return getUsers($call, await $request);
+  }
+
   $async.Future<$0.Users> getUsers(
       $grpc.ServiceCall call, $0.GetUsersRequest request);
+
+  $async.Future<$0.ValidatedSubscription> getSubscription_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.GetSubscriptionRequest> $request) async {
+    return getSubscription($call, await $request);
+  }
+
   $async.Future<$0.ValidatedSubscription> getSubscription(
       $grpc.ServiceCall call, $0.GetSubscriptionRequest request);
+
+  $async.Future<$0.MatchmakerStats> getMatchmakerStats_Pre(
+      $grpc.ServiceCall $call, $async.Future<$1.Empty> $request) async {
+    return getMatchmakerStats($call, await $request);
+  }
+
+  $async.Future<$0.MatchmakerStats> getMatchmakerStats(
+      $grpc.ServiceCall call, $1.Empty request);
+
+  $async.Future<$1.Empty> healthcheck_Pre(
+      $grpc.ServiceCall $call, $async.Future<$1.Empty> $request) async {
+    return healthcheck($call, await $request);
+  }
+
   $async.Future<$1.Empty> healthcheck($grpc.ServiceCall call, $1.Empty request);
+
+  $async.Future<$1.Empty> importFacebookFriends_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.ImportFacebookFriendsRequest> $request) async {
+    return importFacebookFriends($call, await $request);
+  }
+
   $async.Future<$1.Empty> importFacebookFriends(
       $grpc.ServiceCall call, $0.ImportFacebookFriendsRequest request);
+
+  $async.Future<$1.Empty> importSteamFriends_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.ImportSteamFriendsRequest> $request) async {
+    return importSteamFriends($call, await $request);
+  }
+
   $async.Future<$1.Empty> importSteamFriends(
       $grpc.ServiceCall call, $0.ImportSteamFriendsRequest request);
+
+  $async.Future<$1.Empty> joinGroup_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.JoinGroupRequest> $request) async {
+    return joinGroup($call, await $request);
+  }
+
   $async.Future<$1.Empty> joinGroup(
       $grpc.ServiceCall call, $0.JoinGroupRequest request);
+
+  $async.Future<$1.Empty> joinTournament_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.JoinTournamentRequest> $request) async {
+    return joinTournament($call, await $request);
+  }
+
   $async.Future<$1.Empty> joinTournament(
       $grpc.ServiceCall call, $0.JoinTournamentRequest request);
+
+  $async.Future<$1.Empty> kickGroupUsers_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.KickGroupUsersRequest> $request) async {
+    return kickGroupUsers($call, await $request);
+  }
+
   $async.Future<$1.Empty> kickGroupUsers(
       $grpc.ServiceCall call, $0.KickGroupUsersRequest request);
+
+  $async.Future<$1.Empty> leaveGroup_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.LeaveGroupRequest> $request) async {
+    return leaveGroup($call, await $request);
+  }
+
   $async.Future<$1.Empty> leaveGroup(
       $grpc.ServiceCall call, $0.LeaveGroupRequest request);
+
+  $async.Future<$1.Empty> linkApple_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.AccountApple> $request) async {
+    return linkApple($call, await $request);
+  }
+
   $async.Future<$1.Empty> linkApple(
       $grpc.ServiceCall call, $0.AccountApple request);
+
+  $async.Future<$1.Empty> linkCustom_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.AccountCustom> $request) async {
+    return linkCustom($call, await $request);
+  }
+
   $async.Future<$1.Empty> linkCustom(
       $grpc.ServiceCall call, $0.AccountCustom request);
+
+  $async.Future<$1.Empty> linkDevice_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.AccountDevice> $request) async {
+    return linkDevice($call, await $request);
+  }
+
   $async.Future<$1.Empty> linkDevice(
       $grpc.ServiceCall call, $0.AccountDevice request);
+
+  $async.Future<$1.Empty> linkEmail_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.AccountEmail> $request) async {
+    return linkEmail($call, await $request);
+  }
+
   $async.Future<$1.Empty> linkEmail(
       $grpc.ServiceCall call, $0.AccountEmail request);
+
+  $async.Future<$1.Empty> linkFacebook_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.LinkFacebookRequest> $request) async {
+    return linkFacebook($call, await $request);
+  }
+
   $async.Future<$1.Empty> linkFacebook(
       $grpc.ServiceCall call, $0.LinkFacebookRequest request);
+
+  $async.Future<$1.Empty> linkFacebookInstantGame_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AccountFacebookInstantGame> $request) async {
+    return linkFacebookInstantGame($call, await $request);
+  }
+
   $async.Future<$1.Empty> linkFacebookInstantGame(
       $grpc.ServiceCall call, $0.AccountFacebookInstantGame request);
+
+  $async.Future<$1.Empty> linkGameCenter_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AccountGameCenter> $request) async {
+    return linkGameCenter($call, await $request);
+  }
+
   $async.Future<$1.Empty> linkGameCenter(
       $grpc.ServiceCall call, $0.AccountGameCenter request);
+
+  $async.Future<$1.Empty> linkGoogle_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.AccountGoogle> $request) async {
+    return linkGoogle($call, await $request);
+  }
+
   $async.Future<$1.Empty> linkGoogle(
       $grpc.ServiceCall call, $0.AccountGoogle request);
+
+  $async.Future<$1.Empty> linkSteam_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.LinkSteamRequest> $request) async {
+    return linkSteam($call, await $request);
+  }
+
   $async.Future<$1.Empty> linkSteam(
       $grpc.ServiceCall call, $0.LinkSteamRequest request);
+
+  $async.Future<$0.ChannelMessageList> listChannelMessages_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ListChannelMessagesRequest> $request) async {
+    return listChannelMessages($call, await $request);
+  }
+
   $async.Future<$0.ChannelMessageList> listChannelMessages(
       $grpc.ServiceCall call, $0.ListChannelMessagesRequest request);
+
+  $async.Future<$0.FriendList> listFriends_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.ListFriendsRequest> $request) async {
+    return listFriends($call, await $request);
+  }
+
   $async.Future<$0.FriendList> listFriends(
       $grpc.ServiceCall call, $0.ListFriendsRequest request);
+
+  $async.Future<$0.FriendsOfFriendsList> listFriendsOfFriends_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ListFriendsOfFriendsRequest> $request) async {
+    return listFriendsOfFriends($call, await $request);
+  }
+
+  $async.Future<$0.FriendsOfFriendsList> listFriendsOfFriends(
+      $grpc.ServiceCall call, $0.ListFriendsOfFriendsRequest request);
+
+  $async.Future<$0.GroupList> listGroups_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.ListGroupsRequest> $request) async {
+    return listGroups($call, await $request);
+  }
+
   $async.Future<$0.GroupList> listGroups(
       $grpc.ServiceCall call, $0.ListGroupsRequest request);
+
+  $async.Future<$0.GroupUserList> listGroupUsers_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.ListGroupUsersRequest> $request) async {
+    return listGroupUsers($call, await $request);
+  }
+
   $async.Future<$0.GroupUserList> listGroupUsers(
       $grpc.ServiceCall call, $0.ListGroupUsersRequest request);
+
+  $async.Future<$0.LeaderboardRecordList> listLeaderboardRecords_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ListLeaderboardRecordsRequest> $request) async {
+    return listLeaderboardRecords($call, await $request);
+  }
+
   $async.Future<$0.LeaderboardRecordList> listLeaderboardRecords(
       $grpc.ServiceCall call, $0.ListLeaderboardRecordsRequest request);
+
+  $async.Future<$0.LeaderboardRecordList> listLeaderboardRecordsAroundOwner_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ListLeaderboardRecordsAroundOwnerRequest>
+          $request) async {
+    return listLeaderboardRecordsAroundOwner($call, await $request);
+  }
+
   $async.Future<$0.LeaderboardRecordList> listLeaderboardRecordsAroundOwner(
       $grpc.ServiceCall call,
       $0.ListLeaderboardRecordsAroundOwnerRequest request);
+
+  $async.Future<$0.MatchList> listMatches_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.ListMatchesRequest> $request) async {
+    return listMatches($call, await $request);
+  }
+
   $async.Future<$0.MatchList> listMatches(
       $grpc.ServiceCall call, $0.ListMatchesRequest request);
+
+  $async.Future<$0.PartyList> listParties_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.ListPartiesRequest> $request) async {
+    return listParties($call, await $request);
+  }
+
+  $async.Future<$0.PartyList> listParties(
+      $grpc.ServiceCall call, $0.ListPartiesRequest request);
+
+  $async.Future<$0.NotificationList> listNotifications_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ListNotificationsRequest> $request) async {
+    return listNotifications($call, await $request);
+  }
+
   $async.Future<$0.NotificationList> listNotifications(
       $grpc.ServiceCall call, $0.ListNotificationsRequest request);
+
+  $async.Future<$0.StorageObjectList> listStorageObjects_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ListStorageObjectsRequest> $request) async {
+    return listStorageObjects($call, await $request);
+  }
+
   $async.Future<$0.StorageObjectList> listStorageObjects(
       $grpc.ServiceCall call, $0.ListStorageObjectsRequest request);
+
+  $async.Future<$0.SubscriptionList> listSubscriptions_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ListSubscriptionsRequest> $request) async {
+    return listSubscriptions($call, await $request);
+  }
+
   $async.Future<$0.SubscriptionList> listSubscriptions(
       $grpc.ServiceCall call, $0.ListSubscriptionsRequest request);
+
+  $async.Future<$0.TournamentList> listTournaments_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.ListTournamentsRequest> $request) async {
+    return listTournaments($call, await $request);
+  }
+
   $async.Future<$0.TournamentList> listTournaments(
       $grpc.ServiceCall call, $0.ListTournamentsRequest request);
+
+  $async.Future<$0.TournamentRecordList> listTournamentRecords_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ListTournamentRecordsRequest> $request) async {
+    return listTournamentRecords($call, await $request);
+  }
+
   $async.Future<$0.TournamentRecordList> listTournamentRecords(
       $grpc.ServiceCall call, $0.ListTournamentRecordsRequest request);
+
+  $async.Future<$0.TournamentRecordList> listTournamentRecordsAroundOwner_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ListTournamentRecordsAroundOwnerRequest>
+          $request) async {
+    return listTournamentRecordsAroundOwner($call, await $request);
+  }
+
   $async.Future<$0.TournamentRecordList> listTournamentRecordsAroundOwner(
       $grpc.ServiceCall call,
       $0.ListTournamentRecordsAroundOwnerRequest request);
+
+  $async.Future<$0.UserGroupList> listUserGroups_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.ListUserGroupsRequest> $request) async {
+    return listUserGroups($call, await $request);
+  }
+
   $async.Future<$0.UserGroupList> listUserGroups(
       $grpc.ServiceCall call, $0.ListUserGroupsRequest request);
+
+  $async.Future<$1.Empty> promoteGroupUsers_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.PromoteGroupUsersRequest> $request) async {
+    return promoteGroupUsers($call, await $request);
+  }
+
   $async.Future<$1.Empty> promoteGroupUsers(
       $grpc.ServiceCall call, $0.PromoteGroupUsersRequest request);
+
+  $async.Future<$1.Empty> demoteGroupUsers_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.DemoteGroupUsersRequest> $request) async {
+    return demoteGroupUsers($call, await $request);
+  }
+
   $async.Future<$1.Empty> demoteGroupUsers(
       $grpc.ServiceCall call, $0.DemoteGroupUsersRequest request);
+
+  $async.Future<$0.StorageObjects> readStorageObjects_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ReadStorageObjectsRequest> $request) async {
+    return readStorageObjects($call, await $request);
+  }
+
   $async.Future<$0.StorageObjects> readStorageObjects(
       $grpc.ServiceCall call, $0.ReadStorageObjectsRequest request);
+
+  $async.Future<$0.Rpc> rpcFunc_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.Rpc> $request) async {
+    return rpcFunc($call, await $request);
+  }
+
   $async.Future<$0.Rpc> rpcFunc($grpc.ServiceCall call, $0.Rpc request);
+
+  $async.Future<$1.Empty> unlinkApple_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.AccountApple> $request) async {
+    return unlinkApple($call, await $request);
+  }
+
   $async.Future<$1.Empty> unlinkApple(
       $grpc.ServiceCall call, $0.AccountApple request);
+
+  $async.Future<$1.Empty> unlinkCustom_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.AccountCustom> $request) async {
+    return unlinkCustom($call, await $request);
+  }
+
   $async.Future<$1.Empty> unlinkCustom(
       $grpc.ServiceCall call, $0.AccountCustom request);
+
+  $async.Future<$1.Empty> unlinkDevice_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.AccountDevice> $request) async {
+    return unlinkDevice($call, await $request);
+  }
+
   $async.Future<$1.Empty> unlinkDevice(
       $grpc.ServiceCall call, $0.AccountDevice request);
+
+  $async.Future<$1.Empty> unlinkEmail_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.AccountEmail> $request) async {
+    return unlinkEmail($call, await $request);
+  }
+
   $async.Future<$1.Empty> unlinkEmail(
       $grpc.ServiceCall call, $0.AccountEmail request);
+
+  $async.Future<$1.Empty> unlinkFacebook_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AccountFacebook> $request) async {
+    return unlinkFacebook($call, await $request);
+  }
+
   $async.Future<$1.Empty> unlinkFacebook(
       $grpc.ServiceCall call, $0.AccountFacebook request);
+
+  $async.Future<$1.Empty> unlinkFacebookInstantGame_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AccountFacebookInstantGame> $request) async {
+    return unlinkFacebookInstantGame($call, await $request);
+  }
+
   $async.Future<$1.Empty> unlinkFacebookInstantGame(
       $grpc.ServiceCall call, $0.AccountFacebookInstantGame request);
+
+  $async.Future<$1.Empty> unlinkGameCenter_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.AccountGameCenter> $request) async {
+    return unlinkGameCenter($call, await $request);
+  }
+
   $async.Future<$1.Empty> unlinkGameCenter(
       $grpc.ServiceCall call, $0.AccountGameCenter request);
+
+  $async.Future<$1.Empty> unlinkGoogle_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.AccountGoogle> $request) async {
+    return unlinkGoogle($call, await $request);
+  }
+
   $async.Future<$1.Empty> unlinkGoogle(
       $grpc.ServiceCall call, $0.AccountGoogle request);
+
+  $async.Future<$1.Empty> unlinkSteam_Pre(
+      $grpc.ServiceCall $call, $async.Future<$0.AccountSteam> $request) async {
+    return unlinkSteam($call, await $request);
+  }
+
   $async.Future<$1.Empty> unlinkSteam(
       $grpc.ServiceCall call, $0.AccountSteam request);
+
+  $async.Future<$1.Empty> updateAccount_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.UpdateAccountRequest> $request) async {
+    return updateAccount($call, await $request);
+  }
+
   $async.Future<$1.Empty> updateAccount(
       $grpc.ServiceCall call, $0.UpdateAccountRequest request);
+
+  $async.Future<$1.Empty> updateGroup_Pre($grpc.ServiceCall $call,
+      $async.Future<$0.UpdateGroupRequest> $request) async {
+    return updateGroup($call, await $request);
+  }
+
   $async.Future<$1.Empty> updateGroup(
       $grpc.ServiceCall call, $0.UpdateGroupRequest request);
+
+  $async.Future<$0.ValidatePurchaseResponse> validatePurchaseApple_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ValidatePurchaseAppleRequest> $request) async {
+    return validatePurchaseApple($call, await $request);
+  }
+
   $async.Future<$0.ValidatePurchaseResponse> validatePurchaseApple(
       $grpc.ServiceCall call, $0.ValidatePurchaseAppleRequest request);
+
+  $async.Future<$0.ValidateSubscriptionResponse> validateSubscriptionApple_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ValidateSubscriptionAppleRequest> $request) async {
+    return validateSubscriptionApple($call, await $request);
+  }
+
   $async.Future<$0.ValidateSubscriptionResponse> validateSubscriptionApple(
       $grpc.ServiceCall call, $0.ValidateSubscriptionAppleRequest request);
+
+  $async.Future<$0.ValidatePurchaseResponse> validatePurchaseGoogle_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ValidatePurchaseGoogleRequest> $request) async {
+    return validatePurchaseGoogle($call, await $request);
+  }
+
   $async.Future<$0.ValidatePurchaseResponse> validatePurchaseGoogle(
       $grpc.ServiceCall call, $0.ValidatePurchaseGoogleRequest request);
+
+  $async.Future<$0.ValidateSubscriptionResponse> validateSubscriptionGoogle_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ValidateSubscriptionGoogleRequest> $request) async {
+    return validateSubscriptionGoogle($call, await $request);
+  }
+
   $async.Future<$0.ValidateSubscriptionResponse> validateSubscriptionGoogle(
       $grpc.ServiceCall call, $0.ValidateSubscriptionGoogleRequest request);
+
+  $async.Future<$0.ValidatePurchaseResponse> validatePurchaseHuawei_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ValidatePurchaseHuaweiRequest> $request) async {
+    return validatePurchaseHuawei($call, await $request);
+  }
+
   $async.Future<$0.ValidatePurchaseResponse> validatePurchaseHuawei(
       $grpc.ServiceCall call, $0.ValidatePurchaseHuaweiRequest request);
+
+  $async.Future<$0.ValidatePurchaseResponse>
+      validatePurchaseFacebookInstant_Pre(
+          $grpc.ServiceCall $call,
+          $async.Future<$0.ValidatePurchaseFacebookInstantRequest>
+              $request) async {
+    return validatePurchaseFacebookInstant($call, await $request);
+  }
+
+  $async.Future<$0.ValidatePurchaseResponse> validatePurchaseFacebookInstant(
+      $grpc.ServiceCall call,
+      $0.ValidatePurchaseFacebookInstantRequest request);
+
+  $async.Future<$0.LeaderboardRecord> writeLeaderboardRecord_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.WriteLeaderboardRecordRequest> $request) async {
+    return writeLeaderboardRecord($call, await $request);
+  }
+
   $async.Future<$0.LeaderboardRecord> writeLeaderboardRecord(
       $grpc.ServiceCall call, $0.WriteLeaderboardRecordRequest request);
+
+  $async.Future<$0.StorageObjectAcks> writeStorageObjects_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.WriteStorageObjectsRequest> $request) async {
+    return writeStorageObjects($call, await $request);
+  }
+
   $async.Future<$0.StorageObjectAcks> writeStorageObjects(
       $grpc.ServiceCall call, $0.WriteStorageObjectsRequest request);
+
+  $async.Future<$0.LeaderboardRecord> writeTournamentRecord_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.WriteTournamentRecordRequest> $request) async {
+    return writeTournamentRecord($call, await $request);
+  }
+
   $async.Future<$0.LeaderboardRecord> writeTournamentRecord(
       $grpc.ServiceCall call, $0.WriteTournamentRecordRequest request);
 }

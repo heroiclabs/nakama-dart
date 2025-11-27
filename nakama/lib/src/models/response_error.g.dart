@@ -8,12 +8,9 @@ part of 'response_error.dart';
 
 ResponseError _$ResponseErrorFromJson(Map<String, dynamic> json) =>
     ResponseError(
-      code: json['code'] as int?,
+      code: (json['code'] as num?)?.toInt(),
       message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$ResponseErrorToJson(ResponseError instance) =>
-    <String, dynamic>{
-      'code': instance.code,
-      'message': instance.message,
-    };
+    <String, dynamic>{'code': instance.code, 'message': instance.message};
