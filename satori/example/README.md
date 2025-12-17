@@ -96,8 +96,6 @@ The app uses environment variables loaded from `lib/configs/config.dev.json`. Up
 - `SATORI_PORT`: Server port (usually 443 for SSL, 7350 for non-SSL)
 - `SATORI_SSL`: Whether to use SSL connection ("true" or "false")
 - `SATORI_API_KEY`: Your Satori API key
-}
-```
 
 ## Project Structure
 
@@ -118,6 +116,8 @@ lib/
 └── main.dart           # App entry point
 ```
 
+## Usage
+
 1. **Start the app** and authenticate with a custom identity
 2. **Navigate through features** using the home screen grid
 3. **Send events** to track user interactions
@@ -126,8 +126,6 @@ lib/
 6. **Browse live events** for active campaigns
 7. **Inspect properties** to view user attribute metadata
 8. **Read messages** in your scheduled messages inbox
-5. **Check experiments** for A/B testing variations
-6. **Browse live events** for active campaigns
 
 ## Learn More
 
