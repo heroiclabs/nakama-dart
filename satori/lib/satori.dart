@@ -5,6 +5,7 @@ export 'src/models/event.dart';
 export 'src/models/experiment.dart';
 export 'src/models/flag.dart';
 export 'src/models/live_event.dart';
+export 'src/models/message.dart';
 export 'src/models/properties.dart';
 export 'src/models/session.dart';
 // Client

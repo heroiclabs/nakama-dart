@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:satori/src/rest/satori.swagger.dart';
+import 'package:satori/src/rest/satori_api.gen.dart';
 
 part 'event.freezed.dart';
 part 'event.g.dart';
@@ -32,16 +32,16 @@ abstract class Event with _$Event {
   factory Event.fromDto(ApiEvent dto) => Event(
         name: dto.name,
         id: dto.id,
-        metadata: dto.metadata,
-        timestamp: dto.timestamp,
-        value: dto.$value,
+        metadata: dto.metadata?.cast<String, dynamic>(),
+        timestamp: dto.timestamp != null ? DateTime.parse(dto.timestamp!) : null,
+        value: dto.value,
       );
 
   ApiEvent toApiEvent() => ApiEvent(
         name: name,
         id: id,
-        metadata: metadata,
-        timestamp: timestamp?.toUtc(),
-        $value: value,
+        metadata: metadata?.cast<String, String>(),
+        timestamp: timestamp?.toUtc().toIso8601String(),
+        value: value,
       );
 }

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:satori/src/rest/satori.swagger.dart';
+import 'package:satori/src/rest/satori_api.gen.dart';
 
 part 'experiment.freezed.dart';
 part 'experiment.g.dart';
@@ -37,6 +37,6 @@ abstract class Experiment with _$Experiment {
 
   factory Experiment.fromDto(ApiExperiment dto) => Experiment(
         name: dto.name,
-        value: dto.$value,
+        value: dto.value,
       );
 }

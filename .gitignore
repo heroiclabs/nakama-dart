@@ -84,3 +84,7 @@ tools/nakama_server/.cookie
 tools/nakama_server/modules
 .proto-build
 tool/nakama_server/.cookie
+
+# Satori
+satori/lib/swaggers/satori.swagger.json
+satori/tool/satori-gen

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:satori/src/rest/satori.swagger.dart';
+import 'package:satori/src/rest/satori_api.gen.dart';
 
 part 'flag.freezed.dart';
 part 'flag.g.dart';
@@ -40,7 +40,7 @@ abstract class Flag with _$Flag {
 
   factory Flag.fromDto(ApiFlag dto) => Flag(
         name: dto.name,
-        value: dto.$value,
+        value: dto.value,
         conditionChanged: dto.conditionChanged,
       );
 }
