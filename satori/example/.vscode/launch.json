@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "satori_example (dev config)",
+            "cwd": ".",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "flutterMode": "debug",
+            "toolArgs": [
+                "--dart-define-from-file",
+                "lib/configs/config.dev.json"
+            ]
+        }
+    ]
+}
