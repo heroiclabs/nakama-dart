@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:satori/src/rest/satori.swagger.dart';
+import 'package:satori/src/rest/satori_api.gen.dart';
 
 part 'properties.freezed.dart';
 part 'properties.g.dart';
@@ -23,7 +23,7 @@ abstract class Properties with _$Properties {
   factory Properties.fromJson(Map<String, dynamic> json) => _$PropertiesFromJson(json);
 
   factory Properties.fromDto(ApiProperties dto) => Properties(
-        $default: dto.$default?.cast<String, String>(),
+        $default: dto.defaultValue?.cast<String, String>(),
         custom: dto.custom?.cast<String, String>(),
         computed: dto.computed?.cast<String, String>(),
       );

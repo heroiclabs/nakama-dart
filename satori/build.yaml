@@ -2,16 +2,8 @@ targets:
   $default:
     sources:
       - lib/**
-      - swaggers/**
       - $package$
     builders:
-      chopper_generator:
+      retrofit_generator:
         options:
           header: "// Generated code - do not change"
-      swagger_dart_code_generator:
-        options:
-          with_converter: true
-          input_folder: "lib/swaggers"
-          output_folder: "lib/src/rest"
-          enums_case_sensitive: true
-          include_if_null: true

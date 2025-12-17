@@ -1,5 +1,5 @@
 /*
- * Copyright © 2024 The Nakama Authors
+ * Copyright © 2025 The Nakama Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ import 'package:dio/dio.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 
-part 'api_client.gen.g.dart';
+part 'satori_api.gen.g.dart';
 
 {{- range $defname, $definition := .Definitions }}
 {{- $classname := $defname | title }}
@@ -58,6 +58,8 @@ class {{ $classname }} {
     {{- $fieldname := $propname }}
     {{- $attrDataName := $propname | camelToSnake }}
     {{- if eq $propname "refresh_token" }}{{ $fieldname = "refreshToken" }}{{ end }}
+    {{- if eq $propname "default" }}{{ $fieldname = "defaultValue" }}{{ end }}
+    {{- if eq $propname "@type" }}{{ $fieldname = "type" }}{{ $attrDataName = "@type" }}{{ end }}
     @JsonKey(name: '{{ $attrDataName }}')
     {{- if eq $property.Type "integer" }}
     final int? {{ $fieldname }};
@@ -108,6 +110,8 @@ class {{ $classname }} {
         {{- $fieldname := $propname }}
         {{- $attrDataName := $propname | camelToSnake }}
         {{- if eq $propname "refresh_token" }}{{ $fieldname = "refreshToken" }}{{ end }}
+        {{- if eq $propname "default" }}{{ $fieldname = "defaultValue" }}{{ end }}
+        {{- if eq $propname "@type" }}{{ $fieldname = "type" }}{{ end }}
         {{- if eq $property.Type "integer" }}
         required this.{{ $fieldname }}
         {{- else if eq $property.Type "number" }}
@@ -165,9 +169,9 @@ class {{ $classname }} {
 
 /// The low level client for the {{ .Namespace }} API.
 @RestApi()
-abstract class ApiClient
+abstract class SatoriApiClient
 {
-    factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
+    factory SatoriApiClient(Dio dio, {String baseUrl}) = _SatoriApiClient;
 
     {{- range $url, $path := .Paths }}
     {{- range $method, $operation := $path}}
@@ -181,14 +185,12 @@ abstract class ApiClient
         {{- range $idx, $security := $operation.Security}}
             {{- range $key, $value := $security}}
                 {{- if or (eq $key "BasicAuth") (eq $key "HttpKeyAuth") }}
-        String? basicAuthUsername,
-        String? basicAuthPassword,
-        String? bearerToken,
+        @Header('Authorization') String? authorization,
                 {{- end }}
             {{- end }}
         {{- end }}
     {{- else }}
-        String? bearerToken,
+        @Header('Authorization') String? authorization,
     {{- end }}
 
     {{- range $parameter := $operation.Parameters }}
@@ -331,7 +333,7 @@ func stripNewlines(input string) string {
 }
 
 func stripOperationPrefix(input string) string {
-	return strings.Replace(input, "Nakama_", "", 1)
+	return strings.Replace(input, "Satori_", "", 1)
 }
 
 func descriptionOrTitle(description string, title string) string {
@@ -450,7 +452,11 @@ func main() {
 	defer f.Close()
 
 	writer := bufio.NewWriter(f)
-	tmpl.Execute(writer, schema)
+	err = tmpl.Execute(writer, schema)
+	if err != nil {
+		fmt.Printf("Template execution failed: %s\n", err)
+		return
+	}
 	writer.Flush()
 }
 

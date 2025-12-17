@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:satori/src/rest/satori.swagger.dart';
+import 'package:satori/src/rest/satori_api.gen.dart';
 
 part 'live_event.freezed.dart';
 part 'live_event.g.dart';
@@ -49,6 +49,6 @@ abstract class LiveEvent with _$LiveEvent {
         activeStartTimeSec: dto.activeStartTimeSec,
         description: dto.description,
         name: dto.name,
-        value: dto.$value,
+        value: dto.value,
       );
 }
