@@ -10,7 +10,7 @@ environment:
 dependencies:
   dio: ^5.7.0
   freezed_annotation: ^3.0.0
-  http: ^1.4.0
+  http: ^1.6.0
   json_annotation: ^4.9.0
   jwt_decoder: ^2.0.1
   retrofit: '>=4.0.0 <5.0.0'
