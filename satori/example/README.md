@@ -35,6 +35,15 @@ This example app demonstrates the following Satori features:
 - Fetch active live events
 - Display event details and timing
 
+### 6. Properties
+- View user default and computed properties
+- Inspect user attribute metadata
+
+### 7. Messages
+- Retrieve scheduled messages
+- Mark messages as read or consumed
+- Delete messages
+
 ## Getting Started
 
 ### Prerequisites
@@ -101,18 +110,22 @@ lib/
 │   ├── flags/            # Feature flags
 │   ├── home/             # Home screen with feature overview
 │   ├── live_events/      # Live operational events
+│   ├── properties/       # User properties management
+│   ├── messages/         # Scheduled messages inbox
 │   └── common/           # Shared components and routes
 ├── services/             # Satori service, environment config, and providers
 ├── configs/             # Configuration files
 └── main.dart           # App entry point
 ```
 
-## Usage
-
 1. **Start the app** and authenticate with a custom identity
 2. **Navigate through features** using the home screen grid
 3. **Send events** to track user interactions
 4. **View feature flags** to see remote configuration
+5. **Check experiments** for A/B testing variations
+6. **Browse live events** for active campaigns
+7. **Inspect properties** to view user attribute metadata
+8. **Read messages** in your scheduled messages inbox
 5. **Check experiments** for A/B testing variations
 6. **Browse live events** for active campaigns
 

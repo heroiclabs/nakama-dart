@@ -5,4 +5,6 @@ class Routes {
   static const String experiments = '/experiments';
   static const String flags = '/flags';
   static const String liveEvents = '/live-events';
+  static const String properties = '/properties';
+  static const String messages = '/messages';
 }

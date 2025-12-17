@@ -8,6 +8,8 @@ import 'package:satori_example/features/experiments/views/pages/experiments_page
 import 'package:satori_example/features/flags/views/pages/flags_page.dart';
 import 'package:satori_example/features/home/views/pages/home_page.dart';
 import 'package:satori_example/features/live_events/views/pages/live_events_page.dart';
+import 'package:satori_example/features/messages/views/pages/messages_page.dart';
+import 'package:satori_example/features/properties/views/pages/properties_page.dart';
 
 void main() {
   Logger.root.level = Level.ALL;
@@ -30,6 +32,8 @@ void main() {
         Routes.experiments: (context) => const ExperimentsPage(),
         Routes.flags: (context) => const FlagsPage(),
         Routes.liveEvents: (context) => const LiveEventsPage(),
+        Routes.properties: (context) => const PropertiesPage(),
+        Routes.messages: (context) => const MessagesPage(),
       },
     ),
   ));

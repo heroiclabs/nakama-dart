@@ -84,6 +84,18 @@ class HomePage extends ConsumerWidget {
                     icon: Icons.live_tv,
                     onTap: () => Navigator.of(context).pushNamed(Routes.liveEvents),
                   ),
+                  _FeatureCard(
+                    title: 'Properties',
+                    description: 'Manage user properties',
+                    icon: Icons.settings,
+                    onTap: () => Navigator.of(context).pushNamed(Routes.properties),
+                  ),
+                  _FeatureCard(
+                    title: 'Messages',
+                    description: 'View scheduled messages',
+                    icon: Icons.message,
+                    onTap: () => Navigator.of(context).pushNamed(Routes.messages),
+                  ),
                 ],
               ),
             ),

@@ -30,7 +30,6 @@ class _ExperimentsPageState extends ConsumerState<ExperimentsPage> {
 
     try {
       final client = ref.read(satoriClientProvider);
-      print(session.token);
       final experimentList = await client.getAllExperiments(
         session: session,
       );
