@@ -17,7 +17,6 @@ import 'package:nakama/src/models/notification.dart' as model;
 import 'package:nakama/src/models/session.dart' as model;
 import 'package:nakama/src/models/storage.dart' as model;
 import 'package:nakama/src/models/tournament.dart' as model;
-import 'package:nakama/src/utils/prepare_payload.dart';
 
 const _kDefaultAppKey = 'default';
 
@@ -1313,7 +1312,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
     final res = await _client.rpcFunc(
       api.Rpc(
         id: id,
-        payload: payload == null ? null : preparePayload(payload),
+        payload: payload,
       ),
       options: _getSessionCallOptions(session),
     );
