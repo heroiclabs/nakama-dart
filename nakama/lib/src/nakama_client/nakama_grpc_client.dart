@@ -955,10 +955,10 @@ class NakamaGrpcClient extends NakamaBaseClient {
     await _client.updateGroup(
       api.UpdateGroupRequest(
         groupId: groupId,
-        avatarUrl: api.StringValue(value: avatarUrl),
-        description: api.StringValue(value: description),
-        langTag: api.StringValue(value: langTag),
-        name: api.StringValue(value: name),
+        avatarUrl: avatarUrl != null ? api.StringValue(value: avatarUrl) : null,
+        description: description != null ? api.StringValue(value: description) : null,
+        langTag: langTag != null ? api.StringValue(value: langTag) : null,
+        name: name != null ? api.StringValue(value: name) : null,
         open: open != null ? api.BoolValue(value: open) : null,
       ),
       options: _getSessionCallOptions(session),
@@ -1187,8 +1187,8 @@ class NakamaGrpcClient extends NakamaBaseClient {
         authoritative: authoritative != null ? api.BoolValue(value: authoritative) : null,
         label: label != null ? api.StringValue(value: label) : null,
         limit: api.Int32Value(value: limit),
-        maxSize: api.Int32Value(value: maxSize),
-        minSize: api.Int32Value(value: minSize),
+        maxSize: maxSize != null ? api.Int32Value(value: maxSize) : null,
+        minSize: minSize != null ? api.Int32Value(value: minSize) : null,
         query: query != null ? api.StringValue(value: query) : null,
       ),
       options: _getSessionCallOptions(session),
@@ -1222,11 +1222,11 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }) async {
     final res = await _client.listTournaments(
       api.ListTournamentsRequest(
-        categoryEnd: api.UInt32Value(value: categoryEnd),
-        categoryStart: api.UInt32Value(value: categoryStart),
+        categoryEnd: categoryEnd != null ? api.UInt32Value(value: categoryEnd) : null,
+        categoryStart: categoryStart != null ? api.UInt32Value(value: categoryStart) : null,
         cursor: cursor,
-        startTime: api.UInt32Value(value: startTime != null ? startTime.millisecondsSinceEpoch ~/ 1000 : null),
-        endTime: api.UInt32Value(value: endTime != null ? endTime.millisecondsSinceEpoch ~/ 1000 : null),
+        startTime: startTime != null ? api.UInt32Value(value: startTime.millisecondsSinceEpoch ~/ 1000) : null,
+        endTime: endTime != null ? api.UInt32Value(value: endTime.millisecondsSinceEpoch ~/ 1000) : null,
         limit: api.Int32Value(value: limit),
       ),
       options: _getSessionCallOptions(session),
