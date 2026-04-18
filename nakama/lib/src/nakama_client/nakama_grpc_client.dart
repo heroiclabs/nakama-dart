@@ -735,7 +735,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
       api.ListStorageObjectsRequest(
         collection: collection,
         cursor: cursor,
-        limit: api.Int32Value(value: limit),
+        limit: limit != null ? api.Int32Value(value: limit) : null,
         userId: userId,
       ),
       options: _getSessionCallOptions(session),
