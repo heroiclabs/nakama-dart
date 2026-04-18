@@ -13,6 +13,4 @@ export 'src/satori_client/satori_api_client.dart';
 export 'src/satori_client/satori_client.dart';
 export 'src/satori_client/stub/satori_client_stub.dart'
     if (dart.library.io) 'src/satori_client/stub/api_client.dart'
-    if (dart.library.js_interop) 'src/satori_client/stub/api_client.dart'
-    // Fallback: dart.library.js_interop is not available for Dart SDKs < 3.3
-    if (dart.library.js) 'src/satori_client/stub/api_client.dart';
+    if (dart.library.js_interop) 'src/satori_client/stub/api_client.dart';
