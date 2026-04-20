@@ -270,46 +270,79 @@ void main() {
     });
 
     test('user can iterate through messages with cursor', () async {
-      final senderChannelForA = await socket.joinChannel(
-        target: sessionB.userId,
-        type: ChannelType.directMessage,
-        persistence: true,
-        hidden: false,
+      // Create fresh users to avoid message accumulation from previous tests
+      final cursorSessionA = await client.authenticateEmail(
+        email: faker.internet.freeEmail(),
+        password: faker.internet.password(),
+        create: true,
+      );
+      final cursorSessionB = await client.authenticateEmail(
+        email: faker.internet.freeEmail(),
+        password: faker.internet.password(),
+        create: true,
       );
 
-      // Send 20+15 test messages
-      for (final msg
-          in List.generate(20 + 15, (index) => {'message': 'PING $index'})) {
-        await socket.sendMessage(channelId: senderChannelForA.id, content: msg);
+      final cursorSocketA = NakamaWebsocketClient.init(
+        key: 'cursorA',
+        host: kTestHost,
+        ssl: false,
+        token: cursorSessionA.token,
+      );
+      final cursorSocketB = NakamaWebsocketClient.init(
+        key: 'cursorB',
+        host: kTestHost,
+        ssl: false,
+        token: cursorSessionB.token,
+      );
+
+      try {
+        final senderChannel = await cursorSocketA.joinChannel(
+          target: cursorSessionB.userId,
+          type: ChannelType.directMessage,
+          persistence: true,
+          hidden: false,
+        );
+
+        // Send 20+15 test messages
+        for (final msg
+            in List.generate(20 + 15, (index) => {'message': 'PING $index'})) {
+          await cursorSocketA.sendMessage(
+              channelId: senderChannel.id, content: msg);
+        }
+
+        // Check on B's side
+        final receiverChannel = await cursorSocketB.joinChannel(
+          target: cursorSessionA.userId,
+          type: ChannelType.directMessage,
+          persistence: true,
+          hidden: false,
+        );
+
+        // First batch: default 20 messages
+        final firstBatch = await client.listChannelMessages(
+          session: cursorSessionB,
+          channelId: receiverChannel.id,
+          forward: true,
+        );
+
+        expect(firstBatch, isNotNull);
+        expect(firstBatch.messages, hasLength(20));
+        expect(firstBatch.nextCursor, isNotNull);
+
+        // Second batch: remaining 15 messages using the cursor
+        final secondBatch = await client.listChannelMessages(
+          session: cursorSessionB,
+          channelId: receiverChannel.id,
+          forward: true,
+          cursor: firstBatch.nextCursor!,
+        );
+
+        expect(secondBatch.messages, hasLength(15));
+      } finally {
+        await cursorSocketA.close();
+        await cursorSocketB.close();
       }
-      // Check on B's side that the message was received via the REST API
-      final receiverChannelForB = await socketB.joinChannel(
-        target: sessionA.userId,
-        type: ChannelType.directMessage,
-        persistence: true,
-        hidden: false,
-      );
-
-      // List first batch of 20 messages
-      final firstBatch = await client.listChannelMessages(
-        session: sessionB,
-        channelId: receiverChannelForB.id,
-        cursor: '',
-        limit: 20,
-      );
-      expect(firstBatch, isNotNull);
-      expect(firstBatch.messages, hasLength(20));
-
-      // List second batch of 15 messages
-      final secondBatch = await client.listChannelMessages(
-        session: sessionB,
-        channelId: receiverChannelForB.id,
-        cursor: firstBatch.nextCursor,
-        limit: 20,
-      );
-      expect(secondBatch, isNotNull);
-      expect(secondBatch.messages, hasLength(15));
-    }, skip: 'FIXME: secondBatch.messages doesn\'t have expected length');
+    });
 
     test('receiving initial presence of all connected users', () async {
       // A creates channel and joins
