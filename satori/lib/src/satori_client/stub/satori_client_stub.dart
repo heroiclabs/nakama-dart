@@ -7,5 +7,5 @@ SatoriBaseClient getSatoriClient({
   bool ssl = false,
 }) =>
     throw UnsupportedError(
-      'Satori client initialization failed. Platform not detected correctly.',
+      'Satori client initialization failed. Platform not detected correctly (IO/JS/WASM required).',
     );

@@ -11,5 +11,5 @@ NakamaBaseClient getNakamaClient({
   bool ssl = false,
 }) =>
     throw UnsupportedError(
-      'Nakama is not supported outside IO/JS runtime.',
+      'Nakama is not supported outside IO/JS/WASM runtime.',
     );
