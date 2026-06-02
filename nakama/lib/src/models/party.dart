@@ -68,3 +68,32 @@ sealed class PartyLeader with _$PartyLeader {
         newLeader: UserPresence.fromDto(dto.presence),
       );
 }
+
+class PartyClose {
+  const PartyClose({required this.partyId});
+
+  /// The ID of the party that was closed.
+  final String partyId;
+
+  factory PartyClose.fromDto(rtpb.PartyClose dto) => PartyClose(
+        partyId: dto.partyId,
+      );
+}
+
+class PartyJoinRequest {
+  const PartyJoinRequest({
+    required this.partyId,
+    required this.presences,
+  });
+
+  /// The ID of the party these presences are attempting to join.
+  final String partyId;
+
+  /// Presences attempting to join the party.
+  final List<UserPresence> presences;
+
+  factory PartyJoinRequest.fromDto(rtpb.PartyJoinRequest dto) => PartyJoinRequest(
+        partyId: dto.partyId,
+        presences: dto.presences.map(UserPresence.fromDto).toList(growable: false),
+      );
+}

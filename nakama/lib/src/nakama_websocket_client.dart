@@ -34,11 +34,27 @@ class NakamaWebsocketClient {
 
   Stream<MatchmakerMatched> get onMatchmakerMatched => _onMatchmakerMatchedController.stream;
 
+  final _onMatchmakerTicketController = StreamController<MatchmakerTicket>.broadcast();
+
+  Stream<MatchmakerTicket> get onMatchmakerTicket => _onMatchmakerTicketController.stream;
+
   final _onMatchDataController = StreamController<MatchData>.broadcast();
 
   Stream<MatchData> get onMatchData => _onMatchDataController.stream;
 
   final _onPartyDataController = StreamController<PartyData>.broadcast();
+
+  final _onPartyController = StreamController<Party>.broadcast();
+  Stream<Party> get onParty => _onPartyController.stream;
+
+  final _onPartyCloseController = StreamController<PartyClose>.broadcast();
+  Stream<PartyClose> get onPartyClose => _onPartyCloseController.stream;
+
+  final _onPartyJoinRequestController = StreamController<PartyJoinRequest>.broadcast();
+  Stream<PartyJoinRequest> get onPartyJoinRequest => _onPartyJoinRequestController.stream;
+
+  final _onPartyMatchmakerTicketController = StreamController<PartyMatchmakerTicket>.broadcast();
+  Stream<PartyMatchmakerTicket> get onPartyMatchmakerTicket => _onPartyMatchmakerTicketController.stream;
 
   final _onPartyPresenceController = StreamController<PartyPresenceEvent>.broadcast();
   Stream<PartyPresenceEvent> get onPartyPresence => _onPartyPresenceController.stream;
@@ -158,7 +174,12 @@ class NakamaWebsocketClient {
     return Future.wait([
       _onChannelPresenceController.close(),
       _onMatchmakerMatchedController.close(),
+      _onMatchmakerTicketController.close(),
       _onMatchDataController.close(),
+      _onPartyController.close(),
+      _onPartyCloseController.close(),
+      _onPartyJoinRequestController.close(),
+      _onPartyMatchmakerTicketController.close(),
       _onPartyPresenceController.close(),
       _onPartyLeaderController.close(),
       _onPartyDataController.close(),
@@ -209,6 +230,8 @@ class NakamaWebsocketClient {
                 .add(ChannelPresenceEvent.fromDto(receivedEnvelope.channelPresenceEvent));
           case rtpb.Envelope_Message.matchmakerMatched:
             return _onMatchmakerMatchedController.add(MatchmakerMatched.fromDto(receivedEnvelope.matchmakerMatched));
+          case rtpb.Envelope_Message.matchmakerTicket:
+            return _onMatchmakerTicketController.add(MatchmakerTicket.fromDto(receivedEnvelope.matchmakerTicket));
           case rtpb.Envelope_Message.matchData:
             return _onMatchDataController.add(MatchData.fromDto(receivedEnvelope.matchData));
           case rtpb.Envelope_Message.partyData:
@@ -217,6 +240,14 @@ class NakamaWebsocketClient {
             return _onPartyPresenceController.add(PartyPresenceEvent.fromDto(receivedEnvelope.partyPresenceEvent));
           case rtpb.Envelope_Message.partyLeader:
             return _onPartyLeaderController.add(PartyLeader.fromDto(receivedEnvelope.partyLeader));
+          case rtpb.Envelope_Message.party:
+            return _onPartyController.add(Party.fromDto(receivedEnvelope.party));
+          case rtpb.Envelope_Message.partyClose:
+            return _onPartyCloseController.add(PartyClose.fromDto(receivedEnvelope.partyClose));
+          case rtpb.Envelope_Message.partyJoinRequest:
+            return _onPartyJoinRequestController.add(PartyJoinRequest.fromDto(receivedEnvelope.partyJoinRequest));
+          case rtpb.Envelope_Message.partyMatchmakerTicket:
+            return _onPartyMatchmakerTicketController.add(PartyMatchmakerTicket.fromDto(receivedEnvelope.partyMatchmakerTicket));
           case rtpb.Envelope_Message.matchPresenceEvent:
             return _onMatchPresenceController.add(MatchPresenceEvent.fromDto(receivedEnvelope.matchPresenceEvent));
           case rtpb.Envelope_Message.notifications:
@@ -279,10 +310,8 @@ class NakamaWebsocketClient {
     return Party.fromDto(res);
   }
 
-  Future<Party> joinParty(String partyId) async {
-    final res = await _send<rtpb.Party>(rtpb.Envelope(partyJoin: rtpb.PartyJoin(partyId: partyId)));
-
-    return Party.fromDto(res);
+  Future<void> joinParty(String partyId) async {
+    await _send<void>(rtpb.Envelope(partyJoin: rtpb.PartyJoin(partyId: partyId)));
   }
 
   Future<void> promotePartyMember({
