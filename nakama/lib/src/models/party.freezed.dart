@@ -875,4 +875,522 @@ $UserPresenceCopyWith<$Res>? get newLeader {
 }
 }
 
+/// @nodoc
+mixin _$PartyClose {
+
+/// The ID of the party that was closed.
+@JsonKey(name: 'party_id') String get partyId;
+/// Create a copy of PartyClose
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PartyCloseCopyWith<PartyClose> get copyWith => _$PartyCloseCopyWithImpl<PartyClose>(this as PartyClose, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PartyClose&&(identical(other.partyId, partyId) || other.partyId == partyId));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,partyId);
+
+@override
+String toString() {
+  return 'PartyClose(partyId: $partyId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $PartyCloseCopyWith<$Res>  {
+  factory $PartyCloseCopyWith(PartyClose value, $Res Function(PartyClose) _then) = _$PartyCloseCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'party_id') String partyId
+});
+
+
+
+
+}
+/// @nodoc
+class _$PartyCloseCopyWithImpl<$Res>
+    implements $PartyCloseCopyWith<$Res> {
+  _$PartyCloseCopyWithImpl(this._self, this._then);
+
+  final PartyClose _self;
+  final $Res Function(PartyClose) _then;
+
+/// Create a copy of PartyClose
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? partyId = null,}) {
+  return _then(_self.copyWith(
+partyId: null == partyId ? _self.partyId : partyId // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [PartyClose].
+extension PartyClosePatterns on PartyClose {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PartyClose value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PartyClose() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PartyClose value)  $default,){
+final _that = this;
+switch (_that) {
+case _PartyClose():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PartyClose value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PartyClose() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'party_id')  String partyId)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PartyClose() when $default != null:
+return $default(_that.partyId);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'party_id')  String partyId)  $default,) {final _that = this;
+switch (_that) {
+case _PartyClose():
+return $default(_that.partyId);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'party_id')  String partyId)?  $default,) {final _that = this;
+switch (_that) {
+case _PartyClose() when $default != null:
+return $default(_that.partyId);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _PartyClose extends PartyClose {
+  const _PartyClose({@JsonKey(name: 'party_id') required this.partyId}): super._();
+  
+
+/// The ID of the party that was closed.
+@override@JsonKey(name: 'party_id') final  String partyId;
+
+/// Create a copy of PartyClose
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PartyCloseCopyWith<_PartyClose> get copyWith => __$PartyCloseCopyWithImpl<_PartyClose>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PartyClose&&(identical(other.partyId, partyId) || other.partyId == partyId));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,partyId);
+
+@override
+String toString() {
+  return 'PartyClose(partyId: $partyId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PartyCloseCopyWith<$Res> implements $PartyCloseCopyWith<$Res> {
+  factory _$PartyCloseCopyWith(_PartyClose value, $Res Function(_PartyClose) _then) = __$PartyCloseCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'party_id') String partyId
+});
+
+
+
+
+}
+/// @nodoc
+class __$PartyCloseCopyWithImpl<$Res>
+    implements _$PartyCloseCopyWith<$Res> {
+  __$PartyCloseCopyWithImpl(this._self, this._then);
+
+  final _PartyClose _self;
+  final $Res Function(_PartyClose) _then;
+
+/// Create a copy of PartyClose
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? partyId = null,}) {
+  return _then(_PartyClose(
+partyId: null == partyId ? _self.partyId : partyId // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+mixin _$PartyJoinRequest {
+
+/// The ID of the party these presences are attempting to join.
+@JsonKey(name: 'party_id') String get partyId;/// Presences attempting to join the party.
+@JsonKey(name: 'presences') List<UserPresence> get presences;
+/// Create a copy of PartyJoinRequest
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PartyJoinRequestCopyWith<PartyJoinRequest> get copyWith => _$PartyJoinRequestCopyWithImpl<PartyJoinRequest>(this as PartyJoinRequest, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PartyJoinRequest&&(identical(other.partyId, partyId) || other.partyId == partyId)&&const DeepCollectionEquality().equals(other.presences, presences));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,partyId,const DeepCollectionEquality().hash(presences));
+
+@override
+String toString() {
+  return 'PartyJoinRequest(partyId: $partyId, presences: $presences)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $PartyJoinRequestCopyWith<$Res>  {
+  factory $PartyJoinRequestCopyWith(PartyJoinRequest value, $Res Function(PartyJoinRequest) _then) = _$PartyJoinRequestCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'party_id') String partyId,@JsonKey(name: 'presences') List<UserPresence> presences
+});
+
+
+
+
+}
+/// @nodoc
+class _$PartyJoinRequestCopyWithImpl<$Res>
+    implements $PartyJoinRequestCopyWith<$Res> {
+  _$PartyJoinRequestCopyWithImpl(this._self, this._then);
+
+  final PartyJoinRequest _self;
+  final $Res Function(PartyJoinRequest) _then;
+
+/// Create a copy of PartyJoinRequest
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? partyId = null,Object? presences = null,}) {
+  return _then(_self.copyWith(
+partyId: null == partyId ? _self.partyId : partyId // ignore: cast_nullable_to_non_nullable
+as String,presences: null == presences ? _self.presences : presences // ignore: cast_nullable_to_non_nullable
+as List<UserPresence>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [PartyJoinRequest].
+extension PartyJoinRequestPatterns on PartyJoinRequest {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PartyJoinRequest value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PartyJoinRequest() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PartyJoinRequest value)  $default,){
+final _that = this;
+switch (_that) {
+case _PartyJoinRequest():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PartyJoinRequest value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PartyJoinRequest() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'party_id')  String partyId, @JsonKey(name: 'presences')  List<UserPresence> presences)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PartyJoinRequest() when $default != null:
+return $default(_that.partyId,_that.presences);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'party_id')  String partyId, @JsonKey(name: 'presences')  List<UserPresence> presences)  $default,) {final _that = this;
+switch (_that) {
+case _PartyJoinRequest():
+return $default(_that.partyId,_that.presences);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'party_id')  String partyId, @JsonKey(name: 'presences')  List<UserPresence> presences)?  $default,) {final _that = this;
+switch (_that) {
+case _PartyJoinRequest() when $default != null:
+return $default(_that.partyId,_that.presences);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _PartyJoinRequest extends PartyJoinRequest {
+  const _PartyJoinRequest({@JsonKey(name: 'party_id') required this.partyId, @JsonKey(name: 'presences') required final  List<UserPresence> presences}): _presences = presences,super._();
+  
+
+/// The ID of the party these presences are attempting to join.
+@override@JsonKey(name: 'party_id') final  String partyId;
+/// Presences attempting to join the party.
+ final  List<UserPresence> _presences;
+/// Presences attempting to join the party.
+@override@JsonKey(name: 'presences') List<UserPresence> get presences {
+  if (_presences is EqualUnmodifiableListView) return _presences;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_presences);
+}
+
+
+/// Create a copy of PartyJoinRequest
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PartyJoinRequestCopyWith<_PartyJoinRequest> get copyWith => __$PartyJoinRequestCopyWithImpl<_PartyJoinRequest>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PartyJoinRequest&&(identical(other.partyId, partyId) || other.partyId == partyId)&&const DeepCollectionEquality().equals(other._presences, _presences));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,partyId,const DeepCollectionEquality().hash(_presences));
+
+@override
+String toString() {
+  return 'PartyJoinRequest(partyId: $partyId, presences: $presences)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PartyJoinRequestCopyWith<$Res> implements $PartyJoinRequestCopyWith<$Res> {
+  factory _$PartyJoinRequestCopyWith(_PartyJoinRequest value, $Res Function(_PartyJoinRequest) _then) = __$PartyJoinRequestCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'party_id') String partyId,@JsonKey(name: 'presences') List<UserPresence> presences
+});
+
+
+
+
+}
+/// @nodoc
+class __$PartyJoinRequestCopyWithImpl<$Res>
+    implements _$PartyJoinRequestCopyWith<$Res> {
+  __$PartyJoinRequestCopyWithImpl(this._self, this._then);
+
+  final _PartyJoinRequest _self;
+  final $Res Function(_PartyJoinRequest) _then;
+
+/// Create a copy of PartyJoinRequest
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? partyId = null,Object? presences = null,}) {
+  return _then(_PartyJoinRequest(
+partyId: null == partyId ? _self.partyId : partyId // ignore: cast_nullable_to_non_nullable
+as String,presences: null == presences ? _self._presences : presences // ignore: cast_nullable_to_non_nullable
+as List<UserPresence>,
+  ));
+}
+
+
+}
+
 // dart format on

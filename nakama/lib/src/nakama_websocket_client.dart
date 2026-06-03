@@ -27,22 +27,16 @@ class NakamaWebsocketClient {
   late final WebSocketChannel _channel;
 
   final _onChannelPresenceController = StreamController<ChannelPresenceEvent>.broadcast();
-
   Stream<ChannelPresenceEvent> get onChannelPresence => _onChannelPresenceController.stream;
 
   final _onMatchmakerMatchedController = StreamController<MatchmakerMatched>.broadcast();
-
   Stream<MatchmakerMatched> get onMatchmakerMatched => _onMatchmakerMatchedController.stream;
 
   final _onMatchmakerTicketController = StreamController<MatchmakerTicket>.broadcast();
-
   Stream<MatchmakerTicket> get onMatchmakerTicket => _onMatchmakerTicketController.stream;
 
   final _onMatchDataController = StreamController<MatchData>.broadcast();
-
   Stream<MatchData> get onMatchData => _onMatchDataController.stream;
-
-  final _onPartyDataController = StreamController<PartyData>.broadcast();
 
   final _onPartyController = StreamController<Party>.broadcast();
   Stream<Party> get onParty => _onPartyController.stream;
@@ -62,30 +56,25 @@ class NakamaWebsocketClient {
   final _onPartyLeaderController = StreamController<PartyLeader>.broadcast();
   Stream<PartyLeader> get onPartyLeader => _onPartyLeaderController.stream;
 
+  final _onPartyDataController = StreamController<PartyData>.broadcast();
   Stream<PartyData> get onPartyData => _onPartyDataController.stream;
 
   final _onMatchPresenceController = StreamController<MatchPresenceEvent>.broadcast();
-
   Stream<MatchPresenceEvent> get onMatchPresence => _onMatchPresenceController.stream;
 
   final _onNotificationsController = StreamController<Notification>.broadcast();
-
   Stream<Notification> get onNotifications => _onNotificationsController.stream;
 
   final _onStatusPresenceController = StreamController<StatusPresenceEvent>.broadcast();
-
   Stream<StatusPresenceEvent> get onStatusPresence => _onStatusPresenceController.stream;
 
   final _onStreamPresenceController = StreamController<StreamPresenceEvent>.broadcast();
-
   Stream<StreamPresenceEvent> get onStreamPresence => _onStreamPresenceController.stream;
 
   final _onStreamDataController = StreamController<RealtimeStreamData>.broadcast();
-
   Stream<RealtimeStreamData> get onStreamData => _onStreamDataController.stream;
 
   final _onChannelMessageController = StreamController<api.ChannelMessage>.broadcast();
-
   Stream<api.ChannelMessage> get onChannelMessage => _onChannelMessageController.stream;
 
   final List<Completer> _futures = [];

@@ -69,31 +69,34 @@ sealed class PartyLeader with _$PartyLeader {
       );
 }
 
-class PartyClose {
-  const PartyClose({required this.partyId});
+@freezed
+sealed class PartyClose with _$PartyClose {
+  const PartyClose._();
 
-  /// The ID of the party that was closed.
-  final String partyId;
+  const factory PartyClose({
+    /// The ID of the party that was closed.
+    @JsonKey(name: 'party_id') required String partyId,
+  }) = _PartyClose;
 
   factory PartyClose.fromDto(rtpb.PartyClose dto) => PartyClose(
         partyId: dto.partyId,
       );
 }
 
-class PartyJoinRequest {
-  const PartyJoinRequest({
-    required this.partyId,
-    required this.presences,
-  });
+@freezed
+sealed class PartyJoinRequest with _$PartyJoinRequest {
+  const PartyJoinRequest._();
 
-  /// The ID of the party these presences are attempting to join.
-  final String partyId;
+  const factory PartyJoinRequest({
+    /// The ID of the party these presences are attempting to join.
+    @JsonKey(name: 'party_id') required String partyId,
 
-  /// Presences attempting to join the party.
-  final List<UserPresence> presences;
+    /// Presences attempting to join the party.
+    @JsonKey(name: 'presences') required List<UserPresence> presences,
+  }) = _PartyJoinRequest;
 
   factory PartyJoinRequest.fromDto(rtpb.PartyJoinRequest dto) => PartyJoinRequest(
         partyId: dto.partyId,
-        presences: dto.presences.map(UserPresence.fromDto).toList(growable: false),
+        presences: dto.presences.map((e) => UserPresence.fromDto(e)).toList(growable: false),
       );
 }
