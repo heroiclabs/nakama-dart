@@ -31,9 +31,11 @@ Map<String, dynamic> _$NotificationToJson(_Notification instance) =>
 _NotificationList _$NotificationListFromJson(Map<String, dynamic> json) =>
     _NotificationList(
       cursor: json['cacheable_cursor'] as String?,
-      notifications: (json['notifications'] as List<dynamic>)
-          .map((e) => Notification.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      notifications:
+          (json['notifications'] as List<dynamic>?)
+              ?.map((e) => Notification.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <Notification>[],
     );
 
 Map<String, dynamic> _$NotificationListToJson(_NotificationList instance) =>

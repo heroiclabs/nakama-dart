@@ -485,12 +485,12 @@ return $default(_that.cursor,_that.objects);case _:
 @JsonSerializable()
 
 class _StorageObjectList extends StorageObjectList {
-  const _StorageObjectList({this.cursor, required final  List<StorageObject> objects}): _objects = objects,super._();
+  const _StorageObjectList({this.cursor, final  List<StorageObject> objects = const <StorageObject>[]}): _objects = objects,super._();
   factory _StorageObjectList.fromJson(Map<String, dynamic> json) => _$StorageObjectListFromJson(json);
 
 @override final  String? cursor;
  final  List<StorageObject> _objects;
-@override List<StorageObject> get objects {
+@override@JsonKey() List<StorageObject> get objects {
   if (_objects is EqualUnmodifiableListView) return _objects;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_objects);

@@ -57,9 +57,11 @@ const _$StorageWritePermissionEnumMap = {
 _StorageObjectList _$StorageObjectListFromJson(Map<String, dynamic> json) =>
     _StorageObjectList(
       cursor: json['cursor'] as String?,
-      objects: (json['objects'] as List<dynamic>)
-          .map((e) => StorageObject.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      objects:
+          (json['objects'] as List<dynamic>?)
+              ?.map((e) => StorageObject.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <StorageObject>[],
     );
 
 Map<String, dynamic> _$StorageObjectListToJson(_StorageObjectList instance) =>

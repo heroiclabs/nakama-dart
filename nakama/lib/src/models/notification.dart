@@ -38,7 +38,7 @@ sealed class NotificationList with _$NotificationList {
 
   const factory NotificationList({
     @JsonKey(name: 'cacheable_cursor') String? cursor,
-    @JsonKey(name: 'notifications') required List<Notification> notifications,
+    @JsonKey(name: 'notifications') @Default(<Notification>[]) List<Notification> notifications,
   }) = _NotificationList;
 
   factory NotificationList.fromJson(Map<String, Object?> json) => _$NotificationListFromJson(json);

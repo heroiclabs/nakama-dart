@@ -42,9 +42,11 @@ Map<String, dynamic> _$GroupToJson(_Group instance) => <String, dynamic>{
 
 _GroupList _$GroupListFromJson(Map<String, dynamic> json) => _GroupList(
   cursor: json['cursor'] as String?,
-  groups: (json['groups'] as List<dynamic>?)
-      ?.map((e) => Group.fromJson(e as Map<String, dynamic>))
-      .toList(),
+  groups:
+      (json['groups'] as List<dynamic>?)
+          ?.map((e) => Group.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const <Group>[],
 );
 
 Map<String, dynamic> _$GroupListToJson(_GroupList instance) =>
@@ -53,9 +55,11 @@ Map<String, dynamic> _$GroupListToJson(_GroupList instance) =>
 _UserGroupList _$UserGroupListFromJson(Map<String, dynamic> json) =>
     _UserGroupList(
       cursor: json['cursor'] as String?,
-      userGroups: (json['user_groups'] as List<dynamic>?)
-          ?.map((e) => UserGroup.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      userGroups:
+          (json['user_groups'] as List<dynamic>?)
+              ?.map((e) => UserGroup.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <UserGroup>[],
     );
 
 Map<String, dynamic> _$UserGroupListToJson(_UserGroupList instance) =>
@@ -85,9 +89,11 @@ const _$GroupMembershipStateEnumMap = {
 _GroupUserList _$GroupUserListFromJson(Map<String, dynamic> json) =>
     _GroupUserList(
       cursor: json['cursor'] as String?,
-      groupUsers: (json['group_users'] as List<dynamic>)
-          .map((e) => GroupUser.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      groupUsers:
+          (json['group_users'] as List<dynamic>?)
+              ?.map((e) => GroupUser.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <GroupUser>[],
     );
 
 Map<String, dynamic> _$GroupUserListToJson(_GroupUserList instance) =>

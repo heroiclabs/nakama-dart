@@ -49,7 +49,7 @@ sealed class ChannelMessageList with _$ChannelMessageList {
   const ChannelMessageList._();
 
   const factory ChannelMessageList({
-    @JsonKey(name: 'messages') required List<ChannelMessage>? messages,
+    @JsonKey(name: 'messages') @Default(<ChannelMessage>[]) List<ChannelMessage> messages,
     @JsonKey(name: 'next_cursor') required String? nextCursor,
     @JsonKey(name: 'prev_cursor') required String? prevCursor,
     @JsonKey(name: 'cacheable_cursor') required String? cacheableCursor,

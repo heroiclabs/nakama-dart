@@ -42,9 +42,11 @@ Map<String, dynamic> _$ChannelMessageToJson(_ChannelMessage instance) =>
 
 _ChannelMessageList _$ChannelMessageListFromJson(Map<String, dynamic> json) =>
     _ChannelMessageList(
-      messages: (json['messages'] as List<dynamic>?)
-          ?.map((e) => ChannelMessage.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      messages:
+          (json['messages'] as List<dynamic>?)
+              ?.map((e) => ChannelMessage.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <ChannelMessage>[],
       nextCursor: json['next_cursor'] as String?,
       prevCursor: json['prev_cursor'] as String?,
       cacheableCursor: json['cacheable_cursor'] as String?,

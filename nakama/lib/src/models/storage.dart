@@ -44,7 +44,7 @@ sealed class StorageObjectList with _$StorageObjectList {
 
   const factory StorageObjectList({
     String? cursor,
-    required List<StorageObject> objects,
+    @Default(<StorageObject>[]) List<StorageObject> objects,
   }) = _StorageObjectList;
 
   factory StorageObjectList.fromJson(Map<String, Object?> json) => _$StorageObjectListFromJson(json);

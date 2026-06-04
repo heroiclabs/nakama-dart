@@ -21,7 +21,7 @@ class LeaderboardNotifier extends StateNotifier<List<LeaderboardRecord>> {
               session: session,
               leaderboardName: leaderboardName,
               cursor: cursor);
-      allRecords.addAll(leaderboardRecordsList.records ?? []);
+      allRecords.addAll(leaderboardRecordsList.records);
       cursor = leaderboardRecordsList.nextCursor;
     } while (cursor != null);
 
@@ -43,7 +43,7 @@ class LeaderboardNotifier extends StateNotifier<List<LeaderboardRecord>> {
         leaderboardName: leaderboardName,
         ownerId: session.userId,
       );
-      allRecords.addAll(leaderboardRecordsList.records ?? []);
+      allRecords.addAll(leaderboardRecordsList.records);
       cursor = leaderboardRecordsList.nextCursor;
     } while (cursor != null);
 

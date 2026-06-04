@@ -50,7 +50,7 @@ sealed class GroupList with _$GroupList {
 
   const factory GroupList({
     String? cursor,
-    required List<Group>? groups,
+    @Default(<Group>[]) List<Group> groups,
   }) = _GroupList;
 
   factory GroupList.fromJson(Map<String, Object?> json) => _$GroupListFromJson(json);
@@ -67,7 +67,7 @@ sealed class UserGroupList with _$UserGroupList {
 
   const factory UserGroupList({
     String? cursor,
-    @JsonKey(name: 'user_groups') required List<UserGroup>? userGroups,
+    @JsonKey(name: 'user_groups') @Default(<UserGroup>[]) List<UserGroup> userGroups,
   }) = _UserGroupList;
 
   factory UserGroupList.fromJson(Map<String, Object?> json) => _$UserGroupListFromJson(json);
@@ -101,7 +101,7 @@ sealed class GroupUserList with _$GroupUserList {
 
   const factory GroupUserList({
     String? cursor,
-    @JsonKey(name: 'group_users') required List<GroupUser> groupUsers,
+    @JsonKey(name: 'group_users') @Default(<GroupUser>[]) List<GroupUser> groupUsers,
   }) = _GroupUserList;
 
   factory GroupUserList.fromJson(Map<String, Object?> json) => _$GroupUserListFromJson(json);

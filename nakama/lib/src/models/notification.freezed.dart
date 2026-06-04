@@ -479,7 +479,7 @@ return $default(_that.cursor,_that.notifications);case _:
 @JsonSerializable()
 
 class _NotificationList extends NotificationList {
-  const _NotificationList({@JsonKey(name: 'cacheable_cursor') this.cursor, @JsonKey(name: 'notifications') required final  List<Notification> notifications}): _notifications = notifications,super._();
+  const _NotificationList({@JsonKey(name: 'cacheable_cursor') this.cursor, @JsonKey(name: 'notifications') final  List<Notification> notifications = const <Notification>[]}): _notifications = notifications,super._();
   factory _NotificationList.fromJson(Map<String, dynamic> json) => _$NotificationListFromJson(json);
 
 @override@JsonKey(name: 'cacheable_cursor') final  String? cursor;

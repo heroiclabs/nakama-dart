@@ -308,7 +308,7 @@ as String?,
 /// @nodoc
 mixin _$ChannelMessageList {
 
-@JsonKey(name: 'messages') List<ChannelMessage>? get messages;@JsonKey(name: 'next_cursor') String? get nextCursor;@JsonKey(name: 'prev_cursor') String? get prevCursor;@JsonKey(name: 'cacheable_cursor') String? get cacheableCursor;
+@JsonKey(name: 'messages') List<ChannelMessage> get messages;@JsonKey(name: 'next_cursor') String? get nextCursor;@JsonKey(name: 'prev_cursor') String? get prevCursor;@JsonKey(name: 'cacheable_cursor') String? get cacheableCursor;
 /// Create a copy of ChannelMessageList
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -341,7 +341,7 @@ abstract mixin class $ChannelMessageListCopyWith<$Res>  {
   factory $ChannelMessageListCopyWith(ChannelMessageList value, $Res Function(ChannelMessageList) _then) = _$ChannelMessageListCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'messages') List<ChannelMessage>? messages,@JsonKey(name: 'next_cursor') String? nextCursor,@JsonKey(name: 'prev_cursor') String? prevCursor,@JsonKey(name: 'cacheable_cursor') String? cacheableCursor
+@JsonKey(name: 'messages') List<ChannelMessage> messages,@JsonKey(name: 'next_cursor') String? nextCursor,@JsonKey(name: 'prev_cursor') String? prevCursor,@JsonKey(name: 'cacheable_cursor') String? cacheableCursor
 });
 
 
@@ -358,10 +358,10 @@ class _$ChannelMessageListCopyWithImpl<$Res>
 
 /// Create a copy of ChannelMessageList
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? messages = freezed,Object? nextCursor = freezed,Object? prevCursor = freezed,Object? cacheableCursor = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? messages = null,Object? nextCursor = freezed,Object? prevCursor = freezed,Object? cacheableCursor = freezed,}) {
   return _then(_self.copyWith(
-messages: freezed == messages ? _self.messages : messages // ignore: cast_nullable_to_non_nullable
-as List<ChannelMessage>?,nextCursor: freezed == nextCursor ? _self.nextCursor : nextCursor // ignore: cast_nullable_to_non_nullable
+messages: null == messages ? _self.messages : messages // ignore: cast_nullable_to_non_nullable
+as List<ChannelMessage>,nextCursor: freezed == nextCursor ? _self.nextCursor : nextCursor // ignore: cast_nullable_to_non_nullable
 as String?,prevCursor: freezed == prevCursor ? _self.prevCursor : prevCursor // ignore: cast_nullable_to_non_nullable
 as String?,cacheableCursor: freezed == cacheableCursor ? _self.cacheableCursor : cacheableCursor // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -446,7 +446,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'messages')  List<ChannelMessage>? messages, @JsonKey(name: 'next_cursor')  String? nextCursor, @JsonKey(name: 'prev_cursor')  String? prevCursor, @JsonKey(name: 'cacheable_cursor')  String? cacheableCursor)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'messages')  List<ChannelMessage> messages, @JsonKey(name: 'next_cursor')  String? nextCursor, @JsonKey(name: 'prev_cursor')  String? prevCursor, @JsonKey(name: 'cacheable_cursor')  String? cacheableCursor)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ChannelMessageList() when $default != null:
 return $default(_that.messages,_that.nextCursor,_that.prevCursor,_that.cacheableCursor);case _:
@@ -467,7 +467,7 @@ return $default(_that.messages,_that.nextCursor,_that.prevCursor,_that.cacheable
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'messages')  List<ChannelMessage>? messages, @JsonKey(name: 'next_cursor')  String? nextCursor, @JsonKey(name: 'prev_cursor')  String? prevCursor, @JsonKey(name: 'cacheable_cursor')  String? cacheableCursor)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'messages')  List<ChannelMessage> messages, @JsonKey(name: 'next_cursor')  String? nextCursor, @JsonKey(name: 'prev_cursor')  String? prevCursor, @JsonKey(name: 'cacheable_cursor')  String? cacheableCursor)  $default,) {final _that = this;
 switch (_that) {
 case _ChannelMessageList():
 return $default(_that.messages,_that.nextCursor,_that.prevCursor,_that.cacheableCursor);}
@@ -484,7 +484,7 @@ return $default(_that.messages,_that.nextCursor,_that.prevCursor,_that.cacheable
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'messages')  List<ChannelMessage>? messages, @JsonKey(name: 'next_cursor')  String? nextCursor, @JsonKey(name: 'prev_cursor')  String? prevCursor, @JsonKey(name: 'cacheable_cursor')  String? cacheableCursor)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'messages')  List<ChannelMessage> messages, @JsonKey(name: 'next_cursor')  String? nextCursor, @JsonKey(name: 'prev_cursor')  String? prevCursor, @JsonKey(name: 'cacheable_cursor')  String? cacheableCursor)?  $default,) {final _that = this;
 switch (_that) {
 case _ChannelMessageList() when $default != null:
 return $default(_that.messages,_that.nextCursor,_that.prevCursor,_that.cacheableCursor);case _:
@@ -499,16 +499,14 @@ return $default(_that.messages,_that.nextCursor,_that.prevCursor,_that.cacheable
 @JsonSerializable()
 
 class _ChannelMessageList extends ChannelMessageList {
-  const _ChannelMessageList({@JsonKey(name: 'messages') required final  List<ChannelMessage>? messages, @JsonKey(name: 'next_cursor') required this.nextCursor, @JsonKey(name: 'prev_cursor') required this.prevCursor, @JsonKey(name: 'cacheable_cursor') required this.cacheableCursor}): _messages = messages,super._();
+  const _ChannelMessageList({@JsonKey(name: 'messages') final  List<ChannelMessage> messages = const <ChannelMessage>[], @JsonKey(name: 'next_cursor') required this.nextCursor, @JsonKey(name: 'prev_cursor') required this.prevCursor, @JsonKey(name: 'cacheable_cursor') required this.cacheableCursor}): _messages = messages,super._();
   factory _ChannelMessageList.fromJson(Map<String, dynamic> json) => _$ChannelMessageListFromJson(json);
 
- final  List<ChannelMessage>? _messages;
-@override@JsonKey(name: 'messages') List<ChannelMessage>? get messages {
-  final value = _messages;
-  if (value == null) return null;
+ final  List<ChannelMessage> _messages;
+@override@JsonKey(name: 'messages') List<ChannelMessage> get messages {
   if (_messages is EqualUnmodifiableListView) return _messages;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
+  return EqualUnmodifiableListView(_messages);
 }
 
 @override@JsonKey(name: 'next_cursor') final  String? nextCursor;
@@ -548,7 +546,7 @@ abstract mixin class _$ChannelMessageListCopyWith<$Res> implements $ChannelMessa
   factory _$ChannelMessageListCopyWith(_ChannelMessageList value, $Res Function(_ChannelMessageList) _then) = __$ChannelMessageListCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'messages') List<ChannelMessage>? messages,@JsonKey(name: 'next_cursor') String? nextCursor,@JsonKey(name: 'prev_cursor') String? prevCursor,@JsonKey(name: 'cacheable_cursor') String? cacheableCursor
+@JsonKey(name: 'messages') List<ChannelMessage> messages,@JsonKey(name: 'next_cursor') String? nextCursor,@JsonKey(name: 'prev_cursor') String? prevCursor,@JsonKey(name: 'cacheable_cursor') String? cacheableCursor
 });
 
 
@@ -565,10 +563,10 @@ class __$ChannelMessageListCopyWithImpl<$Res>
 
 /// Create a copy of ChannelMessageList
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? messages = freezed,Object? nextCursor = freezed,Object? prevCursor = freezed,Object? cacheableCursor = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? messages = null,Object? nextCursor = freezed,Object? prevCursor = freezed,Object? cacheableCursor = freezed,}) {
   return _then(_ChannelMessageList(
-messages: freezed == messages ? _self._messages : messages // ignore: cast_nullable_to_non_nullable
-as List<ChannelMessage>?,nextCursor: freezed == nextCursor ? _self.nextCursor : nextCursor // ignore: cast_nullable_to_non_nullable
+messages: null == messages ? _self._messages : messages // ignore: cast_nullable_to_non_nullable
+as List<ChannelMessage>,nextCursor: freezed == nextCursor ? _self.nextCursor : nextCursor // ignore: cast_nullable_to_non_nullable
 as String?,prevCursor: freezed == prevCursor ? _self.prevCursor : prevCursor // ignore: cast_nullable_to_non_nullable
 as String?,cacheableCursor: freezed == cacheableCursor ? _self.cacheableCursor : cacheableCursor // ignore: cast_nullable_to_non_nullable
 as String?,

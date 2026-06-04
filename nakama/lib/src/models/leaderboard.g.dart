@@ -9,12 +9,16 @@ part of 'leaderboard.dart';
 _LeaderboardRecordList _$LeaderboardRecordListFromJson(
   Map<String, dynamic> json,
 ) => _LeaderboardRecordList(
-  records: (json['records'] as List<dynamic>?)
-      ?.map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  ownerRecords: (json['owner_records'] as List<dynamic>?)
-      ?.map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
-      .toList(),
+  records:
+      (json['records'] as List<dynamic>?)
+          ?.map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const <LeaderboardRecord>[],
+  ownerRecords:
+      (json['owner_records'] as List<dynamic>?)
+          ?.map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const <LeaderboardRecord>[],
   nextCursor: json['next_cursor'] as String?,
   prevCursor: json['prev_cursor'] as String?,
 );
@@ -33,9 +37,9 @@ _LeaderboardRecord _$LeaderboardRecordFromJson(Map<String, dynamic> json) =>
       leaderboardId: json['leaderboard_id'] as String?,
       ownerId: json['owner_id'] as String?,
       username: json['username'] as String?,
-      score: (json['score'] as num?)?.toInt(),
-      subscore: (json['subscore'] as num?)?.toInt(),
-      numScore: (json['num_score'] as num?)?.toInt(),
+      score: PlatformNormalizer.normalizeInt(json['score']),
+      subscore: PlatformNormalizer.normalizeInt(json['subscore']),
+      numScore: PlatformNormalizer.normalizeInt(json['num_score']),
       metadata: json['metadata'] as String?,
       createTime: json['create_time'] == null
           ? null
@@ -46,8 +50,8 @@ _LeaderboardRecord _$LeaderboardRecordFromJson(Map<String, dynamic> json) =>
       expiryTime: json['expiry_time'] == null
           ? null
           : DateTime.parse(json['expiry_time'] as String),
-      rank: (json['rank'] as num?)?.toInt(),
-      maxNumScore: (json['max_num_score'] as num?)?.toInt(),
+      rank: PlatformNormalizer.normalizeInt(json['rank']),
+      maxNumScore: PlatformNormalizer.normalizeInt(json['max_num_score']),
     );
 
 Map<String, dynamic> _$LeaderboardRecordToJson(_LeaderboardRecord instance) =>

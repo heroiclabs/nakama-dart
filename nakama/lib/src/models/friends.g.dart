@@ -8,9 +8,11 @@ part of 'friends.dart';
 
 _FriendsList _$FriendsListFromJson(Map<String, dynamic> json) => _FriendsList(
   cursor: json['cursor'] as String?,
-  friends: (json['friends'] as List<dynamic>?)
-      ?.map((e) => Friend.fromJson(e as Map<String, dynamic>))
-      .toList(),
+  friends:
+      (json['friends'] as List<dynamic>?)
+          ?.map((e) => Friend.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const <Friend>[],
 );
 
 Map<String, dynamic> _$FriendsListToJson(_FriendsList instance) =>
