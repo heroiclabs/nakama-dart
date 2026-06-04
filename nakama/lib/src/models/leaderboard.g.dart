@@ -33,7 +33,7 @@ _LeaderboardRecord _$LeaderboardRecordFromJson(Map<String, dynamic> json) =>
       leaderboardId: json['leaderboard_id'] as String?,
       ownerId: json['owner_id'] as String?,
       username: json['username'] as String?,
-      score: json['score'] as String?,
+      score: (json['score'] as num?)?.toInt(),
       subscore: (json['subscore'] as num?)?.toInt(),
       numScore: (json['num_score'] as num?)?.toInt(),
       metadata: json['metadata'] as String?,
@@ -46,7 +46,7 @@ _LeaderboardRecord _$LeaderboardRecordFromJson(Map<String, dynamic> json) =>
       expiryTime: json['expiry_time'] == null
           ? null
           : DateTime.parse(json['expiry_time'] as String),
-      rank: json['rank'] as String?,
+      rank: (json['rank'] as num?)?.toInt(),
       maxNumScore: (json['max_num_score'] as num?)?.toInt(),
     );
 

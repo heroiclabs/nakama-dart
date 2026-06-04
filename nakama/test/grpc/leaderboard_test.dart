@@ -71,7 +71,7 @@ void main() {
         );
 
         expect(ourRecord.leaderboardId, equals(writtenRecord.leaderboardId));
-        expect(ourRecord.score, equals('100'));
+        expect(ourRecord.score, equals(100));
         expect(ourRecord.ownerId, equals(session.userId));
         expect(ourRecord.username, isNotNull);
       });
@@ -125,7 +125,7 @@ void main() {
         final result = await client.writeLeaderboardRecord(
             session: session, leaderboardName: leaderboardName, score: 0);
 
-        expect(result.score, equals('0'));
+        expect(result.score, equals(0));
         expect(result.ownerId, equals(session.userId));
       });
     });
@@ -149,7 +149,7 @@ void main() {
         final ourRecord = result.records!.firstWhere(
           (record) => record.ownerId == session.userId,
         );
-        expect(ourRecord.score, equals('500'));
+        expect(ourRecord.score, equals(500));
       });
 
       test('should handle limit parameter for records around owner', () async {

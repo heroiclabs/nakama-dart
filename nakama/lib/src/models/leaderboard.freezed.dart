@@ -297,7 +297,7 @@ as String?,
 /// @nodoc
 mixin _$LeaderboardRecord {
 
-@JsonKey(name: 'leaderboard_id') String? get leaderboardId;@JsonKey(name: 'owner_id') String? get ownerId;@JsonKey(name: 'username') String? get username;@JsonKey(name: 'score') String? get score;@JsonKey(name: 'subscore') int? get subscore;@JsonKey(name: 'num_score') int? get numScore;@JsonKey(name: 'metadata') String? get metadata;@JsonKey(name: 'create_time') DateTime? get createTime;@JsonKey(name: 'update_time') DateTime? get updateTime;@JsonKey(name: 'expiry_time') DateTime? get expiryTime;@JsonKey(name: 'rank') String? get rank;@JsonKey(name: 'max_num_score') int? get maxNumScore;
+@JsonKey(name: 'leaderboard_id') String? get leaderboardId;@JsonKey(name: 'owner_id') String? get ownerId;@JsonKey(name: 'username') String? get username;@JsonKey(name: 'score') int? get score;@JsonKey(name: 'subscore') int? get subscore;@JsonKey(name: 'num_score') int? get numScore;@JsonKey(name: 'metadata') String? get metadata;@JsonKey(name: 'create_time') DateTime? get createTime;@JsonKey(name: 'update_time') DateTime? get updateTime;@JsonKey(name: 'expiry_time') DateTime? get expiryTime;@JsonKey(name: 'rank') int? get rank;@JsonKey(name: 'max_num_score') int? get maxNumScore;
 /// Create a copy of LeaderboardRecord
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -330,7 +330,7 @@ abstract mixin class $LeaderboardRecordCopyWith<$Res>  {
   factory $LeaderboardRecordCopyWith(LeaderboardRecord value, $Res Function(LeaderboardRecord) _then) = _$LeaderboardRecordCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'leaderboard_id') String? leaderboardId,@JsonKey(name: 'owner_id') String? ownerId,@JsonKey(name: 'username') String? username,@JsonKey(name: 'score') String? score,@JsonKey(name: 'subscore') int? subscore,@JsonKey(name: 'num_score') int? numScore,@JsonKey(name: 'metadata') String? metadata,@JsonKey(name: 'create_time') DateTime? createTime,@JsonKey(name: 'update_time') DateTime? updateTime,@JsonKey(name: 'expiry_time') DateTime? expiryTime,@JsonKey(name: 'rank') String? rank,@JsonKey(name: 'max_num_score') int? maxNumScore
+@JsonKey(name: 'leaderboard_id') String? leaderboardId,@JsonKey(name: 'owner_id') String? ownerId,@JsonKey(name: 'username') String? username,@JsonKey(name: 'score') int? score,@JsonKey(name: 'subscore') int? subscore,@JsonKey(name: 'num_score') int? numScore,@JsonKey(name: 'metadata') String? metadata,@JsonKey(name: 'create_time') DateTime? createTime,@JsonKey(name: 'update_time') DateTime? updateTime,@JsonKey(name: 'expiry_time') DateTime? expiryTime,@JsonKey(name: 'rank') int? rank,@JsonKey(name: 'max_num_score') int? maxNumScore
 });
 
 
@@ -353,14 +353,14 @@ leaderboardId: freezed == leaderboardId ? _self.leaderboardId : leaderboardId //
 as String?,ownerId: freezed == ownerId ? _self.ownerId : ownerId // ignore: cast_nullable_to_non_nullable
 as String?,username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String?,score: freezed == score ? _self.score : score // ignore: cast_nullable_to_non_nullable
-as String?,subscore: freezed == subscore ? _self.subscore : subscore // ignore: cast_nullable_to_non_nullable
+as int?,subscore: freezed == subscore ? _self.subscore : subscore // ignore: cast_nullable_to_non_nullable
 as int?,numScore: freezed == numScore ? _self.numScore : numScore // ignore: cast_nullable_to_non_nullable
 as int?,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
 as String?,createTime: freezed == createTime ? _self.createTime : createTime // ignore: cast_nullable_to_non_nullable
 as DateTime?,updateTime: freezed == updateTime ? _self.updateTime : updateTime // ignore: cast_nullable_to_non_nullable
 as DateTime?,expiryTime: freezed == expiryTime ? _self.expiryTime : expiryTime // ignore: cast_nullable_to_non_nullable
 as DateTime?,rank: freezed == rank ? _self.rank : rank // ignore: cast_nullable_to_non_nullable
-as String?,maxNumScore: freezed == maxNumScore ? _self.maxNumScore : maxNumScore // ignore: cast_nullable_to_non_nullable
+as int?,maxNumScore: freezed == maxNumScore ? _self.maxNumScore : maxNumScore // ignore: cast_nullable_to_non_nullable
 as int?,
   ));
 }
@@ -443,7 +443,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'leaderboard_id')  String? leaderboardId, @JsonKey(name: 'owner_id')  String? ownerId, @JsonKey(name: 'username')  String? username, @JsonKey(name: 'score')  String? score, @JsonKey(name: 'subscore')  int? subscore, @JsonKey(name: 'num_score')  int? numScore, @JsonKey(name: 'metadata')  String? metadata, @JsonKey(name: 'create_time')  DateTime? createTime, @JsonKey(name: 'update_time')  DateTime? updateTime, @JsonKey(name: 'expiry_time')  DateTime? expiryTime, @JsonKey(name: 'rank')  String? rank, @JsonKey(name: 'max_num_score')  int? maxNumScore)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'leaderboard_id')  String? leaderboardId, @JsonKey(name: 'owner_id')  String? ownerId, @JsonKey(name: 'username')  String? username, @JsonKey(name: 'score')  int? score, @JsonKey(name: 'subscore')  int? subscore, @JsonKey(name: 'num_score')  int? numScore, @JsonKey(name: 'metadata')  String? metadata, @JsonKey(name: 'create_time')  DateTime? createTime, @JsonKey(name: 'update_time')  DateTime? updateTime, @JsonKey(name: 'expiry_time')  DateTime? expiryTime, @JsonKey(name: 'rank')  int? rank, @JsonKey(name: 'max_num_score')  int? maxNumScore)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _LeaderboardRecord() when $default != null:
 return $default(_that.leaderboardId,_that.ownerId,_that.username,_that.score,_that.subscore,_that.numScore,_that.metadata,_that.createTime,_that.updateTime,_that.expiryTime,_that.rank,_that.maxNumScore);case _:
@@ -464,7 +464,7 @@ return $default(_that.leaderboardId,_that.ownerId,_that.username,_that.score,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'leaderboard_id')  String? leaderboardId, @JsonKey(name: 'owner_id')  String? ownerId, @JsonKey(name: 'username')  String? username, @JsonKey(name: 'score')  String? score, @JsonKey(name: 'subscore')  int? subscore, @JsonKey(name: 'num_score')  int? numScore, @JsonKey(name: 'metadata')  String? metadata, @JsonKey(name: 'create_time')  DateTime? createTime, @JsonKey(name: 'update_time')  DateTime? updateTime, @JsonKey(name: 'expiry_time')  DateTime? expiryTime, @JsonKey(name: 'rank')  String? rank, @JsonKey(name: 'max_num_score')  int? maxNumScore)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'leaderboard_id')  String? leaderboardId, @JsonKey(name: 'owner_id')  String? ownerId, @JsonKey(name: 'username')  String? username, @JsonKey(name: 'score')  int? score, @JsonKey(name: 'subscore')  int? subscore, @JsonKey(name: 'num_score')  int? numScore, @JsonKey(name: 'metadata')  String? metadata, @JsonKey(name: 'create_time')  DateTime? createTime, @JsonKey(name: 'update_time')  DateTime? updateTime, @JsonKey(name: 'expiry_time')  DateTime? expiryTime, @JsonKey(name: 'rank')  int? rank, @JsonKey(name: 'max_num_score')  int? maxNumScore)  $default,) {final _that = this;
 switch (_that) {
 case _LeaderboardRecord():
 return $default(_that.leaderboardId,_that.ownerId,_that.username,_that.score,_that.subscore,_that.numScore,_that.metadata,_that.createTime,_that.updateTime,_that.expiryTime,_that.rank,_that.maxNumScore);}
@@ -481,7 +481,7 @@ return $default(_that.leaderboardId,_that.ownerId,_that.username,_that.score,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'leaderboard_id')  String? leaderboardId, @JsonKey(name: 'owner_id')  String? ownerId, @JsonKey(name: 'username')  String? username, @JsonKey(name: 'score')  String? score, @JsonKey(name: 'subscore')  int? subscore, @JsonKey(name: 'num_score')  int? numScore, @JsonKey(name: 'metadata')  String? metadata, @JsonKey(name: 'create_time')  DateTime? createTime, @JsonKey(name: 'update_time')  DateTime? updateTime, @JsonKey(name: 'expiry_time')  DateTime? expiryTime, @JsonKey(name: 'rank')  String? rank, @JsonKey(name: 'max_num_score')  int? maxNumScore)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'leaderboard_id')  String? leaderboardId, @JsonKey(name: 'owner_id')  String? ownerId, @JsonKey(name: 'username')  String? username, @JsonKey(name: 'score')  int? score, @JsonKey(name: 'subscore')  int? subscore, @JsonKey(name: 'num_score')  int? numScore, @JsonKey(name: 'metadata')  String? metadata, @JsonKey(name: 'create_time')  DateTime? createTime, @JsonKey(name: 'update_time')  DateTime? updateTime, @JsonKey(name: 'expiry_time')  DateTime? expiryTime, @JsonKey(name: 'rank')  int? rank, @JsonKey(name: 'max_num_score')  int? maxNumScore)?  $default,) {final _that = this;
 switch (_that) {
 case _LeaderboardRecord() when $default != null:
 return $default(_that.leaderboardId,_that.ownerId,_that.username,_that.score,_that.subscore,_that.numScore,_that.metadata,_that.createTime,_that.updateTime,_that.expiryTime,_that.rank,_that.maxNumScore);case _:
@@ -502,14 +502,14 @@ class _LeaderboardRecord extends LeaderboardRecord {
 @override@JsonKey(name: 'leaderboard_id') final  String? leaderboardId;
 @override@JsonKey(name: 'owner_id') final  String? ownerId;
 @override@JsonKey(name: 'username') final  String? username;
-@override@JsonKey(name: 'score') final  String? score;
+@override@JsonKey(name: 'score') final  int? score;
 @override@JsonKey(name: 'subscore') final  int? subscore;
 @override@JsonKey(name: 'num_score') final  int? numScore;
 @override@JsonKey(name: 'metadata') final  String? metadata;
 @override@JsonKey(name: 'create_time') final  DateTime? createTime;
 @override@JsonKey(name: 'update_time') final  DateTime? updateTime;
 @override@JsonKey(name: 'expiry_time') final  DateTime? expiryTime;
-@override@JsonKey(name: 'rank') final  String? rank;
+@override@JsonKey(name: 'rank') final  int? rank;
 @override@JsonKey(name: 'max_num_score') final  int? maxNumScore;
 
 /// Create a copy of LeaderboardRecord
@@ -545,7 +545,7 @@ abstract mixin class _$LeaderboardRecordCopyWith<$Res> implements $LeaderboardRe
   factory _$LeaderboardRecordCopyWith(_LeaderboardRecord value, $Res Function(_LeaderboardRecord) _then) = __$LeaderboardRecordCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'leaderboard_id') String? leaderboardId,@JsonKey(name: 'owner_id') String? ownerId,@JsonKey(name: 'username') String? username,@JsonKey(name: 'score') String? score,@JsonKey(name: 'subscore') int? subscore,@JsonKey(name: 'num_score') int? numScore,@JsonKey(name: 'metadata') String? metadata,@JsonKey(name: 'create_time') DateTime? createTime,@JsonKey(name: 'update_time') DateTime? updateTime,@JsonKey(name: 'expiry_time') DateTime? expiryTime,@JsonKey(name: 'rank') String? rank,@JsonKey(name: 'max_num_score') int? maxNumScore
+@JsonKey(name: 'leaderboard_id') String? leaderboardId,@JsonKey(name: 'owner_id') String? ownerId,@JsonKey(name: 'username') String? username,@JsonKey(name: 'score') int? score,@JsonKey(name: 'subscore') int? subscore,@JsonKey(name: 'num_score') int? numScore,@JsonKey(name: 'metadata') String? metadata,@JsonKey(name: 'create_time') DateTime? createTime,@JsonKey(name: 'update_time') DateTime? updateTime,@JsonKey(name: 'expiry_time') DateTime? expiryTime,@JsonKey(name: 'rank') int? rank,@JsonKey(name: 'max_num_score') int? maxNumScore
 });
 
 
@@ -568,14 +568,14 @@ leaderboardId: freezed == leaderboardId ? _self.leaderboardId : leaderboardId //
 as String?,ownerId: freezed == ownerId ? _self.ownerId : ownerId // ignore: cast_nullable_to_non_nullable
 as String?,username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String?,score: freezed == score ? _self.score : score // ignore: cast_nullable_to_non_nullable
-as String?,subscore: freezed == subscore ? _self.subscore : subscore // ignore: cast_nullable_to_non_nullable
+as int?,subscore: freezed == subscore ? _self.subscore : subscore // ignore: cast_nullable_to_non_nullable
 as int?,numScore: freezed == numScore ? _self.numScore : numScore // ignore: cast_nullable_to_non_nullable
 as int?,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
 as String?,createTime: freezed == createTime ? _self.createTime : createTime // ignore: cast_nullable_to_non_nullable
 as DateTime?,updateTime: freezed == updateTime ? _self.updateTime : updateTime // ignore: cast_nullable_to_non_nullable
 as DateTime?,expiryTime: freezed == expiryTime ? _self.expiryTime : expiryTime // ignore: cast_nullable_to_non_nullable
 as DateTime?,rank: freezed == rank ? _self.rank : rank // ignore: cast_nullable_to_non_nullable
-as String?,maxNumScore: freezed == maxNumScore ? _self.maxNumScore : maxNumScore // ignore: cast_nullable_to_non_nullable
+as int?,maxNumScore: freezed == maxNumScore ? _self.maxNumScore : maxNumScore // ignore: cast_nullable_to_non_nullable
 as int?,
   ));
 }
