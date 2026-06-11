@@ -51,15 +51,15 @@ sealed class LeaderboardRecord with _$LeaderboardRecord {
     @JsonKey(name: 'leaderboard_id') String? leaderboardId,
     @JsonKey(name: 'owner_id') String? ownerId,
     @JsonKey(name: 'username') String? username,
-    @JsonKey(name: 'score', fromJson: PlatformNormalizer.normalizeInt) int? score,
-    @JsonKey(name: 'subscore', fromJson: PlatformNormalizer.normalizeInt) int? subscore,
-    @JsonKey(name: 'num_score', fromJson: PlatformNormalizer.normalizeInt) int? numScore,
+    @JsonKey(name: 'score', fromJson: PlatformNormalizer.normalizeInt) @Default(0) int score,
+    @JsonKey(name: 'subscore', fromJson: PlatformNormalizer.normalizeInt) @Default(0) int subscore,
+    @JsonKey(name: 'num_score', fromJson: PlatformNormalizer.normalizeInt) @Default(0) int numScore,
     @JsonKey(name: 'metadata') String? metadata,
     @JsonKey(name: 'create_time') DateTime? createTime,
     @JsonKey(name: 'update_time') DateTime? updateTime,
     @JsonKey(name: 'expiry_time') DateTime? expiryTime,
-    @JsonKey(name: 'rank', fromJson: PlatformNormalizer.normalizeInt) int? rank,
-    @JsonKey(name: 'max_num_score', fromJson: PlatformNormalizer.normalizeInt) int? maxNumScore,
+    @JsonKey(name: 'rank', fromJson: PlatformNormalizer.normalizeInt) @Default(0) int rank,
+    @JsonKey(name: 'max_num_score', fromJson: PlatformNormalizer.normalizeInt) @Default(0) int maxNumScore,
   }) = _LeaderboardRecord;
 
   factory LeaderboardRecord.fromJson(Map<String, Object?> json) => _$LeaderboardRecordFromJson(json);

@@ -114,7 +114,7 @@ void main() {
         expect(result.ownerId, equals(session.userId));
         expect(result.leaderboardId, equals(leaderboardName));
         expect(result.username, isNotNull);
-        expect(result.score, isNotNull);
+        expect(result.score, equals(150));
       });
 
       test('should handle zero score', () async {

@@ -32,16 +32,4 @@ class PlatformNormalizer {
     if (value is String) return int.tryParse(value);
     return null;
   }
-
-  /// Parses a JSON array into a typed list, returning an empty list when the
-  /// value is null. Handles proto3's tendency to omit empty arrays entirely.
-  static List<T> parseList<T>(
-    dynamic value,
-    T Function(Map<String, dynamic>) fromJson,
-  ) {
-    if (value == null) return const [];
-    return (value as List<dynamic>)
-        .map((e) => fromJson(e as Map<String, dynamic>))
-        .toList();
-  }
 }

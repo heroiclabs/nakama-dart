@@ -37,9 +37,15 @@ _LeaderboardRecord _$LeaderboardRecordFromJson(Map<String, dynamic> json) =>
       leaderboardId: json['leaderboard_id'] as String?,
       ownerId: json['owner_id'] as String?,
       username: json['username'] as String?,
-      score: PlatformNormalizer.normalizeInt(json['score']),
-      subscore: PlatformNormalizer.normalizeInt(json['subscore']),
-      numScore: PlatformNormalizer.normalizeInt(json['num_score']),
+      score: json['score'] == null
+          ? 0
+          : PlatformNormalizer.normalizeInt(json['score']),
+      subscore: json['subscore'] == null
+          ? 0
+          : PlatformNormalizer.normalizeInt(json['subscore']),
+      numScore: json['num_score'] == null
+          ? 0
+          : PlatformNormalizer.normalizeInt(json['num_score']),
       metadata: json['metadata'] as String?,
       createTime: json['create_time'] == null
           ? null
@@ -50,8 +56,12 @@ _LeaderboardRecord _$LeaderboardRecordFromJson(Map<String, dynamic> json) =>
       expiryTime: json['expiry_time'] == null
           ? null
           : DateTime.parse(json['expiry_time'] as String),
-      rank: PlatformNormalizer.normalizeInt(json['rank']),
-      maxNumScore: PlatformNormalizer.normalizeInt(json['max_num_score']),
+      rank: json['rank'] == null
+          ? 0
+          : PlatformNormalizer.normalizeInt(json['rank']),
+      maxNumScore: json['max_num_score'] == null
+          ? 0
+          : PlatformNormalizer.normalizeInt(json['max_num_score']),
     );
 
 Map<String, dynamic> _$LeaderboardRecordToJson(_LeaderboardRecord instance) =>
