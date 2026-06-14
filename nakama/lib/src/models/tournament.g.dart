@@ -58,9 +58,11 @@ Map<String, dynamic> _$TournamentToJson(_Tournament instance) =>
 _TournamentList _$TournamentListFromJson(Map<String, dynamic> json) =>
     _TournamentList(
       cursor: json['cursor'] as String?,
-      tournaments: (json['tournaments'] as List<dynamic>)
-          .map((e) => Tournament.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      tournaments:
+          (json['tournaments'] as List<dynamic>?)
+              ?.map((e) => Tournament.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const <Tournament>[],
     );
 
 Map<String, dynamic> _$TournamentListToJson(_TournamentList instance) =>
@@ -72,12 +74,16 @@ Map<String, dynamic> _$TournamentListToJson(_TournamentList instance) =>
 _TournamentRecordList _$TournamentRecordListFromJson(
   Map<String, dynamic> json,
 ) => _TournamentRecordList(
-  records: (json['records'] as List<dynamic>)
-      .map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  ownerRecords: (json['owner_records'] as List<dynamic>)
-      .map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
-      .toList(),
+  records:
+      (json['records'] as List<dynamic>?)
+          ?.map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const <LeaderboardRecord>[],
+  ownerRecords:
+      (json['owner_records'] as List<dynamic>?)
+          ?.map((e) => LeaderboardRecord.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const <LeaderboardRecord>[],
   nextCursor: json['next_cursor'] as String?,
   previousCursor: json['previous_cursor'] as String?,
 );

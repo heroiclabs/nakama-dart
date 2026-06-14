@@ -61,7 +61,7 @@ sealed class TournamentList with _$TournamentList {
 
   const factory TournamentList({
     String? cursor,
-    required List<Tournament> tournaments,
+    @Default(<Tournament>[]) List<Tournament> tournaments,
   }) = _TournamentList;
 
   factory TournamentList.fromJson(Map<String, Object?> json) => _$TournamentListFromJson(json);
@@ -77,8 +77,8 @@ sealed class TournamentRecordList with _$TournamentRecordList {
   const TournamentRecordList._();
 
   const factory TournamentRecordList({
-    @JsonKey(name: 'records') required List<LeaderboardRecord> records,
-    @JsonKey(name: 'owner_records') required List<LeaderboardRecord> ownerRecords,
+    @JsonKey(name: 'records') @Default(<LeaderboardRecord>[]) List<LeaderboardRecord> records,
+    @JsonKey(name: 'owner_records') @Default(<LeaderboardRecord>[]) List<LeaderboardRecord> ownerRecords,
     @JsonKey(name: 'next_cursor') String? nextCursor,
     @JsonKey(name: 'previous_cursor') String? previousCursor,
   }) = _TournamentRecordList;

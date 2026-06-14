@@ -11,4 +11,25 @@ class PlatformNormalizer {
     }
     return value;
   }
+
+  /// Parses an int from JSON, handling proto3's tendency to encode int64 as
+  /// strings and to omit zero-value fields entirely.
+  /// Returns 0 when the value is null (proto3 omits default values).
+  static int normalizeInt(dynamic value) {
+    if (value == null) return 0;
+    if (value is int) return value;
+    if (value is num) return value.toInt();
+    if (value is String) return int.tryParse(value) ?? 0;
+    return 0;
+  }
+
+  /// Parses a nullable int from JSON, handling proto3's string-encoded int64.
+  /// Returns null when the value is null.
+  static int? normalizeNullableInt(dynamic value) {
+    if (value == null) return null;
+    if (value is int) return value;
+    if (value is num) return value.toInt();
+    if (value is String) return int.tryParse(value);
+    return null;
+  }
 }

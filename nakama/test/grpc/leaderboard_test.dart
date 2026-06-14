@@ -63,15 +63,15 @@ void main() {
 
         expect(result, isA<LeaderboardRecordList>());
         expect(result.records, isNotEmpty);
-        expect(result.records!.length, greaterThanOrEqualTo(1));
+        expect(result.records.length, greaterThanOrEqualTo(1));
 
         // Find our record
-        final ourRecord = result.records!.firstWhere(
+        final ourRecord = result.records.firstWhere(
           (record) => record.ownerId == session.userId,
         );
 
         expect(ourRecord.leaderboardId, equals(writtenRecord.leaderboardId));
-        expect(ourRecord.score, equals('100'));
+        expect(ourRecord.score, equals(100));
         expect(ourRecord.ownerId, equals(session.userId));
         expect(ourRecord.username, isNotNull);
       });
@@ -125,7 +125,7 @@ void main() {
         final result = await client.writeLeaderboardRecord(
             session: session, leaderboardName: leaderboardName, score: 0);
 
-        expect(result.score, equals('0'));
+        expect(result.score, equals(0));
         expect(result.ownerId, equals(session.userId));
       });
     });
@@ -146,10 +146,10 @@ void main() {
         expect(result.records, isNotEmpty);
 
         // Should contain our record
-        final ourRecord = result.records!.firstWhere(
+        final ourRecord = result.records.firstWhere(
           (record) => record.ownerId == session.userId,
         );
-        expect(ourRecord.score, equals('500'));
+        expect(ourRecord.score, equals(500));
       });
 
       test('should handle limit parameter for records around owner', () async {
@@ -193,7 +193,7 @@ void main() {
           session: session,
           leaderboardName: leaderboardName,
         );
-        expect(beforeDelete.records!.any((r) => r.ownerId == session.userId),
+        expect(beforeDelete.records.any((r) => r.ownerId == session.userId),
             isTrue);
 
         // Delete the record
@@ -205,7 +205,7 @@ void main() {
           session: session,
           leaderboardName: leaderboardName,
         );
-        expect(afterDelete.records!.any((r) => r.ownerId == session.userId),
+        expect(afterDelete.records.any((r) => r.ownerId == session.userId),
             isFalse);
       });
     });

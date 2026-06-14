@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FriendsList {
 
- String? get cursor; List<Friend>? get friends;
+ String? get cursor; List<Friend> get friends;
 /// Create a copy of FriendsList
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $FriendsListCopyWith<$Res>  {
   factory $FriendsListCopyWith(FriendsList value, $Res Function(FriendsList) _then) = _$FriendsListCopyWithImpl;
 @useResult
 $Res call({
- String? cursor, List<Friend>? friends
+ String? cursor, List<Friend> friends
 });
 
 
@@ -65,11 +65,11 @@ class _$FriendsListCopyWithImpl<$Res>
 
 /// Create a copy of FriendsList
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? cursor = freezed,Object? friends = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? cursor = freezed,Object? friends = null,}) {
   return _then(_self.copyWith(
 cursor: freezed == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
-as String?,friends: freezed == friends ? _self.friends : friends // ignore: cast_nullable_to_non_nullable
-as List<Friend>?,
+as String?,friends: null == friends ? _self.friends : friends // ignore: cast_nullable_to_non_nullable
+as List<Friend>,
   ));
 }
 
@@ -151,7 +151,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? cursor,  List<Friend>? friends)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? cursor,  List<Friend> friends)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FriendsList() when $default != null:
 return $default(_that.cursor,_that.friends);case _:
@@ -172,7 +172,7 @@ return $default(_that.cursor,_that.friends);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? cursor,  List<Friend>? friends)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? cursor,  List<Friend> friends)  $default,) {final _that = this;
 switch (_that) {
 case _FriendsList():
 return $default(_that.cursor,_that.friends);}
@@ -189,7 +189,7 @@ return $default(_that.cursor,_that.friends);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? cursor,  List<Friend>? friends)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? cursor,  List<Friend> friends)?  $default,) {final _that = this;
 switch (_that) {
 case _FriendsList() when $default != null:
 return $default(_that.cursor,_that.friends);case _:
@@ -204,17 +204,15 @@ return $default(_that.cursor,_that.friends);case _:
 @JsonSerializable()
 
 class _FriendsList extends FriendsList {
-  const _FriendsList({this.cursor, required final  List<Friend>? friends}): _friends = friends,super._();
+  const _FriendsList({this.cursor, final  List<Friend> friends = const <Friend>[]}): _friends = friends,super._();
   factory _FriendsList.fromJson(Map<String, dynamic> json) => _$FriendsListFromJson(json);
 
 @override final  String? cursor;
- final  List<Friend>? _friends;
-@override List<Friend>? get friends {
-  final value = _friends;
-  if (value == null) return null;
+ final  List<Friend> _friends;
+@override@JsonKey() List<Friend> get friends {
   if (_friends is EqualUnmodifiableListView) return _friends;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
+  return EqualUnmodifiableListView(_friends);
 }
 
 
@@ -251,7 +249,7 @@ abstract mixin class _$FriendsListCopyWith<$Res> implements $FriendsListCopyWith
   factory _$FriendsListCopyWith(_FriendsList value, $Res Function(_FriendsList) _then) = __$FriendsListCopyWithImpl;
 @override @useResult
 $Res call({
- String? cursor, List<Friend>? friends
+ String? cursor, List<Friend> friends
 });
 
 
@@ -268,11 +266,11 @@ class __$FriendsListCopyWithImpl<$Res>
 
 /// Create a copy of FriendsList
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cursor = freezed,Object? friends = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? cursor = freezed,Object? friends = null,}) {
   return _then(_FriendsList(
 cursor: freezed == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
-as String?,friends: freezed == friends ? _self._friends : friends // ignore: cast_nullable_to_non_nullable
-as List<Friend>?,
+as String?,friends: null == friends ? _self._friends : friends // ignore: cast_nullable_to_non_nullable
+as List<Friend>,
   ));
 }
 

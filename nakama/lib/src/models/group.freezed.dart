@@ -305,7 +305,7 @@ as DateTime?,
 /// @nodoc
 mixin _$GroupList {
 
- String? get cursor; List<Group>? get groups;
+ String? get cursor; List<Group> get groups;
 /// Create a copy of GroupList
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -338,7 +338,7 @@ abstract mixin class $GroupListCopyWith<$Res>  {
   factory $GroupListCopyWith(GroupList value, $Res Function(GroupList) _then) = _$GroupListCopyWithImpl;
 @useResult
 $Res call({
- String? cursor, List<Group>? groups
+ String? cursor, List<Group> groups
 });
 
 
@@ -355,11 +355,11 @@ class _$GroupListCopyWithImpl<$Res>
 
 /// Create a copy of GroupList
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? cursor = freezed,Object? groups = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? cursor = freezed,Object? groups = null,}) {
   return _then(_self.copyWith(
 cursor: freezed == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
-as String?,groups: freezed == groups ? _self.groups : groups // ignore: cast_nullable_to_non_nullable
-as List<Group>?,
+as String?,groups: null == groups ? _self.groups : groups // ignore: cast_nullable_to_non_nullable
+as List<Group>,
   ));
 }
 
@@ -441,7 +441,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? cursor,  List<Group>? groups)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? cursor,  List<Group> groups)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _GroupList() when $default != null:
 return $default(_that.cursor,_that.groups);case _:
@@ -462,7 +462,7 @@ return $default(_that.cursor,_that.groups);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? cursor,  List<Group>? groups)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? cursor,  List<Group> groups)  $default,) {final _that = this;
 switch (_that) {
 case _GroupList():
 return $default(_that.cursor,_that.groups);}
@@ -479,7 +479,7 @@ return $default(_that.cursor,_that.groups);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? cursor,  List<Group>? groups)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? cursor,  List<Group> groups)?  $default,) {final _that = this;
 switch (_that) {
 case _GroupList() when $default != null:
 return $default(_that.cursor,_that.groups);case _:
@@ -494,17 +494,15 @@ return $default(_that.cursor,_that.groups);case _:
 @JsonSerializable()
 
 class _GroupList extends GroupList {
-  const _GroupList({this.cursor, required final  List<Group>? groups}): _groups = groups,super._();
+  const _GroupList({this.cursor, final  List<Group> groups = const <Group>[]}): _groups = groups,super._();
   factory _GroupList.fromJson(Map<String, dynamic> json) => _$GroupListFromJson(json);
 
 @override final  String? cursor;
- final  List<Group>? _groups;
-@override List<Group>? get groups {
-  final value = _groups;
-  if (value == null) return null;
+ final  List<Group> _groups;
+@override@JsonKey() List<Group> get groups {
   if (_groups is EqualUnmodifiableListView) return _groups;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
+  return EqualUnmodifiableListView(_groups);
 }
 
 
@@ -541,7 +539,7 @@ abstract mixin class _$GroupListCopyWith<$Res> implements $GroupListCopyWith<$Re
   factory _$GroupListCopyWith(_GroupList value, $Res Function(_GroupList) _then) = __$GroupListCopyWithImpl;
 @override @useResult
 $Res call({
- String? cursor, List<Group>? groups
+ String? cursor, List<Group> groups
 });
 
 
@@ -558,11 +556,11 @@ class __$GroupListCopyWithImpl<$Res>
 
 /// Create a copy of GroupList
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cursor = freezed,Object? groups = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? cursor = freezed,Object? groups = null,}) {
   return _then(_GroupList(
 cursor: freezed == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
-as String?,groups: freezed == groups ? _self._groups : groups // ignore: cast_nullable_to_non_nullable
-as List<Group>?,
+as String?,groups: null == groups ? _self._groups : groups // ignore: cast_nullable_to_non_nullable
+as List<Group>,
   ));
 }
 
@@ -573,7 +571,7 @@ as List<Group>?,
 /// @nodoc
 mixin _$UserGroupList {
 
- String? get cursor;@JsonKey(name: 'user_groups') List<UserGroup>? get userGroups;
+ String? get cursor;@JsonKey(name: 'user_groups') List<UserGroup> get userGroups;
 /// Create a copy of UserGroupList
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -606,7 +604,7 @@ abstract mixin class $UserGroupListCopyWith<$Res>  {
   factory $UserGroupListCopyWith(UserGroupList value, $Res Function(UserGroupList) _then) = _$UserGroupListCopyWithImpl;
 @useResult
 $Res call({
- String? cursor,@JsonKey(name: 'user_groups') List<UserGroup>? userGroups
+ String? cursor,@JsonKey(name: 'user_groups') List<UserGroup> userGroups
 });
 
 
@@ -623,11 +621,11 @@ class _$UserGroupListCopyWithImpl<$Res>
 
 /// Create a copy of UserGroupList
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? cursor = freezed,Object? userGroups = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? cursor = freezed,Object? userGroups = null,}) {
   return _then(_self.copyWith(
 cursor: freezed == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
-as String?,userGroups: freezed == userGroups ? _self.userGroups : userGroups // ignore: cast_nullable_to_non_nullable
-as List<UserGroup>?,
+as String?,userGroups: null == userGroups ? _self.userGroups : userGroups // ignore: cast_nullable_to_non_nullable
+as List<UserGroup>,
   ));
 }
 
@@ -709,7 +707,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? cursor, @JsonKey(name: 'user_groups')  List<UserGroup>? userGroups)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? cursor, @JsonKey(name: 'user_groups')  List<UserGroup> userGroups)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserGroupList() when $default != null:
 return $default(_that.cursor,_that.userGroups);case _:
@@ -730,7 +728,7 @@ return $default(_that.cursor,_that.userGroups);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? cursor, @JsonKey(name: 'user_groups')  List<UserGroup>? userGroups)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? cursor, @JsonKey(name: 'user_groups')  List<UserGroup> userGroups)  $default,) {final _that = this;
 switch (_that) {
 case _UserGroupList():
 return $default(_that.cursor,_that.userGroups);}
@@ -747,7 +745,7 @@ return $default(_that.cursor,_that.userGroups);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? cursor, @JsonKey(name: 'user_groups')  List<UserGroup>? userGroups)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? cursor, @JsonKey(name: 'user_groups')  List<UserGroup> userGroups)?  $default,) {final _that = this;
 switch (_that) {
 case _UserGroupList() when $default != null:
 return $default(_that.cursor,_that.userGroups);case _:
@@ -762,17 +760,15 @@ return $default(_that.cursor,_that.userGroups);case _:
 @JsonSerializable()
 
 class _UserGroupList extends UserGroupList {
-  const _UserGroupList({this.cursor, @JsonKey(name: 'user_groups') required final  List<UserGroup>? userGroups}): _userGroups = userGroups,super._();
+  const _UserGroupList({this.cursor, @JsonKey(name: 'user_groups') final  List<UserGroup> userGroups = const <UserGroup>[]}): _userGroups = userGroups,super._();
   factory _UserGroupList.fromJson(Map<String, dynamic> json) => _$UserGroupListFromJson(json);
 
 @override final  String? cursor;
- final  List<UserGroup>? _userGroups;
-@override@JsonKey(name: 'user_groups') List<UserGroup>? get userGroups {
-  final value = _userGroups;
-  if (value == null) return null;
+ final  List<UserGroup> _userGroups;
+@override@JsonKey(name: 'user_groups') List<UserGroup> get userGroups {
   if (_userGroups is EqualUnmodifiableListView) return _userGroups;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(value);
+  return EqualUnmodifiableListView(_userGroups);
 }
 
 
@@ -809,7 +805,7 @@ abstract mixin class _$UserGroupListCopyWith<$Res> implements $UserGroupListCopy
   factory _$UserGroupListCopyWith(_UserGroupList value, $Res Function(_UserGroupList) _then) = __$UserGroupListCopyWithImpl;
 @override @useResult
 $Res call({
- String? cursor,@JsonKey(name: 'user_groups') List<UserGroup>? userGroups
+ String? cursor,@JsonKey(name: 'user_groups') List<UserGroup> userGroups
 });
 
 
@@ -826,11 +822,11 @@ class __$UserGroupListCopyWithImpl<$Res>
 
 /// Create a copy of UserGroupList
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? cursor = freezed,Object? userGroups = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? cursor = freezed,Object? userGroups = null,}) {
   return _then(_UserGroupList(
 cursor: freezed == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
-as String?,userGroups: freezed == userGroups ? _self._userGroups : userGroups // ignore: cast_nullable_to_non_nullable
-as List<UserGroup>?,
+as String?,userGroups: null == userGroups ? _self._userGroups : userGroups // ignore: cast_nullable_to_non_nullable
+as List<UserGroup>,
   ));
 }
 
@@ -1308,7 +1304,7 @@ return $default(_that.cursor,_that.groupUsers);case _:
 @JsonSerializable()
 
 class _GroupUserList extends GroupUserList {
-  const _GroupUserList({this.cursor, @JsonKey(name: 'group_users') required final  List<GroupUser> groupUsers}): _groupUsers = groupUsers,super._();
+  const _GroupUserList({this.cursor, @JsonKey(name: 'group_users') final  List<GroupUser> groupUsers = const <GroupUser>[]}): _groupUsers = groupUsers,super._();
   factory _GroupUserList.fromJson(Map<String, dynamic> json) => _$GroupUserListFromJson(json);
 
 @override final  String? cursor;

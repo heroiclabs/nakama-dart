@@ -15,9 +15,8 @@ class GroupsNotifier extends StateNotifier<List<Group>> {
 
     // https://heroiclabs.com/docs/nakama/concepts/groups/#list-a-users-groups
     final groups = (await NakamaClient.instance!
-                .listUserGroups(session: session, userId: session.userId))
-            .userGroups ??
-        [];
+            .listUserGroups(session: session, userId: session.userId))
+        .userGroups;
     final groupNames = groups.map((group) => group.group).toList();
     state = groupNames;
     return state;

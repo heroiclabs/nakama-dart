@@ -45,12 +45,12 @@ class ChatRoom extends StatelessWidget {
           const Text('Messages:'),
           const SizedBox(height: 10),
           Expanded(
-            child: chat.messages?.messages?.isEmpty ?? true
+            child: chat.messages?.messages.isEmpty ?? true
                 ? const Text('No messages yet.')
                 : ListView.builder(
-                    itemCount: chat.messages!.messages!.length,
+                    itemCount: chat.messages!.messages.length,
                     itemBuilder: (context, index) {
-                      final message = chat.messages!.messages![index];
+                      final message = chat.messages!.messages[index];
                       return ListTile(
                         title: Text(message.username),
                         subtitle: Text(message.content),

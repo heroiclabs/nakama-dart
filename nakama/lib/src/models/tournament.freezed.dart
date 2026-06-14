@@ -512,12 +512,12 @@ return $default(_that.cursor,_that.tournaments);case _:
 @JsonSerializable()
 
 class _TournamentList extends TournamentList {
-  const _TournamentList({this.cursor, required final  List<Tournament> tournaments}): _tournaments = tournaments,super._();
+  const _TournamentList({this.cursor, final  List<Tournament> tournaments = const <Tournament>[]}): _tournaments = tournaments,super._();
   factory _TournamentList.fromJson(Map<String, dynamic> json) => _$TournamentListFromJson(json);
 
 @override final  String? cursor;
  final  List<Tournament> _tournaments;
-@override List<Tournament> get tournaments {
+@override@JsonKey() List<Tournament> get tournaments {
   if (_tournaments is EqualUnmodifiableListView) return _tournaments;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_tournaments);
@@ -780,7 +780,7 @@ return $default(_that.records,_that.ownerRecords,_that.nextCursor,_that.previous
 @JsonSerializable()
 
 class _TournamentRecordList extends TournamentRecordList {
-  const _TournamentRecordList({@JsonKey(name: 'records') required final  List<LeaderboardRecord> records, @JsonKey(name: 'owner_records') required final  List<LeaderboardRecord> ownerRecords, @JsonKey(name: 'next_cursor') this.nextCursor, @JsonKey(name: 'previous_cursor') this.previousCursor}): _records = records,_ownerRecords = ownerRecords,super._();
+  const _TournamentRecordList({@JsonKey(name: 'records') final  List<LeaderboardRecord> records = const <LeaderboardRecord>[], @JsonKey(name: 'owner_records') final  List<LeaderboardRecord> ownerRecords = const <LeaderboardRecord>[], @JsonKey(name: 'next_cursor') this.nextCursor, @JsonKey(name: 'previous_cursor') this.previousCursor}): _records = records,_ownerRecords = ownerRecords,super._();
   factory _TournamentRecordList.fromJson(Map<String, dynamic> json) => _$TournamentRecordListFromJson(json);
 
  final  List<LeaderboardRecord> _records;
