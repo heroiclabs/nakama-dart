@@ -6,6 +6,42 @@ part of 'api_client.gen.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+ApiUpdateGroupRequest _$ApiUpdateGroupRequestFromJson(
+  Map<String, dynamic> json,
+) => ApiUpdateGroupRequest(
+  avatarUrl: json['avatar_url'] as String?,
+  description: json['description'] as String?,
+  langTag: json['lang_tag'] as String?,
+  name: json['name'] as String?,
+  open: json['open'] as bool?,
+);
+
+Map<String, dynamic> _$ApiUpdateGroupRequestToJson(
+  ApiUpdateGroupRequest instance,
+) => <String, dynamic>{
+  'avatar_url': instance.avatarUrl,
+  'description': instance.description,
+  'lang_tag': instance.langTag,
+  'name': instance.name,
+  'open': instance.open,
+};
+
+FriendsOfFriendsListFriendOfFriend _$FriendsOfFriendsListFriendOfFriendFromJson(
+  Map<String, dynamic> json,
+) => FriendsOfFriendsListFriendOfFriend(
+  referrer: json['referrer'] as String?,
+  user: json['user'] == null
+      ? null
+      : ApiUser.fromJson(json['user'] as Map<String, dynamic>),
+);
+
+Map<String, dynamic> _$FriendsOfFriendsListFriendOfFriendToJson(
+  FriendsOfFriendsListFriendOfFriend instance,
+) => <String, dynamic>{
+  'referrer': instance.referrer,
+  'user': instance.user?.toJson(),
+};
+
 GroupUserListGroupUser _$GroupUserListGroupUserFromJson(
   Map<String, dynamic> json,
 ) => GroupUserListGroupUser(
@@ -357,6 +393,7 @@ Map<String, dynamic> _$ApiEventToJson(ApiEvent instance) => <String, dynamic>{
 };
 
 ApiFriend _$ApiFriendFromJson(Map<String, dynamic> json) => ApiFriend(
+  metadata: json['metadata'] as String?,
   state: (json['state'] as num?)?.toInt(),
   updateTime: json['update_time'] as String?,
   user: json['user'] == null
@@ -365,6 +402,7 @@ ApiFriend _$ApiFriendFromJson(Map<String, dynamic> json) => ApiFriend(
 );
 
 Map<String, dynamic> _$ApiFriendToJson(ApiFriend instance) => <String, dynamic>{
+  'metadata': instance.metadata,
   'state': instance.state,
   'update_time': instance.updateTime,
   'user': instance.user?.toJson(),
@@ -383,6 +421,28 @@ Map<String, dynamic> _$ApiFriendListToJson(ApiFriendList instance) =>
       'cursor': instance.cursor,
       'friends': instance.friends?.map((e) => e.toJson()).toList(),
     };
+
+ApiFriendsOfFriendsList _$ApiFriendsOfFriendsListFromJson(
+  Map<String, dynamic> json,
+) => ApiFriendsOfFriendsList(
+  cursor: json['cursor'] as String?,
+  friendsOfFriends: (json['friends_of_friends'] as List<dynamic>?)
+      ?.map(
+        (e) => FriendsOfFriendsListFriendOfFriend.fromJson(
+          e as Map<String, dynamic>,
+        ),
+      )
+      .toList(),
+);
+
+Map<String, dynamic> _$ApiFriendsOfFriendsListToJson(
+  ApiFriendsOfFriendsList instance,
+) => <String, dynamic>{
+  'cursor': instance.cursor,
+  'friends_of_friends': instance.friendsOfFriends
+      ?.map((e) => e.toJson())
+      .toList(),
+};
 
 ApiGroup _$ApiGroupFromJson(Map<String, dynamic> json) => ApiGroup(
   avatarUrl: json['avatar_url'] as String?,
@@ -485,6 +545,7 @@ ApiLeaderboardRecordList _$ApiLeaderboardRecordListFromJson(
       ?.map((e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
       .toList(),
   prevCursor: json['prev_cursor'] as String?,
+  rankCount: json['rank_count'] as String?,
   records: (json['records'] as List<dynamic>?)
       ?.map((e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -496,6 +557,7 @@ Map<String, dynamic> _$ApiLeaderboardRecordListToJson(
   'next_cursor': instance.nextCursor,
   'owner_records': instance.ownerRecords?.map((e) => e.toJson()).toList(),
   'prev_cursor': instance.prevCursor,
+  'rank_count': instance.rankCount,
   'records': instance.records?.map((e) => e.toJson()).toList(),
 };
 
@@ -554,6 +616,40 @@ Map<String, dynamic> _$ApiMatchListToJson(ApiMatchList instance) =>
       'matches': instance.matches?.map((e) => e.toJson()).toList(),
     };
 
+ApiMatchmakerCompletionStats _$ApiMatchmakerCompletionStatsFromJson(
+  Map<String, dynamic> json,
+) => ApiMatchmakerCompletionStats(
+  completeTime: json['complete_time'] as String?,
+  createTime: json['create_time'] as String?,
+);
+
+Map<String, dynamic> _$ApiMatchmakerCompletionStatsToJson(
+  ApiMatchmakerCompletionStats instance,
+) => <String, dynamic>{
+  'complete_time': instance.completeTime,
+  'create_time': instance.createTime,
+};
+
+ApiMatchmakerStats _$ApiMatchmakerStatsFromJson(Map<String, dynamic> json) =>
+    ApiMatchmakerStats(
+      completions: (json['completions'] as List<dynamic>?)
+          ?.map(
+            (e) => ApiMatchmakerCompletionStats.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+      oldestTicketCreateTime: json['oldest_ticket_create_time'] as String?,
+      ticketCount: (json['ticket_count'] as num?)?.toInt(),
+    );
+
+Map<String, dynamic> _$ApiMatchmakerStatsToJson(ApiMatchmakerStats instance) =>
+    <String, dynamic>{
+      'completions': instance.completions?.map((e) => e.toJson()).toList(),
+      'oldest_ticket_create_time': instance.oldestTicketCreateTime,
+      'ticket_count': instance.ticketCount,
+    };
+
 ApiNotification _$ApiNotificationFromJson(Map<String, dynamic> json) =>
     ApiNotification(
       code: (json['code'] as num?)?.toInt(),
@@ -590,6 +686,35 @@ Map<String, dynamic> _$ApiNotificationListToJson(
   'cacheable_cursor': instance.cacheableCursor,
   'notifications': instance.notifications?.map((e) => e.toJson()).toList(),
 };
+
+ApiParty _$ApiPartyFromJson(Map<String, dynamic> json) => ApiParty(
+  hidden: json['hidden'] as bool?,
+  label: json['label'] as String?,
+  maxSize: (json['max_size'] as num?)?.toInt(),
+  open: json['open'] as bool?,
+  partyId: json['party_id'] as String?,
+);
+
+Map<String, dynamic> _$ApiPartyToJson(ApiParty instance) => <String, dynamic>{
+  'hidden': instance.hidden,
+  'label': instance.label,
+  'max_size': instance.maxSize,
+  'open': instance.open,
+  'party_id': instance.partyId,
+};
+
+ApiPartyList _$ApiPartyListFromJson(Map<String, dynamic> json) => ApiPartyList(
+  cursor: json['cursor'] as String?,
+  parties: (json['parties'] as List<dynamic>?)
+      ?.map((e) => ApiParty.fromJson(e as Map<String, dynamic>))
+      .toList(),
+);
+
+Map<String, dynamic> _$ApiPartyListToJson(ApiPartyList instance) =>
+    <String, dynamic>{
+      'cursor': instance.cursor,
+      'parties': instance.parties?.map((e) => e.toJson()).toList(),
+    };
 
 ApiReadStorageObjectId _$ApiReadStorageObjectIdFromJson(
   Map<String, dynamic> json,
@@ -702,7 +827,9 @@ Map<String, dynamic> _$ApiStorageObjectToJson(ApiStorageObject instance) =>
 ApiStorageObjectAck _$ApiStorageObjectAckFromJson(Map<String, dynamic> json) =>
     ApiStorageObjectAck(
       collection: json['collection'] as String?,
+      createTime: json['create_time'] as String?,
       key: json['key'] as String?,
+      updateTime: json['update_time'] as String?,
       userId: json['user_id'] as String?,
       version: json['version'] as String?,
     );
@@ -711,7 +838,9 @@ Map<String, dynamic> _$ApiStorageObjectAckToJson(
   ApiStorageObjectAck instance,
 ) => <String, dynamic>{
   'collection': instance.collection,
+  'create_time': instance.createTime,
   'key': instance.key,
+  'update_time': instance.updateTime,
   'user_id': instance.userId,
   'version': instance.version,
 };
@@ -778,6 +907,7 @@ Map<String, dynamic> _$ApiSubscriptionListToJson(
 
 ApiTournament _$ApiTournamentFromJson(Map<String, dynamic> json) =>
     ApiTournament(
+      authoritative: json['authoritative'] as bool?,
       canEnter: json['can_enter'] as bool?,
       category: (json['category'] as num?)?.toInt(),
       createTime: json['create_time'] as String?,
@@ -786,6 +916,7 @@ ApiTournament _$ApiTournamentFromJson(Map<String, dynamic> json) =>
       endActive: (json['end_active'] as num?)?.toInt(),
       endTime: json['end_time'] as String?,
       id: json['id'] as String?,
+      joinRequired: json['join_required'] as bool?,
       maxNumScore: (json['max_num_score'] as num?)?.toInt(),
       maxSize: (json['max_size'] as num?)?.toInt(),
       metadata: json['metadata'] as String?,
@@ -801,6 +932,7 @@ ApiTournament _$ApiTournamentFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ApiTournamentToJson(ApiTournament instance) =>
     <String, dynamic>{
+      'authoritative': instance.authoritative,
       'can_enter': instance.canEnter,
       'category': instance.category,
       'create_time': instance.createTime,
@@ -809,6 +941,7 @@ Map<String, dynamic> _$ApiTournamentToJson(ApiTournament instance) =>
       'end_active': instance.endActive,
       'end_time': instance.endTime,
       'id': instance.id,
+      'join_required': instance.joinRequired,
       'max_num_score': instance.maxNumScore,
       'max_size': instance.maxSize,
       'metadata': instance.metadata,
@@ -844,6 +977,7 @@ ApiTournamentRecordList _$ApiTournamentRecordListFromJson(
       ?.map((e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
       .toList(),
   prevCursor: json['prev_cursor'] as String?,
+  rankCount: json['rank_count'] as String?,
   records: (json['records'] as List<dynamic>?)
       ?.map((e) => ApiLeaderboardRecord.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -855,6 +989,7 @@ Map<String, dynamic> _$ApiTournamentRecordListToJson(
   'next_cursor': instance.nextCursor,
   'owner_records': instance.ownerRecords?.map((e) => e.toJson()).toList(),
   'prev_cursor': instance.prevCursor,
+  'rank_count': instance.rankCount,
   'records': instance.records?.map((e) => e.toJson()).toList(),
 };
 
@@ -878,28 +1013,6 @@ Map<String, dynamic> _$ApiUpdateAccountRequestToJson(
   'location': instance.location,
   'timezone': instance.timezone,
   'username': instance.username,
-};
-
-ApiUpdateGroupRequest _$ApiUpdateGroupRequestFromJson(
-  Map<String, dynamic> json,
-) => ApiUpdateGroupRequest(
-  avatarUrl: json['avatar_url'] as String?,
-  description: json['description'] as String?,
-  groupId: json['group_id'] as String?,
-  langTag: json['lang_tag'] as String?,
-  name: json['name'] as String?,
-  open: json['open'] as bool?,
-);
-
-Map<String, dynamic> _$ApiUpdateGroupRequestToJson(
-  ApiUpdateGroupRequest instance,
-) => <String, dynamic>{
-  'avatar_url': instance.avatarUrl,
-  'description': instance.description,
-  'group_id': instance.groupId,
-  'lang_tag': instance.langTag,
-  'name': instance.name,
-  'open': instance.open,
 };
 
 ApiUser _$ApiUserFromJson(Map<String, dynamic> json) => ApiUser(
@@ -982,6 +1095,21 @@ Map<String, dynamic> _$ApiValidatePurchaseAppleRequestToJson(
 ) => <String, dynamic>{
   'persist': instance.persist,
   'receipt': instance.receipt,
+};
+
+ApiValidatePurchaseFacebookInstantRequest
+_$ApiValidatePurchaseFacebookInstantRequestFromJson(
+  Map<String, dynamic> json,
+) => ApiValidatePurchaseFacebookInstantRequest(
+  persist: json['persist'] as bool?,
+  signedRequest: json['signed_request'] as String?,
+);
+
+Map<String, dynamic> _$ApiValidatePurchaseFacebookInstantRequestToJson(
+  ApiValidatePurchaseFacebookInstantRequest instance,
+) => <String, dynamic>{
+  'persist': instance.persist,
+  'signed_request': instance.signedRequest,
 };
 
 ApiValidatePurchaseGoogleRequest _$ApiValidatePurchaseGoogleRequestFromJson(
@@ -1085,10 +1213,12 @@ ApiValidatedPurchase _$ApiValidatedPurchaseFromJson(
   productId: json['product_id'] as String?,
   providerResponse: json['provider_response'] as String?,
   purchaseTime: json['purchase_time'] as String?,
+  refundTime: json['refund_time'] as String?,
   seenBefore: json['seen_before'] as bool?,
   store: $enumDecodeNullable(_$ApiStoreProviderEnumMap, json['store']),
   transactionId: json['transaction_id'] as String?,
   updateTime: json['update_time'] as String?,
+  userId: json['user_id'] as String?,
 );
 
 Map<String, dynamic> _$ApiValidatedPurchaseToJson(
@@ -1099,10 +1229,12 @@ Map<String, dynamic> _$ApiValidatedPurchaseToJson(
   'product_id': instance.productId,
   'provider_response': instance.providerResponse,
   'purchase_time': instance.purchaseTime,
+  'refund_time': instance.refundTime,
   'seen_before': instance.seenBefore,
   'store': _$ApiStoreProviderEnumMap[instance.store],
   'transaction_id': instance.transactionId,
   'update_time': instance.updateTime,
+  'user_id': instance.userId,
 };
 
 const _$ApiStoreEnvironmentEnumMap = {
@@ -1115,6 +1247,7 @@ const _$ApiStoreProviderEnumMap = {
   ApiStoreProvider.appleAppStore: 'APPLE_APP_STORE',
   ApiStoreProvider.googlePlayStore: 'GOOGLE_PLAY_STORE',
   ApiStoreProvider.huaweiAppGallery: 'HUAWEI_APP_GALLERY',
+  ApiStoreProvider.facebookInstantStore: 'FACEBOOK_INSTANT_STORE',
 };
 
 ApiValidatedSubscription _$ApiValidatedSubscriptionFromJson(
@@ -1129,9 +1262,13 @@ ApiValidatedSubscription _$ApiValidatedSubscriptionFromJson(
   expiryTime: json['expiry_time'] as String?,
   originalTransactionId: json['original_transaction_id'] as String?,
   productId: json['product_id'] as String?,
+  providerNotification: json['provider_notification'] as String?,
+  providerResponse: json['provider_response'] as String?,
   purchaseTime: json['purchase_time'] as String?,
+  refundTime: json['refund_time'] as String?,
   store: $enumDecodeNullable(_$ApiStoreProviderEnumMap, json['store']),
   updateTime: json['update_time'] as String?,
+  userId: json['user_id'] as String?,
 );
 
 Map<String, dynamic> _$ApiValidatedSubscriptionToJson(
@@ -1143,9 +1280,13 @@ Map<String, dynamic> _$ApiValidatedSubscriptionToJson(
   'expiry_time': instance.expiryTime,
   'original_transaction_id': instance.originalTransactionId,
   'product_id': instance.productId,
+  'provider_notification': instance.providerNotification,
+  'provider_response': instance.providerResponse,
   'purchase_time': instance.purchaseTime,
+  'refund_time': instance.refundTime,
   'store': _$ApiStoreProviderEnumMap[instance.store],
   'update_time': instance.updateTime,
+  'user_id': instance.userId,
 };
 
 ApiWriteStorageObject _$ApiWriteStorageObjectFromJson(
@@ -1184,13 +1325,11 @@ Map<String, dynamic> _$ApiWriteStorageObjectsRequestToJson(
   'objects': instance.objects?.map((e) => e.toJson()).toList(),
 };
 
-ProtobufAny _$ProtobufAnyFromJson(Map<String, dynamic> json) => ProtobufAny(
-  typeUrl: json['type_url'] as String?,
-  value: json['value'] as String?,
-);
+ProtobufAny _$ProtobufAnyFromJson(Map<String, dynamic> json) =>
+    ProtobufAny(type: json['@type'] as String?);
 
 Map<String, dynamic> _$ProtobufAnyToJson(ProtobufAny instance) =>
-    <String, dynamic>{'type_url': instance.typeUrl, 'value': instance.value};
+    <String, dynamic>{'@type': instance.type};
 
 RpcStatus _$RpcStatusFromJson(Map<String, dynamic> json) => RpcStatus(
   code: (json['code'] as num?)?.toInt(),
@@ -1235,6 +1374,26 @@ class _ApiClient implements ApiClient {
           .compose(
             _dio.options,
             '/healthcheck',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    await _dio.fetch<void>(_options);
+  }
+
+  @override
+  Future<void> deleteAccount({String? bearerToken}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<void>(
+      Options(method: 'DELETE', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/v2/account',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -2245,11 +2404,13 @@ class _ApiClient implements ApiClient {
     String? bearerToken,
     required List<String> ids,
     required List<String> usernames,
+    String? metadata,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'ids': ids,
       r'usernames': usernames,
+      r'metadata': metadata,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -2317,6 +2478,41 @@ class _ApiClient implements ApiClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     await _dio.fetch<void>(_options);
+  }
+
+  @override
+  Future<ApiFriendsOfFriendsList> listFriendsOfFriends({
+    String? bearerToken,
+    int? limit,
+    String? cursor,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'limit': limit,
+      r'cursor': cursor,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ApiFriendsOfFriendsList>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/v2/friend/friends',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiFriendsOfFriendsList _value;
+    try {
+      _value = ApiFriendsOfFriendsList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   @override
@@ -2701,6 +2897,38 @@ class _ApiClient implements ApiClient {
   }
 
   @override
+  Future<ApiValidatePurchaseResponse> validatePurchaseFacebookInstant({
+    String? bearerToken,
+    required ApiValidatePurchaseFacebookInstantRequest body,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _options = _setStreamType<ApiValidatePurchaseResponse>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/v2/iap/purchase/facebookinstant',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiValidatePurchaseResponse _value;
+    try {
+      _value = ApiValidatePurchaseResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<ApiValidatePurchaseResponse> validatePurchaseGoogle({
     String? bearerToken,
     required ApiValidatePurchaseGoogleRequest body,
@@ -2994,11 +3222,13 @@ class _ApiClient implements ApiClient {
     required String ownerId,
     int? limit,
     String? expiry,
+    String? cursor,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'limit': limit,
       r'expiry': expiry,
+      r'cursor': cursor,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -3068,6 +3298,34 @@ class _ApiClient implements ApiClient {
   }
 
   @override
+  Future<ApiMatchmakerStats> getMatchmakerStats({String? bearerToken}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ApiMatchmakerStats>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/v2/matchmaker/stats',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiMatchmakerStats _value;
+    try {
+      _value = ApiMatchmakerStats.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<void> deleteNotifications({
     String? bearerToken,
     required List<String> ids,
@@ -3118,6 +3376,45 @@ class _ApiClient implements ApiClient {
     late ApiNotificationList _value;
     try {
       _value = ApiNotificationList.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<ApiPartyList> listParties({
+    String? bearerToken,
+    int? limit,
+    bool? open,
+    String? query,
+    String? cursor,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'limit': limit,
+      r'open': open,
+      r'query': query,
+      r'cursor': cursor,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<ApiPartyList>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/v2/party',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ApiPartyList _value;
+    try {
+      _value = ApiPartyList.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -3429,6 +3726,29 @@ class _ApiClient implements ApiClient {
   }
 
   @override
+  Future<void> deleteTournamentRecord({
+    String? bearerToken,
+    required String tournamentId,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<void>(
+      Options(method: 'DELETE', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/v2/tournament/${tournamentId}',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    await _dio.fetch<void>(_options);
+  }
+
+  @override
   Future<ApiTournamentRecordList> listTournamentRecords({
     String? bearerToken,
     required String tournamentId,
@@ -3564,11 +3884,13 @@ class _ApiClient implements ApiClient {
     required String ownerId,
     int? limit,
     String? expiry,
+    String? cursor,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'limit': limit,
       r'expiry': expiry,
+      r'cursor': cursor,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};

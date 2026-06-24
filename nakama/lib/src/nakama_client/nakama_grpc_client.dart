@@ -704,6 +704,16 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> deleteAccount({
+    required model.Session session,
+  }) async {
+    await _client.deleteAccount(
+      api.Empty(),
+      options: _getSessionCallOptions(session),
+    );
+  }
+
+  @override
   Future<List<model.User>> getUsers({
     required model.Session session,
     List<String>? facebookIds,

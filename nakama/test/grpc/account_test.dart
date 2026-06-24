@@ -46,5 +46,19 @@ void main() {
       final updatedAccount = await client.getAccount(session);
       expect(updatedAccount.user.displayName, 'name');
     });
+
+    test('deleting my account', () async {
+      // Use a dedicated user so the shared session is not destroyed.
+      final disposableSession =
+          await client.authenticateDevice(deviceId: faker.guid.guid());
+
+      await client.deleteAccount(session: disposableSession);
+
+      // The account no longer exists, so fetching it must fail.
+      expect(
+        () => client.getAccount(disposableSession),
+        throwsA(isA<Exception>()),
+      );
+    });
   });
 }
