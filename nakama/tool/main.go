@@ -196,6 +196,10 @@ abstract class ApiClient
     {{- if eq $parameter.In "path" }}
         @Path('{{ $parameter.Name }}'){{ if $parameter.Required }}required{{- end}} {{ $parameter.Type | camelToPascal }}{{- if not $parameter.Required }}?{{- end }} {{ $parameter.Name }},
     {{- else if eq $parameter.In "body" }}
+        {{- /* The Dart parameter is always named "body": retrofit drives
+               serialisation via the @Body() annotation, not the identifier, so
+               a fixed name avoids collisions and invalid identifiers coming
+               from the spec's parameter name. */}}
         {{- if eq $parameter.Schema.Type "string" }}
         @Body() {{ if $parameter.Required }}required{{- end}} String{{- if not $parameter.Required }}?{{- end }} body,
         {{- else }}
@@ -356,7 +360,10 @@ func sanitizeFieldName(input string) string {
 
 	output := b.String()
 	if output == "" {
-		return input
+		// Nothing usable survived sanitisation (e.g. a name made up entirely of
+		// punctuation). Fall back to a generic but valid identifier rather than
+		// returning the original, still-invalid, name.
+		return "field"
 	}
 
 	if unicode.IsDigit(rune(output[0])) {

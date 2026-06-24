@@ -12,2843 +12,2750 @@ part 'api_client.gen.g.dart';
 /// Update fields in a given group.
 @JsonSerializable(explicitToJson: true)
 class ApiUpdateGroupRequest {
-    @JsonKey(name: 'avatar_url')
-    final String? avatarUrl;
-    @JsonKey(name: 'description')
-    final String? description;
-    @JsonKey(name: 'lang_tag')
-    final String? langTag;
-    @JsonKey(name: 'name')
-    final String? name;
-    @JsonKey(name: 'open')
-    final bool? open;
-    
-    const ApiUpdateGroupRequest({
-        required this.avatarUrl,
-        required this.description,
-        required this.langTag,
-        required this.name,
-        required this.open,
-    });
+  @JsonKey(name: 'avatar_url')
+  final String? avatarUrl;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'lang_tag')
+  final String? langTag;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'open')
+  final bool? open;
 
-    factory ApiUpdateGroupRequest.fromJson(Map<String, dynamic> json) => _$ApiUpdateGroupRequestFromJson(json);
+  const ApiUpdateGroupRequest({
+    required this.avatarUrl,
+    required this.description,
+    required this.langTag,
+    required this.name,
+    required this.open,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiUpdateGroupRequestToJson(this);
+  factory ApiUpdateGroupRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiUpdateGroupRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiUpdateGroupRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A friend of a friend.
 @JsonSerializable(explicitToJson: true)
 class FriendsOfFriendsListFriendOfFriend {
-    @JsonKey(name: 'referrer')
-    final String? referrer;
-    @JsonKey(name: 'user')
-    final ApiUser? user;
-    
-    const FriendsOfFriendsListFriendOfFriend({
-        required this.referrer,
-        required this.user,
-    });
+  @JsonKey(name: 'referrer')
+  final String? referrer;
+  @JsonKey(name: 'user')
+  final ApiUser? user;
 
-    factory FriendsOfFriendsListFriendOfFriend.fromJson(Map<String, dynamic> json) => _$FriendsOfFriendsListFriendOfFriendFromJson(json);
+  const FriendsOfFriendsListFriendOfFriend({
+    required this.referrer,
+    required this.user,
+  });
 
-    Map<String, dynamic> toJson() => _$FriendsOfFriendsListFriendOfFriendToJson(this);
+  factory FriendsOfFriendsListFriendOfFriend.fromJson(
+    Map<String, dynamic> json,
+  ) => _$FriendsOfFriendsListFriendOfFriendFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() =>
+      _$FriendsOfFriendsListFriendOfFriendToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A single user-role pair.
 @JsonSerializable(explicitToJson: true)
 class GroupUserListGroupUser {
-    @JsonKey(name: 'state')
-    final int? state;
-    @JsonKey(name: 'user')
-    final ApiUser? user;
-    
-    const GroupUserListGroupUser({
-        required this.state,
-        required this.user,
-    });
+  @JsonKey(name: 'state')
+  final int? state;
+  @JsonKey(name: 'user')
+  final ApiUser? user;
 
-    factory GroupUserListGroupUser.fromJson(Map<String, dynamic> json) => _$GroupUserListGroupUserFromJson(json);
+  const GroupUserListGroupUser({required this.state, required this.user});
 
-    Map<String, dynamic> toJson() => _$GroupUserListGroupUserToJson(this);
+  factory GroupUserListGroupUser.fromJson(Map<String, dynamic> json) =>
+      _$GroupUserListGroupUserFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$GroupUserListGroupUserToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A single group-role pair.
 @JsonSerializable(explicitToJson: true)
 class UserGroupListUserGroup {
-    @JsonKey(name: 'group')
-    final ApiGroup? group;
-    @JsonKey(name: 'state')
-    final int? state;
-    
-    const UserGroupListUserGroup({
-        required this.group,
-        required this.state,
-    });
+  @JsonKey(name: 'group')
+  final ApiGroup? group;
+  @JsonKey(name: 'state')
+  final int? state;
 
-    factory UserGroupListUserGroup.fromJson(Map<String, dynamic> json) => _$UserGroupListUserGroupFromJson(json);
+  const UserGroupListUserGroup({required this.group, required this.state});
 
-    Map<String, dynamic> toJson() => _$UserGroupListUserGroupToJson(this);
+  factory UserGroupListUserGroup.fromJson(Map<String, dynamic> json) =>
+      _$UserGroupListUserGroupFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$UserGroupListUserGroupToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Record values to write.
 @JsonSerializable(explicitToJson: true)
 class WriteLeaderboardRecordRequestLeaderboardRecordWrite {
-    @JsonKey(name: 'metadata')
-    final String? metadata;
-    @JsonKey(name: 'operator')
-    final ApiOperator? operator;
-    @JsonKey(name: 'score')
-    final String? score;
-    @JsonKey(name: 'subscore')
-    final String? subscore;
-    
-    const WriteLeaderboardRecordRequestLeaderboardRecordWrite({
-        required this.metadata,
-        required this.operator,
-        required this.score,
-        required this.subscore,
-    });
+  @JsonKey(name: 'metadata')
+  final String? metadata;
+  @JsonKey(name: 'operator')
+  final ApiOperator? operator;
+  @JsonKey(name: 'score')
+  final String? score;
+  @JsonKey(name: 'subscore')
+  final String? subscore;
 
-    factory WriteLeaderboardRecordRequestLeaderboardRecordWrite.fromJson(Map<String, dynamic> json) => _$WriteLeaderboardRecordRequestLeaderboardRecordWriteFromJson(json);
+  const WriteLeaderboardRecordRequestLeaderboardRecordWrite({
+    required this.metadata,
+    required this.operator,
+    required this.score,
+    required this.subscore,
+  });
 
-    Map<String, dynamic> toJson() => _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson(this);
+  factory WriteLeaderboardRecordRequestLeaderboardRecordWrite.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WriteLeaderboardRecordRequestLeaderboardRecordWriteFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() =>
+      _$WriteLeaderboardRecordRequestLeaderboardRecordWriteToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Record values to write.
 @JsonSerializable(explicitToJson: true)
 class WriteTournamentRecordRequestTournamentRecordWrite {
-    @JsonKey(name: 'metadata')
-    final String? metadata;
-    @JsonKey(name: 'operator')
-    final ApiOperator? operator;
-    @JsonKey(name: 'score')
-    final String? score;
-    @JsonKey(name: 'subscore')
-    final String? subscore;
-    
-    const WriteTournamentRecordRequestTournamentRecordWrite({
-        required this.metadata,
-        required this.operator,
-        required this.score,
-        required this.subscore,
-    });
+  @JsonKey(name: 'metadata')
+  final String? metadata;
+  @JsonKey(name: 'operator')
+  final ApiOperator? operator;
+  @JsonKey(name: 'score')
+  final String? score;
+  @JsonKey(name: 'subscore')
+  final String? subscore;
 
-    factory WriteTournamentRecordRequestTournamentRecordWrite.fromJson(Map<String, dynamic> json) => _$WriteTournamentRecordRequestTournamentRecordWriteFromJson(json);
+  const WriteTournamentRecordRequestTournamentRecordWrite({
+    required this.metadata,
+    required this.operator,
+    required this.score,
+    required this.subscore,
+  });
 
-    Map<String, dynamic> toJson() => _$WriteTournamentRecordRequestTournamentRecordWriteToJson(this);
+  factory WriteTournamentRecordRequestTournamentRecordWrite.fromJson(
+    Map<String, dynamic> json,
+  ) => _$WriteTournamentRecordRequestTournamentRecordWriteFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() =>
+      _$WriteTournamentRecordRequestTournamentRecordWriteToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A user with additional account details. Always the current user.
 @JsonSerializable(explicitToJson: true)
 class ApiAccount {
-    @JsonKey(name: 'custom_id')
-    final String? customId;
-    @JsonKey(name: 'devices')
-    final List<ApiAccountDevice>? devices;
-    @JsonKey(name: 'disable_time')
-    final String? disableTime;
-    @JsonKey(name: 'email')
-    final String? email;
-    @JsonKey(name: 'user')
-    final ApiUser? user;
-    @JsonKey(name: 'verify_time')
-    final String? verifyTime;
-    @JsonKey(name: 'wallet')
-    final String? wallet;
-    
-    const ApiAccount({
-        required this.customId,
-        required this.devices,
-        required this.disableTime,
-        required this.email,
-        required this.user,
-        required this.verifyTime,
-        required this.wallet,
-    });
+  @JsonKey(name: 'custom_id')
+  final String? customId;
+  @JsonKey(name: 'devices')
+  final List<ApiAccountDevice>? devices;
+  @JsonKey(name: 'disable_time')
+  final String? disableTime;
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'user')
+  final ApiUser? user;
+  @JsonKey(name: 'verify_time')
+  final String? verifyTime;
+  @JsonKey(name: 'wallet')
+  final String? wallet;
 
-    factory ApiAccount.fromJson(Map<String, dynamic> json) => _$ApiAccountFromJson(json);
+  const ApiAccount({
+    required this.customId,
+    required this.devices,
+    required this.disableTime,
+    required this.email,
+    required this.user,
+    required this.verifyTime,
+    required this.wallet,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiAccountToJson(this);
+  factory ApiAccount.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiAccountToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Send a Apple Sign In token to the server. Used with authenticate/link/unlink.
 @JsonSerializable(explicitToJson: true)
 class ApiAccountApple {
-    @JsonKey(name: 'token')
-    final String? token;
-    @JsonKey(name: 'vars')
-    final Map<String, String>? vars;
-    
-    const ApiAccountApple({
-        required this.token,
-        required this.vars,
-    });
+  @JsonKey(name: 'token')
+  final String? token;
+  @JsonKey(name: 'vars')
+  final Map<String, String>? vars;
 
-    factory ApiAccountApple.fromJson(Map<String, dynamic> json) => _$ApiAccountAppleFromJson(json);
+  const ApiAccountApple({required this.token, required this.vars});
 
-    Map<String, dynamic> toJson() => _$ApiAccountAppleToJson(this);
+  factory ApiAccountApple.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountAppleFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiAccountAppleToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Send a custom ID to the server. Used with authenticate/link/unlink.
 @JsonSerializable(explicitToJson: true)
 class ApiAccountCustom {
-    @JsonKey(name: 'id')
-    final String? id;
-    @JsonKey(name: 'vars')
-    final Map<String, String>? vars;
-    
-    const ApiAccountCustom({
-        required this.id,
-        required this.vars,
-    });
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'vars')
+  final Map<String, String>? vars;
 
-    factory ApiAccountCustom.fromJson(Map<String, dynamic> json) => _$ApiAccountCustomFromJson(json);
+  const ApiAccountCustom({required this.id, required this.vars});
 
-    Map<String, dynamic> toJson() => _$ApiAccountCustomToJson(this);
+  factory ApiAccountCustom.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountCustomFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiAccountCustomToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Send a device to the server. Used with authenticate/link/unlink and user.
 @JsonSerializable(explicitToJson: true)
 class ApiAccountDevice {
-    @JsonKey(name: 'id')
-    final String? id;
-    @JsonKey(name: 'vars')
-    final Map<String, String>? vars;
-    
-    const ApiAccountDevice({
-        required this.id,
-        required this.vars,
-    });
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'vars')
+  final Map<String, String>? vars;
 
-    factory ApiAccountDevice.fromJson(Map<String, dynamic> json) => _$ApiAccountDeviceFromJson(json);
+  const ApiAccountDevice({required this.id, required this.vars});
 
-    Map<String, dynamic> toJson() => _$ApiAccountDeviceToJson(this);
+  factory ApiAccountDevice.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountDeviceFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiAccountDeviceToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Send an email with password to the server. Used with authenticate/link/unlink.
 @JsonSerializable(explicitToJson: true)
 class ApiAccountEmail {
-    @JsonKey(name: 'email')
-    final String? email;
-    @JsonKey(name: 'password')
-    final String? password;
-    @JsonKey(name: 'vars')
-    final Map<String, String>? vars;
-    
-    const ApiAccountEmail({
-        required this.email,
-        required this.password,
-        required this.vars,
-    });
+  @JsonKey(name: 'email')
+  final String? email;
+  @JsonKey(name: 'password')
+  final String? password;
+  @JsonKey(name: 'vars')
+  final Map<String, String>? vars;
 
-    factory ApiAccountEmail.fromJson(Map<String, dynamic> json) => _$ApiAccountEmailFromJson(json);
+  const ApiAccountEmail({
+    required this.email,
+    required this.password,
+    required this.vars,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiAccountEmailToJson(this);
+  factory ApiAccountEmail.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountEmailFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiAccountEmailToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Send a Facebook token to the server. Used with authenticate/link/unlink.
 @JsonSerializable(explicitToJson: true)
 class ApiAccountFacebook {
-    @JsonKey(name: 'token')
-    final String? token;
-    @JsonKey(name: 'vars')
-    final Map<String, String>? vars;
-    
-    const ApiAccountFacebook({
-        required this.token,
-        required this.vars,
-    });
+  @JsonKey(name: 'token')
+  final String? token;
+  @JsonKey(name: 'vars')
+  final Map<String, String>? vars;
 
-    factory ApiAccountFacebook.fromJson(Map<String, dynamic> json) => _$ApiAccountFacebookFromJson(json);
+  const ApiAccountFacebook({required this.token, required this.vars});
 
-    Map<String, dynamic> toJson() => _$ApiAccountFacebookToJson(this);
+  factory ApiAccountFacebook.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountFacebookFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiAccountFacebookToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Send a Facebook Instant Game token to the server. Used with authenticate/link/unlink.
 @JsonSerializable(explicitToJson: true)
 class ApiAccountFacebookInstantGame {
-    @JsonKey(name: 'signed_player_info')
-    final String? signedPlayerInfo;
-    @JsonKey(name: 'vars')
-    final Map<String, String>? vars;
-    
-    const ApiAccountFacebookInstantGame({
-        required this.signedPlayerInfo,
-        required this.vars,
-    });
+  @JsonKey(name: 'signed_player_info')
+  final String? signedPlayerInfo;
+  @JsonKey(name: 'vars')
+  final Map<String, String>? vars;
 
-    factory ApiAccountFacebookInstantGame.fromJson(Map<String, dynamic> json) => _$ApiAccountFacebookInstantGameFromJson(json);
+  const ApiAccountFacebookInstantGame({
+    required this.signedPlayerInfo,
+    required this.vars,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiAccountFacebookInstantGameToJson(this);
+  factory ApiAccountFacebookInstantGame.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountFacebookInstantGameFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiAccountFacebookInstantGameToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Send Apple's Game Center account credentials to the server. Used with authenticate/link/unlink.  https://developer.apple.com/documentation/gamekit/gklocalplayer/1515407-generateidentityverificationsign
 @JsonSerializable(explicitToJson: true)
 class ApiAccountGameCenter {
-    @JsonKey(name: 'bundle_id')
-    final String? bundleId;
-    @JsonKey(name: 'player_id')
-    final String? playerId;
-    @JsonKey(name: 'public_key_url')
-    final String? publicKeyUrl;
-    @JsonKey(name: 'salt')
-    final String? salt;
-    @JsonKey(name: 'signature')
-    final String? signature;
-    @JsonKey(name: 'timestamp_seconds')
-    final String? timestampSeconds;
-    @JsonKey(name: 'vars')
-    final Map<String, String>? vars;
-    
-    const ApiAccountGameCenter({
-        required this.bundleId,
-        required this.playerId,
-        required this.publicKeyUrl,
-        required this.salt,
-        required this.signature,
-        required this.timestampSeconds,
-        required this.vars,
-    });
+  @JsonKey(name: 'bundle_id')
+  final String? bundleId;
+  @JsonKey(name: 'player_id')
+  final String? playerId;
+  @JsonKey(name: 'public_key_url')
+  final String? publicKeyUrl;
+  @JsonKey(name: 'salt')
+  final String? salt;
+  @JsonKey(name: 'signature')
+  final String? signature;
+  @JsonKey(name: 'timestamp_seconds')
+  final String? timestampSeconds;
+  @JsonKey(name: 'vars')
+  final Map<String, String>? vars;
 
-    factory ApiAccountGameCenter.fromJson(Map<String, dynamic> json) => _$ApiAccountGameCenterFromJson(json);
+  const ApiAccountGameCenter({
+    required this.bundleId,
+    required this.playerId,
+    required this.publicKeyUrl,
+    required this.salt,
+    required this.signature,
+    required this.timestampSeconds,
+    required this.vars,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiAccountGameCenterToJson(this);
+  factory ApiAccountGameCenter.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountGameCenterFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiAccountGameCenterToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Send a Google token to the server. Used with authenticate/link/unlink.
 @JsonSerializable(explicitToJson: true)
 class ApiAccountGoogle {
-    @JsonKey(name: 'token')
-    final String? token;
-    @JsonKey(name: 'vars')
-    final Map<String, String>? vars;
-    
-    const ApiAccountGoogle({
-        required this.token,
-        required this.vars,
-    });
+  @JsonKey(name: 'token')
+  final String? token;
+  @JsonKey(name: 'vars')
+  final Map<String, String>? vars;
 
-    factory ApiAccountGoogle.fromJson(Map<String, dynamic> json) => _$ApiAccountGoogleFromJson(json);
+  const ApiAccountGoogle({required this.token, required this.vars});
 
-    Map<String, dynamic> toJson() => _$ApiAccountGoogleToJson(this);
+  factory ApiAccountGoogle.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountGoogleFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiAccountGoogleToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Send a Steam token to the server. Used with authenticate/link/unlink.
 @JsonSerializable(explicitToJson: true)
 class ApiAccountSteam {
-    @JsonKey(name: 'token')
-    final String? token;
-    @JsonKey(name: 'vars')
-    final Map<String, String>? vars;
-    
-    const ApiAccountSteam({
-        required this.token,
-        required this.vars,
-    });
+  @JsonKey(name: 'token')
+  final String? token;
+  @JsonKey(name: 'vars')
+  final Map<String, String>? vars;
 
-    factory ApiAccountSteam.fromJson(Map<String, dynamic> json) => _$ApiAccountSteamFromJson(json);
+  const ApiAccountSteam({required this.token, required this.vars});
 
-    Map<String, dynamic> toJson() => _$ApiAccountSteamToJson(this);
+  factory ApiAccountSteam.fromJson(Map<String, dynamic> json) =>
+      _$ApiAccountSteamFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiAccountSteamToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A message sent on a channel.
 @JsonSerializable(explicitToJson: true)
 class ApiChannelMessage {
-    @JsonKey(name: 'channel_id')
-    final String? channelId;
-    @JsonKey(name: 'code')
-    final int? code;
-    @JsonKey(name: 'content')
-    final String? content;
-    @JsonKey(name: 'create_time')
-    final String? createTime;
-    @JsonKey(name: 'group_id')
-    final String? groupId;
-    @JsonKey(name: 'message_id')
-    final String? messageId;
-    @JsonKey(name: 'persistent')
-    final bool? persistent;
-    @JsonKey(name: 'room_name')
-    final String? roomName;
-    @JsonKey(name: 'sender_id')
-    final String? senderId;
-    @JsonKey(name: 'update_time')
-    final String? updateTime;
-    @JsonKey(name: 'user_id_one')
-    final String? userIdOne;
-    @JsonKey(name: 'user_id_two')
-    final String? userIdTwo;
-    @JsonKey(name: 'username')
-    final String? username;
-    
-    const ApiChannelMessage({
-        required this.channelId,
-        required this.code,
-        required this.content,
-        required this.createTime,
-        required this.groupId,
-        required this.messageId,
-        required this.persistent,
-        required this.roomName,
-        required this.senderId,
-        required this.updateTime,
-        required this.userIdOne,
-        required this.userIdTwo,
-        required this.username,
-    });
+  @JsonKey(name: 'channel_id')
+  final String? channelId;
+  @JsonKey(name: 'code')
+  final int? code;
+  @JsonKey(name: 'content')
+  final String? content;
+  @JsonKey(name: 'create_time')
+  final String? createTime;
+  @JsonKey(name: 'group_id')
+  final String? groupId;
+  @JsonKey(name: 'message_id')
+  final String? messageId;
+  @JsonKey(name: 'persistent')
+  final bool? persistent;
+  @JsonKey(name: 'room_name')
+  final String? roomName;
+  @JsonKey(name: 'sender_id')
+  final String? senderId;
+  @JsonKey(name: 'update_time')
+  final String? updateTime;
+  @JsonKey(name: 'user_id_one')
+  final String? userIdOne;
+  @JsonKey(name: 'user_id_two')
+  final String? userIdTwo;
+  @JsonKey(name: 'username')
+  final String? username;
 
-    factory ApiChannelMessage.fromJson(Map<String, dynamic> json) => _$ApiChannelMessageFromJson(json);
+  const ApiChannelMessage({
+    required this.channelId,
+    required this.code,
+    required this.content,
+    required this.createTime,
+    required this.groupId,
+    required this.messageId,
+    required this.persistent,
+    required this.roomName,
+    required this.senderId,
+    required this.updateTime,
+    required this.userIdOne,
+    required this.userIdTwo,
+    required this.username,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiChannelMessageToJson(this);
+  factory ApiChannelMessage.fromJson(Map<String, dynamic> json) =>
+      _$ApiChannelMessageFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiChannelMessageToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A list of channel messages, usually a result of a list operation.
 @JsonSerializable(explicitToJson: true)
 class ApiChannelMessageList {
-    @JsonKey(name: 'cacheable_cursor')
-    final String? cacheableCursor;
-    @JsonKey(name: 'messages')
-    final List<ApiChannelMessage>? messages;
-    @JsonKey(name: 'next_cursor')
-    final String? nextCursor;
-    @JsonKey(name: 'prev_cursor')
-    final String? prevCursor;
-    
-    const ApiChannelMessageList({
-        required this.cacheableCursor,
-        required this.messages,
-        required this.nextCursor,
-        required this.prevCursor,
-    });
+  @JsonKey(name: 'cacheable_cursor')
+  final String? cacheableCursor;
+  @JsonKey(name: 'messages')
+  final List<ApiChannelMessage>? messages;
+  @JsonKey(name: 'next_cursor')
+  final String? nextCursor;
+  @JsonKey(name: 'prev_cursor')
+  final String? prevCursor;
 
-    factory ApiChannelMessageList.fromJson(Map<String, dynamic> json) => _$ApiChannelMessageListFromJson(json);
+  const ApiChannelMessageList({
+    required this.cacheableCursor,
+    required this.messages,
+    required this.nextCursor,
+    required this.prevCursor,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiChannelMessageListToJson(this);
+  factory ApiChannelMessageList.fromJson(Map<String, dynamic> json) =>
+      _$ApiChannelMessageListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiChannelMessageListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Create a group with the current user as owner.
 @JsonSerializable(explicitToJson: true)
 class ApiCreateGroupRequest {
-    @JsonKey(name: 'avatar_url')
-    final String? avatarUrl;
-    @JsonKey(name: 'description')
-    final String? description;
-    @JsonKey(name: 'lang_tag')
-    final String? langTag;
-    @JsonKey(name: 'max_count')
-    final int? maxCount;
-    @JsonKey(name: 'name')
-    final String? name;
-    @JsonKey(name: 'open')
-    final bool? open;
-    
-    const ApiCreateGroupRequest({
-        required this.avatarUrl,
-        required this.description,
-        required this.langTag,
-        required this.maxCount,
-        required this.name,
-        required this.open,
-    });
+  @JsonKey(name: 'avatar_url')
+  final String? avatarUrl;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'lang_tag')
+  final String? langTag;
+  @JsonKey(name: 'max_count')
+  final int? maxCount;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'open')
+  final bool? open;
 
-    factory ApiCreateGroupRequest.fromJson(Map<String, dynamic> json) => _$ApiCreateGroupRequestFromJson(json);
+  const ApiCreateGroupRequest({
+    required this.avatarUrl,
+    required this.description,
+    required this.langTag,
+    required this.maxCount,
+    required this.name,
+    required this.open,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiCreateGroupRequestToJson(this);
+  factory ApiCreateGroupRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiCreateGroupRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiCreateGroupRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Storage objects to delete.
 @JsonSerializable(explicitToJson: true)
 class ApiDeleteStorageObjectId {
-    @JsonKey(name: 'collection')
-    final String? collection;
-    @JsonKey(name: 'key')
-    final String? key;
-    @JsonKey(name: 'version')
-    final String? version;
-    
-    const ApiDeleteStorageObjectId({
-        required this.collection,
-        required this.key,
-        required this.version,
-    });
+  @JsonKey(name: 'collection')
+  final String? collection;
+  @JsonKey(name: 'key')
+  final String? key;
+  @JsonKey(name: 'version')
+  final String? version;
 
-    factory ApiDeleteStorageObjectId.fromJson(Map<String, dynamic> json) => _$ApiDeleteStorageObjectIdFromJson(json);
+  const ApiDeleteStorageObjectId({
+    required this.collection,
+    required this.key,
+    required this.version,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiDeleteStorageObjectIdToJson(this);
+  factory ApiDeleteStorageObjectId.fromJson(Map<String, dynamic> json) =>
+      _$ApiDeleteStorageObjectIdFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiDeleteStorageObjectIdToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Batch delete storage objects.
 @JsonSerializable(explicitToJson: true)
 class ApiDeleteStorageObjectsRequest {
-    @JsonKey(name: 'object_ids')
-    final List<ApiDeleteStorageObjectId>? objectIds;
-    
-    const ApiDeleteStorageObjectsRequest({
-        required this.objectIds,
-    });
+  @JsonKey(name: 'object_ids')
+  final List<ApiDeleteStorageObjectId>? objectIds;
 
-    factory ApiDeleteStorageObjectsRequest.fromJson(Map<String, dynamic> json) => _$ApiDeleteStorageObjectsRequestFromJson(json);
+  const ApiDeleteStorageObjectsRequest({required this.objectIds});
 
-    Map<String, dynamic> toJson() => _$ApiDeleteStorageObjectsRequestToJson(this);
+  factory ApiDeleteStorageObjectsRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiDeleteStorageObjectsRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiDeleteStorageObjectsRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Represents an event to be passed through the server to registered event handlers.
 @JsonSerializable(explicitToJson: true)
 class ApiEvent {
-    @JsonKey(name: 'external')
-    final bool? external;
-    @JsonKey(name: 'name')
-    final String? name;
-    @JsonKey(name: 'properties')
-    final Map<String, String>? properties;
-    @JsonKey(name: 'timestamp')
-    final String? timestamp;
-    
-    const ApiEvent({
-        required this.external,
-        required this.name,
-        required this.properties,
-        required this.timestamp,
-    });
+  @JsonKey(name: 'external')
+  final bool? external;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'properties')
+  final Map<String, String>? properties;
+  @JsonKey(name: 'timestamp')
+  final String? timestamp;
 
-    factory ApiEvent.fromJson(Map<String, dynamic> json) => _$ApiEventFromJson(json);
+  const ApiEvent({
+    required this.external,
+    required this.name,
+    required this.properties,
+    required this.timestamp,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiEventToJson(this);
+  factory ApiEvent.fromJson(Map<String, dynamic> json) =>
+      _$ApiEventFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiEventToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A friend of a user.
 @JsonSerializable(explicitToJson: true)
 class ApiFriend {
-    @JsonKey(name: 'metadata')
-    final String? metadata;
-    @JsonKey(name: 'state')
-    final int? state;
-    @JsonKey(name: 'update_time')
-    final String? updateTime;
-    @JsonKey(name: 'user')
-    final ApiUser? user;
-    
-    const ApiFriend({
-        required this.metadata,
-        required this.state,
-        required this.updateTime,
-        required this.user,
-    });
+  @JsonKey(name: 'metadata')
+  final String? metadata;
+  @JsonKey(name: 'state')
+  final int? state;
+  @JsonKey(name: 'update_time')
+  final String? updateTime;
+  @JsonKey(name: 'user')
+  final ApiUser? user;
 
-    factory ApiFriend.fromJson(Map<String, dynamic> json) => _$ApiFriendFromJson(json);
+  const ApiFriend({
+    required this.metadata,
+    required this.state,
+    required this.updateTime,
+    required this.user,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiFriendToJson(this);
+  factory ApiFriend.fromJson(Map<String, dynamic> json) =>
+      _$ApiFriendFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiFriendToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A collection of zero or more friends of the user.
 @JsonSerializable(explicitToJson: true)
 class ApiFriendList {
-    @JsonKey(name: 'cursor')
-    final String? cursor;
-    @JsonKey(name: 'friends')
-    final List<ApiFriend>? friends;
-    
-    const ApiFriendList({
-        required this.cursor,
-        required this.friends,
-    });
+  @JsonKey(name: 'cursor')
+  final String? cursor;
+  @JsonKey(name: 'friends')
+  final List<ApiFriend>? friends;
 
-    factory ApiFriendList.fromJson(Map<String, dynamic> json) => _$ApiFriendListFromJson(json);
+  const ApiFriendList({required this.cursor, required this.friends});
 
-    Map<String, dynamic> toJson() => _$ApiFriendListToJson(this);
+  factory ApiFriendList.fromJson(Map<String, dynamic> json) =>
+      _$ApiFriendListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiFriendListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A List of friends of friends
 @JsonSerializable(explicitToJson: true)
 class ApiFriendsOfFriendsList {
-    @JsonKey(name: 'cursor')
-    final String? cursor;
-    @JsonKey(name: 'friends_of_friends')
-    final List<FriendsOfFriendsListFriendOfFriend>? friendsOfFriends;
-    
-    const ApiFriendsOfFriendsList({
-        required this.cursor,
-        required this.friendsOfFriends,
-    });
+  @JsonKey(name: 'cursor')
+  final String? cursor;
+  @JsonKey(name: 'friends_of_friends')
+  final List<FriendsOfFriendsListFriendOfFriend>? friendsOfFriends;
 
-    factory ApiFriendsOfFriendsList.fromJson(Map<String, dynamic> json) => _$ApiFriendsOfFriendsListFromJson(json);
+  const ApiFriendsOfFriendsList({
+    required this.cursor,
+    required this.friendsOfFriends,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiFriendsOfFriendsListToJson(this);
+  factory ApiFriendsOfFriendsList.fromJson(Map<String, dynamic> json) =>
+      _$ApiFriendsOfFriendsListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiFriendsOfFriendsListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A group in the server.
 @JsonSerializable(explicitToJson: true)
 class ApiGroup {
-    @JsonKey(name: 'avatar_url')
-    final String? avatarUrl;
-    @JsonKey(name: 'create_time')
-    final String? createTime;
-    @JsonKey(name: 'creator_id')
-    final String? creatorId;
-    @JsonKey(name: 'description')
-    final String? description;
-    @JsonKey(name: 'edge_count')
-    final int? edgeCount;
-    @JsonKey(name: 'id')
-    final String? id;
-    @JsonKey(name: 'lang_tag')
-    final String? langTag;
-    @JsonKey(name: 'max_count')
-    final int? maxCount;
-    @JsonKey(name: 'metadata')
-    final String? metadata;
-    @JsonKey(name: 'name')
-    final String? name;
-    @JsonKey(name: 'open')
-    final bool? open;
-    @JsonKey(name: 'update_time')
-    final String? updateTime;
-    
-    const ApiGroup({
-        required this.avatarUrl,
-        required this.createTime,
-        required this.creatorId,
-        required this.description,
-        required this.edgeCount,
-        required this.id,
-        required this.langTag,
-        required this.maxCount,
-        required this.metadata,
-        required this.name,
-        required this.open,
-        required this.updateTime,
-    });
+  @JsonKey(name: 'avatar_url')
+  final String? avatarUrl;
+  @JsonKey(name: 'create_time')
+  final String? createTime;
+  @JsonKey(name: 'creator_id')
+  final String? creatorId;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'edge_count')
+  final int? edgeCount;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'lang_tag')
+  final String? langTag;
+  @JsonKey(name: 'max_count')
+  final int? maxCount;
+  @JsonKey(name: 'metadata')
+  final String? metadata;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'open')
+  final bool? open;
+  @JsonKey(name: 'update_time')
+  final String? updateTime;
 
-    factory ApiGroup.fromJson(Map<String, dynamic> json) => _$ApiGroupFromJson(json);
+  const ApiGroup({
+    required this.avatarUrl,
+    required this.createTime,
+    required this.creatorId,
+    required this.description,
+    required this.edgeCount,
+    required this.id,
+    required this.langTag,
+    required this.maxCount,
+    required this.metadata,
+    required this.name,
+    required this.open,
+    required this.updateTime,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiGroupToJson(this);
+  factory ApiGroup.fromJson(Map<String, dynamic> json) =>
+      _$ApiGroupFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiGroupToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// One or more groups returned from a listing operation.
 @JsonSerializable(explicitToJson: true)
 class ApiGroupList {
-    @JsonKey(name: 'cursor')
-    final String? cursor;
-    @JsonKey(name: 'groups')
-    final List<ApiGroup>? groups;
-    
-    const ApiGroupList({
-        required this.cursor,
-        required this.groups,
-    });
+  @JsonKey(name: 'cursor')
+  final String? cursor;
+  @JsonKey(name: 'groups')
+  final List<ApiGroup>? groups;
 
-    factory ApiGroupList.fromJson(Map<String, dynamic> json) => _$ApiGroupListFromJson(json);
+  const ApiGroupList({required this.cursor, required this.groups});
 
-    Map<String, dynamic> toJson() => _$ApiGroupListToJson(this);
+  factory ApiGroupList.fromJson(Map<String, dynamic> json) =>
+      _$ApiGroupListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiGroupListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A list of users belonging to a group, along with their role.
 @JsonSerializable(explicitToJson: true)
 class ApiGroupUserList {
-    @JsonKey(name: 'cursor')
-    final String? cursor;
-    @JsonKey(name: 'group_users')
-    final List<GroupUserListGroupUser>? groupUsers;
-    
-    const ApiGroupUserList({
-        required this.cursor,
-        required this.groupUsers,
-    });
+  @JsonKey(name: 'cursor')
+  final String? cursor;
+  @JsonKey(name: 'group_users')
+  final List<GroupUserListGroupUser>? groupUsers;
 
-    factory ApiGroupUserList.fromJson(Map<String, dynamic> json) => _$ApiGroupUserListFromJson(json);
+  const ApiGroupUserList({required this.cursor, required this.groupUsers});
 
-    Map<String, dynamic> toJson() => _$ApiGroupUserListToJson(this);
+  factory ApiGroupUserList.fromJson(Map<String, dynamic> json) =>
+      _$ApiGroupUserListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiGroupUserListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Represents a complete leaderboard record with all scores and associated metadata.
 @JsonSerializable(explicitToJson: true)
 class ApiLeaderboardRecord {
-    @JsonKey(name: 'create_time')
-    final String? createTime;
-    @JsonKey(name: 'expiry_time')
-    final String? expiryTime;
-    @JsonKey(name: 'leaderboard_id')
-    final String? leaderboardId;
-    @JsonKey(name: 'max_num_score')
-    final int? maxNumScore;
-    @JsonKey(name: 'metadata')
-    final String? metadata;
-    @JsonKey(name: 'num_score')
-    final int? numScore;
-    @JsonKey(name: 'owner_id')
-    final String? ownerId;
-    @JsonKey(name: 'rank')
-    final String? rank;
-    @JsonKey(name: 'score')
-    final String? score;
-    @JsonKey(name: 'subscore')
-    final String? subscore;
-    @JsonKey(name: 'update_time')
-    final String? updateTime;
-    @JsonKey(name: 'username')
-    final String? username;
-    
-    const ApiLeaderboardRecord({
-        required this.createTime,
-        required this.expiryTime,
-        required this.leaderboardId,
-        required this.maxNumScore,
-        required this.metadata,
-        required this.numScore,
-        required this.ownerId,
-        required this.rank,
-        required this.score,
-        required this.subscore,
-        required this.updateTime,
-        required this.username,
-    });
+  @JsonKey(name: 'create_time')
+  final String? createTime;
+  @JsonKey(name: 'expiry_time')
+  final String? expiryTime;
+  @JsonKey(name: 'leaderboard_id')
+  final String? leaderboardId;
+  @JsonKey(name: 'max_num_score')
+  final int? maxNumScore;
+  @JsonKey(name: 'metadata')
+  final String? metadata;
+  @JsonKey(name: 'num_score')
+  final int? numScore;
+  @JsonKey(name: 'owner_id')
+  final String? ownerId;
+  @JsonKey(name: 'rank')
+  final String? rank;
+  @JsonKey(name: 'score')
+  final String? score;
+  @JsonKey(name: 'subscore')
+  final String? subscore;
+  @JsonKey(name: 'update_time')
+  final String? updateTime;
+  @JsonKey(name: 'username')
+  final String? username;
 
-    factory ApiLeaderboardRecord.fromJson(Map<String, dynamic> json) => _$ApiLeaderboardRecordFromJson(json);
+  const ApiLeaderboardRecord({
+    required this.createTime,
+    required this.expiryTime,
+    required this.leaderboardId,
+    required this.maxNumScore,
+    required this.metadata,
+    required this.numScore,
+    required this.ownerId,
+    required this.rank,
+    required this.score,
+    required this.subscore,
+    required this.updateTime,
+    required this.username,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiLeaderboardRecordToJson(this);
+  factory ApiLeaderboardRecord.fromJson(Map<String, dynamic> json) =>
+      _$ApiLeaderboardRecordFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiLeaderboardRecordToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A set of leaderboard records, may be part of a leaderboard records page or a batch of individual records.
 @JsonSerializable(explicitToJson: true)
 class ApiLeaderboardRecordList {
-    @JsonKey(name: 'next_cursor')
-    final String? nextCursor;
-    @JsonKey(name: 'owner_records')
-    final List<ApiLeaderboardRecord>? ownerRecords;
-    @JsonKey(name: 'prev_cursor')
-    final String? prevCursor;
-    @JsonKey(name: 'rank_count')
-    final String? rankCount;
-    @JsonKey(name: 'records')
-    final List<ApiLeaderboardRecord>? records;
-    
-    const ApiLeaderboardRecordList({
-        required this.nextCursor,
-        required this.ownerRecords,
-        required this.prevCursor,
-        required this.rankCount,
-        required this.records,
-    });
+  @JsonKey(name: 'next_cursor')
+  final String? nextCursor;
+  @JsonKey(name: 'owner_records')
+  final List<ApiLeaderboardRecord>? ownerRecords;
+  @JsonKey(name: 'prev_cursor')
+  final String? prevCursor;
+  @JsonKey(name: 'rank_count')
+  final String? rankCount;
+  @JsonKey(name: 'records')
+  final List<ApiLeaderboardRecord>? records;
 
-    factory ApiLeaderboardRecordList.fromJson(Map<String, dynamic> json) => _$ApiLeaderboardRecordListFromJson(json);
+  const ApiLeaderboardRecordList({
+    required this.nextCursor,
+    required this.ownerRecords,
+    required this.prevCursor,
+    required this.rankCount,
+    required this.records,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiLeaderboardRecordListToJson(this);
+  factory ApiLeaderboardRecordList.fromJson(Map<String, dynamic> json) =>
+      _$ApiLeaderboardRecordListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiLeaderboardRecordListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Link Steam to the current user's account.
 @JsonSerializable(explicitToJson: true)
 class ApiLinkSteamRequest {
-    @JsonKey(name: 'account')
-    final ApiAccountSteam? account;
-    @JsonKey(name: 'sync')
-    final bool? sync;
-    
-    const ApiLinkSteamRequest({
-        required this.account,
-        required this.sync,
-    });
+  @JsonKey(name: 'account')
+  final ApiAccountSteam? account;
+  @JsonKey(name: 'sync')
+  final bool? sync;
 
-    factory ApiLinkSteamRequest.fromJson(Map<String, dynamic> json) => _$ApiLinkSteamRequestFromJson(json);
+  const ApiLinkSteamRequest({required this.account, required this.sync});
 
-    Map<String, dynamic> toJson() => _$ApiLinkSteamRequestToJson(this);
+  factory ApiLinkSteamRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiLinkSteamRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiLinkSteamRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// List user subscriptions.
 @JsonSerializable(explicitToJson: true)
 class ApiListSubscriptionsRequest {
-    @JsonKey(name: 'cursor')
-    final String? cursor;
-    @JsonKey(name: 'limit')
-    final int? limit;
-    
-    const ApiListSubscriptionsRequest({
-        required this.cursor,
-        required this.limit,
-    });
+  @JsonKey(name: 'cursor')
+  final String? cursor;
+  @JsonKey(name: 'limit')
+  final int? limit;
 
-    factory ApiListSubscriptionsRequest.fromJson(Map<String, dynamic> json) => _$ApiListSubscriptionsRequestFromJson(json);
+  const ApiListSubscriptionsRequest({
+    required this.cursor,
+    required this.limit,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiListSubscriptionsRequestToJson(this);
+  factory ApiListSubscriptionsRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiListSubscriptionsRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiListSubscriptionsRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Represents a realtime match.
 @JsonSerializable(explicitToJson: true)
 class ApiMatch {
-    @JsonKey(name: 'authoritative')
-    final bool? authoritative;
-    @JsonKey(name: 'handler_name')
-    final String? handlerName;
-    @JsonKey(name: 'label')
-    final String? label;
-    @JsonKey(name: 'match_id')
-    final String? matchId;
-    @JsonKey(name: 'size')
-    final int? size;
-    @JsonKey(name: 'tick_rate')
-    final int? tickRate;
-    
-    const ApiMatch({
-        required this.authoritative,
-        required this.handlerName,
-        required this.label,
-        required this.matchId,
-        required this.size,
-        required this.tickRate,
-    });
+  @JsonKey(name: 'authoritative')
+  final bool? authoritative;
+  @JsonKey(name: 'handler_name')
+  final String? handlerName;
+  @JsonKey(name: 'label')
+  final String? label;
+  @JsonKey(name: 'match_id')
+  final String? matchId;
+  @JsonKey(name: 'size')
+  final int? size;
+  @JsonKey(name: 'tick_rate')
+  final int? tickRate;
 
-    factory ApiMatch.fromJson(Map<String, dynamic> json) => _$ApiMatchFromJson(json);
+  const ApiMatch({
+    required this.authoritative,
+    required this.handlerName,
+    required this.label,
+    required this.matchId,
+    required this.size,
+    required this.tickRate,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiMatchToJson(this);
+  factory ApiMatch.fromJson(Map<String, dynamic> json) =>
+      _$ApiMatchFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiMatchToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A list of realtime matches.
 @JsonSerializable(explicitToJson: true)
 class ApiMatchList {
-    @JsonKey(name: 'matches')
-    final List<ApiMatch>? matches;
-    
-    const ApiMatchList({
-        required this.matches,
-    });
+  @JsonKey(name: 'matches')
+  final List<ApiMatch>? matches;
 
-    factory ApiMatchList.fromJson(Map<String, dynamic> json) => _$ApiMatchListFromJson(json);
+  const ApiMatchList({required this.matches});
 
-    Map<String, dynamic> toJson() => _$ApiMatchListToJson(this);
+  factory ApiMatchList.fromJson(Map<String, dynamic> json) =>
+      _$ApiMatchListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiMatchListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Matchmaker ticket completion stats
 @JsonSerializable(explicitToJson: true)
 class ApiMatchmakerCompletionStats {
-    @JsonKey(name: 'complete_time')
-    final String? completeTime;
-    @JsonKey(name: 'create_time')
-    final String? createTime;
-    
-    const ApiMatchmakerCompletionStats({
-        required this.completeTime,
-        required this.createTime,
-    });
+  @JsonKey(name: 'complete_time')
+  final String? completeTime;
+  @JsonKey(name: 'create_time')
+  final String? createTime;
 
-    factory ApiMatchmakerCompletionStats.fromJson(Map<String, dynamic> json) => _$ApiMatchmakerCompletionStatsFromJson(json);
+  const ApiMatchmakerCompletionStats({
+    required this.completeTime,
+    required this.createTime,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiMatchmakerCompletionStatsToJson(this);
+  factory ApiMatchmakerCompletionStats.fromJson(Map<String, dynamic> json) =>
+      _$ApiMatchmakerCompletionStatsFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiMatchmakerCompletionStatsToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Matchmaker stats
 @JsonSerializable(explicitToJson: true)
 class ApiMatchmakerStats {
-    @JsonKey(name: 'completions')
-    final List<ApiMatchmakerCompletionStats>? completions;
-    @JsonKey(name: 'oldest_ticket_create_time')
-    final String? oldestTicketCreateTime;
-    @JsonKey(name: 'ticket_count')
-    final int? ticketCount;
-    
-    const ApiMatchmakerStats({
-        required this.completions,
-        required this.oldestTicketCreateTime,
-        required this.ticketCount,
-    });
+  @JsonKey(name: 'completions')
+  final List<ApiMatchmakerCompletionStats>? completions;
+  @JsonKey(name: 'oldest_ticket_create_time')
+  final String? oldestTicketCreateTime;
+  @JsonKey(name: 'ticket_count')
+  final int? ticketCount;
 
-    factory ApiMatchmakerStats.fromJson(Map<String, dynamic> json) => _$ApiMatchmakerStatsFromJson(json);
+  const ApiMatchmakerStats({
+    required this.completions,
+    required this.oldestTicketCreateTime,
+    required this.ticketCount,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiMatchmakerStatsToJson(this);
+  factory ApiMatchmakerStats.fromJson(Map<String, dynamic> json) =>
+      _$ApiMatchmakerStatsFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiMatchmakerStatsToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A notification in the server.
 @JsonSerializable(explicitToJson: true)
 class ApiNotification {
-    @JsonKey(name: 'code')
-    final int? code;
-    @JsonKey(name: 'content')
-    final String? content;
-    @JsonKey(name: 'create_time')
-    final String? createTime;
-    @JsonKey(name: 'id')
-    final String? id;
-    @JsonKey(name: 'persistent')
-    final bool? persistent;
-    @JsonKey(name: 'sender_id')
-    final String? senderId;
-    @JsonKey(name: 'subject')
-    final String? subject;
-    
-    const ApiNotification({
-        required this.code,
-        required this.content,
-        required this.createTime,
-        required this.id,
-        required this.persistent,
-        required this.senderId,
-        required this.subject,
-    });
+  @JsonKey(name: 'code')
+  final int? code;
+  @JsonKey(name: 'content')
+  final String? content;
+  @JsonKey(name: 'create_time')
+  final String? createTime;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'persistent')
+  final bool? persistent;
+  @JsonKey(name: 'sender_id')
+  final String? senderId;
+  @JsonKey(name: 'subject')
+  final String? subject;
 
-    factory ApiNotification.fromJson(Map<String, dynamic> json) => _$ApiNotificationFromJson(json);
+  const ApiNotification({
+    required this.code,
+    required this.content,
+    required this.createTime,
+    required this.id,
+    required this.persistent,
+    required this.senderId,
+    required this.subject,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiNotificationToJson(this);
+  factory ApiNotification.fromJson(Map<String, dynamic> json) =>
+      _$ApiNotificationFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiNotificationToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A collection of zero or more notifications.
 @JsonSerializable(explicitToJson: true)
 class ApiNotificationList {
-    @JsonKey(name: 'cacheable_cursor')
-    final String? cacheableCursor;
-    @JsonKey(name: 'notifications')
-    final List<ApiNotification>? notifications;
-    
-    const ApiNotificationList({
-        required this.cacheableCursor,
-        required this.notifications,
-    });
+  @JsonKey(name: 'cacheable_cursor')
+  final String? cacheableCursor;
+  @JsonKey(name: 'notifications')
+  final List<ApiNotification>? notifications;
 
-    factory ApiNotificationList.fromJson(Map<String, dynamic> json) => _$ApiNotificationListFromJson(json);
+  const ApiNotificationList({
+    required this.cacheableCursor,
+    required this.notifications,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiNotificationListToJson(this);
+  factory ApiNotificationList.fromJson(Map<String, dynamic> json) =>
+      _$ApiNotificationListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiNotificationListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 enum ApiOperator {
-    @JsonValue('NO_OVERRIDE')
-    noOverride,
-    @JsonValue('BEST')
-    best,
-    @JsonValue('SET')
-    set,
-    @JsonValue('INCREMENT')
-    increment,
-    @JsonValue('DECREMENT')
-    decrement,
+  @JsonValue('NO_OVERRIDE')
+  noOverride,
+  @JsonValue('BEST')
+  best,
+  @JsonValue('SET')
+  set,
+  @JsonValue('INCREMENT')
+  increment,
+  @JsonValue('DECREMENT')
+  decrement,
 }
 
 /// Incoming information about a party.
 @JsonSerializable(explicitToJson: true)
 class ApiParty {
-    @JsonKey(name: 'hidden')
-    final bool? hidden;
-    @JsonKey(name: 'label')
-    final String? label;
-    @JsonKey(name: 'max_size')
-    final int? maxSize;
-    @JsonKey(name: 'open')
-    final bool? open;
-    @JsonKey(name: 'party_id')
-    final String? partyId;
-    
-    const ApiParty({
-        required this.hidden,
-        required this.label,
-        required this.maxSize,
-        required this.open,
-        required this.partyId,
-    });
+  @JsonKey(name: 'hidden')
+  final bool? hidden;
+  @JsonKey(name: 'label')
+  final String? label;
+  @JsonKey(name: 'max_size')
+  final int? maxSize;
+  @JsonKey(name: 'open')
+  final bool? open;
+  @JsonKey(name: 'party_id')
+  final String? partyId;
 
-    factory ApiParty.fromJson(Map<String, dynamic> json) => _$ApiPartyFromJson(json);
+  const ApiParty({
+    required this.hidden,
+    required this.label,
+    required this.maxSize,
+    required this.open,
+    required this.partyId,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiPartyToJson(this);
+  factory ApiParty.fromJson(Map<String, dynamic> json) =>
+      _$ApiPartyFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiPartyToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A list of realtime matches.
 @JsonSerializable(explicitToJson: true)
 class ApiPartyList {
-    @JsonKey(name: 'cursor')
-    final String? cursor;
-    @JsonKey(name: 'parties')
-    final List<ApiParty>? parties;
-    
-    const ApiPartyList({
-        required this.cursor,
-        required this.parties,
-    });
+  @JsonKey(name: 'cursor')
+  final String? cursor;
+  @JsonKey(name: 'parties')
+  final List<ApiParty>? parties;
 
-    factory ApiPartyList.fromJson(Map<String, dynamic> json) => _$ApiPartyListFromJson(json);
+  const ApiPartyList({required this.cursor, required this.parties});
 
-    Map<String, dynamic> toJson() => _$ApiPartyListToJson(this);
+  factory ApiPartyList.fromJson(Map<String, dynamic> json) =>
+      _$ApiPartyListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiPartyListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Storage objects to get.
 @JsonSerializable(explicitToJson: true)
 class ApiReadStorageObjectId {
-    @JsonKey(name: 'collection')
-    final String? collection;
-    @JsonKey(name: 'key')
-    final String? key;
-    @JsonKey(name: 'user_id')
-    final String? userId;
-    
-    const ApiReadStorageObjectId({
-        required this.collection,
-        required this.key,
-        required this.userId,
-    });
+  @JsonKey(name: 'collection')
+  final String? collection;
+  @JsonKey(name: 'key')
+  final String? key;
+  @JsonKey(name: 'user_id')
+  final String? userId;
 
-    factory ApiReadStorageObjectId.fromJson(Map<String, dynamic> json) => _$ApiReadStorageObjectIdFromJson(json);
+  const ApiReadStorageObjectId({
+    required this.collection,
+    required this.key,
+    required this.userId,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiReadStorageObjectIdToJson(this);
+  factory ApiReadStorageObjectId.fromJson(Map<String, dynamic> json) =>
+      _$ApiReadStorageObjectIdFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiReadStorageObjectIdToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Batch get storage objects.
 @JsonSerializable(explicitToJson: true)
 class ApiReadStorageObjectsRequest {
-    @JsonKey(name: 'object_ids')
-    final List<ApiReadStorageObjectId>? objectIds;
-    
-    const ApiReadStorageObjectsRequest({
-        required this.objectIds,
-    });
+  @JsonKey(name: 'object_ids')
+  final List<ApiReadStorageObjectId>? objectIds;
 
-    factory ApiReadStorageObjectsRequest.fromJson(Map<String, dynamic> json) => _$ApiReadStorageObjectsRequestFromJson(json);
+  const ApiReadStorageObjectsRequest({required this.objectIds});
 
-    Map<String, dynamic> toJson() => _$ApiReadStorageObjectsRequestToJson(this);
+  factory ApiReadStorageObjectsRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiReadStorageObjectsRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiReadStorageObjectsRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Execute an Lua function on the server.
 @JsonSerializable(explicitToJson: true)
 class ApiRpc {
-    @JsonKey(name: 'http_key')
-    final String? httpKey;
-    @JsonKey(name: 'id')
-    final String? id;
-    @JsonKey(name: 'payload')
-    final String? payload;
-    
-    const ApiRpc({
-        required this.httpKey,
-        required this.id,
-        required this.payload,
-    });
+  @JsonKey(name: 'http_key')
+  final String? httpKey;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'payload')
+  final String? payload;
 
-    factory ApiRpc.fromJson(Map<String, dynamic> json) => _$ApiRpcFromJson(json);
+  const ApiRpc({
+    required this.httpKey,
+    required this.id,
+    required this.payload,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiRpcToJson(this);
+  factory ApiRpc.fromJson(Map<String, dynamic> json) => _$ApiRpcFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiRpcToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A user's session used to authenticate messages.
 @JsonSerializable(explicitToJson: true)
 class ApiSession {
-    @JsonKey(name: 'created')
-    final bool? created;
-    @JsonKey(name: 'refresh_token')
-    final String? refreshToken;
-    @JsonKey(name: 'token')
-    final String? token;
-    
-    const ApiSession({
-        required this.created,
-        required this.refreshToken,
-        required this.token,
-    });
+  @JsonKey(name: 'created')
+  final bool? created;
+  @JsonKey(name: 'refresh_token')
+  final String? refreshToken;
+  @JsonKey(name: 'token')
+  final String? token;
 
-    factory ApiSession.fromJson(Map<String, dynamic> json) => _$ApiSessionFromJson(json);
+  const ApiSession({
+    required this.created,
+    required this.refreshToken,
+    required this.token,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiSessionToJson(this);
+  factory ApiSession.fromJson(Map<String, dynamic> json) =>
+      _$ApiSessionFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiSessionToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
 @JsonSerializable(explicitToJson: true)
 class ApiSessionLogoutRequest {
-    @JsonKey(name: 'refresh_token')
-    final String? refreshToken;
-    @JsonKey(name: 'token')
-    final String? token;
-    
-    const ApiSessionLogoutRequest({
-        required this.refreshToken,
-        required this.token,
-    });
+  @JsonKey(name: 'refresh_token')
+  final String? refreshToken;
+  @JsonKey(name: 'token')
+  final String? token;
 
-    factory ApiSessionLogoutRequest.fromJson(Map<String, dynamic> json) => _$ApiSessionLogoutRequestFromJson(json);
+  const ApiSessionLogoutRequest({
+    required this.refreshToken,
+    required this.token,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiSessionLogoutRequestToJson(this);
+  factory ApiSessionLogoutRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiSessionLogoutRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiSessionLogoutRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Authenticate against the server with a refresh token.
 @JsonSerializable(explicitToJson: true)
 class ApiSessionRefreshRequest {
-    @JsonKey(name: 'token')
-    final String? token;
-    @JsonKey(name: 'vars')
-    final Map<String, String>? vars;
-    
-    const ApiSessionRefreshRequest({
-        required this.token,
-        required this.vars,
-    });
+  @JsonKey(name: 'token')
+  final String? token;
+  @JsonKey(name: 'vars')
+  final Map<String, String>? vars;
 
-    factory ApiSessionRefreshRequest.fromJson(Map<String, dynamic> json) => _$ApiSessionRefreshRequestFromJson(json);
+  const ApiSessionRefreshRequest({required this.token, required this.vars});
 
-    Map<String, dynamic> toJson() => _$ApiSessionRefreshRequestToJson(this);
+  factory ApiSessionRefreshRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiSessionRefreshRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiSessionRefreshRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// An object within the storage engine.
 @JsonSerializable(explicitToJson: true)
 class ApiStorageObject {
-    @JsonKey(name: 'collection')
-    final String? collection;
-    @JsonKey(name: 'create_time')
-    final String? createTime;
-    @JsonKey(name: 'key')
-    final String? key;
-    @JsonKey(name: 'permission_read')
-    final int? permissionRead;
-    @JsonKey(name: 'permission_write')
-    final int? permissionWrite;
-    @JsonKey(name: 'update_time')
-    final String? updateTime;
-    @JsonKey(name: 'user_id')
-    final String? userId;
-    @JsonKey(name: 'value')
-    final String? value;
-    @JsonKey(name: 'version')
-    final String? version;
-    
-    const ApiStorageObject({
-        required this.collection,
-        required this.createTime,
-        required this.key,
-        required this.permissionRead,
-        required this.permissionWrite,
-        required this.updateTime,
-        required this.userId,
-        required this.value,
-        required this.version,
-    });
+  @JsonKey(name: 'collection')
+  final String? collection;
+  @JsonKey(name: 'create_time')
+  final String? createTime;
+  @JsonKey(name: 'key')
+  final String? key;
+  @JsonKey(name: 'permission_read')
+  final int? permissionRead;
+  @JsonKey(name: 'permission_write')
+  final int? permissionWrite;
+  @JsonKey(name: 'update_time')
+  final String? updateTime;
+  @JsonKey(name: 'user_id')
+  final String? userId;
+  @JsonKey(name: 'value')
+  final String? value;
+  @JsonKey(name: 'version')
+  final String? version;
 
-    factory ApiStorageObject.fromJson(Map<String, dynamic> json) => _$ApiStorageObjectFromJson(json);
+  const ApiStorageObject({
+    required this.collection,
+    required this.createTime,
+    required this.key,
+    required this.permissionRead,
+    required this.permissionWrite,
+    required this.updateTime,
+    required this.userId,
+    required this.value,
+    required this.version,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiStorageObjectToJson(this);
+  factory ApiStorageObject.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiStorageObjectToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A storage acknowledgement.
 @JsonSerializable(explicitToJson: true)
 class ApiStorageObjectAck {
-    @JsonKey(name: 'collection')
-    final String? collection;
-    @JsonKey(name: 'create_time')
-    final String? createTime;
-    @JsonKey(name: 'key')
-    final String? key;
-    @JsonKey(name: 'update_time')
-    final String? updateTime;
-    @JsonKey(name: 'user_id')
-    final String? userId;
-    @JsonKey(name: 'version')
-    final String? version;
-    
-    const ApiStorageObjectAck({
-        required this.collection,
-        required this.createTime,
-        required this.key,
-        required this.updateTime,
-        required this.userId,
-        required this.version,
-    });
+  @JsonKey(name: 'collection')
+  final String? collection;
+  @JsonKey(name: 'create_time')
+  final String? createTime;
+  @JsonKey(name: 'key')
+  final String? key;
+  @JsonKey(name: 'update_time')
+  final String? updateTime;
+  @JsonKey(name: 'user_id')
+  final String? userId;
+  @JsonKey(name: 'version')
+  final String? version;
 
-    factory ApiStorageObjectAck.fromJson(Map<String, dynamic> json) => _$ApiStorageObjectAckFromJson(json);
+  const ApiStorageObjectAck({
+    required this.collection,
+    required this.createTime,
+    required this.key,
+    required this.updateTime,
+    required this.userId,
+    required this.version,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiStorageObjectAckToJson(this);
+  factory ApiStorageObjectAck.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectAckFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiStorageObjectAckToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Batch of acknowledgements for the storage object write.
 @JsonSerializable(explicitToJson: true)
 class ApiStorageObjectAcks {
-    @JsonKey(name: 'acks')
-    final List<ApiStorageObjectAck>? acks;
-    
-    const ApiStorageObjectAcks({
-        required this.acks,
-    });
+  @JsonKey(name: 'acks')
+  final List<ApiStorageObjectAck>? acks;
 
-    factory ApiStorageObjectAcks.fromJson(Map<String, dynamic> json) => _$ApiStorageObjectAcksFromJson(json);
+  const ApiStorageObjectAcks({required this.acks});
 
-    Map<String, dynamic> toJson() => _$ApiStorageObjectAcksToJson(this);
+  factory ApiStorageObjectAcks.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectAcksFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiStorageObjectAcksToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// List of storage objects.
 @JsonSerializable(explicitToJson: true)
 class ApiStorageObjectList {
-    @JsonKey(name: 'cursor')
-    final String? cursor;
-    @JsonKey(name: 'objects')
-    final List<ApiStorageObject>? objects;
-    
-    const ApiStorageObjectList({
-        required this.cursor,
-        required this.objects,
-    });
+  @JsonKey(name: 'cursor')
+  final String? cursor;
+  @JsonKey(name: 'objects')
+  final List<ApiStorageObject>? objects;
 
-    factory ApiStorageObjectList.fromJson(Map<String, dynamic> json) => _$ApiStorageObjectListFromJson(json);
+  const ApiStorageObjectList({required this.cursor, required this.objects});
 
-    Map<String, dynamic> toJson() => _$ApiStorageObjectListToJson(this);
+  factory ApiStorageObjectList.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiStorageObjectListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Batch of storage objects.
 @JsonSerializable(explicitToJson: true)
 class ApiStorageObjects {
-    @JsonKey(name: 'objects')
-    final List<ApiStorageObject>? objects;
-    
-    const ApiStorageObjects({
-        required this.objects,
-    });
+  @JsonKey(name: 'objects')
+  final List<ApiStorageObject>? objects;
 
-    factory ApiStorageObjects.fromJson(Map<String, dynamic> json) => _$ApiStorageObjectsFromJson(json);
+  const ApiStorageObjects({required this.objects});
 
-    Map<String, dynamic> toJson() => _$ApiStorageObjectsToJson(this);
+  factory ApiStorageObjects.fromJson(Map<String, dynamic> json) =>
+      _$ApiStorageObjectsFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiStorageObjectsToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 enum ApiStoreEnvironment {
-    @JsonValue('UNKNOWN')
-    unknown,
-    @JsonValue('SANDBOX')
-    sandbox,
-    @JsonValue('PRODUCTION')
-    production,
+  @JsonValue('UNKNOWN')
+  unknown,
+  @JsonValue('SANDBOX')
+  sandbox,
+  @JsonValue('PRODUCTION')
+  production,
 }
 
 enum ApiStoreProvider {
-    @JsonValue('APPLE_APP_STORE')
-    appleAppStore,
-    @JsonValue('GOOGLE_PLAY_STORE')
-    googlePlayStore,
-    @JsonValue('HUAWEI_APP_GALLERY')
-    huaweiAppGallery,
-    @JsonValue('FACEBOOK_INSTANT_STORE')
-    facebookInstantStore,
+  @JsonValue('APPLE_APP_STORE')
+  appleAppStore,
+  @JsonValue('GOOGLE_PLAY_STORE')
+  googlePlayStore,
+  @JsonValue('HUAWEI_APP_GALLERY')
+  huaweiAppGallery,
+  @JsonValue('FACEBOOK_INSTANT_STORE')
+  facebookInstantStore,
 }
 
 /// A list of validated subscriptions stored by Nakama.
 @JsonSerializable(explicitToJson: true)
 class ApiSubscriptionList {
-    @JsonKey(name: 'cursor')
-    final String? cursor;
-    @JsonKey(name: 'prev_cursor')
-    final String? prevCursor;
-    @JsonKey(name: 'validated_subscriptions')
-    final List<ApiValidatedSubscription>? validatedSubscriptions;
-    
-    const ApiSubscriptionList({
-        required this.cursor,
-        required this.prevCursor,
-        required this.validatedSubscriptions,
-    });
+  @JsonKey(name: 'cursor')
+  final String? cursor;
+  @JsonKey(name: 'prev_cursor')
+  final String? prevCursor;
+  @JsonKey(name: 'validated_subscriptions')
+  final List<ApiValidatedSubscription>? validatedSubscriptions;
 
-    factory ApiSubscriptionList.fromJson(Map<String, dynamic> json) => _$ApiSubscriptionListFromJson(json);
+  const ApiSubscriptionList({
+    required this.cursor,
+    required this.prevCursor,
+    required this.validatedSubscriptions,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiSubscriptionListToJson(this);
+  factory ApiSubscriptionList.fromJson(Map<String, dynamic> json) =>
+      _$ApiSubscriptionListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiSubscriptionListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A tournament on the server.
 @JsonSerializable(explicitToJson: true)
 class ApiTournament {
-    @JsonKey(name: 'authoritative')
-    final bool? authoritative;
-    @JsonKey(name: 'can_enter')
-    final bool? canEnter;
-    @JsonKey(name: 'category')
-    final int? category;
-    @JsonKey(name: 'create_time')
-    final String? createTime;
-    @JsonKey(name: 'description')
-    final String? description;
-    @JsonKey(name: 'duration')
-    final int? duration;
-    @JsonKey(name: 'end_active')
-    final int? endActive;
-    @JsonKey(name: 'end_time')
-    final String? endTime;
-    @JsonKey(name: 'id')
-    final String? id;
-    @JsonKey(name: 'join_required')
-    final bool? joinRequired;
-    @JsonKey(name: 'max_num_score')
-    final int? maxNumScore;
-    @JsonKey(name: 'max_size')
-    final int? maxSize;
-    @JsonKey(name: 'metadata')
-    final String? metadata;
-    @JsonKey(name: 'next_reset')
-    final int? nextReset;
-    @JsonKey(name: 'operator')
-    final ApiOperator? operator;
-    @JsonKey(name: 'prev_reset')
-    final int? prevReset;
-    @JsonKey(name: 'size')
-    final int? size;
-    @JsonKey(name: 'sort_order')
-    final int? sortOrder;
-    @JsonKey(name: 'start_active')
-    final int? startActive;
-    @JsonKey(name: 'start_time')
-    final String? startTime;
-    @JsonKey(name: 'title')
-    final String? title;
-    
-    const ApiTournament({
-        required this.authoritative,
-        required this.canEnter,
-        required this.category,
-        required this.createTime,
-        required this.description,
-        required this.duration,
-        required this.endActive,
-        required this.endTime,
-        required this.id,
-        required this.joinRequired,
-        required this.maxNumScore,
-        required this.maxSize,
-        required this.metadata,
-        required this.nextReset,
-        required this.operator,
-        required this.prevReset,
-        required this.size,
-        required this.sortOrder,
-        required this.startActive,
-        required this.startTime,
-        required this.title,
-    });
+  @JsonKey(name: 'authoritative')
+  final bool? authoritative;
+  @JsonKey(name: 'can_enter')
+  final bool? canEnter;
+  @JsonKey(name: 'category')
+  final int? category;
+  @JsonKey(name: 'create_time')
+  final String? createTime;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'duration')
+  final int? duration;
+  @JsonKey(name: 'end_active')
+  final int? endActive;
+  @JsonKey(name: 'end_time')
+  final String? endTime;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'join_required')
+  final bool? joinRequired;
+  @JsonKey(name: 'max_num_score')
+  final int? maxNumScore;
+  @JsonKey(name: 'max_size')
+  final int? maxSize;
+  @JsonKey(name: 'metadata')
+  final String? metadata;
+  @JsonKey(name: 'next_reset')
+  final int? nextReset;
+  @JsonKey(name: 'operator')
+  final ApiOperator? operator;
+  @JsonKey(name: 'prev_reset')
+  final int? prevReset;
+  @JsonKey(name: 'size')
+  final int? size;
+  @JsonKey(name: 'sort_order')
+  final int? sortOrder;
+  @JsonKey(name: 'start_active')
+  final int? startActive;
+  @JsonKey(name: 'start_time')
+  final String? startTime;
+  @JsonKey(name: 'title')
+  final String? title;
 
-    factory ApiTournament.fromJson(Map<String, dynamic> json) => _$ApiTournamentFromJson(json);
+  const ApiTournament({
+    required this.authoritative,
+    required this.canEnter,
+    required this.category,
+    required this.createTime,
+    required this.description,
+    required this.duration,
+    required this.endActive,
+    required this.endTime,
+    required this.id,
+    required this.joinRequired,
+    required this.maxNumScore,
+    required this.maxSize,
+    required this.metadata,
+    required this.nextReset,
+    required this.operator,
+    required this.prevReset,
+    required this.size,
+    required this.sortOrder,
+    required this.startActive,
+    required this.startTime,
+    required this.title,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiTournamentToJson(this);
+  factory ApiTournament.fromJson(Map<String, dynamic> json) =>
+      _$ApiTournamentFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiTournamentToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A list of tournaments.
 @JsonSerializable(explicitToJson: true)
 class ApiTournamentList {
-    @JsonKey(name: 'cursor')
-    final String? cursor;
-    @JsonKey(name: 'tournaments')
-    final List<ApiTournament>? tournaments;
-    
-    const ApiTournamentList({
-        required this.cursor,
-        required this.tournaments,
-    });
+  @JsonKey(name: 'cursor')
+  final String? cursor;
+  @JsonKey(name: 'tournaments')
+  final List<ApiTournament>? tournaments;
 
-    factory ApiTournamentList.fromJson(Map<String, dynamic> json) => _$ApiTournamentListFromJson(json);
+  const ApiTournamentList({required this.cursor, required this.tournaments});
 
-    Map<String, dynamic> toJson() => _$ApiTournamentListToJson(this);
+  factory ApiTournamentList.fromJson(Map<String, dynamic> json) =>
+      _$ApiTournamentListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiTournamentListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A set of tournament records which may be part of a tournament records page or a batch of individual records.
 @JsonSerializable(explicitToJson: true)
 class ApiTournamentRecordList {
-    @JsonKey(name: 'next_cursor')
-    final String? nextCursor;
-    @JsonKey(name: 'owner_records')
-    final List<ApiLeaderboardRecord>? ownerRecords;
-    @JsonKey(name: 'prev_cursor')
-    final String? prevCursor;
-    @JsonKey(name: 'rank_count')
-    final String? rankCount;
-    @JsonKey(name: 'records')
-    final List<ApiLeaderboardRecord>? records;
-    
-    const ApiTournamentRecordList({
-        required this.nextCursor,
-        required this.ownerRecords,
-        required this.prevCursor,
-        required this.rankCount,
-        required this.records,
-    });
+  @JsonKey(name: 'next_cursor')
+  final String? nextCursor;
+  @JsonKey(name: 'owner_records')
+  final List<ApiLeaderboardRecord>? ownerRecords;
+  @JsonKey(name: 'prev_cursor')
+  final String? prevCursor;
+  @JsonKey(name: 'rank_count')
+  final String? rankCount;
+  @JsonKey(name: 'records')
+  final List<ApiLeaderboardRecord>? records;
 
-    factory ApiTournamentRecordList.fromJson(Map<String, dynamic> json) => _$ApiTournamentRecordListFromJson(json);
+  const ApiTournamentRecordList({
+    required this.nextCursor,
+    required this.ownerRecords,
+    required this.prevCursor,
+    required this.rankCount,
+    required this.records,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiTournamentRecordListToJson(this);
+  factory ApiTournamentRecordList.fromJson(Map<String, dynamic> json) =>
+      _$ApiTournamentRecordListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiTournamentRecordListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Update a user's account details.
 @JsonSerializable(explicitToJson: true)
 class ApiUpdateAccountRequest {
-    @JsonKey(name: 'avatar_url')
-    final String? avatarUrl;
-    @JsonKey(name: 'display_name')
-    final String? displayName;
-    @JsonKey(name: 'lang_tag')
-    final String? langTag;
-    @JsonKey(name: 'location')
-    final String? location;
-    @JsonKey(name: 'timezone')
-    final String? timezone;
-    @JsonKey(name: 'username')
-    final String? username;
-    
-    const ApiUpdateAccountRequest({
-        required this.avatarUrl,
-        required this.displayName,
-        required this.langTag,
-        required this.location,
-        required this.timezone,
-        required this.username,
-    });
+  @JsonKey(name: 'avatar_url')
+  final String? avatarUrl;
+  @JsonKey(name: 'display_name')
+  final String? displayName;
+  @JsonKey(name: 'lang_tag')
+  final String? langTag;
+  @JsonKey(name: 'location')
+  final String? location;
+  @JsonKey(name: 'timezone')
+  final String? timezone;
+  @JsonKey(name: 'username')
+  final String? username;
 
-    factory ApiUpdateAccountRequest.fromJson(Map<String, dynamic> json) => _$ApiUpdateAccountRequestFromJson(json);
+  const ApiUpdateAccountRequest({
+    required this.avatarUrl,
+    required this.displayName,
+    required this.langTag,
+    required this.location,
+    required this.timezone,
+    required this.username,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiUpdateAccountRequestToJson(this);
+  factory ApiUpdateAccountRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiUpdateAccountRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiUpdateAccountRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A user in the server.
 @JsonSerializable(explicitToJson: true)
 class ApiUser {
-    @JsonKey(name: 'apple_id')
-    final String? appleId;
-    @JsonKey(name: 'avatar_url')
-    final String? avatarUrl;
-    @JsonKey(name: 'create_time')
-    final String? createTime;
-    @JsonKey(name: 'display_name')
-    final String? displayName;
-    @JsonKey(name: 'edge_count')
-    final int? edgeCount;
-    @JsonKey(name: 'facebook_id')
-    final String? facebookId;
-    @JsonKey(name: 'facebook_instant_game_id')
-    final String? facebookInstantGameId;
-    @JsonKey(name: 'gamecenter_id')
-    final String? gamecenterId;
-    @JsonKey(name: 'google_id')
-    final String? googleId;
-    @JsonKey(name: 'id')
-    final String? id;
-    @JsonKey(name: 'lang_tag')
-    final String? langTag;
-    @JsonKey(name: 'location')
-    final String? location;
-    @JsonKey(name: 'metadata')
-    final String? metadata;
-    @JsonKey(name: 'online')
-    final bool? online;
-    @JsonKey(name: 'steam_id')
-    final String? steamId;
-    @JsonKey(name: 'timezone')
-    final String? timezone;
-    @JsonKey(name: 'update_time')
-    final String? updateTime;
-    @JsonKey(name: 'username')
-    final String? username;
-    
-    const ApiUser({
-        required this.appleId,
-        required this.avatarUrl,
-        required this.createTime,
-        required this.displayName,
-        required this.edgeCount,
-        required this.facebookId,
-        required this.facebookInstantGameId,
-        required this.gamecenterId,
-        required this.googleId,
-        required this.id,
-        required this.langTag,
-        required this.location,
-        required this.metadata,
-        required this.online,
-        required this.steamId,
-        required this.timezone,
-        required this.updateTime,
-        required this.username,
-    });
+  @JsonKey(name: 'apple_id')
+  final String? appleId;
+  @JsonKey(name: 'avatar_url')
+  final String? avatarUrl;
+  @JsonKey(name: 'create_time')
+  final String? createTime;
+  @JsonKey(name: 'display_name')
+  final String? displayName;
+  @JsonKey(name: 'edge_count')
+  final int? edgeCount;
+  @JsonKey(name: 'facebook_id')
+  final String? facebookId;
+  @JsonKey(name: 'facebook_instant_game_id')
+  final String? facebookInstantGameId;
+  @JsonKey(name: 'gamecenter_id')
+  final String? gamecenterId;
+  @JsonKey(name: 'google_id')
+  final String? googleId;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'lang_tag')
+  final String? langTag;
+  @JsonKey(name: 'location')
+  final String? location;
+  @JsonKey(name: 'metadata')
+  final String? metadata;
+  @JsonKey(name: 'online')
+  final bool? online;
+  @JsonKey(name: 'steam_id')
+  final String? steamId;
+  @JsonKey(name: 'timezone')
+  final String? timezone;
+  @JsonKey(name: 'update_time')
+  final String? updateTime;
+  @JsonKey(name: 'username')
+  final String? username;
 
-    factory ApiUser.fromJson(Map<String, dynamic> json) => _$ApiUserFromJson(json);
+  const ApiUser({
+    required this.appleId,
+    required this.avatarUrl,
+    required this.createTime,
+    required this.displayName,
+    required this.edgeCount,
+    required this.facebookId,
+    required this.facebookInstantGameId,
+    required this.gamecenterId,
+    required this.googleId,
+    required this.id,
+    required this.langTag,
+    required this.location,
+    required this.metadata,
+    required this.online,
+    required this.steamId,
+    required this.timezone,
+    required this.updateTime,
+    required this.username,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiUserToJson(this);
+  factory ApiUser.fromJson(Map<String, dynamic> json) =>
+      _$ApiUserFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiUserToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A list of groups belonging to a user, along with the user's role in each group.
 @JsonSerializable(explicitToJson: true)
 class ApiUserGroupList {
-    @JsonKey(name: 'cursor')
-    final String? cursor;
-    @JsonKey(name: 'user_groups')
-    final List<UserGroupListUserGroup>? userGroups;
-    
-    const ApiUserGroupList({
-        required this.cursor,
-        required this.userGroups,
-    });
+  @JsonKey(name: 'cursor')
+  final String? cursor;
+  @JsonKey(name: 'user_groups')
+  final List<UserGroupListUserGroup>? userGroups;
 
-    factory ApiUserGroupList.fromJson(Map<String, dynamic> json) => _$ApiUserGroupListFromJson(json);
+  const ApiUserGroupList({required this.cursor, required this.userGroups});
 
-    Map<String, dynamic> toJson() => _$ApiUserGroupListToJson(this);
+  factory ApiUserGroupList.fromJson(Map<String, dynamic> json) =>
+      _$ApiUserGroupListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiUserGroupListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A collection of zero or more users.
 @JsonSerializable(explicitToJson: true)
 class ApiUsers {
-    @JsonKey(name: 'users')
-    final List<ApiUser>? users;
-    
-    const ApiUsers({
-        required this.users,
-    });
+  @JsonKey(name: 'users')
+  final List<ApiUser>? users;
 
-    factory ApiUsers.fromJson(Map<String, dynamic> json) => _$ApiUsersFromJson(json);
+  const ApiUsers({required this.users});
 
-    Map<String, dynamic> toJson() => _$ApiUsersToJson(this);
+  factory ApiUsers.fromJson(Map<String, dynamic> json) =>
+      _$ApiUsersFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiUsersToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Apple IAP Purchases validation request
 @JsonSerializable(explicitToJson: true)
 class ApiValidatePurchaseAppleRequest {
-    @JsonKey(name: 'persist')
-    final bool? persist;
-    @JsonKey(name: 'receipt')
-    final String? receipt;
-    
-    const ApiValidatePurchaseAppleRequest({
-        required this.persist,
-        required this.receipt,
-    });
+  @JsonKey(name: 'persist')
+  final bool? persist;
+  @JsonKey(name: 'receipt')
+  final String? receipt;
 
-    factory ApiValidatePurchaseAppleRequest.fromJson(Map<String, dynamic> json) => _$ApiValidatePurchaseAppleRequestFromJson(json);
+  const ApiValidatePurchaseAppleRequest({
+    required this.persist,
+    required this.receipt,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiValidatePurchaseAppleRequestToJson(this);
+  factory ApiValidatePurchaseAppleRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiValidatePurchaseAppleRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() =>
+      _$ApiValidatePurchaseAppleRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Facebook Instant IAP Purchase validation request
 @JsonSerializable(explicitToJson: true)
 class ApiValidatePurchaseFacebookInstantRequest {
-    @JsonKey(name: 'persist')
-    final bool? persist;
-    @JsonKey(name: 'signed_request')
-    final String? signedRequest;
-    
-    const ApiValidatePurchaseFacebookInstantRequest({
-        required this.persist,
-        required this.signedRequest,
-    });
+  @JsonKey(name: 'persist')
+  final bool? persist;
+  @JsonKey(name: 'signed_request')
+  final String? signedRequest;
 
-    factory ApiValidatePurchaseFacebookInstantRequest.fromJson(Map<String, dynamic> json) => _$ApiValidatePurchaseFacebookInstantRequestFromJson(json);
+  const ApiValidatePurchaseFacebookInstantRequest({
+    required this.persist,
+    required this.signedRequest,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiValidatePurchaseFacebookInstantRequestToJson(this);
+  factory ApiValidatePurchaseFacebookInstantRequest.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ApiValidatePurchaseFacebookInstantRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() =>
+      _$ApiValidatePurchaseFacebookInstantRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Google IAP Purchase validation request
 @JsonSerializable(explicitToJson: true)
 class ApiValidatePurchaseGoogleRequest {
-    @JsonKey(name: 'persist')
-    final bool? persist;
-    @JsonKey(name: 'purchase')
-    final String? purchase;
-    
-    const ApiValidatePurchaseGoogleRequest({
-        required this.persist,
-        required this.purchase,
-    });
+  @JsonKey(name: 'persist')
+  final bool? persist;
+  @JsonKey(name: 'purchase')
+  final String? purchase;
 
-    factory ApiValidatePurchaseGoogleRequest.fromJson(Map<String, dynamic> json) => _$ApiValidatePurchaseGoogleRequestFromJson(json);
+  const ApiValidatePurchaseGoogleRequest({
+    required this.persist,
+    required this.purchase,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiValidatePurchaseGoogleRequestToJson(this);
+  factory ApiValidatePurchaseGoogleRequest.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ApiValidatePurchaseGoogleRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() =>
+      _$ApiValidatePurchaseGoogleRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Huawei IAP Purchase validation request
 @JsonSerializable(explicitToJson: true)
 class ApiValidatePurchaseHuaweiRequest {
-    @JsonKey(name: 'persist')
-    final bool? persist;
-    @JsonKey(name: 'purchase')
-    final String? purchase;
-    @JsonKey(name: 'signature')
-    final String? signature;
-    
-    const ApiValidatePurchaseHuaweiRequest({
-        required this.persist,
-        required this.purchase,
-        required this.signature,
-    });
+  @JsonKey(name: 'persist')
+  final bool? persist;
+  @JsonKey(name: 'purchase')
+  final String? purchase;
+  @JsonKey(name: 'signature')
+  final String? signature;
 
-    factory ApiValidatePurchaseHuaweiRequest.fromJson(Map<String, dynamic> json) => _$ApiValidatePurchaseHuaweiRequestFromJson(json);
+  const ApiValidatePurchaseHuaweiRequest({
+    required this.persist,
+    required this.purchase,
+    required this.signature,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiValidatePurchaseHuaweiRequestToJson(this);
+  factory ApiValidatePurchaseHuaweiRequest.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ApiValidatePurchaseHuaweiRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() =>
+      _$ApiValidatePurchaseHuaweiRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Validate IAP response.
 @JsonSerializable(explicitToJson: true)
 class ApiValidatePurchaseResponse {
-    @JsonKey(name: 'validated_purchases')
-    final List<ApiValidatedPurchase>? validatedPurchases;
-    
-    const ApiValidatePurchaseResponse({
-        required this.validatedPurchases,
-    });
+  @JsonKey(name: 'validated_purchases')
+  final List<ApiValidatedPurchase>? validatedPurchases;
 
-    factory ApiValidatePurchaseResponse.fromJson(Map<String, dynamic> json) => _$ApiValidatePurchaseResponseFromJson(json);
+  const ApiValidatePurchaseResponse({required this.validatedPurchases});
 
-    Map<String, dynamic> toJson() => _$ApiValidatePurchaseResponseToJson(this);
+  factory ApiValidatePurchaseResponse.fromJson(Map<String, dynamic> json) =>
+      _$ApiValidatePurchaseResponseFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiValidatePurchaseResponseToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Apple Subscription validation request
 @JsonSerializable(explicitToJson: true)
 class ApiValidateSubscriptionAppleRequest {
-    @JsonKey(name: 'persist')
-    final bool? persist;
-    @JsonKey(name: 'receipt')
-    final String? receipt;
-    
-    const ApiValidateSubscriptionAppleRequest({
-        required this.persist,
-        required this.receipt,
-    });
+  @JsonKey(name: 'persist')
+  final bool? persist;
+  @JsonKey(name: 'receipt')
+  final String? receipt;
 
-    factory ApiValidateSubscriptionAppleRequest.fromJson(Map<String, dynamic> json) => _$ApiValidateSubscriptionAppleRequestFromJson(json);
+  const ApiValidateSubscriptionAppleRequest({
+    required this.persist,
+    required this.receipt,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiValidateSubscriptionAppleRequestToJson(this);
+  factory ApiValidateSubscriptionAppleRequest.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ApiValidateSubscriptionAppleRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() =>
+      _$ApiValidateSubscriptionAppleRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Google Subscription validation request
 @JsonSerializable(explicitToJson: true)
 class ApiValidateSubscriptionGoogleRequest {
-    @JsonKey(name: 'persist')
-    final bool? persist;
-    @JsonKey(name: 'receipt')
-    final String? receipt;
-    
-    const ApiValidateSubscriptionGoogleRequest({
-        required this.persist,
-        required this.receipt,
-    });
+  @JsonKey(name: 'persist')
+  final bool? persist;
+  @JsonKey(name: 'receipt')
+  final String? receipt;
 
-    factory ApiValidateSubscriptionGoogleRequest.fromJson(Map<String, dynamic> json) => _$ApiValidateSubscriptionGoogleRequestFromJson(json);
+  const ApiValidateSubscriptionGoogleRequest({
+    required this.persist,
+    required this.receipt,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiValidateSubscriptionGoogleRequestToJson(this);
+  factory ApiValidateSubscriptionGoogleRequest.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ApiValidateSubscriptionGoogleRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() =>
+      _$ApiValidateSubscriptionGoogleRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Validate Subscription response.
 @JsonSerializable(explicitToJson: true)
 class ApiValidateSubscriptionResponse {
-    @JsonKey(name: 'validated_subscription')
-    final ApiValidatedSubscription? validatedSubscription;
-    
-    const ApiValidateSubscriptionResponse({
-        required this.validatedSubscription,
-    });
+  @JsonKey(name: 'validated_subscription')
+  final ApiValidatedSubscription? validatedSubscription;
 
-    factory ApiValidateSubscriptionResponse.fromJson(Map<String, dynamic> json) => _$ApiValidateSubscriptionResponseFromJson(json);
+  const ApiValidateSubscriptionResponse({required this.validatedSubscription});
 
-    Map<String, dynamic> toJson() => _$ApiValidateSubscriptionResponseToJson(this);
+  factory ApiValidateSubscriptionResponse.fromJson(Map<String, dynamic> json) =>
+      _$ApiValidateSubscriptionResponseFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() =>
+      _$ApiValidateSubscriptionResponseToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Validated Purchase stored by Nakama.
 @JsonSerializable(explicitToJson: true)
 class ApiValidatedPurchase {
-    @JsonKey(name: 'create_time')
-    final String? createTime;
-    @JsonKey(name: 'environment')
-    final ApiStoreEnvironment? environment;
-    @JsonKey(name: 'product_id')
-    final String? productId;
-    @JsonKey(name: 'provider_response')
-    final String? providerResponse;
-    @JsonKey(name: 'purchase_time')
-    final String? purchaseTime;
-    @JsonKey(name: 'refund_time')
-    final String? refundTime;
-    @JsonKey(name: 'seen_before')
-    final bool? seenBefore;
-    @JsonKey(name: 'store')
-    final ApiStoreProvider? store;
-    @JsonKey(name: 'transaction_id')
-    final String? transactionId;
-    @JsonKey(name: 'update_time')
-    final String? updateTime;
-    @JsonKey(name: 'user_id')
-    final String? userId;
-    
-    const ApiValidatedPurchase({
-        required this.createTime,
-        required this.environment,
-        required this.productId,
-        required this.providerResponse,
-        required this.purchaseTime,
-        required this.refundTime,
-        required this.seenBefore,
-        required this.store,
-        required this.transactionId,
-        required this.updateTime,
-        required this.userId,
-    });
+  @JsonKey(name: 'create_time')
+  final String? createTime;
+  @JsonKey(name: 'environment')
+  final ApiStoreEnvironment? environment;
+  @JsonKey(name: 'product_id')
+  final String? productId;
+  @JsonKey(name: 'provider_response')
+  final String? providerResponse;
+  @JsonKey(name: 'purchase_time')
+  final String? purchaseTime;
+  @JsonKey(name: 'refund_time')
+  final String? refundTime;
+  @JsonKey(name: 'seen_before')
+  final bool? seenBefore;
+  @JsonKey(name: 'store')
+  final ApiStoreProvider? store;
+  @JsonKey(name: 'transaction_id')
+  final String? transactionId;
+  @JsonKey(name: 'update_time')
+  final String? updateTime;
+  @JsonKey(name: 'user_id')
+  final String? userId;
 
-    factory ApiValidatedPurchase.fromJson(Map<String, dynamic> json) => _$ApiValidatedPurchaseFromJson(json);
+  const ApiValidatedPurchase({
+    required this.createTime,
+    required this.environment,
+    required this.productId,
+    required this.providerResponse,
+    required this.purchaseTime,
+    required this.refundTime,
+    required this.seenBefore,
+    required this.store,
+    required this.transactionId,
+    required this.updateTime,
+    required this.userId,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiValidatedPurchaseToJson(this);
+  factory ApiValidatedPurchase.fromJson(Map<String, dynamic> json) =>
+      _$ApiValidatedPurchaseFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiValidatedPurchaseToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
-/// 
+///
 @JsonSerializable(explicitToJson: true)
 class ApiValidatedSubscription {
-    @JsonKey(name: 'active')
-    final bool? active;
-    @JsonKey(name: 'create_time')
-    final String? createTime;
-    @JsonKey(name: 'environment')
-    final ApiStoreEnvironment? environment;
-    @JsonKey(name: 'expiry_time')
-    final String? expiryTime;
-    @JsonKey(name: 'original_transaction_id')
-    final String? originalTransactionId;
-    @JsonKey(name: 'product_id')
-    final String? productId;
-    @JsonKey(name: 'provider_notification')
-    final String? providerNotification;
-    @JsonKey(name: 'provider_response')
-    final String? providerResponse;
-    @JsonKey(name: 'purchase_time')
-    final String? purchaseTime;
-    @JsonKey(name: 'refund_time')
-    final String? refundTime;
-    @JsonKey(name: 'store')
-    final ApiStoreProvider? store;
-    @JsonKey(name: 'update_time')
-    final String? updateTime;
-    @JsonKey(name: 'user_id')
-    final String? userId;
-    
-    const ApiValidatedSubscription({
-        required this.active,
-        required this.createTime,
-        required this.environment,
-        required this.expiryTime,
-        required this.originalTransactionId,
-        required this.productId,
-        required this.providerNotification,
-        required this.providerResponse,
-        required this.purchaseTime,
-        required this.refundTime,
-        required this.store,
-        required this.updateTime,
-        required this.userId,
-    });
+  @JsonKey(name: 'active')
+  final bool? active;
+  @JsonKey(name: 'create_time')
+  final String? createTime;
+  @JsonKey(name: 'environment')
+  final ApiStoreEnvironment? environment;
+  @JsonKey(name: 'expiry_time')
+  final String? expiryTime;
+  @JsonKey(name: 'original_transaction_id')
+  final String? originalTransactionId;
+  @JsonKey(name: 'product_id')
+  final String? productId;
+  @JsonKey(name: 'provider_notification')
+  final String? providerNotification;
+  @JsonKey(name: 'provider_response')
+  final String? providerResponse;
+  @JsonKey(name: 'purchase_time')
+  final String? purchaseTime;
+  @JsonKey(name: 'refund_time')
+  final String? refundTime;
+  @JsonKey(name: 'store')
+  final ApiStoreProvider? store;
+  @JsonKey(name: 'update_time')
+  final String? updateTime;
+  @JsonKey(name: 'user_id')
+  final String? userId;
 
-    factory ApiValidatedSubscription.fromJson(Map<String, dynamic> json) => _$ApiValidatedSubscriptionFromJson(json);
+  const ApiValidatedSubscription({
+    required this.active,
+    required this.createTime,
+    required this.environment,
+    required this.expiryTime,
+    required this.originalTransactionId,
+    required this.productId,
+    required this.providerNotification,
+    required this.providerResponse,
+    required this.purchaseTime,
+    required this.refundTime,
+    required this.store,
+    required this.updateTime,
+    required this.userId,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiValidatedSubscriptionToJson(this);
+  factory ApiValidatedSubscription.fromJson(Map<String, dynamic> json) =>
+      _$ApiValidatedSubscriptionFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiValidatedSubscriptionToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// The object to store.
 @JsonSerializable(explicitToJson: true)
 class ApiWriteStorageObject {
-    @JsonKey(name: 'collection')
-    final String? collection;
-    @JsonKey(name: 'key')
-    final String? key;
-    @JsonKey(name: 'permission_read')
-    final int? permissionRead;
-    @JsonKey(name: 'permission_write')
-    final int? permissionWrite;
-    @JsonKey(name: 'value')
-    final String? value;
-    @JsonKey(name: 'version')
-    final String? version;
-    
-    const ApiWriteStorageObject({
-        required this.collection,
-        required this.key,
-        required this.permissionRead,
-        required this.permissionWrite,
-        required this.value,
-        required this.version,
-    });
+  @JsonKey(name: 'collection')
+  final String? collection;
+  @JsonKey(name: 'key')
+  final String? key;
+  @JsonKey(name: 'permission_read')
+  final int? permissionRead;
+  @JsonKey(name: 'permission_write')
+  final int? permissionWrite;
+  @JsonKey(name: 'value')
+  final String? value;
+  @JsonKey(name: 'version')
+  final String? version;
 
-    factory ApiWriteStorageObject.fromJson(Map<String, dynamic> json) => _$ApiWriteStorageObjectFromJson(json);
+  const ApiWriteStorageObject({
+    required this.collection,
+    required this.key,
+    required this.permissionRead,
+    required this.permissionWrite,
+    required this.value,
+    required this.version,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiWriteStorageObjectToJson(this);
+  factory ApiWriteStorageObject.fromJson(Map<String, dynamic> json) =>
+      _$ApiWriteStorageObjectFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiWriteStorageObjectToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Write objects to the storage engine.
 @JsonSerializable(explicitToJson: true)
 class ApiWriteStorageObjectsRequest {
-    @JsonKey(name: 'objects')
-    final List<ApiWriteStorageObject>? objects;
-    
-    const ApiWriteStorageObjectsRequest({
-        required this.objects,
-    });
+  @JsonKey(name: 'objects')
+  final List<ApiWriteStorageObject>? objects;
 
-    factory ApiWriteStorageObjectsRequest.fromJson(Map<String, dynamic> json) => _$ApiWriteStorageObjectsRequestFromJson(json);
+  const ApiWriteStorageObjectsRequest({required this.objects});
 
-    Map<String, dynamic> toJson() => _$ApiWriteStorageObjectsRequestToJson(this);
+  factory ApiWriteStorageObjectsRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiWriteStorageObjectsRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiWriteStorageObjectsRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
-/// 
+///
 @JsonSerializable(explicitToJson: true)
 class ProtobufAny {
-    @JsonKey(name: '@type')
-    final String? type;
-    
-    const ProtobufAny({
-        required this.type,
-    });
+  @JsonKey(name: '@type')
+  final String? type;
 
-    factory ProtobufAny.fromJson(Map<String, dynamic> json) => _$ProtobufAnyFromJson(json);
+  const ProtobufAny({required this.type});
 
-    Map<String, dynamic> toJson() => _$ProtobufAnyToJson(this);
+  factory ProtobufAny.fromJson(Map<String, dynamic> json) =>
+      _$ProtobufAnyFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ProtobufAnyToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
-/// 
+///
 @JsonSerializable(explicitToJson: true)
 class RpcStatus {
-    @JsonKey(name: 'code')
-    final int? code;
-    @JsonKey(name: 'details')
-    final List<ProtobufAny>? details;
-    @JsonKey(name: 'message')
-    final String? message;
-    
-    const RpcStatus({
-        required this.code,
-        required this.details,
-        required this.message,
-    });
+  @JsonKey(name: 'code')
+  final int? code;
+  @JsonKey(name: 'details')
+  final List<ProtobufAny>? details;
+  @JsonKey(name: 'message')
+  final String? message;
 
-    factory RpcStatus.fromJson(Map<String, dynamic> json) => _$RpcStatusFromJson(json);
+  const RpcStatus({
+    required this.code,
+    required this.details,
+    required this.message,
+  });
 
-    Map<String, dynamic> toJson() => _$RpcStatusToJson(this);
+  factory RpcStatus.fromJson(Map<String, dynamic> json) =>
+      _$RpcStatusFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$RpcStatusToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
-
 
 /// The low level client for the nakama API.
 @RestApi()
-abstract class ApiClient
-{
-    factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
-
-    /// A healthcheck which load balancers can use to check the service.
-    @GET('/healthcheck')
-    Future<void> healthcheck({
-        String? bearerToken,
-	  });
-
-    /// Delete the current user's account.
-    @DELETE('/v2/account')
-    Future<void> deleteAccount({
-        String? bearerToken,
-	  });
-
-    /// Fetch the current user's account.
-    @GET('/v2/account')
-    Future<ApiAccount> getAccount({
-        String? bearerToken,
-	  });
-
-    /// Update fields in the current user's account.
-    @PUT('/v2/account')
-    Future<void> updateAccount({
-        String? bearerToken,
-        @Body() required ApiUpdateAccountRequest body,
-	  });
-
-    /// Authenticate a user with an Apple ID against the server.
-    @POST('/v2/account/authenticate/apple')
-    Future<ApiSession> authenticateApple({
-        String? basicAuthUsername,
-        String? basicAuthPassword,
-        String? bearerToken,
-        @Body() required ApiAccountApple body,
-		@Query('create')
-        bool? create,
-		@Query('username')
-        String? username,
-	  });
-
-    /// Authenticate a user with a custom id against the server.
-    @POST('/v2/account/authenticate/custom')
-    Future<ApiSession> authenticateCustom({
-        String? basicAuthUsername,
-        String? basicAuthPassword,
-        String? bearerToken,
-        @Body() required ApiAccountCustom body,
-		@Query('create')
-        bool? create,
-		@Query('username')
-        String? username,
-	  });
-
-    /// Authenticate a user with a device id against the server.
-    @POST('/v2/account/authenticate/device')
-    Future<ApiSession> authenticateDevice({
-        String? basicAuthUsername,
-        String? basicAuthPassword,
-        String? bearerToken,
-        @Body() required ApiAccountDevice body,
-		@Query('create')
-        bool? create,
-		@Query('username')
-        String? username,
-	  });
-
-    /// Authenticate a user with an email+password against the server.
-    @POST('/v2/account/authenticate/email')
-    Future<ApiSession> authenticateEmail({
-        String? basicAuthUsername,
-        String? basicAuthPassword,
-        String? bearerToken,
-        @Body() required ApiAccountEmail body,
-		@Query('create')
-        bool? create,
-		@Query('username')
-        String? username,
-	  });
-
-    /// Authenticate a user with a Facebook OAuth token against the server.
-    @POST('/v2/account/authenticate/facebook')
-    Future<ApiSession> authenticateFacebook({
-        String? basicAuthUsername,
-        String? basicAuthPassword,
-        String? bearerToken,
-        @Body() required ApiAccountFacebook body,
-		@Query('create')
-        bool? create,
-		@Query('username')
-        String? username,
-		@Query('sync')
-        bool? sync,
-	  });
-
-    /// Authenticate a user with a Facebook Instant Game token against the server.
-    @POST('/v2/account/authenticate/facebookinstantgame')
-    Future<ApiSession> authenticateFacebookInstantGame({
-        String? basicAuthUsername,
-        String? basicAuthPassword,
-        String? bearerToken,
-        @Body() required ApiAccountFacebookInstantGame body,
-		@Query('create')
-        bool? create,
-		@Query('username')
-        String? username,
-	  });
-
-    /// Authenticate a user with Apple's GameCenter against the server.
-    @POST('/v2/account/authenticate/gamecenter')
-    Future<ApiSession> authenticateGameCenter({
-        String? basicAuthUsername,
-        String? basicAuthPassword,
-        String? bearerToken,
-        @Body() required ApiAccountGameCenter body,
-		@Query('create')
-        bool? create,
-		@Query('username')
-        String? username,
-	  });
-
-    /// Authenticate a user with Google against the server.
-    @POST('/v2/account/authenticate/google')
-    Future<ApiSession> authenticateGoogle({
-        String? basicAuthUsername,
-        String? basicAuthPassword,
-        String? bearerToken,
-        @Body() required ApiAccountGoogle body,
-		@Query('create')
-        bool? create,
-		@Query('username')
-        String? username,
-	  });
-
-    /// Authenticate a user with Steam against the server.
-    @POST('/v2/account/authenticate/steam')
-    Future<ApiSession> authenticateSteam({
-        String? basicAuthUsername,
-        String? basicAuthPassword,
-        String? bearerToken,
-        @Body() required ApiAccountSteam body,
-		@Query('create')
-        bool? create,
-		@Query('username')
-        String? username,
-		@Query('sync')
-        bool? sync,
-	  });
-
-    /// Add an Apple ID to the social profiles on the current user's account.
-    @POST('/v2/account/link/apple')
-    Future<void> linkApple({
-        String? bearerToken,
-        @Body() required ApiAccountApple body,
-	  });
-
-    /// Add a custom ID to the social profiles on the current user's account.
-    @POST('/v2/account/link/custom')
-    Future<void> linkCustom({
-        String? bearerToken,
-        @Body() required ApiAccountCustom body,
-	  });
-
-    /// Add a device ID to the social profiles on the current user's account.
-    @POST('/v2/account/link/device')
-    Future<void> linkDevice({
-        String? bearerToken,
-        @Body() required ApiAccountDevice body,
-	  });
-
-    /// Add an email+password to the social profiles on the current user's account.
-    @POST('/v2/account/link/email')
-    Future<void> linkEmail({
-        String? bearerToken,
-        @Body() required ApiAccountEmail body,
-	  });
-
-    /// Add Facebook to the social profiles on the current user's account.
-    @POST('/v2/account/link/facebook')
-    Future<void> linkFacebook({
-        String? bearerToken,
-        @Body() required ApiAccountFacebook body,
-		@Query('sync')
-        bool? sync,
-	  });
-
-    /// Add Facebook Instant Game to the social profiles on the current user's account.
-    @POST('/v2/account/link/facebookinstantgame')
-    Future<void> linkFacebookInstantGame({
-        String? bearerToken,
-        @Body() required ApiAccountFacebookInstantGame body,
-	  });
-
-    /// Add Apple's GameCenter to the social profiles on the current user's account.
-    @POST('/v2/account/link/gamecenter')
-    Future<void> linkGameCenter({
-        String? bearerToken,
-        @Body() required ApiAccountGameCenter body,
-	  });
-
-    /// Add Google to the social profiles on the current user's account.
-    @POST('/v2/account/link/google')
-    Future<void> linkGoogle({
-        String? bearerToken,
-        @Body() required ApiAccountGoogle body,
-	  });
-
-    /// Add Steam to the social profiles on the current user's account.
-    @POST('/v2/account/link/steam')
-    Future<void> linkSteam({
-        String? bearerToken,
-        @Body() required ApiLinkSteamRequest body,
-	  });
-
-    /// Refresh a user's session using a refresh token retrieved from a previous authentication request.
-    @POST('/v2/account/session/refresh')
-    Future<ApiSession> sessionRefresh({
-        String? basicAuthUsername,
-        String? basicAuthPassword,
-        String? bearerToken,
-        @Body() required ApiSessionRefreshRequest body,
-	  });
-
-    /// Remove the Apple ID from the social profiles on the current user's account.
-    @POST('/v2/account/unlink/apple')
-    Future<void> unlinkApple({
-        String? bearerToken,
-        @Body() required ApiAccountApple body,
-	  });
-
-    /// Remove the custom ID from the social profiles on the current user's account.
-    @POST('/v2/account/unlink/custom')
-    Future<void> unlinkCustom({
-        String? bearerToken,
-        @Body() required ApiAccountCustom body,
-	  });
-
-    /// Remove the device ID from the social profiles on the current user's account.
-    @POST('/v2/account/unlink/device')
-    Future<void> unlinkDevice({
-        String? bearerToken,
-        @Body() required ApiAccountDevice body,
-	  });
-
-    /// Remove the email+password from the social profiles on the current user's account.
-    @POST('/v2/account/unlink/email')
-    Future<void> unlinkEmail({
-        String? bearerToken,
-        @Body() required ApiAccountEmail body,
-	  });
-
-    /// Remove Facebook from the social profiles on the current user's account.
-    @POST('/v2/account/unlink/facebook')
-    Future<void> unlinkFacebook({
-        String? bearerToken,
-        @Body() required ApiAccountFacebook body,
-	  });
-
-    /// Remove Facebook Instant Game profile from the social profiles on the current user's account.
-    @POST('/v2/account/unlink/facebookinstantgame')
-    Future<void> unlinkFacebookInstantGame({
-        String? bearerToken,
-        @Body() required ApiAccountFacebookInstantGame body,
-	  });
-
-    /// Remove Apple's GameCenter from the social profiles on the current user's account.
-    @POST('/v2/account/unlink/gamecenter')
-    Future<void> unlinkGameCenter({
-        String? bearerToken,
-        @Body() required ApiAccountGameCenter body,
-	  });
-
-    /// Remove Google from the social profiles on the current user's account.
-    @POST('/v2/account/unlink/google')
-    Future<void> unlinkGoogle({
-        String? bearerToken,
-        @Body() required ApiAccountGoogle body,
-	  });
-
-    /// Remove Steam from the social profiles on the current user's account.
-    @POST('/v2/account/unlink/steam')
-    Future<void> unlinkSteam({
-        String? bearerToken,
-        @Body() required ApiAccountSteam body,
-	  });
-
-    /// List a channel's message history.
-    @GET('/v2/channel/{channelId}')
-    Future<ApiChannelMessageList> listChannelMessages({
-        String? bearerToken,
-        @Path('channelId')required String channelId,
-		@Query('limit')
-        int? limit,
-		@Query('forward')
-        bool? forward,
-		@Query('cursor')
-        String? cursor,
-	  });
-
-    /// Submit an event for processing in the server's registered runtime custom events handler.
-    @POST('/v2/event')
-    Future<void> event({
-        String? bearerToken,
-        @Body() required ApiEvent body,
-	  });
-
-    /// Delete one or more users by ID or username.
-    @DELETE('/v2/friend')
-    Future<void> deleteFriends({
-        String? bearerToken,
-		@Query('ids')
-    		required List<String> ids,
-		@Query('usernames')
-    		required List<String> usernames,
-	  });
-
-    /// List all friends for the current user.
-    @GET('/v2/friend')
-    Future<ApiFriendList> listFriends({
-        String? bearerToken,
-		@Query('limit')
-        int? limit,
-		@Query('state')
-        int? state,
-		@Query('cursor')
-        String? cursor,
-	  });
-
-    /// Add friends by ID or username to a user's account.
-    @POST('/v2/friend')
-    Future<void> addFriends({
-        String? bearerToken,
-		@Query('ids')
-    		required List<String> ids,
-		@Query('usernames')
-    		required List<String> usernames,
-		@Query('metadata')
-        String? metadata,
-	  });
-
-    /// Block one or more users by ID or username.
-    @POST('/v2/friend/block')
-    Future<void> blockFriends({
-        String? bearerToken,
-		@Query('ids')
-    		required List<String> ids,
-		@Query('usernames')
-    		required List<String> usernames,
-	  });
-
-    /// Import Facebook friends and add them to a user's account.
-    @POST('/v2/friend/facebook')
-    Future<void> importFacebookFriends({
-        String? bearerToken,
-        @Body() required ApiAccountFacebook body,
-		@Query('reset')
-        bool? reset,
-	  });
-
-    /// List friends of friends for the current user.
-    @GET('/v2/friend/friends')
-    Future<ApiFriendsOfFriendsList> listFriendsOfFriends({
-        String? bearerToken,
-		@Query('limit')
-        int? limit,
-		@Query('cursor')
-        String? cursor,
-	  });
-
-    /// Import Steam friends and add them to a user's account.
-    @POST('/v2/friend/steam')
-    Future<void> importSteamFriends({
-        String? bearerToken,
-        @Body() required ApiAccountSteam body,
-		@Query('reset')
-        bool? reset,
-	  });
-
-    /// List groups based on given filters.
-    @GET('/v2/group')
-    Future<ApiGroupList> listGroups({
-        String? bearerToken,
-		@Query('name')
-        String? name,
-		@Query('cursor')
-        String? cursor,
-		@Query('limit')
-        int? limit,
-		@Query('langTag')
-        String? langTag,
-		@Query('members')
-        int? members,
-		@Query('open')
-        bool? open,
-	  });
-
-    /// Create a new group with the current user as the owner.
-    @POST('/v2/group')
-    Future<ApiGroup> createGroup({
-        String? bearerToken,
-        @Body() required ApiCreateGroupRequest body,
-	  });
-
-    /// Delete a group by ID.
-    @DELETE('/v2/group/{groupId}')
-    Future<void> deleteGroup({
-        String? bearerToken,
-        @Path('groupId')required String groupId,
-	  });
-
-    /// Update fields in a given group.
-    @PUT('/v2/group/{groupId}')
-    Future<void> updateGroup({
-        String? bearerToken,
-        @Path('groupId')required String groupId,
-        @Body() required ApiUpdateGroupRequest body,
-	  });
-
-    /// Add users to a group.
-    @POST('/v2/group/{groupId}/add')
-    Future<void> addGroupUsers({
-        String? bearerToken,
-        @Path('groupId')required String groupId,
-		@Query('userIds')
-    		required List<String> userIds,
-	  });
-
-    /// Ban a set of users from a group.
-    @POST('/v2/group/{groupId}/ban')
-    Future<void> banGroupUsers({
-        String? bearerToken,
-        @Path('groupId')required String groupId,
-		@Query('userIds')
-    		required List<String> userIds,
-	  });
-
-    /// Demote a set of users in a group to the next role down.
-    @POST('/v2/group/{groupId}/demote')
-    Future<void> demoteGroupUsers({
-        String? bearerToken,
-        @Path('groupId')required String groupId,
-		@Query('userIds')
-    		required List<String> userIds,
-	  });
-
-    /// Immediately join an open group, or request to join a closed one.
-    @POST('/v2/group/{groupId}/join')
-    Future<void> joinGroup({
-        String? bearerToken,
-        @Path('groupId')required String groupId,
-	  });
-
-    /// Kick a set of users from a group.
-    @POST('/v2/group/{groupId}/kick')
-    Future<void> kickGroupUsers({
-        String? bearerToken,
-        @Path('groupId')required String groupId,
-		@Query('userIds')
-    		required List<String> userIds,
-	  });
-
-    /// Leave a group the user is a member of.
-    @POST('/v2/group/{groupId}/leave')
-    Future<void> leaveGroup({
-        String? bearerToken,
-        @Path('groupId')required String groupId,
-	  });
-
-    /// Promote a set of users in a group to the next role up.
-    @POST('/v2/group/{groupId}/promote')
-    Future<void> promoteGroupUsers({
-        String? bearerToken,
-        @Path('groupId')required String groupId,
-		@Query('userIds')
-    		required List<String> userIds,
-	  });
-
-    /// List all users that are part of a group.
-    @GET('/v2/group/{groupId}/user')
-    Future<ApiGroupUserList> listGroupUsers({
-        String? bearerToken,
-        @Path('groupId')required String groupId,
-		@Query('limit')
-        int? limit,
-		@Query('state')
-        int? state,
-		@Query('cursor')
-        String? cursor,
-	  });
-
-    /// Validate Apple IAP Receipt
-    @POST('/v2/iap/purchase/apple')
-    Future<ApiValidatePurchaseResponse> validatePurchaseApple({
-        String? bearerToken,
-        @Body() required ApiValidatePurchaseAppleRequest body,
-	  });
-
-    /// Validate FB Instant IAP Receipt
-    @POST('/v2/iap/purchase/facebookinstant')
-    Future<ApiValidatePurchaseResponse> validatePurchaseFacebookInstant({
-        String? bearerToken,
-        @Body() required ApiValidatePurchaseFacebookInstantRequest body,
-	  });
-
-    /// Validate Google IAP Receipt
-    @POST('/v2/iap/purchase/google')
-    Future<ApiValidatePurchaseResponse> validatePurchaseGoogle({
-        String? bearerToken,
-        @Body() required ApiValidatePurchaseGoogleRequest body,
-	  });
-
-    /// Validate Huawei IAP Receipt
-    @POST('/v2/iap/purchase/huawei')
-    Future<ApiValidatePurchaseResponse> validatePurchaseHuawei({
-        String? bearerToken,
-        @Body() required ApiValidatePurchaseHuaweiRequest body,
-	  });
-
-    /// List user's subscriptions.
-    @POST('/v2/iap/subscription')
-    Future<ApiSubscriptionList> listSubscriptions({
-        String? bearerToken,
-        @Body() required ApiListSubscriptionsRequest body,
-	  });
-
-    /// Validate Apple Subscription Receipt
-    @POST('/v2/iap/subscription/apple')
-    Future<ApiValidateSubscriptionResponse> validateSubscriptionApple({
-        String? bearerToken,
-        @Body() required ApiValidateSubscriptionAppleRequest body,
-	  });
-
-    /// Validate Google Subscription Receipt
-    @POST('/v2/iap/subscription/google')
-    Future<ApiValidateSubscriptionResponse> validateSubscriptionGoogle({
-        String? bearerToken,
-        @Body() required ApiValidateSubscriptionGoogleRequest body,
-	  });
-
-    /// Get subscription by product id.
-    @GET('/v2/iap/subscription/{productId}')
-    Future<ApiValidatedSubscription> getSubscription({
-        String? bearerToken,
-        @Path('productId')required String productId,
-	  });
-
-    /// Delete a leaderboard record.
-    @DELETE('/v2/leaderboard/{leaderboardId}')
-    Future<void> deleteLeaderboardRecord({
-        String? bearerToken,
-        @Path('leaderboardId')required String leaderboardId,
-	  });
-
-    /// List leaderboard records.
-    @GET('/v2/leaderboard/{leaderboardId}')
-    Future<ApiLeaderboardRecordList> listLeaderboardRecords({
-        String? bearerToken,
-        @Path('leaderboardId')required String leaderboardId,
-		@Query('ownerIds')
-    		required List<String> ownerIds,
-		@Query('limit')
-        int? limit,
-		@Query('cursor')
-        String? cursor,
-		@Query('expiry')
-        String? expiry,
-	  });
-
-    /// Write a record to a leaderboard.
-    @POST('/v2/leaderboard/{leaderboardId}')
-    Future<ApiLeaderboardRecord> writeLeaderboardRecord({
-        String? bearerToken,
-        @Path('leaderboardId')required String leaderboardId,
-        @Body() required WriteLeaderboardRecordRequestLeaderboardRecordWrite body,
-	  });
-
-    /// List leaderboard records around the target ownerId.
-    @GET('/v2/leaderboard/{leaderboardId}/owner/{ownerId}')
-    Future<ApiLeaderboardRecordList> listLeaderboardRecordsAroundOwner({
-        String? bearerToken,
-        @Path('leaderboardId')required String leaderboardId,
-        @Path('ownerId')required String ownerId,
-		@Query('limit')
-        int? limit,
-		@Query('expiry')
-        String? expiry,
-		@Query('cursor')
-        String? cursor,
-	  });
-
-    /// List running matches and optionally filter by matching criteria.
-    @GET('/v2/match')
-    Future<ApiMatchList> listMatches({
-        String? bearerToken,
-		@Query('limit')
-        int? limit,
-		@Query('authoritative')
-        bool? authoritative,
-		@Query('label')
-        String? label,
-		@Query('minSize')
-        int? minSize,
-		@Query('maxSize')
-        int? maxSize,
-		@Query('query')
-        String? query,
-	  });
-
-    /// Get matchmaker stats.
-    @GET('/v2/matchmaker/stats')
-    Future<ApiMatchmakerStats> getMatchmakerStats({
-        String? bearerToken,
-	  });
-
-    /// Delete one or more notifications for the current user.
-    @DELETE('/v2/notification')
-    Future<void> deleteNotifications({
-        String? bearerToken,
-		@Query('ids')
-    		required List<String> ids,
-	  });
-
-    /// Fetch list of notifications.
-    @GET('/v2/notification')
-    Future<ApiNotificationList> listNotifications({
-        String? bearerToken,
-		@Query('limit')
-        int? limit,
-		@Query('cacheableCursor')
-        String? cacheableCursor,
-	  });
-
-    /// List parties and optionally filter by matching criteria.
-    @GET('/v2/party')
-    Future<ApiPartyList> listParties({
-        String? bearerToken,
-		@Query('limit')
-        int? limit,
-		@Query('open')
-        bool? open,
-		@Query('query')
-        String? query,
-		@Query('cursor')
-        String? cursor,
-	  });
-
-    /// Execute a Lua function on the server.
-    @GET('/v2/rpc/{id}')
-    Future<ApiRpc> rpcFunc2({
-        String? basicAuthUsername,
-        String? basicAuthPassword,
-        String? bearerToken,
-        @Path('id')required String id,
-		@Query('payload')
-        String? payload,
-		@Query('httpKey')
-        String? httpKey,
-	  });
-
-    /// Execute a Lua function on the server.
-    @POST('/v2/rpc/{id}')
-    Future<ApiRpc> rpcFunc({
-        String? basicAuthUsername,
-        String? basicAuthPassword,
-        String? bearerToken,
-        @Path('id')required String id,
-        @Body() required String body,
-		@Query('httpKey')
-        String? httpKey,
-	  });
-
-    /// Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
-    @POST('/v2/session/logout')
-    Future<void> sessionLogout({
-        String? bearerToken,
-        @Body() required ApiSessionLogoutRequest body,
-	  });
-
-    /// Get storage objects.
-    @POST('/v2/storage')
-    Future<ApiStorageObjects> readStorageObjects({
-        String? bearerToken,
-        @Body() required ApiReadStorageObjectsRequest body,
-	  });
-
-    /// Write objects into the storage engine.
-    @PUT('/v2/storage')
-    Future<ApiStorageObjectAcks> writeStorageObjects({
-        String? bearerToken,
-        @Body() required ApiWriteStorageObjectsRequest body,
-	  });
-
-    /// Delete one or more objects by ID or username.
-    @PUT('/v2/storage/delete')
-    Future<void> deleteStorageObjects({
-        String? bearerToken,
-        @Body() required ApiDeleteStorageObjectsRequest body,
-	  });
-
-    /// List publicly readable storage objects in a given collection.
-    @GET('/v2/storage/{collection}')
-    Future<ApiStorageObjectList> listStorageObjects({
-        String? bearerToken,
-        @Path('collection')required String collection,
-		@Query('userId')
-        String? userId,
-		@Query('limit')
-        int? limit,
-		@Query('cursor')
-        String? cursor,
-	  });
-
-    /// List publicly readable storage objects in a given collection.
-    @GET('/v2/storage/{collection}/{userId}')
-    Future<ApiStorageObjectList> listStorageObjects2({
-        String? bearerToken,
-        @Path('collection')required String collection,
-        @Path('userId')required String userId,
-		@Query('limit')
-        int? limit,
-		@Query('cursor')
-        String? cursor,
-	  });
-
-    /// List current or upcoming tournaments.
-    @GET('/v2/tournament')
-    Future<ApiTournamentList> listTournaments({
-        String? bearerToken,
-		@Query('categoryStart')
-        int? categoryStart,
-		@Query('categoryEnd')
-        int? categoryEnd,
-		@Query('startTime')
-        int? startTime,
-		@Query('endTime')
-        int? endTime,
-		@Query('limit')
-        int? limit,
-		@Query('cursor')
-        String? cursor,
-	  });
-
-    /// Delete a tournament record.
-    @DELETE('/v2/tournament/{tournamentId}')
-    Future<void> deleteTournamentRecord({
-        String? bearerToken,
-        @Path('tournamentId')required String tournamentId,
-	  });
-
-    /// List tournament records.
-    @GET('/v2/tournament/{tournamentId}')
-    Future<ApiTournamentRecordList> listTournamentRecords({
-        String? bearerToken,
-        @Path('tournamentId')required String tournamentId,
-		@Query('ownerIds')
-    		required List<String> ownerIds,
-		@Query('limit')
-        int? limit,
-		@Query('cursor')
-        String? cursor,
-		@Query('expiry')
-        String? expiry,
-	  });
-
-    /// Write a record to a tournament.
-    @POST('/v2/tournament/{tournamentId}')
-    Future<ApiLeaderboardRecord> writeTournamentRecord2({
-        String? bearerToken,
-        @Path('tournamentId')required String tournamentId,
-        @Body() required WriteTournamentRecordRequestTournamentRecordWrite body,
-	  });
-
-    /// Write a record to a tournament.
-    @PUT('/v2/tournament/{tournamentId}')
-    Future<ApiLeaderboardRecord> writeTournamentRecord({
-        String? bearerToken,
-        @Path('tournamentId')required String tournamentId,
-        @Body() required WriteTournamentRecordRequestTournamentRecordWrite body,
-	  });
-
-    /// Attempt to join an open and running tournament.
-    @POST('/v2/tournament/{tournamentId}/join')
-    Future<void> joinTournament({
-        String? bearerToken,
-        @Path('tournamentId')required String tournamentId,
-	  });
-
-    /// List tournament records for a given owner.
-    @GET('/v2/tournament/{tournamentId}/owner/{ownerId}')
-    Future<ApiTournamentRecordList> listTournamentRecordsAroundOwner({
-        String? bearerToken,
-        @Path('tournamentId')required String tournamentId,
-        @Path('ownerId')required String ownerId,
-		@Query('limit')
-        int? limit,
-		@Query('expiry')
-        String? expiry,
-		@Query('cursor')
-        String? cursor,
-	  });
-
-    /// Fetch zero or more users by ID and/or username.
-    @GET('/v2/user')
-    Future<ApiUsers> getUsers({
-        String? bearerToken,
-		@Query('ids')
-    		required List<String> ids,
-		@Query('usernames')
-    		required List<String> usernames,
-		@Query('facebookIds')
-    		required List<String> facebookIds,
-	  });
-
-    /// List groups the current user belongs to.
-    @GET('/v2/user/{userId}/group')
-    Future<ApiUserGroupList> listUserGroups({
-        String? bearerToken,
-        @Path('userId')required String userId,
-		@Query('limit')
-        int? limit,
-		@Query('state')
-        int? state,
-		@Query('cursor')
-        String? cursor,
-	  });
+abstract class ApiClient {
+  factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
+
+  /// A healthcheck which load balancers can use to check the service.
+  @GET('/healthcheck')
+  Future<void> healthcheck({String? bearerToken});
+
+  /// Delete the current user's account.
+  @DELETE('/v2/account')
+  Future<void> deleteAccount({String? bearerToken});
+
+  /// Fetch the current user's account.
+  @GET('/v2/account')
+  Future<ApiAccount> getAccount({String? bearerToken});
+
+  /// Update fields in the current user's account.
+  @PUT('/v2/account')
+  Future<void> updateAccount({
+    String? bearerToken,
+    @Body() required ApiUpdateAccountRequest body,
+  });
+
+  /// Authenticate a user with an Apple ID against the server.
+  @POST('/v2/account/authenticate/apple')
+  Future<ApiSession> authenticateApple({
+    String? basicAuthUsername,
+    String? basicAuthPassword,
+    String? bearerToken,
+    @Body() required ApiAccountApple body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
+
+  /// Authenticate a user with a custom id against the server.
+  @POST('/v2/account/authenticate/custom')
+  Future<ApiSession> authenticateCustom({
+    String? basicAuthUsername,
+    String? basicAuthPassword,
+    String? bearerToken,
+    @Body() required ApiAccountCustom body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
+
+  /// Authenticate a user with a device id against the server.
+  @POST('/v2/account/authenticate/device')
+  Future<ApiSession> authenticateDevice({
+    String? basicAuthUsername,
+    String? basicAuthPassword,
+    String? bearerToken,
+    @Body() required ApiAccountDevice body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
+
+  /// Authenticate a user with an email+password against the server.
+  @POST('/v2/account/authenticate/email')
+  Future<ApiSession> authenticateEmail({
+    String? basicAuthUsername,
+    String? basicAuthPassword,
+    String? bearerToken,
+    @Body() required ApiAccountEmail body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
+
+  /// Authenticate a user with a Facebook OAuth token against the server.
+  @POST('/v2/account/authenticate/facebook')
+  Future<ApiSession> authenticateFacebook({
+    String? basicAuthUsername,
+    String? basicAuthPassword,
+    String? bearerToken,
+    @Body() required ApiAccountFacebook body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+    @Query('sync') bool? sync,
+  });
+
+  /// Authenticate a user with a Facebook Instant Game token against the server.
+  @POST('/v2/account/authenticate/facebookinstantgame')
+  Future<ApiSession> authenticateFacebookInstantGame({
+    String? basicAuthUsername,
+    String? basicAuthPassword,
+    String? bearerToken,
+    @Body() required ApiAccountFacebookInstantGame body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
+
+  /// Authenticate a user with Apple's GameCenter against the server.
+  @POST('/v2/account/authenticate/gamecenter')
+  Future<ApiSession> authenticateGameCenter({
+    String? basicAuthUsername,
+    String? basicAuthPassword,
+    String? bearerToken,
+    @Body() required ApiAccountGameCenter body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
+
+  /// Authenticate a user with Google against the server.
+  @POST('/v2/account/authenticate/google')
+  Future<ApiSession> authenticateGoogle({
+    String? basicAuthUsername,
+    String? basicAuthPassword,
+    String? bearerToken,
+    @Body() required ApiAccountGoogle body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+  });
+
+  /// Authenticate a user with Steam against the server.
+  @POST('/v2/account/authenticate/steam')
+  Future<ApiSession> authenticateSteam({
+    String? basicAuthUsername,
+    String? basicAuthPassword,
+    String? bearerToken,
+    @Body() required ApiAccountSteam body,
+    @Query('create') bool? create,
+    @Query('username') String? username,
+    @Query('sync') bool? sync,
+  });
+
+  /// Add an Apple ID to the social profiles on the current user's account.
+  @POST('/v2/account/link/apple')
+  Future<void> linkApple({
+    String? bearerToken,
+    @Body() required ApiAccountApple body,
+  });
+
+  /// Add a custom ID to the social profiles on the current user's account.
+  @POST('/v2/account/link/custom')
+  Future<void> linkCustom({
+    String? bearerToken,
+    @Body() required ApiAccountCustom body,
+  });
+
+  /// Add a device ID to the social profiles on the current user's account.
+  @POST('/v2/account/link/device')
+  Future<void> linkDevice({
+    String? bearerToken,
+    @Body() required ApiAccountDevice body,
+  });
+
+  /// Add an email+password to the social profiles on the current user's account.
+  @POST('/v2/account/link/email')
+  Future<void> linkEmail({
+    String? bearerToken,
+    @Body() required ApiAccountEmail body,
+  });
+
+  /// Add Facebook to the social profiles on the current user's account.
+  @POST('/v2/account/link/facebook')
+  Future<void> linkFacebook({
+    String? bearerToken,
+    @Body() required ApiAccountFacebook body,
+    @Query('sync') bool? sync,
+  });
+
+  /// Add Facebook Instant Game to the social profiles on the current user's account.
+  @POST('/v2/account/link/facebookinstantgame')
+  Future<void> linkFacebookInstantGame({
+    String? bearerToken,
+    @Body() required ApiAccountFacebookInstantGame body,
+  });
+
+  /// Add Apple's GameCenter to the social profiles on the current user's account.
+  @POST('/v2/account/link/gamecenter')
+  Future<void> linkGameCenter({
+    String? bearerToken,
+    @Body() required ApiAccountGameCenter body,
+  });
+
+  /// Add Google to the social profiles on the current user's account.
+  @POST('/v2/account/link/google')
+  Future<void> linkGoogle({
+    String? bearerToken,
+    @Body() required ApiAccountGoogle body,
+  });
+
+  /// Add Steam to the social profiles on the current user's account.
+  @POST('/v2/account/link/steam')
+  Future<void> linkSteam({
+    String? bearerToken,
+    @Body() required ApiLinkSteamRequest body,
+  });
+
+  /// Refresh a user's session using a refresh token retrieved from a previous authentication request.
+  @POST('/v2/account/session/refresh')
+  Future<ApiSession> sessionRefresh({
+    String? basicAuthUsername,
+    String? basicAuthPassword,
+    String? bearerToken,
+    @Body() required ApiSessionRefreshRequest body,
+  });
+
+  /// Remove the Apple ID from the social profiles on the current user's account.
+  @POST('/v2/account/unlink/apple')
+  Future<void> unlinkApple({
+    String? bearerToken,
+    @Body() required ApiAccountApple body,
+  });
+
+  /// Remove the custom ID from the social profiles on the current user's account.
+  @POST('/v2/account/unlink/custom')
+  Future<void> unlinkCustom({
+    String? bearerToken,
+    @Body() required ApiAccountCustom body,
+  });
+
+  /// Remove the device ID from the social profiles on the current user's account.
+  @POST('/v2/account/unlink/device')
+  Future<void> unlinkDevice({
+    String? bearerToken,
+    @Body() required ApiAccountDevice body,
+  });
+
+  /// Remove the email+password from the social profiles on the current user's account.
+  @POST('/v2/account/unlink/email')
+  Future<void> unlinkEmail({
+    String? bearerToken,
+    @Body() required ApiAccountEmail body,
+  });
+
+  /// Remove Facebook from the social profiles on the current user's account.
+  @POST('/v2/account/unlink/facebook')
+  Future<void> unlinkFacebook({
+    String? bearerToken,
+    @Body() required ApiAccountFacebook body,
+  });
+
+  /// Remove Facebook Instant Game profile from the social profiles on the current user's account.
+  @POST('/v2/account/unlink/facebookinstantgame')
+  Future<void> unlinkFacebookInstantGame({
+    String? bearerToken,
+    @Body() required ApiAccountFacebookInstantGame body,
+  });
+
+  /// Remove Apple's GameCenter from the social profiles on the current user's account.
+  @POST('/v2/account/unlink/gamecenter')
+  Future<void> unlinkGameCenter({
+    String? bearerToken,
+    @Body() required ApiAccountGameCenter body,
+  });
+
+  /// Remove Google from the social profiles on the current user's account.
+  @POST('/v2/account/unlink/google')
+  Future<void> unlinkGoogle({
+    String? bearerToken,
+    @Body() required ApiAccountGoogle body,
+  });
+
+  /// Remove Steam from the social profiles on the current user's account.
+  @POST('/v2/account/unlink/steam')
+  Future<void> unlinkSteam({
+    String? bearerToken,
+    @Body() required ApiAccountSteam body,
+  });
+
+  /// List a channel's message history.
+  @GET('/v2/channel/{channelId}')
+  Future<ApiChannelMessageList> listChannelMessages({
+    String? bearerToken,
+    @Path('channelId') required String channelId,
+    @Query('limit') int? limit,
+    @Query('forward') bool? forward,
+    @Query('cursor') String? cursor,
+  });
+
+  /// Submit an event for processing in the server's registered runtime custom events handler.
+  @POST('/v2/event')
+  Future<void> event({String? bearerToken, @Body() required ApiEvent body});
+
+  /// Delete one or more users by ID or username.
+  @DELETE('/v2/friend')
+  Future<void> deleteFriends({
+    String? bearerToken,
+    @Query('ids') required List<String> ids,
+    @Query('usernames') required List<String> usernames,
+  });
+
+  /// List all friends for the current user.
+  @GET('/v2/friend')
+  Future<ApiFriendList> listFriends({
+    String? bearerToken,
+    @Query('limit') int? limit,
+    @Query('state') int? state,
+    @Query('cursor') String? cursor,
+  });
+
+  /// Add friends by ID or username to a user's account.
+  @POST('/v2/friend')
+  Future<void> addFriends({
+    String? bearerToken,
+    @Query('ids') required List<String> ids,
+    @Query('usernames') required List<String> usernames,
+    @Query('metadata') String? metadata,
+  });
+
+  /// Block one or more users by ID or username.
+  @POST('/v2/friend/block')
+  Future<void> blockFriends({
+    String? bearerToken,
+    @Query('ids') required List<String> ids,
+    @Query('usernames') required List<String> usernames,
+  });
+
+  /// Import Facebook friends and add them to a user's account.
+  @POST('/v2/friend/facebook')
+  Future<void> importFacebookFriends({
+    String? bearerToken,
+    @Body() required ApiAccountFacebook body,
+    @Query('reset') bool? reset,
+  });
+
+  /// List friends of friends for the current user.
+  @GET('/v2/friend/friends')
+  Future<ApiFriendsOfFriendsList> listFriendsOfFriends({
+    String? bearerToken,
+    @Query('limit') int? limit,
+    @Query('cursor') String? cursor,
+  });
+
+  /// Import Steam friends and add them to a user's account.
+  @POST('/v2/friend/steam')
+  Future<void> importSteamFriends({
+    String? bearerToken,
+    @Body() required ApiAccountSteam body,
+    @Query('reset') bool? reset,
+  });
+
+  /// List groups based on given filters.
+  @GET('/v2/group')
+  Future<ApiGroupList> listGroups({
+    String? bearerToken,
+    @Query('name') String? name,
+    @Query('cursor') String? cursor,
+    @Query('limit') int? limit,
+    @Query('langTag') String? langTag,
+    @Query('members') int? members,
+    @Query('open') bool? open,
+  });
+
+  /// Create a new group with the current user as the owner.
+  @POST('/v2/group')
+  Future<ApiGroup> createGroup({
+    String? bearerToken,
+    @Body() required ApiCreateGroupRequest body,
+  });
+
+  /// Delete a group by ID.
+  @DELETE('/v2/group/{groupId}')
+  Future<void> deleteGroup({
+    String? bearerToken,
+    @Path('groupId') required String groupId,
+  });
+
+  /// Update fields in a given group.
+  @PUT('/v2/group/{groupId}')
+  Future<void> updateGroup({
+    String? bearerToken,
+    @Path('groupId') required String groupId,
+    @Body() required ApiUpdateGroupRequest body,
+  });
+
+  /// Add users to a group.
+  @POST('/v2/group/{groupId}/add')
+  Future<void> addGroupUsers({
+    String? bearerToken,
+    @Path('groupId') required String groupId,
+    @Query('userIds') required List<String> userIds,
+  });
+
+  /// Ban a set of users from a group.
+  @POST('/v2/group/{groupId}/ban')
+  Future<void> banGroupUsers({
+    String? bearerToken,
+    @Path('groupId') required String groupId,
+    @Query('userIds') required List<String> userIds,
+  });
+
+  /// Demote a set of users in a group to the next role down.
+  @POST('/v2/group/{groupId}/demote')
+  Future<void> demoteGroupUsers({
+    String? bearerToken,
+    @Path('groupId') required String groupId,
+    @Query('userIds') required List<String> userIds,
+  });
+
+  /// Immediately join an open group, or request to join a closed one.
+  @POST('/v2/group/{groupId}/join')
+  Future<void> joinGroup({
+    String? bearerToken,
+    @Path('groupId') required String groupId,
+  });
+
+  /// Kick a set of users from a group.
+  @POST('/v2/group/{groupId}/kick')
+  Future<void> kickGroupUsers({
+    String? bearerToken,
+    @Path('groupId') required String groupId,
+    @Query('userIds') required List<String> userIds,
+  });
+
+  /// Leave a group the user is a member of.
+  @POST('/v2/group/{groupId}/leave')
+  Future<void> leaveGroup({
+    String? bearerToken,
+    @Path('groupId') required String groupId,
+  });
+
+  /// Promote a set of users in a group to the next role up.
+  @POST('/v2/group/{groupId}/promote')
+  Future<void> promoteGroupUsers({
+    String? bearerToken,
+    @Path('groupId') required String groupId,
+    @Query('userIds') required List<String> userIds,
+  });
+
+  /// List all users that are part of a group.
+  @GET('/v2/group/{groupId}/user')
+  Future<ApiGroupUserList> listGroupUsers({
+    String? bearerToken,
+    @Path('groupId') required String groupId,
+    @Query('limit') int? limit,
+    @Query('state') int? state,
+    @Query('cursor') String? cursor,
+  });
+
+  /// Validate Apple IAP Receipt
+  @POST('/v2/iap/purchase/apple')
+  Future<ApiValidatePurchaseResponse> validatePurchaseApple({
+    String? bearerToken,
+    @Body() required ApiValidatePurchaseAppleRequest body,
+  });
+
+  /// Validate FB Instant IAP Receipt
+  @POST('/v2/iap/purchase/facebookinstant')
+  Future<ApiValidatePurchaseResponse> validatePurchaseFacebookInstant({
+    String? bearerToken,
+    @Body() required ApiValidatePurchaseFacebookInstantRequest body,
+  });
+
+  /// Validate Google IAP Receipt
+  @POST('/v2/iap/purchase/google')
+  Future<ApiValidatePurchaseResponse> validatePurchaseGoogle({
+    String? bearerToken,
+    @Body() required ApiValidatePurchaseGoogleRequest body,
+  });
+
+  /// Validate Huawei IAP Receipt
+  @POST('/v2/iap/purchase/huawei')
+  Future<ApiValidatePurchaseResponse> validatePurchaseHuawei({
+    String? bearerToken,
+    @Body() required ApiValidatePurchaseHuaweiRequest body,
+  });
+
+  /// List user's subscriptions.
+  @POST('/v2/iap/subscription')
+  Future<ApiSubscriptionList> listSubscriptions({
+    String? bearerToken,
+    @Body() required ApiListSubscriptionsRequest body,
+  });
+
+  /// Validate Apple Subscription Receipt
+  @POST('/v2/iap/subscription/apple')
+  Future<ApiValidateSubscriptionResponse> validateSubscriptionApple({
+    String? bearerToken,
+    @Body() required ApiValidateSubscriptionAppleRequest body,
+  });
+
+  /// Validate Google Subscription Receipt
+  @POST('/v2/iap/subscription/google')
+  Future<ApiValidateSubscriptionResponse> validateSubscriptionGoogle({
+    String? bearerToken,
+    @Body() required ApiValidateSubscriptionGoogleRequest body,
+  });
+
+  /// Get subscription by product id.
+  @GET('/v2/iap/subscription/{productId}')
+  Future<ApiValidatedSubscription> getSubscription({
+    String? bearerToken,
+    @Path('productId') required String productId,
+  });
+
+  /// Delete a leaderboard record.
+  @DELETE('/v2/leaderboard/{leaderboardId}')
+  Future<void> deleteLeaderboardRecord({
+    String? bearerToken,
+    @Path('leaderboardId') required String leaderboardId,
+  });
+
+  /// List leaderboard records.
+  @GET('/v2/leaderboard/{leaderboardId}')
+  Future<ApiLeaderboardRecordList> listLeaderboardRecords({
+    String? bearerToken,
+    @Path('leaderboardId') required String leaderboardId,
+    @Query('ownerIds') required List<String> ownerIds,
+    @Query('limit') int? limit,
+    @Query('cursor') String? cursor,
+    @Query('expiry') String? expiry,
+  });
+
+  /// Write a record to a leaderboard.
+  @POST('/v2/leaderboard/{leaderboardId}')
+  Future<ApiLeaderboardRecord> writeLeaderboardRecord({
+    String? bearerToken,
+    @Path('leaderboardId') required String leaderboardId,
+    @Body() required WriteLeaderboardRecordRequestLeaderboardRecordWrite body,
+  });
+
+  /// List leaderboard records around the target ownerId.
+  @GET('/v2/leaderboard/{leaderboardId}/owner/{ownerId}')
+  Future<ApiLeaderboardRecordList> listLeaderboardRecordsAroundOwner({
+    String? bearerToken,
+    @Path('leaderboardId') required String leaderboardId,
+    @Path('ownerId') required String ownerId,
+    @Query('limit') int? limit,
+    @Query('expiry') String? expiry,
+    @Query('cursor') String? cursor,
+  });
+
+  /// List running matches and optionally filter by matching criteria.
+  @GET('/v2/match')
+  Future<ApiMatchList> listMatches({
+    String? bearerToken,
+    @Query('limit') int? limit,
+    @Query('authoritative') bool? authoritative,
+    @Query('label') String? label,
+    @Query('minSize') int? minSize,
+    @Query('maxSize') int? maxSize,
+    @Query('query') String? query,
+  });
+
+  /// Get matchmaker stats.
+  @GET('/v2/matchmaker/stats')
+  Future<ApiMatchmakerStats> getMatchmakerStats({String? bearerToken});
+
+  /// Delete one or more notifications for the current user.
+  @DELETE('/v2/notification')
+  Future<void> deleteNotifications({
+    String? bearerToken,
+    @Query('ids') required List<String> ids,
+  });
+
+  /// Fetch list of notifications.
+  @GET('/v2/notification')
+  Future<ApiNotificationList> listNotifications({
+    String? bearerToken,
+    @Query('limit') int? limit,
+    @Query('cacheableCursor') String? cacheableCursor,
+  });
+
+  /// List parties and optionally filter by matching criteria.
+  @GET('/v2/party')
+  Future<ApiPartyList> listParties({
+    String? bearerToken,
+    @Query('limit') int? limit,
+    @Query('open') bool? open,
+    @Query('query') String? query,
+    @Query('cursor') String? cursor,
+  });
+
+  /// Execute a Lua function on the server.
+  @GET('/v2/rpc/{id}')
+  Future<ApiRpc> rpcFunc2({
+    String? basicAuthUsername,
+    String? basicAuthPassword,
+    String? bearerToken,
+    @Path('id') required String id,
+    @Query('payload') String? payload,
+    @Query('httpKey') String? httpKey,
+  });
+
+  /// Execute a Lua function on the server.
+  @POST('/v2/rpc/{id}')
+  Future<ApiRpc> rpcFunc({
+    String? basicAuthUsername,
+    String? basicAuthPassword,
+    String? bearerToken,
+    @Path('id') required String id,
+    @Body() required String body,
+    @Query('httpKey') String? httpKey,
+  });
+
+  /// Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
+  @POST('/v2/session/logout')
+  Future<void> sessionLogout({
+    String? bearerToken,
+    @Body() required ApiSessionLogoutRequest body,
+  });
+
+  /// Get storage objects.
+  @POST('/v2/storage')
+  Future<ApiStorageObjects> readStorageObjects({
+    String? bearerToken,
+    @Body() required ApiReadStorageObjectsRequest body,
+  });
+
+  /// Write objects into the storage engine.
+  @PUT('/v2/storage')
+  Future<ApiStorageObjectAcks> writeStorageObjects({
+    String? bearerToken,
+    @Body() required ApiWriteStorageObjectsRequest body,
+  });
+
+  /// Delete one or more objects by ID or username.
+  @PUT('/v2/storage/delete')
+  Future<void> deleteStorageObjects({
+    String? bearerToken,
+    @Body() required ApiDeleteStorageObjectsRequest body,
+  });
+
+  /// List publicly readable storage objects in a given collection.
+  @GET('/v2/storage/{collection}')
+  Future<ApiStorageObjectList> listStorageObjects({
+    String? bearerToken,
+    @Path('collection') required String collection,
+    @Query('userId') String? userId,
+    @Query('limit') int? limit,
+    @Query('cursor') String? cursor,
+  });
+
+  /// List publicly readable storage objects in a given collection.
+  @GET('/v2/storage/{collection}/{userId}')
+  Future<ApiStorageObjectList> listStorageObjects2({
+    String? bearerToken,
+    @Path('collection') required String collection,
+    @Path('userId') required String userId,
+    @Query('limit') int? limit,
+    @Query('cursor') String? cursor,
+  });
+
+  /// List current or upcoming tournaments.
+  @GET('/v2/tournament')
+  Future<ApiTournamentList> listTournaments({
+    String? bearerToken,
+    @Query('categoryStart') int? categoryStart,
+    @Query('categoryEnd') int? categoryEnd,
+    @Query('startTime') int? startTime,
+    @Query('endTime') int? endTime,
+    @Query('limit') int? limit,
+    @Query('cursor') String? cursor,
+  });
+
+  /// Delete a tournament record.
+  @DELETE('/v2/tournament/{tournamentId}')
+  Future<void> deleteTournamentRecord({
+    String? bearerToken,
+    @Path('tournamentId') required String tournamentId,
+  });
+
+  /// List tournament records.
+  @GET('/v2/tournament/{tournamentId}')
+  Future<ApiTournamentRecordList> listTournamentRecords({
+    String? bearerToken,
+    @Path('tournamentId') required String tournamentId,
+    @Query('ownerIds') required List<String> ownerIds,
+    @Query('limit') int? limit,
+    @Query('cursor') String? cursor,
+    @Query('expiry') String? expiry,
+  });
+
+  /// Write a record to a tournament.
+  @POST('/v2/tournament/{tournamentId}')
+  Future<ApiLeaderboardRecord> writeTournamentRecord2({
+    String? bearerToken,
+    @Path('tournamentId') required String tournamentId,
+    @Body() required WriteTournamentRecordRequestTournamentRecordWrite body,
+  });
+
+  /// Write a record to a tournament.
+  @PUT('/v2/tournament/{tournamentId}')
+  Future<ApiLeaderboardRecord> writeTournamentRecord({
+    String? bearerToken,
+    @Path('tournamentId') required String tournamentId,
+    @Body() required WriteTournamentRecordRequestTournamentRecordWrite body,
+  });
+
+  /// Attempt to join an open and running tournament.
+  @POST('/v2/tournament/{tournamentId}/join')
+  Future<void> joinTournament({
+    String? bearerToken,
+    @Path('tournamentId') required String tournamentId,
+  });
+
+  /// List tournament records for a given owner.
+  @GET('/v2/tournament/{tournamentId}/owner/{ownerId}')
+  Future<ApiTournamentRecordList> listTournamentRecordsAroundOwner({
+    String? bearerToken,
+    @Path('tournamentId') required String tournamentId,
+    @Path('ownerId') required String ownerId,
+    @Query('limit') int? limit,
+    @Query('expiry') String? expiry,
+    @Query('cursor') String? cursor,
+  });
+
+  /// Fetch zero or more users by ID and/or username.
+  @GET('/v2/user')
+  Future<ApiUsers> getUsers({
+    String? bearerToken,
+    @Query('ids') required List<String> ids,
+    @Query('usernames') required List<String> usernames,
+    @Query('facebookIds') required List<String> facebookIds,
+  });
+
+  /// List groups the current user belongs to.
+  @GET('/v2/user/{userId}/group')
+  Future<ApiUserGroupList> listUserGroups({
+    String? bearerToken,
+    @Path('userId') required String userId,
+    @Query('limit') int? limit,
+    @Query('state') int? state,
+    @Query('cursor') String? cursor,
+  });
 }

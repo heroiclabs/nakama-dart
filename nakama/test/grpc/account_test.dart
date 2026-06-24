@@ -1,4 +1,5 @@
 import 'package:faker/faker.dart';
+import 'package:grpc/grpc.dart';
 import 'package:nakama/nakama.dart';
 import 'package:test/test.dart';
 
@@ -55,9 +56,9 @@ void main() {
       await client.deleteAccount(session: disposableSession);
 
       // The account no longer exists, so fetching it must fail.
-      expect(
-        () => client.getAccount(disposableSession),
-        throwsA(isA<Exception>()),
+      await expectLater(
+        client.getAccount(disposableSession),
+        throwsA(isA<GrpcError>()),
       );
     });
   });

@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:nakama/nakama.dart';
+import 'package:nakama/src/models/response_error.dart';
 import 'package:test/test.dart';
 
 import '../config.dart';
@@ -53,9 +54,9 @@ void main() {
       await client.deleteAccount(session: disposableSession);
 
       // The account no longer exists, so fetching it must fail.
-      expect(
-        () => client.getAccount(disposableSession),
-        throwsA(isA<Exception>()),
+      await expectLater(
+        client.getAccount(disposableSession),
+        throwsA(isA<ResponseError>()),
       );
     });
   });

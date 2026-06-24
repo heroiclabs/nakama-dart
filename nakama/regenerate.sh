@@ -40,6 +40,11 @@ echo "Found OpenAPI spec: $OPENAPI_SPEC"
 # (the generator would then print to stdout and never write the file).
 cd "$SCRIPT_DIR/tool"
 go run main.go -output "$SCRIPT_DIR/lib/src/rest/api_client.gen.dart" "$OPENAPI_SPEC" "nakama"
+
+# The template emits unformatted Dart (mixed tabs/spaces). Normalise it so the
+# committed file uses the project's standard formatting and diffs stay minimal.
+cd "$SCRIPT_DIR"
+dart format "$SCRIPT_DIR/lib/src/rest/api_client.gen.dart" > /dev/null
 echo "✓ main.go code generation completed"
 
 echo ""
