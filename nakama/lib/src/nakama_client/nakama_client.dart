@@ -5,7 +5,10 @@ import 'package:nakama/src/models/friends.dart' as model;
 import 'package:nakama/src/models/group.dart' as model;
 import 'package:nakama/src/models/leaderboard.dart' as model;
 import 'package:nakama/src/models/match.dart' as model;
+import 'package:nakama/src/models/matchmaker.dart' as model;
 import 'package:nakama/src/models/notification.dart' as model;
+import 'package:nakama/src/models/party.dart' as model;
+import 'package:nakama/src/models/purchase.dart' as model;
 import 'package:nakama/src/models/session.dart' as model;
 import 'package:nakama/src/models/storage.dart' as model;
 import 'package:nakama/src/models/tournament.dart' as model;
@@ -593,6 +596,17 @@ abstract class NakamaBaseClient {
     String? cursor,
   });
 
+  /// List friends of friends for the current user.
+  ///
+  /// - [session] The session of the user.
+  /// - [limit] The number of friends of friends to list. Between 1 and 100.
+  /// - [cursor] A cursor for the current position in the listing.
+  Future<model.FriendsOfFriendsList> listFriendsOfFriends({
+    required model.Session session,
+    int limit = defaultLimit,
+    String? cursor,
+  });
+
   /// Delete one or more users by id or username from friends.
   ///
   /// - [session] The session of the user.
@@ -898,6 +912,49 @@ abstract class NakamaBaseClient {
     int? subscore,
     String? metadata,
     LeaderboardOperator? operator,
+  });
+
+  /// Delete the current owner's record from a tournament, if one exists.
+  ///
+  /// - [session] Current session.
+  /// - [tournamentId] The ID of the tournament to delete the record from.
+  Future<void> deleteTournamentRecord({
+    required model.Session session,
+    required String tournamentId,
+  });
+
+  /// List parties on the server, optionally filtered by matching criteria.
+  ///
+  /// - [session] Current session.
+  /// - [limit] The number of parties to list.
+  /// - [open] Filter by open or closed parties.
+  /// - [query] An arbitrary label query to filter parties by.
+  /// - [cursor] A cursor for the current position in the parties listing.
+  Future<model.PartyList> listParties({
+    required model.Session session,
+    int limit = defaultLimit,
+    bool? open,
+    String? query,
+    String? cursor,
+  });
+
+  /// Get the current matchmaker process statistics.
+  ///
+  /// - [session] Current session.
+  Future<model.MatchmakerStats> getMatchmakerStats({
+    required model.Session session,
+  });
+
+  /// Validate a Facebook Instant in-app purchase receipt against the server.
+  ///
+  /// - [session] Current session.
+  /// - [signedRequest] Base64 encoded Facebook Instant signedRequest receipt
+  ///   data payload.
+  /// - [persist] Whether to persist the purchase. Defaults to true.
+  Future<model.ValidatePurchaseResponse> validatePurchaseFacebookInstant({
+    required model.Session session,
+    required String signedRequest,
+    bool persist = true,
   });
 
   /// Execute an RPC function on the server.
