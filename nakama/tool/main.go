@@ -55,7 +55,7 @@ enum {{ $classname }} {
 @JsonSerializable(explicitToJson: true)
 class {{ $classname }} {
     {{- range $propname, $property := $definition.Properties }}
-    {{- $fieldname := $propname }}
+    {{- $fieldname := $propname | sanitizeFieldName }}
     {{- $attrDataName := $propname | camelToSnake }}
     {{- if eq $propname "refresh_token" }}{{ $fieldname = "refreshToken" }}{{ end }}
     @JsonKey(name: '{{ $attrDataName }}')
@@ -105,7 +105,7 @@ class {{ $classname }} {
     const {{ $classname }}({
         {{- $first := true -}}
         {{- range $propname, $property := $definition.Properties }}
-        {{- $fieldname := $propname }}
+        {{- $fieldname := $propname | sanitizeFieldName }}
         {{- $attrDataName := $propname | camelToSnake }}
         {{- if eq $propname "refresh_token" }}{{ $fieldname = "refreshToken" }}{{ end }}
         {{- if eq $property.Type "integer" }}
@@ -196,10 +196,14 @@ abstract class ApiClient
     {{- if eq $parameter.In "path" }}
         @Path('{{ $parameter.Name }}'){{ if $parameter.Required }}required{{- end}} {{ $parameter.Type | camelToPascal }}{{- if not $parameter.Required }}?{{- end }} {{ $parameter.Name }},
     {{- else if eq $parameter.In "body" }}
+        {{- /* The Dart parameter is always named "body": retrofit drives
+               serialisation via the @Body() annotation, not the identifier, so
+               a fixed name avoids collisions and invalid identifiers coming
+               from the spec's parameter name. */}}
         {{- if eq $parameter.Schema.Type "string" }}
-        @Body() {{ if $parameter.Required }}required{{- end}} String{{- if not $parameter.Required }}?{{- end }} {{ $parameter.Name }},
+        @Body() {{ if $parameter.Required }}required{{- end}} String{{- if not $parameter.Required }}?{{- end }} body,
         {{- else }}
-        @Body() {{ if $parameter.Required }}required {{ end }}{{ $parameter.Schema.Ref | cleanRef }}{{- if not $parameter.Required }}?{{- end }} {{ $parameter.Name }},
+        @Body() {{ if $parameter.Required }}required {{ end }}{{ $parameter.Schema.Ref | cleanRef }}{{- if not $parameter.Required }}?{{- end }} body,
         {{- end }}
 	{{- else if eq $parameter.In "query" }}
 		@Query('{{ $parameter.Name }}')
@@ -342,6 +346,33 @@ func descriptionOrTitle(description string, title string) string {
 	return title
 }
 
+// sanitizeFieldName turns an arbitrary JSON property name into a valid Dart
+// identifier. Characters that are not allowed in identifiers (e.g. the leading
+// '@' in protobuf's "@type") are removed, and a leading digit is prefixed with
+// an underscore. The original JSON name is preserved separately via @JsonKey.
+func sanitizeFieldName(input string) string {
+	var b strings.Builder
+	for _, r := range input {
+		if r == '_' || unicode.IsLetter(r) || unicode.IsDigit(r) {
+			b.WriteRune(r)
+		}
+	}
+
+	output := b.String()
+	if output == "" {
+		// Nothing usable survived sanitisation (e.g. a name made up entirely of
+		// punctuation). Fall back to a generic but valid identifier rather than
+		// returning the original, still-invalid, name.
+		return "field"
+	}
+
+	if unicode.IsDigit(rune(output[0])) {
+		output = "_" + output
+	}
+
+	return output
+}
+
 // camelToPascal converts a string from camel case to Pascal case.
 func camelToPascal(camelCase string) (pascalCase string) {
 
@@ -430,6 +461,7 @@ func main() {
 		"splitEnumDescription": splitEnumDescription,
 		"stripOperationPrefix": stripOperationPrefix,
 		"descriptionOrTitle":   descriptionOrTitle,
+		"sanitizeFieldName":    sanitizeFieldName,
 	}
 
 	tmpl, err := template.New(inputFile).Funcs(fmap).Parse(codeTemplate)
@@ -529,7 +561,13 @@ func generateBodyDefinitionFromSchema(s *Schema) {
 		if verb, ok := def["put"]; ok {
 			for idx, param := range verb.Parameters {
 				if param.In == "body" && param.Name == "body" && param.Schema.Ref == "" {
-					objectName := "Api" + strings.TrimPrefix(verb.OperationId, fmt.Sprintf("%s_", s.Namespace)) + "Request"
+					// The operationId is PascalCase-prefixed with the service name
+					// (e.g. "Nakama_UpdateGroup"), while the namespace passed on the
+					// CLI is lower case ("nakama"). Match the PascalCase prefix so the
+					// synthesized class name is "ApiUpdateGroupRequest", not
+					// "ApiNakama_UpdateGroupRequest".
+					prefix := fmt.Sprintf("%s_", camelToPascal(s.Namespace))
+					objectName := "Api" + strings.TrimPrefix(verb.OperationId, prefix) + "Request"
 					param.Schema.Ref = "#/definitions/" + objectName
 					def["put"].Parameters[idx] = param
 

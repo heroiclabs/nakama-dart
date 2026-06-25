@@ -35,8 +35,16 @@ fi
 echo "Found OpenAPI spec: $OPENAPI_SPEC"
 
 # Run main.go
+# NOTE: -output must come BEFORE the positional args. Go's flag.Parse() stops at
+# the first non-flag argument, so placing -output after them silently disables it
+# (the generator would then print to stdout and never write the file).
 cd "$SCRIPT_DIR/tool"
-go run main.go "$OPENAPI_SPEC" "nakama" -output "$SCRIPT_DIR/lib/src/rest/api_client.gen.dart"
+go run main.go -output "$SCRIPT_DIR/lib/src/rest/api_client.gen.dart" "$OPENAPI_SPEC" "nakama"
+
+# The template emits unformatted Dart (mixed tabs/spaces). Normalise it so the
+# committed file uses the project's standard formatting and diffs stay minimal.
+cd "$SCRIPT_DIR"
+dart format "$SCRIPT_DIR/lib/src/rest/api_client.gen.dart" > /dev/null
 echo "✓ main.go code generation completed"
 
 echo ""

@@ -1,4 +1,5 @@
 import 'package:faker/faker.dart';
+import 'package:grpc/grpc.dart';
 import 'package:nakama/nakama.dart';
 import 'package:test/test.dart';
 
@@ -45,6 +46,20 @@ void main() {
       await client.updateAccount(session: session, displayName: 'name');
       final updatedAccount = await client.getAccount(session);
       expect(updatedAccount.user.displayName, 'name');
+    });
+
+    test('deleting my account', () async {
+      // Use a dedicated user so the shared session is not destroyed.
+      final disposableSession =
+          await client.authenticateDevice(deviceId: faker.guid.guid());
+
+      await client.deleteAccount(session: disposableSession);
+
+      // The account no longer exists, so fetching it must fail.
+      await expectLater(
+        client.getAccount(disposableSession),
+        throwsA(isA<GrpcError>()),
+      );
     });
   });
 }

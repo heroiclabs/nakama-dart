@@ -780,6 +780,19 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<void> deleteAccount({
+    required model.Session session,
+  }) async {
+    _session = session;
+
+    try {
+      await _api.deleteAccount();
+    } on Exception catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  @override
   Future<List<model.User>> getUsers({
     required model.Session session,
     List<String>? facebookIds,
@@ -1135,7 +1148,6 @@ class NakamaRestApiClient extends NakamaBaseClient {
       await _api.updateGroup(
         groupId: groupId,
         body: ApiUpdateGroupRequest(
-          groupId: groupId,
           name: name,
           open: open,
           avatarUrl: avatarUrl,

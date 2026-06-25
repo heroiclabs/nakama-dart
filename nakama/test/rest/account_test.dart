@@ -1,5 +1,6 @@
 import 'package:faker/faker.dart';
 import 'package:nakama/nakama.dart';
+import 'package:nakama/src/models/response_error.dart';
 import 'package:test/test.dart';
 
 import '../config.dart';
@@ -43,6 +44,20 @@ void main() {
 
     test('updating my account', () async {
       await client.updateAccount(session: session, displayName: 'name');
+    });
+
+    test('deleting my account', () async {
+      // Use a dedicated user so the shared session is not destroyed.
+      final disposableSession =
+          await client.authenticateDevice(deviceId: faker.guid.guid());
+
+      await client.deleteAccount(session: disposableSession);
+
+      // The account no longer exists, so fetching it must fail.
+      await expectLater(
+        client.getAccount(disposableSession),
+        throwsA(isA<ResponseError>()),
+      );
     });
   });
 }
