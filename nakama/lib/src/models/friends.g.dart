@@ -36,3 +36,30 @@ const _$FriendshipStateEnumMap = {
   FriendshipState.incomingRequest: 2,
   FriendshipState.blocked: 3,
 };
+
+_FriendsOfFriendsList _$FriendsOfFriendsListFromJson(
+  Map<String, dynamic> json,
+) => _FriendsOfFriendsList(
+  cursor: json['cursor'] as String?,
+  friendsOfFriends:
+      (json['friends_of_friends'] as List<dynamic>?)
+          ?.map((e) => FriendOfFriend.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const <FriendOfFriend>[],
+);
+
+Map<String, dynamic> _$FriendsOfFriendsListToJson(
+  _FriendsOfFriendsList instance,
+) => <String, dynamic>{
+  'cursor': instance.cursor,
+  'friends_of_friends': instance.friendsOfFriends,
+};
+
+_FriendOfFriend _$FriendOfFriendFromJson(Map<String, dynamic> json) =>
+    _FriendOfFriend(
+      referrer: json['referrer'] as String?,
+      user: User.fromJson(json['user'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$FriendOfFriendToJson(_FriendOfFriend instance) =>
+    <String, dynamic>{'referrer': instance.referrer, 'user': instance.user};

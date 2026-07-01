@@ -1,8 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nakama/nakama.dart';
+import 'package:nakama/src/api/api.dart' as api;
 import 'package:nakama/src/api/rtapi.dart' as rtpb;
+import 'package:nakama/src/utils/platform_normalizer.dart';
 
 part 'party.freezed.dart';
+part 'party.g.dart';
 
 @freezed
 sealed class PartyData with _$PartyData {
@@ -98,5 +101,57 @@ sealed class PartyJoinRequest with _$PartyJoinRequest {
   factory PartyJoinRequest.fromDto(rtpb.PartyJoinRequest dto) => PartyJoinRequest(
         partyId: dto.partyId,
         presences: dto.presences.map((e) => UserPresence.fromDto(e)).toList(growable: false),
+      );
+}
+
+@freezed
+sealed class PartyList with _$PartyList {
+  const PartyList._();
+
+  const factory PartyList({
+    /// The parties matching the list request.
+    @JsonKey(name: 'parties') @Default(<PartyListItem>[]) List<PartyListItem> parties,
+
+    /// A cursor for the next page of results, if any.
+    @JsonKey(name: 'cursor') String? cursor,
+  }) = _PartyList;
+
+  factory PartyList.fromJson(Map<String, Object?> json) => _$PartyListFromJson(json);
+
+  factory PartyList.fromDto(api.PartyList dto) => PartyList(
+        parties: dto.parties.map((e) => PartyListItem.fromDto(e)).toList(growable: false),
+        cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
+      );
+}
+
+@freezed
+sealed class PartyListItem with _$PartyListItem {
+  const PartyListItem._();
+
+  const factory PartyListItem({
+    /// The unique party identifier.
+    @JsonKey(name: 'party_id') required String partyId,
+
+    /// Whether the party is open to join without an approval.
+    @JsonKey(name: 'open') @Default(false) bool open,
+
+    /// Whether the party is hidden from listings.
+    @JsonKey(name: 'hidden') @Default(false) bool hidden,
+
+    /// The maximum number of party members.
+    @JsonKey(name: 'max_size') @Default(0) int maxSize,
+
+    /// The party label, if any.
+    @JsonKey(name: 'label') String? label,
+  }) = _PartyListItem;
+
+  factory PartyListItem.fromJson(Map<String, Object?> json) => _$PartyListItemFromJson(json);
+
+  factory PartyListItem.fromDto(api.Party dto) => PartyListItem(
+        partyId: dto.partyId,
+        open: dto.open,
+        hidden: dto.hidden,
+        maxSize: dto.maxSize,
+        label: PlatformNormalizer.normalizeNullableString(dto.label),
       );
 }
