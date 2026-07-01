@@ -41,6 +41,8 @@ sealed class ValidatedPurchase with _$ValidatedPurchase {
     @JsonKey(name: 'transaction_id') String? transactionId,
 
     /// The store the purchase was made on.
+    ///
+    /// Can be null when decoding REST responses with missing fields.
     @JsonKey(name: 'store') StoreProvider? store,
 
     /// Timestamp when the purchase was done.
@@ -59,6 +61,8 @@ sealed class ValidatedPurchase with _$ValidatedPurchase {
     @JsonKey(name: 'provider_response') String? providerResponse,
 
     /// Whether the purchase was done in production or sandbox environment.
+    ///
+    /// Can be null when decoding REST responses with missing fields.
     @JsonKey(name: 'environment') StoreEnvironment? environment,
 
     /// Whether the purchase had already been validated by Nakama before.
