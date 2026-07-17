@@ -8,7 +8,10 @@ import 'package:nakama/src/models/friends.dart' as model;
 import 'package:nakama/src/models/group.dart' as model;
 import 'package:nakama/src/models/leaderboard.dart' as model;
 import 'package:nakama/src/models/match.dart' as model;
+import 'package:nakama/src/models/matchmaker.dart' as model;
 import 'package:nakama/src/models/notification.dart' as model;
+import 'package:nakama/src/models/party.dart' as model;
+import 'package:nakama/src/models/purchase.dart' as model;
 import 'package:nakama/src/models/response_error.dart';
 import 'package:nakama/src/models/session.dart' as model;
 import 'package:nakama/src/models/storage.dart' as model;
@@ -1067,6 +1070,26 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.FriendsOfFriendsList> listFriendsOfFriends({
+    required model.Session session,
+    int limit = defaultLimit,
+    String? cursor,
+  }) async {
+    _session = session;
+
+    try {
+      final res = await _api.listFriendsOfFriends(
+        cursor: cursor,
+        limit: limit,
+      );
+
+      return model.FriendsOfFriendsList.fromJson(res.toJson());
+    } on Exception catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  @override
   Future<void> deleteFriends({
     required model.Session session,
     required List<String> ids,
@@ -1555,6 +1578,81 @@ class NakamaRestApiClient extends NakamaBaseClient {
       );
 
       return model.LeaderboardRecord.fromJson(res.toJson());
+    } on Exception catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  @override
+  Future<void> deleteTournamentRecord({
+    required model.Session session,
+    required String tournamentId,
+  }) async {
+    _session = session;
+
+    try {
+      await _api.deleteTournamentRecord(tournamentId: tournamentId);
+    } on Exception catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  @override
+  Future<model.PartyList> listParties({
+    required model.Session session,
+    int limit = defaultLimit,
+    bool? open,
+    String? query,
+    String? cursor,
+  }) async {
+    _session = session;
+
+    try {
+      final res = await _api.listParties(
+        limit: limit,
+        open: open,
+        query: query,
+        cursor: cursor,
+      );
+
+      return model.PartyList.fromJson(res.toJson());
+    } on Exception catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  @override
+  Future<model.MatchmakerStats> getMatchmakerStats({
+    required model.Session session,
+  }) async {
+    _session = session;
+
+    try {
+      final res = await _api.getMatchmakerStats();
+
+      return model.MatchmakerStats.fromJson(res.toJson());
+    } on Exception catch (e) {
+      throw _handleError(e);
+    }
+  }
+
+  @override
+  Future<model.ValidatePurchaseResponse> validatePurchaseFacebookInstant({
+    required model.Session session,
+    required String signedRequest,
+    bool persist = true,
+  }) async {
+    _session = session;
+
+    try {
+      final res = await _api.validatePurchaseFacebookInstant(
+        body: ApiValidatePurchaseFacebookInstantRequest(
+          signedRequest: signedRequest,
+          persist: persist,
+        ),
+      );
+
+      return model.ValidatePurchaseResponse.fromJson(res.toJson());
     } on Exception catch (e) {
       throw _handleError(e);
     }

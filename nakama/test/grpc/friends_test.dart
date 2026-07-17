@@ -40,5 +40,40 @@ void main() {
       expect(friends, isA<FriendsList>());
       expect(friends.friends, hasLength(2));
     });
+
+    test('lists friends of friends correctly', () async {
+      final userB = await client.authenticateDevice(deviceId: faker.guid.guid());
+      final userC = await client.authenticateDevice(deviceId: faker.guid.guid());
+
+      await client.addFriends(
+        session: session,
+        ids: [userB.userId],
+      );
+
+      await client.addFriends(
+        session: userB,
+        ids: [session.userId],
+      );
+
+      await client.addFriends(
+        session: userB,
+        ids: [userC.userId],
+      );
+
+      await client.addFriends(
+        session: userC,
+        ids: [userB.userId],
+      );
+
+      final friendsOfFriends =
+          await client.listFriendsOfFriends(session: session, limit: 100);
+
+      expect(friendsOfFriends, isA<FriendsOfFriendsList>());
+      expect(
+        friendsOfFriends.friendsOfFriends
+            .any((entry) => entry.user.id == userC.userId),
+        isTrue,
+      );
+    });
   });
 }

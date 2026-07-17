@@ -1393,4 +1393,554 @@ as List<UserPresence>,
 
 }
 
+
+/// @nodoc
+mixin _$PartyList {
+
+/// The parties matching the list request.
+@JsonKey(name: 'parties') List<PartyListItem> get parties;/// A cursor for the next page of results, if any.
+@JsonKey(name: 'cursor') String? get cursor;
+/// Create a copy of PartyList
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PartyListCopyWith<PartyList> get copyWith => _$PartyListCopyWithImpl<PartyList>(this as PartyList, _$identity);
+
+  /// Serializes this PartyList to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PartyList&&const DeepCollectionEquality().equals(other.parties, parties)&&(identical(other.cursor, cursor) || other.cursor == cursor));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(parties),cursor);
+
+@override
+String toString() {
+  return 'PartyList(parties: $parties, cursor: $cursor)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $PartyListCopyWith<$Res>  {
+  factory $PartyListCopyWith(PartyList value, $Res Function(PartyList) _then) = _$PartyListCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'parties') List<PartyListItem> parties,@JsonKey(name: 'cursor') String? cursor
+});
+
+
+
+
+}
+/// @nodoc
+class _$PartyListCopyWithImpl<$Res>
+    implements $PartyListCopyWith<$Res> {
+  _$PartyListCopyWithImpl(this._self, this._then);
+
+  final PartyList _self;
+  final $Res Function(PartyList) _then;
+
+/// Create a copy of PartyList
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? parties = null,Object? cursor = freezed,}) {
+  return _then(_self.copyWith(
+parties: null == parties ? _self.parties : parties // ignore: cast_nullable_to_non_nullable
+as List<PartyListItem>,cursor: freezed == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [PartyList].
+extension PartyListPatterns on PartyList {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PartyList value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PartyList() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PartyList value)  $default,){
+final _that = this;
+switch (_that) {
+case _PartyList():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PartyList value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PartyList() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'parties')  List<PartyListItem> parties, @JsonKey(name: 'cursor')  String? cursor)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PartyList() when $default != null:
+return $default(_that.parties,_that.cursor);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'parties')  List<PartyListItem> parties, @JsonKey(name: 'cursor')  String? cursor)  $default,) {final _that = this;
+switch (_that) {
+case _PartyList():
+return $default(_that.parties,_that.cursor);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'parties')  List<PartyListItem> parties, @JsonKey(name: 'cursor')  String? cursor)?  $default,) {final _that = this;
+switch (_that) {
+case _PartyList() when $default != null:
+return $default(_that.parties,_that.cursor);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _PartyList extends PartyList {
+  const _PartyList({@JsonKey(name: 'parties') final  List<PartyListItem> parties = const <PartyListItem>[], @JsonKey(name: 'cursor') this.cursor}): _parties = parties,super._();
+  factory _PartyList.fromJson(Map<String, dynamic> json) => _$PartyListFromJson(json);
+
+/// The parties matching the list request.
+ final  List<PartyListItem> _parties;
+/// The parties matching the list request.
+@override@JsonKey(name: 'parties') List<PartyListItem> get parties {
+  if (_parties is EqualUnmodifiableListView) return _parties;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_parties);
+}
+
+/// A cursor for the next page of results, if any.
+@override@JsonKey(name: 'cursor') final  String? cursor;
+
+/// Create a copy of PartyList
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PartyListCopyWith<_PartyList> get copyWith => __$PartyListCopyWithImpl<_PartyList>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$PartyListToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PartyList&&const DeepCollectionEquality().equals(other._parties, _parties)&&(identical(other.cursor, cursor) || other.cursor == cursor));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_parties),cursor);
+
+@override
+String toString() {
+  return 'PartyList(parties: $parties, cursor: $cursor)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PartyListCopyWith<$Res> implements $PartyListCopyWith<$Res> {
+  factory _$PartyListCopyWith(_PartyList value, $Res Function(_PartyList) _then) = __$PartyListCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'parties') List<PartyListItem> parties,@JsonKey(name: 'cursor') String? cursor
+});
+
+
+
+
+}
+/// @nodoc
+class __$PartyListCopyWithImpl<$Res>
+    implements _$PartyListCopyWith<$Res> {
+  __$PartyListCopyWithImpl(this._self, this._then);
+
+  final _PartyList _self;
+  final $Res Function(_PartyList) _then;
+
+/// Create a copy of PartyList
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? parties = null,Object? cursor = freezed,}) {
+  return _then(_PartyList(
+parties: null == parties ? _self._parties : parties // ignore: cast_nullable_to_non_nullable
+as List<PartyListItem>,cursor: freezed == cursor ? _self.cursor : cursor // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$PartyListItem {
+
+/// The unique party identifier.
+@JsonKey(name: 'party_id') String get partyId;/// Whether the party is open to join without an approval.
+@JsonKey(name: 'open') bool get open;/// Whether the party is hidden from listings.
+@JsonKey(name: 'hidden') bool get hidden;/// The maximum number of party members.
+@JsonKey(name: 'max_size') int get maxSize;/// The party label, if any.
+@JsonKey(name: 'label') String? get label;
+/// Create a copy of PartyListItem
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PartyListItemCopyWith<PartyListItem> get copyWith => _$PartyListItemCopyWithImpl<PartyListItem>(this as PartyListItem, _$identity);
+
+  /// Serializes this PartyListItem to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PartyListItem&&(identical(other.partyId, partyId) || other.partyId == partyId)&&(identical(other.open, open) || other.open == open)&&(identical(other.hidden, hidden) || other.hidden == hidden)&&(identical(other.maxSize, maxSize) || other.maxSize == maxSize)&&(identical(other.label, label) || other.label == label));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,partyId,open,hidden,maxSize,label);
+
+@override
+String toString() {
+  return 'PartyListItem(partyId: $partyId, open: $open, hidden: $hidden, maxSize: $maxSize, label: $label)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $PartyListItemCopyWith<$Res>  {
+  factory $PartyListItemCopyWith(PartyListItem value, $Res Function(PartyListItem) _then) = _$PartyListItemCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'party_id') String partyId,@JsonKey(name: 'open') bool open,@JsonKey(name: 'hidden') bool hidden,@JsonKey(name: 'max_size') int maxSize,@JsonKey(name: 'label') String? label
+});
+
+
+
+
+}
+/// @nodoc
+class _$PartyListItemCopyWithImpl<$Res>
+    implements $PartyListItemCopyWith<$Res> {
+  _$PartyListItemCopyWithImpl(this._self, this._then);
+
+  final PartyListItem _self;
+  final $Res Function(PartyListItem) _then;
+
+/// Create a copy of PartyListItem
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? partyId = null,Object? open = null,Object? hidden = null,Object? maxSize = null,Object? label = freezed,}) {
+  return _then(_self.copyWith(
+partyId: null == partyId ? _self.partyId : partyId // ignore: cast_nullable_to_non_nullable
+as String,open: null == open ? _self.open : open // ignore: cast_nullable_to_non_nullable
+as bool,hidden: null == hidden ? _self.hidden : hidden // ignore: cast_nullable_to_non_nullable
+as bool,maxSize: null == maxSize ? _self.maxSize : maxSize // ignore: cast_nullable_to_non_nullable
+as int,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [PartyListItem].
+extension PartyListItemPatterns on PartyListItem {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PartyListItem value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PartyListItem() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PartyListItem value)  $default,){
+final _that = this;
+switch (_that) {
+case _PartyListItem():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PartyListItem value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PartyListItem() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'party_id')  String partyId, @JsonKey(name: 'open')  bool open, @JsonKey(name: 'hidden')  bool hidden, @JsonKey(name: 'max_size')  int maxSize, @JsonKey(name: 'label')  String? label)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PartyListItem() when $default != null:
+return $default(_that.partyId,_that.open,_that.hidden,_that.maxSize,_that.label);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'party_id')  String partyId, @JsonKey(name: 'open')  bool open, @JsonKey(name: 'hidden')  bool hidden, @JsonKey(name: 'max_size')  int maxSize, @JsonKey(name: 'label')  String? label)  $default,) {final _that = this;
+switch (_that) {
+case _PartyListItem():
+return $default(_that.partyId,_that.open,_that.hidden,_that.maxSize,_that.label);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'party_id')  String partyId, @JsonKey(name: 'open')  bool open, @JsonKey(name: 'hidden')  bool hidden, @JsonKey(name: 'max_size')  int maxSize, @JsonKey(name: 'label')  String? label)?  $default,) {final _that = this;
+switch (_that) {
+case _PartyListItem() when $default != null:
+return $default(_that.partyId,_that.open,_that.hidden,_that.maxSize,_that.label);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _PartyListItem extends PartyListItem {
+  const _PartyListItem({@JsonKey(name: 'party_id') required this.partyId, @JsonKey(name: 'open') this.open = false, @JsonKey(name: 'hidden') this.hidden = false, @JsonKey(name: 'max_size') this.maxSize = 0, @JsonKey(name: 'label') this.label}): super._();
+  factory _PartyListItem.fromJson(Map<String, dynamic> json) => _$PartyListItemFromJson(json);
+
+/// The unique party identifier.
+@override@JsonKey(name: 'party_id') final  String partyId;
+/// Whether the party is open to join without an approval.
+@override@JsonKey(name: 'open') final  bool open;
+/// Whether the party is hidden from listings.
+@override@JsonKey(name: 'hidden') final  bool hidden;
+/// The maximum number of party members.
+@override@JsonKey(name: 'max_size') final  int maxSize;
+/// The party label, if any.
+@override@JsonKey(name: 'label') final  String? label;
+
+/// Create a copy of PartyListItem
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PartyListItemCopyWith<_PartyListItem> get copyWith => __$PartyListItemCopyWithImpl<_PartyListItem>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$PartyListItemToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PartyListItem&&(identical(other.partyId, partyId) || other.partyId == partyId)&&(identical(other.open, open) || other.open == open)&&(identical(other.hidden, hidden) || other.hidden == hidden)&&(identical(other.maxSize, maxSize) || other.maxSize == maxSize)&&(identical(other.label, label) || other.label == label));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,partyId,open,hidden,maxSize,label);
+
+@override
+String toString() {
+  return 'PartyListItem(partyId: $partyId, open: $open, hidden: $hidden, maxSize: $maxSize, label: $label)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PartyListItemCopyWith<$Res> implements $PartyListItemCopyWith<$Res> {
+  factory _$PartyListItemCopyWith(_PartyListItem value, $Res Function(_PartyListItem) _then) = __$PartyListItemCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'party_id') String partyId,@JsonKey(name: 'open') bool open,@JsonKey(name: 'hidden') bool hidden,@JsonKey(name: 'max_size') int maxSize,@JsonKey(name: 'label') String? label
+});
+
+
+
+
+}
+/// @nodoc
+class __$PartyListItemCopyWithImpl<$Res>
+    implements _$PartyListItemCopyWith<$Res> {
+  __$PartyListItemCopyWithImpl(this._self, this._then);
+
+  final _PartyListItem _self;
+  final $Res Function(_PartyListItem) _then;
+
+/// Create a copy of PartyListItem
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? partyId = null,Object? open = null,Object? hidden = null,Object? maxSize = null,Object? label = freezed,}) {
+  return _then(_PartyListItem(
+partyId: null == partyId ? _self.partyId : partyId // ignore: cast_nullable_to_non_nullable
+as String,open: null == open ? _self.open : open // ignore: cast_nullable_to_non_nullable
+as bool,hidden: null == hidden ? _self.hidden : hidden // ignore: cast_nullable_to_non_nullable
+as bool,maxSize: null == maxSize ? _self.maxSize : maxSize // ignore: cast_nullable_to_non_nullable
+as int,label: freezed == label ? _self.label : label // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
+
 // dart format on

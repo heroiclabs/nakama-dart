@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:faker/faker.dart';
@@ -220,6 +221,79 @@ void main() {
           ),
           throwsA(isA<Exception>()),
         );
+      });
+
+      test('should throw for invalid tournament id on deleteTournamentRecord',
+          () async {
+        expect(
+          () async => await client.deleteTournamentRecord(
+            session: session,
+            tournamentId: '',
+          ),
+          throwsA(isA<Exception>()),
+        );
+      });
+
+      test(
+          'should throw for invalid signedRequest on validatePurchaseFacebookInstant',
+          () async {
+        expect(
+          () async => await client.validatePurchaseFacebookInstant(
+            session: session,
+            signedRequest: '',
+          ),
+          throwsA(isA<Exception>()),
+        );
+      });
+    });
+
+    group('Additional wrappers', () {
+      test('should get matchmaker stats', () async {
+        final stats = await client.getMatchmakerStats(session: session);
+
+        expect(stats, isA<MatchmakerStats>());
+        expect(stats.ticketCount, greaterThanOrEqualTo(0));
+      });
+
+      test('should list parties created via realtime', () async {
+        final socket = NakamaWebsocketClient.init(
+          key: 'grpc-list-parties-${faker.guid.guid()}',
+          host: kTestHost,
+          ssl: false,
+          token: session.token,
+        );
+
+        final party = await socket.createParty(open: true, maxSize: 4);
+
+        try {
+          PartyListItem? listedParty;
+          for (int i = 0; i < 10; i++) {
+            final result = await client.listParties(
+              session: session,
+              limit: 100,
+            );
+
+            for (final candidate in result.parties) {
+              if (candidate.partyId == party.partyId) {
+                listedParty = candidate;
+                break;
+              }
+            }
+
+            if (listedParty != null) {
+              break;
+            }
+
+            await Future<void>.delayed(const Duration(milliseconds: 250));
+          }
+
+          expect(listedParty, isNotNull);
+          expect(listedParty?.partyId, equals(party.partyId));
+          expect(listedParty?.open, isTrue);
+        } finally {
+          await socket.closeParty(party.partyId);
+          await socket.close();
+        }
       });
     });
   });

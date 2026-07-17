@@ -1987,4 +1987,544 @@ as List<UserPresence>,
 
 }
 
+
+/// @nodoc
+mixin _$MatchmakerStats {
+
+/// The number of currently active matchmaker tickets.
+@JsonKey(name: 'ticket_count') int get ticketCount;/// The creation time of the oldest currently active matchmaker ticket, if any.
+@JsonKey(name: 'oldest_ticket_create_time') DateTime? get oldestTicketCreateTime;/// Recent matchmaker completion times.
+@JsonKey(name: 'completions') List<MatchmakerCompletionStats> get completions;
+/// Create a copy of MatchmakerStats
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MatchmakerStatsCopyWith<MatchmakerStats> get copyWith => _$MatchmakerStatsCopyWithImpl<MatchmakerStats>(this as MatchmakerStats, _$identity);
+
+  /// Serializes this MatchmakerStats to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MatchmakerStats&&(identical(other.ticketCount, ticketCount) || other.ticketCount == ticketCount)&&(identical(other.oldestTicketCreateTime, oldestTicketCreateTime) || other.oldestTicketCreateTime == oldestTicketCreateTime)&&const DeepCollectionEquality().equals(other.completions, completions));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,ticketCount,oldestTicketCreateTime,const DeepCollectionEquality().hash(completions));
+
+@override
+String toString() {
+  return 'MatchmakerStats(ticketCount: $ticketCount, oldestTicketCreateTime: $oldestTicketCreateTime, completions: $completions)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MatchmakerStatsCopyWith<$Res>  {
+  factory $MatchmakerStatsCopyWith(MatchmakerStats value, $Res Function(MatchmakerStats) _then) = _$MatchmakerStatsCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'ticket_count') int ticketCount,@JsonKey(name: 'oldest_ticket_create_time') DateTime? oldestTicketCreateTime,@JsonKey(name: 'completions') List<MatchmakerCompletionStats> completions
+});
+
+
+
+
+}
+/// @nodoc
+class _$MatchmakerStatsCopyWithImpl<$Res>
+    implements $MatchmakerStatsCopyWith<$Res> {
+  _$MatchmakerStatsCopyWithImpl(this._self, this._then);
+
+  final MatchmakerStats _self;
+  final $Res Function(MatchmakerStats) _then;
+
+/// Create a copy of MatchmakerStats
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? ticketCount = null,Object? oldestTicketCreateTime = freezed,Object? completions = null,}) {
+  return _then(_self.copyWith(
+ticketCount: null == ticketCount ? _self.ticketCount : ticketCount // ignore: cast_nullable_to_non_nullable
+as int,oldestTicketCreateTime: freezed == oldestTicketCreateTime ? _self.oldestTicketCreateTime : oldestTicketCreateTime // ignore: cast_nullable_to_non_nullable
+as DateTime?,completions: null == completions ? _self.completions : completions // ignore: cast_nullable_to_non_nullable
+as List<MatchmakerCompletionStats>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [MatchmakerStats].
+extension MatchmakerStatsPatterns on MatchmakerStats {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MatchmakerStats value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MatchmakerStats() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MatchmakerStats value)  $default,){
+final _that = this;
+switch (_that) {
+case _MatchmakerStats():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MatchmakerStats value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MatchmakerStats() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'ticket_count')  int ticketCount, @JsonKey(name: 'oldest_ticket_create_time')  DateTime? oldestTicketCreateTime, @JsonKey(name: 'completions')  List<MatchmakerCompletionStats> completions)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MatchmakerStats() when $default != null:
+return $default(_that.ticketCount,_that.oldestTicketCreateTime,_that.completions);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'ticket_count')  int ticketCount, @JsonKey(name: 'oldest_ticket_create_time')  DateTime? oldestTicketCreateTime, @JsonKey(name: 'completions')  List<MatchmakerCompletionStats> completions)  $default,) {final _that = this;
+switch (_that) {
+case _MatchmakerStats():
+return $default(_that.ticketCount,_that.oldestTicketCreateTime,_that.completions);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'ticket_count')  int ticketCount, @JsonKey(name: 'oldest_ticket_create_time')  DateTime? oldestTicketCreateTime, @JsonKey(name: 'completions')  List<MatchmakerCompletionStats> completions)?  $default,) {final _that = this;
+switch (_that) {
+case _MatchmakerStats() when $default != null:
+return $default(_that.ticketCount,_that.oldestTicketCreateTime,_that.completions);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _MatchmakerStats extends MatchmakerStats {
+  const _MatchmakerStats({@JsonKey(name: 'ticket_count') this.ticketCount = 0, @JsonKey(name: 'oldest_ticket_create_time') this.oldestTicketCreateTime, @JsonKey(name: 'completions') final  List<MatchmakerCompletionStats> completions = const <MatchmakerCompletionStats>[]}): _completions = completions,super._();
+  factory _MatchmakerStats.fromJson(Map<String, dynamic> json) => _$MatchmakerStatsFromJson(json);
+
+/// The number of currently active matchmaker tickets.
+@override@JsonKey(name: 'ticket_count') final  int ticketCount;
+/// The creation time of the oldest currently active matchmaker ticket, if any.
+@override@JsonKey(name: 'oldest_ticket_create_time') final  DateTime? oldestTicketCreateTime;
+/// Recent matchmaker completion times.
+ final  List<MatchmakerCompletionStats> _completions;
+/// Recent matchmaker completion times.
+@override@JsonKey(name: 'completions') List<MatchmakerCompletionStats> get completions {
+  if (_completions is EqualUnmodifiableListView) return _completions;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_completions);
+}
+
+
+/// Create a copy of MatchmakerStats
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MatchmakerStatsCopyWith<_MatchmakerStats> get copyWith => __$MatchmakerStatsCopyWithImpl<_MatchmakerStats>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$MatchmakerStatsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MatchmakerStats&&(identical(other.ticketCount, ticketCount) || other.ticketCount == ticketCount)&&(identical(other.oldestTicketCreateTime, oldestTicketCreateTime) || other.oldestTicketCreateTime == oldestTicketCreateTime)&&const DeepCollectionEquality().equals(other._completions, _completions));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,ticketCount,oldestTicketCreateTime,const DeepCollectionEquality().hash(_completions));
+
+@override
+String toString() {
+  return 'MatchmakerStats(ticketCount: $ticketCount, oldestTicketCreateTime: $oldestTicketCreateTime, completions: $completions)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MatchmakerStatsCopyWith<$Res> implements $MatchmakerStatsCopyWith<$Res> {
+  factory _$MatchmakerStatsCopyWith(_MatchmakerStats value, $Res Function(_MatchmakerStats) _then) = __$MatchmakerStatsCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'ticket_count') int ticketCount,@JsonKey(name: 'oldest_ticket_create_time') DateTime? oldestTicketCreateTime,@JsonKey(name: 'completions') List<MatchmakerCompletionStats> completions
+});
+
+
+
+
+}
+/// @nodoc
+class __$MatchmakerStatsCopyWithImpl<$Res>
+    implements _$MatchmakerStatsCopyWith<$Res> {
+  __$MatchmakerStatsCopyWithImpl(this._self, this._then);
+
+  final _MatchmakerStats _self;
+  final $Res Function(_MatchmakerStats) _then;
+
+/// Create a copy of MatchmakerStats
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? ticketCount = null,Object? oldestTicketCreateTime = freezed,Object? completions = null,}) {
+  return _then(_MatchmakerStats(
+ticketCount: null == ticketCount ? _self.ticketCount : ticketCount // ignore: cast_nullable_to_non_nullable
+as int,oldestTicketCreateTime: freezed == oldestTicketCreateTime ? _self.oldestTicketCreateTime : oldestTicketCreateTime // ignore: cast_nullable_to_non_nullable
+as DateTime?,completions: null == completions ? _self._completions : completions // ignore: cast_nullable_to_non_nullable
+as List<MatchmakerCompletionStats>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$MatchmakerCompletionStats {
+
+/// The time the matchmaker ticket was created.
+@JsonKey(name: 'create_time') DateTime? get createTime;/// The time the matchmaker ticket was matched and completed.
+@JsonKey(name: 'complete_time') DateTime? get completeTime;
+/// Create a copy of MatchmakerCompletionStats
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MatchmakerCompletionStatsCopyWith<MatchmakerCompletionStats> get copyWith => _$MatchmakerCompletionStatsCopyWithImpl<MatchmakerCompletionStats>(this as MatchmakerCompletionStats, _$identity);
+
+  /// Serializes this MatchmakerCompletionStats to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MatchmakerCompletionStats&&(identical(other.createTime, createTime) || other.createTime == createTime)&&(identical(other.completeTime, completeTime) || other.completeTime == completeTime));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,createTime,completeTime);
+
+@override
+String toString() {
+  return 'MatchmakerCompletionStats(createTime: $createTime, completeTime: $completeTime)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $MatchmakerCompletionStatsCopyWith<$Res>  {
+  factory $MatchmakerCompletionStatsCopyWith(MatchmakerCompletionStats value, $Res Function(MatchmakerCompletionStats) _then) = _$MatchmakerCompletionStatsCopyWithImpl;
+@useResult
+$Res call({
+@JsonKey(name: 'create_time') DateTime? createTime,@JsonKey(name: 'complete_time') DateTime? completeTime
+});
+
+
+
+
+}
+/// @nodoc
+class _$MatchmakerCompletionStatsCopyWithImpl<$Res>
+    implements $MatchmakerCompletionStatsCopyWith<$Res> {
+  _$MatchmakerCompletionStatsCopyWithImpl(this._self, this._then);
+
+  final MatchmakerCompletionStats _self;
+  final $Res Function(MatchmakerCompletionStats) _then;
+
+/// Create a copy of MatchmakerCompletionStats
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? createTime = freezed,Object? completeTime = freezed,}) {
+  return _then(_self.copyWith(
+createTime: freezed == createTime ? _self.createTime : createTime // ignore: cast_nullable_to_non_nullable
+as DateTime?,completeTime: freezed == completeTime ? _self.completeTime : completeTime // ignore: cast_nullable_to_non_nullable
+as DateTime?,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [MatchmakerCompletionStats].
+extension MatchmakerCompletionStatsPatterns on MatchmakerCompletionStats {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _MatchmakerCompletionStats value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _MatchmakerCompletionStats() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _MatchmakerCompletionStats value)  $default,){
+final _that = this;
+switch (_that) {
+case _MatchmakerCompletionStats():
+return $default(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _MatchmakerCompletionStats value)?  $default,){
+final _that = this;
+switch (_that) {
+case _MatchmakerCompletionStats() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'create_time')  DateTime? createTime, @JsonKey(name: 'complete_time')  DateTime? completeTime)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _MatchmakerCompletionStats() when $default != null:
+return $default(_that.createTime,_that.completeTime);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'create_time')  DateTime? createTime, @JsonKey(name: 'complete_time')  DateTime? completeTime)  $default,) {final _that = this;
+switch (_that) {
+case _MatchmakerCompletionStats():
+return $default(_that.createTime,_that.completeTime);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'create_time')  DateTime? createTime, @JsonKey(name: 'complete_time')  DateTime? completeTime)?  $default,) {final _that = this;
+switch (_that) {
+case _MatchmakerCompletionStats() when $default != null:
+return $default(_that.createTime,_that.completeTime);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _MatchmakerCompletionStats extends MatchmakerCompletionStats {
+  const _MatchmakerCompletionStats({@JsonKey(name: 'create_time') this.createTime, @JsonKey(name: 'complete_time') this.completeTime}): super._();
+  factory _MatchmakerCompletionStats.fromJson(Map<String, dynamic> json) => _$MatchmakerCompletionStatsFromJson(json);
+
+/// The time the matchmaker ticket was created.
+@override@JsonKey(name: 'create_time') final  DateTime? createTime;
+/// The time the matchmaker ticket was matched and completed.
+@override@JsonKey(name: 'complete_time') final  DateTime? completeTime;
+
+/// Create a copy of MatchmakerCompletionStats
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MatchmakerCompletionStatsCopyWith<_MatchmakerCompletionStats> get copyWith => __$MatchmakerCompletionStatsCopyWithImpl<_MatchmakerCompletionStats>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$MatchmakerCompletionStatsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MatchmakerCompletionStats&&(identical(other.createTime, createTime) || other.createTime == createTime)&&(identical(other.completeTime, completeTime) || other.completeTime == completeTime));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,createTime,completeTime);
+
+@override
+String toString() {
+  return 'MatchmakerCompletionStats(createTime: $createTime, completeTime: $completeTime)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MatchmakerCompletionStatsCopyWith<$Res> implements $MatchmakerCompletionStatsCopyWith<$Res> {
+  factory _$MatchmakerCompletionStatsCopyWith(_MatchmakerCompletionStats value, $Res Function(_MatchmakerCompletionStats) _then) = __$MatchmakerCompletionStatsCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'create_time') DateTime? createTime,@JsonKey(name: 'complete_time') DateTime? completeTime
+});
+
+
+
+
+}
+/// @nodoc
+class __$MatchmakerCompletionStatsCopyWithImpl<$Res>
+    implements _$MatchmakerCompletionStatsCopyWith<$Res> {
+  __$MatchmakerCompletionStatsCopyWithImpl(this._self, this._then);
+
+  final _MatchmakerCompletionStats _self;
+  final $Res Function(_MatchmakerCompletionStats) _then;
+
+/// Create a copy of MatchmakerCompletionStats
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? createTime = freezed,Object? completeTime = freezed,}) {
+  return _then(_MatchmakerCompletionStats(
+createTime: freezed == createTime ? _self.createTime : createTime // ignore: cast_nullable_to_non_nullable
+as DateTime?,completeTime: freezed == completeTime ? _self.completeTime : completeTime // ignore: cast_nullable_to_non_nullable
+as DateTime?,
+  ));
+}
+
+
+}
+
 // dart format on

@@ -13,7 +13,10 @@ import 'package:nakama/src/models/friends.dart' as model;
 import 'package:nakama/src/models/group.dart' as model;
 import 'package:nakama/src/models/leaderboard.dart' as model;
 import 'package:nakama/src/models/match.dart' as model;
+import 'package:nakama/src/models/matchmaker.dart' as model;
 import 'package:nakama/src/models/notification.dart' as model;
+import 'package:nakama/src/models/party.dart' as model;
+import 'package:nakama/src/models/purchase.dart' as model;
 import 'package:nakama/src/models/session.dart' as model;
 import 'package:nakama/src/models/storage.dart' as model;
 import 'package:nakama/src/models/tournament.dart' as model;
@@ -897,6 +900,23 @@ class NakamaGrpcClient extends NakamaBaseClient {
   }
 
   @override
+  Future<model.FriendsOfFriendsList> listFriendsOfFriends({
+    required model.Session session,
+    int limit = defaultLimit,
+    String? cursor,
+  }) async {
+    final res = await _client.listFriendsOfFriends(
+      api.ListFriendsOfFriendsRequest(
+        cursor: cursor,
+        limit: api.Int32Value(value: limit),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+
+    return model.FriendsOfFriendsList.fromDto(res);
+  }
+
+  @override
   Future<void> deleteFriends({
     required model.Session session,
     List<String>? usernames,
@@ -1311,6 +1331,69 @@ class NakamaGrpcClient extends NakamaBaseClient {
     );
 
     return model.LeaderboardRecord.fromDto(res);
+  }
+
+  @override
+  Future<void> deleteTournamentRecord({
+    required model.Session session,
+    required String tournamentId,
+  }) async {
+    await _client.deleteTournamentRecord(
+      api.DeleteTournamentRecordRequest(
+        tournamentId: tournamentId,
+      ),
+      options: _getSessionCallOptions(session),
+    );
+  }
+
+  @override
+  Future<model.PartyList> listParties({
+    required model.Session session,
+    int limit = defaultLimit,
+    bool? open,
+    String? query,
+    String? cursor,
+  }) async {
+    final res = await _client.listParties(
+      api.ListPartiesRequest(
+        limit: api.Int32Value(value: limit),
+        open: open == null ? null : api.BoolValue(value: open),
+        query: query == null ? null : api.StringValue(value: query),
+        cursor: cursor == null ? null : api.StringValue(value: cursor),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+
+    return model.PartyList.fromDto(res);
+  }
+
+  @override
+  Future<model.MatchmakerStats> getMatchmakerStats({
+    required model.Session session,
+  }) async {
+    final res = await _client.getMatchmakerStats(
+      api.Empty(),
+      options: _getSessionCallOptions(session),
+    );
+
+    return model.MatchmakerStats.fromDto(res);
+  }
+
+  @override
+  Future<model.ValidatePurchaseResponse> validatePurchaseFacebookInstant({
+    required model.Session session,
+    required String signedRequest,
+    bool persist = true,
+  }) async {
+    final res = await _client.validatePurchaseFacebookInstant(
+      api.ValidatePurchaseFacebookInstantRequest(
+        signedRequest: signedRequest,
+        persist: api.BoolValue(value: persist),
+      ),
+      options: _getSessionCallOptions(session),
+    );
+
+    return model.ValidatePurchaseResponse.fromDto(res);
   }
 
   @override

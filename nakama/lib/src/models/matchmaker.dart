@@ -1,8 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nakama/nakama.dart';
+import 'package:nakama/src/api/api.dart' as api;
 import 'package:nakama/src/api/rtapi.dart' as rtpb;
 
 part 'matchmaker.freezed.dart';
+part 'matchmaker.g.dart';
 
 @freezed
 sealed class MatchmakerTicket with _$MatchmakerTicket {
@@ -183,5 +185,49 @@ sealed class MatchPresenceEvent with _$MatchPresenceEvent {
         matchId: dto.matchId,
         joins: dto.joins.map((e) => UserPresence.fromDto(e)).toList(growable: false),
         leaves: dto.leaves.map((e) => UserPresence.fromDto(e)).toList(growable: false),
+      );
+}
+
+@freezed
+sealed class MatchmakerStats with _$MatchmakerStats {
+  const MatchmakerStats._();
+
+  const factory MatchmakerStats({
+    /// The number of currently active matchmaker tickets.
+    @JsonKey(name: 'ticket_count') @Default(0) int ticketCount,
+
+    /// The creation time of the oldest currently active matchmaker ticket, if any.
+    @JsonKey(name: 'oldest_ticket_create_time') DateTime? oldestTicketCreateTime,
+
+    /// Recent matchmaker completion times.
+    @JsonKey(name: 'completions') @Default(<MatchmakerCompletionStats>[]) List<MatchmakerCompletionStats> completions,
+  }) = _MatchmakerStats;
+
+  factory MatchmakerStats.fromJson(Map<String, Object?> json) => _$MatchmakerStatsFromJson(json);
+
+  factory MatchmakerStats.fromDto(api.MatchmakerStats dto) => MatchmakerStats(
+        ticketCount: dto.ticketCount,
+        oldestTicketCreateTime: dto.hasOldestTicketCreateTime() ? dto.oldestTicketCreateTime.toDateTime() : null,
+        completions: dto.completions.map((e) => MatchmakerCompletionStats.fromDto(e)).toList(growable: false),
+      );
+}
+
+@freezed
+sealed class MatchmakerCompletionStats with _$MatchmakerCompletionStats {
+  const MatchmakerCompletionStats._();
+
+  const factory MatchmakerCompletionStats({
+    /// The time the matchmaker ticket was created.
+    @JsonKey(name: 'create_time') DateTime? createTime,
+
+    /// The time the matchmaker ticket was matched and completed.
+    @JsonKey(name: 'complete_time') DateTime? completeTime,
+  }) = _MatchmakerCompletionStats;
+
+  factory MatchmakerCompletionStats.fromJson(Map<String, Object?> json) => _$MatchmakerCompletionStatsFromJson(json);
+
+  factory MatchmakerCompletionStats.fromDto(api.MatchmakerCompletionStats dto) => MatchmakerCompletionStats(
+        createTime: dto.hasCreateTime() ? dto.createTime.toDateTime() : null,
+        completeTime: dto.hasCompleteTime() ? dto.completeTime.toDateTime() : null,
       );
 }

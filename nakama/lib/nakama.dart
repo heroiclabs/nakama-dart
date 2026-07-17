@@ -5,6 +5,8 @@ export 'src/enum/channel_type.dart';
 export 'src/enum/friendship_state.dart';
 export 'src/enum/group_membership_states.dart';
 export 'src/enum/storage_permission.dart';
+export 'src/enum/store_environment.dart';
+export 'src/enum/store_provider.dart';
 // Public models
 export 'src/models/account.dart';
 export 'src/models/channel_message.dart';
@@ -16,6 +18,7 @@ export 'src/models/match.dart';
 export 'src/models/matchmaker.dart';
 export 'src/models/notification.dart';
 export 'src/models/party.dart';
+export 'src/models/purchase.dart';
 export 'src/models/rpc.dart';
 export 'src/models/session.dart';
 export 'src/models/status.dart';
