@@ -14,10 +14,14 @@ on:
         default: 120
         type: number
 
+permissions:
+  contents: read
+
 jobs:
   quality:
     name: ${{ inputs.package_name }} quality
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
     defaults:
       run:
         shell: bash
@@ -65,8 +69,10 @@ jobs:
           export PATH="$PATH:$HOME/.pub-cache/bin"
 
           set +e
+          set -o pipefail
           pana . | tee /tmp/pana-output.txt
           PANA_EXIT=$?
+          set +o pipefail
           set -e
 
           SCORE_LINE=$(grep -Eo 'Points: [0-9]+/[0-9]+' /tmp/pana-output.txt | tail -n1 || true)

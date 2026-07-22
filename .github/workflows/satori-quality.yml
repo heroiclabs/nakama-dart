@@ -15,6 +15,10 @@ on:
       - .github/workflows/package-quality.yml
   workflow_dispatch:
 
+concurrency:
+  group: satori-quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   quality:
     uses: ./.github/workflows/package-quality.yml
