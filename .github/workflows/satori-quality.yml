@@ -1,0 +1,24 @@
+name: Satori Quality
+
+on:
+  pull_request:
+    paths:
+      - satori/**
+      - .github/workflows/satori-quality.yml
+      - .github/workflows/package-quality.yml
+  push:
+    branches:
+      - main
+    paths:
+      - satori/**
+      - .github/workflows/satori-quality.yml
+      - .github/workflows/package-quality.yml
+  workflow_dispatch:
+
+jobs:
+  quality:
+    uses: ./.github/workflows/package-quality.yml
+    with:
+      package_name: satori
+      package_path: satori
+      min_pub_points: 120
