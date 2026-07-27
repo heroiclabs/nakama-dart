@@ -39,6 +39,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
 
   late final ClientChannelBase _channel;
   late final NakamaClient _client;
+  late final NakamaClient _clientNoAuth;
 
   /// The key used to authenticate with the server without a session.
   /// Defaults to "defaultkey".
@@ -94,6 +95,7 @@ class NakamaGrpcClient extends NakamaBaseClient {
       _channel,
       options: CallOptions(metadata: {'authorization': this.serverKey}),
     );
+    _clientNoAuth = NakamaClient(_channel);
   }
 
   /// This method returns the original generated gPRC client, usually there
@@ -1408,6 +1410,23 @@ class NakamaGrpcClient extends NakamaBaseClient {
         payload: payload,
       ),
       options: _getSessionCallOptions(session),
+    );
+
+    return res.payload;
+  }
+
+  @override
+  Future<String?> rpcWithHttpKey({
+    required String httpKey,
+    required String id,
+    String? payload,
+  }) async {
+    final res = await _clientNoAuth.rpcFunc(
+      api.Rpc(
+        id: id,
+        payload: payload,
+        httpKey: httpKey,
+      ),
     );
 
     return res.payload;

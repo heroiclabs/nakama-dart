@@ -206,7 +206,7 @@ abstract class ApiClient
         @Body() {{ if $parameter.Required }}required {{ end }}{{ $parameter.Schema.Ref | cleanRef }}{{- if not $parameter.Required }}?{{- end }} body,
         {{- end }}
 	{{- else if eq $parameter.In "query" }}
-		@Query('{{ $parameter.Name }}')
+		@Query('{{ $parameter.Name | queryParamName }}')
     {{- if eq $parameter.Type "array"}}
     		required List<{{ $parameter.Items.Type | camelToPascal }}> {{ $parameter.Name | snakeToCamel }},
     {{- else if eq $parameter.Type "object"}},
@@ -338,6 +338,16 @@ func stripOperationPrefix(input string) string {
 	return strings.Replace(input, "Nakama_", "", 1)
 }
 
+// queryParamName normalizes query parameter names when wire-format differs
+// from codegen naming in the OpenAPI input.
+func queryParamName(input string) string {
+	if input == "httpKey" {
+		return "http_key"
+	}
+
+	return input
+}
+
 func descriptionOrTitle(description string, title string) string {
 	if description != "" {
 		return description
@@ -462,6 +472,7 @@ func main() {
 		"stripOperationPrefix": stripOperationPrefix,
 		"descriptionOrTitle":   descriptionOrTitle,
 		"sanitizeFieldName":    sanitizeFieldName,
+		"queryParamName":       queryParamName,
 	}
 
 	tmpl, err := template.New(inputFile).Funcs(fmap).Parse(codeTemplate)

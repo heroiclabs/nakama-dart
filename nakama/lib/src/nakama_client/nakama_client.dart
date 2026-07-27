@@ -967,4 +967,15 @@ abstract class NakamaBaseClient {
     required String id,
     String? payload,
   });
+
+  /// Execute an RPC function on the server using an HTTP key.
+  ///
+  /// - [httpKey] The HTTP key to authenticate the function call.
+  /// - [id] The ID of the function to execute.
+  /// - [payload] The payload to send with the function call.
+  Future<String?> rpcWithHttpKey({
+    required String httpKey,
+    required String id,
+    String? payload,
+  });
 }

@@ -2614,7 +2614,7 @@ abstract class ApiClient {
     String? bearerToken,
     @Path('id') required String id,
     @Query('payload') String? payload,
-    @Query('httpKey') String? httpKey,
+    @Query('http_key') String? httpKey,
   });
 
   /// Execute a Lua function on the server.
@@ -2625,7 +2625,7 @@ abstract class ApiClient {
     String? bearerToken,
     @Path('id') required String id,
     @Body() required String body,
-    @Query('httpKey') String? httpKey,
+    @Query('http_key') String? httpKey,
   });
 
   /// Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
