@@ -36,14 +36,16 @@ sealed class Channel with _$Channel {
   }) = _Channel;
 
   factory Channel.fromDto(rtpb.Channel dto) => Channel(
-        id: dto.id,
-        presences: dto.presences.map((e) => UserPresence.fromDto(e)).toList(growable: false),
-        self: UserPresence.fromDto(dto.self),
-        roomName: dto.roomName,
-        groupId: dto.groupId,
-        userIdOne: dto.userIdOne,
-        userIdTwo: dto.userIdTwo,
-      );
+    id: dto.id,
+    presences: dto.presences
+        .map((e) => UserPresence.fromDto(e))
+        .toList(growable: false),
+    self: UserPresence.fromDto(dto.self),
+    roomName: dto.roomName,
+    groupId: dto.groupId,
+    userIdOne: dto.userIdOne,
+    userIdTwo: dto.userIdTwo,
+  );
 }
 
 @freezed
@@ -87,7 +89,8 @@ sealed class ChannelMessageAck with _$ChannelMessageAck {
     @JsonKey(name: 'user_id_two') required String userIdTwo,
   }) = _ChannelMessageAck;
 
-  factory ChannelMessageAck.fromDto(rtpb.ChannelMessageAck dto) => ChannelMessageAck(
+  factory ChannelMessageAck.fromDto(rtpb.ChannelMessageAck dto) =>
+      ChannelMessageAck(
         channelId: dto.channelId,
         messageId: dto.messageId,
         code: dto.code.value,

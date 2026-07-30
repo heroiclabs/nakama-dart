@@ -19,34 +19,35 @@ sealed class Account with _$Account {
     required User user,
   }) = _Account;
 
-  factory Account.fromJson(Map<String, Object?> json) => _$AccountFromJson(json);
+  factory Account.fromJson(Map<String, Object?> json) =>
+      _$AccountFromJson(json);
 
   factory Account.fromDto(api.Account dto) => Account(
-        wallet: PlatformNormalizer.normalizeNullableString(dto.wallet),
-        email: PlatformNormalizer.normalizeNullableString(dto.email),
-        devices: dto.devices.map((e) => Device.fromDto(e)).toList(growable: false),
-        customId: PlatformNormalizer.normalizeNullableString(dto.customId),
-        verifyTime: dto.verifyTime.hasSeconds() ? dto.verifyTime.toDateTime() : null,
-        disableTime: dto.disableTime.hasSeconds() ? dto.disableTime.toDateTime() : null,
-        user: User.fromDto(dto.user),
-      );
+    wallet: PlatformNormalizer.normalizeNullableString(dto.wallet),
+    email: PlatformNormalizer.normalizeNullableString(dto.email),
+    devices: dto.devices.map((e) => Device.fromDto(e)).toList(growable: false),
+    customId: PlatformNormalizer.normalizeNullableString(dto.customId),
+    verifyTime: dto.verifyTime.hasSeconds()
+        ? dto.verifyTime.toDateTime()
+        : null,
+    disableTime: dto.disableTime.hasSeconds()
+        ? dto.disableTime.toDateTime()
+        : null,
+    user: User.fromDto(dto.user),
+  );
 }
 
 @freezed
 sealed class Device with _$Device {
   const Device._();
 
-  const factory Device({
-    required String id,
-    Map<String, dynamic>? vars,
-  }) = _Device;
+  const factory Device({required String id, Map<String, dynamic>? vars}) =
+      _Device;
 
   factory Device.fromJson(Map<String, Object?> json) => _$DeviceFromJson(json);
 
-  factory Device.fromDto(api.AccountDevice dto) => Device(
-        id: dto.id,
-        vars: dto.vars,
-      );
+  factory Device.fromDto(api.AccountDevice dto) =>
+      Device(id: dto.id, vars: dto.vars);
 }
 
 @freezed
@@ -77,23 +78,25 @@ sealed class User with _$User {
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 
   factory User.fromDto(api.User user) => User(
-        id: user.id,
-        username: PlatformNormalizer.normalizeNullableString(user.username),
-        displayName: PlatformNormalizer.normalizeNullableString(user.displayName),
-        avatarUrl: PlatformNormalizer.normalizeNullableString(user.avatarUrl),
-        langTag: PlatformNormalizer.normalizeNullableString(user.langTag),
-        location: PlatformNormalizer.normalizeNullableString(user.location),
-        timezone: PlatformNormalizer.normalizeNullableString(user.timezone),
-        metadata: PlatformNormalizer.normalizeNullableString(user.metadata),
-        facebookId: PlatformNormalizer.normalizeNullableString(user.facebookId),
-        googleId: PlatformNormalizer.normalizeNullableString(user.googleId),
-        gamecenterId: PlatformNormalizer.normalizeNullableString(user.gamecenterId),
-        steamId: PlatformNormalizer.normalizeNullableString(user.steamId),
-        online: user.online,
-        edgeCount: user.edgeCount,
-        createTime: user.createTime.toDateTime(),
-        updateTime: user.updateTime.toDateTime(),
-        facebookInstantGameId: PlatformNormalizer.normalizeNullableString(user.facebookInstantGameId),
-        appleId: PlatformNormalizer.normalizeNullableString(user.appleId),
-      );
+    id: user.id,
+    username: PlatformNormalizer.normalizeNullableString(user.username),
+    displayName: PlatformNormalizer.normalizeNullableString(user.displayName),
+    avatarUrl: PlatformNormalizer.normalizeNullableString(user.avatarUrl),
+    langTag: PlatformNormalizer.normalizeNullableString(user.langTag),
+    location: PlatformNormalizer.normalizeNullableString(user.location),
+    timezone: PlatformNormalizer.normalizeNullableString(user.timezone),
+    metadata: PlatformNormalizer.normalizeNullableString(user.metadata),
+    facebookId: PlatformNormalizer.normalizeNullableString(user.facebookId),
+    googleId: PlatformNormalizer.normalizeNullableString(user.googleId),
+    gamecenterId: PlatformNormalizer.normalizeNullableString(user.gamecenterId),
+    steamId: PlatformNormalizer.normalizeNullableString(user.steamId),
+    online: user.online,
+    edgeCount: user.edgeCount,
+    createTime: user.createTime.toDateTime(),
+    updateTime: user.updateTime.toDateTime(),
+    facebookInstantGameId: PlatformNormalizer.normalizeNullableString(
+      user.facebookInstantGameId,
+    ),
+    appleId: PlatformNormalizer.normalizeNullableString(user.appleId),
+  );
 }

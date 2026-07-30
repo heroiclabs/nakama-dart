@@ -41,7 +41,8 @@ class GroupsPage extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(groups[index].id),
-                        Text('Random generated group, click to modify its name'),
+                        Text(
+                            'Random generated group, click to modify its name'),
                       ],
                     ),
                     trailing: Icon(Icons.edit),

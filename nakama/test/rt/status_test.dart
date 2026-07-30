@@ -60,10 +60,12 @@ void main() {
 
       // B now received updates over A's status changes
       const statusText = 'Running some tests...';
-      a.onStatusPresence.listen(expectAsync1((event) {
-        expect(event.joins, hasLength(1));
-        expect(event.joins.first.status, equals(statusText));
-      }, count: 1));
+      a.onStatusPresence.listen(
+        expectAsync1((event) {
+          expect(event.joins, hasLength(1));
+          expect(event.joins.first.status, equals(statusText));
+        }, count: 1),
+      );
 
       await a.updateStatus(statusText);
     });

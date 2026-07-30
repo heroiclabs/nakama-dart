@@ -16,18 +16,21 @@ sealed class FriendsList with _$FriendsList {
     @Default(<Friend>[]) List<Friend> friends,
   }) = _FriendsList;
 
-  factory FriendsList.fromJson(Map<String, Object?> json) => _$FriendsListFromJson(json);
+  factory FriendsList.fromJson(Map<String, Object?> json) =>
+      _$FriendsListFromJson(json);
 
   factory FriendsList.fromDto(api.FriendList dto) => FriendsList(
-        cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
-        friends: dto.friends
-            .map((e) => Friend(
-                  state: FriendshipState.values[e.state.value],
-                  updateTime: e.updateTime.toDateTime(),
-                  user: User.fromDto(e.user),
-                ))
-            .toList(growable: false),
-      );
+    cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
+    friends: dto.friends
+        .map(
+          (e) => Friend(
+            state: FriendshipState.values[e.state.value],
+            updateTime: e.updateTime.toDateTime(),
+            user: User.fromDto(e.user),
+          ),
+        )
+        .toList(growable: false),
+  );
 }
 
 @freezed
@@ -49,18 +52,26 @@ sealed class FriendsOfFriendsList with _$FriendsOfFriendsList {
 
   const factory FriendsOfFriendsList({
     @JsonKey(name: 'cursor') String? cursor,
-    @JsonKey(name: 'friends_of_friends') @Default(<FriendOfFriend>[]) List<FriendOfFriend> friendsOfFriends,
+    @JsonKey(name: 'friends_of_friends')
+    @Default(<FriendOfFriend>[])
+    List<FriendOfFriend> friendsOfFriends,
   }) = _FriendsOfFriendsList;
 
-  factory FriendsOfFriendsList.fromJson(Map<String, Object?> json) => _$FriendsOfFriendsListFromJson(json);
+  factory FriendsOfFriendsList.fromJson(Map<String, Object?> json) =>
+      _$FriendsOfFriendsListFromJson(json);
 
-  factory FriendsOfFriendsList.fromDto(api.FriendsOfFriendsList dto) => FriendsOfFriendsList(
+  factory FriendsOfFriendsList.fromDto(api.FriendsOfFriendsList dto) =>
+      FriendsOfFriendsList(
         cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
         friendsOfFriends: dto.friendsOfFriends
-            .map((e) => FriendOfFriend(
-                  referrer: PlatformNormalizer.normalizeNullableString(e.referrer),
-                  user: User.fromDto(e.user),
-                ))
+            .map(
+              (e) => FriendOfFriend(
+                referrer: PlatformNormalizer.normalizeNullableString(
+                  e.referrer,
+                ),
+                user: User.fromDto(e.user),
+              ),
+            )
             .toList(growable: false),
       );
 }
@@ -77,5 +88,6 @@ sealed class FriendOfFriend with _$FriendOfFriend {
     @JsonKey(name: 'user') required User user,
   }) = _FriendOfFriend;
 
-  factory FriendOfFriend.fromJson(Map<String, Object?> json) => _$FriendOfFriendFromJson(json);
+  factory FriendOfFriend.fromJson(Map<String, Object?> json) =>
+      _$FriendOfFriendFromJson(json);
 }

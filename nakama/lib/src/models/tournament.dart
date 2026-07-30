@@ -31,28 +31,29 @@ sealed class Tournament with _$Tournament {
     @JsonKey(name: 'prev_reset') int? prevReset,
   }) = _Tournament;
 
-  factory Tournament.fromJson(Map<String, Object?> json) => _$TournamentFromJson(json);
+  factory Tournament.fromJson(Map<String, Object?> json) =>
+      _$TournamentFromJson(json);
 
   factory Tournament.fromDto(api.Tournament dto) => Tournament(
-        id: dto.id,
-        canEnter: dto.canEnter,
-        category: dto.category,
-        createTime: dto.createTime.hasNanos() ? dto.createTime.toDateTime() : null,
-        endTime: dto.endTime.hasNanos() ? dto.endTime.toDateTime() : null,
-        startTime: dto.startTime.hasNanos() ? dto.startTime.toDateTime() : null,
-        description: PlatformNormalizer.normalizeNullableString(dto.description),
-        duration: dto.duration,
-        endActive: dto.endActive,
-        maxNumScore: dto.maxNumScore,
-        maxSize: dto.maxSize,
-        metadata: PlatformNormalizer.normalizeNullableString(dto.metadata),
-        nextReset: dto.nextReset,
-        prevReset: dto.prevReset,
-        size: dto.size,
-        sortOrder: dto.sortOrder,
-        startActive: dto.startActive,
-        title: PlatformNormalizer.normalizeNullableString(dto.title),
-      );
+    id: dto.id,
+    canEnter: dto.canEnter,
+    category: dto.category,
+    createTime: dto.createTime.hasNanos() ? dto.createTime.toDateTime() : null,
+    endTime: dto.endTime.hasNanos() ? dto.endTime.toDateTime() : null,
+    startTime: dto.startTime.hasNanos() ? dto.startTime.toDateTime() : null,
+    description: PlatformNormalizer.normalizeNullableString(dto.description),
+    duration: dto.duration,
+    endActive: dto.endActive,
+    maxNumScore: dto.maxNumScore,
+    maxSize: dto.maxSize,
+    metadata: PlatformNormalizer.normalizeNullableString(dto.metadata),
+    nextReset: dto.nextReset,
+    prevReset: dto.prevReset,
+    size: dto.size,
+    sortOrder: dto.sortOrder,
+    startActive: dto.startActive,
+    title: PlatformNormalizer.normalizeNullableString(dto.title),
+  );
 }
 
 @freezed
@@ -64,12 +65,15 @@ sealed class TournamentList with _$TournamentList {
     @Default(<Tournament>[]) List<Tournament> tournaments,
   }) = _TournamentList;
 
-  factory TournamentList.fromJson(Map<String, Object?> json) => _$TournamentListFromJson(json);
+  factory TournamentList.fromJson(Map<String, Object?> json) =>
+      _$TournamentListFromJson(json);
 
   factory TournamentList.fromDto(api.TournamentList dto) => TournamentList(
-        tournaments: dto.tournaments.map((e) => Tournament.fromDto(e)).toList(growable: false),
-        cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
-      );
+    tournaments: dto.tournaments
+        .map((e) => Tournament.fromDto(e))
+        .toList(growable: false),
+    cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
+  );
 }
 
 @freezed
@@ -77,18 +81,30 @@ sealed class TournamentRecordList with _$TournamentRecordList {
   const TournamentRecordList._();
 
   const factory TournamentRecordList({
-    @JsonKey(name: 'records') @Default(<LeaderboardRecord>[]) List<LeaderboardRecord> records,
-    @JsonKey(name: 'owner_records') @Default(<LeaderboardRecord>[]) List<LeaderboardRecord> ownerRecords,
+    @JsonKey(name: 'records')
+    @Default(<LeaderboardRecord>[])
+    List<LeaderboardRecord> records,
+    @JsonKey(name: 'owner_records')
+    @Default(<LeaderboardRecord>[])
+    List<LeaderboardRecord> ownerRecords,
     @JsonKey(name: 'next_cursor') String? nextCursor,
     @JsonKey(name: 'previous_cursor') String? previousCursor,
   }) = _TournamentRecordList;
 
-  factory TournamentRecordList.fromJson(Map<String, Object?> json) => _$TournamentRecordListFromJson(json);
+  factory TournamentRecordList.fromJson(Map<String, Object?> json) =>
+      _$TournamentRecordListFromJson(json);
 
-  factory TournamentRecordList.fromDto(api.TournamentRecordList dto) => TournamentRecordList(
-        records: dto.records.map((e) => LeaderboardRecord.fromDto(e)).toList(growable: false),
-        ownerRecords: dto.ownerRecords.map((e) => LeaderboardRecord.fromDto(e)).toList(growable: false),
+  factory TournamentRecordList.fromDto(api.TournamentRecordList dto) =>
+      TournamentRecordList(
+        records: dto.records
+            .map((e) => LeaderboardRecord.fromDto(e))
+            .toList(growable: false),
+        ownerRecords: dto.ownerRecords
+            .map((e) => LeaderboardRecord.fromDto(e))
+            .toList(growable: false),
         nextCursor: PlatformNormalizer.normalizeNullableString(dto.nextCursor),
-        previousCursor: PlatformNormalizer.normalizeNullableString(dto.prevCursor),
+        previousCursor: PlatformNormalizer.normalizeNullableString(
+          dto.prevCursor,
+        ),
       );
 }

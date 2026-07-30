@@ -13,7 +13,10 @@ void main() {
       });
 
       test('should return the string for non-empty input', () {
-        expect(PlatformNormalizer.normalizeNullableString('test'), equals('test'));
+        expect(
+          PlatformNormalizer.normalizeNullableString('test'),
+          equals('test'),
+        );
       });
 
       test('should return the string for whitespace input', () {
@@ -38,7 +41,10 @@ void main() {
 
       test('should parse numeric strings (proto3 int64 encoding)', () {
         expect(PlatformNormalizer.normalizeInt('100'), equals(100));
-        expect(PlatformNormalizer.normalizeInt('9223372036854775807'), equals(9223372036854775807));
+        expect(
+          PlatformNormalizer.normalizeInt('9223372036854775807'),
+          equals(9223372036854775807),
+        );
       });
 
       test('should return 0 for invalid string', () {

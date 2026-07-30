@@ -29,19 +29,19 @@ sealed class Group with _$Group {
   factory Group.fromJson(Map<String, Object?> json) => _$GroupFromJson(json);
 
   factory Group.fromDto(api.Group dto) => Group(
-        id: dto.id,
-        creatorId: PlatformNormalizer.normalizeNullableString(dto.creatorId),
-        name: PlatformNormalizer.normalizeNullableString(dto.name),
-        description: PlatformNormalizer.normalizeNullableString(dto.description),
-        langTag: PlatformNormalizer.normalizeNullableString(dto.langTag),
-        metadata: PlatformNormalizer.normalizeNullableString(dto.metadata),
-        avatarUrl: PlatformNormalizer.normalizeNullableString(dto.avatarUrl),
-        open: dto.open.value,
-        edgeCount: dto.edgeCount,
-        maxCount: dto.maxCount,
-        createTime: dto.createTime.toDateTime(),
-        updateTime: dto.updateTime.toDateTime(),
-      );
+    id: dto.id,
+    creatorId: PlatformNormalizer.normalizeNullableString(dto.creatorId),
+    name: PlatformNormalizer.normalizeNullableString(dto.name),
+    description: PlatformNormalizer.normalizeNullableString(dto.description),
+    langTag: PlatformNormalizer.normalizeNullableString(dto.langTag),
+    metadata: PlatformNormalizer.normalizeNullableString(dto.metadata),
+    avatarUrl: PlatformNormalizer.normalizeNullableString(dto.avatarUrl),
+    open: dto.open.value,
+    edgeCount: dto.edgeCount,
+    maxCount: dto.maxCount,
+    createTime: dto.createTime.toDateTime(),
+    updateTime: dto.updateTime.toDateTime(),
+  );
 }
 
 @freezed
@@ -53,12 +53,13 @@ sealed class GroupList with _$GroupList {
     @Default(<Group>[]) List<Group> groups,
   }) = _GroupList;
 
-  factory GroupList.fromJson(Map<String, Object?> json) => _$GroupListFromJson(json);
+  factory GroupList.fromJson(Map<String, Object?> json) =>
+      _$GroupListFromJson(json);
 
   factory GroupList.fromDto(api.GroupList dto) => GroupList(
-        cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
-        groups: dto.groups.map((e) => Group.fromDto(e)).toList(growable: false),
-      );
+    cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
+    groups: dto.groups.map((e) => Group.fromDto(e)).toList(growable: false),
+  );
 }
 
 @freezed
@@ -67,15 +68,20 @@ sealed class UserGroupList with _$UserGroupList {
 
   const factory UserGroupList({
     String? cursor,
-    @JsonKey(name: 'user_groups') @Default(<UserGroup>[]) List<UserGroup> userGroups,
+    @JsonKey(name: 'user_groups')
+    @Default(<UserGroup>[])
+    List<UserGroup> userGroups,
   }) = _UserGroupList;
 
-  factory UserGroupList.fromJson(Map<String, Object?> json) => _$UserGroupListFromJson(json);
+  factory UserGroupList.fromJson(Map<String, Object?> json) =>
+      _$UserGroupListFromJson(json);
 
   factory UserGroupList.fromDto(api.UserGroupList dto) => UserGroupList(
-        cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
-        userGroups: dto.userGroups.map((e) => UserGroup.fromDto(e)).toList(growable: false),
-      );
+    cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
+    userGroups: dto.userGroups
+        .map((e) => UserGroup.fromDto(e))
+        .toList(growable: false),
+  );
 }
 
 @freezed
@@ -87,12 +93,13 @@ sealed class UserGroup with _$UserGroup {
     required Group group,
   }) = _UserGroup;
 
-  factory UserGroup.fromJson(Map<String, Object?> json) => _$UserGroupFromJson(json);
+  factory UserGroup.fromJson(Map<String, Object?> json) =>
+      _$UserGroupFromJson(json);
 
   factory UserGroup.fromDto(api.UserGroupList_UserGroup dto) => UserGroup(
-        group: Group.fromDto(dto.group),
-        state: GroupMembershipState.values[dto.state.value],
-      );
+    group: Group.fromDto(dto.group),
+    state: GroupMembershipState.values[dto.state.value],
+  );
 }
 
 @freezed
@@ -101,15 +108,20 @@ sealed class GroupUserList with _$GroupUserList {
 
   const factory GroupUserList({
     String? cursor,
-    @JsonKey(name: 'group_users') @Default(<GroupUser>[]) List<GroupUser> groupUsers,
+    @JsonKey(name: 'group_users')
+    @Default(<GroupUser>[])
+    List<GroupUser> groupUsers,
   }) = _GroupUserList;
 
-  factory GroupUserList.fromJson(Map<String, Object?> json) => _$GroupUserListFromJson(json);
+  factory GroupUserList.fromJson(Map<String, Object?> json) =>
+      _$GroupUserListFromJson(json);
 
   factory GroupUserList.fromDto(api.GroupUserList dto) => GroupUserList(
-        cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
-        groupUsers: dto.groupUsers.map((e) => GroupUser.fromDto(e)).toList(growable: false),
-      );
+    cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
+    groupUsers: dto.groupUsers
+        .map((e) => GroupUser.fromDto(e))
+        .toList(growable: false),
+  );
 }
 
 @freezed
@@ -121,10 +133,11 @@ sealed class GroupUser with _$GroupUser {
     required User user,
   }) = _GroupUser;
 
-  factory GroupUser.fromJson(Map<String, Object?> json) => _$GroupUserFromJson(json);
+  factory GroupUser.fromJson(Map<String, Object?> json) =>
+      _$GroupUserFromJson(json);
 
   factory GroupUser.fromDto(api.GroupUserList_GroupUser dto) => GroupUser(
-        state: GroupMembershipState.values[dto.state.value],
-        user: User.fromDto(dto.user),
-      );
+    state: GroupMembershipState.values[dto.state.value],
+    user: User.fromDto(dto.user),
+  );
 }

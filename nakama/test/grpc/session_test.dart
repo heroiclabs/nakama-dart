@@ -18,8 +18,9 @@ void main() {
     });
 
     test('logging out of session works', () async {
-      final session =
-          await client.authenticateDevice(deviceId: faker.guid.guid());
+      final session = await client.authenticateDevice(
+        deviceId: faker.guid.guid(),
+      );
 
       await client.sessionLogout(session: session);
 

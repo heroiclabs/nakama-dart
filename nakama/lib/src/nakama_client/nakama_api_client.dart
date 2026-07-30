@@ -76,23 +76,33 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String path,
     required bool ssl,
   }) {
-    apiBaseUrl = Uri(host: host, scheme: ssl ? 'https' : 'http', port: port, path: path);
-    final dio = Dio(BaseOptions(baseUrl: apiBaseUrl.toString()));
-    dio.interceptors.add(InterceptorsWrapper(
-      onRequest: (options, handler) {
-        if (_session != null) {
-          options.headers.putIfAbsent('Authorization', () => 'Bearer ${_session!.token}');
-        } else {
-          options.headers.putIfAbsent('Authorization', () => 'Basic ${base64Encode('$serverKey:'.codeUnits)}');
-        }
-
-        handler.next(options);
-      },
-    ));
-    _api = ApiClient(
-      dio,
-      baseUrl: apiBaseUrl.toString(),
+    apiBaseUrl = Uri(
+      host: host,
+      scheme: ssl ? 'https' : 'http',
+      port: port,
+      path: path,
     );
+    final dio = Dio(BaseOptions(baseUrl: apiBaseUrl.toString()));
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          if (_session != null) {
+            options.headers.putIfAbsent(
+              'Authorization',
+              () => 'Bearer ${_session!.token}',
+            );
+          } else {
+            options.headers.putIfAbsent(
+              'Authorization',
+              () => 'Basic ${base64Encode('$serverKey:'.codeUnits)}',
+            );
+          }
+
+          handler.next(options);
+        },
+      ),
+    );
+    _api = ApiClient(dio, baseUrl: apiBaseUrl.toString());
   }
 
   /// Handles errors and returns a [ResponseError] if the error is a [DioException] and the response data is not null.
@@ -153,11 +163,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     _session = null;
     try {
       final session = await _api.authenticateEmail(
-        body: ApiAccountEmail(
-          email: email,
-          password: password,
-          vars: vars,
-        ),
+        body: ApiAccountEmail(email: email, password: password, vars: vars),
         username: username,
         create: create,
       );
@@ -176,11 +182,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.linkEmail(
-        body: ApiAccountEmail(
-          email: email,
-          password: password,
-          vars: vars,
-        ),
+        body: ApiAccountEmail(email: email, password: password, vars: vars),
       );
     } on Exception catch (e) {
       throw _handleError(e);
@@ -196,11 +198,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.unlinkEmail(
-        body: ApiAccountEmail(
-          email: email,
-          password: password,
-          vars: vars,
-        ),
+        body: ApiAccountEmail(email: email, password: password, vars: vars),
       );
     } on Exception catch (e) {
       throw _handleError(e);
@@ -270,10 +268,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
     try {
       final session = await _api.authenticateFacebook(
-        body: ApiAccountFacebook(
-          token: token,
-          vars: vars,
-        ),
+        body: ApiAccountFacebook(token: token, vars: vars),
         sync: import,
         create: create,
         username: username,
@@ -293,10 +288,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.linkFacebook(
-        body: ApiAccountFacebook(
-          token: token,
-          vars: vars,
-        ),
+        body: ApiAccountFacebook(token: token, vars: vars),
         sync: import,
       );
     } on Exception catch (e) {
@@ -312,10 +304,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.unlinkFacebook(
-        body: ApiAccountFacebook(
-          token: token,
-          vars: vars,
-        ),
+        body: ApiAccountFacebook(token: token, vars: vars),
       );
     } on Exception catch (e) {
       throw _handleError(e);
@@ -333,10 +322,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
     try {
       final session = await _api.authenticateGoogle(
-        body: ApiAccountGoogle(
-          token: token,
-          vars: vars,
-        ),
+        body: ApiAccountGoogle(token: token, vars: vars),
         create: create,
         username: username,
       );
@@ -354,10 +340,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.linkGoogle(
-        body: ApiAccountGoogle(
-          token: token,
-          vars: vars,
-        ),
+        body: ApiAccountGoogle(token: token, vars: vars),
       );
     } on Exception catch (e) {
       throw _handleError(e);
@@ -372,10 +355,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.unlinkGoogle(
-        body: ApiAccountGoogle(
-          token: token,
-          vars: vars,
-        ),
+        body: ApiAccountGoogle(token: token, vars: vars),
       );
     } on Exception catch (e) {
       throw _handleError(e);
@@ -393,10 +373,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
     try {
       final session = await _api.authenticateApple(
-        body: ApiAccountApple(
-          token: token,
-          vars: vars,
-        ),
+        body: ApiAccountApple(token: token, vars: vars),
         create: create,
         username: username,
       );
@@ -414,10 +391,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.linkApple(
-        body: ApiAccountApple(
-          token: token,
-          vars: vars,
-        ),
+        body: ApiAccountApple(token: token, vars: vars),
       );
     } on Exception catch (e) {
       throw _handleError(e);
@@ -432,10 +406,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }) async {
     try {
       await _api.unlinkApple(
-        body: ApiAccountApple(
-          token: token,
-          vars: vars,
-        ),
+        body: ApiAccountApple(token: token, vars: vars),
       );
     } on Exception catch (e) {
       throw _handleError(e);
@@ -711,10 +682,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
     try {
       await _api.importFacebookFriends(
-        body: ApiAccountFacebook(
-          token: token,
-          vars: vars,
-        ),
+        body: ApiAccountFacebook(token: token, vars: vars),
         reset: reset,
       );
     } on Exception catch (e) {
@@ -783,9 +751,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
   }
 
   @override
-  Future<void> deleteAccount({
-    required model.Session session,
-  }) async {
+  Future<void> deleteAccount({required model.Session session}) async {
     _session = session;
 
     try {
@@ -810,7 +776,10 @@ class NakamaRestApiClient extends NakamaBaseClient {
         facebookIds: facebookIds ?? [],
       );
 
-      return users.users?.map((e) => model.User.fromJson(e.toJson())).toList(growable: false) ?? [];
+      return users.users
+              ?.map((e) => model.User.fromJson(e.toJson()))
+              .toList(growable: false) ??
+          [];
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -827,14 +796,16 @@ class NakamaRestApiClient extends NakamaBaseClient {
       await _api.writeStorageObjects(
         body: ApiWriteStorageObjectsRequest(
           objects: objects
-              .map((e) => ApiWriteStorageObject(
-                    collection: e.collection,
-                    key: e.key,
-                    permissionRead: e.permissionRead?.index ?? 1,
-                    permissionWrite: e.permissionWrite?.index ?? 1,
-                    value: e.value,
-                    version: e.version,
-                  ))
+              .map(
+                (e) => ApiWriteStorageObject(
+                  collection: e.collection,
+                  key: e.key,
+                  permissionRead: e.permissionRead?.index ?? 1,
+                  permissionWrite: e.permissionWrite?.index ?? 1,
+                  value: e.value,
+                  version: e.version,
+                ),
+              )
               .toList(growable: false),
         ),
       );
@@ -878,16 +849,21 @@ class NakamaRestApiClient extends NakamaBaseClient {
       final objects = await _api.readStorageObjects(
         body: ApiReadStorageObjectsRequest(
           objectIds: objectIds
-              .map((e) => ApiReadStorageObjectId(
-                    collection: e.collection,
-                    key: e.key,
-                    userId: e.userId,
-                  ))
+              .map(
+                (e) => ApiReadStorageObjectId(
+                  collection: e.collection,
+                  key: e.key,
+                  userId: e.userId,
+                ),
+              )
               .toList(growable: false),
         ),
       );
 
-      return objects.objects?.map((e) => model.StorageObject.fromJson(e.toJson())).toList(growable: false) ?? [];
+      return objects.objects
+              ?.map((e) => model.StorageObject.fromJson(e.toJson()))
+              .toList(growable: false) ??
+          [];
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -904,11 +880,13 @@ class NakamaRestApiClient extends NakamaBaseClient {
       await _api.deleteStorageObjects(
         body: ApiDeleteStorageObjectsRequest(
           objectIds: objectIds
-              .map((e) => ApiDeleteStorageObjectId(
-                    collection: e.collection,
-                    key: e.key,
-                    version: e.version,
-                  ))
+              .map(
+                (e) => ApiDeleteStorageObjectId(
+                  collection: e.collection,
+                  key: e.key,
+                  version: e.version,
+                ),
+              )
               .toList(growable: false),
         ),
       );
@@ -958,7 +936,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
         ownerIds: ownerIds ?? [],
         limit: limit,
         cursor: cursor,
-        expiry: expiry == null ? null : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
+        expiry: expiry == null
+            ? null
+            : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
       );
 
       return model.LeaderboardRecordList.fromJson(res.toJson());
@@ -982,7 +962,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
         leaderboardId: leaderboardName,
         ownerId: ownerId,
         limit: limit,
-        expiry: expiry == null ? null : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
+        expiry: expiry == null
+            ? null
+            : (expiry.millisecondsSinceEpoch ~/ 1000).toString(),
       );
 
       return model.LeaderboardRecordList.fromJson(res.toJson());
@@ -1004,13 +986,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
     try {
       final res = await _api.writeLeaderboardRecord(
-          leaderboardId: leaderboardName,
-          body: WriteLeaderboardRecordRequestLeaderboardRecordWrite(
-            score: score.toString(),
-            subscore: (subscore ?? 0).toString(),
-            metadata: metadata,
-            operator: ApiOperator.values[operator?.index ?? 0],
-          ));
+        leaderboardId: leaderboardName,
+        body: WriteLeaderboardRecordRequestLeaderboardRecordWrite(
+          score: score.toString(),
+          subscore: (subscore ?? 0).toString(),
+          metadata: metadata,
+          operator: ApiOperator.values[operator?.index ?? 0],
+        ),
+      );
 
       return model.LeaderboardRecord.fromJson(res.toJson());
     } on Exception catch (e) {
@@ -1078,10 +1061,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     _session = session;
 
     try {
-      final res = await _api.listFriendsOfFriends(
-        cursor: cursor,
-        limit: limit,
-      );
+      final res = await _api.listFriendsOfFriends(cursor: cursor, limit: limit);
 
       return model.FriendsOfFriendsList.fromJson(res.toJson());
     } on Exception catch (e) {
@@ -1098,10 +1078,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     _session = session;
 
     try {
-      await _api.deleteFriends(
-        ids: ids,
-        usernames: usernames ?? [],
-      );
+      await _api.deleteFriends(ids: ids, usernames: usernames ?? []);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -1116,10 +1093,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     _session = session;
 
     try {
-      await _api.blockFriends(
-        ids: ids,
-        usernames: usernames ?? [],
-      );
+      await _api.blockFriends(ids: ids, usernames: usernames ?? []);
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -1449,15 +1423,18 @@ class NakamaRestApiClient extends NakamaBaseClient {
         query: query,
       );
 
-      return res.matches?.map((e) {
-        final json = e.toJson();
-        json['runtimeType'] = 'default';
-        // Handle null values that are required fields in the domain model
-        json['authoritative'] ??= false;
-        json['label'] ??= '';
-        json['presences'] ??= <Map<String, dynamic>>[];
-        return model.Match.fromJson(json);
-      }).toList(growable: false) ?? [];
+      return res.matches
+              ?.map((e) {
+                final json = e.toJson();
+                json['runtimeType'] = 'default';
+                // Handle null values that are required fields in the domain model
+                json['authoritative'] ??= false;
+                json['label'] ??= '';
+                json['presences'] ??= <Map<String, dynamic>>[];
+                return model.Match.fromJson(json);
+              })
+              .toList(growable: false) ??
+          [];
     } on Exception catch (e) {
       throw _handleError(e);
     }
@@ -1494,8 +1471,12 @@ class NakamaRestApiClient extends NakamaBaseClient {
         categoryStart: categoryStart,
         categoryEnd: categoryEnd,
         cursor: cursor,
-        startTime: startTime != null ? startTime.millisecondsSinceEpoch ~/ 1000 : null,
-        endTime: endTime != null ? endTime.millisecondsSinceEpoch ~/ 1000 : null,
+        startTime: startTime != null
+            ? startTime.millisecondsSinceEpoch ~/ 1000
+            : null,
+        endTime: endTime != null
+            ? endTime.millisecondsSinceEpoch ~/ 1000
+            : null,
         limit: limit,
       );
 

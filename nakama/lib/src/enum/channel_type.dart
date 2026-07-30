@@ -1,5 +1,1 @@
-enum ChannelType {
-  directMessage,
-  group,
-  room,
-}
+enum ChannelType { directMessage, group, room }

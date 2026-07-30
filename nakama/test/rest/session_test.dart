@@ -18,16 +18,15 @@ void main() {
     });
 
     test('logging out of session works', () async {
-      final session =
-          await client.authenticateDevice(deviceId: faker.guid.guid());
+      final session = await client.authenticateDevice(
+        deviceId: faker.guid.guid(),
+      );
 
       await client.sessionLogout(session: session);
 
       await expectLater(
         client.sessionRefresh(session: session),
-        throwsA(
-          isA<ResponseError>(),
-        ),
+        throwsA(isA<ResponseError>()),
       );
     });
   });

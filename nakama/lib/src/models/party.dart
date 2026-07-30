@@ -26,12 +26,13 @@ sealed class PartyData with _$PartyData {
   }) = _PartyData;
 
   factory PartyData.fromDto(rtpb.PartyData dto) => PartyData(
-        partyId: dto.partyId,
-        presence: UserPresence.fromDto(dto.presence),
-        opCode: dto.opCode.toInt(),
-        data: dto.data,
-      );
+    partyId: dto.partyId,
+    presence: UserPresence.fromDto(dto.presence),
+    opCode: dto.opCode.toInt(),
+    data: dto.data,
+  );
 }
+
 @freezed
 sealed class PartyPresenceEvent with _$PartyPresenceEvent {
   const PartyPresenceEvent._();
@@ -47,7 +48,8 @@ sealed class PartyPresenceEvent with _$PartyPresenceEvent {
     @JsonKey(name: 'leaves') List<UserPresence>? leaves,
   }) = _PartyPresenceEvent;
 
-  factory PartyPresenceEvent.fromDto(rtpb.PartyPresenceEvent dto) => PartyPresenceEvent(
+  factory PartyPresenceEvent.fromDto(rtpb.PartyPresenceEvent dto) =>
+      PartyPresenceEvent(
         partyId: dto.partyId,
         joins: dto.joins.map((e) => UserPresence.fromDto(e)).toList(),
         leaves: dto.leaves.map((e) => UserPresence.fromDto(e)).toList(),
@@ -67,9 +69,9 @@ sealed class PartyLeader with _$PartyLeader {
   }) = _PartyLeader;
 
   factory PartyLeader.fromDto(rtpb.PartyLeader dto) => PartyLeader(
-        partyId: dto.partyId,
-        newLeader: UserPresence.fromDto(dto.presence),
-      );
+    partyId: dto.partyId,
+    newLeader: UserPresence.fromDto(dto.presence),
+  );
 }
 
 @freezed
@@ -81,9 +83,8 @@ sealed class PartyClose with _$PartyClose {
     @JsonKey(name: 'party_id') required String partyId,
   }) = _PartyClose;
 
-  factory PartyClose.fromDto(rtpb.PartyClose dto) => PartyClose(
-        partyId: dto.partyId,
-      );
+  factory PartyClose.fromDto(rtpb.PartyClose dto) =>
+      PartyClose(partyId: dto.partyId);
 }
 
 @freezed
@@ -98,9 +99,12 @@ sealed class PartyJoinRequest with _$PartyJoinRequest {
     @JsonKey(name: 'presences') required List<UserPresence> presences,
   }) = _PartyJoinRequest;
 
-  factory PartyJoinRequest.fromDto(rtpb.PartyJoinRequest dto) => PartyJoinRequest(
+  factory PartyJoinRequest.fromDto(rtpb.PartyJoinRequest dto) =>
+      PartyJoinRequest(
         partyId: dto.partyId,
-        presences: dto.presences.map((e) => UserPresence.fromDto(e)).toList(growable: false),
+        presences: dto.presences
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
       );
 }
 
@@ -110,18 +114,23 @@ sealed class PartyList with _$PartyList {
 
   const factory PartyList({
     /// The parties matching the list request.
-    @JsonKey(name: 'parties') @Default(<PartyListItem>[]) List<PartyListItem> parties,
+    @JsonKey(name: 'parties')
+    @Default(<PartyListItem>[])
+    List<PartyListItem> parties,
 
     /// A cursor for the next page of results, if any.
     @JsonKey(name: 'cursor') String? cursor,
   }) = _PartyList;
 
-  factory PartyList.fromJson(Map<String, Object?> json) => _$PartyListFromJson(json);
+  factory PartyList.fromJson(Map<String, Object?> json) =>
+      _$PartyListFromJson(json);
 
   factory PartyList.fromDto(api.PartyList dto) => PartyList(
-        parties: dto.parties.map((e) => PartyListItem.fromDto(e)).toList(growable: false),
-        cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
-      );
+    parties: dto.parties
+        .map((e) => PartyListItem.fromDto(e))
+        .toList(growable: false),
+    cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
+  );
 }
 
 @freezed
@@ -145,13 +154,14 @@ sealed class PartyListItem with _$PartyListItem {
     @JsonKey(name: 'label') String? label,
   }) = _PartyListItem;
 
-  factory PartyListItem.fromJson(Map<String, Object?> json) => _$PartyListItemFromJson(json);
+  factory PartyListItem.fromJson(Map<String, Object?> json) =>
+      _$PartyListItemFromJson(json);
 
   factory PartyListItem.fromDto(api.Party dto) => PartyListItem(
-        partyId: dto.partyId,
-        open: dto.open,
-        hidden: dto.hidden,
-        maxSize: dto.maxSize,
-        label: PlatformNormalizer.normalizeNullableString(dto.label),
-      );
+    partyId: dto.partyId,
+    open: dto.open,
+    hidden: dto.hidden,
+    maxSize: dto.maxSize,
+    label: PlatformNormalizer.normalizeNullableString(dto.label),
+  );
 }

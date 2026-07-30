@@ -21,19 +21,13 @@ void main() {
 
     test('can create group', () async {
       final name = faker.guid.guid();
-      final result = await client.createGroup(
-        session: session,
-        name: name,
-      );
+      final result = await client.createGroup(session: session, name: name);
 
       expect(result, isA<Group>());
       expect(result.name, equals(name));
 
       // Cleanup created group
-      await client.deleteGroup(
-        session: session,
-        groupId: result.id,
-      );
+      await client.deleteGroup(session: session, groupId: result.id);
     });
 
     test('it can list groups', () async {
@@ -47,18 +41,12 @@ void main() {
       expect(result, isA<GroupList>());
 
       // Cleanup created group
-      await client.deleteGroup(
-        session: session,
-        groupId: group.id,
-      );
+      await client.deleteGroup(session: session, groupId: group.id);
     });
 
     test('it can search group by name', () async {
       final name = faker.guid.guid();
-      final group = await client.createGroup(
-        session: session,
-        name: name,
-      );
+      final group = await client.createGroup(session: session, name: name);
 
       final result = await client.listGroups(session: session, name: name);
 
@@ -66,10 +54,7 @@ void main() {
       expect(result.groups, hasLength(1));
 
       // Cleanup created group
-      await client.deleteGroup(
-        session: session,
-        groupId: group.id,
-      );
+      await client.deleteGroup(session: session, groupId: group.id);
     });
 
     test('correctly lists user\'s groups', () async {
@@ -84,8 +69,9 @@ void main() {
       }
 
       // Create group where user is a member
-      final otherUserSession =
-          await client.authenticateDevice(deviceId: faker.guid.guid());
+      final otherUserSession = await client.authenticateDevice(
+        deviceId: faker.guid.guid(),
+      );
       final memberGroup = await client.createGroup(
         session: otherUserSession,
         name: faker.guid.guid(),
@@ -107,10 +93,7 @@ void main() {
 
       // Cleanup created groups
       for (final group in groups) {
-        await client.deleteGroup(
-          session: session,
-          groupId: group.id,
-        );
+        await client.deleteGroup(session: session, groupId: group.id);
       }
       await client.deleteGroup(
         session: otherUserSession,
@@ -124,8 +107,9 @@ void main() {
         name: faker.guid.guid(),
       );
 
-      final otherUserSession =
-          await client.authenticateDevice(deviceId: faker.guid.guid());
+      final otherUserSession = await client.authenticateDevice(
+        deviceId: faker.guid.guid(),
+      );
 
       await client.addGroupUsers(
         session: session,
@@ -142,10 +126,7 @@ void main() {
       expect(result.groupUsers, hasLength(2));
 
       // Cleanup created group
-      await client.deleteGroup(
-        session: session,
-        groupId: group.id,
-      );
+      await client.deleteGroup(session: session, groupId: group.id);
     });
   });
 }
