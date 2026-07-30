@@ -56,7 +56,7 @@ class _LiveEventsPageState extends ConsumerState<LiveEventsPage> {
   @override
   Widget build(BuildContext context) {
     final liveEvents = _liveEventList?.liveEvents ?? [];
-    
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Live Events'),
@@ -117,7 +117,8 @@ class _LiveEventsPageState extends ConsumerState<LiveEventsPage> {
                             if (liveEvent.description?.isNotEmpty == true)
                               Text('Description: ${liveEvent.description}'),
                             if (liveEvent.activeStartTimeSec != null)
-                              Text('Active: ${liveEvent.activeStartTimeSec} - ${liveEvent.activeEndTimeSec ?? 'ongoing'}'),
+                              Text(
+                                  'Active: ${liveEvent.activeStartTimeSec} - ${liveEvent.activeEndTimeSec ?? 'ongoing'}'),
                           ],
                         ),
                         children: [
@@ -133,13 +134,17 @@ class _LiveEventsPageState extends ConsumerState<LiveEventsPage> {
                                 const SizedBox(height: 8),
                                 _buildDetailRow('Name', liveEvent.name),
                                 if (liveEvent.description?.isNotEmpty == true)
-                                  _buildDetailRow('Description', liveEvent.description),
+                                  _buildDetailRow(
+                                      'Description', liveEvent.description),
                                 if (liveEvent.activeStartTimeSec != null)
-                                  _buildDetailRow('Start Time', liveEvent.activeStartTimeSec),
+                                  _buildDetailRow('Start Time',
+                                      liveEvent.activeStartTimeSec),
                                 if (liveEvent.activeEndTimeSec != null)
-                                  _buildDetailRow('End Time', liveEvent.activeEndTimeSec),
+                                  _buildDetailRow(
+                                      'End Time', liveEvent.activeEndTimeSec),
                                 if (liveEvent.value != null)
-                                  _buildDetailRow('Value', liveEvent.value.toString()),
+                                  _buildDetailRow(
+                                      'Value', liveEvent.value.toString()),
                               ],
                             ),
                           ),

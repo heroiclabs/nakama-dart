@@ -13,7 +13,8 @@ abstract class LiveEventList with _$LiveEventList {
     required List<LiveEvent> liveEvents,
   }) = _LiveEventList;
 
-  factory LiveEventList.fromJson(Map<String, dynamic> json) => _$LiveEventListFromJson(json);
+  factory LiveEventList.fromJson(Map<String, dynamic> json) =>
+      _$LiveEventListFromJson(json);
 
   factory LiveEventList.fromDto(ApiLiveEventList dto) => LiveEventList(
         liveEvents: dto.liveEvents!.map((e) => LiveEvent.fromDto(e)).toList(),
@@ -42,7 +43,8 @@ abstract class LiveEvent with _$LiveEvent {
     String? value,
   }) = _LiveEvent;
 
-  factory LiveEvent.fromJson(Map<String, dynamic> json) => _$LiveEventFromJson(json);
+  factory LiveEvent.fromJson(Map<String, dynamic> json) =>
+      _$LiveEventFromJson(json);
 
   factory LiveEvent.fromDto(ApiLiveEvent dto) => LiveEvent(
         activeEndTimeSec: dto.activeEndTimeSec,

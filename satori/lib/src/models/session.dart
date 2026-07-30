@@ -30,14 +30,20 @@ abstract class Session with _$Session {
     final token = JwtDecoder.decode(session.token!);
     assert(token.containsKey('iid'));
 
-    final refreshToken = session.refreshToken != null ? JwtDecoder.decode(session.refreshToken!) : null;
-    final refreshExpiresAt = refreshToken != null ? DateTime.fromMillisecondsSinceEpoch((refreshToken['exp'] as int) * 1000) : DateTime.now();
+    final refreshToken = session.refreshToken != null
+        ? JwtDecoder.decode(session.refreshToken!)
+        : null;
+    final refreshExpiresAt = refreshToken != null
+        ? DateTime.fromMillisecondsSinceEpoch(
+            (refreshToken['exp'] as int) * 1000)
+        : DateTime.now();
 
     return Session(
       token: session.token!,
       refreshToken: session.refreshToken ?? '',
       identityId: token['iid'] as String,
-      expiresAt: DateTime.fromMillisecondsSinceEpoch((token['exp'] as int) * 1000),
+      expiresAt:
+          DateTime.fromMillisecondsSinceEpoch((token['exp'] as int) * 1000),
       refreshExpiresAt: refreshExpiresAt,
     );
   }

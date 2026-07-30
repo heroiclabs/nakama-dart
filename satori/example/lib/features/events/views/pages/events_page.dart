@@ -45,17 +45,20 @@ class _EventsPageState extends ConsumerState<EventsPage> {
 
     try {
       final client = ref.read(satoriClientProvider);
-      
+
       final event = Event(
         name: _eventNameController.text.trim(),
-        value: _eventValueController.text.isNotEmpty ? _eventValueController.text : null,
+        value: _eventValueController.text.isNotEmpty
+            ? _eventValueController.text
+            : null,
         timestamp: DateTime.now().toUtc(),
       );
 
       await client.event(session: session, event: event);
 
       setState(() {
-        _sentEvents.add('${event.name}: ${event.value ?? 'no value'} at ${event.timestamp}');
+        _sentEvents.add(
+            '${event.name}: ${event.value ?? 'no value'} at ${event.timestamp}');
       });
 
       _eventNameController.clear();
@@ -131,12 +134,14 @@ class _EventsPageState extends ConsumerState<EventsPage> {
               runSpacing: 8.0,
               children: [
                 ElevatedButton.icon(
-                  onPressed: () => _setEventExample('achievementUnlocked', 'ACHIEVEMENT_ID'),
+                  onPressed: () =>
+                      _setEventExample('achievementUnlocked', 'ACHIEVEMENT_ID'),
                   icon: const Icon(Icons.emoji_events, size: 16),
                   label: const Text('Achievement Unlocked'),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => _setEventExample('awardReceived', 'AWARD_ID'),
+                  onPressed: () =>
+                      _setEventExample('awardReceived', 'AWARD_ID'),
                   icon: const Icon(Icons.card_giftcard, size: 16),
                   label: const Text('Award Received'),
                 ),
@@ -151,22 +156,26 @@ class _EventsPageState extends ConsumerState<EventsPage> {
                   label: const Text('Guild Joined'),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => _setEventExample('guildMemberAccepted', 'MEMBER_ID'),
+                  onPressed: () =>
+                      _setEventExample('guildMemberAccepted', 'MEMBER_ID'),
                   icon: const Icon(Icons.person_add_alt_1, size: 16),
                   label: const Text('Guild Member Accepted'),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => _setEventExample('guildRewardsClaimed', 'REWARD_ID'),
+                  onPressed: () =>
+                      _setEventExample('guildRewardsClaimed', 'REWARD_ID'),
                   icon: const Icon(Icons.redeem, size: 16),
                   label: const Text('Guild Rewards Claimed'),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => _setEventExample('guildRoleUpdated', 'ROLE_ID'),
+                  onPressed: () =>
+                      _setEventExample('guildRoleUpdated', 'ROLE_ID'),
                   icon: const Icon(Icons.admin_panel_settings, size: 16),
                   label: const Text('Guild Role Updated'),
                 ),
                 ElevatedButton.icon(
-                  onPressed: () => _setEventExample('inventoryUpdated', 'ITEM_ID'),
+                  onPressed: () =>
+                      _setEventExample('inventoryUpdated', 'ITEM_ID'),
                   icon: const Icon(Icons.inventory, size: 16),
                   label: const Text('Inventory Updated'),
                 ),
@@ -217,7 +226,8 @@ class _EventsPageState extends ConsumerState<EventsPage> {
                         return Card(
                           child: ListTile(
                             leading: const Icon(Icons.event),
-                            title: Text(_sentEvents[_sentEvents.length - 1 - index]),
+                            title: Text(
+                                _sentEvents[_sentEvents.length - 1 - index]),
                           ),
                         );
                       },

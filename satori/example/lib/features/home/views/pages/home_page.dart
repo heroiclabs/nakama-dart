@@ -38,11 +38,13 @@ class HomePage extends ConsumerWidget {
                     children: [
                       const Text(
                         'Session Info',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 8),
                       Text('User ID: ${session.identityId}'),
-                      Text('Session Token: ${session.token.substring(0, 20)}...'),
+                      Text(
+                          'Session Token: ${session.token.substring(0, 20)}...'),
                     ],
                   ),
                 ),
@@ -70,7 +72,8 @@ class HomePage extends ConsumerWidget {
                     title: 'Experiments',
                     description: 'A/B testing experiments',
                     icon: Icons.science,
-                    onTap: () => Navigator.of(context).pushNamed(Routes.experiments),
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(Routes.experiments),
                   ),
                   _FeatureCard(
                     title: 'Flags',
@@ -82,19 +85,22 @@ class HomePage extends ConsumerWidget {
                     title: 'Live Events',
                     description: 'Live operational events',
                     icon: Icons.live_tv,
-                    onTap: () => Navigator.of(context).pushNamed(Routes.liveEvents),
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(Routes.liveEvents),
                   ),
                   _FeatureCard(
                     title: 'Properties',
                     description: 'Manage user properties',
                     icon: Icons.settings,
-                    onTap: () => Navigator.of(context).pushNamed(Routes.properties),
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(Routes.properties),
                   ),
                   _FeatureCard(
                     title: 'Messages',
                     description: 'View scheduled messages',
                     icon: Icons.message,
-                    onTap: () => Navigator.of(context).pushNamed(Routes.messages),
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(Routes.messages),
                   ),
                 ],
               ),
@@ -134,7 +140,8 @@ class _FeatureCard extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 title,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 4),

@@ -33,7 +33,8 @@ abstract class Event with _$Event {
         name: dto.name,
         id: dto.id,
         metadata: dto.metadata?.cast<String, dynamic>(),
-        timestamp: dto.timestamp != null ? DateTime.parse(dto.timestamp!) : null,
+        timestamp:
+            dto.timestamp != null ? DateTime.parse(dto.timestamp!) : null,
         value: dto.value,
       );
 

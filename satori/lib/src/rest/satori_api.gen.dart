@@ -13,745 +13,760 @@ part 'satori_api.gen.g.dart';
 /// The request to update the status of a message.
 @JsonSerializable(explicitToJson: true)
 class ApiUpdateMessageRequest {
-    @JsonKey(name: 'consume_time')
-    final String? consumeTime;
-    @JsonKey(name: 'read_time')
-    final String? readTime;
-    
-    const ApiUpdateMessageRequest({
-        required this.consumeTime,
-        required this.readTime,
-    });
+  @JsonKey(name: 'consume_time')
+  final String? consumeTime;
+  @JsonKey(name: 'read_time')
+  final String? readTime;
 
-    factory ApiUpdateMessageRequest.fromJson(Map<String, dynamic> json) => _$ApiUpdateMessageRequestFromJson(json);
+  const ApiUpdateMessageRequest({
+    required this.consumeTime,
+    required this.readTime,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiUpdateMessageRequestToJson(this);
+  factory ApiUpdateMessageRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiUpdateMessageRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiUpdateMessageRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
-/// 
+///
 @JsonSerializable(explicitToJson: true)
 class FlagValueChangeReason {
-    @JsonKey(name: 'name')
-    final String? name;
-    @JsonKey(name: 'type')
-    @FlagValueChangeReasonTypeConverter()
-    final FlagValueChangeReasonType? type;
-    @JsonKey(name: 'variant_name')
-    final String? variantName;
-    
-    const FlagValueChangeReason({
-        required this.name,
-        required this.type,
-        required this.variantName,
-    });
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'type')
+  @FlagValueChangeReasonTypeConverter()
+  final FlagValueChangeReasonType? type;
+  @JsonKey(name: 'variant_name')
+  final String? variantName;
 
-    factory FlagValueChangeReason.fromJson(Map<String, dynamic> json) => _$FlagValueChangeReasonFromJson(json);
+  const FlagValueChangeReason({
+    required this.name,
+    required this.type,
+    required this.variantName,
+  });
 
-    Map<String, dynamic> toJson() => _$FlagValueChangeReasonToJson(this);
+  factory FlagValueChangeReason.fromJson(Map<String, dynamic> json) =>
+      _$FlagValueChangeReasonFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$FlagValueChangeReasonToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 enum FlagValueChangeReasonType {
-    @JsonValue('UNKNOWN')
-    unknown,
-    @JsonValue('FLAG_VARIANT')
-    flagVariant,
-    @JsonValue('LIVE_EVENT')
-    liveEvent,
-    @JsonValue('EXPERIMENT')
-    experiment,
+  @JsonValue('UNKNOWN')
+  unknown,
+  @JsonValue('FLAG_VARIANT')
+  flagVariant,
+  @JsonValue('LIVE_EVENT')
+  liveEvent,
+  @JsonValue('EXPERIMENT')
+  experiment,
 }
 
 /// Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
 @JsonSerializable(explicitToJson: true)
 class ApiAuthenticateLogoutRequest {
-    @JsonKey(name: 'refresh_token')
-    final String? refreshToken;
-    @JsonKey(name: 'token')
-    final String? token;
-    
-    const ApiAuthenticateLogoutRequest({
-        required this.refreshToken,
-        required this.token,
-    });
+  @JsonKey(name: 'refresh_token')
+  final String? refreshToken;
+  @JsonKey(name: 'token')
+  final String? token;
 
-    factory ApiAuthenticateLogoutRequest.fromJson(Map<String, dynamic> json) => _$ApiAuthenticateLogoutRequestFromJson(json);
+  const ApiAuthenticateLogoutRequest({
+    required this.refreshToken,
+    required this.token,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiAuthenticateLogoutRequestToJson(this);
+  factory ApiAuthenticateLogoutRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiAuthenticateLogoutRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiAuthenticateLogoutRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Authenticate against the server with a refresh token.
 @JsonSerializable(explicitToJson: true)
 class ApiAuthenticateRefreshRequest {
-    @JsonKey(name: 'refresh_token')
-    final String? refreshToken;
-    
-    const ApiAuthenticateRefreshRequest({
-        required this.refreshToken,
-    });
+  @JsonKey(name: 'refresh_token')
+  final String? refreshToken;
 
-    factory ApiAuthenticateRefreshRequest.fromJson(Map<String, dynamic> json) => _$ApiAuthenticateRefreshRequestFromJson(json);
+  const ApiAuthenticateRefreshRequest({
+    required this.refreshToken,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiAuthenticateRefreshRequestToJson(this);
+  factory ApiAuthenticateRefreshRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiAuthenticateRefreshRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiAuthenticateRefreshRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Authentication request
 @JsonSerializable(explicitToJson: true)
 class ApiAuthenticateRequest {
-    @JsonKey(name: 'custom')
-    final Map<String, String>? custom;
-    @JsonKey(name: 'default')
-    final Map<String, String>? defaultValue;
-    @JsonKey(name: 'id')
-    final String? id;
-    @JsonKey(name: 'no_session')
-    final bool? noSession;
-    
-    const ApiAuthenticateRequest({
-        required this.custom,
-        required this.defaultValue,
-        required this.id,
-        required this.noSession,
-    });
+  @JsonKey(name: 'custom')
+  final Map<String, String>? custom;
+  @JsonKey(name: 'default')
+  final Map<String, String>? defaultValue;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'no_session')
+  final bool? noSession;
 
-    factory ApiAuthenticateRequest.fromJson(Map<String, dynamic> json) => _$ApiAuthenticateRequestFromJson(json);
+  const ApiAuthenticateRequest({
+    required this.custom,
+    required this.defaultValue,
+    required this.id,
+    required this.noSession,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiAuthenticateRequestToJson(this);
+  factory ApiAuthenticateRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiAuthenticateRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiAuthenticateRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A single event. Usually, but not necessarily, part of a batch.
 @JsonSerializable(explicitToJson: true)
 class ApiEvent {
-    @JsonKey(name: 'id')
-    final String? id;
-    @JsonKey(name: 'metadata')
-    final Map<String, String>? metadata;
-    @JsonKey(name: 'name')
-    final String? name;
-    @JsonKey(name: 'timestamp')
-    final String? timestamp;
-    @JsonKey(name: 'value')
-    final String? value;
-    
-    const ApiEvent({
-        required this.id,
-        required this.metadata,
-        required this.name,
-        required this.timestamp,
-        required this.value,
-    });
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'metadata')
+  final Map<String, String>? metadata;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'timestamp')
+  final String? timestamp;
+  @JsonKey(name: 'value')
+  final String? value;
 
-    factory ApiEvent.fromJson(Map<String, dynamic> json) => _$ApiEventFromJson(json);
+  const ApiEvent({
+    required this.id,
+    required this.metadata,
+    required this.name,
+    required this.timestamp,
+    required this.value,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiEventToJson(this);
+  factory ApiEvent.fromJson(Map<String, dynamic> json) =>
+      _$ApiEventFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiEventToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Publish an event to the server
 @JsonSerializable(explicitToJson: true)
 class ApiEventRequest {
-    @JsonKey(name: 'events')
-    final List<ApiEvent>? events;
-    
-    const ApiEventRequest({
-        required this.events,
-    });
+  @JsonKey(name: 'events')
+  final List<ApiEvent>? events;
 
-    factory ApiEventRequest.fromJson(Map<String, dynamic> json) => _$ApiEventRequestFromJson(json);
+  const ApiEventRequest({
+    required this.events,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiEventRequestToJson(this);
+  factory ApiEventRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiEventRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiEventRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// An experiment that this user is partaking.
 @JsonSerializable(explicitToJson: true)
 class ApiExperiment {
-    @JsonKey(name: 'name')
-    final String? name;
-    @JsonKey(name: 'value')
-    final String? value;
-    
-    const ApiExperiment({
-        required this.name,
-        required this.value,
-    });
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'value')
+  final String? value;
 
-    factory ApiExperiment.fromJson(Map<String, dynamic> json) => _$ApiExperimentFromJson(json);
+  const ApiExperiment({
+    required this.name,
+    required this.value,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiExperimentToJson(this);
+  factory ApiExperiment.fromJson(Map<String, dynamic> json) =>
+      _$ApiExperimentFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiExperimentToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// All experiments that this identity is involved with.
 @JsonSerializable(explicitToJson: true)
 class ApiExperimentList {
-    @JsonKey(name: 'experiments')
-    final List<ApiExperiment>? experiments;
-    
-    const ApiExperimentList({
-        required this.experiments,
-    });
+  @JsonKey(name: 'experiments')
+  final List<ApiExperiment>? experiments;
 
-    factory ApiExperimentList.fromJson(Map<String, dynamic> json) => _$ApiExperimentListFromJson(json);
+  const ApiExperimentList({
+    required this.experiments,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiExperimentListToJson(this);
+  factory ApiExperimentList.fromJson(Map<String, dynamic> json) =>
+      _$ApiExperimentListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiExperimentListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Feature flag available to the identity.
 @JsonSerializable(explicitToJson: true)
 class ApiFlag {
-    @JsonKey(name: 'change_reason')
-    final FlagValueChangeReason? changeReason;
-    @JsonKey(name: 'condition_changed')
-    final bool? conditionChanged;
-    @JsonKey(name: 'name')
-    final String? name;
-    @JsonKey(name: 'value')
-    final String? value;
-    
-    const ApiFlag({
-        required this.changeReason,
-        required this.conditionChanged,
-        required this.name,
-        required this.value,
-    });
+  @JsonKey(name: 'change_reason')
+  final FlagValueChangeReason? changeReason;
+  @JsonKey(name: 'condition_changed')
+  final bool? conditionChanged;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'value')
+  final String? value;
 
-    factory ApiFlag.fromJson(Map<String, dynamic> json) => _$ApiFlagFromJson(json);
+  const ApiFlag({
+    required this.changeReason,
+    required this.conditionChanged,
+    required this.name,
+    required this.value,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiFlagToJson(this);
+  factory ApiFlag.fromJson(Map<String, dynamic> json) =>
+      _$ApiFlagFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiFlagToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// All flags available to the identity
 @JsonSerializable(explicitToJson: true)
 class ApiFlagList {
-    @JsonKey(name: 'flags')
-    final List<ApiFlag>? flags;
-    
-    const ApiFlagList({
-        required this.flags,
-    });
+  @JsonKey(name: 'flags')
+  final List<ApiFlag>? flags;
 
-    factory ApiFlagList.fromJson(Map<String, dynamic> json) => _$ApiFlagListFromJson(json);
+  const ApiFlagList({
+    required this.flags,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiFlagListToJson(this);
+  factory ApiFlagList.fromJson(Map<String, dynamic> json) =>
+      _$ApiFlagListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiFlagListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Feature flag available to the identity.
 @JsonSerializable(explicitToJson: true)
 class ApiFlagOverride {
-    @JsonKey(name: 'flag_name')
-    final String? flagName;
-    @JsonKey(name: 'overrides')
-    final List<ApiFlagOverrideValue>? overrides;
-    
-    const ApiFlagOverride({
-        required this.flagName,
-        required this.overrides,
-    });
+  @JsonKey(name: 'flag_name')
+  final String? flagName;
+  @JsonKey(name: 'overrides')
+  final List<ApiFlagOverrideValue>? overrides;
 
-    factory ApiFlagOverride.fromJson(Map<String, dynamic> json) => _$ApiFlagOverrideFromJson(json);
+  const ApiFlagOverride({
+    required this.flagName,
+    required this.overrides,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiFlagOverrideToJson(this);
+  factory ApiFlagOverride.fromJson(Map<String, dynamic> json) =>
+      _$ApiFlagOverrideFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiFlagOverrideToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// All flags available to the identity and their value overrides
 @JsonSerializable(explicitToJson: true)
 class ApiFlagOverrideList {
-    @JsonKey(name: 'flags')
-    final List<ApiFlagOverride>? flags;
-    
-    const ApiFlagOverrideList({
-        required this.flags,
-    });
+  @JsonKey(name: 'flags')
+  final List<ApiFlagOverride>? flags;
 
-    factory ApiFlagOverrideList.fromJson(Map<String, dynamic> json) => _$ApiFlagOverrideListFromJson(json);
+  const ApiFlagOverrideList({
+    required this.flags,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiFlagOverrideListToJson(this);
+  factory ApiFlagOverrideList.fromJson(Map<String, dynamic> json) =>
+      _$ApiFlagOverrideListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiFlagOverrideListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 enum ApiFlagOverrideType {
-    @JsonValue('FLAG')
-    flag,
-    @JsonValue('FLAG_VARIANT')
-    flagVariant,
-    @JsonValue('LIVE_EVENT_FLAG')
-    liveEventFlag,
-    @JsonValue('LIVE_EVENT_FLAG_VARIANT')
-    liveEventFlagVariant,
-    @JsonValue('EXPERIMENT_PHASE_VARIANT_FLAG')
-    experimentPhaseVariantFlag,
+  @JsonValue('FLAG')
+  flag,
+  @JsonValue('FLAG_VARIANT')
+  flagVariant,
+  @JsonValue('LIVE_EVENT_FLAG')
+  liveEventFlag,
+  @JsonValue('LIVE_EVENT_FLAG_VARIANT')
+  liveEventFlagVariant,
+  @JsonValue('EXPERIMENT_PHASE_VARIANT_FLAG')
+  experimentPhaseVariantFlag,
 }
 
 /// The details of a flag value override.
 @JsonSerializable(explicitToJson: true)
 class ApiFlagOverrideValue {
-    @JsonKey(name: 'create_time_sec')
-    final String? createTimeSec;
-    @JsonKey(name: 'name')
-    final String? name;
-    @JsonKey(name: 'type')
-    final ApiFlagOverrideType? type;
-    @JsonKey(name: 'value')
-    final String? value;
-    @JsonKey(name: 'variant_name')
-    final String? variantName;
-    
-    const ApiFlagOverrideValue({
-        required this.createTimeSec,
-        required this.name,
-        required this.type,
-        required this.value,
-        required this.variantName,
-    });
+  @JsonKey(name: 'create_time_sec')
+  final String? createTimeSec;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'type')
+  final ApiFlagOverrideType? type;
+  @JsonKey(name: 'value')
+  final String? value;
+  @JsonKey(name: 'variant_name')
+  final String? variantName;
 
-    factory ApiFlagOverrideValue.fromJson(Map<String, dynamic> json) => _$ApiFlagOverrideValueFromJson(json);
+  const ApiFlagOverrideValue({
+    required this.createTimeSec,
+    required this.name,
+    required this.type,
+    required this.value,
+    required this.variantName,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiFlagOverrideValueToJson(this);
+  factory ApiFlagOverrideValue.fromJson(Map<String, dynamic> json) =>
+      _$ApiFlagOverrideValueFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiFlagOverrideValueToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A response containing all the messages for an identity.
 @JsonSerializable(explicitToJson: true)
 class ApiGetMessageListResponse {
-    @JsonKey(name: 'cacheable_cursor')
-    final String? cacheableCursor;
-    @JsonKey(name: 'messages')
-    final List<ApiMessage>? messages;
-    @JsonKey(name: 'next_cursor')
-    final String? nextCursor;
-    @JsonKey(name: 'prev_cursor')
-    final String? prevCursor;
-    
-    const ApiGetMessageListResponse({
-        required this.cacheableCursor,
-        required this.messages,
-        required this.nextCursor,
-        required this.prevCursor,
-    });
+  @JsonKey(name: 'cacheable_cursor')
+  final String? cacheableCursor;
+  @JsonKey(name: 'messages')
+  final List<ApiMessage>? messages;
+  @JsonKey(name: 'next_cursor')
+  final String? nextCursor;
+  @JsonKey(name: 'prev_cursor')
+  final String? prevCursor;
 
-    factory ApiGetMessageListResponse.fromJson(Map<String, dynamic> json) => _$ApiGetMessageListResponseFromJson(json);
+  const ApiGetMessageListResponse({
+    required this.cacheableCursor,
+    required this.messages,
+    required this.nextCursor,
+    required this.prevCursor,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiGetMessageListResponseToJson(this);
+  factory ApiGetMessageListResponse.fromJson(Map<String, dynamic> json) =>
+      _$ApiGetMessageListResponseFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiGetMessageListResponseToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Enrich/replace the current session with a new ID.
 @JsonSerializable(explicitToJson: true)
 class ApiIdentifyRequest {
-    @JsonKey(name: 'custom')
-    final Map<String, String>? custom;
-    @JsonKey(name: 'default')
-    final Map<String, String>? defaultValue;
-    @JsonKey(name: 'id')
-    final String? id;
-    
-    const ApiIdentifyRequest({
-        required this.custom,
-        required this.defaultValue,
-        required this.id,
-    });
+  @JsonKey(name: 'custom')
+  final Map<String, String>? custom;
+  @JsonKey(name: 'default')
+  final Map<String, String>? defaultValue;
+  @JsonKey(name: 'id')
+  final String? id;
 
-    factory ApiIdentifyRequest.fromJson(Map<String, dynamic> json) => _$ApiIdentifyRequestFromJson(json);
+  const ApiIdentifyRequest({
+    required this.custom,
+    required this.defaultValue,
+    required this.id,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiIdentifyRequestToJson(this);
+  factory ApiIdentifyRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiIdentifyRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiIdentifyRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A single live event.
 @JsonSerializable(explicitToJson: true)
 class ApiLiveEvent {
-    @JsonKey(name: 'active_end_time_sec')
-    final String? activeEndTimeSec;
-    @JsonKey(name: 'active_start_time_sec')
-    final String? activeStartTimeSec;
-    @JsonKey(name: 'description')
-    final String? description;
-    @JsonKey(name: 'duration_sec')
-    final String? durationSec;
-    @JsonKey(name: 'end_time_sec')
-    final String? endTimeSec;
-    @JsonKey(name: 'id')
-    final String? id;
-    @JsonKey(name: 'name')
-    final String? name;
-    @JsonKey(name: 'reset_cron')
-    final String? resetCron;
-    @JsonKey(name: 'start_time_sec')
-    final String? startTimeSec;
-    @JsonKey(name: 'value')
-    final String? value;
-    
-    const ApiLiveEvent({
-        required this.activeEndTimeSec,
-        required this.activeStartTimeSec,
-        required this.description,
-        required this.durationSec,
-        required this.endTimeSec,
-        required this.id,
-        required this.name,
-        required this.resetCron,
-        required this.startTimeSec,
-        required this.value,
-    });
+  @JsonKey(name: 'active_end_time_sec')
+  final String? activeEndTimeSec;
+  @JsonKey(name: 'active_start_time_sec')
+  final String? activeStartTimeSec;
+  @JsonKey(name: 'description')
+  final String? description;
+  @JsonKey(name: 'duration_sec')
+  final String? durationSec;
+  @JsonKey(name: 'end_time_sec')
+  final String? endTimeSec;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'name')
+  final String? name;
+  @JsonKey(name: 'reset_cron')
+  final String? resetCron;
+  @JsonKey(name: 'start_time_sec')
+  final String? startTimeSec;
+  @JsonKey(name: 'value')
+  final String? value;
 
-    factory ApiLiveEvent.fromJson(Map<String, dynamic> json) => _$ApiLiveEventFromJson(json);
+  const ApiLiveEvent({
+    required this.activeEndTimeSec,
+    required this.activeStartTimeSec,
+    required this.description,
+    required this.durationSec,
+    required this.endTimeSec,
+    required this.id,
+    required this.name,
+    required this.resetCron,
+    required this.startTimeSec,
+    required this.value,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiLiveEventToJson(this);
+  factory ApiLiveEvent.fromJson(Map<String, dynamic> json) =>
+      _$ApiLiveEventFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiLiveEventToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// List of Live events.
 @JsonSerializable(explicitToJson: true)
 class ApiLiveEventList {
-    @JsonKey(name: 'live_events')
-    final List<ApiLiveEvent>? liveEvents;
-    
-    const ApiLiveEventList({
-        required this.liveEvents,
-    });
+  @JsonKey(name: 'live_events')
+  final List<ApiLiveEvent>? liveEvents;
 
-    factory ApiLiveEventList.fromJson(Map<String, dynamic> json) => _$ApiLiveEventListFromJson(json);
+  const ApiLiveEventList({
+    required this.liveEvents,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiLiveEventListToJson(this);
+  factory ApiLiveEventList.fromJson(Map<String, dynamic> json) =>
+      _$ApiLiveEventListFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiLiveEventListToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A scheduled message.
 @JsonSerializable(explicitToJson: true)
 class ApiMessage {
-    @JsonKey(name: 'consume_time')
-    final String? consumeTime;
-    @JsonKey(name: 'create_time')
-    final String? createTime;
-    @JsonKey(name: 'id')
-    final String? id;
-    @JsonKey(name: 'image_url')
-    final String? imageUrl;
-    @JsonKey(name: 'metadata')
-    final Map<String, String>? metadata;
-    @JsonKey(name: 'read_time')
-    final String? readTime;
-    @JsonKey(name: 'schedule_id')
-    final String? scheduleId;
-    @JsonKey(name: 'send_time')
-    final String? sendTime;
-    @JsonKey(name: 'text')
-    final String? text;
-    @JsonKey(name: 'title')
-    final String? title;
-    @JsonKey(name: 'update_time')
-    final String? updateTime;
-    
-    const ApiMessage({
-        required this.consumeTime,
-        required this.createTime,
-        required this.id,
-        required this.imageUrl,
-        required this.metadata,
-        required this.readTime,
-        required this.scheduleId,
-        required this.sendTime,
-        required this.text,
-        required this.title,
-        required this.updateTime,
-    });
+  @JsonKey(name: 'consume_time')
+  final String? consumeTime;
+  @JsonKey(name: 'create_time')
+  final String? createTime;
+  @JsonKey(name: 'id')
+  final String? id;
+  @JsonKey(name: 'image_url')
+  final String? imageUrl;
+  @JsonKey(name: 'metadata')
+  final Map<String, String>? metadata;
+  @JsonKey(name: 'read_time')
+  final String? readTime;
+  @JsonKey(name: 'schedule_id')
+  final String? scheduleId;
+  @JsonKey(name: 'send_time')
+  final String? sendTime;
+  @JsonKey(name: 'text')
+  final String? text;
+  @JsonKey(name: 'title')
+  final String? title;
+  @JsonKey(name: 'update_time')
+  final String? updateTime;
 
-    factory ApiMessage.fromJson(Map<String, dynamic> json) => _$ApiMessageFromJson(json);
+  const ApiMessage({
+    required this.consumeTime,
+    required this.createTime,
+    required this.id,
+    required this.imageUrl,
+    required this.metadata,
+    required this.readTime,
+    required this.scheduleId,
+    required this.sendTime,
+    required this.text,
+    required this.title,
+    required this.updateTime,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiMessageToJson(this);
+  factory ApiMessage.fromJson(Map<String, dynamic> json) =>
+      _$ApiMessageFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiMessageToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Properties associated with an identity.
 @JsonSerializable(explicitToJson: true)
 class ApiProperties {
-    @JsonKey(name: 'computed')
-    final Map<String, String>? computed;
-    @JsonKey(name: 'custom')
-    final Map<String, String>? custom;
-    @JsonKey(name: 'default')
-    final Map<String, String>? defaultValue;
-    
-    const ApiProperties({
-        required this.computed,
-        required this.custom,
-        required this.defaultValue,
-    });
+  @JsonKey(name: 'computed')
+  final Map<String, String>? computed;
+  @JsonKey(name: 'custom')
+  final Map<String, String>? custom;
+  @JsonKey(name: 'default')
+  final Map<String, String>? defaultValue;
 
-    factory ApiProperties.fromJson(Map<String, dynamic> json) => _$ApiPropertiesFromJson(json);
+  const ApiProperties({
+    required this.computed,
+    required this.custom,
+    required this.defaultValue,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiPropertiesToJson(this);
+  factory ApiProperties.fromJson(Map<String, dynamic> json) =>
+      _$ApiPropertiesFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiPropertiesToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// A session.
 @JsonSerializable(explicitToJson: true)
 class ApiSession {
-    @JsonKey(name: 'properties')
-    final ApiProperties? properties;
-    @JsonKey(name: 'refresh_token')
-    final String? refreshToken;
-    @JsonKey(name: 'token')
-    final String? token;
-    
-    const ApiSession({
-        required this.properties,
-        required this.refreshToken,
-        required this.token,
-    });
+  @JsonKey(name: 'properties')
+  final ApiProperties? properties;
+  @JsonKey(name: 'refresh_token')
+  final String? refreshToken;
+  @JsonKey(name: 'token')
+  final String? token;
 
-    factory ApiSession.fromJson(Map<String, dynamic> json) => _$ApiSessionFromJson(json);
+  const ApiSession({
+    required this.properties,
+    required this.refreshToken,
+    required this.token,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiSessionToJson(this);
+  factory ApiSession.fromJson(Map<String, dynamic> json) =>
+      _$ApiSessionFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiSessionToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
 /// Update Properties associated with this identity.
 @JsonSerializable(explicitToJson: true)
 class ApiUpdatePropertiesRequest {
-    @JsonKey(name: 'custom')
-    final Map<String, String>? custom;
-    @JsonKey(name: 'default')
-    final Map<String, String>? defaultValue;
-    @JsonKey(name: 'recompute')
-    final bool? recompute;
-    
-    const ApiUpdatePropertiesRequest({
-        required this.custom,
-        required this.defaultValue,
-        required this.recompute,
-    });
+  @JsonKey(name: 'custom')
+  final Map<String, String>? custom;
+  @JsonKey(name: 'default')
+  final Map<String, String>? defaultValue;
+  @JsonKey(name: 'recompute')
+  final bool? recompute;
 
-    factory ApiUpdatePropertiesRequest.fromJson(Map<String, dynamic> json) => _$ApiUpdatePropertiesRequestFromJson(json);
+  const ApiUpdatePropertiesRequest({
+    required this.custom,
+    required this.defaultValue,
+    required this.recompute,
+  });
 
-    Map<String, dynamic> toJson() => _$ApiUpdatePropertiesRequestToJson(this);
+  factory ApiUpdatePropertiesRequest.fromJson(Map<String, dynamic> json) =>
+      _$ApiUpdatePropertiesRequestFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ApiUpdatePropertiesRequestToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
-/// 
+///
 @JsonSerializable(explicitToJson: true)
 class ProtobufAny {
-    @JsonKey(name: '@type')
-    final String? type;
-    
-    const ProtobufAny({
-        required this.type,
-    });
+  @JsonKey(name: '@type')
+  final String? type;
 
-    factory ProtobufAny.fromJson(Map<String, dynamic> json) => _$ProtobufAnyFromJson(json);
+  const ProtobufAny({
+    required this.type,
+  });
 
-    Map<String, dynamic> toJson() => _$ProtobufAnyToJson(this);
+  factory ProtobufAny.fromJson(Map<String, dynamic> json) =>
+      _$ProtobufAnyFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$ProtobufAnyToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
 
-/// 
+///
 @JsonSerializable(explicitToJson: true)
 class RpcStatus {
-    @JsonKey(name: 'code')
-    final int? code;
-    @JsonKey(name: 'details')
-    final List<ProtobufAny>? details;
-    @JsonKey(name: 'message')
-    final String? message;
-    
-    const RpcStatus({
-        required this.code,
-        required this.details,
-        required this.message,
-    });
+  @JsonKey(name: 'code')
+  final int? code;
+  @JsonKey(name: 'details')
+  final List<ProtobufAny>? details;
+  @JsonKey(name: 'message')
+  final String? message;
 
-    factory RpcStatus.fromJson(Map<String, dynamic> json) => _$RpcStatusFromJson(json);
+  const RpcStatus({
+    required this.code,
+    required this.details,
+    required this.message,
+  });
 
-    Map<String, dynamic> toJson() => _$RpcStatusToJson(this);
+  factory RpcStatus.fromJson(Map<String, dynamic> json) =>
+      _$RpcStatusFromJson(json);
 
-    @override
-    String toString() => jsonEncode(this);
+  Map<String, dynamic> toJson() => _$RpcStatusToJson(this);
+
+  @override
+  String toString() => jsonEncode(this);
 }
-
 
 /// The low level client for the Satori API.
 @RestApi()
-abstract class SatoriApiClient
-{
-    factory SatoriApiClient(Dio dio, {String baseUrl}) = _SatoriApiClient;
+abstract class SatoriApiClient {
+  factory SatoriApiClient(Dio dio, {String baseUrl}) = _SatoriApiClient;
 
-    /// A healthcheck which load balancers can use to check the service.
-    @GET('/healthcheck')
-    Future<void> healthcheck({
-        @Header('Authorization') String? authorization,
-	  });
+  /// A healthcheck which load balancers can use to check the service.
+  @GET('/healthcheck')
+  Future<void> healthcheck({
+    @Header('Authorization') String? authorization,
+  });
 
-    /// A readycheck which load balancers can use to check the service.
-    @GET('/readycheck')
-    Future<void> readycheck({
-        @Header('Authorization') String? authorization,
-	  });
+  /// A readycheck which load balancers can use to check the service.
+  @GET('/readycheck')
+  Future<void> readycheck({
+    @Header('Authorization') String? authorization,
+  });
 
-    /// Authenticate against the server.
-    @POST('/v1/authenticate')
-    Future<ApiSession> authenticate({
-        @Header('Authorization') String? authorization,
-        @Body() required ApiAuthenticateRequest body,
-	  });
+  /// Authenticate against the server.
+  @POST('/v1/authenticate')
+  Future<ApiSession> authenticate({
+    @Header('Authorization') String? authorization,
+    @Body() required ApiAuthenticateRequest body,
+  });
 
-    /// Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
-    @POST('/v1/authenticate/logout')
-    Future<void> authenticateLogout({
-        @Header('Authorization') String? authorization,
-        @Body() required ApiAuthenticateLogoutRequest body,
-	  });
+  /// Log out a session, invalidate a refresh token, or log out all sessions/refresh tokens for a user.
+  @POST('/v1/authenticate/logout')
+  Future<void> authenticateLogout({
+    @Header('Authorization') String? authorization,
+    @Body() required ApiAuthenticateLogoutRequest body,
+  });
 
-    /// Refresh a user's session using a refresh token retrieved from a previous authentication request.
-    @POST('/v1/authenticate/refresh')
-    Future<ApiSession> authenticateRefresh({
-        @Header('Authorization') String? authorization,
-        @Body() required ApiAuthenticateRefreshRequest body,
-	  });
+  /// Refresh a user's session using a refresh token retrieved from a previous authentication request.
+  @POST('/v1/authenticate/refresh')
+  Future<ApiSession> authenticateRefresh({
+    @Header('Authorization') String? authorization,
+    @Body() required ApiAuthenticateRefreshRequest body,
+  });
 
-    /// Publish an event for this session.
-    @POST('/v1/event')
-    Future<void> event({
-        @Header('Authorization') String? authorization,
-        @Body() required ApiEventRequest body,
-	  });
+  /// Publish an event for this session.
+  @POST('/v1/event')
+  Future<void> event({
+    @Header('Authorization') String? authorization,
+    @Body() required ApiEventRequest body,
+  });
 
-    /// Get or list all available experiments for this identity.
-    @GET('/v1/experiment')
-    Future<ApiExperimentList> getExperiments({
-        @Header('Authorization') String? authorization,
-		@Query('names')
-    		required List<String> names,
-	  });
+  /// Get or list all available experiments for this identity.
+  @GET('/v1/experiment')
+  Future<ApiExperimentList> getExperiments({
+    @Header('Authorization') String? authorization,
+    @Query('names') required List<String> names,
+  });
 
-    /// List all available flags for this identity.
-    @GET('/v1/flag')
-    Future<ApiFlagList> getFlags({
-        @Header('Authorization') String? authorization,
-		@Query('names')
-    		required List<String> names,
-	  });
+  /// List all available flags for this identity.
+  @GET('/v1/flag')
+  Future<ApiFlagList> getFlags({
+    @Header('Authorization') String? authorization,
+    @Query('names') required List<String> names,
+  });
 
-    /// List all available flags and their value overrides for this identity.
-    @GET('/v1/flag/override')
-    Future<ApiFlagOverrideList> getFlagOverrides({
-        @Header('Authorization') String? authorization,
-		@Query('names')
-    		required List<String> names,
-	  });
+  /// List all available flags and their value overrides for this identity.
+  @GET('/v1/flag/override')
+  Future<ApiFlagOverrideList> getFlagOverrides({
+    @Header('Authorization') String? authorization,
+    @Query('names') required List<String> names,
+  });
 
-    /// Enrich/replace the current session with new identifier.
-    @PUT('/v1/identify')
-    Future<ApiSession> identify({
-        @Header('Authorization') String? authorization,
-        @Body() required ApiIdentifyRequest body,
-	  });
+  /// Enrich/replace the current session with new identifier.
+  @PUT('/v1/identify')
+  Future<ApiSession> identify({
+    @Header('Authorization') String? authorization,
+    @Body() required ApiIdentifyRequest body,
+  });
 
-    /// Delete the caller's identity and associated data.
-    @DELETE('/v1/identity')
-    Future<void> deleteIdentity({
-        @Header('Authorization') String? authorization,
-	  });
+  /// Delete the caller's identity and associated data.
+  @DELETE('/v1/identity')
+  Future<void> deleteIdentity({
+    @Header('Authorization') String? authorization,
+  });
 
-    /// List available live events.
-    @GET('/v1/live-event')
-    Future<ApiLiveEventList> getLiveEvents({
-        @Header('Authorization') String? authorization,
-		@Query('names')
-    		required List<String> names,
-	  });
+  /// List available live events.
+  @GET('/v1/live-event')
+  Future<ApiLiveEventList> getLiveEvents({
+    @Header('Authorization') String? authorization,
+    @Query('names') required List<String> names,
+  });
 
-    /// Get the list of messages for the identity.
-    @GET('/v1/message')
-    Future<ApiGetMessageListResponse> getMessageList({
-        @Header('Authorization') String? authorization,
-		@Query('limit')
-        int? limit,
-		@Query('forward')
-        bool? forward,
-		@Query('cursor')
-        String? cursor,
-	  });
+  /// Get the list of messages for the identity.
+  @GET('/v1/message')
+  Future<ApiGetMessageListResponse> getMessageList({
+    @Header('Authorization') String? authorization,
+    @Query('limit') int? limit,
+    @Query('forward') bool? forward,
+    @Query('cursor') String? cursor,
+  });
 
-    /// Deletes a message for an identity.
-    @DELETE('/v1/message/{id}')
-    Future<void> deleteMessage({
-        @Header('Authorization') String? authorization,
-        @Path('id')required String id,
-	  });
+  /// Deletes a message for an identity.
+  @DELETE('/v1/message/{id}')
+  Future<void> deleteMessage({
+    @Header('Authorization') String? authorization,
+    @Path('id') required String id,
+  });
 
-    /// Updates a message for an identity.
-    @PUT('/v1/message/{id}')
-    Future<void> updateMessage({
-        @Header('Authorization') String? authorization,
-        @Path('id')required String id,
-        @Body() required ApiUpdateMessageRequest body,
-	  });
+  /// Updates a message for an identity.
+  @PUT('/v1/message/{id}')
+  Future<void> updateMessage({
+    @Header('Authorization') String? authorization,
+    @Path('id') required String id,
+    @Body() required ApiUpdateMessageRequest body,
+  });
 
-    /// List properties associated with this identity.
-    @GET('/v1/properties')
-    Future<ApiProperties> listProperties({
-        @Header('Authorization') String? authorization,
-	  });
+  /// List properties associated with this identity.
+  @GET('/v1/properties')
+  Future<ApiProperties> listProperties({
+    @Header('Authorization') String? authorization,
+  });
 
-    /// Update identity properties.
-    @PUT('/v1/properties')
-    Future<void> updateProperties({
-        @Header('Authorization') String? authorization,
-        @Body() required ApiUpdatePropertiesRequest body,
-	  });
+  /// Update identity properties.
+  @PUT('/v1/properties')
+  Future<void> updateProperties({
+    @Header('Authorization') String? authorization,
+    @Body() required ApiUpdatePropertiesRequest body,
+  });
 }

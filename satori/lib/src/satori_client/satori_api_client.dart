@@ -40,23 +40,26 @@ class SatoriRestApiClient extends SatoriBaseClient {
     required this.apiKey,
     required int port,
     required bool ssl,
-  }) : _host = host,
-       _port = port,
-       _ssl = ssl,
-       super() {
+  })  : _host = host,
+        _port = port,
+        _ssl = ssl,
+        super() {
     _initializeApi();
   }
 
   void _initializeApi() {
-    final baseUrl = Uri(scheme: _ssl ? 'https' : 'http', host: _host, port: _port);
+    final baseUrl =
+        Uri(scheme: _ssl ? 'https' : 'http', host: _host, port: _port);
     final dio = Dio(BaseOptions(baseUrl: baseUrl.toString()));
-    
+
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
         if (_session != null) {
-          options.headers.putIfAbsent('Authorization', () => 'Bearer ${_session!.token}');
+          options.headers
+              .putIfAbsent('Authorization', () => 'Bearer ${_session!.token}');
         } else {
-          options.headers.putIfAbsent('Authorization', () => 'Basic ${base64Encode('$apiKey:'.codeUnits)}');
+          options.headers.putIfAbsent('Authorization',
+              () => 'Basic ${base64Encode('$apiKey:'.codeUnits)}');
         }
         handler.next(options);
       },
@@ -73,7 +76,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
   }) async {
     // Clear any existing session to ensure Basic auth is used
     _session = null;
-    
+
     final response = await _api.authenticate(
       body: ApiAuthenticateRequest(
         id: id,
@@ -98,7 +101,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
         refreshToken: session.refreshToken,
       ),
     );
-    
+
     // Clear session after logout
     _session = null;
   }
@@ -159,7 +162,9 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
     final response = await _api.getExperiments(names: []);
     return ExperimentList(
-      experiments: response.experiments?.map((e) => Experiment.fromDto(e)).toList() ?? [],
+      experiments:
+          response.experiments?.map((e) => Experiment.fromDto(e)).toList() ??
+              [],
     );
   }
 
@@ -172,7 +177,9 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
     final response = await _api.getExperiments(names: names);
     return ExperimentList(
-      experiments: response.experiments?.map((e) => Experiment.fromDto(e)).toList() ?? [],
+      experiments:
+          response.experiments?.map((e) => Experiment.fromDto(e)).toList() ??
+              [],
     );
   }
 

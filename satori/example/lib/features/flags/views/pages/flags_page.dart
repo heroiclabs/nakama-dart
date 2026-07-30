@@ -56,7 +56,7 @@ class _FlagsPageState extends ConsumerState<FlagsPage> {
   @override
   Widget build(BuildContext context) {
     final flags = _flagList?.flags ?? [];
-    
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Feature Flags'),
