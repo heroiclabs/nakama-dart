@@ -4,6 +4,7 @@
 
 // @dart = 3.3
 
+// ignore_for_file: always_use_package_imports
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: curly_braces_in_flow_control_structures

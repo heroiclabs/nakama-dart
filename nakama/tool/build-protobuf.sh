@@ -70,8 +70,12 @@ echo "[*] Cleanup..."
 cd "$TOOL_DIR"
 rm -rf .proto-build
 
-echo "[*] Format dart files"
+# protoc emits relative imports between generated files, which the repo lints forbid.
+echo "[*] Suppressing always_use_package_imports in generated files..."
 cd "$NAKAMA_DIR/lib/src/api/proto"
+find . -name '*.dart' -exec sed -i '0,/^\/\/ ignore_for_file:/s//\/\/ ignore_for_file: always_use_package_imports\n&/' {} +
+
+echo "[*] Format dart files"
 dart format --set-exit-if-changed .
 
 echo "[+] Done"
