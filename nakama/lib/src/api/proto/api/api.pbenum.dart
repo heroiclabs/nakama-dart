@@ -33,15 +33,20 @@ class StoreProvider extends $pb.ProtobufEnum {
   static const StoreProvider FACEBOOK_INSTANT_STORE =
       StoreProvider._(3, _omitEnumNames ? '' : 'FACEBOOK_INSTANT_STORE');
 
+  /// Samsung Galaxy Store
+  static const StoreProvider SAMSUNG_GALAXY_STORE =
+      StoreProvider._(4, _omitEnumNames ? '' : 'SAMSUNG_GALAXY_STORE');
+
   static const $core.List<StoreProvider> values = <StoreProvider>[
     APPLE_APP_STORE,
     GOOGLE_PLAY_STORE,
     HUAWEI_APP_GALLERY,
     FACEBOOK_INSTANT_STORE,
+    SAMSUNG_GALAXY_STORE,
   ];
 
   static final $core.List<StoreProvider?> _byValue =
-      $pb.ProtobufEnum.$_initByValueList(values, 3);
+      $pb.ProtobufEnum.$_initByValueList(values, 4);
   static StoreProvider? valueOf($core.int value) =>
       value < 0 || value >= _byValue.length ? null : _byValue[value];
 

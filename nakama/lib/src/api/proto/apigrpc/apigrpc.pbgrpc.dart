@@ -703,6 +703,15 @@ class NakamaClient extends $grpc.Client {
         options: options);
   }
 
+  /// Validate Samsung Galaxy Store IAP Receipt
+  $grpc.ResponseFuture<$0.ValidatePurchaseResponse> validatePurchaseSamsung(
+    $0.ValidatePurchaseSamsungRequest request, {
+    $grpc.CallOptions? options,
+  }) {
+    return $createUnaryCall(_$validatePurchaseSamsung, request,
+        options: options);
+  }
+
   /// Write a record to a leaderboard.
   $grpc.ResponseFuture<$0.LeaderboardRecord> writeLeaderboardRecord(
     $0.WriteLeaderboardRecordRequest request, {
@@ -1122,6 +1131,11 @@ class NakamaClient extends $grpc.Client {
       '/nakama.api.Nakama/ValidatePurchaseFacebookInstant',
       ($0.ValidatePurchaseFacebookInstantRequest value) =>
           value.writeToBuffer(),
+      $0.ValidatePurchaseResponse.fromBuffer);
+  static final _$validatePurchaseSamsung = $grpc.ClientMethod<
+          $0.ValidatePurchaseSamsungRequest, $0.ValidatePurchaseResponse>(
+      '/nakama.api.Nakama/ValidatePurchaseSamsung',
+      ($0.ValidatePurchaseSamsungRequest value) => value.writeToBuffer(),
       $0.ValidatePurchaseResponse.fromBuffer);
   static final _$writeLeaderboardRecord = $grpc.ClientMethod<
           $0.WriteLeaderboardRecordRequest, $0.LeaderboardRecord>(
@@ -1786,6 +1800,15 @@ abstract class NakamaServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) =>
             $0.ValidatePurchaseFacebookInstantRequest.fromBuffer(value),
+        ($0.ValidatePurchaseResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.ValidatePurchaseSamsungRequest,
+            $0.ValidatePurchaseResponse>(
+        'ValidatePurchaseSamsung',
+        validatePurchaseSamsung_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.ValidatePurchaseSamsungRequest.fromBuffer(value),
         ($0.ValidatePurchaseResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.WriteLeaderboardRecordRequest,
             $0.LeaderboardRecord>(
@@ -2486,6 +2509,15 @@ abstract class NakamaServiceBase extends $grpc.Service {
   $async.Future<$0.ValidatePurchaseResponse> validatePurchaseFacebookInstant(
       $grpc.ServiceCall call,
       $0.ValidatePurchaseFacebookInstantRequest request);
+
+  $async.Future<$0.ValidatePurchaseResponse> validatePurchaseSamsung_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.ValidatePurchaseSamsungRequest> $request) async {
+    return validatePurchaseSamsung($call, await $request);
+  }
+
+  $async.Future<$0.ValidatePurchaseResponse> validatePurchaseSamsung(
+      $grpc.ServiceCall call, $0.ValidatePurchaseSamsungRequest request);
 
   $async.Future<$0.LeaderboardRecord> writeLeaderboardRecord_Pre(
       $grpc.ServiceCall $call,

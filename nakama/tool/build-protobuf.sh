@@ -1,4 +1,5 @@
 #!/bin/bash
+# Prerequisites: protoc (apt: protobuf-compiler / brew: protobuf), dart pub global activate protoc_plugin
 set -e
 
 # Get the absolute path to the tool directory
@@ -35,6 +36,13 @@ cp -r src/api-common-protos/google/api build/google
 
 mkdir -p build/github.com/heroiclabs/nakama-common
 cp -r src/nakama-common/api build/github.com/heroiclabs/nakama-common
+
+# TODO(#186): remove this pin once grpc and protobuf are bumped to ^5.0.0/^6.0.0.
+# protoc_plugin >=25.0.0 emits `package:protobuf/well_known_types/...` imports that require protobuf ^6.0.0,
+# which would break compilation against the current protobuf ^5.1.0 constraint and cost 10 pana points.
+echo "[*] Activating protoc_plugin 24.0.0..."
+dart pub global activate protoc_plugin 24.0.0
+export PATH="$PATH:$HOME/.pub-cache/bin"
 
 echo "[*] Compiling Proto..."
 cd build
@@ -73,7 +81,10 @@ rm -rf .proto-build
 # protoc emits relative imports between generated files, which the repo lints forbid.
 echo "[*] Suppressing always_use_package_imports in generated files..."
 cd "$NAKAMA_DIR/lib/src/api/proto"
-find . -name '*.dart' -exec sed -i '0,/^\/\/ ignore_for_file:/s//\/\/ ignore_for_file: always_use_package_imports\n&/' {} +
+find . -name '*.dart' -exec perl -i -pe '
+  if (!$done && /^\/\/ ignore_for_file:/) { $_ = "// ignore_for_file: always_use_package_imports\n$_"; $done = 1; }
+  $done = 0 if eof;
+' {} +
 
 echo "[*] Format dart files"
 dart format --set-exit-if-changed .
