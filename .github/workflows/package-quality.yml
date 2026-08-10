@@ -1,0 +1,101 @@
+name: Package Quality Checks
+
+on:
+  workflow_call:
+    inputs:
+      package_name:
+        required: true
+        type: string
+      package_path:
+        required: true
+        type: string
+      min_pub_points:
+        required: false
+        default: 120
+        type: number
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: ${{ inputs.package_name }} quality
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ inputs.package_path }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Toolchain versions
+        run: |
+          flutter --version
+          dart --version
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Static analysis
+        run: dart analyze
+
+      - name: WASM smoke check via example app
+        run: |
+          if [[ -d example ]]; then
+            pushd example
+            flutter pub get
+            flutter build web --wasm --release
+            popd
+          else
+            echo "No example directory found; skipping WASM smoke check."
+          fi
+
+      - name: Install pana
+        run: dart pub global activate pana
+
+      - name: Verify pub.dev score threshold
+        env:
+          MIN_POINTS: ${{ inputs.min_pub_points }}
+        run: |
+          export PATH="$PATH:$HOME/.pub-cache/bin"
+
+          set +e
+          set -o pipefail
+          pana . | tee /tmp/pana-output.txt
+          PANA_EXIT=$?
+          set +o pipefail
+          set -e
+
+          SCORE_LINE=$(grep -Eo 'Points: [0-9]+/[0-9]+' /tmp/pana-output.txt | tail -n1 || true)
+
+          if [[ -z "$SCORE_LINE" ]]; then
+            echo "Could not detect pana score in output."
+            echo "pana exit code: $PANA_EXIT"
+            exit 1
+          fi
+
+          SCORE=$(echo "$SCORE_LINE" | sed -E 's/Points: ([0-9]+)\/.*/\1/')
+          MAX_SCORE=$(echo "$SCORE_LINE" | sed -E 's/Points: [0-9]+\/([0-9]+)/\1/')
+
+          echo "Detected pana score: $SCORE/$MAX_SCORE"
+          echo "Required minimum: $MIN_POINTS"
+
+          if (( SCORE < MIN_POINTS )); then
+            echo "Score check failed: $SCORE < $MIN_POINTS"
+            exit 1
+          fi
+
+          if (( PANA_EXIT != 0 )); then
+            echo "pana returned non-zero exit code: $PANA_EXIT"
+            exit $PANA_EXIT
+          fi
+

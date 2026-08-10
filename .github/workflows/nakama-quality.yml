@@ -1,0 +1,28 @@
+name: Nakama Quality
+
+on:
+  pull_request:
+    paths:
+      - nakama/**
+      - .github/workflows/nakama-quality.yml
+      - .github/workflows/package-quality.yml
+  push:
+    branches:
+      - main
+    paths:
+      - nakama/**
+      - .github/workflows/nakama-quality.yml
+      - .github/workflows/package-quality.yml
+  workflow_dispatch:
+
+concurrency:
+  group: nakama-quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    uses: ./.github/workflows/package-quality.yml
+    with:
+      package_name: nakama
+      package_path: nakama
+      min_pub_points: 120
