@@ -338,11 +338,16 @@ func stripOperationPrefix(input string) string {
 	return strings.Replace(input, "Nakama_", "", 1)
 }
 
-// queryParamName normalizes query parameter names when wire-format differs
-// from codegen naming in the OpenAPI input.
+// queryParamOverrides maps OpenAPI camelCase names to the snake_case HTTP names Nakama expects;
+// without this the wrong query key is sent and server-side auth can fail.
+var queryParamOverrides = map[string]string{
+	"httpKey": "http_key",
+}
+
+// queryParamName returns the @Query HTTP name, applying overrides where the OpenAPI name diverges.
 func queryParamName(input string) string {
-	if input == "httpKey" {
-		return "http_key"
+	if name, ok := queryParamOverrides[input]; ok {
+		return name
 	}
 
 	return input
