@@ -18,11 +18,14 @@ sealed class ValidatePurchaseResponse with _$ValidatePurchaseResponse {
     List<ValidatedPurchase> validatedPurchases,
   }) = _ValidatePurchaseResponse;
 
-  factory ValidatePurchaseResponse.fromJson(Map<String, Object?> json) => _$ValidatePurchaseResponseFromJson(json);
+  factory ValidatePurchaseResponse.fromJson(Map<String, Object?> json) =>
+      _$ValidatePurchaseResponseFromJson(json);
 
-  factory ValidatePurchaseResponse.fromDto(api.ValidatePurchaseResponse dto) => ValidatePurchaseResponse(
-        validatedPurchases:
-            dto.validatedPurchases.map((e) => ValidatedPurchase.fromDto(e)).toList(growable: false),
+  factory ValidatePurchaseResponse.fromDto(api.ValidatePurchaseResponse dto) =>
+      ValidatePurchaseResponse(
+        validatedPurchases: dto.validatedPurchases
+            .map((e) => ValidatedPurchase.fromDto(e))
+            .toList(growable: false),
       );
 }
 
@@ -69,18 +72,26 @@ sealed class ValidatedPurchase with _$ValidatedPurchase {
     @JsonKey(name: 'seen_before') @Default(false) bool seenBefore,
   }) = _ValidatedPurchase;
 
-  factory ValidatedPurchase.fromJson(Map<String, Object?> json) => _$ValidatedPurchaseFromJson(json);
+  factory ValidatedPurchase.fromJson(Map<String, Object?> json) =>
+      _$ValidatedPurchaseFromJson(json);
 
-  factory ValidatedPurchase.fromDto(api.ValidatedPurchase dto) => ValidatedPurchase(
+  factory ValidatedPurchase.fromDto(api.ValidatedPurchase dto) =>
+      ValidatedPurchase(
         userId: PlatformNormalizer.normalizeNullableString(dto.userId),
         productId: PlatformNormalizer.normalizeNullableString(dto.productId),
-        transactionId: PlatformNormalizer.normalizeNullableString(dto.transactionId),
+        transactionId: PlatformNormalizer.normalizeNullableString(
+          dto.transactionId,
+        ),
         store: StoreProvider.values[dto.store.value],
-        purchaseTime: dto.hasPurchaseTime() ? dto.purchaseTime.toDateTime() : null,
+        purchaseTime: dto.hasPurchaseTime()
+            ? dto.purchaseTime.toDateTime()
+            : null,
         createTime: dto.hasCreateTime() ? dto.createTime.toDateTime() : null,
         updateTime: dto.hasUpdateTime() ? dto.updateTime.toDateTime() : null,
         refundTime: dto.hasRefundTime() ? dto.refundTime.toDateTime() : null,
-        providerResponse: PlatformNormalizer.normalizeNullableString(dto.providerResponse),
+        providerResponse: PlatformNormalizer.normalizeNullableString(
+          dto.providerResponse,
+        ),
         environment: StoreEnvironment.values[dto.environment.value],
         seenBefore: dto.seenBefore,
       );

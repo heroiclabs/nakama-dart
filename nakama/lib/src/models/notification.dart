@@ -19,17 +19,18 @@ sealed class Notification with _$Notification {
     @JsonKey(name: 'persistent') required bool persistent,
   }) = _Notification;
 
-  factory Notification.fromJson(Map<String, Object?> json) => _$NotificationFromJson(json);
+  factory Notification.fromJson(Map<String, Object?> json) =>
+      _$NotificationFromJson(json);
 
   factory Notification.fromDto(api.Notification dto) => Notification(
-        id: dto.id,
-        code: dto.code,
-        content: PlatformNormalizer.normalizeNullableString(dto.content),
-        subject: PlatformNormalizer.normalizeNullableString(dto.subject),
-        senderId: dto.senderId,
-        createTime: dto.createTime.toDateTime(),
-        persistent: dto.persistent,
-      );
+    id: dto.id,
+    code: dto.code,
+    content: PlatformNormalizer.normalizeNullableString(dto.content),
+    subject: PlatformNormalizer.normalizeNullableString(dto.subject),
+    senderId: dto.senderId,
+    createTime: dto.createTime.toDateTime(),
+    persistent: dto.persistent,
+  );
 }
 
 @freezed
@@ -38,13 +39,19 @@ sealed class NotificationList with _$NotificationList {
 
   const factory NotificationList({
     @JsonKey(name: 'cacheable_cursor') String? cursor,
-    @JsonKey(name: 'notifications') @Default(<Notification>[]) List<Notification> notifications,
+    @JsonKey(name: 'notifications')
+    @Default(<Notification>[])
+    List<Notification> notifications,
   }) = _NotificationList;
 
-  factory NotificationList.fromJson(Map<String, Object?> json) => _$NotificationListFromJson(json);
+  factory NotificationList.fromJson(Map<String, Object?> json) =>
+      _$NotificationListFromJson(json);
 
-  factory NotificationList.fromDto(api.NotificationList dto) => NotificationList(
+  factory NotificationList.fromDto(api.NotificationList dto) =>
+      NotificationList(
         cursor: PlatformNormalizer.normalizeNullableString(dto.cacheableCursor),
-        notifications: dto.notifications.map((e) => Notification.fromDto(e)).toList(growable: false),
+        notifications: dto.notifications
+            .map((e) => Notification.fromDto(e))
+            .toList(growable: false),
       );
 }

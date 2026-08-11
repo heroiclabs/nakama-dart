@@ -16,12 +16,14 @@ class LeaderboardPage extends ConsumerWidget {
 
     // Fetch leaderboard records when the page is loaded
     ref.listen(leaderboardProvider.notifier, (previous, next) {
-      unawaited(ref.read(leaderboardProvider.notifier).listRecords(leaderboardName));
+      unawaited(
+          ref.read(leaderboardProvider.notifier).listRecords(leaderboardName));
     });
 
     // Fetch records initially
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      unawaited(ref.read(leaderboardProvider.notifier).listRecords(leaderboardName));
+      unawaited(
+          ref.read(leaderboardProvider.notifier).listRecords(leaderboardName));
     });
 
     return Scaffold(

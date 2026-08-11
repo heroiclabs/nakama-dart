@@ -20,20 +20,19 @@ void main() {
     });
 
     test('lists friends correctly', () async {
-      final otherUserA =
-          await client.authenticateDevice(deviceId: faker.guid.guid());
-      final otherUserB =
-          await client.authenticateDevice(deviceId: faker.guid.guid());
+      final otherUserA = await client.authenticateDevice(
+        deviceId: faker.guid.guid(),
+      );
+      final otherUserB = await client.authenticateDevice(
+        deviceId: faker.guid.guid(),
+      );
 
       await client.addFriends(
         session: session,
         ids: [otherUserA.userId, otherUserB.userId],
       );
 
-      await client.addFriends(
-        session: otherUserA,
-        ids: [session.userId],
-      );
+      await client.addFriends(session: otherUserA, ids: [session.userId]);
 
       final friends = await client.listFriends(session: session);
 
@@ -42,36 +41,31 @@ void main() {
     });
 
     test('lists friends of friends correctly', () async {
-      final userB = await client.authenticateDevice(deviceId: faker.guid.guid());
-      final userC = await client.authenticateDevice(deviceId: faker.guid.guid());
+      final userB = await client.authenticateDevice(
+        deviceId: faker.guid.guid(),
+      );
+      final userC = await client.authenticateDevice(
+        deviceId: faker.guid.guid(),
+      );
 
-      await client.addFriends(
+      await client.addFriends(session: session, ids: [userB.userId]);
+
+      await client.addFriends(session: userB, ids: [session.userId]);
+
+      await client.addFriends(session: userB, ids: [userC.userId]);
+
+      await client.addFriends(session: userC, ids: [userB.userId]);
+
+      final friendsOfFriends = await client.listFriendsOfFriends(
         session: session,
-        ids: [userB.userId],
+        limit: 100,
       );
-
-      await client.addFriends(
-        session: userB,
-        ids: [session.userId],
-      );
-
-      await client.addFriends(
-        session: userB,
-        ids: [userC.userId],
-      );
-
-      await client.addFriends(
-        session: userC,
-        ids: [userB.userId],
-      );
-
-      final friendsOfFriends =
-          await client.listFriendsOfFriends(session: session, limit: 100);
 
       expect(friendsOfFriends, isA<FriendsOfFriendsList>());
       expect(
-        friendsOfFriends.friendsOfFriends
-            .any((entry) => entry.user.id == userC.userId),
+        friendsOfFriends.friendsOfFriends.any(
+          (entry) => entry.user.id == userC.userId,
+        ),
         isTrue,
       );
     });

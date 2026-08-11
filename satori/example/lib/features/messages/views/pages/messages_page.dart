@@ -27,13 +27,13 @@ class _MessagesPageState extends ConsumerState<MessagesPage> {
       final client = ref.read(satoriClientProvider);
       final session = ref.read(sessionProvider);
       if (session == null || client is! SatoriRestApiClient) return;
-      
+
       final messages = await client.getMessages(
         session: session,
         limit: 20,
         cursor: loadMore ? _cursor : null,
       );
-      
+
       setState(() {
         if (loadMore) {
           _messages.addAll(messages);
@@ -58,19 +58,19 @@ class _MessagesPageState extends ConsumerState<MessagesPage> {
       final client = ref.read(satoriClientProvider);
       final session = ref.read(sessionProvider);
       if (session == null || client is! SatoriRestApiClient) return;
-      
+
       await client.updateMessage(
         session: session,
         id: message.id!,
         readTime: DateTime.now().toUtc().toIso8601String(),
       );
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Message marked as read')),
         );
       }
-      
+
       await _loadMessages();
     } catch (e) {
       if (mounted) {
@@ -86,19 +86,19 @@ class _MessagesPageState extends ConsumerState<MessagesPage> {
       final client = ref.read(satoriClientProvider);
       final session = ref.read(sessionProvider);
       if (session == null || client is! SatoriRestApiClient) return;
-      
+
       await client.updateMessage(
         session: session,
         id: message.id!,
         consumeTime: DateTime.now().toUtc().toIso8601String(),
       );
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Message marked as consumed')),
         );
       }
-      
+
       await _loadMessages();
     } catch (e) {
       if (mounted) {
@@ -134,18 +134,18 @@ class _MessagesPageState extends ConsumerState<MessagesPage> {
       final client = ref.read(satoriClientProvider);
       final session = ref.read(sessionProvider);
       if (session == null || client is! SatoriRestApiClient) return;
-      
+
       await client.deleteMessage(
         session: session,
         id: message.id!,
       );
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Message deleted')),
         );
       }
-      
+
       await _loadMessages();
     } catch (e) {
       if (mounted) {
@@ -181,7 +181,9 @@ class _MessagesPageState extends ConsumerState<MessagesPage> {
                       return Padding(
                         padding: const EdgeInsets.all(16),
                         child: ElevatedButton(
-                          onPressed: _loading ? null : () => _loadMessages(loadMore: true),
+                          onPressed: _loading
+                              ? null
+                              : () => _loadMessages(loadMore: true),
                           child: const Text('Load More'),
                         ),
                       );
@@ -189,7 +191,8 @@ class _MessagesPageState extends ConsumerState<MessagesPage> {
 
                     final message = _messages[index];
                     return Card(
-                      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                       child: ExpansionTile(
                         title: Text(message.title ?? 'No Title'),
                         subtitle: Column(
@@ -222,21 +225,31 @@ class _MessagesPageState extends ConsumerState<MessagesPage> {
                                 if (message.imageUrl != null) ...[
                                   Image.network(
                                     message.imageUrl!,
-                                    errorBuilder: (context, error, stackTrace) =>
-                                        const Text('Failed to load image'),
+                                    errorBuilder:
+                                        (context, error, stackTrace) =>
+                                            const Text('Failed to load image'),
                                   ),
                                   const SizedBox(height: 16),
                                 ],
-                                _buildInfoRow('Schedule ID', message.scheduleId),
-                                _buildInfoRow('Send Time', message.sendTime?.toString()),
-                                _buildInfoRow('Create Time', message.createTime?.toString()),
-                                _buildInfoRow('Update Time', message.updateTime?.toString()),
-                                _buildInfoRow('Read Time', message.readTime?.toString()),
-                                _buildInfoRow('Consume Time', message.consumeTime?.toString()),
+                                _buildInfoRow(
+                                    'Schedule ID', message.scheduleId),
+                                _buildInfoRow(
+                                    'Send Time', message.sendTime?.toString()),
+                                _buildInfoRow('Create Time',
+                                    message.createTime?.toString()),
+                                _buildInfoRow('Update Time',
+                                    message.updateTime?.toString()),
+                                _buildInfoRow(
+                                    'Read Time', message.readTime?.toString()),
+                                _buildInfoRow('Consume Time',
+                                    message.consumeTime?.toString()),
                                 if (message.metadata?.isNotEmpty == true) ...[
                                   const Divider(),
-                                  const Text('Metadata:', style: TextStyle(fontWeight: FontWeight.bold)),
-                                  ...message.metadata!.entries.map((e) => Text('${e.key}: ${e.value}')),
+                                  const Text('Metadata:',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)),
+                                  ...message.metadata!.entries
+                                      .map((e) => Text('${e.key}: ${e.value}')),
                                 ],
                                 const SizedBox(height: 16),
                                 Wrap(
@@ -252,7 +265,8 @@ class _MessagesPageState extends ConsumerState<MessagesPage> {
                                       ElevatedButton.icon(
                                         icon: const Icon(Icons.check_circle),
                                         label: const Text('Mark Consumed'),
-                                        onPressed: () => _markAsConsumed(message),
+                                        onPressed: () =>
+                                            _markAsConsumed(message),
                                       ),
                                     ElevatedButton.icon(
                                       icon: const Icon(Icons.delete),

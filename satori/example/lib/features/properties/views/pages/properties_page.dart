@@ -31,12 +31,14 @@ class _PropertiesPageState extends ConsumerState<PropertiesPage> {
       final client = ref.read(satoriClientProvider);
       final session = ref.read(sessionProvider);
       if (session == null) return;
-      
+
       final properties = await client.listProperties(session: session);
       setState(() {
         // Create mutable copies of the maps
-        _defaultProperties = Map<String, String>.from(properties.$default ?? {});
-        _computedProperties = Map<String, String>.from(properties.computed ?? {});
+        _defaultProperties =
+            Map<String, String>.from(properties.$default ?? {});
+        _computedProperties =
+            Map<String, String>.from(properties.computed ?? {});
       });
     } catch (e) {
       if (mounted) {
@@ -48,8 +50,6 @@ class _PropertiesPageState extends ConsumerState<PropertiesPage> {
       setState(() => _loading = false);
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {

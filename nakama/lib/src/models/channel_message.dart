@@ -25,23 +25,24 @@ sealed class ChannelMessage with _$ChannelMessage {
     @JsonKey(name: 'user_id_two') required String? userIdTwo,
   }) = _ChannelMessage;
 
-  factory ChannelMessage.fromJson(Map<String, Object?> json) => _$ChannelMessageFromJson(json);
+  factory ChannelMessage.fromJson(Map<String, Object?> json) =>
+      _$ChannelMessageFromJson(json);
 
   factory ChannelMessage.fromDto(api.ChannelMessage dto) => ChannelMessage(
-        channelId: dto.channelId,
-        messageId: dto.messageId,
-        code: dto.code.value,
-        senderId: dto.senderId,
-        username: dto.username,
-        content: dto.content,
-        createTime: dto.createTime.toDateTime(),
-        updateTime: dto.updateTime.toDateTime(),
-        persistent: dto.persistent.value,
-        roomName: PlatformNormalizer.normalizeNullableString(dto.roomName),
-        groupId: PlatformNormalizer.normalizeNullableString(dto.groupId),
-        userIdOne: PlatformNormalizer.normalizeNullableString(dto.userIdOne),
-        userIdTwo: PlatformNormalizer.normalizeNullableString(dto.userIdTwo),
-      );
+    channelId: dto.channelId,
+    messageId: dto.messageId,
+    code: dto.code.value,
+    senderId: dto.senderId,
+    username: dto.username,
+    content: dto.content,
+    createTime: dto.createTime.toDateTime(),
+    updateTime: dto.updateTime.toDateTime(),
+    persistent: dto.persistent.value,
+    roomName: PlatformNormalizer.normalizeNullableString(dto.roomName),
+    groupId: PlatformNormalizer.normalizeNullableString(dto.groupId),
+    userIdOne: PlatformNormalizer.normalizeNullableString(dto.userIdOne),
+    userIdTwo: PlatformNormalizer.normalizeNullableString(dto.userIdTwo),
+  );
 }
 
 @freezed
@@ -49,18 +50,26 @@ sealed class ChannelMessageList with _$ChannelMessageList {
   const ChannelMessageList._();
 
   const factory ChannelMessageList({
-    @JsonKey(name: 'messages') @Default(<ChannelMessage>[]) List<ChannelMessage> messages,
+    @JsonKey(name: 'messages')
+    @Default(<ChannelMessage>[])
+    List<ChannelMessage> messages,
     @JsonKey(name: 'next_cursor') required String? nextCursor,
     @JsonKey(name: 'prev_cursor') required String? prevCursor,
     @JsonKey(name: 'cacheable_cursor') required String? cacheableCursor,
   }) = _ChannelMessageList;
 
-  factory ChannelMessageList.fromJson(Map<String, Object?> json) => _$ChannelMessageListFromJson(json);
+  factory ChannelMessageList.fromJson(Map<String, Object?> json) =>
+      _$ChannelMessageListFromJson(json);
 
-  factory ChannelMessageList.fromDto(api.ChannelMessageList dto) => ChannelMessageList(
-        messages: dto.messages.map((e) => ChannelMessage.fromDto(e)).toList(growable: false),
+  factory ChannelMessageList.fromDto(api.ChannelMessageList dto) =>
+      ChannelMessageList(
+        messages: dto.messages
+            .map((e) => ChannelMessage.fromDto(e))
+            .toList(growable: false),
         nextCursor: PlatformNormalizer.normalizeNullableString(dto.nextCursor),
         prevCursor: PlatformNormalizer.normalizeNullableString(dto.prevCursor),
-        cacheableCursor: PlatformNormalizer.normalizeNullableString(dto.cacheableCursor),
+        cacheableCursor: PlatformNormalizer.normalizeNullableString(
+          dto.cacheableCursor,
+        ),
       );
 }

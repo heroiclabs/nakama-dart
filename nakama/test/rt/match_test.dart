@@ -101,19 +101,19 @@ void main() {
       final realtimeData = 'test'.codeUnits;
 
       // B starts listening for match data, A sends some data after B joined
-      b.onMatchData.listen(expectAsync1((matchData) {
-        expect(matchData, isNotNull);
-        expect(matchData.presence?.userId, equals(sessionA.userId));
-        expect(matchData.data, equals(realtimeData));
-      }, count: 1));
+      b.onMatchData.listen(
+        expectAsync1((matchData) {
+          expect(matchData, isNotNull);
+          expect(matchData.presence?.userId, equals(sessionA.userId));
+          expect(matchData.data, equals(realtimeData));
+        }, count: 1),
+      );
 
       // A creates match, B joins
-      await a.createMatch().then((value) => b.joinMatch(value.matchId)).then((value) {
-        a.sendMatchData(
-          matchId: value.matchId,
-          opCode: 0,
-          data: realtimeData,
-        );
+      await a.createMatch().then((value) => b.joinMatch(value.matchId)).then((
+        value,
+      ) {
+        a.sendMatchData(matchId: value.matchId, opCode: 0, data: realtimeData);
       });
     });
   });

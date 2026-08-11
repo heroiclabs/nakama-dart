@@ -13,7 +13,7 @@ dependencies:
   http: ^1.6.0
   json_annotation: ^4.9.0
   jwt_decoder: ^2.0.1
-  retrofit: '>=4.0.0 <5.0.0'
+  retrofit: ^4.9.2
   
 dev_dependencies:
   build_runner: ^2.5.4

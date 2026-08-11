@@ -4,6 +4,7 @@
 
 // @dart = 3.3
 
+// ignore_for_file: always_use_package_imports
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: curly_braces_in_flow_control_structures
@@ -151,7 +152,6 @@ class Timestamp extends $pb.GeneratedMessage with $mixin.TimestampMixin {
   static Timestamp create() => Timestamp._();
   @$core.override
   Timestamp createEmptyInstance() => create();
-  static $pb.PbList<Timestamp> createRepeated() => $pb.PbList<Timestamp>();
   @$core.pragma('dart2js:noInline')
   static Timestamp getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Timestamp>(create);

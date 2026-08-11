@@ -7,9 +7,7 @@ part 'rpc.freezed.dart';
 sealed class Rpc with _$Rpc {
   const Rpc._();
 
-  const factory Rpc({
-    required String payload,
-  }) = _Rpc;
+  const factory Rpc({required String payload}) = _Rpc;
 
   factory Rpc.fromDto(api.Rpc dto) => Rpc(payload: dto.payload);
 }

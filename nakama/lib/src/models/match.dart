@@ -24,22 +24,24 @@ sealed class Match with _$Match {
   factory Match.fromJson(Map<String, Object?> json) => _$MatchFromJson(json);
 
   factory Match.fromDto(api.Match dto) => Match(
-        matchId: dto.matchId,
-        authoritative: dto.authoritative,
-        handlerName: PlatformNormalizer.normalizeNullableString(dto.handlerName),
-        label: dto.label.value,
-        size: dto.size,
-        tickRate: dto.tickRate,
-        presences: [],
-      );
+    matchId: dto.matchId,
+    authoritative: dto.authoritative,
+    handlerName: PlatformNormalizer.normalizeNullableString(dto.handlerName),
+    label: dto.label.value,
+    size: dto.size,
+    tickRate: dto.tickRate,
+    presences: [],
+  );
 
   factory Match.fromRtpb(rtpb.Match dto) => Match(
-        matchId: dto.matchId,
-        authoritative: dto.authoritative,
-        label: dto.label.value,
-        size: dto.size,
-        presences: dto.presences.map((e) => UserPresence.fromDto(e)).toList(growable: false),
-      );
+    matchId: dto.matchId,
+    authoritative: dto.authoritative,
+    label: dto.label.value,
+    size: dto.size,
+    presences: dto.presences
+        .map((e) => UserPresence.fromDto(e))
+        .toList(growable: false),
+  );
 }
 
 @freezed
@@ -67,11 +69,13 @@ sealed class Party with _$Party {
   }) = _Party;
 
   factory Party.fromDto(rtpb.Party dto) => Party(
-        partyId: dto.partyId,
-        open: dto.open,
-        maxSize: dto.maxSize,
-        self: UserPresence.fromDto(dto.self),
-        leader: UserPresence.fromDto(dto.leader),
-        presences: dto.presences.map((e) => UserPresence.fromDto(e)).toList(growable: false),
-      );
+    partyId: dto.partyId,
+    open: dto.open,
+    maxSize: dto.maxSize,
+    self: UserPresence.fromDto(dto.self),
+    leader: UserPresence.fromDto(dto.leader),
+    presences: dto.presences
+        .map((e) => UserPresence.fromDto(e))
+        .toList(growable: false),
+  );
 }

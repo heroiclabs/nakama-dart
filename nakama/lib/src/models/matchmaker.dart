@@ -15,9 +15,8 @@ sealed class MatchmakerTicket with _$MatchmakerTicket {
     required String ticket,
   }) = _MatchmakerTicket;
 
-  factory MatchmakerTicket.fromDto(rtpb.MatchmakerTicket dto) => MatchmakerTicket(
-        ticket: dto.ticket,
-      );
+  factory MatchmakerTicket.fromDto(rtpb.MatchmakerTicket dto) =>
+      MatchmakerTicket(ticket: dto.ticket);
 }
 
 @freezed
@@ -32,10 +31,8 @@ sealed class PartyMatchmakerTicket with _$PartyMatchmakerTicket {
     @JsonKey(name: 'ticket') required String ticket,
   }) = _PartyMatchmakerTicket;
 
-  factory PartyMatchmakerTicket.fromDto(rtpb.PartyMatchmakerTicket dto) => PartyMatchmakerTicket(
-        partyId: dto.partyId,
-        ticket: dto.ticket,
-      );
+  factory PartyMatchmakerTicket.fromDto(rtpb.PartyMatchmakerTicket dto) =>
+      PartyMatchmakerTicket(partyId: dto.partyId, ticket: dto.ticket);
 }
 
 @freezed
@@ -69,12 +66,17 @@ sealed class ChannelPresenceEvent with _$ChannelPresenceEvent {
     @JsonKey(name: 'user_id_two') String? userIdTwo,
   }) = _ChannelPresenceEvent;
 
-  factory ChannelPresenceEvent.fromDto(rtpb.ChannelPresenceEvent dto) => ChannelPresenceEvent(
+  factory ChannelPresenceEvent.fromDto(rtpb.ChannelPresenceEvent dto) =>
+      ChannelPresenceEvent(
         channelId: dto.channelId,
         roomName: dto.roomName,
         groupId: dto.groupId,
-        joins: dto.joins.map((e) => UserPresence.fromDto(e)).toList(growable: false),
-        leaves: dto.leaves.map((e) => UserPresence.fromDto(e)).toList(growable: false),
+        joins: dto.joins
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
+        leaves: dto.leaves
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
         userIdOne: dto.userIdOne,
         userIdTwo: dto.userIdTwo,
       );
@@ -92,13 +94,16 @@ sealed class MatchmakerUser with _$MatchmakerUser {
     @JsonKey(name: 'party_id') required String partyId,
 
     /// String properties.
-    @JsonKey(name: 'string_properties') required Map<String, String> stringProperties,
+    @JsonKey(name: 'string_properties')
+    required Map<String, String> stringProperties,
 
     /// Numeric properties.
-    @JsonKey(name: 'numeric_properties') required Map<String, double> numericProperties,
+    @JsonKey(name: 'numeric_properties')
+    required Map<String, double> numericProperties,
   }) = _MatchmakerUser;
 
-  factory MatchmakerUser.fromDto(rtpb.MatchmakerMatched_MatchmakerUser dto) => MatchmakerUser(
+  factory MatchmakerUser.fromDto(rtpb.MatchmakerMatched_MatchmakerUser dto) =>
+      MatchmakerUser(
         presence: UserPresence.fromDto(dto.presence),
         partyId: dto.partyId,
         stringProperties: dto.stringProperties,
@@ -127,11 +132,14 @@ sealed class MatchmakerMatched with _$MatchmakerMatched {
     @JsonKey(name: 'self') required MatchmakerUser self,
   }) = _MatchmakerMatched;
 
-  factory MatchmakerMatched.fromDto(rtpb.MatchmakerMatched dto) => MatchmakerMatched(
+  factory MatchmakerMatched.fromDto(rtpb.MatchmakerMatched dto) =>
+      MatchmakerMatched(
         ticket: dto.ticket,
         matchId: dto.matchId,
         token: dto.token,
-        users: dto.users.map((e) => MatchmakerUser.fromDto(e)).toList(growable: false),
+        users: dto.users
+            .map((e) => MatchmakerUser.fromDto(e))
+            .toList(growable: false),
         self: MatchmakerUser.fromDto(dto.self),
       );
 }
@@ -158,12 +166,12 @@ sealed class MatchData with _$MatchData {
   }) = _MatchData;
 
   factory MatchData.fromDto(rtpb.MatchData dto) => MatchData(
-        matchId: dto.matchId,
-        presence: UserPresence.fromDto(dto.presence),
-        opCode: dto.opCode.toInt(),
-        data: dto.data,
-        reliable: dto.reliable,
-      );
+    matchId: dto.matchId,
+    presence: UserPresence.fromDto(dto.presence),
+    opCode: dto.opCode.toInt(),
+    data: dto.data,
+    reliable: dto.reliable,
+  );
 }
 
 @freezed
@@ -181,10 +189,15 @@ sealed class MatchPresenceEvent with _$MatchPresenceEvent {
     @JsonKey(name: 'leaves') required List<UserPresence> leaves,
   }) = _MatchPresenceEvent;
 
-  factory MatchPresenceEvent.fromDto(rtpb.MatchPresenceEvent dto) => MatchPresenceEvent(
+  factory MatchPresenceEvent.fromDto(rtpb.MatchPresenceEvent dto) =>
+      MatchPresenceEvent(
         matchId: dto.matchId,
-        joins: dto.joins.map((e) => UserPresence.fromDto(e)).toList(growable: false),
-        leaves: dto.leaves.map((e) => UserPresence.fromDto(e)).toList(growable: false),
+        joins: dto.joins
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
+        leaves: dto.leaves
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
       );
 }
 
@@ -197,19 +210,27 @@ sealed class MatchmakerStats with _$MatchmakerStats {
     @JsonKey(name: 'ticket_count') @Default(0) int ticketCount,
 
     /// The creation time of the oldest currently active matchmaker ticket, if any.
-    @JsonKey(name: 'oldest_ticket_create_time') DateTime? oldestTicketCreateTime,
+    @JsonKey(name: 'oldest_ticket_create_time')
+    DateTime? oldestTicketCreateTime,
 
     /// Recent matchmaker completion times.
-    @JsonKey(name: 'completions') @Default(<MatchmakerCompletionStats>[]) List<MatchmakerCompletionStats> completions,
+    @JsonKey(name: 'completions')
+    @Default(<MatchmakerCompletionStats>[])
+    List<MatchmakerCompletionStats> completions,
   }) = _MatchmakerStats;
 
-  factory MatchmakerStats.fromJson(Map<String, Object?> json) => _$MatchmakerStatsFromJson(json);
+  factory MatchmakerStats.fromJson(Map<String, Object?> json) =>
+      _$MatchmakerStatsFromJson(json);
 
   factory MatchmakerStats.fromDto(api.MatchmakerStats dto) => MatchmakerStats(
-        ticketCount: dto.ticketCount,
-        oldestTicketCreateTime: dto.hasOldestTicketCreateTime() ? dto.oldestTicketCreateTime.toDateTime() : null,
-        completions: dto.completions.map((e) => MatchmakerCompletionStats.fromDto(e)).toList(growable: false),
-      );
+    ticketCount: dto.ticketCount,
+    oldestTicketCreateTime: dto.hasOldestTicketCreateTime()
+        ? dto.oldestTicketCreateTime.toDateTime()
+        : null,
+    completions: dto.completions
+        .map((e) => MatchmakerCompletionStats.fromDto(e))
+        .toList(growable: false),
+  );
 }
 
 @freezed
@@ -224,10 +245,13 @@ sealed class MatchmakerCompletionStats with _$MatchmakerCompletionStats {
     @JsonKey(name: 'complete_time') DateTime? completeTime,
   }) = _MatchmakerCompletionStats;
 
-  factory MatchmakerCompletionStats.fromJson(Map<String, Object?> json) => _$MatchmakerCompletionStatsFromJson(json);
+  factory MatchmakerCompletionStats.fromJson(Map<String, Object?> json) =>
+      _$MatchmakerCompletionStatsFromJson(json);
 
-  factory MatchmakerCompletionStats.fromDto(api.MatchmakerCompletionStats dto) => MatchmakerCompletionStats(
-        createTime: dto.hasCreateTime() ? dto.createTime.toDateTime() : null,
-        completeTime: dto.hasCompleteTime() ? dto.completeTime.toDateTime() : null,
-      );
+  factory MatchmakerCompletionStats.fromDto(
+    api.MatchmakerCompletionStats dto,
+  ) => MatchmakerCompletionStats(
+    createTime: dto.hasCreateTime() ? dto.createTime.toDateTime() : null,
+    completeTime: dto.hasCompleteTime() ? dto.completeTime.toDateTime() : null,
+  );
 }

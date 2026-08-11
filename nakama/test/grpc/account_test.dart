@@ -12,8 +12,8 @@ void main() {
 
     setUpAll(() async {
       client = getNakamaClient(
-          host: kTestHost,
-          ssl: false,
+        host: kTestHost,
+        ssl: false,
         serverKey: kTestServerKey,
       );
 
@@ -50,8 +50,9 @@ void main() {
 
     test('deleting my account', () async {
       // Use a dedicated user so the shared session is not destroyed.
-      final disposableSession =
-          await client.authenticateDevice(deviceId: faker.guid.guid());
+      final disposableSession = await client.authenticateDevice(
+        deviceId: faker.guid.guid(),
+      );
 
       await client.deleteAccount(session: disposableSession);
 

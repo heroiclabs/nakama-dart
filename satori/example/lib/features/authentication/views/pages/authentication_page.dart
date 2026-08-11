@@ -39,7 +39,7 @@ class _AuthenticationPageState extends ConsumerState<AuthenticationPage> {
       );
 
       ref.read(sessionProvider.notifier).state = session;
-      
+
       if (mounted) {
         Navigator.of(context).pushReplacementNamed(Routes.home);
       }

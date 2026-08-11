@@ -10,11 +10,10 @@ NakamaBaseClient getNakamaClient({
   int httpPort = 7350,
   int grpcPort = 7349,
   bool ssl = false,
-}) =>
-    NakamaGrpcClient.init(
-      host: host,
-      key: key,
-      port: grpcPort,
-      serverKey: serverKey,
-      ssl: ssl,
-    );
+}) => NakamaGrpcClient.init(
+  host: host,
+  key: key,
+  port: grpcPort,
+  serverKey: serverKey,
+  ssl: ssl,
+);

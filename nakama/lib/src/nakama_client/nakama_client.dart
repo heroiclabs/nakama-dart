@@ -443,9 +443,7 @@ abstract class NakamaBaseClient {
   /// Delete the current user's account.
   ///
   /// [session] The session for the user.
-  Future<void> deleteAccount({
-    required model.Session session,
-  });
+  Future<void> deleteAccount({required model.Session session});
 
   /// Fetch one or more users by id, usernames, or Facebook ids.
   ///

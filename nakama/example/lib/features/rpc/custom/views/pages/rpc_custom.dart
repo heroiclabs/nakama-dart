@@ -73,7 +73,8 @@ class RpcCustomPage extends ConsumerWidget {
                         .callWSWithPayload(
                             'hello_world', {'name': 'Websocket with payload'}),
                   ),
-                  child: const Text('Call "hello_world (WebSocket)" with payload'),
+                  child:
+                      const Text('Call "hello_world (WebSocket)" with payload'),
                 ),
               ),
             ],

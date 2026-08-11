@@ -10,7 +10,8 @@ void main() {
     });
 
     test('identify tests', () async {
-      final session1 = await client.authenticate(id: '11111111-1111-0000-0000-000000000000');
+      final session1 =
+          await client.authenticate(id: '11111111-1111-0000-0000-000000000000');
 
       final props1 = {'email': 'a@b.com', 'pushTokenIos': 'foo'};
       final customProps1 = {'earlyAccess': 'true'};
@@ -30,7 +31,8 @@ void main() {
       // Sleep for 2 seconds
       await Future.delayed(const Duration(seconds: 2));
 
-      final session2 = await client.authenticate(id: '22222222-2222-0000-0000-000000000000');
+      final session2 =
+          await client.authenticate(id: '22222222-2222-0000-0000-000000000000');
 
       final props2 = {'email': 'a@b.com', 'pushTokenAndroid': 'bar'};
       final customProps2 = {'earlyAccess': 'false'};
@@ -87,13 +89,13 @@ void main() {
       // Create a unique test user
       final testUserId = 'delete-test-${DateTime.now().millisecondsSinceEpoch}';
       final session = await client.authenticate(id: testUserId);
-      
+
       expect(session, isA<Session>());
       expect(session.identityId, equals(testUserId));
-      
+
       // Delete the identity
       await client.deleteIdentity(session: session);
-      
+
       // Try to use the session after deletion - should fail
       expect(
         () async => await client.getFlags(session: session, names: []),
@@ -103,11 +105,12 @@ void main() {
     });
 
     test('update properties with recompute', () async {
-      final session = await client.authenticate(id: '7d9c476a-0000-0000-0000-000000000000');
-      
+      final session =
+          await client.authenticate(id: '7d9c476a-0000-0000-0000-000000000000');
+
       final defaultProps = {'email': 'test@example.com'};
       final customProps = {'earlyAccess': 'true'};
-      
+
       // Update properties with recompute = true
       await client.updateProperties(
         session: session,
@@ -115,7 +118,7 @@ void main() {
         customProperties: customProps,
         recompute: true,
       );
-      
+
       // Verify properties were set
       final properties = await client.listProperties(session: session);
       expect(properties.$default, isNotNull);
@@ -129,18 +132,19 @@ void main() {
     });
 
     test('update properties without recompute (default)', () async {
-      final session = await client.authenticate(id: '7d9c476a-0000-0000-0000-000000000000');
-      
+      final session =
+          await client.authenticate(id: '7d9c476a-0000-0000-0000-000000000000');
+
       final defaultProps = {'level': '5'};
       final customProps = {'premium': 'false'};
-      
+
       // Update properties without recompute (default behavior)
       await client.updateProperties(
         session: session,
         defaultProperties: defaultProps,
         customProperties: customProps,
       );
-      
+
       // Verify properties were set
       final properties = await client.listProperties(session: session);
       expect(properties.$default, isNotNull);
@@ -154,12 +158,13 @@ void main() {
     });
 
     test('update properties with recompute false explicitly', () async {
-      final session = await client.authenticate(id: '7d9c476a-0000-0000-0000-000000000000');
-      
+      final session =
+          await client.authenticate(id: '7d9c476a-0000-0000-0000-000000000000');
+
       final nameCustomProp = DateTime.now().toIso8601String();
       final defaultProps = {'score': '100'};
       final customProps = {'name': nameCustomProp};
-      
+
       // Update properties with recompute = false explicitly
       await client.updateProperties(
         session: session,
@@ -167,7 +172,7 @@ void main() {
         customProperties: customProps,
         recompute: false,
       );
-      
+
       // Verify properties were set
       final properties = await client.listProperties(session: session);
       expect(properties.$default, isNotNull);
@@ -184,16 +189,16 @@ void main() {
       final modifiedCity = 'Modified ${DateTime.now()}';
       final defaultProps = {'city': modifiedCity};
       final customProps = {'earlyAccess': 'true'};
-      
+
       final session = await client.authenticate(
         id: '7d9c476a-0000-0000-0000-000000000000',
         defaultProperties: defaultProps,
         customProperties: customProps,
       );
-      
+
       expect(session, isA<Session>());
       expect(session.token, isNotEmpty);
-      
+
       // Verify properties were set during authentication
       final properties = await client.listProperties(session: session);
       expect(properties.$default, isNotNull);

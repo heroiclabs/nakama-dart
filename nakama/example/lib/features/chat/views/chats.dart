@@ -28,7 +28,9 @@ class _ChatsPageState extends ConsumerState<ChatsPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: chat == null ? const Text('Create or join chat') : Text('Chat room ${chat.channel?.roomName}'),
+        title: chat == null
+            ? const Text('Create or join chat')
+            : Text('Chat room ${chat.channel?.roomName}'),
         actions: [
           if (chat != null) ...[
             IconButton(
@@ -54,4 +56,3 @@ class _ChatsPageState extends ConsumerState<ChatsPage> {
     );
   }
 }
-

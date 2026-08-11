@@ -18,7 +18,9 @@ class ListChatsOptions extends ConsumerWidget {
             child: TextButton(
               onPressed: () async {
                 try {
-                  await ref.read(chatProvider.notifier).createAndJoinChat(context);
+                  await ref
+                      .read(chatProvider.notifier)
+                      .createAndJoinChat(context);
                 } catch (e) {
                   if (!context.mounted) return;
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -37,8 +39,9 @@ class ListChatsOptions extends ConsumerWidget {
           SizedBox(
             width: double.infinity,
             child: TextButton(
-              onPressed: () async =>
-                  ref.read(chatProvider.notifier).joinChat(_targetChat.text, context),
+              onPressed: () async => ref
+                  .read(chatProvider.notifier)
+                  .joinChat(_targetChat.text, context),
               child: const Text('Join chat'),
             ),
           ),

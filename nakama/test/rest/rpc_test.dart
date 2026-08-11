@@ -18,16 +18,11 @@ void main() {
         serverKey: kTestServerKey,
       );
 
-      session = await client.authenticateDevice(
-        deviceId: faker.guid.guid(),
-      );
+      session = await client.authenticateDevice(deviceId: faker.guid.guid());
     });
 
     test('can call RPC without payload', () async {
-      final result = await client.rpc(
-        session: session,
-        id: 'hello_world',
-      );
+      final result = await client.rpc(session: session, id: 'hello_world');
 
       expect(result, isNotNull);
       final decoded = jsonDecode(result!);

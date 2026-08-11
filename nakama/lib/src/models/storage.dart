@@ -23,19 +23,20 @@ sealed class StorageObject with _$StorageObject {
     @JsonKey(name: 'update_time') DateTime? updateTime,
   }) = _StorageObject;
 
-  factory StorageObject.fromJson(Map<String, Object?> json) => _$StorageObjectFromJson(json);
+  factory StorageObject.fromJson(Map<String, Object?> json) =>
+      _$StorageObjectFromJson(json);
 
   factory StorageObject.fromDto(api.StorageObject dto) => StorageObject(
-        collection: dto.collection,
-        key: dto.key,
-        userId: PlatformNormalizer.normalizeNullableString(dto.userId),
-        value: dto.value,
-        version: dto.version,
-        permissionRead: StorageReadPermission.values[dto.permissionRead],
-        permissionWrite: StorageWritePermission.values[dto.permissionWrite],
-        createTime: dto.createTime.toDateTime(),
-        updateTime: dto.updateTime.toDateTime(),
-      );
+    collection: dto.collection,
+    key: dto.key,
+    userId: PlatformNormalizer.normalizeNullableString(dto.userId),
+    value: dto.value,
+    version: dto.version,
+    permissionRead: StorageReadPermission.values[dto.permissionRead],
+    permissionWrite: StorageWritePermission.values[dto.permissionWrite],
+    createTime: dto.createTime.toDateTime(),
+    updateTime: dto.updateTime.toDateTime(),
+  );
 }
 
 @freezed
@@ -47,11 +48,15 @@ sealed class StorageObjectList with _$StorageObjectList {
     @Default(<StorageObject>[]) List<StorageObject> objects,
   }) = _StorageObjectList;
 
-  factory StorageObjectList.fromJson(Map<String, Object?> json) => _$StorageObjectListFromJson(json);
+  factory StorageObjectList.fromJson(Map<String, Object?> json) =>
+      _$StorageObjectListFromJson(json);
 
-  factory StorageObjectList.fromDto(api.StorageObjectList dto) => StorageObjectList(
+  factory StorageObjectList.fromDto(api.StorageObjectList dto) =>
+      StorageObjectList(
         cursor: PlatformNormalizer.normalizeNullableString(dto.cursor),
-        objects: dto.objects.map((e) => StorageObject.fromDto(e)).toList(growable: false),
+        objects: dto.objects
+            .map((e) => StorageObject.fromDto(e))
+            .toList(growable: false),
       );
 }
 
@@ -66,9 +71,11 @@ sealed class StorageObjectId with _$StorageObjectId {
     @JsonKey(name: 'version') String? version,
   }) = _StorageObjectId;
 
-  factory StorageObjectId.fromJson(Map<String, Object?> json) => _$StorageObjectIdFromJson(json);
+  factory StorageObjectId.fromJson(Map<String, Object?> json) =>
+      _$StorageObjectIdFromJson(json);
 
-  factory StorageObjectId.fromDto(api.DeleteStorageObjectId dto) => StorageObjectId(
+  factory StorageObjectId.fromDto(api.DeleteStorageObjectId dto) =>
+      StorageObjectId(
         collection: dto.collection,
         key: dto.key,
         version: PlatformNormalizer.normalizeNullableString(dto.version),
@@ -88,11 +95,14 @@ sealed class StorageObjectWrite with _$StorageObjectWrite {
     @JsonKey(name: 'permission_write') StorageWritePermission? permissionWrite,
   }) = _StorageObjectWrite;
 
-  factory StorageObjectWrite.fromJson(Map<String, Object?> json) => _$StorageObjectWriteFromJson(json);
+  factory StorageObjectWrite.fromJson(Map<String, Object?> json) =>
+      _$StorageObjectWriteFromJson(json);
 
   api.WriteStorageObject toDto() {
-    final permissionRead = this.permissionRead ?? StorageReadPermission.ownerRead;
-    final permissionWrite = this.permissionWrite ?? StorageWritePermission.ownerWrite;
+    final permissionRead =
+        this.permissionRead ?? StorageReadPermission.ownerRead;
+    final permissionWrite =
+        this.permissionWrite ?? StorageWritePermission.ownerWrite;
     return api.WriteStorageObject(
       collection: collection,
       key: key,

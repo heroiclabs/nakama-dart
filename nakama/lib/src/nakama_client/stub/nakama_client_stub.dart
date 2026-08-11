@@ -9,7 +9,6 @@ NakamaBaseClient getNakamaClient({
   int httpPort = 7350,
   int grpcPort = 7349,
   bool ssl = false,
-}) =>
-    throw UnsupportedError(
-      'Nakama is not supported outside IO/JS/WASM runtime.',
-    );
+}) => throw UnsupportedError(
+  'Nakama is not supported outside IO/JS/WASM runtime.',
+);

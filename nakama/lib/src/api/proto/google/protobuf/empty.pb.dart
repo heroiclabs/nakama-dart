@@ -4,6 +4,7 @@
 
 // @dart = 3.3
 
+// ignore_for_file: always_use_package_imports
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: curly_braces_in_flow_control_structures
@@ -55,7 +56,6 @@ class Empty extends $pb.GeneratedMessage {
   static Empty create() => Empty._();
   @$core.override
   Empty createEmptyInstance() => create();
-  static $pb.PbList<Empty> createRepeated() => $pb.PbList<Empty>();
   @$core.pragma('dart2js:noInline')
   static Empty getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Empty>(create);

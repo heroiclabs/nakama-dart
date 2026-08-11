@@ -24,16 +24,19 @@ void main() {
 
       // Create leaderboard via RPC
       await client.rpc(
-          id: 'create_leaderboard_rpc',
-          session: session,
-          payload: jsonEncode({'id': leaderboardName}));
+        id: 'create_leaderboard_rpc',
+        session: session,
+        payload: jsonEncode({'id': leaderboardName}),
+      );
     });
 
     tearDown(() async {
       // Clean up any records created during tests
       try {
         await client.deleteLeaderboardRecord(
-            session: session, leaderboardName: leaderboardName);
+          session: session,
+          leaderboardName: leaderboardName,
+        );
       } catch (e) {
         // Ignore errors if record doesn't exist
       }
@@ -55,7 +58,10 @@ void main() {
       test('should list leaderboard records with proper structure', () async {
         // First create a record
         final writtenRecord = await client.writeLeaderboardRecord(
-            session: session, leaderboardName: leaderboardName, score: 100);
+          session: session,
+          leaderboardName: leaderboardName,
+          score: 100,
+        );
 
         final result = await client.listLeaderboardRecords(
           session: session,
@@ -81,13 +87,15 @@ void main() {
         // Create multiple records with different users
         final sessions = <Session>[];
         for (int i = 0; i < 3; i++) {
-          final tempSession =
-              await client.authenticateDevice(deviceId: faker.guid.guid());
+          final tempSession = await client.authenticateDevice(
+            deviceId: faker.guid.guid(),
+          );
           sessions.add(tempSession);
           await client.writeLeaderboardRecord(
-              session: tempSession,
-              leaderboardName: leaderboardName,
-              score: 50 + i * 10);
+            session: tempSession,
+            leaderboardName: leaderboardName,
+            score: 50 + i * 10,
+          );
         }
 
         final result = await client.listLeaderboardRecords(
@@ -102,7 +110,9 @@ void main() {
         for (final tempSession in sessions) {
           try {
             await client.deleteLeaderboardRecord(
-                session: tempSession, leaderboardName: leaderboardName);
+              session: tempSession,
+              leaderboardName: leaderboardName,
+            );
           } catch (e) {
             // Ignore cleanup errors
           }
@@ -113,7 +123,10 @@ void main() {
     group('Write leaderboard record', () {
       test('should write leaderboard record successfully', () async {
         final result = await client.writeLeaderboardRecord(
-            session: session, leaderboardName: leaderboardName, score: 150);
+          session: session,
+          leaderboardName: leaderboardName,
+          score: 150,
+        );
 
         expect(result, isA<LeaderboardRecord>());
         expect(result.ownerId, equals(session.userId));
@@ -124,7 +137,10 @@ void main() {
 
       test('should handle zero score', () async {
         final result = await client.writeLeaderboardRecord(
-            session: session, leaderboardName: leaderboardName, score: 0);
+          session: session,
+          leaderboardName: leaderboardName,
+          score: 0,
+        );
 
         expect(result.score, equals(0));
         expect(result.ownerId, equals(session.userId));
@@ -135,7 +151,10 @@ void main() {
       test('should list records around specific owner', () async {
         // Write a record for current user
         await client.writeLeaderboardRecord(
-            session: session, leaderboardName: leaderboardName, score: 500);
+          session: session,
+          leaderboardName: leaderboardName,
+          score: 500,
+        );
 
         final result = await client.listLeaderboardRecordsAroundOwner(
           session: session,
@@ -155,7 +174,10 @@ void main() {
 
       test('should handle limit parameter for records around owner', () async {
         await client.writeLeaderboardRecord(
-            session: session, leaderboardName: leaderboardName, score: 250);
+          session: session,
+          leaderboardName: leaderboardName,
+          score: 250,
+        );
 
         final result = await client.listLeaderboardRecordsAroundOwner(
           session: session,
@@ -169,8 +191,9 @@ void main() {
 
       test('should return empty when owner has no records', () async {
         // Create a new user that hasn't written any records
-        final newSession =
-            await client.authenticateDevice(deviceId: faker.guid.guid());
+        final newSession = await client.authenticateDevice(
+          deviceId: faker.guid.guid(),
+        );
 
         final result = await client.listLeaderboardRecordsAroundOwner(
           session: session,
@@ -187,27 +210,36 @@ void main() {
       test('should delete leaderboard record successfully', () async {
         // First write a record
         await client.writeLeaderboardRecord(
-            session: session, leaderboardName: leaderboardName, score: 75);
+          session: session,
+          leaderboardName: leaderboardName,
+          score: 75,
+        );
 
         // Verify it exists
         final beforeDelete = await client.listLeaderboardRecords(
           session: session,
           leaderboardName: leaderboardName,
         );
-        expect(beforeDelete.records.any((r) => r.ownerId == session.userId),
-            isTrue);
+        expect(
+          beforeDelete.records.any((r) => r.ownerId == session.userId),
+          isTrue,
+        );
 
         // Delete the record
         await client.deleteLeaderboardRecord(
-            session: session, leaderboardName: leaderboardName);
+          session: session,
+          leaderboardName: leaderboardName,
+        );
 
         // Verify it's gone
         final afterDelete = await client.listLeaderboardRecords(
           session: session,
           leaderboardName: leaderboardName,
         );
-        expect(afterDelete.records.any((r) => r.ownerId == session.userId),
-            isFalse);
+        expect(
+          afterDelete.records.any((r) => r.ownerId == session.userId),
+          isFalse,
+        );
       });
     });
 
@@ -223,28 +255,31 @@ void main() {
         );
       });
 
-      test('should throw for invalid tournament id on deleteTournamentRecord',
-          () async {
-        expect(
-          () async => await client.deleteTournamentRecord(
-            session: session,
-            tournamentId: '',
-          ),
-          throwsA(isA<Exception>()),
-        );
-      });
+      test(
+        'should throw for invalid tournament id on deleteTournamentRecord',
+        () async {
+          expect(
+            () async => await client.deleteTournamentRecord(
+              session: session,
+              tournamentId: '',
+            ),
+            throwsA(isA<Exception>()),
+          );
+        },
+      );
 
       test(
-          'should throw for invalid signedRequest on validatePurchaseFacebookInstant',
-          () async {
-        expect(
-          () async => await client.validatePurchaseFacebookInstant(
-            session: session,
-            signedRequest: '',
-          ),
-          throwsA(isA<Exception>()),
-        );
-      });
+        'should throw for invalid signedRequest on validatePurchaseFacebookInstant',
+        () async {
+          expect(
+            () async => await client.validatePurchaseFacebookInstant(
+              session: session,
+              signedRequest: '',
+            ),
+            throwsA(isA<Exception>()),
+          );
+        },
+      );
     });
 
     group('Additional wrappers', () {

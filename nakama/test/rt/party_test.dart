@@ -90,7 +90,8 @@ void main() {
       expect(
         joinedParty.self.userId,
         equals(sessionB.userId),
-        reason: 'Joined party event should identify the joining socket as self.',
+        reason:
+            'Joined party event should identify the joining socket as self.',
       );
       expect(
         joinedParty.leader.userId,

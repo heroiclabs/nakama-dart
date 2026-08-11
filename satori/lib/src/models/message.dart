@@ -23,7 +23,8 @@ abstract class Message with _$Message {
     DateTime? consumeTime,
   }) = _Message;
 
-  factory Message.fromJson(Map<String, dynamic> json) => _$MessageFromJson(json);
+  factory Message.fromJson(Map<String, dynamic> json) =>
+      _$MessageFromJson(json);
 
   factory Message.fromDto(ApiMessage dto) => Message(
         id: dto.id,
@@ -33,9 +34,12 @@ abstract class Message with _$Message {
         imageUrl: dto.imageUrl,
         metadata: dto.metadata,
         sendTime: dto.sendTime != null ? DateTime.parse(dto.sendTime!) : null,
-        createTime: dto.createTime != null ? DateTime.parse(dto.createTime!) : null,
-        updateTime: dto.updateTime != null ? DateTime.parse(dto.updateTime!) : null,
+        createTime:
+            dto.createTime != null ? DateTime.parse(dto.createTime!) : null,
+        updateTime:
+            dto.updateTime != null ? DateTime.parse(dto.updateTime!) : null,
         readTime: dto.readTime != null ? DateTime.parse(dto.readTime!) : null,
-        consumeTime: dto.consumeTime != null ? DateTime.parse(dto.consumeTime!) : null,
+        consumeTime:
+            dto.consumeTime != null ? DateTime.parse(dto.consumeTime!) : null,
       );
 }

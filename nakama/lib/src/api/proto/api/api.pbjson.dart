@@ -4,6 +4,7 @@
 
 // @dart = 3.3
 
+// ignore_for_file: always_use_package_imports
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names
 // ignore_for_file: curly_braces_in_flow_control_structures
@@ -22,13 +23,15 @@ const StoreProvider$json = {
     {'1': 'GOOGLE_PLAY_STORE', '2': 1},
     {'1': 'HUAWEI_APP_GALLERY', '2': 2},
     {'1': 'FACEBOOK_INSTANT_STORE', '2': 3},
+    {'1': 'SAMSUNG_GALAXY_STORE', '2': 4},
   ],
 };
 
 /// Descriptor for `StoreProvider`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List storeProviderDescriptor = $convert.base64Decode(
     'Cg1TdG9yZVByb3ZpZGVyEhMKD0FQUExFX0FQUF9TVE9SRRAAEhUKEUdPT0dMRV9QTEFZX1NUT1'
-    'JFEAESFgoSSFVBV0VJX0FQUF9HQUxMRVJZEAISGgoWRkFDRUJPT0tfSU5TVEFOVF9TVE9SRRAD');
+    'JFEAESFgoSSFVBV0VJX0FQUF9HQUxMRVJZEAISGgoWRkFDRUJPT0tfSU5TVEFOVF9TVE9SRRAD'
+    'EhgKFFNBTVNVTkdfR0FMQVhZX1NUT1JFEAQ=');
 
 @$core.Deprecated('Use storeEnvironmentDescriptor instead')
 const StoreEnvironment$json = {
@@ -3152,6 +3155,29 @@ final $typed_data.Uint8List validatePurchaseFacebookInstantRequestDescriptor =
         'CiZWYWxpZGF0ZVB1cmNoYXNlRmFjZWJvb2tJbnN0YW50UmVxdWVzdBIlCg5zaWduZWRfcmVxdW'
         'VzdBgBIAEoCVINc2lnbmVkUmVxdWVzdBI0CgdwZXJzaXN0GAIgASgLMhouZ29vZ2xlLnByb3Rv'
         'YnVmLkJvb2xWYWx1ZVIHcGVyc2lzdA==');
+
+@$core.Deprecated('Use validatePurchaseSamsungRequestDescriptor instead')
+const ValidatePurchaseSamsungRequest$json = {
+  '1': 'ValidatePurchaseSamsungRequest',
+  '2': [
+    {'1': 'purchase_id', '3': 1, '4': 1, '5': 9, '10': 'purchaseId'},
+    {
+      '1': 'persist',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.BoolValue',
+      '10': 'persist'
+    },
+  ],
+};
+
+/// Descriptor for `ValidatePurchaseSamsungRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List validatePurchaseSamsungRequestDescriptor =
+    $convert.base64Decode(
+        'Ch5WYWxpZGF0ZVB1cmNoYXNlU2Ftc3VuZ1JlcXVlc3QSHwoLcHVyY2hhc2VfaWQYASABKAlSCn'
+        'B1cmNoYXNlSWQSNAoHcGVyc2lzdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5Cb29sVmFsdWVS'
+        'B3BlcnNpc3Q=');
 
 @$core.Deprecated('Use validatedPurchaseDescriptor instead')
 const ValidatedPurchase$json = {

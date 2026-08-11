@@ -29,14 +29,15 @@ sealed class UserPresence with _$UserPresence {
   }) = _UserPresence;
 
   factory UserPresence.fromDto(rtpb.UserPresence dto) => UserPresence(
-        userId: dto.userId,
-        sessionId: dto.sessionId,
-        username: dto.username,
-        persistence: dto.persistence,
-        status: PlatformNormalizer.normalizeNullableString(dto.status.value),
-      );
+    userId: dto.userId,
+    sessionId: dto.sessionId,
+    username: dto.username,
+    persistence: dto.persistence,
+    status: PlatformNormalizer.normalizeNullableString(dto.status.value),
+  );
 
-  factory UserPresence.fromJson(Map<String, Object?> json) => _$UserPresenceFromJson(json);
+  factory UserPresence.fromJson(Map<String, Object?> json) =>
+      _$UserPresenceFromJson(json);
 }
 
 @freezed
@@ -51,9 +52,14 @@ sealed class StatusPresenceEvent with _$StatusPresenceEvent {
     required List<UserPresence> leaves,
   }) = _StatusPresenceEvent;
 
-  factory StatusPresenceEvent.fromDto(rtpb.StatusPresenceEvent dto) => StatusPresenceEvent(
-        joins: dto.joins.map((e) => UserPresence.fromDto(e)).toList(growable: false),
-        leaves: dto.leaves.map((e) => UserPresence.fromDto(e)).toList(growable: false),
+  factory StatusPresenceEvent.fromDto(rtpb.StatusPresenceEvent dto) =>
+      StatusPresenceEvent(
+        joins: dto.joins
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
+        leaves: dto.leaves
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
       );
 }
 
@@ -76,11 +82,11 @@ sealed class RealtimeStream with _$RealtimeStream {
   }) = _RealtimeStream;
 
   factory RealtimeStream.fromDto(rtpb.Stream dto) => RealtimeStream(
-        mode: dto.mode,
-        subject: dto.subject,
-        subcontext: dto.subcontext,
-        label: dto.label,
-      );
+    mode: dto.mode,
+    subject: dto.subject,
+    subcontext: dto.subcontext,
+    label: dto.label,
+  );
 }
 
 @freezed
@@ -102,11 +108,11 @@ sealed class RealtimeStreamData with _$RealtimeStreamData {
   }) = _RealtimeStreamData;
 
   factory RealtimeStreamData.fromDto(rtpb.StreamData dto) => RealtimeStreamData(
-        stream: RealtimeStream.fromDto(dto.stream),
-        sender: UserPresence.fromDto(dto.sender),
-        data: dto.data,
-        reliable: dto.reliable,
-      );
+    stream: RealtimeStream.fromDto(dto.stream),
+    sender: UserPresence.fromDto(dto.sender),
+    data: dto.data,
+    reliable: dto.reliable,
+  );
 }
 
 @freezed
@@ -124,9 +130,14 @@ sealed class StreamPresenceEvent with _$StreamPresenceEvent {
     required List<UserPresence> leaves,
   }) = _StreamPresenceEvent;
 
-  factory StreamPresenceEvent.fromDto(rtpb.StreamPresenceEvent dto) => StreamPresenceEvent(
+  factory StreamPresenceEvent.fromDto(rtpb.StreamPresenceEvent dto) =>
+      StreamPresenceEvent(
         stream: RealtimeStream.fromDto(dto.stream),
-        joins: dto.joins.map((e) => UserPresence.fromDto(e)).toList(growable: false),
-        leaves: dto.leaves.map((e) => UserPresence.fromDto(e)).toList(growable: false),
+        joins: dto.joins
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
+        leaves: dto.leaves
+            .map((e) => UserPresence.fromDto(e))
+            .toList(growable: false),
       );
 }

@@ -41,6 +41,11 @@ dart run build_runner build --delete-conflicting-outputs
 echo "✓ Build runner complete"
 
 echo ""
+echo "4. Formatting generated code..."
+dart format lib > /dev/null
+echo "✓ Formatting complete"
+
+echo ""
 echo "=========================================="
 echo "✓ Code generation completed!"
 echo "=========================================="

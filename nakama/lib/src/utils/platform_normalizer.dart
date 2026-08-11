@@ -1,5 +1,5 @@
 /// Utility to handle platform-specific null/empty string inconsistencies.
-/// 
+///
 /// Some properties return null on web but empty strings on native platforms.
 /// This utility normalizes these values for consistent behavior.
 class PlatformNormalizer {
