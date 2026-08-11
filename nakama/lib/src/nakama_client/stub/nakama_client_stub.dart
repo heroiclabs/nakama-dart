@@ -1,3 +1,4 @@
+import 'package:nakama/src/nakama_client/nakama_api_client.dart';
 import 'package:nakama/src/nakama_client/nakama_client.dart';
 
 const _kDefaultAppKey = 'default';
@@ -9,6 +10,7 @@ NakamaBaseClient getNakamaClient({
   int httpPort = 7350,
   int grpcPort = 7349,
   bool ssl = false,
+  NakamaRetryConfiguration? retryConfiguration,
 }) => throw UnsupportedError(
   'Nakama is not supported outside IO/JS/WASM runtime.',
 );

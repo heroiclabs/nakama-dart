@@ -1,3 +1,4 @@
+import 'package:satori/src/satori_client/satori_api_client.dart';
 import 'package:satori/src/satori_client/satori_client.dart';
 
 SatoriBaseClient getSatoriClient({
@@ -5,6 +6,8 @@ SatoriBaseClient getSatoriClient({
   String apiKey = 'apikey',
   int port = 7450,
   bool ssl = false,
+  SatoriRetryConfiguration retryConfiguration =
+      const SatoriRetryConfiguration(),
 }) =>
     throw UnsupportedError(
       'Satori client initialization failed. Platform not detected correctly (IO/JS/WASM required).',

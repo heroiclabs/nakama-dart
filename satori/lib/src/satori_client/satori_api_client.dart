@@ -1,6 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
-import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:satori/src/models/event.dart';
@@ -16,27 +16,64 @@ import 'package:satori/src/satori_client/satori_client.dart';
 const _kRetryAttemptKey = 'satori_retry_attempt';
 const _kRetryConfigKey = 'satori_retry_configuration';
 const _kRetryTotalDelayMsKey = 'satori_retry_total_delay_ms';
-const _kRetryConfigZoneKey = #satoriRetryConfigurationZoneKey;
+final _retryConfigZoneKey = Object();
 
+/// Called before a retry attempt is scheduled.
+///
+/// - [attempt] The 1-based number of the upcoming retry.
+/// - [delay] The delay that is awaited before the upcoming retry.
+/// - [error] The error that triggered the retry.
 typedef SatoriRetryListener = void Function(
   int attempt,
   Duration delay,
   DioException error,
 );
 
-/// Retry behavior for transient HTTP failures in the REST API client.
+/// Retry behavior for transient failures in the REST API client.
+///
+/// The defaults mirror the other Satori client libraries: up to [maxRetries]
+/// retries with exponential backoff, capped by [maxTotalDelay].
 class SatoriRetryConfiguration {
   static final Random _random = Random();
 
+  /// Maximum number of retries made in addition to the initial attempt.
   final int maxRetries;
+
+  /// Delay before the first retry. It is doubled on every following retry.
   final Duration baseDelay;
+
+  /// Upper bound for the delay of a single retry.
   final Duration maxDelay;
+
+  /// Budget for the sum of all retry delays of a single request.
+  ///
+  /// A request stops retrying as soon as the next delay would exceed this
+  /// budget, even if [maxRetries] has not been reached yet. With the default
+  /// values this limits a request to two retries.
   final Duration maxTotalDelay;
+
+  /// Randomness applied to every delay, as a fraction of that delay.
+  ///
+  /// A value of `0.2` spreads the delay over ±20%.
   final double jitterFactor;
+
+  /// Response status codes that are treated as transient.
   final Set<int> retryStatusCodes;
+
+  /// Whether requests that failed without a response are retried.
   final bool retryOnConnectionError;
+
+  /// Whether requests that ran into a connect, send or receive timeout are
+  /// retried.
   final bool retryOnTimeout;
+
+  /// Whether requests using a non-idempotent method are retried.
+  ///
+  /// The Satori REST API is `POST` based, so setting this to `false` disables
+  /// retries for almost every call.
   final bool retryNonIdempotentRequests;
+
+  /// Invoked before every retry attempt.
   final SatoriRetryListener? onRetry;
 
   const SatoriRetryConfiguration({
@@ -48,14 +85,17 @@ class SatoriRetryConfiguration {
     this.retryStatusCodes = const {408, 429, 500, 502, 503, 504},
     this.retryOnConnectionError = true,
     this.retryOnTimeout = true,
-    this.retryNonIdempotentRequests = false,
+    this.retryNonIdempotentRequests = true,
     this.onRetry,
-  }) : assert(maxRetries >= 0),
-       assert(jitterFactor >= 0);
+  })  : assert(maxRetries >= 0),
+        assert(jitterFactor >= 0 && jitterFactor <= 1);
 
+  /// Returns the delay to await before the [attempt]th (1-based) retry.
   Duration getDelay(int attempt) {
-    final exponentialDelay = baseDelay * (1 << (attempt - 1));
-    final cappedDelay = exponentialDelay > maxDelay ? maxDelay : exponentialDelay;
+    final exponent = (attempt - 1).clamp(0, 30);
+    final exponentialDelay = baseDelay * (1 << exponent);
+    final cappedDelay =
+        exponentialDelay > maxDelay ? maxDelay : exponentialDelay;
 
     if (jitterFactor <= 0 || cappedDelay.inMilliseconds == 0) {
       return cappedDelay;
@@ -70,7 +110,9 @@ class SatoriRetryConfiguration {
     final delayMs = cappedDelay.inMilliseconds + jitter;
     final boundedMs = delayMs < 0
         ? 0
-        : (delayMs > maxDelay.inMilliseconds ? maxDelay.inMilliseconds : delayMs);
+        : (delayMs > maxDelay.inMilliseconds
+            ? maxDelay.inMilliseconds
+            : delayMs);
     return Duration(milliseconds: boundedMs);
   }
 }
@@ -82,25 +124,26 @@ class SatoriRestApiClient extends SatoriBaseClient {
   late final int _port;
   late final bool _ssl;
   late final String apiKey;
-  late SatoriRetryConfiguration _globalRetryConfiguration;
+
+  /// Retry behavior applied to every request that does not override it via
+  /// [withRetryConfiguration].
+  SatoriRetryConfiguration globalRetryConfiguration;
 
   Session? _session;
 
-  /// Global retry behavior used by all requests unless overridden per call.
-  SatoriRetryConfiguration get globalRetryConfiguration => _globalRetryConfiguration;
-
-  set globalRetryConfiguration(SatoriRetryConfiguration value) {
-    _globalRetryConfiguration = value;
-  }
-
-  /// Run a single operation with a temporary retry override.
+  /// Runs [operation] with [retryConfiguration] instead of
+  /// [globalRetryConfiguration].
+  ///
+  /// The override applies to every request that is *started* inside
+  /// [operation]; awaiting a future that was created outside of it is not
+  /// affected.
   Future<T> withRetryConfiguration<T>(
     SatoriRetryConfiguration retryConfiguration,
     Future<T> Function() operation,
   ) {
     return runZoned(
       operation,
-      zoneValues: {_kRetryConfigZoneKey: retryConfiguration},
+      zoneValues: {_retryConfigZoneKey: retryConfiguration},
     );
   }
 
@@ -109,7 +152,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
     String apiKey = 'your-satoricloud-instance-api-key',
     int port = 443,
     bool ssl = true,
-    SatoriRetryConfiguration retryConfiguration = const SatoriRetryConfiguration(),
+    SatoriRetryConfiguration retryConfiguration =
+        const SatoriRetryConfiguration(),
   }) {
     return SatoriRestApiClient._(
       host: host,
@@ -129,7 +173,7 @@ class SatoriRestApiClient extends SatoriBaseClient {
   })  : _host = host,
         _port = port,
         _ssl = ssl,
-        _globalRetryConfiguration = retryConfiguration,
+        globalRetryConfiguration = retryConfiguration,
         super() {
     _initializeApi();
   }
@@ -142,15 +186,16 @@ class SatoriRestApiClient extends SatoriBaseClient {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          final zoneRetryConfiguration = Zone.current[_kRetryConfigZoneKey];
-          final retryConfiguration = zoneRetryConfiguration is SatoriRetryConfiguration
-              ? zoneRetryConfiguration
-              : _globalRetryConfiguration;
+          final zoneRetryConfiguration = Zone.current[_retryConfigZoneKey];
+          final retryConfiguration =
+              zoneRetryConfiguration is SatoriRetryConfiguration
+                  ? zoneRetryConfiguration
+                  : globalRetryConfiguration;
           options.extra[_kRetryConfigKey] = retryConfiguration;
 
           if (_session != null) {
-            options.headers
-                .putIfAbsent('Authorization', () => 'Bearer ${_session!.token}');
+            options.headers.putIfAbsent(
+                'Authorization', () => 'Bearer ${_session!.token}');
           } else {
             options.headers.putIfAbsent('Authorization',
                 () => 'Basic ${base64Encode('$apiKey:'.codeUnits)}');
@@ -164,16 +209,19 @@ class SatoriRestApiClient extends SatoriBaseClient {
       InterceptorsWrapper(
         onError: (error, handler) async {
           final requestOptions = error.requestOptions;
-          final retryConfiguration = requestOptions.extra[_kRetryConfigKey] is SatoriRetryConfiguration
-              ? requestOptions.extra[_kRetryConfigKey] as SatoriRetryConfiguration
-              : _globalRetryConfiguration;
+          final retryConfiguration =
+              requestOptions.extra[_kRetryConfigKey] is SatoriRetryConfiguration
+                  ? requestOptions.extra[_kRetryConfigKey]
+                      as SatoriRetryConfiguration
+                  : globalRetryConfiguration;
 
           if (retryConfiguration.maxRetries <= 0) {
             handler.next(error);
             return;
           }
 
-          final currentAttempt = (requestOptions.extra[_kRetryAttemptKey] as int?) ?? 0;
+          final currentAttempt =
+              (requestOptions.extra[_kRetryAttemptKey] as int?) ?? 0;
           if (currentAttempt >= retryConfiguration.maxRetries ||
               !_shouldRetry(error, requestOptions, retryConfiguration)) {
             handler.next(error);
@@ -182,10 +230,12 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
           final nextAttempt = currentAttempt + 1;
           final delay = retryConfiguration.getDelay(nextAttempt);
-          final accumulatedDelayMs = (requestOptions.extra[_kRetryTotalDelayMsKey] as int?) ?? 0;
+          final accumulatedDelayMs =
+              (requestOptions.extra[_kRetryTotalDelayMsKey] as int?) ?? 0;
           final newTotalDelayMs = accumulatedDelayMs + delay.inMilliseconds;
 
-          if (newTotalDelayMs > retryConfiguration.maxTotalDelay.inMilliseconds) {
+          if (newTotalDelayMs >
+              retryConfiguration.maxTotalDelay.inMilliseconds) {
             handler.next(error);
             return;
           }
@@ -201,8 +251,14 @@ class SatoriRestApiClient extends SatoriBaseClient {
             handler.resolve(response);
           } on DioException catch (e) {
             handler.next(e);
-          } catch (_) {
-            handler.next(error);
+          } catch (e, stackTrace) {
+            handler.next(
+              DioException(
+                requestOptions: requestOptions,
+                error: e,
+                stackTrace: stackTrace,
+              ),
+            );
           }
         },
       ),
@@ -230,11 +286,13 @@ class SatoriRestApiClient extends SatoriBaseClient {
     RequestOptions requestOptions,
     SatoriRetryConfiguration retryConfiguration,
   ) {
-    if (requestOptions.cancelToken?.isCancelled == true || error.type == DioExceptionType.cancel) {
+    if (requestOptions.cancelToken?.isCancelled == true ||
+        error.type == DioExceptionType.cancel) {
       return false;
     }
 
-    if (!retryConfiguration.retryNonIdempotentRequests && !_isIdempotentMethod(requestOptions.method)) {
+    if (!retryConfiguration.retryNonIdempotentRequests &&
+        !_isIdempotentMethod(requestOptions.method)) {
       return false;
     }
 
@@ -247,7 +305,8 @@ class SatoriRestApiClient extends SatoriBaseClient {
         return retryConfiguration.retryOnConnectionError;
       case DioExceptionType.badResponse:
         final statusCode = error.response?.statusCode;
-        return statusCode != null && retryConfiguration.retryStatusCodes.contains(statusCode);
+        return statusCode != null &&
+            retryConfiguration.retryStatusCodes.contains(statusCode);
       default:
         return false;
     }
