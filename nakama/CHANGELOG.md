@@ -1,4 +1,4 @@
-## 2.0.0
+## 1.4.0
 
 * Breaking: update leaderboard score and rank types from String to int for consistency by @ilmalte in [#174](https://github.com/heroiclabs/nakama-dart/pull/174)
   * Upgrade guide:
