@@ -1,7 +1,7 @@
 name: nakama
 description: Nakama is an open-source scalable game server that lets you focus
   on building games.
-version: 2.0.0
+version: 1.4.0
 repository: https://github.com/heroiclabs/nakama-dart
 homepage: https://heroiclabs.com/docs/nakama/client-libraries/dart
 
