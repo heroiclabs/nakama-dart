@@ -206,7 +206,7 @@ abstract class ApiClient
         @Body() {{ if $parameter.Required }}required {{ end }}{{ $parameter.Schema.Ref | cleanRef }}{{- if not $parameter.Required }}?{{- end }} body,
         {{- end }}
 	{{- else if eq $parameter.In "query" }}
-		@Query('{{ $parameter.Name }}')
+		@Query('{{ $parameter.Name | queryParamName }}')
     {{- if eq $parameter.Type "array"}}
     		required List<{{ $parameter.Items.Type | camelToPascal }}> {{ $parameter.Name | snakeToCamel }},
     {{- else if eq $parameter.Type "object"}},
@@ -338,6 +338,21 @@ func stripOperationPrefix(input string) string {
 	return strings.Replace(input, "Nakama_", "", 1)
 }
 
+// queryParamOverrides maps OpenAPI camelCase names to the snake_case HTTP names Nakama expects;
+// without this the wrong query key is sent and server-side auth can fail.
+var queryParamOverrides = map[string]string{
+	"httpKey": "http_key",
+}
+
+// queryParamName returns the @Query HTTP name, applying overrides where the OpenAPI name diverges.
+func queryParamName(input string) string {
+	if name, ok := queryParamOverrides[input]; ok {
+		return name
+	}
+
+	return input
+}
+
 func descriptionOrTitle(description string, title string) string {
 	if description != "" {
 		return description
@@ -462,6 +477,7 @@ func main() {
 		"stripOperationPrefix": stripOperationPrefix,
 		"descriptionOrTitle":   descriptionOrTitle,
 		"sanitizeFieldName":    sanitizeFieldName,
+		"queryParamName":       queryParamName,
 	}
 
 	tmpl, err := template.New(inputFile).Funcs(fmap).Parse(codeTemplate)

@@ -66,5 +66,20 @@ void main() {
       final decoded = jsonDecode(result!);
       expect(decoded['payload'], equals(payload));
     });
+
+    test('can call RPC with HTTP key', () async {
+      final payload = jsonEncode({'from': 'http_key'});
+
+      final result = await client.rpcWithHttpKey(
+        httpKey: kTestHttpKey,
+        id: 'hello_world',
+        payload: payload,
+      );
+
+      expect(result, isNotNull);
+      final decoded = jsonDecode(result!);
+      expect(decoded['message'], equals('Hello, World!'));
+      expect(decoded['payload'], equals(payload));
+    });
   });
 }

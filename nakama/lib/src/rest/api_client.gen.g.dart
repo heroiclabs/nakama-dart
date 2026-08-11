@@ -3434,7 +3434,7 @@ class _ApiClient implements ApiClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'payload': payload,
-      r'httpKey': httpKey,
+      r'http_key': httpKey,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -3470,7 +3470,7 @@ class _ApiClient implements ApiClient {
     String? httpKey,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'httpKey': httpKey};
+    final queryParameters = <String, dynamic>{r'http_key': httpKey};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = body;

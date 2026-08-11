@@ -1680,4 +1680,27 @@ class NakamaRestApiClient extends NakamaBaseClient {
       throw _handleError(e);
     }
   }
+
+  @override
+  Future<String?> rpcWithHttpKey({
+    required String httpKey,
+    required String id,
+    String? payload,
+  }) async {
+    _session = null;
+
+    try {
+      ApiRpc res;
+
+      if (payload == null) {
+        res = await _api.rpcFunc2(id: id, httpKey: httpKey);
+      } else {
+        res = await _api.rpcFunc(id: id, body: jsonEncode(payload), httpKey: httpKey);
+      }
+
+      return res.payload;
+    } on Exception catch (e) {
+      throw _handleError(e);
+    }
+  }
 }
