@@ -1,6 +1,6 @@
 name: satori
 description: Satori is a liveops server for games that enables real-time event processing, player segmentation, and personalized messaging to enhance player engagement and retention.
-version: 1.3.1
+version: 1.4.0
 repository: https://github.com/heroiclabs/nakama-dart
 homepage: https://heroiclabs.com/docs/nakama/client-libraries/dart
 
