@@ -1,3 +1,22 @@
+## 1.4.0
+
+* Breaking: update leaderboard score and rank types from String to int for consistency by @ilmalte in [#174](https://github.com/heroiclabs/nakama-dart/pull/174)
+  * Upgrade guide:
+    * If your app treated `score`, `subscore`, or `rank` as strings, switch your code to use integers.
+    * Remove string parsing for these fields (for example, `int.parse(...)` is no longer needed).
+    * If you serialize these values manually, ensure JSON payloads store numeric values instead of quoted strings.
+    * Review UI formatting code where string concatenation was used and convert to numeric formatting where needed.
+* Added: account deletion support by @ilmalte in [#176](https://github.com/heroiclabs/nakama-dart/pull/176)
+* Added: wrappers for listFriendsOfFriends, validatePurchaseFacebookInstant, deleteTournamentRecord, listParties, and getMatchmakerStats by @ilmalte in [#178](https://github.com/heroiclabs/nakama-dart/pull/178)
+* Added: realtime party event support by @PanTrakX in [#173](https://github.com/heroiclabs/nakama-dart/pull/173)
+* Fixed: RPCs via REST connections outside web by @ilmalte in [#169](https://github.com/heroiclabs/nakama-dart/pull/169)
+* Fixed: proto null wrapping and cursor pagination handling by @ilmalte in [#170](https://github.com/heroiclabs/nakama-dart/pull/170)
+* Fixed: listMatches deserialization by @ilmalte in [#165](https://github.com/heroiclabs/nakama-dart/pull/165)
+* Fixed: match serialization defaults and runtime type handling by @Flyclops in [#160](https://github.com/heroiclabs/nakama-dart/pull/160)
+* Fixed: add WASM support updates by @ilmalte in [#171](https://github.com/heroiclabs/nakama-dart/pull/171)
+* Improved: platform normalization in models by @ilmalte in [#164](https://github.com/heroiclabs/nakama-dart/pull/164)
+* Chore: bump dependencies and regenerate code by @ilmalte in [#166](https://github.com/heroiclabs/nakama-dart/pull/166)
+
 ## 1.3.0
 
 * fix: pass missing 'create' argument to _api.authenticateEmail by @bobby-bloom in https://github.com/heroiclabs/nakama-dart/pull/130
