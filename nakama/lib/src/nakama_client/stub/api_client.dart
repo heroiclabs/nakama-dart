@@ -10,10 +10,12 @@ NakamaBaseClient getNakamaClient({
   int httpPort = 7350,
   int grpcPort = 7349,
   bool ssl = false,
+  NakamaRetryConfiguration? retryConfiguration,
 }) => NakamaRestApiClient.init(
   host: host,
   key: key,
   port: httpPort,
   serverKey: serverKey,
   ssl: ssl,
+  retryConfiguration: retryConfiguration,
 );

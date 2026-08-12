@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:nakama/nakama.dart';
@@ -19,6 +21,107 @@ import 'package:nakama/src/models/tournament.dart' as model;
 import 'package:nakama/src/rest/api_client.gen.dart';
 
 const _kDefaultAppKey = 'default';
+const _kRetryAttemptKey = 'nakama_retry_attempt';
+const _kRetryConfigKey = 'nakama_retry_configuration';
+const _kRetryTotalDelayMsKey = 'nakama_retry_total_delay_ms';
+final _retryConfigZoneKey = Object();
+
+/// Called before a retry attempt is scheduled.
+///
+/// - [attempt] The 1-based number of the upcoming retry.
+/// - [delay] The delay that is awaited before the upcoming retry.
+/// - [error] The error that triggered the retry.
+typedef NakamaRetryListener =
+    void Function(int attempt, Duration delay, DioException error);
+
+/// Retry behavior for transient failures in the REST API client.
+///
+/// The defaults mirror the other Nakama client libraries: up to [maxRetries]
+/// retries with exponential backoff, capped by [maxTotalDelay].
+class NakamaRetryConfiguration {
+  static final Random _random = Random();
+
+  /// Maximum number of retries made in addition to the initial attempt.
+  final int maxRetries;
+
+  /// Delay before the first retry. It is doubled on every following retry.
+  final Duration baseDelay;
+
+  /// Upper bound for the delay of a single retry.
+  final Duration maxDelay;
+
+  /// Budget for the sum of all retry delays of a single request.
+  ///
+  /// A request stops retrying as soon as the next delay would exceed this
+  /// budget, even if [maxRetries] has not been reached yet. With the default
+  /// values this limits a request to two retries.
+  final Duration maxTotalDelay;
+
+  /// Randomness applied to every delay, as a fraction of that delay.
+  ///
+  /// A value of `0.2` spreads the delay over ±20%.
+  final double jitterFactor;
+
+  /// Response status codes that are treated as transient.
+  final Set<int> retryStatusCodes;
+
+  /// Whether requests that failed without a response are retried.
+  final bool retryOnConnectionError;
+
+  /// Whether requests that ran into a connect, send or receive timeout are
+  /// retried.
+  final bool retryOnTimeout;
+
+  /// Whether requests using a non-idempotent method are retried.
+  ///
+  /// The Nakama REST API is `POST` based, so setting this to `false` disables
+  /// retries for almost every call.
+  final bool retryNonIdempotentRequests;
+
+  /// Invoked before every retry attempt.
+  final NakamaRetryListener? onRetry;
+
+  const NakamaRetryConfiguration({
+    this.maxRetries = 4,
+    this.baseDelay = const Duration(milliseconds: 500),
+    this.maxDelay = const Duration(seconds: 5),
+    this.maxTotalDelay = const Duration(milliseconds: 1500),
+    this.jitterFactor = 0.2,
+    this.retryStatusCodes = const {408, 429, 500, 502, 503, 504},
+    this.retryOnConnectionError = true,
+    this.retryOnTimeout = true,
+    this.retryNonIdempotentRequests = true,
+    this.onRetry,
+  }) : assert(maxRetries >= 0),
+       assert(jitterFactor >= 0 && jitterFactor <= 1);
+
+  /// Returns the delay to await before the [attempt]th (1-based) retry.
+  Duration getDelay(int attempt) {
+    final exponent = (attempt - 1).clamp(0, 30);
+    final exponentialDelay = baseDelay * (1 << exponent);
+    final cappedDelay = exponentialDelay > maxDelay
+        ? maxDelay
+        : exponentialDelay;
+
+    if (jitterFactor <= 0 || cappedDelay.inMilliseconds == 0) {
+      return cappedDelay;
+    }
+
+    final maxJitter = (cappedDelay.inMilliseconds * jitterFactor).round();
+    if (maxJitter == 0) {
+      return cappedDelay;
+    }
+
+    final jitter = _random.nextInt((maxJitter * 2) + 1) - maxJitter;
+    final delayMs = cappedDelay.inMilliseconds + jitter;
+    final boundedMs = delayMs < 0
+        ? 0
+        : (delayMs > maxDelay.inMilliseconds
+              ? maxDelay.inMilliseconds
+              : delayMs);
+    return Duration(milliseconds: boundedMs);
+  }
+}
 
 /// Base class for communicating with Nakama via API.
 /// [NakamaGrpcClient] abstracts the API calls and handles authentication
@@ -38,6 +141,26 @@ class NakamaRestApiClient extends NakamaBaseClient {
   /// interceptor for JWT auth.
   model.Session? _session;
 
+  /// Retry behavior applied to every request that does not override it via
+  /// [withRetryConfiguration].
+  NakamaRetryConfiguration globalRetryConfiguration;
+
+  /// Runs [operation] with [retryConfiguration] instead of
+  /// [globalRetryConfiguration].
+  ///
+  /// The override applies to every request that is *started* inside
+  /// [operation]; awaiting a future that was created outside of it is not
+  /// affected.
+  Future<T> withRetryConfiguration<T>(
+    NakamaRetryConfiguration retryConfiguration,
+    Future<T> Function() operation,
+  ) {
+    return runZoned(
+      operation,
+      zoneValues: {_retryConfigZoneKey: retryConfiguration},
+    );
+  }
+
   /// Either inits and returns a new instance of [NakamaRestApiClient] or
   /// returns a already initialized one.
   factory NakamaRestApiClient.init({
@@ -47,9 +170,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int port = 7350,
     String path = '',
     bool ssl = false,
+    NakamaRetryConfiguration? retryConfiguration,
   }) {
     if (_clients.containsKey(key)) {
-      return _clients[key]!;
+      final client = _clients[key]!;
+      if (retryConfiguration != null) {
+        client.globalRetryConfiguration = retryConfiguration;
+      }
+      return client;
     }
 
     // Not yet initialized -> check if we've got all parameters to do so
@@ -66,6 +194,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
       path: path,
       serverKey: serverKey,
       ssl: ssl,
+      retryConfiguration:
+          retryConfiguration ?? const NakamaRetryConfiguration(),
     );
   }
 
@@ -75,7 +205,8 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required int port,
     required String path,
     required bool ssl,
-  }) {
+    required NakamaRetryConfiguration retryConfiguration,
+  }) : globalRetryConfiguration = retryConfiguration {
     apiBaseUrl = Uri(
       host: host,
       scheme: ssl ? 'https' : 'http',
@@ -86,6 +217,13 @@ class NakamaRestApiClient extends NakamaBaseClient {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
+          final zoneRetryConfiguration = Zone.current[_retryConfigZoneKey];
+          final retryConfiguration =
+              zoneRetryConfiguration is NakamaRetryConfiguration
+              ? zoneRetryConfiguration
+              : globalRetryConfiguration;
+          options.extra[_kRetryConfigKey] = retryConfiguration;
+
           if (_session != null) {
             options.headers.putIfAbsent(
               'Authorization',
@@ -102,7 +240,110 @@ class NakamaRestApiClient extends NakamaBaseClient {
         },
       ),
     );
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onError: (error, handler) async {
+          final requestOptions = error.requestOptions;
+          final retryConfiguration =
+              requestOptions.extra[_kRetryConfigKey] is NakamaRetryConfiguration
+              ? requestOptions.extra[_kRetryConfigKey]
+                    as NakamaRetryConfiguration
+              : globalRetryConfiguration;
+
+          if (retryConfiguration.maxRetries <= 0) {
+            handler.next(error);
+            return;
+          }
+
+          final currentAttempt =
+              (requestOptions.extra[_kRetryAttemptKey] as int?) ?? 0;
+          if (currentAttempt >= retryConfiguration.maxRetries ||
+              !_shouldRetry(error, requestOptions, retryConfiguration)) {
+            handler.next(error);
+            return;
+          }
+
+          final nextAttempt = currentAttempt + 1;
+          final delay = retryConfiguration.getDelay(nextAttempt);
+          final accumulatedDelayMs =
+              (requestOptions.extra[_kRetryTotalDelayMsKey] as int?) ?? 0;
+          final newTotalDelayMs = accumulatedDelayMs + delay.inMilliseconds;
+
+          if (newTotalDelayMs >
+              retryConfiguration.maxTotalDelay.inMilliseconds) {
+            handler.next(error);
+            return;
+          }
+
+          requestOptions.extra[_kRetryAttemptKey] = nextAttempt;
+          requestOptions.extra[_kRetryTotalDelayMsKey] = newTotalDelayMs;
+          retryConfiguration.onRetry?.call(nextAttempt, delay, error);
+
+          await Future<void>.delayed(delay);
+
+          try {
+            final response = await dio.fetch<dynamic>(requestOptions);
+            handler.resolve(response);
+          } on DioException catch (e) {
+            handler.next(e);
+          } catch (e, stackTrace) {
+            handler.next(
+              DioException(
+                requestOptions: requestOptions,
+                error: e,
+                stackTrace: stackTrace,
+              ),
+            );
+          }
+        },
+      ),
+    );
     _api = ApiClient(dio, baseUrl: apiBaseUrl.toString());
+  }
+
+  bool _isIdempotentMethod(String method) {
+    switch (method.toUpperCase()) {
+      case 'GET':
+      case 'HEAD':
+      case 'OPTIONS':
+      case 'TRACE':
+      case 'PUT':
+      case 'DELETE':
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  bool _shouldRetry(
+    DioException error,
+    RequestOptions requestOptions,
+    NakamaRetryConfiguration retryConfiguration,
+  ) {
+    if (requestOptions.cancelToken?.isCancelled == true ||
+        error.type == DioExceptionType.cancel) {
+      return false;
+    }
+
+    if (!retryConfiguration.retryNonIdempotentRequests &&
+        !_isIdempotentMethod(requestOptions.method)) {
+      return false;
+    }
+
+    switch (error.type) {
+      case DioExceptionType.connectionTimeout:
+      case DioExceptionType.sendTimeout:
+      case DioExceptionType.receiveTimeout:
+        return retryConfiguration.retryOnTimeout;
+      case DioExceptionType.connectionError:
+        return retryConfiguration.retryOnConnectionError;
+      case DioExceptionType.badResponse:
+        final statusCode = error.response?.statusCode;
+        return statusCode != null &&
+            retryConfiguration.retryStatusCodes.contains(statusCode);
+      default:
+        return false;
+    }
   }
 
   /// Handles errors and returns a [ResponseError] if the error is a [DioException] and the response data is not null.
@@ -1676,7 +1917,11 @@ class NakamaRestApiClient extends NakamaBaseClient {
       if (payload == null) {
         res = await _api.rpcFunc2(id: id, httpKey: httpKey);
       } else {
-        res = await _api.rpcFunc(id: id, body: jsonEncode(payload), httpKey: httpKey);
+        res = await _api.rpcFunc(
+          id: id,
+          body: jsonEncode(payload),
+          httpKey: httpKey,
+        );
       }
 
       return res.payload;

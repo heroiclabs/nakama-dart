@@ -6,10 +6,13 @@ SatoriBaseClient getSatoriClient({
   String apiKey = 'apikey',
   int port = 7450,
   bool ssl = false,
+  SatoriRetryConfiguration retryConfiguration =
+      const SatoriRetryConfiguration(),
 }) =>
     SatoriRestApiClient.init(
       host: host,
       apiKey: apiKey,
       port: port,
       ssl: ssl,
+      retryConfiguration: retryConfiguration,
     );
