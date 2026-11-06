@@ -14,6 +14,8 @@ dependencies:
     path: ../
 
 dev_dependencies:
+  flutter_test:
+    sdk: flutter
   flutter_lints: ^5.0.0
 
 flutter:

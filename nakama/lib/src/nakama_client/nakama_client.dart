@@ -12,6 +12,7 @@ import 'package:nakama/src/models/purchase.dart' as model;
 import 'package:nakama/src/models/session.dart' as model;
 import 'package:nakama/src/models/storage.dart' as model;
 import 'package:nakama/src/models/tournament.dart' as model;
+import 'package:nakama/src/session_refresh.dart';
 
 const _kDefaultAppKey = 'default';
 const defaultLimit = 20;
@@ -21,6 +22,18 @@ const defaultLimit = 20;
 /// so please don't use this directly but get your fitting instance with
 /// [getNakamaClient()].
 abstract class NakamaBaseClient {
+  /// Whether authenticated API calls proactively refresh expiring sessions.
+  final bool autoRefreshSession;
+
+  /// How soon before expiry a session should be refreshed.
+  final Duration sessionRefreshBuffer;
+
+  /// Publishes immutable session replacements for application persistence.
+  final model.SessionRefreshListener? onSessionRefresh;
+
+  /// Internal coordination for implementations of this client's transports.
+  final SessionRefreshManager sessionRefreshManager = SessionRefreshManager();
+
   NakamaBaseClient.init({
     String? host,
     String? serverKey,
@@ -28,9 +41,39 @@ abstract class NakamaBaseClient {
     int httpPort = 7350,
     int grpcPort = 7349,
     bool ssl = false,
-  });
+    bool autoRefreshSession = false,
+    Duration sessionRefreshBuffer = const Duration(minutes: 5),
+    model.SessionRefreshListener? onSessionRefresh,
+  }) : this(
+         autoRefreshSession: autoRefreshSession,
+         sessionRefreshBuffer: sessionRefreshBuffer,
+         onSessionRefresh: onSessionRefresh,
+       );
 
-  NakamaBaseClient();
+  NakamaBaseClient({
+    this.autoRefreshSession = false,
+    this.sessionRefreshBuffer = const Duration(minutes: 5),
+    this.onSessionRefresh,
+  }) {
+    if (sessionRefreshBuffer.isNegative) {
+      throw ArgumentError.value(
+        sessionRefreshBuffer,
+        'sessionRefreshBuffer',
+        'Must not be negative.',
+      );
+    }
+  }
+
+  /// Resolves the latest session and, when enabled, refreshes before dispatch.
+  ///
+  /// Transport implementations must bind the result to the individual request.
+  Future<model.Session> prepareSession(model.Session session) =>
+      sessionRefreshManager.prepare(
+        session,
+        enabled: autoRefreshSession,
+        buffer: sessionRefreshBuffer,
+        refresh: (current) => sessionRefresh(session: current),
+      );
 
   /// Refresh a user session and return the new session.
   ///

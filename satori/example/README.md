@@ -18,6 +18,7 @@ This example app demonstrates the following Satori features:
 ### 1. Authentication
 - Authenticate users with custom identities
 - Session management
+- Proactive session refresh with guarded Riverpod state updates
 
 ### 2. Events
 - Send custom events to Satori
@@ -126,6 +127,37 @@ lib/
 6. **Browse live events** for active campaigns
 7. **Inspect properties** to view user attribute metadata
 8. **Read messages** in your scheduled messages inbox
+
+## Automatic session refresh
+
+For the SDK configuration and refresh lifecycle semantics, see
+[Automatic session refresh in the Satori Dart README](../README.md#automatic-session-refresh).
+
+`satoriClientProvider` enables refresh with a five-minute buffer. Its
+`onSessionRefresh` callback updates `sessionProvider` only if the stored session
+is still the exact previous instance. Late refresh notifications cannot restore
+a logged-out session or overwrite a different login. Logout clears local state
+immediately, then requests server revocation; remote failures are logged and
+shown in a snackbar on the authentication screen.
+
+The home page shows the current access-token expiry. A successful refresh also
+logs the new expiry without logging credentials. Credentials are kept in memory
+for this example; production apps should persist replacements in secure storage.
+
+To observe refresh, configure your development Satori deployment to issue
+access tokens lasting slightly longer than five minutes, with a longer-lived
+refresh token. Authenticate, note the displayed expiry, and wait until less than
+five minutes remain. Open Flags or another authenticated feature. The SDK
+refreshes before sending that request; return home to see the expiry advance.
+If token lifetimes cannot be configured, wait until your normal token enters
+that five-minute window. Waiting alone does not refresh: there is no timer or
+automatic 401 replay.
+
+Provider lifecycle and logout tests run without a server:
+
+```bash
+flutter test test/session_refresh_test.dart
+```
 
 ## Learn More
 

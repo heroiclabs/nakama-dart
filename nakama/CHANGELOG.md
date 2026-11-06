@@ -1,3 +1,10 @@
+## Unreleased
+
+* Added: opt-in proactive session refresh for REST and gRPC, with immutable session replacement tracking, concurrent refresh coordination, and an awaited persistence callback.
+* Fixed: REST authentication is bound to each operation instead of shared mutable session state.
+* Fixed: session custom variables are decoded from Nakama's `vrs` token claim, including restored and refreshed sessions.
+* Fixed: closing a WebSocket releases only its own cached client, allowing safe reconnection.
+
 ## 1.4.0
 
 * Breaking: update leaderboard score and rank types from String to int for consistency by @ilmalte in [#174](https://github.com/heroiclabs/nakama-dart/pull/174)

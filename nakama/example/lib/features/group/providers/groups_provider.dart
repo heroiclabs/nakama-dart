@@ -14,7 +14,8 @@ class GroupsNotifier extends StateNotifier<List<Group>> {
     final session = ref.read(sessionProvider)!;
 
     // https://heroiclabs.com/docs/nakama/concepts/groups/#list-a-users-groups
-    final groups = (await NakamaClient.instance!
+    final groups = (await ref
+            .read(nakamaClientProvider)
             .listUserGroups(session: session, userId: session.userId))
         .userGroups;
     final groupNames = groups.map((group) => group.group).toList();
@@ -27,7 +28,8 @@ class GroupsNotifier extends StateNotifier<List<Group>> {
     final newGroup = '${random.nextInt(1000)}';
 
     // https://heroiclabs.com/docs/nakama/concepts/groups/#create-a-group
-    await NakamaClient.instance!
+    await ref
+        .read(nakamaClientProvider)
         .createGroup(session: ref.read(sessionProvider)!, name: newGroup);
     return listGroups();
   }
@@ -37,18 +39,19 @@ class GroupsNotifier extends StateNotifier<List<Group>> {
     final newGroupName = '${random.nextInt(1000)}';
 
     // https: //heroiclabs.com/docs/nakama/concepts/groups/#update-a-group
-    await NakamaClient.instance!.updateGroup(
-      session: ref.read(sessionProvider)!,
-      groupId: groupId,
-      name: newGroupName,
-      langTag: 'en',
-    );
+    await ref.read(nakamaClientProvider).updateGroup(
+          session: ref.read(sessionProvider)!,
+          groupId: groupId,
+          name: newGroupName,
+          langTag: 'en',
+        );
     return listGroups();
   }
 }
 
-final groupsProvider =
-    StateNotifierProvider<GroupsNotifier, List<Group>>((ref) {
+final groupsProvider = StateNotifierProvider<GroupsNotifier, List<Group>>((
+  ref,
+) {
   final notifier = GroupsNotifier(ref);
   unawaited(notifier.listGroups());
   return notifier;

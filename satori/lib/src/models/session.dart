@@ -1,8 +1,17 @@
+import 'dart:async';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:satori/src/rest/satori_api.gen.dart';
 
 part 'session.freezed.dart';
+
+/// Called after a successful manual or automatic refresh.
+///
+/// The client awaits the listener before sending waiting requests. Persist the
+/// replacement here; do not await another operation using this same session.
+typedef SessionRefreshListener = FutureOr<void> Function(
+    Session previous, Session refreshed);
 
 /// A session authenticated for a user with Satori server.
 @freezed

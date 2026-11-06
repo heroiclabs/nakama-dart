@@ -162,7 +162,7 @@ class NakamaWebsocketClient {
     _channel.stream.listen(
       _onData,
       onDone: () {
-        _clients.clear();
+        _clients.removeWhere((_, client) => identical(client, this));
 
         if (onDone != null) {
           onDone!();
@@ -178,6 +178,7 @@ class NakamaWebsocketClient {
   }
 
   Future<void> close() {
+    _clients.removeWhere((_, client) => identical(client, this));
     return Future.wait([
       _onChannelPresenceController.close(),
       _onMatchmakerMatchedController.close(),

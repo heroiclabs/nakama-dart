@@ -59,17 +59,21 @@ class ChatNotifier extends StateNotifier<ChatState?> {
   }
 
   Future<ChannelMessageList> refreshMessages(
-      Channel channel, Session session) async {
+    Channel channel,
+    Session session,
+  ) async {
     // https://heroiclabs.com/docs/nakama/client-libraries/dart/index.html#listing-message-history
-    final updatedMessages = await NakamaClient.instance!.listChannelMessages(
-      channelId: channel.id,
-      limit: 100,
-      session: session,
-    );
+    final updatedMessages =
+        await ref.read(nakamaClientProvider).listChannelMessages(
+              channelId: channel.id,
+              limit: 100,
+              session: session,
+            );
     state = ChatState(channel: channel, messages: updatedMessages);
     return updatedMessages;
   }
 }
 
-final chatProvider =
-    StateNotifierProvider<ChatNotifier, ChatState?>(ChatNotifier.new);
+final chatProvider = StateNotifierProvider<ChatNotifier, ChatState?>(
+  ChatNotifier.new,
+);

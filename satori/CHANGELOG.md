@@ -1,3 +1,8 @@
+## Unreleased
+
+* Added: opt-in proactive session refresh with immutable session replacement tracking, concurrent refresh coordination, and an awaited persistence callback.
+* Fixed: REST authentication is bound to each operation instead of shared mutable session state.
+
 ## 1.4.0
 
 * Added: WASM compatibility support updates by @ilmalte in [#171](https://github.com/heroiclabs/nakama-dart/pull/171)
