@@ -14,8 +14,11 @@ class MatchesNotifier extends StateNotifier<List<Match>> {
 
   Future<List<Match>> listMatches() async {
     // https://heroiclabs.com/docs/nakama/concepts/multiplayer/match-listing/
-    final matches = await NakamaClient.instance!.listMatches(
-        session: ref.read(sessionProvider)!, minSize: 0, maxSize: 100);
+    final matches = await ref.read(nakamaClientProvider).listMatches(
+          session: ref.read(sessionProvider)!,
+          minSize: 0,
+          maxSize: 100,
+        );
     state = matches;
     return matches;
   }
@@ -24,24 +27,18 @@ class MatchesNotifier extends StateNotifier<List<Match>> {
     final random = Random();
     final newMatch = '${random.nextInt(1000)}';
     // https://heroiclabs.com/docs/nakama/client-libraries/dart/index.html#matches
-    await NakamaWSClient.instance!.createMatch(
-      newMatch,
-    );
+    await NakamaWSClient.instance!.createMatch(newMatch);
     return listMatches();
   }
 
   Future<void> joinMatch(String matchId) async {
     // https://heroiclabs.com/docs/nakama/concepts/multiplayer/matchmaker/#join-a-match
-    await NakamaWSClient.instance!.joinMatch(
-      matchId,
-    );
+    await NakamaWSClient.instance!.joinMatch(matchId);
     await listMatches();
   }
 
   Future<void> leaveMatch(String matchId) async {
-    await NakamaWSClient.instance!.leaveMatch(
-      matchId,
-    );
+    await NakamaWSClient.instance!.leaveMatch(matchId);
     await listMatches();
   }
 }

@@ -4,17 +4,60 @@ import 'package:satori/src/models/flag.dart';
 import 'package:satori/src/models/live_event.dart';
 import 'package:satori/src/models/properties.dart';
 import 'package:satori/src/models/session.dart';
+import 'package:satori/src/session_refresh.dart';
 
 /// An interface for the Satori client.
 abstract class SatoriBaseClient {
+  /// Whether authenticated API calls proactively refresh expiring sessions.
+  final bool autoRefreshSession;
+
+  /// How soon before expiry a session should be refreshed.
+  final Duration sessionRefreshBuffer;
+
+  /// Publishes immutable session replacements for application persistence.
+  final SessionRefreshListener? onSessionRefresh;
+
+  /// Internal coordination for implementations of this client's transports.
+  final SessionRefreshManager sessionRefreshManager = SessionRefreshManager();
+
   SatoriBaseClient.init({
     required String host,
     required String apiKey,
     required int port,
     required bool ssl,
-  });
+    bool autoRefreshSession = false,
+    Duration sessionRefreshBuffer = const Duration(minutes: 5),
+    SessionRefreshListener? onSessionRefresh,
+  }) : this(
+          autoRefreshSession: autoRefreshSession,
+          sessionRefreshBuffer: sessionRefreshBuffer,
+          onSessionRefresh: onSessionRefresh,
+        );
 
-  SatoriBaseClient();
+  SatoriBaseClient({
+    this.autoRefreshSession = false,
+    this.sessionRefreshBuffer = const Duration(minutes: 5),
+    this.onSessionRefresh,
+  }) {
+    if (sessionRefreshBuffer.isNegative) {
+      throw ArgumentError.value(
+        sessionRefreshBuffer,
+        'sessionRefreshBuffer',
+        'Must not be negative.',
+      );
+    }
+  }
+
+  /// Resolves the latest session and, when enabled, refreshes before dispatch.
+  ///
+  /// Transport implementations must bind the result to the individual request.
+  Future<Session> prepareSession(Session session) =>
+      sessionRefreshManager.prepare(
+        session,
+        enabled: autoRefreshSession,
+        buffer: sessionRefreshBuffer,
+        refresh: (current) => sessionRefresh(session: current),
+      );
 
   /// Authenticate against the server.
   ///

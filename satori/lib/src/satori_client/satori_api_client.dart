@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -11,6 +12,8 @@ import 'package:satori/src/models/session.dart';
 import 'package:satori/src/rest/satori_api.gen.dart';
 import 'package:satori/src/satori_client/satori_client.dart';
 
+final _sessionTokenZoneKey = Object();
+
 /// A REST client to interact with the API in Satori.
 class SatoriRestApiClient extends SatoriBaseClient {
   late final SatoriApiClient _api;
@@ -19,19 +22,37 @@ class SatoriRestApiClient extends SatoriBaseClient {
   late final bool _ssl;
   late final String apiKey;
 
-  Session? _session;
+  // Generated API calls inherit this operation's auth without shared state.
+  Future<T> _withToken<T>(String? token, Future<T> Function() operation) =>
+      runZoned(operation, zoneValues: {_sessionTokenZoneKey: token});
+
+  Future<T> _withSession<T>(
+    Session session,
+    Future<T> Function(Session) operation,
+  ) async {
+    final prepared = await prepareSession(session);
+    // Logout can invalidate the session while preparation is awaiting.
+    final current = sessionRefreshManager.current(prepared);
+    return _withToken(current.token, () => operation(current));
+  }
 
   factory SatoriRestApiClient.init({
     String host = 'your-satoricloud-instance',
     String apiKey = 'your-satoricloud-instance-api-key',
     int port = 443,
     bool ssl = true,
+    bool autoRefreshSession = false,
+    Duration sessionRefreshBuffer = const Duration(minutes: 5),
+    SessionRefreshListener? onSessionRefresh,
   }) {
     return SatoriRestApiClient._(
       host: host,
       apiKey: apiKey,
       port: port,
       ssl: ssl,
+      autoRefreshSession: autoRefreshSession,
+      sessionRefreshBuffer: sessionRefreshBuffer,
+      onSessionRefresh: onSessionRefresh,
     );
   }
 
@@ -40,10 +61,12 @@ class SatoriRestApiClient extends SatoriBaseClient {
     required this.apiKey,
     required int port,
     required bool ssl,
+    required super.autoRefreshSession,
+    required super.sessionRefreshBuffer,
+    super.onSessionRefresh,
   })  : _host = host,
         _port = port,
-        _ssl = ssl,
-        super() {
+        _ssl = ssl {
     _initializeApi();
   }
 
@@ -54,13 +77,13 @@ class SatoriRestApiClient extends SatoriBaseClient {
 
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (options, handler) {
-        if (_session != null) {
-          options.headers
-              .putIfAbsent('Authorization', () => 'Bearer ${_session!.token}');
-        } else {
-          options.headers.putIfAbsent('Authorization',
-              () => 'Basic ${base64Encode('$apiKey:'.codeUnits)}');
-        }
+        final token = Zone.current[_sessionTokenZoneKey] as String?;
+        options.headers.putIfAbsent(
+          'Authorization',
+          () => token == null
+              ? 'Basic ${base64Encode('$apiKey:'.codeUnits)}'
+              : 'Bearer $token',
+        );
         handler.next(options);
       },
     ));
@@ -73,154 +96,149 @@ class SatoriRestApiClient extends SatoriBaseClient {
     String? id,
     Map<String, String>? defaultProperties,
     Map<String, String>? customProperties,
-  }) async {
-    // Clear any existing session to ensure Basic auth is used
-    _session = null;
+  }) =>
+      _withToken(null, () async {
+        final response = await _api.authenticate(
+          body: ApiAuthenticateRequest(
+            id: id,
+            defaultValue: defaultProperties,
+            custom: customProperties,
+            noSession: null,
+          ),
+        );
 
-    final response = await _api.authenticate(
-      body: ApiAuthenticateRequest(
-        id: id,
-        defaultValue: defaultProperties,
-        custom: customProperties,
-        noSession: null,
-      ),
-    );
-
-    final session = Session.fromApi(response);
-    _session = session;
-    return session;
-  }
+        final session = Session.fromApi(response);
+        return session;
+      });
 
   @override
   Future<void> authenticateLogout({required Session session}) async {
-    _session = session;
+    final current = autoRefreshSession
+        ? sessionRefreshManager.invalidate(session)
+        : sessionRefreshManager.current(session);
 
-    await _api.authenticateLogout(
-      body: ApiAuthenticateLogoutRequest(
-        token: session.token,
-        refreshToken: session.refreshToken,
-      ),
-    );
-
-    // Clear session after logout
-    _session = null;
+    await _withToken(
+        current.token,
+        () => _api.authenticateLogout(
+              body: ApiAuthenticateLogoutRequest(
+                token: current.token,
+                refreshToken: current.refreshToken,
+              ),
+            ));
   }
 
   @override
-  Future<Session> sessionRefresh({required Session session}) async {
-    // Clear session to use Basic auth for refresh
-    _session = null;
-
-    final response = await _api.authenticateRefresh(
-      body: ApiAuthenticateRefreshRequest(
-        refreshToken: session.refreshToken,
-      ),
-    );
-
-    final newSession = Session.fromApi(response);
-    _session = newSession;
-    return newSession;
-  }
+  Future<Session> sessionRefresh({required Session session}) =>
+      sessionRefreshManager.refresh(
+        session,
+        (current) => _withToken(null, () async {
+          if (current.refreshToken.isEmpty) {
+            throw StateError('Session does not have a refresh token.');
+          }
+          final response = await _api.authenticateRefresh(
+            body: ApiAuthenticateRefreshRequest(
+              refreshToken: current.refreshToken,
+            ),
+          );
+          return Session.fromApi(response);
+        }),
+        onSessionRefresh,
+      );
 
   @override
   Future<void> event({
     required Session session,
     required Event event,
-  }) async {
-    _session = session;
-
-    await _api.event(
-      body: ApiEventRequest(
-        events: [event.toApiEvent()],
-      ),
-    );
-  }
+  }) =>
+      _withSession(session, (session) async {
+        await _api.event(
+          body: ApiEventRequest(
+            events: [event.toApiEvent()],
+          ),
+        );
+      });
 
   @override
   Future<void> events({
     required Session session,
     required List<Event> events,
-  }) async {
-    _session = session;
-
-    await _api.event(
-      body: ApiEventRequest(
-        events: events.map((e) => e.toApiEvent()).toList(),
-      ),
-    );
-  }
-
-  @override
-  Future<void> deleteIdentity({required Session session}) async {
-    _session = session;
-    await _api.deleteIdentity();
-  }
+  }) =>
+      _withSession(session, (session) async {
+        await _api.event(
+          body: ApiEventRequest(
+            events: events.map((e) => e.toApiEvent()).toList(),
+          ),
+        );
+      });
 
   @override
-  Future<ExperimentList> getAllExperiments({required Session session}) async {
-    _session = session;
+  Future<void> deleteIdentity({required Session session}) =>
+      _withSession(session, (session) async {
+        await _api.deleteIdentity();
+      });
 
-    final response = await _api.getExperiments(names: []);
-    return ExperimentList(
-      experiments:
-          response.experiments?.map((e) => Experiment.fromDto(e)).toList() ??
+  @override
+  Future<ExperimentList> getAllExperiments({required Session session}) =>
+      _withSession(session, (session) async {
+        final response = await _api.getExperiments(names: []);
+        return ExperimentList(
+          experiments: response.experiments
+                  ?.map((e) => Experiment.fromDto(e))
+                  .toList() ??
               [],
-    );
-  }
+        );
+      });
 
   @override
   Future<ExperimentList> getExperiments({
     required Session session,
     required List<String> names,
-  }) async {
-    _session = session;
-
-    final response = await _api.getExperiments(names: names);
-    return ExperimentList(
-      experiments:
-          response.experiments?.map((e) => Experiment.fromDto(e)).toList() ??
+  }) =>
+      _withSession(session, (session) async {
+        final response = await _api.getExperiments(names: names);
+        return ExperimentList(
+          experiments: response.experiments
+                  ?.map((e) => Experiment.fromDto(e))
+                  .toList() ??
               [],
-    );
-  }
+        );
+      });
 
   @override
   Future<Flag> getFlag({
     required Session session,
     required String name,
     String? defaultValue,
-  }) async {
-    _session = session;
-
-    final response = await _api.getFlags(names: [name]);
-    if (response.flags == null || response.flags!.isEmpty) {
-      return Flag(name: name, value: defaultValue);
-    }
-    return Flag.fromDto(response.flags!.first);
-  }
+  }) =>
+      _withSession(session, (session) async {
+        final response = await _api.getFlags(names: [name]);
+        if (response.flags == null || response.flags!.isEmpty) {
+          return Flag(name: name, value: defaultValue);
+        }
+        return Flag.fromDto(response.flags!.first);
+      });
 
   @override
   Future<FlagList> getFlags({
     required Session session,
     required List<String> names,
-  }) async {
-    _session = session;
-
-    final response = await _api.getFlags(names: names.isEmpty ? [] : names);
-    return FlagList(
-      flags: response.flags?.map((e) => Flag.fromDto(e)).toList() ?? [],
-    );
-  }
+  }) =>
+      _withSession(session, (session) async {
+        final response = await _api.getFlags(names: names.isEmpty ? [] : names);
+        return FlagList(
+          flags: response.flags?.map((e) => Flag.fromDto(e)).toList() ?? [],
+        );
+      });
 
   @override
   Future<LiveEventList> getLiveEvents({
     required Session session,
     List<String>? names,
-  }) async {
-    _session = session;
-
-    final response = await _api.getLiveEvents(names: names ?? []);
-    return LiveEventList.fromDto(response);
-  }
+  }) =>
+      _withSession(session, (session) async {
+        final response = await _api.getLiveEvents(names: names ?? []);
+        return LiveEventList.fromDto(response);
+      });
 
   @override
   Future<Session> identify({
@@ -228,29 +246,27 @@ class SatoriRestApiClient extends SatoriBaseClient {
     required String id,
     required Map<String, String> defaultProperties,
     required Map<String, String> customProperties,
-  }) async {
-    _session = session;
+  }) =>
+      _withSession(session, (session) async {
+        final response = await _api.identify(
+          body: ApiIdentifyRequest(
+            id: id,
+            defaultValue: defaultProperties,
+            custom: customProperties,
+          ),
+        );
 
-    final response = await _api.identify(
-      body: ApiIdentifyRequest(
-        id: id,
-        defaultValue: defaultProperties,
-        custom: customProperties,
-      ),
-    );
-
-    final newSession = Session.fromApi(response);
-    _session = newSession;
-    return newSession;
-  }
+        final newSession = Session.fromApi(response);
+        sessionRefreshManager.replace(session, newSession);
+        return newSession;
+      });
 
   @override
-  Future<Properties> listProperties({required Session session}) async {
-    _session = session;
-
-    final response = await _api.listProperties();
-    return Properties.fromDto(response);
-  }
+  Future<Properties> listProperties({required Session session}) =>
+      _withSession(session, (session) async {
+        final response = await _api.listProperties();
+        return Properties.fromDto(response);
+      });
 
   @override
   Future<void> updateProperties({
@@ -258,54 +274,51 @@ class SatoriRestApiClient extends SatoriBaseClient {
     required Map<String, String> defaultProperties,
     required Map<String, String> customProperties,
     bool? recompute = false,
-  }) async {
-    _session = session;
-
-    await _api.updateProperties(
-      body: ApiUpdatePropertiesRequest(
-        defaultValue: defaultProperties,
-        custom: customProperties,
-        recompute: recompute,
-      ),
-    );
-  }
+  }) =>
+      _withSession(session, (session) async {
+        await _api.updateProperties(
+          body: ApiUpdatePropertiesRequest(
+            defaultValue: defaultProperties,
+            custom: customProperties,
+            recompute: recompute,
+          ),
+        );
+      });
 
   Future<List<Message>> getMessages({
     required Session session,
     int? limit,
     String? cursor,
-  }) async {
-    _session = session;
-
-    final response = await _api.getMessageList(
-      limit: limit,
-      cursor: cursor,
-    );
-    return response.messages?.map((e) => Message.fromDto(e)).toList() ?? [];
-  }
+  }) =>
+      _withSession(session, (session) async {
+        final response = await _api.getMessageList(
+          limit: limit,
+          cursor: cursor,
+        );
+        return response.messages?.map((e) => Message.fromDto(e)).toList() ?? [];
+      });
 
   Future<void> deleteMessage({
     required Session session,
     required String id,
-  }) async {
-    _session = session;
-    await _api.deleteMessage(id: id);
-  }
+  }) =>
+      _withSession(session, (session) async {
+        await _api.deleteMessage(id: id);
+      });
 
   Future<void> updateMessage({
     required Session session,
     required String id,
     String? consumeTime,
     String? readTime,
-  }) async {
-    _session = session;
-
-    await _api.updateMessage(
-      id: id,
-      body: ApiUpdateMessageRequest(
-        consumeTime: consumeTime,
-        readTime: readTime,
-      ),
-    );
-  }
+  }) =>
+      _withSession(session, (session) async {
+        await _api.updateMessage(
+          id: id,
+          body: ApiUpdateMessageRequest(
+            consumeTime: consumeTime,
+            readTime: readTime,
+          ),
+        );
+      });
 }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -19,6 +20,7 @@ import 'package:nakama/src/models/tournament.dart' as model;
 import 'package:nakama/src/rest/api_client.gen.dart';
 
 const _kDefaultAppKey = 'default';
+final _sessionTokenZoneKey = Object();
 
 /// Base class for communicating with Nakama via API.
 /// [NakamaGrpcClient] abstracts the API calls and handles authentication
@@ -34,9 +36,19 @@ class NakamaRestApiClient extends NakamaBaseClient {
 
   late final Uri apiBaseUrl;
 
-  /// Temporarily holds the current valid session to use in the Chopper
-  /// interceptor for JWT auth.
-  model.Session? _session;
+  // Generated API calls inherit this operation's auth without shared state.
+  Future<T> _withToken<T>(String? token, Future<T> Function() operation) =>
+      runZoned(operation, zoneValues: {_sessionTokenZoneKey: token});
+
+  Future<T> _withSession<T>(
+    model.Session session,
+    Future<T> Function(model.Session) operation,
+  ) async {
+    final prepared = await prepareSession(session);
+    // Logout can invalidate the session while preparation is awaiting.
+    final current = sessionRefreshManager.current(prepared);
+    return _withToken(current.token, () => operation(current));
+  }
 
   /// Either inits and returns a new instance of [NakamaRestApiClient] or
   /// returns a already initialized one.
@@ -47,6 +59,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int port = 7350,
     String path = '',
     bool ssl = false,
+    bool autoRefreshSession = false,
+    Duration sessionRefreshBuffer = const Duration(minutes: 5),
+    model.SessionRefreshListener? onSessionRefresh,
   }) {
     if (_clients.containsKey(key)) {
       return _clients[key]!;
@@ -66,6 +81,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
       path: path,
       serverKey: serverKey,
       ssl: ssl,
+      autoRefreshSession: autoRefreshSession,
+      sessionRefreshBuffer: sessionRefreshBuffer,
+      onSessionRefresh: onSessionRefresh,
     );
   }
 
@@ -75,6 +93,9 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required int port,
     required String path,
     required bool ssl,
+    required super.autoRefreshSession,
+    required super.sessionRefreshBuffer,
+    super.onSessionRefresh,
   }) {
     apiBaseUrl = Uri(
       host: host,
@@ -86,17 +107,13 @@ class NakamaRestApiClient extends NakamaBaseClient {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          if (_session != null) {
-            options.headers.putIfAbsent(
-              'Authorization',
-              () => 'Bearer ${_session!.token}',
-            );
-          } else {
-            options.headers.putIfAbsent(
-              'Authorization',
-              () => 'Basic ${base64Encode('$serverKey:'.codeUnits)}',
-            );
-          }
+          final token = Zone.current[_sessionTokenZoneKey] as String?;
+          options.headers.putIfAbsent(
+            'Authorization',
+            () => token == null
+                ? 'Basic ${base64Encode('$serverKey:'.codeUnits)}'
+                : 'Bearer $token',
+          );
 
           handler.next(options);
         },
@@ -119,32 +136,40 @@ class NakamaRestApiClient extends NakamaBaseClient {
   Future<model.Session> sessionRefresh({
     required model.Session session,
     Map<String, String>? vars,
-  }) async {
-    if (session.refreshToken == null) {
-      throw Exception('Session does not have a refresh token.');
-    }
-
-    try {
-      final newSession = await _api.sessionRefresh(
-        body: ApiSessionRefreshRequest(
-          token: session.refreshToken!,
-          vars: vars,
-        ),
-      );
-      return model.Session.fromApi(newSession);
-    } on Exception catch (e) {
-      throw _handleError(e);
-    }
-  }
+  }) => sessionRefreshManager.refresh(
+    session,
+    (current) => _withToken(null, () async {
+      if (current.refreshToken?.isNotEmpty != true) {
+        throw StateError('Session does not have a refresh token.');
+      }
+      try {
+        final newSession = await _api.sessionRefresh(
+          body: ApiSessionRefreshRequest(
+            token: current.refreshToken!,
+            vars: vars,
+          ),
+        );
+        return model.Session.fromApi(newSession);
+      } on Exception catch (e) {
+        throw _handleError(e);
+      }
+    }),
+    onSessionRefresh,
+  );
 
   @override
   Future<void> sessionLogout({required model.Session session}) async {
-    _session = session;
+    final current = autoRefreshSession
+        ? sessionRefreshManager.invalidate(session)
+        : sessionRefreshManager.current(session);
     try {
-      await _api.sessionLogout(
-        body: ApiSessionLogoutRequest(
-          refreshToken: session.refreshToken!,
-          token: session.token,
+      await _withToken(
+        current.token,
+        () => _api.sessionLogout(
+          body: ApiSessionLogoutRequest(
+            refreshToken: current.refreshToken,
+            token: current.token,
+          ),
         ),
       );
     } on Exception catch (e) {
@@ -159,8 +184,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String password,
     bool create = false,
     Map<String, String>? vars,
-  }) async {
-    _session = null;
+  }) => _withToken(null, () async {
     try {
       final session = await _api.authenticateEmail(
         body: ApiAccountEmail(email: email, password: password, vars: vars),
@@ -171,7 +195,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> linkEmail({
@@ -179,7 +203,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String email,
     required String password,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.linkEmail(
         body: ApiAccountEmail(email: email, password: password, vars: vars),
@@ -187,7 +211,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> unlinkEmail({
@@ -195,7 +219,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String email,
     required String password,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.unlinkEmail(
         body: ApiAccountEmail(email: email, password: password, vars: vars),
@@ -203,7 +227,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.Session> authenticateDevice({
@@ -211,9 +235,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool create = true,
     String? username,
     Map<String, String>? vars,
-  }) async {
-    _session = null;
-
+  }) => _withToken(null, () async {
     try {
       final session = await _api.authenticateDevice(
         body: ApiAccountDevice(id: deviceId, vars: vars),
@@ -224,14 +246,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> linkDevice({
     required model.Session session,
     required String deviceId,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.linkDevice(
         body: ApiAccountDevice(id: deviceId, vars: vars),
@@ -239,14 +261,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> unlinkDevice({
     required model.Session session,
     required String deviceId,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.unlinkDevice(
         body: ApiAccountDevice(id: deviceId, vars: vars),
@@ -254,7 +276,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.Session> authenticateFacebook({
@@ -263,9 +285,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
     bool import = false,
-  }) async {
-    _session = null;
-
+  }) => _withToken(null, () async {
     try {
       final session = await _api.authenticateFacebook(
         body: ApiAccountFacebook(token: token, vars: vars),
@@ -277,7 +297,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> linkFacebook({
@@ -285,7 +305,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String token,
     bool import = false,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.linkFacebook(
         body: ApiAccountFacebook(token: token, vars: vars),
@@ -294,14 +314,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> unlinkFacebook({
     required model.Session session,
     required String token,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.unlinkFacebook(
         body: ApiAccountFacebook(token: token, vars: vars),
@@ -309,7 +329,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.Session> authenticateGoogle({
@@ -317,9 +337,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool create = true,
     String? username,
     Map<String, String>? vars,
-  }) async {
-    _session = null;
-
+  }) => _withToken(null, () async {
     try {
       final session = await _api.authenticateGoogle(
         body: ApiAccountGoogle(token: token, vars: vars),
@@ -330,14 +348,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> linkGoogle({
     required model.Session session,
     required String token,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.linkGoogle(
         body: ApiAccountGoogle(token: token, vars: vars),
@@ -345,14 +363,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> unlinkGoogle({
     required model.Session session,
     required String token,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.unlinkGoogle(
         body: ApiAccountGoogle(token: token, vars: vars),
@@ -360,7 +378,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.Session> authenticateApple({
@@ -368,9 +386,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool create = true,
     String? username,
     Map<String, String>? vars,
-  }) async {
-    _session = null;
-
+  }) => _withToken(null, () async {
     try {
       final session = await _api.authenticateApple(
         body: ApiAccountApple(token: token, vars: vars),
@@ -381,14 +397,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> linkApple({
     required model.Session session,
     required String token,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.linkApple(
         body: ApiAccountApple(token: token, vars: vars),
@@ -396,14 +412,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> unlinkApple({
     required model.Session session,
     required String token,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.unlinkApple(
         body: ApiAccountApple(token: token, vars: vars),
@@ -411,7 +427,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.Session> authenticateFacebookInstantGame({
@@ -419,9 +435,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool create = true,
     String? username,
     Map<String, String>? vars,
-  }) async {
-    _session = null;
-
+  }) => _withToken(null, () async {
     try {
       final session = await _api.authenticateFacebookInstantGame(
         body: ApiAccountFacebookInstantGame(
@@ -435,14 +449,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> linkFacebookInstantGame({
     required model.Session session,
     required String signedPlayerInfo,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.linkFacebookInstantGame(
         body: ApiAccountFacebookInstantGame(
@@ -453,14 +467,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> unlinkFacebookInstantGame({
     required model.Session session,
     required String signedPlayerInfo,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.unlinkFacebookInstantGame(
         body: ApiAccountFacebookInstantGame(
@@ -471,7 +485,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.Session> authenticateGameCenter({
@@ -484,9 +498,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool create = true,
     String? username,
     Map<String, String>? vars,
-  }) async {
-    _session = null;
-
+  }) => _withToken(null, () async {
     try {
       final session = await _api.authenticateGameCenter(
         body: ApiAccountGameCenter(
@@ -505,7 +517,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> linkGameCenter({
@@ -517,7 +529,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String signature,
     required String publicKeyUrl,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.linkGameCenter(
         body: ApiAccountGameCenter(
@@ -533,7 +545,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> unlinkGameCenter({
@@ -545,7 +557,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String signature,
     required String publicKeyUrl,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.unlinkGameCenter(
         body: ApiAccountGameCenter(
@@ -561,7 +573,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.Session> authenticateSteam({
@@ -570,9 +582,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? username,
     Map<String, String>? vars,
     bool import = false,
-  }) async {
-    _session = null;
-
+  }) => _withToken(null, () async {
     try {
       final session = await _api.authenticateSteam(
         body: ApiAccountSteam(token: token, vars: vars),
@@ -584,7 +594,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> linkSteam({
@@ -592,7 +602,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String token,
     Map<String, String>? vars,
     bool import = false,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.linkSteam(
         body: ApiLinkSteamRequest(
@@ -603,7 +613,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> unlinkSteam({
@@ -611,7 +621,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String token,
     Map<String, String>? vars,
     bool import = false,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.unlinkSteam(
         body: ApiAccountSteam(token: token, vars: vars),
@@ -619,7 +629,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.Session> authenticateCustom({
@@ -627,8 +637,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool create = true,
     String? username,
     Map<String, String>? vars,
-  }) async {
-    _session = null;
+  }) => _withToken(null, () async {
     try {
       final session = await _api.authenticateCustom(
         body: ApiAccountCustom(id: id, vars: vars),
@@ -639,14 +648,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> linkCustom({
     required model.Session session,
     required String id,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.linkCustom(
         body: ApiAccountCustom(id: id, vars: vars),
@@ -654,14 +663,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> unlinkCustom({
     required model.Session session,
     required String id,
     Map<String, String>? vars,
-  }) async {
+  }) => _withSession(session, (session) async {
     try {
       await _api.unlinkCustom(
         body: ApiAccountCustom(id: id, vars: vars),
@@ -669,7 +678,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> importFacebookFriends({
@@ -677,9 +686,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String token,
     bool reset = false,
     Map<String, String>? vars,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.importFacebookFriends(
         body: ApiAccountFacebook(token: token, vars: vars),
@@ -688,7 +695,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> importSteamFriends({
@@ -696,9 +703,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String token,
     bool reset = false,
     Map<String, String>? vars,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.importSteamFriends(
         body: ApiAccountSteam(token: token, vars: vars),
@@ -707,20 +712,19 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
-  Future<model.Account> getAccount(model.Session session) async {
-    _session = session;
+  Future<model.Account> getAccount(model.Session session) =>
+      _withSession(session, (session) async {
+        try {
+          final account = await _api.getAccount();
 
-    try {
-      final account = await _api.getAccount();
-
-      return model.Account.fromJson(account.toJson());
-    } on Exception catch (e) {
-      throw _handleError(e);
-    }
-  }
+          return model.Account.fromJson(account.toJson());
+        } on Exception catch (e) {
+          throw _handleError(e);
+        }
+      });
 
   @override
   Future<void> updateAccount({
@@ -731,9 +735,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? langTag,
     String? location,
     String? timezone,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.updateAccount(
         body: ApiUpdateAccountRequest(
@@ -748,18 +750,17 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
-  Future<void> deleteAccount({required model.Session session}) async {
-    _session = session;
-
-    try {
-      await _api.deleteAccount();
-    } on Exception catch (e) {
-      throw _handleError(e);
-    }
-  }
+  Future<void> deleteAccount({required model.Session session}) =>
+      _withSession(session, (session) async {
+        try {
+          await _api.deleteAccount();
+        } on Exception catch (e) {
+          throw _handleError(e);
+        }
+      });
 
   @override
   Future<List<model.User>> getUsers({
@@ -767,8 +768,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     List<String>? facebookIds,
     required List<String> ids,
     List<String>? usernames,
-  }) async {
-    _session = session;
+  }) => _withSession(session, (session) async {
     try {
       final users = await _api.getUsers(
         ids: ids,
@@ -783,15 +783,13 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> writeStorageObjects({
     required model.Session session,
     required Iterable<model.StorageObjectWrite> objects,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.writeStorageObjects(
         body: ApiWriteStorageObjectsRequest(
@@ -812,7 +810,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.StorageObjectList> listStorageObjects({
@@ -821,9 +819,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? cursor,
     String? userId,
     int? limit = defaultLimit,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final objects = await _api.listStorageObjects(
         collection: collection,
@@ -836,15 +832,13 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<List<model.StorageObject>> readStorageObjects({
     required model.Session session,
     required Iterable<model.StorageObjectId> objectIds,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final objects = await _api.readStorageObjects(
         body: ApiReadStorageObjectsRequest(
@@ -867,15 +861,13 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> deleteStorageObjects({
     required model.Session session,
     required Iterable<model.StorageObjectId> objectIds,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.deleteStorageObjects(
         body: ApiDeleteStorageObjectsRequest(
@@ -893,7 +885,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.ChannelMessageList> listChannelMessages({
@@ -902,9 +894,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int limit = defaultLimit,
     bool? forward,
     String? cursor,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listChannelMessages(
         channelId: channelId,
@@ -917,7 +907,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.LeaderboardRecordList> listLeaderboardRecords({
@@ -927,9 +917,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int limit = defaultLimit,
     String? cursor,
     DateTime? expiry,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listLeaderboardRecords(
         leaderboardId: leaderboardName,
@@ -945,7 +933,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.LeaderboardRecordList> listLeaderboardRecordsAroundOwner({
@@ -954,9 +942,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String ownerId,
     int limit = defaultLimit,
     DateTime? expiry,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listLeaderboardRecordsAroundOwner(
         leaderboardId: leaderboardName,
@@ -971,7 +957,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.LeaderboardRecord> writeLeaderboardRecord({
@@ -981,9 +967,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int? subscore,
     String? metadata,
     LeaderboardOperator? operator,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.writeLeaderboardRecord(
         leaderboardId: leaderboardName,
@@ -999,36 +983,32 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> deleteLeaderboardRecord({
     required model.Session session,
     required String leaderboardName,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.deleteLeaderboardRecord(leaderboardId: leaderboardName);
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> addFriends({
     required model.Session session,
     required List<String> ids,
     List<String>? usernames,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.addFriends(ids: ids, usernames: usernames ?? []);
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.FriendsList> listFriends({
@@ -1036,9 +1016,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     FriendshipState? friendshipState,
     int limit = defaultLimit,
     String? cursor,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listFriends(
         cursor: cursor,
@@ -1050,16 +1028,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.FriendsOfFriendsList> listFriendsOfFriends({
     required model.Session session,
     int limit = defaultLimit,
     String? cursor,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listFriendsOfFriends(cursor: cursor, limit: limit);
 
@@ -1067,37 +1043,33 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> deleteFriends({
     required model.Session session,
     required List<String> ids,
     List<String>? usernames,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.deleteFriends(ids: ids, usernames: usernames ?? []);
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> blockFriends({
     required model.Session session,
     required List<String> ids,
     List<String>? usernames,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.blockFriends(ids: ids, usernames: usernames ?? []);
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.Group> createGroup({
@@ -1108,9 +1080,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? langTag,
     int? maxCount,
     bool? open,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.createGroup(
         body: ApiCreateGroupRequest(
@@ -1127,7 +1097,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> updateGroup({
@@ -1138,9 +1108,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? description,
     required String? langTag,
     bool? open,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.updateGroup(
         groupId: groupId,
@@ -1155,7 +1123,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.GroupList> listGroups({
@@ -1166,9 +1134,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int? members,
     bool? open,
     int limit = defaultLimit,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listGroups(
         cursor: cursor,
@@ -1183,35 +1149,31 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> deleteGroup({
     required model.Session session,
     required String groupId,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.deleteGroup(groupId: groupId);
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> joinGroup({
     required model.Session session,
     required String groupId,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.joinGroup(groupId: groupId);
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.UserGroupList> listUserGroups({
@@ -1220,9 +1182,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int limit = defaultLimit,
     GroupMembershipState? state,
     String? userId,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listUserGroups(
         cursor: cursor,
@@ -1235,7 +1195,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.GroupUserList> listGroupUsers({
@@ -1244,9 +1204,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     String? cursor,
     int limit = defaultLimit,
     GroupMembershipState? state,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listGroupUsers(
         groupId: groupId,
@@ -1259,16 +1217,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> addGroupUsers({
     required model.Session session,
     required String groupId,
     required Iterable<String> userIds,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.addGroupUsers(
         groupId: groupId,
@@ -1277,16 +1233,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> promoteGroupUsers({
     required model.Session session,
     required String groupId,
     required Iterable<String> userIds,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.promoteGroupUsers(
         groupId: groupId,
@@ -1295,16 +1249,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> demoteGroupUsers({
     required model.Session session,
     required String groupId,
     required Iterable<String> userIds,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.demoteGroupUsers(
         groupId: groupId,
@@ -1313,16 +1265,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> kickGroupUsers({
     required model.Session session,
     required String groupId,
     required Iterable<String> userIds,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.kickGroupUsers(
         groupId: groupId,
@@ -1331,16 +1281,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> banGroupUsers({
     required model.Session session,
     required String groupId,
     required Iterable<String> userIds,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.banGroupUsers(
         groupId: groupId,
@@ -1349,30 +1297,26 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> leaveGroup({
     required model.Session session,
     required String groupId,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.leaveGroup(groupId: groupId);
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.NotificationList> listNotifications({
     required model.Session session,
     int limit = defaultLimit,
     String? cursor,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listNotifications(
         limit: limit,
@@ -1383,15 +1327,13 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> deleteNotifications({
     required model.Session session,
     required Iterable<String> notificationIds,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.deleteNotifications(
         ids: notificationIds.toList(growable: false),
@@ -1399,7 +1341,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<List<model.Match>> listMatches({
@@ -1410,9 +1352,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int? maxSize,
     int? minSize,
     String? query,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listMatches(
         authoritative: authoritative,
@@ -1438,21 +1378,19 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> joinTournament({
     required model.Session session,
     required String tournamentId,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.joinTournament(tournamentId: tournamentId);
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.TournamentList> listTournaments({
@@ -1463,9 +1401,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     DateTime? startTime,
     DateTime? endTime,
     int limit = defaultLimit,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listTournaments(
         categoryStart: categoryStart,
@@ -1484,7 +1420,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.TournamentRecordList> listTournamentRecords({
@@ -1494,9 +1430,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     int? expiry,
     int limit = defaultLimit,
     String? cursor,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listTournamentRecords(
         ownerIds: ownerIds.toList(growable: false),
@@ -1510,7 +1444,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.TournamentRecordList> listTournamentRecordsAroundOwner({
@@ -1519,9 +1453,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     required String ownerId,
     int? expiry,
     int limit = defaultLimit,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listTournamentRecordsAroundOwner(
         ownerId: ownerId,
@@ -1534,7 +1466,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.LeaderboardRecord> writeTournamentRecord({
@@ -1544,9 +1476,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     LeaderboardOperator? operator,
     int? score,
     int? subscore,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.writeTournamentRecord(
         tournamentId: tournamentId,
@@ -1562,21 +1492,19 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<void> deleteTournamentRecord({
     required model.Session session,
     required String tournamentId,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       await _api.deleteTournamentRecord(tournamentId: tournamentId);
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.PartyList> listParties({
@@ -1585,9 +1513,7 @@ class NakamaRestApiClient extends NakamaBaseClient {
     bool? open,
     String? query,
     String? cursor,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.listParties(
         limit: limit,
@@ -1600,14 +1526,12 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.MatchmakerStats> getMatchmakerStats({
     required model.Session session,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.getMatchmakerStats();
 
@@ -1615,16 +1539,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<model.ValidatePurchaseResponse> validatePurchaseFacebookInstant({
     required model.Session session,
     required String signedRequest,
     bool persist = true,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       final res = await _api.validatePurchaseFacebookInstant(
         body: ApiValidatePurchaseFacebookInstantRequest(
@@ -1637,16 +1559,14 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<String?> rpc({
     required model.Session session,
     required String id,
     String? payload,
-  }) async {
-    _session = session;
-
+  }) => _withSession(session, (session) async {
     try {
       ApiRpc res;
 
@@ -1660,28 +1580,30 @@ class NakamaRestApiClient extends NakamaBaseClient {
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 
   @override
   Future<String?> rpcWithHttpKey({
     required String httpKey,
     required String id,
     String? payload,
-  }) async {
-    _session = null;
-
+  }) => _withToken(null, () async {
     try {
       ApiRpc res;
 
       if (payload == null) {
         res = await _api.rpcFunc2(id: id, httpKey: httpKey);
       } else {
-        res = await _api.rpcFunc(id: id, body: jsonEncode(payload), httpKey: httpKey);
+        res = await _api.rpcFunc(
+          id: id,
+          body: jsonEncode(payload),
+          httpKey: httpKey,
+        );
       }
 
       return res.payload;
     } on Exception catch (e) {
       throw _handleError(e);
     }
-  }
+  });
 }

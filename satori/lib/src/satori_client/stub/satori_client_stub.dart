@@ -1,3 +1,4 @@
+import 'package:satori/src/models/session.dart';
 import 'package:satori/src/satori_client/satori_client.dart';
 
 SatoriBaseClient getSatoriClient({
@@ -5,6 +6,9 @@ SatoriBaseClient getSatoriClient({
   String apiKey = 'apikey',
   int port = 7450,
   bool ssl = false,
+  bool autoRefreshSession = false,
+  Duration sessionRefreshBuffer = const Duration(minutes: 5),
+  SessionRefreshListener? onSessionRefresh,
 }) =>
     throw UnsupportedError(
       'Satori client initialization failed. Platform not detected correctly (IO/JS/WASM required).',

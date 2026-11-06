@@ -68,7 +68,9 @@ session.IsExpired // Boolean indicating session status
 session.ExpireTime // in seconds.
 ```
 
-It is recommended to store the auth token from the session and check at startup if it has expired. If the token has expired you must reauthenticate. The expiry time of the token can be changed as a setting in the server.
+Store the session tokens and check expiry at startup. An expired access token can
+be refreshed while its refresh token is still valid; otherwise reauthenticate.
+The server controls token lifetimes.
 
 ```dart
 final inOneHour = DateTime.now().add(Duration(hours: 1));
@@ -77,13 +79,72 @@ final inOneHour = DateTime.now().add(Duration(hours: 1));
 if (session.isExpired || session.hasExpired(inOneHour)) {
     try {
         // Attempt to refresh the existing session.
-        session = await client.sessionRefresh(session);
+        session = await client.sessionRefresh(session: session);
     } catch (e) {
         // Couldn't refresh the session so reauthenticate.
         session = await client.authenticateDevice(deviceId: deviceId);
     }
 }
 ```
+
+#### Automatic session refresh
+
+For general session lifecycle and manual refresh, see the [Nakama session
+concepts](https://heroiclabs.com/docs/nakama/concepts/session/) and the
+[Dart client guide](https://heroiclabs.com/docs/nakama/client-libraries/dart/#session-lifecycle).
+The behavior below documents this SDK's proactive refresh support.
+
+Proactive refresh is opt-in and supported by both REST and gRPC clients:
+
+```dart
+final client = getNakamaClient(
+  host: '127.0.0.1',
+  serverKey: 'defaultkey',
+  autoRefreshSession: true,
+  sessionRefreshBuffer: const Duration(minutes: 5),
+  onSessionRefresh: (previous, refreshed) async {
+    // Save refreshed.token and refreshed.refreshToken to your secure storage.
+    // Update the application's session reference as appropriate.
+  },
+);
+```
+
+Before an authenticated API operation, the client refreshes a session whose access
+token expires within `sessionRefreshBuffer` (five minutes by default). A zero
+buffer refreshes only expired tokens; negative buffers are rejected. There are no
+background timers and no automatic replay on HTTP 401 or gRPC UNAUTHENTICATED.
+Authentication and logout do not trigger proactive refresh.
+
+Sessions remain immutable. Within one client, the original session instance and
+the replacement instances returned by refresh share their latest credentials.
+Reuse these instances rather than restoring/copying a session before every call.
+Separately restored sessions and different clients have independent refresh
+coordination, even if they contain identical tokens. Concurrent manual and
+automatic refreshes for the same session chain share one request; for concurrent
+manual refreshes, the first request's `vars` are used.
+
+`onSessionRefresh` runs after successful manual and automatic refreshes. The
+client awaits it before dispatching waiting operations. Persist new credentials
+there, but do not await another operation using the same session inside the
+callback. Callback errors fail waiting operations; already-renewed credentials
+remain available to subsequent calls. Refresh errors also propagate, without
+sending the protected operation.
+
+If refresh credentials are unavailable or expired, an access token that is still
+valid can be used until expiry. An expired, unrefreshable session fails locally
+with `StateError` when automatic refresh is enabled. Logout immediately
+invalidates the session chain locally in this mode, even if the logout request
+fails; an in-flight refresh cannot publish a replacement afterward. Operations
+still awaiting session preparation fail before dispatch. Requests already
+handed to the transport are not cancelled, and remote revocation depends on the
+server's response. With automatic refresh disabled (the default), logout keeps
+its existing server-validated behavior.
+
+Pass these options on the first initialization of a Nakama client key. Later
+`getNakamaClient()` / `.init()` calls for the same key return the existing client
+without changing its settings. Low-level `rawGrpcClient` calls and existing
+WebSocket connections bypass proactive refresh; reconnect sockets with the new
+token when needed.
 
 ### Requests
 
@@ -115,6 +176,9 @@ Remember to close the connection after disposing of the app widget:
 ```dart
 NakamaWebsocketClient.instance.close();
 ```
+
+Closing a socket releases only that instance's cache entry. A subsequent
+`.init()` with the same key creates a new connection; other sockets are unaffected.
 
 ## Documentation
 

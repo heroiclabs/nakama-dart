@@ -48,11 +48,19 @@ jobs:
       - name: Static analysis
         run: dart analyze
 
+      - name: Session refresh regression tests
+        run: dart test test/automatic_session_refresh_test.dart
+
       - name: WASM smoke check via example app
         run: |
           if [[ -d example ]]; then
             pushd example
             flutter pub get
+            if [[ -f lib/configs/config.dev.json ]]; then
+              flutter test test/session_refresh_test.dart --dart-define-from-file=lib/configs/config.dev.json
+            else
+              flutter test test/session_refresh_test.dart
+            fi
             flutter build web --wasm --release
             popd
           else
@@ -98,4 +106,3 @@ jobs:
             echo "pana returned non-zero exit code: $PANA_EXIT"
             exit $PANA_EXIT
           fi
-

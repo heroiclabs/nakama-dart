@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logging/logging.dart';
 import 'package:satori_example/features/common/routes.dart';
 import 'package:satori_example/services/satori_service.dart';
 
@@ -16,9 +17,23 @@ class HomePage extends ConsumerWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         actions: [
           IconButton(
-            onPressed: () {
+            onPressed: () async {
+              final session = ref.read(sessionProvider);
+              final client = ref.read(satoriClientProvider);
+              final messenger = ScaffoldMessenger.of(context);
               ref.read(sessionProvider.notifier).state = null;
               Navigator.of(context).pushReplacementNamed(Routes.authentication);
+              if (session == null) return;
+              try {
+                await client.authenticateLogout(session: session);
+              } catch (e) {
+                Logger('SatoriSession').warning('Server logout failed', e);
+                if (messenger.mounted) {
+                  messenger.showSnackBar(
+                    SnackBar(content: Text('Server logout failed: $e')),
+                  );
+                }
+              }
             },
             icon: const Icon(Icons.logout),
           ),
@@ -44,7 +59,7 @@ class HomePage extends ConsumerWidget {
                       const SizedBox(height: 8),
                       Text('User ID: ${session.identityId}'),
                       Text(
-                          'Session Token: ${session.token.substring(0, 20)}...'),
+                          'Access token expires: ${session.expiresAt.toLocal()}'),
                     ],
                   ),
                 ),

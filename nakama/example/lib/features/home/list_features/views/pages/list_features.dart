@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logging/logging.dart';
 import 'package:nakama_example/features/common/providers/session_provider.dart';
 import 'package:nakama_example/features/common/routes.dart';
 
@@ -8,121 +11,140 @@ class ListFeaturesPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) => Scaffold(
         appBar: AppBar(
-            title:
-                const Text('Features currently available in the example app')),
+          title: const Text('Features currently available in the example app'),
+        ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              SizedBox(
-                width: double.infinity,
-                child: TextButton(
-                    onPressed: () async {
-                      try {
-                        if (context.mounted) {
-                          await Navigator.pushNamed(context, Routes.chats);
-                        }
-                      } catch (e) {
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(e.toString()),
-                          ));
-                        }
-                      }
-                    },
-                    child: const Text('Join chat, list messages')),
+              Text(
+                'Access token expires: ${ref.watch(sessionProvider)?.expiresAt.toLocal()}',
               ),
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                    onPressed: () async {
-                      try {
-                        if (context.mounted) {
-                          await Navigator.pushNamed(
-                              context, Routes.leaderboards);
-                        }
-                      } catch (e) {
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(e.toString()),
-                          ));
-                        }
+                  onPressed: () async {
+                    try {
+                      if (context.mounted) {
+                        await Navigator.pushNamed(context, Routes.chats);
                       }
-                    },
-                    child: const Text(
-                        'Create, list leaderboards and submit scores')),
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text(e.toString())));
+                      }
+                    }
+                  },
+                  child: const Text('Join chat, list messages'),
+                ),
               ),
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                    onPressed: () async {
-                      try {
-                        if (context.mounted) {
-                          await Navigator.pushNamed(context, Routes.groups);
-                        }
-                      } catch (e) {
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(e.toString()),
-                          ));
-                        }
+                  onPressed: () async {
+                    try {
+                      if (context.mounted) {
+                        await Navigator.pushNamed(context, Routes.leaderboards);
                       }
-                    },
-                    child: const Text('Create, list and update groups')),
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text(e.toString())));
+                      }
+                    }
+                  },
+                  child:
+                      const Text('Create, list leaderboards and submit scores'),
+                ),
               ),
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                    onPressed: () async {
-                      try {
-                        if (context.mounted) {
-                          await Navigator.pushNamed(context, Routes.rpc);
-                        }
-                      } catch (e) {
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(e.toString()),
-                          ));
-                        }
+                  onPressed: () async {
+                    try {
+                      if (context.mounted) {
+                        await Navigator.pushNamed(context, Routes.groups);
                       }
-                    },
-                    child: const Text('Call custom RPCs')),
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text(e.toString())));
+                      }
+                    }
+                  },
+                  child: const Text('Create, list and update groups'),
+                ),
               ),
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                    onPressed: () async {
-                      try {
-                        if (context.mounted) {
-                          await Navigator.pushNamed(context, Routes.matches);
-                        }
-                      } catch (e) {
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text(e.toString()),
-                          ));
-                        }
+                  onPressed: () async {
+                    try {
+                      if (context.mounted) {
+                        await Navigator.pushNamed(context, Routes.rpc);
                       }
-                    },
-                    child: const Text('Create, list and leave matches')),
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text(e.toString())));
+                      }
+                    }
+                  },
+                  child: const Text('Call custom RPCs'),
+                ),
               ),
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                    onPressed: () async {
-                      try {
-                        await ref.read(sessionProvider.notifier).logout();
-                        if (context.mounted) {
-                          await Navigator.pushNamed(context, Routes.login);
-                        }
-                      } catch (e) {
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text(e.toString())));
-                        }
+                  onPressed: () async {
+                    try {
+                      if (context.mounted) {
+                        await Navigator.pushNamed(context, Routes.matches);
                       }
-                    },
-                    child: const Text('Logout')),
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text(e.toString())));
+                      }
+                    }
+                  },
+                  child: const Text('Create, list and leave matches'),
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                  onPressed: () async {
+                    final messenger = ScaffoldMessenger.of(context);
+                    final logout = ref.read(sessionProvider.notifier).logout();
+                    unawaited(Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      Routes.login,
+                      (_) => false,
+                    ));
+                    try {
+                      await logout;
+                    } catch (e, stack) {
+                      Logger('SessionNotifier').warning(
+                        'Logout cleanup failed',
+                        e,
+                        stack,
+                      );
+                      if (messenger.mounted) {
+                        messenger.showSnackBar(SnackBar(
+                          content: Text(
+                              'Signed out locally. Logout cleanup failed: $e'),
+                        ));
+                      }
+                    }
+                  },
+                  child: const Text('Logout'),
+                ),
               ),
             ],
           ),

@@ -11,13 +11,14 @@ class RpcCustomNotifier extends StateNotifier<String?> {
 
   Future<String> call(String id) async {
     final session = ref.read(sessionProvider)!;
-    state = await NakamaClient.instance!.rpc(id: id, session: session);
+    state = await ref.read(nakamaClientProvider).rpc(id: id, session: session);
     return state!;
   }
 
   Future<String> callWithPayload(String id, dynamic payload) async {
     final session = ref.read(sessionProvider)!;
-    state = await NakamaClient.instance!
+    state = await ref
+        .read(nakamaClientProvider)
         .rpc(id: id, session: session, payload: jsonEncode(payload));
     return state!;
   }
@@ -29,8 +30,10 @@ class RpcCustomNotifier extends StateNotifier<String?> {
   }
 
   Future<String> callWSWithPayload(String id, dynamic payload) async {
-    final result = await NakamaWSClient.instance!
-        .rpc(id: id, payload: jsonEncode(payload));
+    final result = await NakamaWSClient.instance!.rpc(
+      id: id,
+      payload: jsonEncode(payload),
+    );
     state = result.payload;
     return state!;
   }
@@ -38,5 +41,6 @@ class RpcCustomNotifier extends StateNotifier<String?> {
   String? currentSession() => state;
 }
 
-final rpcCustomProvider =
-    StateNotifierProvider<RpcCustomNotifier, String?>(RpcCustomNotifier.new);
+final rpcCustomProvider = StateNotifierProvider<RpcCustomNotifier, String?>(
+  RpcCustomNotifier.new,
+);

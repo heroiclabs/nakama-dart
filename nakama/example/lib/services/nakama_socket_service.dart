@@ -6,23 +6,37 @@ class NakamaWSClient {
   static NakamaWebsocketClient? _instance;
   static Session? _session;
 
-  static void setSession(Session? session) {
+  static Future<void> setSession(Session? session) async {
+    final previous = _instance;
     _session = session;
     _instance = null;
+    await previous?.close();
+  }
+
+  // Keep the active connection; refresh does not reauthenticate a socket.
+  static void updateSession(Session session) {
+    _session = session;
   }
 
   static NakamaWebsocketClient? get instance {
     if (_instance != null) return _instance!;
+    final session = _session;
+    if (session == null) {
+      throw StateError('Sign in before opening a socket.');
+    }
 
     // to demostrate you can override the host and ssl
     _instance = NakamaWebsocketClient.init(
-        host: EnvService.nakamaBaseUrl,
-        ssl: EnvService.nakamaSsl,
-        token: _session?.token ?? '',
-        onError: (dynamic error) {
-          debugPrint(
-              'NakamaWSClient - NakamaWebsocketClient - init ERROR: $error');
-        });
+      key: 'example-socket',
+      host: EnvService.nakamaBaseUrl,
+      ssl: EnvService.nakamaSsl,
+      token: session.token,
+      onError: (dynamic error) {
+        debugPrint(
+          'NakamaWSClient - NakamaWebsocketClient - init ERROR: $error',
+        );
+      },
+    );
     return _instance;
   }
 
